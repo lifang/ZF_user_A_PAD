@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#E9E8E8"
+        android:orientation="vertical"
+        android:paddingTop="14dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" 
+            android:paddingBottom="6dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+              >
+
+                
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="维修" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="注销" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                         android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="退货" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="换货" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="更新资料" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="租贷退还" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="#E9E8E8"
+                        android:gravity="bottom"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:textSize="21sp"
+                        android:textColor="#6c6c6c"
+                        android:text="修改到账日期" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:background="#E9E8E8" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="180dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="更新资料单号"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="180dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="终端号"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="180dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="申请日期"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="180dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="更新资料状态"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <com.example.zf_pad.util.XListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fadingEdge="none"
+            android:scrollbars="none" >
+        </com.example.zf_pad.util.XListView>
+    </LinearLayout>
+
+</LinearLayout>
