@@ -11,17 +11,18 @@
         android:gravity="center_vertical" 
         android:background="#989898">
         <CheckBox
-                    android:id="@+id/item_cb"
-                    style="@style/MyCheckBox"
+                    android:id="@+id/cb_all"
+                    style="@style/MyCheckBox1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                    	android:layout_marginLeft="53dp"
                    	android:layout_marginRight="27dp"
+                   	
                    	 android:layout_gravity="center_vertical"
                     android:checked="false" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/bt_bj"
             android:layout_width="120dp"
             android:layout_height="36dp"
             android:background="@drawable/shape_white"
@@ -30,7 +31,7 @@
             android:text="标注为已读" />
 
          <Button
-            android:id="@+id/button2"
+            android:id="@+id/bt_del"
             android:layout_width="120dp"
             android:layout_height="36dp"
             android:background="@drawable/shape_white"

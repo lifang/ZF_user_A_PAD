@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:background="#E9E8E8"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:background="#E9E8E8"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="120dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/tab_bg"
+                    android:gravity="center"
+                    android:text="对公"
+                    android:textColor="#292929"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="120dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="对私"
+                    android:textColor="#292929"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+             >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="10dp" >
+
+                    
+
+                    <LinearLayout
+                        android:id="@+id/apply_detail_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical"
+                        android:paddingLeft="64dp" >
+
+                        <TextView
+                            style="@style/TextTrace.Left.Key"
+                            android:text="@string/apply_detail_brand" />
+
+                        <TextView
+                            style="@style/TextTrace.Left.Key"
+                            android:text="@string/apply_detail_model" />
+
+                        <TextView
+                            style="@style/TextTrace.Left.Key"
+                            android:text="@string/apply_detail_serial" />
+
+                        <TextView
+                            style="@style/TextTrace.Left.Key"
+                            android:text="@string/apply_detail_channel"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/apply_detail_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/apply_detail_brand"
+                            style="@style/TextTrace.Right.Value" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_model"
+                            style="@style/TextTrace.Right.Value" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_serial"
+                            style="@style/TextTrace.Right.Value" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_channel"
+                            style="@style/TextTrace.Right.Value"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="16dp" >
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true" >
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="选择已有商户"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/editText1"
+                            android:layout_width="228dp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/shape"
+                            android:drawableRight="@drawable/edadressbg"
+                            android:textColor="#6c6c6c"
+                            android:textSize="20sp" >
+                        </EditText>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#E2E0E0" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#E2E0E0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true" >
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="选择已有商户"
+                                android:textColor="#292929"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="228dp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="16dp"
+                                android:background="@drawable/shape"
+                                android:drawableRight="@drawable/edadressbg"
+                                android:textColor="#6c6c6c"
+                                android:textSize="20sp" >
+                            </EditText>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#E2E0E0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" 
+                    android:gravity="center_vertical"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="TextView" />
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="118dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="#FF6624"
+                        android:textColor="#ffffff"
+                        android:text="上传图片" />
+
+                </RelativeLayout>
+               <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" 
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </RelativeLayout>
+                            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" 
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

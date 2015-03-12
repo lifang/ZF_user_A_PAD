@@ -21,12 +21,23 @@
             android:textColor="#6C6C6C"
             android:textSize="21sp" />
     </LinearLayout>
-
+<View 
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#DBDBDC"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="402dp"
         android:layout_marginBottom="18dp"
         android:orientation="vertical" >
+        <com.example.zf_pad.util.XListView
+        android:id="@+id/x_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,8 +50,8 @@
         <CheckBox
             android:id="@+id/item_cb"
             style="@style/MyCheckBox"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:checked="false" />

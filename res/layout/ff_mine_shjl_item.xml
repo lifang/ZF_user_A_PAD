@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        
+
+   
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+ >
+
+                <TextView
+                    android:id="@+id/after_sale_number"
+                      android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="12345678999999999"
+                    android:textColor="#292929"
+                    android:paddingLeft="18dp"
+                    
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/after_sale_terminal"
+                      android:layout_width="fill_parent"
+                 
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="12345678999999999"
+                    android:textColor="#292929"
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/after_sale_time"
+                      android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="12345678999999999"
+                    android:textColor="#292929"
+                   
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/after_sale_status"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="12345678999999999"
+                    android:textColor="#292929"
+                    android:textSize="15sp" />
+                <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            <LinearLayout
+			android:id="@+id/after_sale_button_container"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:visibility="gone"
+			android:layout_alignParentRight="true"
+			>
+
+			
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:layout_marginBottom="12dp"
+				android:gravity="center_horizontal"
+				android:orientation="vertical"
+				android:clickable="true">
+
+				<Button
+					android:id="@+id/after_sale_button_left"
+					android:layout_width="118dp"
+					android:layout_height="40dp"
+					android:textColor="@color/blank_button_selector"
+					android:background="@drawable/blank_button_selector"
+					android:visibility="visible"/>
+
+				<Button
+					android:id="@+id/after_sale_button_right"
+					android:layout_width="118dp"
+					android:layout_height="40dp"
+					android:textColor="@color/white"
+					android:background="@drawable/normal_button_selector"
+					android:visibility="visible"/>
+
+				<Button
+					android:id="@+id/after_sale_button_center"
+					android:layout_width="118dp"
+					android:layout_height="40dp"
+					android:textColor="@color/white"
+					android:background="@drawable/normal_button_selector"
+					android:visibility="gone"
+					/>
+
+				<Button
+					android:id="@+id/after_sale_button_center_blank"
+					android:layout_width="118dp"
+					android:layout_height="40dp"
+					android:textColor="@color/blank_button_selector"
+					android:background="@drawable/blank_button_selector"
+					android:visibility="gone"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+        </LinearLayout>
+            </LinearLayout>
+            
+      
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ExpandableListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp" >
+        </ExpandableListView>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="74dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+             >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true" >
+
+                <CheckBox
+                    android:id="@+id/cb_all"
+                    style="@style/MyCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:checked="false" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/cb_all"
+                    android:gravity="center_vertical"
+                    android:text="仅支持租赁的机器"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="价格: " />
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="150dp"
+                    android:background="@drawable/shape_edittext"
+          
+                    android:layout_height="40dp" >
+                </EditText>
+            <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textSize="30sp"
+                    android:gravity="center_vertical"
+                    android:text=" - " />
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="150dp"
+                        android:background="@drawable/shape_edittext"
+                    android:layout_height="40dp" >
+                </EditText>
+                
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="118dp"
+                android:layout_height="40dp"
+				android:background="@drawable/shape_o"
+				android:textColor="#F59652"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="24dp"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="118dp"
+                android:layout_height="40dp"
+				android:background="#FD6A00"
+				android:textColor="#ffffff"
+                android:text="确认" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

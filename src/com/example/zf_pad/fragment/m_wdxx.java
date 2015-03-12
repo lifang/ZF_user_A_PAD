@@ -1,111 +1,148 @@
 package com.example.zf_pad.fragment;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.activity.MainActivity;
+import com.example.zf_pad.activity.MymsgDetail;
+import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.entity.TestEntitiy;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
-
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class m_wdxx extends Fragment implements OnClickListener,IXListViewListener{
+public class m_wdxx extends Fragment implements OnClickListener,
+		IXListViewListener {
 	private View view;
 	private XListView Xlistview;
-	private int page=1;
-	//private int rows=Config.ROWS;
+	private int page = 1;
+	private int rows = Config.ROWS;
+	private String Url = Config.getmes;
+	private Dialog loadingDialog;
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private MessageAdapter myAdapter;
 	private TextView next_sure;
 	private MainActivity mActivity;
-	List<TestEntitiy>  myList = new ArrayList<TestEntitiy>();
-	List<TestEntitiy>  moreList = new ArrayList<TestEntitiy>();
+	private List<MessageEntity> myList = new ArrayList<MessageEntity>();
+	private List<MessageEntity> moreList = new ArrayList<MessageEntity>();
+	private List<MessageEntity> selList = new ArrayList<MessageEntity>();
+	private String ids[] = new String[] {};
+	private boolean isFrist;
+	
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				onLoad( );
-				
-				if(myList.size()==0){
-				//	norecord_text_to.setText("您没有相关的商品");
+				onLoad();
+
+				if (myList.size() == 0) {
+					// norecord_text_to.setText("您没有相关的商品");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}
-				onRefresh_number = true; 
-			 	myAdapter.notifyDataSetChanged();
+				onRefresh_number = true;
+				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
-				Toast.makeText(mActivity, (String) msg.obj,
-						Toast.LENGTH_SHORT).show();
-			 
+				Toast.makeText(mActivity, (String) msg.obj, Toast.LENGTH_SHORT)
+						.show();
+
 				break;
 			case 2: // 网络有问题
 				Toast.makeText(mActivity, "no 3g or wifi content",
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(mActivity,  " refresh too much",
+				Toast.makeText(mActivity, " refresh too much",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
 		}
 	};
+	private Button bt_bj;
+	private Button bt_del;
+	private CheckBox ckall;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		isFrist=true;
+		loadingDialog = DialogUtil.getLoadingDialg(getActivity());
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-			//view = inflater.inflate(R.layout.f_main,container,false);
-			
-		
-		
+
+		// view = inflater.inflate(R.layout.f_main,container,false);
+
 		if (view != null) {
-	        ViewGroup parent = (ViewGroup) view.getParent();
-	        if (parent != null)
-	            parent.removeView(view);
-	    }
-	    try {
-	        view = inflater.inflate(R.layout.m_wdxx, container, false);
-	        initView();
-			getData();
-	    } catch (InflateException e) {
-	        
-	    }
-	    return view;
+			ViewGroup parent = (ViewGroup) view.getParent();
+			if (parent != null)
+				parent.removeView(view);
+		}
+		try {
+			view = inflater.inflate(R.layout.m_wdxx, container, false);
+			initView();
+			page = 1;
+			myList.clear();
+			getData(0);
+
+		} catch (InflateException e) {
+
+		}
+		return view;
 	}
+
 	private void initView() {
 		// TODO Auto-generated method stub
-		//next_sure=(TextView) findViewById(R.id.next_sure);
-		//next_sure.setVisibility(View.VISIBLE);
-		//next_sure.setText("编辑");
-		//new TitleMenuUtil(MyMessage.this, "系统公告").show();
-		myAdapter=new MessageAdapter(mActivity, myList);
-		eva_nodata=(LinearLayout) view.findViewById(R.id.eva_nodata);
-		Xlistview=(XListView) view.findViewById(R.id.x_listview);
+		// next_sure=(TextView) findViewById(R.id.next_sure);
+		// next_sure.setVisibility(View.VISIBLE);
+		// next_sure.setText("编辑");
+		// new TitleMenuUtil(MyMessage.this, "系统公告").show();
+		myAdapter = new MessageAdapter(mActivity, myList);
+		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
+		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
@@ -116,38 +153,35 @@ public class m_wdxx extends Fragment implements OnClickListener,IXListViewListen
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-//				Intent i = new Intent(MyMessage.this, OrderDetail.class);
-//				startActivity(i);
+				Intent i = new Intent(mActivity, MymsgDetail.class);
+				i.putExtra("id", myList.get(position - 1).getId());
+				startActivity(i);
 			}
 		});
 		Xlistview.setAdapter(myAdapter);
-		
-		
-		/*
-		next_sure.setOnClickListener(new OnClickListener() {
-			
+		bt_bj = (Button) view.findViewById(R.id.bt_bj);
+		bt_bj.setOnClickListener(this);
+		bt_del = (Button) view.findViewById(R.id.bt_del);
+		bt_del.setOnClickListener(this);
+		ckall = (CheckBox) view.findViewById(R.id.cb_all);
+		ckall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(MyApplication.getIsSelect()){
-					//遍历数组删除操作
-					next_sure.setText("删除");
-					MyApplication.setIsSelect(false);
-					myAdapter.notifyDataSetChanged();
-					for(int i=0;i<myList.size();i++){
-						 
-						if(myList.get(i).getIscheck()){
-							System.out.println("第---"+i+"条被选中");
-						}
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if (arg1) {
+					for (MessageEntity item : myList) {
+						item.setIscheck(true);
+						myAdapter.notifyDataSetChanged();
 					}
-				}else{
-					next_sure.setText("编辑");
-					MyApplication.setIsSelect(true);
-					myAdapter.notifyDataSetChanged();
+				} else {
+					for (MessageEntity item : myList) {
+						item.setIscheck(false);
+						myAdapter.notifyDataSetChanged();
+					}
 				}
+
 			}
-		});*/
+		});
 	}
 
 	@Override
@@ -155,6 +189,7 @@ public class m_wdxx extends Fragment implements OnClickListener,IXListViewListen
 		mActivity = (MainActivity) activity;
 		super.onAttach(activity);
 	}
+
 	private void onLoad() {
 		Xlistview.stopRefresh();
 		Xlistview.stopLoadMore();
@@ -164,60 +199,211 @@ public class m_wdxx extends Fragment implements OnClickListener,IXListViewListen
 	public void buttonClick() {
 		page = 1;
 		myList.clear();
-		//getData();
+		getData(0);
 	}
+
 	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.bt_bj:
+			read_bj();
+			break;
+		case R.id.bt_del:
+			del_msg();
+		default:
+			break;
+		}
 	}
+
+	private void del_msg() {
+		selList.clear();
+		for (MessageEntity me : myList) {
+			if (me.getIscheck()) {
+				selList.add(me);
+			}
+		}
+		ids = new String[selList.size()];
+
+		for (int i = 0; i < ids.length; i++) {
+			ids[i] = selList.get(i).getId();
+		}
+		getData(1);
+	}
+
+	private void read_bj() {
+		selList.clear();
+		for (MessageEntity me : myList) {
+			if (me.getIscheck()) {
+				selList.add(me);
+			}
+		}
+		ids = new String[selList.size()];
+
+		for (int i = 0; i < ids.length; i++) {
+			ids[i] = selList.get(i).getId();
+		}
+		getData(2);
+	}
+
 	@Override
 	public void onRefresh() {
 		page = 1;
-		 System.out.println("onRefresh1");
+		System.out.println("onRefresh1");
 		myList.clear();
-		 System.out.println("onRefresh2");
-		getData();
-		
+		System.out.println("onRefresh2");
+		getData(0);
+
 	}
+
 	@Override
 	public void onLoadMore() {
 		if (onRefresh_number) {
-			page = page+1;
-			
+			page = page + 1;
+
 			onRefresh_number = false;
-			getData();
-			
-//			if (Tools.isConnect(getApplicationContext())) {
-//				onRefresh_number = false;
-//				getData();
-//			} else {
-//				onRefresh_number = true;
-//				handler.sendEmptyMessage(2);
-//			}
-		}
-		else {
+			getData(0);
+
+			// if (Tools.isConnect(getApplicationContext())) {
+			// onRefresh_number = false;
+			// getData();
+			// } else {
+			// onRefresh_number = true;
+			// handler.sendEmptyMessage(2);
+			// }
+		} else {
 			handler.sendEmptyMessage(3);
 		}
 	}
+
 	/*
 	 * 请求数据
 	 */
-	private void getData() {
+	private void getData(final int type) {
+		RequestParams params = new RequestParams();
+		Gson gson = new Gson();
+		params.put("customer_id", 80);
+		if (type == 0) {
+			Url = Config.getmes;
+			params.put("page", page);
+			params.put("pageSize", rows);
+		} else if (type == 1) {
+			Url = Config.MSGEDLALL;
+			try {
+				params.put("ids", new JSONArray(gson.toJson(ids)));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if (type == 2) {
+			Url = Config.MSGREAD;
+			try {
+				params.put("ids", new JSONArray(gson.toJson(ids)));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		params.setUseJsonStreamer(true);
+		MyApplication.getInstance().getClient()
+				.post(Url, params, new AsyncHttpResponseHandler() {
+					@Override
+					public void onStart() {
+						loadingDialog.show();
+						super.onStart();	
+					}
+					@Override
+					public void onFinish() {
+						loadingDialog.dismiss();
+						super.onFinish();
+					}
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						System.out.println("-onSuccess---");
+						String responseMsg = new String(responseBody)
+								.toString();
+						Log.e("LJP", responseMsg);
+						Gson gson = new Gson();
+						JSONObject jsonobject = null;
+						int code = 0;
+						try {
+							jsonobject = new JSONObject(responseMsg);
+							String res = jsonobject.getString("result");
+							code = jsonobject.getInt("code");
+
+							if (code == -2) {
+
+							} else if (code == 1) {
+								if (type == 0) {
+									
+									System.out.println("`res``" + res);
+									jsonobject = new JSONObject(res);
+									moreList.clear();
+									moreList = gson.fromJson(
+											jsonobject.getString("content"),
+											new TypeToken<List<MessageEntity>>() {
+											}.getType());
+
+									if (moreList.size() == 0) {
+										Toast.makeText(mActivity, "没有更多数据",
+												Toast.LENGTH_SHORT).show();
+										Xlistview.getmFooterView().setState2(2);
+							
+									}
+
+									myList.addAll(moreList);
+									handler.sendEmptyMessage(0);
+
+								}else if(type==1){
+									myList.clear();
+									page = 1;
+									getData(0);
+									Toast.makeText(getActivity(),
+											jsonobject.getString("message"),
+											Toast.LENGTH_SHORT).show();
+								}else if(type==2){
+									page = 1;
+									myList.clear();
+									getData(0);
+									Toast.makeText(getActivity(),
+											jsonobject.getString("message"),
+											Toast.LENGTH_SHORT).show();
+									
+								}
+							} else {
+								
+								Toast.makeText(getActivity(),
+										jsonobject.getString("message"),
+										Toast.LENGTH_SHORT).show();
+							}
+
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						error.printStackTrace();
+					}
+
+				});
+	}
+	@Override
+	public void onResume() {
 		// TODO Auto-generated method stub
-		 
-	 
-		 TestEntitiy te=new TestEntitiy();
-		 te.setContent("---这里是标题1---"+page+page);
-		 myList.add(te);
-		 TestEntitiy te2=new TestEntitiy();
-		 te2.setContent("---这里是标题2---"+page+page);
-		 myList.add(te2);
-		 TestEntitiy te22=new TestEntitiy();
-		 te22.setContent("---标题3---"+page+page);
-		 myList.add(te22);
-		
-		System.out.println("getData");
-		handler.sendEmptyMessage(0);
-	}	
+		super.onResume();
+		if(!isFrist){
+			page = 1;
+			myList.clear();
+			getData(0);
+		}
+		isFrist=false;
+
+
+	}
 }

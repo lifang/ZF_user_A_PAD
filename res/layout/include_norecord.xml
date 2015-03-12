@@ -10,11 +10,11 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:layout_marginTop="20dp"
+	    android:layout_marginTop="120dp"
 	    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="20dp"
             android:text="No updates"
             android:textColor="@color/t828282"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/norecord_text_to2"

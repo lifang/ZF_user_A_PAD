@@ -2,12 +2,10 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.entity.TestEntitiy;
-import com.example.zf_pad.util.MyApplication;
-
-
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +22,18 @@ import android.widget.Toast;
 
 public class MessageAdapter extends BaseAdapter {
 	private Context context;
-	private List<TestEntitiy> list;
+	private List<MessageEntity> list;
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
-
-	public MessageAdapter(Context context, List<TestEntitiy> list) {
+	private int type;
+	public MessageAdapter(Context context, List<MessageEntity> list) {
 		this.context = context;
 		this.list = list;
+	}
+	public MessageAdapter(Context context, List<MessageEntity> list,int type) {
+		this.context = context;
+		this.list = list;
+		this.type=type;
 	}
 
 	@Override
@@ -62,25 +65,32 @@ public class MessageAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
 		holder.tv_title.setText(list.get(position).getContent());
-		if(MyApplication.getIsSelect()){
-			 
-			holder.item_cb.setVisibility(View.VISIBLE);
+		holder.tv_time.setText(list.get(position).getCreate_at());
+		if(type!=1){
+			if(!list.get(position).getStatus()){
+				holder.tv_title.setTextColor(context.getResources().getColor(R.color.NoRead));
+			}
+			
+			//list.get(position).setIscheck(holder.item_cb.isChecked());
+			if(list.get(position).getIscheck()){
+				holder.item_cb.setChecked(true);
+			}else{
+				holder.item_cb.setChecked(false);
+			}
+			holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+					list.get(position).setIscheck(isChecked);
+				}
+			});
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
 		}
 		
-		list.get(position).setIscheck(holder.item_cb.isChecked());
-		holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				list.get(position).setIscheck(isChecked);
-			}
-		});
-		//holder.item_cb.toggle();
+		
 		return convertView;
 	}
 

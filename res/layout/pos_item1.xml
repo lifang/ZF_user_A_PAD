@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="314dp"
+        android:background="@color/white"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_m1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/evevt_img"
+                android:layout_width="224dp"
+                android:layout_height="224dp"
+                android:background="@drawable/testphone401" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:text="2015最新POS机器旗舰版  1.0"
+                    android:textColor="@color/text292929"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付通道"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_td"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付宝"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+               <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="$999.00"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/ys"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="已售99"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="21sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_m2"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="22dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/evevt_img2"
+                android:layout_width="224dp"
+                android:layout_height="224dp"
+                android:background="@drawable/testphone401" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:text="2015最新POS机器旗舰版  1.0"
+                    android:textColor="@color/text292929"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付通道"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_td2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付宝"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+               <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_price2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="$999.00"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/ys2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="已售99"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="21sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_m3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="22dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/evevt_img3"
+                android:layout_width="224dp"
+                android:layout_height="224dp"
+                android:background="@drawable/testphone401" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:text="2015最新POS机器旗舰版  1.0"
+                    android:textColor="@color/text292929"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付通道"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_td3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付宝"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+               <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_price3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="$999.00"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/ys3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="已售99"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="21sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+           	android:id="@+id/ll_m4"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="22dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/evevt_img4"
+                android:layout_width="224dp"
+                android:layout_height="224dp"
+                android:background="@drawable/testphone401" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:text="2015最新POS机器旗舰版  1.0"
+                    android:textColor="@color/text292929"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付通道"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_td4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:maxLines="1"
+                        android:text="支付宝"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+               <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_price4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="$999.00"
+                        android:textColor="@color/bgtitle"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/ys4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="已售99"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textColor="@color/text6c6c6c6"
+                        android:textSize="21sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

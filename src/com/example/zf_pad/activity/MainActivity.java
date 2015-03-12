@@ -1,14 +1,19 @@
 package com.example.zf_pad.activity;
 
+
 import com.example.zf_pad.R;
+import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.fragment.m_MianFragment;
 import com.example.zf_pad.fragment.m_my;
 import com.example.zf_pad.fragment.m_shopcar;
 import com.example.zf_pad.fragment.m_wdxx;
 import com.example.zf_pad.popwindow.SetPopWindow;
+import com.example.zf_pad.trade.ApplyListActivity;
+import com.example.zf_pad.trade.TradeFlowActivity;
 
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -22,9 +27,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
-
+	private RelativeLayout  main_rl_pos,main_rl_renzhen,main_rl_zdgl,main_rl_jyls,
+	main_rl_Forum,main_rl_wylc,main_rl_xtgg,main_rl_lxwm,main_rl_my,main_rl_pos1,main_rl_gwc;
 	private RelativeLayout re_shopcar;
 	private RelativeLayout re_myinfo;
 	private RelativeLayout re_mine;
@@ -59,6 +66,25 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	}
 
 	private void initView() {
+
+			main_rl_pos=(RelativeLayout) findViewById(R.id.main_rl_pos);
+			main_rl_pos.setOnClickListener(this);
+			main_rl_renzhen=(RelativeLayout) findViewById(R.id.main_rl_renzhen);
+			main_rl_renzhen.setOnClickListener(this);
+			main_rl_zdgl=(RelativeLayout) findViewById(R.id.main_rl_zdgl);
+			main_rl_zdgl.setOnClickListener(this);
+			main_rl_jyls=(RelativeLayout) findViewById(R.id.main_rl_jyls);
+			main_rl_jyls.setOnClickListener(this);
+			main_rl_Forum=(RelativeLayout) findViewById(R.id.main_rl_Forum);
+			main_rl_Forum.setOnClickListener(this);
+			main_rl_wylc=(RelativeLayout) findViewById(R.id.main_rl_wylc);
+			main_rl_wylc.setOnClickListener(this);
+			main_rl_lxwm=(RelativeLayout) findViewById(R.id.main_rl_lxwm);
+			main_rl_lxwm.setOnClickListener(this);
+			main_rl_xtgg=(RelativeLayout) findViewById(R.id.main_rl_xtgg);
+			main_rl_xtgg.setOnClickListener(this);
+			
+
 		im_sy = (ImageView)findViewById(R.id.laa1);
 		im_ghc = (ImageView)findViewById(R.id.igw);
 		im_mess = (ImageView)findViewById(R.id.im_mess);
@@ -113,7 +139,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_my:
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
-			if (m_my == null)
+			if(m_my==null)
 				m_my = new m_my();
 
 			getSupportFragmentManager().beginTransaction()
@@ -122,6 +148,24 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.set:
 			showSet();
 			break;
+			
+		case R.id.main_rl_jyls: //交易流水 
+			 
+			startActivity(new Intent(MainActivity.this, TradeFlowActivity.class));
+			break;
+		case R.id.main_rl_pos: //购买pos机
+			 
+			startActivity(new Intent(MainActivity.this, PosListActivity.class));
+			break;	
+		case R.id.main_rl_renzhen: //开通认证
+			 
+			startActivity(new Intent(MainActivity.this, ApplyListActivity.class));
+			break;
+		case R.id.main_rl_xtgg: //系统公告
+			 
+			startActivity(new Intent(MainActivity.this, SystemMessage.class));
+			break;
+			
 		default:
 			break;
 		}

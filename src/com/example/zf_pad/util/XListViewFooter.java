@@ -1,11 +1,5 @@
 package com.example.zf_pad.util;
 
-
-
- 
-
-
-
 import com.example.zf_pad.R;
 
 import android.content.Context;
