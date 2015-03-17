@@ -85,7 +85,7 @@
                     <Button
                         android:layout_width="@dimen/normai_button_width"
                         android:layout_height="@dimen/normai_button_height"
-                        android:background="@drawable/bg_blue_shape"
+                        android:background="#FF6727"
                         android:text="评价"
                         android:textColor="@color/ffffff"
                         android:visibility="gone" />

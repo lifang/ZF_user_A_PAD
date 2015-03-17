@@ -43,7 +43,7 @@
                 android:singleLine="true"
                 android:text="商品详情"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="@dimen/textmid" />
 
             <ImageView
                 android:id="@+id/search2"
@@ -113,7 +113,7 @@
                     android:ellipsize="end"
                     android:text="2015最新POS机器旗舰版  1.0"
                     android:textColor="#292929"
-                    android:textSize="21sp" />
+                    android:textSize="@dimen/textbig" />
 
                 <TextView
                     android:id="@+id/content1"
@@ -126,7 +126,7 @@
                     android:maxLines="1"
                     android:text="xxxx上市"
                     android:textColor="@color/text6c6c6c6"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -144,7 +144,7 @@
                         android:maxLines="1"
                         android:text="品牌型号"
                         android:textColor="@color/text292929"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <TextView
                         android:id="@+id/tv_PP"
@@ -156,7 +156,7 @@
                         android:maxLines="1"
                         android:text="泰山"
                         android:textColor="@color/text292929"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -174,7 +174,7 @@
                             android:maxLines="1"
                             android:text="查看厂家信息"
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/textmids" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                         android:maxLines="1"
                         android:text="终端类型"
                         android:textColor="@color/text292929"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <TextView
                         android:id="@+id/tv_lx"
@@ -212,7 +212,7 @@
                         android:maxLines="1"
                         android:text="xxx终端"
                         android:textColor="@color/text292929"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,7 +231,7 @@
                         android:maxLines="1"
                         android:text="价        格"
                         android:textColor="@color/text292929"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <TextView
                         android:id="@+id/tv_price"
@@ -243,7 +243,7 @@
                         android:maxLines="1"
                         android:text="999.00"
                         android:textColor="@color/bgtitle"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/textmid" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -263,7 +263,7 @@
                         android:maxLines="1"
                         android:text="支付通道"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <LinearLayout
                         android:layout_width="400dp"
@@ -349,7 +349,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:text="通道介绍"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -418,7 +418,7 @@
                             android:maxLines="1"
                             android:text="购买方式"
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/textsmall" />
 
                         <LinearLayout
                             android:layout_width="400dp"
@@ -522,7 +522,7 @@
                 android:gravity="center"
                 android:text="商品描述"
                 android:textColor="#292929"
-                android:textSize="18dp" />
+                android:textSize="@dimen/textmid" />
 
             <View
                 android:layout_width="1dp"
@@ -537,7 +537,7 @@
                 android:gravity="center"
                 android:text="开通所需资料"
                 android:textColor="#292929"
-                android:textSize="18dp" />
+                android:textSize="@dimen/textmid" />
 
             <View
                 android:layout_width="1dp"
@@ -552,7 +552,7 @@
                 android:gravity="center"
                 android:text="评论"
                 android:textColor="#292929"
-                android:textSize="18dp" />
+                android:textSize="@dimen/textmid" />
 
             <View
                 android:layout_width="1dp"
@@ -567,7 +567,7 @@
                 android:gravity="center"
                 android:text="租赁说明"
                 android:textColor="#292929"
-                android:textSize="18dp" />
+                android:textSize="@dimen/textmid" />
 
             <View
                 android:layout_width="1dp"
@@ -582,7 +582,7 @@
                 android:gravity="center"
                 android:text="交易费率说明"
                 android:textColor="#292929"
-                android:textSize="18dp" />
+                android:textSize="@dimen/textmid" />
         </LinearLayout>
         <fragment 
             android:id="@+id/f_good_detail"

@@ -5,5 +5,16 @@
     <dimen name="normai_button_width">118dp</dimen>
     <dimen name="normai_button_height">40dp</dimen>
 
-
+    <!--首页 -->
+    <dimen name="iconma">16dp</dimen>
+    <dimen name="mainvpheight">360dp</dimen>
+    <!--POS机列表-->
+    <dimen name="itemheight1">314dp</dimen>
+    <dimen name="itemwidth1">224dp</dimen>
+    <dimen name="itemheight">144dp</dimen>
+    <!--文字大小 -->
+	<dimen name="textbig">21sp</dimen>
+	<dimen name="textmid">18sp</dimen>
+	<dimen name="textmids">16sp</dimen>
+	<dimen name="textsmall">13sp</dimen>
 </resources>
