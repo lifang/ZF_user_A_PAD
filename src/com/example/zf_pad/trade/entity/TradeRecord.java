@@ -2,7 +2,9 @@ package com.example.zf_pad.trade.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-
+/**
+ * Created by Leo on 2015/2/7.
+ */
 public class TradeRecord {
 
 	private int id;
@@ -125,5 +127,4 @@ public class TradeRecord {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 }

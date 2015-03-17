@@ -138,7 +138,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
-		/*Xlistview.setOnItemClickListener(new OnItemClickListener() {
+		Xlistview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -149,7 +149,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 				System.out.println("-Xlistview--"+id);
 				startActivity(i);
 			}
-		});*/
+		});
 		Xlistview.setAdapter(myAdapter);
 		changList();
 	}
@@ -292,8 +292,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	}
 	 
 	private void getData() {
-		// TODO Auto-generated method stub
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/good/list";
+
 		RequestParams params = new RequestParams();
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
@@ -302,7 +301,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		params.setUseJsonStreamer(true);
 
 		new AsyncHttpClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+				.post(Config.POSLIST, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

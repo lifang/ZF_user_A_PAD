@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
   android:layout_height="@dimen/titleback_height"
     android:background="@color/bgtitle"
-    android:paddingLeft="64dp"
-    android:paddingRight="64dp"
+    android:paddingLeft="@dimen/titilepad"
+    android:paddingRight="@dimen/titilepad"
     android:orientation="horizontal" >
 
          <LinearLayout

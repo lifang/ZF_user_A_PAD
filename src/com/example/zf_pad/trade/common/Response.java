@@ -1,5 +1,8 @@
 package com.example.zf_pad.trade.common;
 
+/**
+ * Created by Leo on 2015/2/11.
+ */
 public class Response<T> {
 
     private int code;

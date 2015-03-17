@@ -53,4 +53,12 @@
     android:layout_width="fill_parent"
     android:layout_height="1dp"
     android:background="#414141"/>
+<com.example.zf_pad.util.XListView
+        android:id="@+id/x_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+       
+        android:fadingEdge="none"
+        android:scrollbars="none" />
 </LinearLayout>

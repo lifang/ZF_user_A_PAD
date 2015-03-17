@@ -31,7 +31,7 @@ public class API {
     // trade record statistic
     public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
     // trade record detail
-    public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d";
+	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST + "/ZFMerchant/api/trade/record/getTradeRecord/%d/%d";
 
     // After sale record list
     public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST + "/ZFMerchant/api/cs/repair/getAll";
@@ -92,43 +92,44 @@ public class API {
     // upload image url
     public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
 
-    public static void getTerminalList(
-            Context context,
-            int customerId,
-            HttpCallback callback) {
-        new HttpRequest(context, callback).get(String.format(TERMINAL_LIST, customerId));
-    }
+	public static void getTerminalList(
+			Context context,
+			int customerId,
+			HttpCallback callback) {
+		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST, customerId));
+	}
 
-    public static void getTradeRecordList(
-            Context context,
-            int tradeTypeId,
-            String terminalNumber,
-            String startTime,
-            String endTime,
-            int page,
-            int rows,
-            HttpCallback callback) {
-        new HttpRequest(context, callback).get(String.format(TRADE_RECORD_LIST,
-                tradeTypeId, terminalNumber, startTime, endTime, page, rows));
-    }
+	public static void getTradeRecordList(
+			Context context,
+			int tradeTypeId,
+			String terminalNumber,
+			String startTime,
+			String endTime,
+			int page,
+			int rows,
+			HttpCallback callback) {
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_LIST,
+				tradeTypeId, terminalNumber, startTime, endTime, page, rows));
+	}
 
-    public static void getTradeRecordStatistic(
-            Context context,
-            int tradeTypeId,
-            String terminalNumber,
-            String startTime,
-            String endTime,
-            HttpCallback callback) {
-        new HttpRequest(context, callback).get(String.format(TRADE_RECORD_STATISTIC,
-                tradeTypeId, terminalNumber, startTime, endTime));
-    }
+	public static void getTradeRecordStatistic(
+			Context context,
+			int tradeTypeId,
+			String terminalNumber,
+			String startTime,
+			String endTime,
+			HttpCallback callback) {
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_STATISTIC,
+				tradeTypeId, terminalNumber, startTime, endTime));
+	}
 
-    public static void getTradeRecordDetail(
-            Context context,
-            int recordId,
-            HttpCallback callback) {
-        new HttpRequest(context, callback).get(String.format(TRADE_RECORD_DETAIL, recordId));
-    }
+	public static void getTradeRecordDetail(
+			Context context,
+			int typeId,
+			int recordId,
+			HttpCallback callback) {
+		new HttpRequest(context, callback).post(String.format(TRADE_RECORD_DETAIL, typeId, recordId));
+	}
 
     public static void getAfterSaleRecordList(
             Context context,

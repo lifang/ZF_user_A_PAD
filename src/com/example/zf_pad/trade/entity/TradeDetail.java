@@ -1,6 +1,8 @@
 package com.example.zf_pad.trade.entity;
 
-
+/**
+ * Created by Leo on 2015/2/12.
+ */
 public class TradeDetail {
 
     private String tradedTimeStr;

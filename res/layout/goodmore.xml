@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp" >
+
+    <LinearLayout
+        android:id="@+id/spms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="POS信息"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="品      牌     型     号"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/ppxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="泰山TS9000"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="电      池     信     息"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/dcxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="泰山TS9000"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="外      壳     信     息"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/wkxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="泰山TS9000"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="签约购单打印方式"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_qgd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="泰山TS9000"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="加    密   卡  方   式"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_jm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="泰山TS9000"
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="40dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="支付通道信息"
+            android:textColor="@color/text6c6c6c6"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="支 持 支 付 区 域"
+                android:textColor="@color/text292929"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvc_qy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="全国"
+                android:textColor="@color/text6c6c6c6"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="是 否 支 持 注 销"
+                android:textColor="@color/text292929"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvc_zx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="支持"
+                android:textColor="@color/text6c6c6c6"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingRight="200dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/indicator" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="刷卡交易标准："
+                        android:textColor="@color/text292929"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/ca_vg"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="商户类"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="费率"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="说明"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.example.zf_pad.util.ScrollViewWithListView
+                    android:id="@+id/pos_lv1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null" >
+                </com.example.zf_pad.util.ScrollViewWithListView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="200dp"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/indicator" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="资金服务费"
+                        android:textColor="@color/text292929"
+                        android:textSize="18sp" />
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/ca_vg"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="结算周"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="费率"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="说明"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+                </LinearLayout>
+                             <com.example.zf_pad.util.ScrollViewWithListView
+                    android:id="@+id/pos_lv2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null" >
+                </com.example.zf_pad.util.ScrollViewWithListView>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingRight="200dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/indicator" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="其他交易费率"
+                        android:textColor="@color/text292929"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/ca_vg"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="交易类型"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="费率"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/Viewc2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/F3F3F3"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="说明"
+                            android:textColor="@color/text292929" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.example.zf_pad.util.ScrollViewWithListView
+                    android:id="@+id/pos_lv3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null" >
+                </com.example.zf_pad.util.ScrollViewWithListView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

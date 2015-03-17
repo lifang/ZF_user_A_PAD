@@ -1,5 +1,14 @@
 package com.example.zf_pad;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.example.zf_pad.entity.ApplyneedEntity;
+import com.example.zf_pad.entity.ChanelEntitiy;
+import com.example.zf_pad.entity.GoodinfoEntity;
+import com.example.zf_pad.entity.tDates;
+import com.example.zf_pad.entity.other_rate;;
 public class Config {
 	
     public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
@@ -28,7 +37,17 @@ public class Config {
 	public static final String GOODDETAIL =PATHS+"good/goodinfo";
 	public static final String SYSMSGLIST =PATHS+"web/message/getAll";
 	public static final String SYSMSGDT =PATHS+"web/message/getById";
-	
-	
-	 
+	public static final String POSLIST =PATHS+"api/good/list";
+	public static final String POSPORT =PATHS+"good/search";
+	public static final String ORDERLIST =PATHS+"order/getMyOrderAll";
+	public static final String ORDERDETAIL =PATHS+"order/getMyOrderById";
+	public static String goodcomment=PATHS+"comment/list";
+	 public static GoodinfoEntity gfe=null;
+	 public  static ArrayList<ChanelEntitiy> celist=new ArrayList<ChanelEntitiy>();
+	 public  static ArrayList<tDates> tDates=new ArrayList<tDates>();
+	 public  static ArrayList<other_rate> other_rate=new ArrayList<other_rate>();
+		public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();   
+		public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>(); 
+		public static int goodId;
+		public static String commentsCount;
 }

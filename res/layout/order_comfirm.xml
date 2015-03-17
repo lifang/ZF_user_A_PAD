@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/include_titlebar" >
-    </include>
-
+<include layout="@layout/title_back" />
+ 
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -107,7 +106,7 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="136dp" >
+                        android:layout_height="130dp" >
 
                         <com.example.zf_pad.util.ScrollViewWithListView
                             android:id="@+id/pos_lv1"
@@ -216,7 +215,43 @@
                         android:divider="@null" >
                     </com.example.zf_pad.util.ScrollViewWithListView>
                 </LinearLayout>
+<LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:paddingRight="20dp"
+                    android:background="#E9E8E8" >
 
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="共计"
+                        android:textColor="#292929"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="运送费"
+                        android:textColor="#292929"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center|right"
+                        android:text="合计"
+                        android:textColor="#292929"
+                        android:textSize="15sp" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="42dp"
@@ -244,8 +279,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="22dp"
-                    android:layout_marginTop="34dp" >
+                
+                    android:layout_marginTop="34dp" 
+                    android:layout_marginBottom="80dp">
 
                     <TextView
                         android:id="@+id/textView2"
@@ -292,14 +328,20 @@
                     android:layout_marginBottom="34dp"
                     android:background="#EEEDED" />
 
-                <LinearLayout
+                
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content" 
+                    android:layout_alignParentBottom="true">
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="74dp"
                         android:background="#ffffff"
+                        android:paddingRight="80dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
 
@@ -333,13 +375,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
-                            android:background="@drawable/bg_blue_shape"
+                            android:background="@drawable/normal_button_selector"
                             android:text="结算"
                             android:textColor="@color/ffffff" />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
+</RelativeLayout>
 </LinearLayout>

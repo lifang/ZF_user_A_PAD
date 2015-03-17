@@ -14,7 +14,7 @@
         android:paddingTop="40dp" >
 
         <TextView
-            android:id="@+id/textView1"
+             android:id="@+id/titleback_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="购物车"
@@ -30,6 +30,17 @@
         android:layout_height="402dp"
         android:layout_marginBottom="18dp"
         android:orientation="vertical" >
+            <LinearLayout
+        android:id="@+id/eva_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@color/ffffff"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <include layout="@layout/include_norecord" />
+    </LinearLayout>
         <com.example.zf_pad.util.XListView
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
@@ -95,10 +106,11 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/howMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:text="合计：￥29999"
+                android:text="合计：￥0"
                 android:textColor="@color/text292929"
                 android:textSize="17sp" />
 

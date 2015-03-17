@@ -6,6 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
+
+/**
+ * Created by Leo on 2015/2/11.
+ */
 public class JsonParser {
 
 	public static Response fromJson(String json) {

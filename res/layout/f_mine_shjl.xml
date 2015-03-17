@@ -92,7 +92,7 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-        <ListView
+<com.example.zf_pad.trade.widget.XListView
 		android:id="@+id/after_sale_list"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"

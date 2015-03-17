@@ -1,5 +1,6 @@
 package com.example.zf_pad.trade;
 
+import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.CLIENT_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.END_DATE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.common.Page;
 import com.example.zf_pad.trade.entity.TradeRecord;
 import com.google.gson.reflect.TypeToken;
 
@@ -83,7 +85,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	}
 
 	public TradeFlowFragment() {
-		// Required empty public constructor
+		
 	}
 
 	@Override
@@ -164,6 +166,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				TradeRecord record = (TradeRecord) view.getTag(R.id.trade_status);
 				Intent intent = new Intent(getActivity(), TradeDetailActivity.class);
 				intent.putExtra(TRADE_RECORD_ID, record.getId());
+				 intent.putExtra(TRADE_TYPE, mTradeType);
 				startActivity(intent);
 			}
 		});
@@ -212,20 +215,21 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				mTradeSearchContent.setVisibility(View.VISIBLE);
 				API.getTradeRecordList(getActivity(),
 						mTradeType, tradeClientName, tradeStartDate, tradeEndDate, 1, 100,
-						new HttpCallback<List<TradeRecord>>(getActivity()) {
+						new HttpCallback<Page<TradeRecord>>(getActivity()) {
 
 							@Override
-							public void onSuccess(List<TradeRecord> data) {
-								mRecords.clear();
-								mRecords.addAll(data);
-								mAdapter.notifyDataSetChanged();
+							public void onSuccess(Page<TradeRecord> data) {
+						        mRecords.clear();
+                                mRecords.addAll(data.getList());
+                                mAdapter.notifyDataSetChanged();
 							}
 
-							@Override
-							public TypeToken<List<TradeRecord>> getTypeToken() {
-								return new TypeToken<List<TradeRecord>>() {
-								};
-							}
+
+                            @Override
+                            public TypeToken<Page<TradeRecord>> getTypeToken() {
+                                return new TypeToken<Page<TradeRecord>>() {
+                                };
+                            }
 						});
 				break;
 			case R.id.trade_statistic:

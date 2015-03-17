@@ -7,6 +7,9 @@ import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Created by Leo on 2015/2/11.
+ */
 public abstract class HttpCallback<T> {
 
     private Context context;

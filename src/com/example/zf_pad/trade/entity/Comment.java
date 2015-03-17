@@ -1,6 +1,10 @@
 package com.example.zf_pad.trade.entity;
 
 import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by Leo on 2015/2/28.
+ */
 public class Comment {
 
 	@SerializedName("marks_person")

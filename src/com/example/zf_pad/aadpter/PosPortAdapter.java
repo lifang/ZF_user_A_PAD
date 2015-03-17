@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.entity.PosItem;
 import com.example.zf_pad.entity.PosPortChild;
 import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.entity.TestEntitiy;
@@ -32,32 +33,33 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 	private LayoutInflater inflater;
 	public ExpandableListView listView;
 
-	public PosPortAdapter(Context context, List<PostPortEntity> list) {
+	public PosPortAdapter(Context context, List<PostPortEntity> list,
+			List<PostPortEntity> glist) {
 		this.context = context;
 		this.list = list;
-		PostPortEntity ppe1 = new PostPortEntity();
-		PostPortEntity ppe2 = new PostPortEntity();
-		PostPortEntity ppe3 = new PostPortEntity();
-		glist.add(ppe1);
-		glist.add(ppe2);
-		glist.add(ppe3);
-		glist.get(0).getChildlist().get(0).setSeleck(true);
+		this.glist = glist;
 
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getChildlist().remove(0);
-			list.get(i).getChildlist().remove(0);
-			list.get(i).getChildlist().remove(0);
-			list.get(i).getChildlist().remove(0);
-		}
-
-		// Toast.makeText(context, +list.get(0).getChildlist().size()+"",
-		// 1000).show();
+		
+		 Toast.makeText(context, +glist.size()+"",
+		 1000).show();
 	}
 
 	public void setListView(ExpandableListView listView) {
 		this.listView = listView;
 	}
-
+	public void change(){
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getChildlist().size()!=0)
+			list.get(i).getChildlist().remove(0);
+			if(list.get(i).getChildlist().size()!=0)
+			list.get(i).getChildlist().remove(0);
+			if(list.get(i).getChildlist().size()!=0)
+			list.get(i).getChildlist().remove(0);
+			if(list.get(i).getChildlist().size()!=0)
+			list.get(i).getChildlist().remove(0);
+			
+		}
+	}
 	@Override
 	public int getGroupCount() {
 		return list.size();
@@ -103,6 +105,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(final int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
+
 		final int childSize = (int) Math.ceil(((double) list.get(groupPosition)
 				.getChildlist().size()) / 4);
 		final int childListSize = list.get(groupPosition).getChildlist().size() - 1;
@@ -112,8 +115,8 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		TextView text2 = (TextView) convertView.findViewById(R.id.text2);
 		TextView text3 = (TextView) convertView.findViewById(R.id.text3);
 		TextView text4 = (TextView) convertView.findViewById(R.id.text4);
-		 CheckBox cb1 = (CheckBox) convertView.findViewById(R.id.item_cb1);
-		 CheckBox cb2 = (CheckBox) convertView.findViewById(R.id.item_cb2);
+		CheckBox cb1 = (CheckBox) convertView.findViewById(R.id.item_cb1);
+		CheckBox cb2 = (CheckBox) convertView.findViewById(R.id.item_cb2);
 		CheckBox cb3 = (CheckBox) convertView.findViewById(R.id.item_cb3);
 		CheckBox cb4 = (CheckBox) convertView.findViewById(R.id.item_cb4);
 
@@ -121,7 +124,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			// Toast.makeText(context, +childSize-1+"", 1000).show();
 			if (childListSize - childPosition * 4 == 0) {
 				text1.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4).getTitile());
+						.get(childPosition * 4).getValue());
 				text2.setVisibility(View.INVISIBLE);
 				text3.setVisibility(View.INVISIBLE);
 				text4.setVisibility(View.INVISIBLE);
@@ -130,43 +133,43 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				cb4.setVisibility(View.INVISIBLE);
 			} else if (childListSize - childPosition * 4 == 1) {
 				text1.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4).getTitile());
+						.get(childPosition * 4).getValue());
 				text2.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 1).getTitile());
+						.get(childPosition * 4 + 1).getValue());
 				text3.setVisibility(View.INVISIBLE);
 				text4.setVisibility(View.INVISIBLE);
 				cb3.setVisibility(View.INVISIBLE);
 				cb4.setVisibility(View.INVISIBLE);
 			} else if (childListSize - childPosition * 4 == 2) {
 				text1.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4).getTitile());
+						.get(childPosition * 4).getValue());
 				text2.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 1).getTitile());
+						.get(childPosition * 4 + 1).getValue());
 				text3.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 2).getTitile());
+						.get(childPosition * 4 + 2).getValue());
 				text4.setVisibility(View.INVISIBLE);
 				cb4.setVisibility(View.INVISIBLE);
 			} else if (childListSize - childPosition * 4 == 3) {
 				text1.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4).getTitile());
+						.get(childPosition * 4).getValue());
 				text2.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 1).getTitile());
+						.get(childPosition * 4 + 1).getValue());
 				text3.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 2).getTitile());
+						.get(childPosition * 4 + 2).getValue());
 				text4.setText(list.get(groupPosition).getChildlist()
-						.get(childPosition * 4 + 3).getTitile());
+						.get(childPosition * 4 + 3).getValue());
 			}
 
 		} else {
 
 			text1.setText(list.get(groupPosition).getChildlist()
-					.get(childPosition * 4).getTitile());
+					.get(childPosition * 4).getValue());
 			text2.setText(list.get(groupPosition).getChildlist()
-					.get(childPosition * 4 + 1).getTitile());
+					.get(childPosition * 4 + 1).getValue());
 			text3.setText(list.get(groupPosition).getChildlist()
-					.get(childPosition * 4 + 2).getTitile());
+					.get(childPosition * 4 + 2).getValue());
 			text4.setText(list.get(groupPosition).getChildlist()
-					.get(childPosition * 4 + 3).getTitile());
+					.get(childPosition * 4 + 3).getValue());
 		}
 
 		cb1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -176,10 +179,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 
 				if (arg1) {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4).setSeleck(true);
+							.get(childPosition * 4).setIsCheck(true);
 				} else {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4).setSeleck(false);
+							.get(childPosition * 4).setIsCheck(false);
 				}
 
 			}
@@ -195,12 +198,12 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				}
 				if (arg1) {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 1).setSeleck(true);
+							.get(childPosition * 4 + 1).setIsCheck(true);
 					// Toast.makeText(context, +childPosition*4+1+"被选",
 					// 1000).show();
 				} else {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 1).setSeleck(false);
+							.get(childPosition * 4 + 1).setIsCheck(false);
 				}
 
 			}
@@ -219,12 +222,12 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				}
 				if (arg1) {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 2).setSeleck(true);
-					// Toast.makeText(context, +childPosition*4+2+"被选",
-					// 1000).show();
+							.get(childPosition * 4 + 2).setIsCheck(true);
+
 				} else {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 2).setSeleck(false);
+							.get(childPosition * 4 + 2).setIsCheck(false);
+
 				}
 
 			}
@@ -234,16 +237,18 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+
 				if (childPosition == childSize - 1) {
 					if (childListSize - childPosition * 4 <= 2)
 						return;
 				}
 				if (arg1) {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 3).setSeleck(true);
+							.get(childPosition * 4 + 3).setIsCheck(true);
 				} else {
 					list.get(groupPosition).getChildlist()
-							.get(childPosition * 4 + 3).setSeleck(false);
+							.get(childPosition * 4 + 3).setIsCheck(false);
+
 				}
 
 			}
@@ -264,7 +269,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		 * .isSeleck()) { cb4.setChecked(true); }
 		 */
 		for (int i = 0; i < list.get(groupPosition).getChildlist().size(); i++) {
-			if (list.get(groupPosition).getChildlist().get(i).isSeleck()) {
+			if (list.get(groupPosition).getChildlist().get(i).getIsCheck()) {
 				int index = i / 4;
 				if (childPosition == index) {
 					int indexof = i - index * 4;
@@ -276,9 +281,11 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 						cb2.setChecked(true);
 						break;
 					case 2:
+
 						cb3.setChecked(true);
 						break;
 					case 3:
+
 						cb4.setChecked(true);
 						break;
 					default:
@@ -295,7 +302,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.pos_port_parent_item, null);
-
+		TextView title = (TextView) convertView.findViewById(R.id.title);
 		TextView tv = (TextView) convertView.findViewById(R.id.tv1);
 		CheckBox cba = (CheckBox) convertView.findViewById(R.id.item_cb_all);
 		TextView text1 = (TextView) convertView.findViewById(R.id.text1);
@@ -306,7 +313,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		final CheckBox cb2 = (CheckBox) convertView.findViewById(R.id.item_cb2);
 		final CheckBox cb3 = (CheckBox) convertView.findViewById(R.id.item_cb3);
 		final CheckBox cb4 = (CheckBox) convertView.findViewById(R.id.item_cb4);
-
+		title.setText(list.get(groupPosition).getTitle());
 		// Toast.makeText(context, +childSize-1+"", 1000).show();
 		if (glist.get(groupPosition).getChildlist().size() == 0) {
 
@@ -320,7 +327,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			cb4.setVisibility(View.INVISIBLE);
 		} else if (glist.get(groupPosition).getChildlist().size() == 1) {
 			text1.setText(glist.get(groupPosition).getChildlist().get(0)
-					.getTitile());
+					.getValue());
 			text2.setVisibility(View.INVISIBLE);
 			text3.setVisibility(View.INVISIBLE);
 			text4.setVisibility(View.INVISIBLE);
@@ -329,58 +336,57 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			cb4.setVisibility(View.INVISIBLE);
 		} else if (glist.get(groupPosition).getChildlist().size() == 2) {
 			text1.setText(glist.get(groupPosition).getChildlist().get(0)
-					.getTitile());
+					.getValue());
 			text2.setText(glist.get(groupPosition).getChildlist().get(1)
-					.getTitile());
+					.getValue());
 			text3.setVisibility(View.INVISIBLE);
 			cb3.setVisibility(View.INVISIBLE);
 			text4.setVisibility(View.INVISIBLE);
 			cb4.setVisibility(View.INVISIBLE);
 		} else if (glist.get(groupPosition).getChildlist().size() == 3) {
 			text1.setText(glist.get(groupPosition).getChildlist().get(0)
-					.getTitile());
+					.getValue());
 			text2.setText(glist.get(groupPosition).getChildlist().get(1)
-					.getTitile());
+					.getValue());
 			text1.setText(glist.get(groupPosition).getChildlist().get(2)
-					.getTitile());
+					.getValue());
 			text4.setVisibility(View.INVISIBLE);
 			cb4.setVisibility(View.INVISIBLE);
 
 		} else {
 			text1.setText(glist.get(groupPosition).getChildlist().get(0)
-					.getTitile());
+					.getValue());
 			text2.setText(glist.get(groupPosition).getChildlist().get(1)
-					.getTitile());
+					.getValue());
 			text3.setText(glist.get(groupPosition).getChildlist().get(2)
-					.getTitile());
+					.getValue());
 			text4.setText(glist.get(groupPosition).getChildlist().get(3)
-					.getTitile());
+					.getValue());
 
 		}
+		if (list.get(groupPosition).isSeleck())
+			cba.setChecked(true);
 		cba.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+
 				if (arg1) {
-					for (PosPortChild ppc : list.get(groupPosition)
-							.getChildlist()) {
-						ppc.setSeleck(true);
+					for (PosItem ppc : list.get(groupPosition).getChildlist()) {
+						ppc.setIsCheck(true);
 
 					}
-					for (PosPortChild ppc : glist.get(groupPosition)
-							.getChildlist()) {
-						ppc.setSeleck(true);
+					for (PosItem ppc : glist.get(groupPosition).getChildlist()) {
+						ppc.setIsCheck(true);
 
 					}
 					list.get(groupPosition).setSeleck(true);
 				} else {
-					for (PosPortChild ppc : list.get(groupPosition)
-							.getChildlist()) {
-						ppc.setSeleck(false);
+					for (PosItem ppc : list.get(groupPosition).getChildlist()) {
+						ppc.setIsCheck(false);
 					}
-					for (PosPortChild ppc : glist.get(groupPosition)
-							.getChildlist()) {
-						ppc.setSeleck(false);
+					for (PosItem ppc : glist.get(groupPosition).getChildlist()) {
+						ppc.setIsCheck(false);
 
 					}
 
@@ -389,8 +395,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				PosPortAdapter.this.notifyDataSetChanged();
 			}
 		});
-		if (list.get(groupPosition).isSeleck())
-			cba.setChecked(true);
+
 		tv.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -410,11 +415,11 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
 					glist.get(groupPosition).getChildlist().get(0)
-							.setSeleck(true);
-					
+							.setIsCheck(true);
+
 				} else {
 					glist.get(groupPosition).getChildlist().get(0)
-							.setSeleck(false);
+							.setIsCheck(false);
 				}
 
 			}
@@ -426,10 +431,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
 					glist.get(groupPosition).getChildlist().get(1)
-							.setSeleck(true);
+							.setIsCheck(true);
 				} else {
 					glist.get(groupPosition).getChildlist().get(1)
-							.setSeleck(false);
+							.setIsCheck(false);
 				}
 
 			}
@@ -441,10 +446,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
 					glist.get(groupPosition).getChildlist().get(2)
-							.setSeleck(true);
+							.setIsCheck(true);
 				} else {
 					glist.get(groupPosition).getChildlist().get(2)
-							.setSeleck(false);
+							.setIsCheck(false);
 				}
 
 			}
@@ -456,23 +461,22 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (arg1) {
 					glist.get(groupPosition).getChildlist().get(3)
-							.setSeleck(true);
+							.setIsCheck(true);
 				} else {
 					glist.get(groupPosition).getChildlist().get(3)
-							.setSeleck(false);
+							.setIsCheck(false);
 				}
 
 			}
 		});
-		
 
-	for (int i = 0; i < glist.get(groupPosition).getChildlist().size(); i++) {
-		if (glist.get(groupPosition).getChildlist().get(i).isSeleck()) {
-		
+		for (int i = 0; i < glist.get(groupPosition).getChildlist().size(); i++) {
+			if (glist.get(groupPosition).getChildlist().get(i).getIsCheck()) {
+
 				switch (i) {
 				case 0:
 					cb1.setChecked(true);
-					
+
 					break;
 				case 1:
 					cb2.setChecked(true);
@@ -485,10 +489,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 					break;
 				default:
 					break;
-				
+
+				}
 			}
 		}
-	}
 		return convertView;
 	}
 }

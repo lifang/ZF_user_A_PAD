@@ -17,6 +17,9 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
+/**
+ * Created by Leo on 2015/2/11.
+ */
 public class HttpRequest {
 
 	private AsyncHttpClient client;

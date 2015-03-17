@@ -9,7 +9,7 @@
         android:layout_height="0.5dp"
         android:background="@color/Viewc2" />
 
-   <LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:background="@color/white"
@@ -17,6 +17,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_ddbh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
@@ -25,18 +26,18 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="2015-1-1 12:00：00"
             android:gravity="left"
+            android:text="2015-1-1 12:00：00"
             android:textColor="@color/text6c6c6c6"
             android:textSize="12sp" />
 
-
-
         <TextView
+            android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -88,8 +89,6 @@
                 android:textColor="@color/text292929"
                 android:textSize="18sp" />
 
-     
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -123,8 +122,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
                 android:gravity="bottom"
                 android:orientation="horizontal" >
 
@@ -139,6 +138,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tv_gtd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -156,72 +156,70 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical" >
-                   <TextView
+
+            <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-             
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="$ 1999"
-                
+                android:layout_marginTop="16dp"
                 android:textColor="@color/text292929"
                 android:textSize="21sp" />
 
             <TextView
+                android:id="@+id/tv_goodnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-             
                 android:ellipsize="end"
+                android:layout_marginTop="30dp"
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="X   2"
-                
                 android:textColor="@color/text292929"
                 android:textSize="21sp" />
         </LinearLayout>
 
         <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="right"
-        android:layout_marginBottom="11dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="11dp"
-        android:orientation="vertical" >
-
-        <Button
-            android:layout_width="117dp"
-            android:layout_height="40dp"
-          
-            android:background="@drawable/shape_o"
-            android:textColor="@color/bgtitle"
-            
-            android:text="取消订单" />
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="18dp"
-            android:background="@color/ffffff"
-              />
-
-        <Button
-            android:layout_width="140dp"
+            android:id="@+id/ll_ishow"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/bg_blue_shape"
-            android:text="评价"
-            android:visibility="gone"
-            android:textColor="@color/ffffff" />
+            android:layout_marginBottom="11dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="11dp"
+            android:gravity="right"
+            android:orientation="vertical" >
 
-        <Button
-            android:layout_width="117dp"
-            android:layout_height="40dp"
-            
-            android:background="@drawable/bg_blue_shape"
-            android:textColor="@color/ffffff"
-            android:text="付款" />
-    </LinearLayout>
+            <Button
+                android:layout_width="117dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_o"
+                android:text="取消订单"
+                android:textColor="@color/bgtitle" />
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="18dp"
+                android:background="@color/ffffff" />
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/bg_blue_shape"
+                android:text="评价"
+                android:textColor="@color/ffffff"
+                android:visibility="gone" />
+
+            <Button
+                android:layout_width="117dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_blue_shape"
+                android:text="付款"
+                android:textColor="@color/ffffff" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -239,6 +237,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_sum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
@@ -247,6 +246,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_psf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -256,6 +256,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -272,15 +273,14 @@
         android:layout_marginRight="7dp"
         android:background="@color/Viewc2" />
 
-    
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-       
         android:background="@color/Viewc2" />
-        <View
+
+    <View
         android:layout_width="fill_parent"
         android:layout_height="5dp"
-       
         android:background="@color/F3F2F2" />
+
 </LinearLayout>

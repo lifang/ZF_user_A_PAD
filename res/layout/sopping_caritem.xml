@@ -26,8 +26,8 @@
         <CheckBox
             android:id="@+id/item_cb"
             style="@style/MyCheckBox"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:checked="false" />
@@ -46,7 +46,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/content_pp"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -63,7 +63,7 @@
                 >
 				 
                 <TextView
-                    android:id="@+id/cost"
+                    android:id="@+id/retail_price"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -84,6 +84,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:id="@+id/wayName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -113,7 +114,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/content1"
+                    android:id="@+id/Model_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -137,10 +138,10 @@
             </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/showCountText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/cost"
+                    android:layout_below="@+id/retail_price"
                     android:layout_centerHorizontal="true"
                     android:text="X2"
                     android:textColor="#292929"
@@ -165,11 +166,13 @@
             android:orientation="horizontal" >
 
             <ImageView
+                android:id="@+id/reduce"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/jian" />
 
             <EditText
+                android:id="@+id/buyCountEdit"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@color/ffffff"
@@ -177,6 +180,7 @@
                 android:text="1" />
 
             <ImageView
+                android:id="@+id/add"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/jia" />

@@ -20,7 +20,6 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
-
 import com.example.zf_pad.trade.AfterSaleMarkActivity;
 import com.example.zf_pad.trade.AfterSalePayActivity;
 import com.example.zf_pad.R;
@@ -29,15 +28,21 @@ import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.AfterSaleDetailActivity;
 
 import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
+import com.example.zf_pad.trade.common.Pageable;
 import com.example.zf_pad.trade.entity.AfterSaleRecord;
 import com.example.zf_pad.trade.widget.MTabWidget;
 import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
 import com.example.zf_pad.trade.widget.MyTabWidget;
+import com.example.zf_pad.trade.widget.XListView;
+import com.example.zf_pad.trade.widget.XListView.IXListViewListener;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,18 +58,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class mine_Shjl extends Fragment implements OnTabOnclik{
+public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListener{
 	private View view;
 	Activity mActivity;
 	int mRecordType=0;
 
-	private ListView mListView;
+	private XListView mListView;
 	private RecordListAdapter mAdapter;
 	private List<AfterSaleRecord> mEntities;
 	private int currentPage = 1;
-	private int total = 0;
 	private final int pageSize = 10;
-
+	private int page = 0;
+	private int total = 0;
+	private final int rows = 10;
 	private LayoutInflater mInflater;
 
 	// cancel apply button listener
@@ -103,30 +109,60 @@ public class mine_Shjl extends Fragment implements OnTabOnclik{
 	private void init() {
 		mInflater = LayoutInflater.from(getActivity());
 		mEntities = new ArrayList<AfterSaleRecord>();
-		mListView = (ListView)view.findViewById(R.id.after_sale_list);
+		mListView = (XListView)view.findViewById(R.id.after_sale_list);
 		mAdapter = new RecordListAdapter();
-		mListView.setAdapter(mAdapter);
 
+		// init the XListView
+		mListView.initHeaderAndFooter();
+		mListView.setXListViewListener(this);
+		mListView.setPullLoadEnable(true);
+
+		mListView.setAdapter(mAdapter);
 		initButtonListeners();
+		loadData();
 		
-		API.getAfterSaleRecordList(mActivity, mRecordType, 80, 1, 10, new HttpCallback<Page<AfterSaleRecord>>(mActivity) {
+
+	
+		
+	}
+	private void loadData() {
+		API.getAfterSaleRecordList(mActivity, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(mActivity) {
+			private Dialog loadingDialog;
+
 			@Override
-			public void onSuccess(Page<AfterSaleRecord> data) {
-				mEntities.addAll(data.getContent());
-				currentPage = data.getCurrentPage();
-				total = data.getTotal();		
+			public void onSuccess(Pageable<AfterSaleRecord> data) {
+				if (null != data.getContent()) {
+					mEntities.addAll(data.getContent());
+				}
+				page++;
+				total = data.getTotal();
 				mAdapter.notifyDataSetChanged();
-				
 			}
 
 			@Override
-			public TypeToken<Page<AfterSaleRecord>> getTypeToken() {
-				return new TypeToken<Page<AfterSaleRecord>>() {
+			public void preLoad() {
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
+				loadingDialog.show();
+			}
+
+			@Override
+			public void postLoad() {
+				loadFinished();
+				loadingDialog.dismiss();
+			}
+
+			@Override
+			public TypeToken<Pageable<AfterSaleRecord>> getTypeToken() {
+				return new TypeToken<Pageable<AfterSaleRecord>>() {
 				};
 			}
 		});
-	
-		
+
+	}
+	private void loadFinished() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		mListView.setRefreshTime(Tools.getHourAndMin());
 	}
 	private void initView() {
 		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
@@ -411,12 +447,30 @@ public class mine_Shjl extends Fragment implements OnTabOnclik{
 	@Override
 	public void chang(int index) {
 		mRecordType=index;
+		page = 0;
 		if(mRecordType==1){
 			mRecordType=2;	
 		}else		
 		if(mRecordType==2)
 			mRecordType=1;
 		init();
+		
+	}
+	@Override
+	public void onRefresh() {
+		page = 0;
+		mEntities.clear();
+		loadData();
+		
+	}
+	@Override
+	public void onLoadMore() {
+		if (mEntities.size() >= total) {
+			mListView.stopLoadMore();
+			CommonUtil.toastShort(mActivity, "没有更多数据");
+		} else {
+			loadData();
+		}
 		
 	}
 }

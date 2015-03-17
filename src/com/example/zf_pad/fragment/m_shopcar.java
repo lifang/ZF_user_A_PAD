@@ -1,19 +1,78 @@
 package com.example.zf_pad.fragment;
 
-import com.example.zf_pad.R;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.http.Header;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ShopcarAdapter;
+import com.example.zf_pad.activity.ConfirmOrder;
+import com.example.zf_pad.entity.MyShopCar;
+import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.util.Tools;
+import com.example.zf_pad.util.XListView;
+import com.example.zf_pad.util.XListView.IXListViewListener;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class m_shopcar extends Fragment implements OnClickListener{
+public class m_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
 	private View view;
+	private XListView Xlistview;
+	private int page = 1;
+	private int rows = Config.ROWS;
+	private LinearLayout eva_nodata;
+	private boolean onRefresh_number = true;
+	private ShopcarAdapter myAdapter;
+	private List<Good> myShopList=new ArrayList<Good>();
 
+	private Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				onLoad();
+				//
+				// if (myShopList.size() == 0) {
+				// // norecord_text_to.setText("��û����ص���Ʒ");
+				// Xlistview.setVisibility(View.GONE);
+				// eva_nodata.setVisibility(View.VISIBLE);
+				// }
+				// onRefresh_number = true;
+				// myAdapter.notifyDataSetChanged();
+				break;
+			case 1:
+				Toast.makeText(getActivity(), (String) msg.obj,
+						Toast.LENGTH_SHORT).show();
+
+				break;
+			case 2: 
+				Toast.makeText(getActivity(),
+						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
+				break;
+			case 3:
+				Toast.makeText(getActivity(), " refresh too much",
+						Toast.LENGTH_SHORT).show();
+				break;
+			}
+		}
+	};
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -24,9 +83,6 @@ public class m_shopcar extends Fragment implements OnClickListener{
 			Bundle savedInstanceState) {
 		
 			//view = inflater.inflate(R.layout.f_main,container,false);
-			
-		
-		
 		if (view != null) {
 	        ViewGroup parent = (ViewGroup) view.getParent();
 	        if (parent != null)
@@ -34,15 +90,116 @@ public class m_shopcar extends Fragment implements OnClickListener{
 	    }
 	    try {
 	        view = inflater.inflate(R.layout.f_shopcar, container, false);
+	        initView();
+	        getData();
 	    } catch (InflateException e) {
 	        
 	    }
 	    return view;
 	}
+	private void initView() {
+		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+			
+				Intent i = new Intent(getActivity(), ConfirmOrder.class);
+				startActivity(i);
+			}
+		});
+
+		//myAdapter = new ShopcarAdapter(getActivity(), myShopList);
+		eva_nodata = (LinearLayout)view.findViewById(R.id.eva_nodata);
+		Xlistview = (XListView)view.findViewById(R.id.x_listview);
+		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û��������");
+		Xlistview.setPullLoadEnable(true);
+		Xlistview.setXListViewListener(this);
+		Xlistview.setDivider(null);
+		Xlistview.getmFooterView().setState2(0);
+		Xlistview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				// Intent i = new Intent(ShopCar.this, OrderDetail.class);
+				// startActivity(i);
+			}
+		});
+		Xlistview.setAdapter(myAdapter);
+	}
+
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	private void onLoad() {
+		Xlistview.stopRefresh();
+		Xlistview.stopLoadMore();
+		Xlistview.setRefreshTime(Tools.getHourAndMin());
+	}
+
+	public void buttonClick() {
+		page = 1;
+		myShopList.clear();
+		getData();
+	}
+	private void getData() {
+		// TODO Auto-generated method stub
+		String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/list";
+		RequestParams params = new RequestParams("customerId", "80");
+		params.setUseJsonStreamer(true);
+
+		MyApplication.getInstance().getClient()
+				.post(url, params, new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							byte[] responseBody) {
+						String responseMsg = new String(responseBody)
+								.toString();
+						Log.e("print", responseMsg);
+
+						MyShopCar myShopCar = MyShopCar.getShopCar(responseMsg);
+						if (myShopCar != null) {
+							myShopList = myShopCar.getResult();
+							if (myShopCar.getResult() != null
+									&& myShopCar.getResult().size() != 0) {
+								
+								onRefresh_number = true;
+								myAdapter = new ShopcarAdapter(getActivity(), myShopList);
+								Xlistview.setAdapter(myAdapter);
+								myAdapter.notifyDataSetChanged();
+							}
+						} else {
+							Xlistview.setVisibility(View.GONE);
+							eva_nodata.setVisibility(View.VISIBLE);
+						}
+
+					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						// TODO Auto-generated method stub
+						System.out.println("-onFailure---");
+						Log.e("print", "-onFailure---" + error);
+					}
+				});
+ 
+		handler.sendEmptyMessage(0);
+	}
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
