@@ -146,12 +146,13 @@ public class m_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		getData();
 	}
 	private void getData() {
-
+		// TODO Auto-generated method stub
+		String url = "http://114.215.149.242:18080/ZFMerchant/api/cart/list";
 		RequestParams params = new RequestParams("customerId", "80");
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()
-				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
+				.post(url, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

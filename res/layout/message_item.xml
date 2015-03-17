@@ -37,7 +37,7 @@
                 android:singleLine="true"
                 android:text="选择POS品牌"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textbig" />
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/tv_time"
@@ -45,12 +45,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/tv_title"
-                android:layout_marginRight="@dimen/textbig"
+                android:layout_marginRight="21dp"
                 android:gravity="right"
                 android:singleLine="true"
                 android:text="2014-1-1 12:00"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textmids" />
+                android:textSize="16sp" />
         </RelativeLayout>
     </LinearLayout>
 

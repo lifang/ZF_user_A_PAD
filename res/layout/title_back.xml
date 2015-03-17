@@ -43,7 +43,7 @@
         android:singleLine="true"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="@dimen/textmid" />
+        android:textSize="17sp" />
 
     <ImageView
         android:id="@+id/search"

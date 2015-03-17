@@ -34,7 +34,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewDebug.IntToString;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -60,7 +59,6 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private int orderType=0;
 	private EditText et_search;
 	private int list_port=0;
-	private int maxPrice=0,minPrice=0;
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
 	private Handler handler = new Handler() {
@@ -100,8 +98,6 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private ImageView port2;
 
 	private PosAdapter1 myAdapter1;
-
-	private Intent i;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -191,14 +187,13 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.pos_select:
-			i = new Intent(PosListActivity.this,PosPortActivity.class);
+			Intent i =new Intent(PosListActivity.this,PosPortActivity.class);
 			startActivityForResult(i, 1);
 			break;
 			//search2
 		case R.id.search2:
-			Intent ii =new Intent(PosListActivity.this,MainActivity.class);
-			Config.shopcar=true;
-			startActivity(ii);
+		 
+			//startActivity( new Intent(PosListActivity.this,ShopCar.class));
 			break;
 		case R.id.et_search:
 			//Intent ii =  new Intent(PosListActivity.this,PosSearch.class);
@@ -302,8 +297,6 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
-		params.put("minPrice", minPrice);
-	 	params.put("maxPrice", maxPrice);
 		System.out.println("keys```"+keys+orderType);
 		params.setUseJsonStreamer(true);
 
@@ -316,7 +309,11 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 						String responseMsg = new String(responseBody)
 								.toString();
 						Log.e("print", responseMsg);
-						Gson gson = new Gson();					
+
+					 
+						 
+						Gson gson = new Gson();
+						
 						JSONObject jsonobject = null;
 						String code = null;
 						try {
@@ -356,37 +353,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
-	}
-	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		switch (resultCode) {
-		case 1:
-			if(data!=null){
-				System.out.println("进入条件选择回调···");
-				minPrice=data.getIntExtra("minPrice", 0);
-				maxPrice=data.getIntExtra("maxPrice", 1000000);
-				System.out.println(maxPrice+"进入条件选择回调···"+minPrice); 
-				myList.clear();
-				getData();
-			}
-			
-			break;
-		case 2:
-			if(data!=null){
-				String  a =data.getStringExtra("text");
-				keys=a;
-				et_search.setText(a);
-				getData();
-			}
-			
-			break;
-		default:
-			break;
-
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-
+ 
+		 
 	}
 }
