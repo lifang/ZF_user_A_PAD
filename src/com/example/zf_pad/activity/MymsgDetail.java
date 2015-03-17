@@ -66,9 +66,6 @@ public class MymsgDetail extends BaseActivity {
 			params.put("id", id);
 			params.setUseJsonStreamer(true);
 			url=Config.SYSMSGDT;	
-			Toast.makeText(getApplicationContext(),
-					"cccccccccc",
-					Toast.LENGTH_SHORT).show();
 		}
 
 		MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {

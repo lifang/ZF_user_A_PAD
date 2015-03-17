@@ -68,6 +68,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private Province province;
 	private City city;
 	private View citySelect;
+	private TextView textsy;
+	private TextView textghc;
+	private TextView textmes;
+	private TextView textwd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +87,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		im_ghc.setBackgroundResource(R.drawable.shopping2);
 		im_mess.setBackgroundResource(R.drawable.message2);
 		im_wd.setBackgroundResource(R.drawable.mine2);
+		textsy.setTextColor(getResources().getColor(R.color.white));
+		textghc.setTextColor(getResources().getColor(R.color.white));
+		textmes.setTextColor(getResources().getColor(R.color.white));
+		textwd.setTextColor(getResources().getColor(R.color.white));
 
 	}
 
 	private void initView() {
+		textsy = (TextView)findViewById(R.id.textsy);
+		textghc = (TextView)findViewById(R.id.textghc);
+		textmes = (TextView)findViewById(R.id.textmes);
+		textwd = (TextView)findViewById(R.id.textwd);		
 
 		main_rl_pos = (RelativeLayout) findViewById(R.id.main_rl_pos);
 		main_rl_pos.setOnClickListener(this);
@@ -141,7 +153,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_sy:
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
-
+			textsy.setTextColor(getResources().getColor(R.color.o));
 			if (f_sy == null)
 				f_sy = new m_MianFragment();
 
@@ -151,6 +163,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_gwc:
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
+			textghc.setTextColor(getResources().getColor(R.color.o));
 			if (f_gwc == null)
 				f_gwc = new m_shopcar();
 
@@ -160,6 +173,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_pos1:
 			changTabBg();
 			im_mess.setBackgroundResource(R.drawable.message);
+			textmes.setTextColor(getResources().getColor(R.color.o));
 			if (f_wdxx == null)
 				f_wdxx = new m_wdxx();
 
@@ -169,6 +183,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_my:
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
+			textwd.setTextColor(getResources().getColor(R.color.o));
 			if (m_my == null)
 				m_my = new m_my();
 

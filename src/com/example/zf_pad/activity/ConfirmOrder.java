@@ -65,11 +65,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 			 poslist.add(te1);
 			 TestEntitiy te22=new TestEntitiy();	
 			 te22.setContent("̩ɽ�콢1100");
-			 poslist.add(te22);
-	 
-			 
+			 poslist.add(te22);		 
 			 handler.sendEmptyMessage(0);
-		 
 		}
 		private void initView() {
 			
@@ -77,7 +74,6 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
  			pos_lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
  			//posAdapter=new OrderDetail_PosAdapter(ConfirmOrder.this, poslist);
  			//pos_lv.setAdapter(posAdapter);
-			
  			btn_pay=(Button) findViewById(R.id.btn_pay);
  			btn_pay.setOnClickListener(this);
 		}
@@ -89,7 +85,6 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener{
 				Intent i =new Intent (ConfirmOrder.this,PayFromCar.class);
 				startActivity(i);
 				break;
-
 			default:
 				break;
 			}

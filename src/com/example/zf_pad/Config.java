@@ -10,7 +10,7 @@ import com.example.zf_pad.entity.GoodinfoEntity;
 import com.example.zf_pad.entity.tDates;
 import com.example.zf_pad.entity.other_rate;
 
-;
+
 public class Config {
 
 	public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";

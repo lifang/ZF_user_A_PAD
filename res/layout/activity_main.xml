@@ -35,7 +35,7 @@
                     android:duplicateParentState="true" />
 
                 <TextView
-                    android:id="@+id/jtddla1"
+                    android:id="@+id/textsy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/laa1"
@@ -43,7 +43,7 @@
                     android:layout_marginTop="14dp"
                     android:text="首页"
                     android:textColor="@color/bgtitle"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textsmall" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -70,7 +70,7 @@
                     android:duplicateParentState="true" />
 
                 <TextView
-                    android:id="@+id/igwtv"
+                    android:id="@+id/textghc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/igw"
@@ -78,7 +78,7 @@
                     android:layout_marginTop="14dp"
                     android:text="购物车"
                     android:textColor="#f3f2f2"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textsmall" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -105,7 +105,7 @@
                     android:duplicateParentState="true" />
 
                 <TextView
-                    android:id="@+id/tv_mess"
+                    android:id="@+id/textmes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/im_mess"
@@ -113,7 +113,7 @@
                     android:layout_marginTop="14dp"
                     android:text="我的消息"
                     android:textColor="#f3f2f2"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textsmall" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -140,15 +140,15 @@
                     android:duplicateParentState="true" />
 
                 <TextView
-                    android:id="@+id/tv_wd"
+                    android:id="@+id/textwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_mess"
+                    android:layout_below="@id/textmes"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"
                     android:text="我的"
                     android:textColor="#f3f2f2"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/textsmall" />
             </LinearLayout>
         </RelativeLayout>
 

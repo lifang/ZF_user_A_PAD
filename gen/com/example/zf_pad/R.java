@@ -80,13 +80,13 @@ containing a value of this type.
         public static final int F3F3F3=0x7f050035;
         public static final int F6F9FA=0x7f050036;
         public static final int FB9401=0x7f05003f;
-        public static final int NoRead=0x7f050051;
+        public static final int NoRead=0x7f050052;
         public static final int Viewc=0x7f050006;
         public static final int Viewc2=0x7f050007;
         public static final int adadad=0x7f05002a;
-        public static final int background_dark=0x7f05004e;
-        public static final int background_pressed=0x7f05004f;
-        public static final int background_tab=0x7f050050;
+        public static final int background_dark=0x7f05004f;
+        public static final int background_pressed=0x7f050050;
+        public static final int background_tab=0x7f050051;
         public static final int bantouming=0x7f050009;
         public static final int bf873e=0x7f05002f;
         public static final int bg_0AB2FF=0x7f05003a;
@@ -98,11 +98,11 @@ containing a value of this type.
         public static final int bg_FF1F1F=0x7f05003d;
         public static final int bg_item=0x7f05000d;
         public static final int bgtitle=0x7f050003;
-        public static final int black=0x7f050044;
-        public static final int blank_button_selector=0x7f050052;
+        public static final int black=0x7f050045;
+        public static final int blank_button_selector=0x7f050053;
         /**  1dp 线条的颜色 
          */
-        public static final int button_bg_hui_color=0x7f050047;
+        public static final int button_bg_hui_color=0x7f050048;
         /**  其他 
          */
         public static final int c6c6c6=0x7f05002d;
@@ -121,7 +121,7 @@ containing a value of this type.
         public static final int drop_down_list_header_second_font_color=0x7f050001;
         public static final int e1e1e1=0x7f05001c;
         public static final int e5e5e5=0x7f05002e;
-        public static final int edithinit=0x7f050049;
+        public static final int edithinit=0x7f05004a;
         public static final int f1f1f1=0x7f050019;
         public static final int f26e26=0x7f050023;
         public static final int f4f4f4=0x7f050018;
@@ -138,17 +138,18 @@ containing a value of this type.
         public static final int ffffff=0x7f050017;
         /**  订单详情浅灰色背景 
          */
-        public static final int line_color=0x7f050046;
-        public static final int normal_button_disabled=0x7f05004b;
+        public static final int line_color=0x7f050047;
+        public static final int normal_button_disabled=0x7f05004c;
         /**  订单详情 item 红色 
  按钮颜色 
          */
-        public static final int normal_button_enabled=0x7f05004a;
-        public static final int normal_button_pressed=0x7f05004c;
+        public static final int normal_button_enabled=0x7f05004b;
+        public static final int normal_button_pressed=0x7f05004d;
+        public static final int o=0x7f050042;
         /**  深灰色 
          */
-        public static final int oederdetail_item_red=0x7f050048;
-        public static final int oederdetails_bg=0x7f050045;
+        public static final int oederdetail_item_red=0x7f050049;
+        public static final int oederdetails_bg=0x7f050046;
         public static final int prebuttom=0x7f05002b;
         public static final int progress_bg=0x7f050038;
         public static final int rad=0x7f05001f;
@@ -172,14 +173,14 @@ containing a value of this type.
         public static final int text6c6c6c6=0x7f05000b;
         /**  页面上方 蓝色块 
          */
-        public static final int text_read=0x7f050043;
+        public static final int text_read=0x7f050044;
         public static final int textc9c9c9=0x7f050005;
         /**  黑色 
          */
         public static final int tmffffff=0x7f050016;
         /**  白色 
          */
-        public static final int top_bg_color=0x7f050042;
+        public static final int top_bg_color=0x7f050043;
         public static final int touming=0x7f05000a;
         /**  底部透明白色 
          */
@@ -196,7 +197,7 @@ containing a value of this type.
         /**  透明白色 
          */
         public static final int toumingf6f4=0x7f050012;
-        public static final int trade_statistic_bg=0x7f05004d;
+        public static final int trade_statistic_bg=0x7f05004e;
         public static final int tv_red=0x7f05002c;
         public static final int white=0x7f050041;
     }
@@ -476,7 +477,6 @@ containing a value of this type.
         public static final int his_lv=0x7f0b00d7;
         public static final int howMoney=0x7f0b0090;
         public static final int igw=0x7f0b0029;
-        public static final int igwtv=0x7f0b002a;
         public static final int im_mess=0x7f0b002c;
         public static final int im_wd=0x7f0b002f;
         public static final int image=0x7f0b00c1;
@@ -497,7 +497,6 @@ containing a value of this type.
         public static final int jtdd3=0x7f0b006d;
         public static final int jtdd31=0x7f0b0074;
         public static final int jtddla=0x7f0b0068;
-        public static final int jtddla1=0x7f0b0027;
         public static final int l3=0x7f0b006c;
         public static final int l31=0x7f0b0073;
         public static final int l4=0x7f0b006f;
@@ -587,6 +586,10 @@ containing a value of this type.
         public static final int textView4=0x7f0b001d;
         public static final int textView6=0x7f0b00a3;
         public static final int text_view=0x7f0b00c0;
+        public static final int textghc=0x7f0b002a;
+        public static final int textmes=0x7f0b002d;
+        public static final int textsy=0x7f0b0027;
+        public static final int textwd=0x7f0b0030;
         public static final int title=0x7f0b0054;
         public static final int title2=0x7f0b00f1;
         public static final int title3=0x7f0b00f7;
@@ -651,7 +654,6 @@ containing a value of this type.
         public static final int tv_kt=0x7f0b00ac;
         public static final int tv_lx=0x7f0b00a2;
         public static final int tv_ly=0x7f0b00d2;
-        public static final int tv_mess=0x7f0b002d;
         public static final int tv_money=0x7f0b00d6;
         public static final int tv_mr=0x7f0b010d;
         public static final int tv_ms=0x7f0b00ab;
@@ -678,7 +680,6 @@ containing a value of this type.
         public static final int tv_title=0x7f0b009f;
         public static final int tv_tme=0x7f0b0117;
         public static final int tv_type=0x7f0b00e7;
-        public static final int tv_wd=0x7f0b0030;
         public static final int tv_x=0x7f0b00db;
         public static final int tv_zd=0x7f0b00ae;
         public static final int tvc_qy=0x7f0b00b8;

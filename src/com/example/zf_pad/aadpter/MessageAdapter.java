@@ -6,6 +6,8 @@ import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.entity.TestEntitiy;
+
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ public class MessageAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 	private int type;
+	private CheckBox cb_all;
+	Activity a;
 	public MessageAdapter(Context context, List<MessageEntity> list) {
 		this.context = context;
 		this.list = list;
@@ -34,6 +38,8 @@ public class MessageAdapter extends BaseAdapter {
 		this.context = context;
 		this.list = list;
 		this.type=type;
+		a=(Activity)context;
+		
 	}
 
 	@Override
@@ -67,33 +73,41 @@ public class MessageAdapter extends BaseAdapter {
 		}
 		holder.tv_title.setText(list.get(position).getContent());
 		holder.tv_time.setText(list.get(position).getCreate_at());
+		View view = inflater.inflate(R.layout.m_wdxx, null);
+		cb_all = (CheckBox)view.findViewById(R.id.cb_all);
 		if(type!=1){
+			boolean isall=true;
+			for(MessageEntity me:list){
+				if(!me.getIscheck()){
+					isall=false;
+					break;
+				}	
+			}
+			if(isall){
+				cb_all.setChecked(true);
+			}else{
+				cb_all.setChecked(false);
+			}
 			if(!list.get(position).getStatus()){
 				holder.tv_title.setTextColor(context.getResources().getColor(R.color.NoRead));
 			}
-			
 			//list.get(position).setIscheck(holder.item_cb.isChecked());
 			if(list.get(position).getIscheck()){
 				holder.item_cb.setChecked(true);
 			}else{
 				holder.item_cb.setChecked(false);
 			}
-			holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				
+			holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {	
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					// TODO Auto-generated method stub
 					list.get(position).setIscheck(isChecked);
 				}
 			});
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
-		}
-		
-		
+		}	
 		return convertView;
 	}
-
 	public final class ViewHolder {
 		public TextView tv_title, tv_time;
 		public CheckBox item_cb;

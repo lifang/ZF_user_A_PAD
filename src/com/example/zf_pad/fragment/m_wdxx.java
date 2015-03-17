@@ -401,6 +401,7 @@ public class m_wdxx extends Fragment implements OnClickListener,
 			page = 1;
 			myList.clear();
 			getData(0);
+			myAdapter.notifyDataSetChanged();
 		}
 		isFrist=false;
 

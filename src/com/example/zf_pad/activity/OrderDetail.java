@@ -91,8 +91,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			status=getIntent().getIntExtra("status", 0);
 			id=Integer.parseInt(getIntent().getStringExtra("id"));
 			Toast.makeText(getApplication(), status+"+"+id, 1000).show();
-			initView();
+			
 			getData();
+			
 		}
 		private void getData() {
 
@@ -123,6 +124,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 								code = jsonobject.getString("code");
 								int a =jsonobject.getInt("code");
 								if(a==Config.CODE){  
+									initView();
  									String res =jsonobject.getString("result");
 //									jsonobject = new JSONObject(res);
  									System.out.println("````"+res);

@@ -68,11 +68,13 @@ public class OrderAdapter extends BaseAdapter{
  		}else{
  		holder = (ViewHolder)convertView.getTag();
  	}
- 		holder.tv_price.setText("£§"+list.get(position).getOrder_goodsList().get(0).getGood_price());
+ 		holder.tv_price.setText(list.get(position).getOrder_goodsList().get(0).getGood_price().equals("")
+ 				?"":"£§"+list.get(position).getOrder_goodsList().get(0).getGood_price());
  		holder.content2.setText(list.get(position).getOrder_goodsList().get(0).getGood_brand());
  		holder.tv_gtd.setText(list.get(position).getOrder_goodsList().get(0).getGood_channel());
  		holder.content_pp.setText(list.get(position).getOrder_goodsList().get(0).getGood_name()); 		 
- 		holder.tv_goodnum.setText("X   "+list.get(position).getOrder_goodsList().get(0).getGood_num());		
+ 		holder.tv_goodnum.setText(list.get(position).getOrder_goodsList().get(0).getGood_num().equals("")?
+ 				"":"X   "+list.get(position).getOrder_goodsList().get(0).getGood_num());		
  		holder.tv_pay.setText(" µ∏∂£∫£§"+list.get(position).getOrder_totalPrice()/100);
  		holder.tv_psf.setText("≈‰ÀÕ∑—£∫£§"+list.get(position).getOrder_psf()	);
  		holder.tv_ddbh.setText("∂©µ•±‡∫≈: "+list.get(position).getOrder_number()	);

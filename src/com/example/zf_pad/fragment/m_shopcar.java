@@ -175,7 +175,7 @@ public class m_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 							Xlistview.setVisibility(View.GONE);
 							eva_nodata.setVisibility(View.VISIBLE);
 						}
-
+						
 					}
 
 					@Override
@@ -191,7 +191,9 @@ public class m_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	}
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
+		page = 1;
+		myShopList.clear();
+		getData();
 		
 	}
 	@Override

@@ -173,7 +173,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				for (int index = 0; index < list.size(); index++) {
 					list.get(index).setChecked(isChecked);
 				}
- 
+
 				notifyDataSetChanged();
 			} else {
 				if(isChecked){
