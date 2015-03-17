@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="144dp"
+        android:layout_height="@dimen/itemheight"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:textColor="@color/text292929"
-                android:textSize="18sp" 
+                android:textSize="@dimen/textmid" 
                 android:maxLines="2"
                 android:text="2015最新POS机器旗舰版  1.0" />
 
@@ -72,7 +72,7 @@
                 		    android:gravity="center"
                 		    android:text="$999.00"
                 		    android:textColor="@color/text292929"
-                		    android:textSize="21sp" />
+                		    android:textSize="@dimen/textbig"  />
 
                    <View android:layout_height="1dp"
                        android:layout_weight="1"
@@ -87,7 +87,7 @@
                 android:layout_gravity="center_vertical"
             
                 android:text="已售99"
-                android:textSize="21sp" />
+                android:textSize="@dimen/textbig" />
                   </LinearLayout>
             </LinearLayout>
 			<LinearLayout
@@ -117,7 +117,7 @@
                 android:gravity="bottom"
                 android:text="品牌型号"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textmid"  />
 			                  <TextView
                 android:id="@+id/content1"
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                 android:maxLines="1"
                 android:gravity="bottom"
                 android:text="contentcontentcontentcontent"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textmid" />
                 	</LinearLayout>
 			    
 			    <LinearLayout
@@ -149,7 +149,7 @@
                 android:gravity="bottom"
                 android:text="支付通道"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textmid"  />
 			                  <TextView
                 android:id="@+id/tv_td"
                 android:layout_width="wrap_content"
@@ -160,7 +160,7 @@
                 android:maxLines="1"
                 android:gravity="bottom"
                 android:text="支付宝"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textmid"  />
                 	</LinearLayout>
 			    
 			    

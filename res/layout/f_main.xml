@@ -5,7 +5,7 @@
     android:orientation="vertical" > 
 <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="360dp" >
+            android:layout_height="@dimen/mainvpheight" >
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -39,7 +39,7 @@
             android:layout_height="@dimen/titleback_height"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="64dp"
+            android:layout_marginRight="@dimen/titilepad"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -136,10 +136,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/laa"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="买POS机"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -175,10 +175,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/other"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="开通认证"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig"/>
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -213,10 +213,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/l3"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="终端管理"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -249,10 +249,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/l4"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="交易流水"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/textbig"/>
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
@@ -303,10 +303,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/Forum"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="健康服务"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -341,10 +341,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/l31"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="我要理财"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -380,10 +380,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/l41"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="系统公告"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -419,10 +419,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/Forum1"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/iconma"
                             android:text="联系我们"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="16sp" />
+                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

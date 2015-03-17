@@ -6,10 +6,11 @@
   	android:background="@color/F3F2F2"
   	 >
 
- <include layout="@layout/title_back" />
  <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:paddingLeft="@dimen/titilepad"
+        android:paddingRight="@dimen/titilepad">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -41,7 +42,7 @@
         		android:layout_marginTop="10dp"
                 android:text="30天"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="13sp" />
+                android:textSize="@dimen/textsmall" />
  
         <TextView
                
@@ -68,7 +69,7 @@
         		android:layout_marginTop="10dp"
                 android:text="365天"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="13sp" />
+                 android:textSize="@dimen/textsmall" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -94,7 +95,7 @@
         		android:layout_marginTop="10dp"
                 android:text="￥9999"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="13sp" />
+                 android:textSize="@dimen/textsmall" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -120,7 +121,7 @@
         		android:layout_marginTop="10dp"
                 android:text="这里是租赁说明"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="13sp" />
+                 android:textSize="@dimen/textsmall" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -146,7 +147,7 @@
         		android:layout_marginTop="10dp"
                 android:text="这里是租赁协议"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="13sp" />
+                 android:textSize="@dimen/textsmall" />
              
 
           

@@ -41,7 +41,7 @@
                     android:text="2015最新POS机器旗舰版  1.0"
                     android:textColor="@color/text292929"
                     android:gravity="center_vertical"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid"  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                         android:maxLines="1"
                         android:text="支付通道"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid"  />
 
                     <TextView
                         android:id="@+id/tv_td"
@@ -69,7 +69,7 @@
                         android:maxLines="1"
                         android:text="支付宝"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid"  />
                 </LinearLayout>
 
                <LinearLayout
@@ -87,7 +87,7 @@
                         android:maxLines="1"
                         android:text="$999.00"
                         android:textColor="@color/bgtitle"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
 
                     <TextView
                         android:id="@+id/ys"
@@ -99,7 +99,7 @@
                         android:gravity="right"
                         android:layout_weight="1"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -132,7 +132,7 @@
                     android:text="2015最新POS机器旗舰版  1.0"
                     android:textColor="@color/text292929"
                     android:gravity="center_vertical"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,7 +148,7 @@
                         android:maxLines="1"
                         android:text="支付通道"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <TextView
                         android:id="@+id/tv_td2"
@@ -160,7 +160,7 @@
                         android:maxLines="1"
                         android:text="支付宝"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid"  />
                 </LinearLayout>
 
                <LinearLayout
@@ -178,7 +178,7 @@
                         android:maxLines="1"
                         android:text="$999.00"
                         android:textColor="@color/bgtitle"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
 
                     <TextView
                         android:id="@+id/ys2"
@@ -190,7 +190,7 @@
                         android:gravity="right"
                         android:layout_weight="1"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -223,7 +223,7 @@
                     android:text="2015最新POS机器旗舰版  1.0"
                     android:textColor="@color/text292929"
                     android:gravity="center_vertical"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid"  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                         android:maxLines="1"
                         android:text="支付通道"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid"  />
 
                     <TextView
                         android:id="@+id/tv_td3"
@@ -251,7 +251,7 @@
                         android:maxLines="1"
                         android:text="支付宝"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid"  />
                 </LinearLayout>
 
                <LinearLayout
@@ -269,7 +269,7 @@
                         android:maxLines="1"
                         android:text="$999.00"
                         android:textColor="@color/bgtitle"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
 
                     <TextView
                         android:id="@+id/ys3"
@@ -281,7 +281,7 @@
                         android:gravity="right"
                         android:layout_weight="1"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -314,7 +314,7 @@
                     android:text="2015最新POS机器旗舰版  1.0"
                     android:textColor="@color/text292929"
                     android:gravity="center_vertical"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,7 +330,7 @@
                         android:maxLines="1"
                         android:text="支付通道"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
 
                     <TextView
                         android:id="@+id/tv_td4"
@@ -342,7 +342,7 @@
                         android:maxLines="1"
                         android:text="支付宝"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/textmid" />
                 </LinearLayout>
 
                <LinearLayout
@@ -360,7 +360,7 @@
                         android:maxLines="1"
                         android:text="$999.00"
                         android:textColor="@color/bgtitle"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig"  />
 
                     <TextView
                         android:id="@+id/ys4"
@@ -372,7 +372,7 @@
                         android:gravity="right"
                         android:layout_weight="1"
                         android:textColor="@color/text6c6c6c6"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

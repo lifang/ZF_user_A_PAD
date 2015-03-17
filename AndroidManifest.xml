@@ -38,6 +38,8 @@
         <activity
             android:name="com.example.zf_pad.activity.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,62 +49,98 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.TradeFlowActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.TradeClientActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.TradeStatisticActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden" >
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.AfterSaleDetailActivity"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.PosListActivity"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.PosPortActivity"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.ApplyListActivity"
+             android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:name="com.example.zf_pad.activity.MymsgDetail"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.TradeDetailActivity"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.SystemMessage"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.PayFromCar"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.ConfirmOrder"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.GoodDeatail"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.GoodDeatilMore"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.OrderDetail"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name" >
+        </activity>
+                <activity
+            android:name="com.example.zf_pad.trade.CitySelectActivity"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>        
     </application>
