@@ -3,18 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<include 
+    layout="@layout/title_back"></include>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-     <ExpandableListView
-         android:id="@+id/list"
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:paddingLeft="40dp"
-         android:paddingRight="40dp"
-          >
+        <ExpandableListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp" >
         </ExpandableListView>
 
         <RelativeLayout
@@ -23,11 +23,10 @@
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:gravity="center_vertical"
+            android:paddingBottom="12dp"
             android:paddingLeft="60dp"
             android:paddingRight="60dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-             >
+            android:paddingTop="12dp" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -73,44 +72,49 @@
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="150dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/shape_edittext"
-          
-                    android:layout_height="40dp" >
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp" >
                 </EditText>
-            <TextView
+
+                <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:textSize="30sp"
                     android:gravity="center_vertical"
-                    android:text=" - " />
+                    android:text=" - "
+                    android:textSize="30sp" />
+
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="150dp"
-                        android:background="@drawable/shape_edittext"
-                    android:layout_height="40dp" >
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edittext"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp" >
                 </EditText>
-                
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="118dp"
-                android:layout_height="40dp"
-				android:background="@drawable/shape_o"
-				android:textColor="#F59652"
-				android:layout_marginLeft="40dp"
-				android:layout_marginRight="24dp"
-                android:text="取消" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="118dp"
-                android:layout_height="40dp"
-				android:background="#FD6A00"
-				android:textColor="#ffffff"
-                android:text="确认" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/shape_o"
+                    android:text="取消"
+                    android:textColor="#F59652" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
+                    android:background="#FD6A00"
+                    android:text="确认"
+                    android:textColor="#ffffff" />
             </LinearLayout>
-
-
         </RelativeLayout>
     </RelativeLayout>
 

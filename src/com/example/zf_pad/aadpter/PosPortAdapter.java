@@ -38,8 +38,6 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		this.context = context;
 		this.list = list;
 		this.glist = glist;
-
-		
 		 Toast.makeText(context, +glist.size()+"",
 		 1000).show();
 	}
@@ -205,12 +203,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 					list.get(groupPosition).getChildlist()
 							.get(childPosition * 4 + 1).setIsCheck(false);
 				}
-
 			}
 		});
 
 		cb3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if (childPosition == childSize - 1) {
@@ -227,7 +223,6 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				} else {
 					list.get(groupPosition).getChildlist()
 							.get(childPosition * 4 + 2).setIsCheck(false);
-
 				}
 
 			}
@@ -248,13 +243,10 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				} else {
 					list.get(groupPosition).getChildlist()
 							.get(childPosition * 4 + 3).setIsCheck(false);
-
 				}
-
 			}
 		});
 		// 判断选项是否选中
-
 		/*
 		 * if (list.get(groupPosition).getChildlist().get(childPosition)
 		 * .isSeleck()) { cb1.setChecked(true); Toast.makeText(context,
@@ -304,6 +296,17 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		convertView = inflater.inflate(R.layout.pos_port_parent_item, null);
 		TextView title = (TextView) convertView.findViewById(R.id.title);
 		TextView tv = (TextView) convertView.findViewById(R.id.tv1);
+		tv.setId(groupPosition);
+		if(list.get(groupPosition).isMore()){
+			tv.setText("收起");
+			
+		}else{
+			tv.setText("更多");	
+		}
+		if(glist.get(groupPosition).getChildlist().size()<=4){
+			tv.setVisibility(View.GONE);
+			tv.setText(list.get(groupPosition).getChildlist().size()+"");
+		}
 		CheckBox cba = (CheckBox) convertView.findViewById(R.id.item_cb_all);
 		TextView text1 = (TextView) convertView.findViewById(R.id.text1);
 		TextView text2 = (TextView) convertView.findViewById(R.id.text2);
@@ -395,16 +398,20 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				PosPortAdapter.this.notifyDataSetChanged();
 			}
 		});
-
 		tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
 				if (isExpanded) {
+					list.get(v.getId()).setMore(false);
 					listView.collapseGroup(groupPosition);
+		
+					
 				} else {
+					list.get(v.getId()).setMore(true);
 					listView.expandGroup(groupPosition);
+					
 				}
 
 			}

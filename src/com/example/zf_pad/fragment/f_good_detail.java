@@ -1,17 +1,26 @@
 package com.example.zf_pad.fragment;
 
+import java.util.List;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.GridviewAdapter;
 import com.example.zf_pad.aadpter.HuilvAdapter;
+import com.example.zf_pad.activity.GoodDeatail;
+import com.example.zf_pad.util.ScrollViewWithGView;
 import com.example.zf_pad.util.ScrollViewWithListView;
-
+import com.google.gson.reflect.TypeToken;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class f_good_detail extends Fragment implements OnClickListener{
 	private View view;
@@ -20,7 +29,11 @@ public class f_good_detail extends Fragment implements OnClickListener{
 	private TextView ppxx;
 	private TextView wkxx;
 	private TextView tv_qgd;
-	private TextView tv_jm;
+	private TextView tv_jm,tvc_zx,tvc_qy;
+	private TextView tv_spxx;
+	private TextView tv_sqkt;
+	private ScrollViewWithGView gview;
+	private GridviewAdapter gadapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,6 +47,11 @@ public class f_good_detail extends Fragment implements OnClickListener{
 		return view;
 	}
 	private void initView() {
+		gview=(ScrollViewWithGView)view.findViewById(R.id.gview);
+		tv_sqkt = (TextView)view.findViewById(R.id.tv_sqkt);
+		tv_spxx = (TextView)view.findViewById(R.id.tv_spxx);
+		tvc_zx=(TextView) view.findViewById(R.id.tvc_zx);
+		tvc_qy=(TextView)view.findViewById(R.id.tvc_qy);
 		ppxx = (TextView) view.findViewById(R.id.ppxx);
 		wkxx = (TextView) view.findViewById(R.id.wkxx);
 		TextView dcxx=(TextView) view.findViewById(R.id.dcxx);
@@ -53,7 +71,27 @@ public class f_good_detail extends Fragment implements OnClickListener{
 		dcxx.setText(Config.gfe.getBattery_info());
 		tv_qgd.setText(Config.gfe.getSign_order_way());
 		tv_jm.setText(Config.gfe.getEncrypt_card_way());
-		
+		tv_spxx.setText(Config.gfe.getDescription() );
+		 tvc_qy.setText(Config.suportare);
+		 tvc_zx.setText(Config.suportcl);
+		 tv_sqkt.setText(Config.tv_sqkt);
+		 tv_spxx.setText(Config.gfe.getDescription());	
+		 Toast.makeText(getActivity(), Config.myList.size()+"", 1000).show();
+		 gadapter=new GridviewAdapter(getActivity(), Config.myList);
+		 gview.setAdapter(gadapter);
+		 gview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0,
+					View arg1, int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				System.out.println("µã»÷ITEM"+Config.myList.get(arg2).getId());
+				
+				Intent i =new Intent (getActivity(),GoodDeatail.class);
+				i.putExtra("id", Config.myList.get(arg2).getId());
+			 
+				startActivity(i);
+			}
+		});
 	}
 
 	@Override

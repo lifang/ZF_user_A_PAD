@@ -4,28 +4,32 @@
     android:layout_height="match_parent"
     android:background="#F8F8F8"
     android:orientation="vertical"
+    android:layout_marginTop="20dp"
     android:paddingLeft="64dp"
     android:paddingRight="64dp" >
-
-    <LinearLayout
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+     <LinearLayout
         android:id="@+id/spms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-
-        
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="POS信息"
             android:textColor="@color/text6c6c6c6"
             android:textSize="18sp" />
-
+<View 
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginBottom="10dp"
+     android:background="@color/bgtitle"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -202,14 +206,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="4dp"
             android:layout_marginTop="40dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="支付通道信息"
             android:textColor="@color/text6c6c6c6"
             android:textSize="18sp" />
-
+<View 
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginBottom="10dp"
+     android:background="@color/bgtitle"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -577,6 +585,7 @@
                     android:id="@+id/pos_lv3"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:background="#f8f8f8"
                     android:divider="@null" >
                 </com.example.zf_pad.util.ScrollViewWithListView>
             </LinearLayout>
@@ -588,6 +597,119 @@
                 android:orientation="vertical" >
             </LinearLayout>
         </LinearLayout>
+        
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="申请开通条件"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                
+            </LinearLayout>
+<View android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="fill_parent"
+                android:background="@color/bgtitle"/>
+<TextView
+                    android:id="@+id/tv_sqkt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  
+                    android:ellipsize="end"
+                     android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                    
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+<LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="商品详细说明"
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+
+                
+            </LinearLayout>
+<View android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="fill_parent"
+                android:background="@color/bgtitle"/>
+<TextView
+                    android:id="@+id/tv_spxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  
+                    android:ellipsize="end"
+                     android:layout_marginLeft="@dimen/margin_left2"
+                android:layout_marginRight="@dimen/margin_left2"
+                    
+                    android:textColor="@color/text292929"
+                    android:textSize="18sp" />
+<LinearLayout  android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                
+                android:orientation="horizontal">
+                
+                <View android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/Viewc2"/>
+                <TextView android:textColor="@color/text292929"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您感兴趣的"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="16sp"/>
+                
+                <View android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/Viewc2"/>
+            </LinearLayout>
+<com.example.zf_pad.util.ScrollViewWithGView  android:id="@+id/gview"
+                android:layout_height="wrap_content"
+                  android:numColumns="4"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="@dimen/margin_left2"
+                  android:layout_marginRight="@dimen/margin_left2"
+              android:horizontalSpacing="20dip"
+                android:verticalSpacing="10dip"
+     			android:stretchMode="columnWidth"
+     			android:layout_marginBottom="40dp"
+                android:layout_width="fill_parent"></com.example.zf_pad.util.ScrollViewWithGView>
     </LinearLayout>
+</ScrollView>
+   
 
 </LinearLayout>

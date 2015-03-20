@@ -1,6 +1,7 @@
 package com.example.zf_pad.aadpter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import com.example.zf_pad.R;
+import com.example.zf_pad.activity.GoodDeatail;
+import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.entity.PosEntity;
 
 public class PosAdapter1 extends BaseAdapter {
@@ -90,7 +93,9 @@ public class PosAdapter1 extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				Toast.makeText(context,position*4+"", 1000).show();
-
+				Intent i =new Intent (context,GoodDeatail.class);
+				i.putExtra("id", list.get(position*4).getId());
+				context.startActivity(i);
 			}
 		});
 		holder.ll_m2.setOnClickListener(new OnClickListener() {
@@ -98,7 +103,9 @@ public class PosAdapter1 extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				Toast.makeText(context,position*4+1+"", 1000).show();
-
+				Intent i =new Intent (context,GoodDeatail.class);
+				i.putExtra("id", list.get(position*4+1).getId());
+				context.startActivity(i);
 			}
 		});
 		holder.ll_m3.setOnClickListener(new OnClickListener() {
@@ -106,7 +113,9 @@ public class PosAdapter1 extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				Toast.makeText(context,position*4+2+"", 1000).show();
-
+				Intent i =new Intent (context,GoodDeatail.class);
+				i.putExtra("id", list.get(position*4+2).getId());
+				context.startActivity(i);
 			}
 		});
 		holder.ll_m4.setOnClickListener(new OnClickListener() {
@@ -114,7 +123,9 @@ public class PosAdapter1 extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				Toast.makeText(context,position*4+3+"", 1000).show();
-
+				Intent i =new Intent (context,GoodDeatail.class);
+				i.putExtra("id", list.get(position*4+3).getId());
+				context.startActivity(i);
 			}
 		});
 		if (position == listSize - 1) {
@@ -127,7 +138,7 @@ public class PosAdapter1 extends BaseAdapter {
 				holder.tv_price.setText(""
 						+ list.get(position).getRetail_price() / 100 + "");
 				holder.tv_td.setText(list.get(position).getPay_channe());
-				holder.ys.setText("" + list.get(position).getVolume_number());
+				holder.ys.setText("已售" + list.get(position).getVolume_number());
 				holder.ll_m2.setVisibility(View.INVISIBLE);
 				holder.ll_m3.setVisibility(View.INVISIBLE);
 				holder.ll_m4.setVisibility(View.INVISIBLE);
@@ -137,13 +148,13 @@ public class PosAdapter1 extends BaseAdapter {
 				holder.tv_price.setText(""
 						+ list.get(position).getRetail_price() / 100 + "");
 				holder.tv_td.setText(list.get(position).getPay_channe());
-				holder.ys.setText("" + list.get(position).getVolume_number());
+				holder.ys.setText("已售" + list.get(position).getVolume_number());
 
 				holder.title2.setText(list.get(position).getTitle());
 				holder.tv_price2.setText(""
 						+ list.get(position + 1).getRetail_price() / 100 + "");
 				holder.tv_td2.setText(list.get(position + 1).getPay_channe());
-				holder.ys2.setText(""
+				holder.ys2.setText("已售"
 						+ list.get(position + 1).getVolume_number());
 
 				holder.ll_m3.setVisibility(View.INVISIBLE);
@@ -154,20 +165,20 @@ public class PosAdapter1 extends BaseAdapter {
 				holder.tv_price.setText(""
 						+ list.get(position).getRetail_price() / 100 + "");
 				holder.tv_td.setText(list.get(position).getPay_channe());
-				holder.ys.setText("" + list.get(position).getVolume_number());
+				holder.ys.setText("已售" + list.get(position).getVolume_number());
 
 				holder.title2.setText(list.get(position).getTitle());
 				holder.tv_price2.setText(""
 						+ list.get(position + 1).getRetail_price() / 100 + "");
 				holder.tv_td2.setText(list.get(position + 1).getPay_channe());
-				holder.ys2.setText(""
+				holder.ys2.setText("已售"
 						+ list.get(position + 1).getVolume_number());
 
 				holder.title3.setText(list.get(position + 2).getTitle());
 				holder.tv_price3.setText(""
 						+ list.get(position + 2).getRetail_price() / 100 + "");
 				holder.tv_td3.setText(list.get(position + 2).getPay_channe());
-				holder.ys3.setText(""
+				holder.ys3.setText("已售"
 						+ list.get(position + 2).getVolume_number());
 				holder.ll_m4.setVisibility(View.INVISIBLE);
 				break;
@@ -176,27 +187,27 @@ public class PosAdapter1 extends BaseAdapter {
 				holder.tv_price.setText(""
 						+ list.get(position).getRetail_price() / 100 + "");
 				holder.tv_td.setText(list.get(position).getPay_channe());
-				holder.ys.setText("" + list.get(position).getVolume_number());
+				holder.ys.setText("已售" + list.get(position).getVolume_number());
 
 				holder.title2.setText(list.get(position).getTitle());
 				holder.tv_price2.setText(""
 						+ list.get(position + 1).getRetail_price() / 100 + "");
 				holder.tv_td2.setText(list.get(position + 1).getPay_channe());
-				holder.ys2.setText(""
+				holder.ys2.setText("已售"
 						+ list.get(position + 1).getVolume_number());
 
 				holder.title3.setText(list.get(position + 2).getTitle());
 				holder.tv_price3.setText(""
 						+ list.get(position + 2).getRetail_price() / 100 + "");
 				holder.tv_td3.setText(list.get(position + 2).getPay_channe());
-				holder.ys3.setText(""
+				holder.ys3.setText("已售"
 						+ list.get(position + 2).getVolume_number());
 
 				holder.title4.setText(list.get(position + 3).getTitle());
 				holder.tv_price4.setText(""
 						+ list.get(position + 3).getRetail_price() / 100 + "");
 				holder.tv_td4.setText(list.get(position + 3).getPay_channe());
-				holder.ys4.setText(""
+				holder.ys4.setText("已售"
 						+ list.get(position + 3).getVolume_number());
 				break;
 
@@ -208,25 +219,25 @@ public class PosAdapter1 extends BaseAdapter {
 			holder.tv_price.setText("" + list.get(position).getRetail_price()
 					/ 100 + "");
 			holder.tv_td.setText(list.get(position).getPay_channe());
-			holder.ys.setText("" + list.get(position).getVolume_number());
+			holder.ys.setText("已售" + list.get(position).getVolume_number());
 
-			holder.title2.setText(list.get(position).getTitle());
+			holder.title2.setText(list.get(position+1).getTitle());
 			holder.tv_price2.setText(""
 					+ list.get(position + 1).getRetail_price() / 100 + "");
 			holder.tv_td2.setText(list.get(position + 1).getPay_channe());
-			holder.ys2.setText("" + list.get(position + 1).getVolume_number());
+			holder.ys2.setText("已售" + list.get(position + 1).getVolume_number());
 
 			holder.title3.setText(list.get(position + 2).getTitle());
 			holder.tv_price3.setText(""
 					+ list.get(position + 2).getRetail_price() / 100 + "");
 			holder.tv_td3.setText(list.get(position + 2).getPay_channe());
-			holder.ys3.setText("" + list.get(position + 2).getVolume_number());
+			holder.ys3.setText("已售" + list.get(position + 2).getVolume_number());
 
 			holder.title4.setText(list.get(position + 3).getTitle());
 			holder.tv_price4.setText(""
 					+ list.get(position + 3).getRetail_price() / 100 + "");
 			holder.tv_td4.setText(list.get(position + 3).getPay_channe());
-			holder.ys4.setText("" + list.get(position + 3).getVolume_number());
+			holder.ys4.setText("已售" + list.get(position + 3).getVolume_number());
 		}
 
 		return convertView;

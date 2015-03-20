@@ -6,6 +6,11 @@
 <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/mainvpheight" >
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </android.support.v4.view.ViewPager>
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -78,11 +83,6 @@
             android:background="@drawable/main_right" />
 
     </RelativeLayout>
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-            </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:id="@+id/indicator"

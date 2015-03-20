@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/evevt_img"
-            android:layout_width="126dp"
-            android:layout_height="126dp"
+            android:layout_width="@dimen/postimg"
+            android:layout_height="@dimen/postimg"
             android:layout_marginLeft="12dp"
             android:background="@drawable/testphone401" />
 
@@ -161,18 +161,14 @@
                 android:gravity="bottom"
                 android:text="支付宝"
                 android:textSize="@dimen/textmid"  />
-                	</LinearLayout>
-			    
-			    
-			    
-			</LinearLayout>
-      
+                	</LinearLayout>		    
+			</LinearLayout>     
         </LinearLayout>
     </LinearLayout>
-
     <View
         android:layout_width="fill_parent"
-        android:layout_height="12dp"
-        android:background="@color/white" />
+        android:layout_marginTop="22dp"
+        android:layout_height="1dp"
+        android:background="#DADBDB" />
 
 </LinearLayout>

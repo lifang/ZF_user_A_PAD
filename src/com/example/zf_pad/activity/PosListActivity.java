@@ -29,25 +29,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewDebug.IntToString;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class PosListActivity extends Activity implements OnClickListener,IXListViewListener{
 	private ImageView pos_select,search2,img3;	
-
+	private Parcelable listState;
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -59,7 +56,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private Boolean isDown=true;
 	private int orderType=0;
 	private EditText et_search;
-	private int list_port=0;
+	private int list_port=1;
 	private int maxPrice=0,minPrice=0;
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
@@ -73,6 +70,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 				//	norecord_text_to.setText("��û����ص���Ʒ");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
+				}else{
+					Xlistview.setVisibility(View.VISIBLE);
+					eva_nodata.setVisibility(View.GONE);
 				}
 				onRefresh_number = true; 
 			 	myAdapter.notifyDataSetChanged();
@@ -102,6 +102,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private PosAdapter1 myAdapter1;
 
 	private Intent i;
+	private LinearLayout ll_listflag;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		getData();
 	}
 	private void initView() {
-		// TODO Auto-generated method stub
+		ll_listflag = (LinearLayout)findViewById(R.id.ll_listflag);
 		ll_mr=(LinearLayout) findViewById(R.id.ll_mr);
 		ll_mr.setOnClickListener(this);
 		ll_xxyx=(LinearLayout) findViewById(R.id.ll_xxyx);
@@ -154,35 +155,40 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 				startActivity(i);
 			}
 		});
-		Xlistview.setAdapter(myAdapter);
+		Xlistview.setAdapter(myAdapter1);
 		changList();
 	}
 	private void changList() {
 		port1 = (ImageView)findViewById(R.id.port_list1);
 		port2 = (ImageView)findViewById(R.id.port_list2);
-		port1.setOnClickListener(new OnClickListener() {
-			
+		port2.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
 				if(list_port==1){
-					port1.setBackgroundResource(R.drawable.pos_px1);
-					port2.setBackgroundResource(R.drawable.pos_pxf);
+					listState = Xlistview.onSaveInstanceState();
+					port2.setBackgroundResource(R.drawable.pos_px1);
+					port1.setBackgroundResource(R.drawable.pos_pxf);
 					Xlistview.setAdapter(myAdapter);
+					Xlistview.onRestoreInstanceState(listState);
 					}
 				list_port=0;
+				ll_listflag.setVisibility(View.VISIBLE);
 			}
 		});
-		port2.setOnClickListener(new OnClickListener() {
+		port1.setOnClickListener(new OnClickListener() {
 			
 			@SuppressLint("NewApi") @Override
 			public void onClick(View arg0) {
 				if(list_port==0){
-					port1.setBackground(getResources().getDrawable(R.drawable.pos_px));
-					port2.setBackground(getResources().getDrawable(R.drawable.pos_pxf1));
+					listState = Xlistview.onSaveInstanceState();
+					port2.setBackground(getResources().getDrawable(R.drawable.pos_px));
+					port1.setBackground(getResources().getDrawable(R.drawable.pos_pxf1));
 					myAdapter1 = new PosAdapter1(PosListActivity.this, myList);
 					Xlistview.setAdapter(myAdapter1);
+					Xlistview.onRestoreInstanceState(listState);
 					}
 				list_port=1;
+				ll_listflag.setVisibility(View.GONE);
 			}
 		});
 	}
@@ -325,29 +331,20 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 							int a =jsonobject.getInt("code");
 							if(a==Config.CODE){  
 								String res =jsonobject.getString("result");
-								jsonobject = new JSONObject(res);
-								
+								jsonobject = new JSONObject(res);	
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
 			 					}.getType());
 			 				 
 								myList.addAll(moreList);
-				 				handler.sendEmptyMessage(0);
-			 					  
-			 				 
-			 			 
+				 				handler.sendEmptyMessage(0); 
 							}else{
 								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
+								
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
+							e.printStackTrace();		
 						}
-
 					}
-
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {

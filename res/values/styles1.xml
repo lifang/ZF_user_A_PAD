@@ -142,7 +142,7 @@
 	</style>
 
 	<style name="TextTrace.Comment" parent="TextTrace">
-		<item name="android:textSize">11sp</item>
+		<item name="android:textSize">14sp</item>
 	</style>
 
 	<style name="FrameItem">

@@ -14,6 +14,7 @@ import com.example.zf_pad.aadpter.PosPortAdapter;
 import com.example.zf_pad.entity.PosItem;
 import com.example.zf_pad.entity.PosSelectEntity;
 import com.example.zf_pad.entity.PostPortEntity;
+import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -36,14 +37,13 @@ public class PosPortActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_port1);
+		new TitleMenuUtil(this, "ɸѡ").show();
 		initView();
 		getData();
 	}
-
 	private void getData() {
 		RequestParams params = new RequestParams("city_id", 1);	 
 		params.setUseJsonStreamer(true);
-
 		MyApplication.getInstance().getClient()
 				.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {
 
@@ -164,7 +164,6 @@ public class PosPortActivity extends Activity {
 
 	private void initView() {
 		listView = (ExpandableListView)findViewById(R.id.list);
-	
 		myadapter = new PosPortAdapter(this,portlist,glist);
 		myadapter.setListView(listView);
 		listView.setAdapter(myadapter);

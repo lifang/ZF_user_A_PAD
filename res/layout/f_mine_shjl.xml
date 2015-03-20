@@ -40,12 +40,12 @@
             android:background="#E9E8E8" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="更新资料单号"
+                android:text="维修单号"
                 android:layout_weight="1"
                 android:paddingLeft="18dp"
                 android:textColor="#292929"
@@ -53,7 +53,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textView1"
+             
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -63,7 +63,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textView1"
+     
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -73,11 +73,11 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv2"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:text="更新资料状态"
+                android:text="维修状态"
                 android:layout_weight="1"
                 android:textColor="#292929"
                 android:textSize="15sp" />

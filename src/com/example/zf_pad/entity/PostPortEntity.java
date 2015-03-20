@@ -24,10 +24,17 @@ public class PostPortEntity {
 	private String Title;
 	private List<PosItem> childlist=new ArrayList<PosItem>();
 	private boolean isSeleck=false;
+	private boolean isMore=false;
 	public boolean isSeleck() {
 		return isSeleck;
 	}
 	public void setSeleck(boolean isSeleck) {
 		this.isSeleck = isSeleck;
+	}
+	public boolean isMore() {
+		return isMore;
+	}
+	public void setMore(boolean isMore) {
+		this.isMore = isMore;
 	}
 }

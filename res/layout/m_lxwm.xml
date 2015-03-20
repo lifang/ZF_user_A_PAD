@@ -105,29 +105,13 @@
                         <EditText
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:hint="您的称呼                       先生/女士"
                             android:background="@drawable/shape" >
                         </EditText>
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:gravity="center_vertical"
-                            android:text="您的称呼"
-                            android:textColor="#8a8a8a"
-                            android:textSize="26dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:gravity="center_vertical"
-                            android:text="先生/女士"
-                            android:textColor="#8a8a8a"
-                            android:textSize="26dp" />
+                        
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -151,18 +135,11 @@
                         <EditText
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                             android:background="@drawable/shape"  >
+                             android:background="@drawable/shape" 
+                             android:hint="您的联系方式" >
                         </EditText>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:gravity="center_vertical"
-                            android:text="您的联系方式"
-                            android:textColor="#8a8a8a"
-                            android:textSize="26dp" />
+                        
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -183,25 +160,16 @@
                     <EditText
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+                        android:gravity="left|top"
+                                 android:paddingLeft="4dp"
+                            android:paddingRight="4dp"
+                            android:hint="最多填写200个汉字"
                         android:background="@drawable/shape"  >
                     </EditText>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:text="您需要我们提供什么"
-                        android:textColor="#8a8a8a"
-                        android:textSize="26dp" />
+                    
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginBottom="12dp"
-                        android:text="最多填写200个汉字" />
+         
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -212,11 +180,11 @@
 
                 <Button
                     android:id="@+id/confirm"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/normai_button_width"
+                    android:layout_height="@dimen/normai_button_height"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:background="@drawable/bg_blue_shape"
+                    android:background="#FD6A00"
                     android:text="提交"
                     android:textColor="@color/ffffff" />
             </RelativeLayout>

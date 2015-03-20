@@ -6,111 +6,156 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:layout_width="140dp"
+        android:layout_width="@dimen/leftwidth"
         android:layout_height="fill_parent"
         android:background="#64666A"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_dd"
             android:layout_width="fill_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:layout_height="@dimen/leftfristtop"
+            android:layout_marginTop="@dimen/leftfristtop"
+            >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的订单"
-                android:textColor="#E3E2E3"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/o"
+                android:textSize="@dimen/textbig" />
+
+            <ImageView
+                android:id="@+id/im1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            
+        		android:layout_alignParentRight="true"
+        		android:layout_marginTop="3dp"
+                android:src="@drawable/sanjiao" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#817f7f" />
 
-        <LinearLayout
+        <RelativeLayout
              android:id="@+id/ll_shjl"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="@dimen/leftitemheight"
+            
+            android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textshjl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="售后记录"
+                android:layout_centerInParent="true"
                 android:textColor="#E3E2E3"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="@dimen/textbig" />
+
+            <ImageView
+                android:id="@+id/im2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#817f7f" />
 
-        <LinearLayout
+        <RelativeLayout
              android:id="@+id/ll_myinfo"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="@dimen/leftitemheight"
+            android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textwdxx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的信息"
+                android:layout_centerInParent="true"
                 android:textColor="#E3E2E3"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="@dimen/textbig" />
+            <ImageView
+                android:id="@+id/im3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao" />
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#817f7f" />
 
-        <LinearLayout
+        <RelativeLayout
              android:id="@+id/ll_mysh"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="@dimen/leftitemheight"
+            android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textwdsh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的商户"
+                android:layout_centerInParent="true"
                 android:textColor="#E3E2E3"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="@dimen/textbig" />
+            <ImageView
+                android:id="@+id/im4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao" />
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#817f7f" />
 
-        <LinearLayout
+        <RelativeLayout
              android:id="@+id/ll_plan"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="@dimen/leftitemheight"
+            android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textsq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="申请进度查询"
+                android:layout_centerInParent="true"
                 android:textColor="#E3E2E3"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="@dimen/textbig" />
+            <ImageView
+                android:id="@+id/im5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao" />
+        </RelativeLayout>
 
         <View
             android:layout_width="fill_parent"

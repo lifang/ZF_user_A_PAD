@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
   	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
+  	android:background="#f8f8f8"
   	 >
 
  <ScrollView
@@ -41,8 +41,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
         		android:layout_marginTop="10dp"
                 android:text="30天"
-                android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textsmall" />
+                android:textColor="@color/text292929"
+                android:textSize="@dimen/textbig" />
  
         <TextView
                
@@ -68,8 +68,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
         		android:layout_marginTop="10dp"
                 android:text="365天"
-                android:textColor="@color/text6c6c6c6"
-                 android:textSize="@dimen/textsmall" />
+                android:textColor="@color/text292929"
+                 android:textSize="@dimen/textbig" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -94,8 +94,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
         		android:layout_marginTop="10dp"
                 android:text="￥9999"
-                android:textColor="@color/text6c6c6c6"
-                 android:textSize="@dimen/textsmall" />
+                android:textColor="@color/text292929"
+                 android:textSize="@dimen/textbig" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -120,8 +120,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
         		android:layout_marginTop="10dp"
                 android:text="这里是租赁说明"
-                android:textColor="@color/text6c6c6c6"
-                 android:textSize="@dimen/textsmall" />
+                android:textColor="@color/text292929"
+                 android:textSize="@dimen/textbig" />
 	           <TextView
                
                 android:layout_width="wrap_content"
@@ -146,8 +146,8 @@
                 android:layout_marginLeft="@dimen/margin_left2"
         		android:layout_marginTop="10dp"
                 android:text="这里是租赁协议"
-                android:textColor="@color/text6c6c6c6"
-                 android:textSize="@dimen/textsmall" />
+                android:textColor="@color/text292929"
+                 android:textSize="@dimen/textbig" />
              
 
           

@@ -21,9 +21,12 @@
 
             <Button
                 android:id="@+id/close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/lgclose"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -56,6 +59,7 @@
                 android:src="@drawable/minedl" />
 
             <EditText
+                android:id="@+id/login_edit_name" 
                 android:layout_width="228dp"
                 android:layout_height="42dp"
                 android:background="@drawable/shape"
@@ -81,6 +85,7 @@
                 android:src="@drawable/pass" />
 
             <EditText
+                android:id="@+id/login_edit_pass" 
                 android:layout_width="228dp"
                 android:layout_height="42dp"
                 android:background="@drawable/shape"
@@ -92,7 +97,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="18dp"
             android:gravity="center"
             android:orientation="vertical" >
 
@@ -103,7 +108,7 @@
                 android:background="#FF6624"
                 android:text="登陆"
                 android:textColor="#ffffff"
-                android:textSize="18px" />
+                android:textSize="@dimen/textbig" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

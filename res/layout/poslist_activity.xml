@@ -196,11 +196,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_listflag"
         android:layout_width="fill_parent"
         android:layout_height="28dp"
         android:background="#E9E8E8" 
         android:paddingRight="80dp"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:paddingLeft="240dp">
 
         <TextView

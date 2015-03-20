@@ -47,9 +47,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
 
-	
-	
-	
+
 	
 	
 	public XListViewFooter getmFooterView() {
