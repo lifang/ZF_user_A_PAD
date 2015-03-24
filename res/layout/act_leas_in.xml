@@ -25,7 +25,7 @@
                 android:layout_marginTop="30dp"
                 android:text="最短租赁时间"
                 android:textColor="@color/text292929"
-                android:textSize="20sp" />
+                android:textSize="@dimen/textbig" />
 
             <View
                 android:layout_width="fill_parent"
@@ -52,7 +52,7 @@
                 android:layout_marginTop="30dp"
                 android:text="最长租赁时间"
                 android:textColor="@color/text292929"
-                android:textSize="20sp" />
+                android:textSize="@dimen/textbig"  />
 
             <View
                 android:layout_width="fill_parent"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="30dp"
                 android:text="每月租金"
                 android:textColor="@color/text292929"
-                android:textSize="20sp" />
+                android:textSize="@dimen/textbig" />
 
             <View
                 android:layout_width="fill_parent"
@@ -104,7 +104,7 @@
                 android:layout_marginTop="30dp"
                 android:text="说明"
                 android:textColor="@color/text292929"
-                android:textSize="20sp" />
+                android:textSize="@dimen/textbig"  />
 
             <View
                 android:layout_width="fill_parent"
@@ -130,7 +130,7 @@
                 android:layout_marginTop="30dp"
                 android:text="对个人开通"
                 android:textColor="@color/text292929"
-                android:textSize="20sp" />
+                android:textSize="@dimen/textbig" />
 
             <View
                 android:layout_width="fill_parent"
@@ -147,7 +147,7 @@
         		android:layout_marginTop="10dp"
                 android:text="这里是租赁协议"
                 android:textColor="@color/text292929"
-                 android:textSize="@dimen/textbig" />
+                android:textSize="@dimen/textbig"  />
              
 
           

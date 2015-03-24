@@ -73,7 +73,7 @@ public class MessageAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_title.setText(list.get(position).getTitle());
 		holder.tv_time.setText(list.get(position).getCreate_at());
 		
 		
@@ -107,7 +107,7 @@ public class MessageAdapter extends BaseAdapter {
 			});
 	
 		}else{
-			holder.item_cb.setVisibility(View.GONE);
+			holder.item_cb.setVisibility(View.INVISIBLE);
 		}	
 		return convertView;
 	}

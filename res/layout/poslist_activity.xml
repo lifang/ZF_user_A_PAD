@@ -58,9 +58,9 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="搜索商品"
+                    android:editable="false"
                     android:textColor="#ffffff" >
 
-                    <requestFocus />
                 </EditText>
             </RelativeLayout>
 

@@ -98,20 +98,34 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp" >
 
                         <EditText
+                            android:id="@+id/login_edit_name"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
+                            android:background="@drawable/shape"
                             android:hint="您的称呼                       先生/女士"
-                            android:background="@drawable/shape" >
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp" >
                         </EditText>
 
-                        
+                        <LinearLayout
+                            android:id="@+id/login_linear_deletename"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="2dp"
+                            android:gravity="center"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/login_delete" />
+                        </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -128,18 +142,34 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                       
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp" >
 
                         <EditText
+                            android:id="@+id/login_edit_name1"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                             android:background="@drawable/shape" 
-                             android:hint="您的联系方式" >
+                            android:background="@drawable/shape"
+                             android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:hint="您的联系方式" >
                         </EditText>
 
-                        
+                        <LinearLayout
+                            android:id="@+id/login_linear_deletename1"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="2dp"
+                            android:gravity="center"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/login_delete" />
+                        </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -147,29 +177,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="303dp"
-                android:layout_marginTop="16dp"
-              >
+                android:layout_marginTop="16dp" >
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    
                     android:paddingLeft="6dp"
                     android:paddingRight="6dp" >
 
                     <EditText
+                        android:id="@+id/et_contetn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+                        android:background="@drawable/shape"
                         android:gravity="left|top"
-                                 android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
-                            android:hint="最多填写200个汉字"
-                        android:background="@drawable/shape"  >
+                        android:hint="最多填写200个汉字"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp" >
                     </EditText>
-
-                    
-
-         
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -179,7 +204,7 @@
                 android:layout_marginTop="16dp" >
 
                 <Button
-                    android:id="@+id/confirm"
+                    android:id="@+id/btn_exit"
                     android:layout_width="@dimen/normai_button_width"
                     android:layout_height="@dimen/normai_button_height"
                     android:layout_alignParentRight="true"

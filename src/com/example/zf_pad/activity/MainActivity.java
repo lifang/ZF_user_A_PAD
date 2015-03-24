@@ -1,5 +1,6 @@
 package com.example.zf_pad.activity;
 
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
 
 import java.util.ArrayList;
@@ -19,15 +20,20 @@ import com.example.zf_pad.fragment.m_my;
 import com.example.zf_pad.fragment.m_shopcar;
 import com.example.zf_pad.fragment.m_wdxx;
 import com.example.zf_pad.popwindow.SetPopWindow;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.AfterSaleDetailActivity;
 import com.example.zf_pad.trade.ApplyListActivity;
 import com.example.zf_pad.trade.CitySelectActivity;
 import com.example.zf_pad.trade.TradeFlowActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.ImageCacheUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
@@ -138,7 +144,22 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		
 		initView();
 		getdata();
+		//getdata1();
 	}
+	private void getdata1() {
+		API.test(MainActivity.this, "18762091710", new HttpCallback(MainActivity.this) {
+			@Override
+			public void onSuccess(Object data) {
+				Toast.makeText(getApplicationContext(), "³É¹¦", 1000).show();
+				Log.e("code", data.toString());
+			}
+			@Override
+			public TypeToken getTypeToken() {
+				return null;
+			}
+		});
+	
+	}	
 	private void getdata() {
 		 
 		MyApplication.getInstance().getClient().post( "http://114.215.149.242:18080/ZFMerchant/api/index/sysshufflingfigure/getList", new AsyncHttpResponseHandler() {

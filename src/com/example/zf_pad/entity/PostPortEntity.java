@@ -23,8 +23,10 @@ public class PostPortEntity {
 	}
 	private String Title;
 	private List<PosItem> childlist=new ArrayList<PosItem>();
-	private boolean isSeleck=false;
+	private boolean isSeleck=true;
 	private boolean isMore=false;
+
+
 	public boolean isSeleck() {
 		return isSeleck;
 	}

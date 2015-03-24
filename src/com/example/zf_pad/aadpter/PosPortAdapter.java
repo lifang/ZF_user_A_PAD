@@ -10,6 +10,7 @@ import com.example.zf_pad.entity.PosPortChild;
 import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.entity.TestEntitiy;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -224,10 +225,8 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 					list.get(groupPosition).getChildlist()
 							.get(childPosition * 4 + 2).setIsCheck(false);
 				}
-
 			}
 		});
-
 		cb4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -277,7 +276,6 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 						cb3.setChecked(true);
 						break;
 					case 3:
-
 						cb4.setChecked(true);
 						break;
 					default:
@@ -292,6 +290,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(final int groupPosition, final boolean isExpanded,
 			View convertView, ViewGroup parent) {
+		//Log.e(glist.get(groupPosition).getTitle(),glist.get(groupPosition).getChildlist().size()+"");
 		inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.pos_port_parent_item, null);
 		TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -369,7 +368,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		}
 		if (list.get(groupPosition).isSeleck())
 			cba.setChecked(true);
-		cba.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	/*	cba.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
@@ -397,7 +396,7 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 				}
 				PosPortAdapter.this.notifyDataSetChanged();
 			}
-		});
+		});*/
 		tv.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -9,7 +9,15 @@ public class PosSelectEntity {
 	/**
 	 * pos 类型
 	 */
-	// 特殊 private List<PosItem> category;
+	private List<category> category;
+	public List<category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<category> category) {
+		this.category = category;
+	}
+
 	/**
 	 * pos 签购单
 	 */

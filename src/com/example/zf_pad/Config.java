@@ -52,6 +52,8 @@ public class Config {
 	public static final String SHOPCARLIST = PATHS + "cart/list";
 	public static final String paychannel_info =PATHS+"paychannel/info";
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
+	public static final String SHOPORDER=PATHS+"order/shop";
+	public static final String SHOPDELETE=PATHS+"cart/delete";
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<tDates> tDates = new ArrayList<tDates>();
@@ -59,6 +61,7 @@ public class Config {
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();
 	public static List<PosEntity>  myList = new ArrayList<PosEntity>();
+	
 	public static String suportare;
 	public static String suportcl;
 	public static String tv_sqkt;

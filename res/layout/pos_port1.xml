@@ -13,19 +13,19 @@
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp" >
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad" >
         </ExpandableListView>
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="74dp"
+            android:layout_height="@dimen/normai_height3"
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:gravity="center_vertical"
             android:paddingBottom="12dp"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad"
             android:paddingTop="12dp" >
 
             <LinearLayout
@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true" >
 
                 <CheckBox
-                    android:id="@+id/cb_all"
+                    android:id="@+id/has_purchase"
                     style="@style/MyCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                     android:text="价格: " />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/ed_min"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:background="@drawable/shape_edittext"
@@ -88,7 +88,7 @@
                     android:textSize="30sp" />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/ed_max"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:background="@drawable/shape_edittext"
@@ -98,7 +98,7 @@
                 </EditText>
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/bt_cancel"
                     android:layout_width="118dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="40dp"
@@ -108,7 +108,7 @@
                     android:textColor="#F59652" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/bt_confirm"
                     android:layout_width="118dp"
                     android:layout_height="40dp"
                     android:background="#FD6A00"

@@ -62,17 +62,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	}
 
 	private void getData() {
-		// TODO Auto-generated method stub
-		TestEntitiy te = new TestEntitiy();
-		te.setContent("泰山旗舰900");
-		poslist.add(te);
-		TestEntitiy te1 = new TestEntitiy();
-		te1.setContent("泰山旗舰1000");
-		poslist.add(te1);
-		TestEntitiy te22 = new TestEntitiy();
-		te22.setContent("泰山旗舰1100");
-		poslist.add(te22);
-		handler.sendEmptyMessage(0);
+
 	}
 
 	private void initView() {
@@ -84,8 +74,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		btn_pay = (Button) findViewById(R.id.btn_pay);
 		btn_pay.setOnClickListener(this);
 		Spinner sp = (Spinner) findViewById(R.id.spinner);
-		final String arr[] = new String[] { "星期一", "星期二", "星期三", "星期四", "星期五",
-				"星期六", "星期日" };
+		final String arr[] = new String[] { "公司", "个人" };
 
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, arr);

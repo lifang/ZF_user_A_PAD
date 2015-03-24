@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import com.example.zf_pad.AlertDialog;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -13,6 +14,8 @@ import com.loopj.android.http.RequestParams;
 import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +40,7 @@ public class ShopcarAdapter extends BaseAdapter {
 	private Activity activity;
 	private int currentHowMoney;
 	private CheckBox selectAll_cb;
-
+	private AlertDialog ad;
 	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
 		this.list = list;
@@ -52,13 +55,13 @@ public class ShopcarAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		return list.size();
+		
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return list.get(position);
+		return list.get(position);	
 	}
-
 	@Override
 	public long getItemId(int position) {
 		return position;
@@ -69,7 +72,36 @@ public class ShopcarAdapter extends BaseAdapter {
 		inflater = LayoutInflater.from(context);
 		if (convertView == null) {
 			holder = new ViewHolder();
+			holder.position = position;
 			convertView = inflater.inflate(R.layout.sopping_caritem, null);
+			holder.del=(TextView)convertView.findViewById(R.id.del);
+			holder.del.setId(position);
+			holder.del.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(final View v) {
+					final int id=list.get(v.getId()).getId();
+					
+					ad = new AlertDialog(context);
+					ad.setTitle("提示");
+					ad.setMessage("确定要删除?");
+					ad.setPositiveButton("取消", new OnClickListener() {				
+						@Override
+						public void onClick(View arg0) {
+							ad.dismiss();				
+						}
+					});
+					ad.setNegativeButton("确定", new OnClickListener() {
+						
+						@Override
+						public void onClick(View arg0) {
+							ad.dismiss();
+							del(id,v.getId());						
+						}
+					});
+					
+				}
+			});
 			holder.checkBox = (CheckBox) convertView.findViewById(R.id.item_cb);
 			holder.checkBox.setOnCheckedChangeListener(onCheckedChangeListener);
 			holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -104,7 +136,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.position = position;
+		
 		holder.checkBox.setTag(position);
 		Good good = list.get(position);
 		holder.checkBox.setChecked(good.isChecked());
@@ -121,6 +153,8 @@ public class ShopcarAdapter extends BaseAdapter {
 
 	private OnClickListener onClick = new OnClickListener() {
 
+		
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -130,9 +164,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		  	int quantity = editGood.getQuantity();
 		 	//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
 			switch (v.getId()) {
-			
-
-		
+	
 			case R.id.reduce:
 
 				if (quantity > 0) {
@@ -161,7 +193,37 @@ public class ShopcarAdapter extends BaseAdapter {
 			}
 
 		}
+
 	};
+
+	public void del(int id,final int position) {
+			String url =  Config.SHOPDELETE;
+			RequestParams params = new RequestParams();
+			params.put("id", id);
+	
+			params.setUseJsonStreamer(true);
+
+			MyApplication.getInstance().getClient()
+					.post(url, params, new AsyncHttpResponseHandler() {
+
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								byte[] responseBody) {
+							String responseMsg = new String(responseBody)
+									.toString();
+							list.remove(position);
+						 notifyDataSetChanged();
+						}
+
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								byte[] responseBody, Throwable error) {
+							// TODO Auto-generated method stub
+							System.out.println("-onFailure---");
+							Log.e("print", "-onFailure---" + error);
+						}
+					});
+	}
 	private int flag=0;
 	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
 
@@ -247,7 +309,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		private View reduce;
 		private View add;
 		public TextView Model_number;
-		public TextView wayName;
+		public TextView wayName,del;
 		public ImageView evevt_img;
 	}
 }

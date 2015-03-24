@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
+import com.example.zf_pad.posport;
 import com.example.zf_pad.aadpter.PosAdapter;
 import com.example.zf_pad.aadpter.PosAdapter1;
 import com.example.zf_pad.aadpter.PosPortAdapter;
@@ -127,7 +129,6 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		tv_3=(TextView) findViewById(R.id.tv_3);
 		tv_4=(TextView) findViewById(R.id.tv_4);
 		img3=(ImageView) findViewById(R.id.img3);
-		
 		et_search=(EditText) findViewById(R.id.et_search);
 		et_search.setOnClickListener(this);
 		pos_select=(ImageView) findViewById(R.id.pos_select);
@@ -148,11 +149,15 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-				Intent i =new Intent (PosListActivity.this,GoodDeatail.class);
-				i.putExtra("id", myList.get(position-1).getId());
-				System.out.println("-Xlistview--"+id);
-				startActivity(i);
+				if(list_port==1){
+					
+				}else{
+					Intent i =new Intent (PosListActivity.this,GoodDeatail.class);
+					i.putExtra("id", myList.get(position-1).getId());
+					System.out.println("-Xlistview--"+id);
+					startActivity(i);
+				}
+			
 			}
 		});
 		Xlistview.setAdapter(myAdapter1);
@@ -207,10 +212,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			startActivity(ii);
 			break;
 		case R.id.et_search:
-			//Intent ii =  new Intent(PosListActivity.this,PosSearch.class);
-			//startActivityForResult(ii, 2);
-			
-		 
+			Intent i =  new Intent(PosListActivity.this,PosSearch.class);
+			startActivityForResult(i, 2);
 			break;	
 		case R.id.ll_mr:
 			orderType=0;
@@ -303,13 +306,28 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	}
 	 
 	private void getData() {
-
+		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
+	 	//params.put("page", page);
+	 	//params.put("rows", 2);
 		params.put("minPrice", minPrice);
 	 	params.put("maxPrice", maxPrice);
+	 	params.put("has_purchase", posport.has_purchase);
+	 	try {
+			params.put("brands_id", new JSONArray(gson.toJson(posport.brands_id)));
+			params.put("category", new JSONArray(gson.toJson(posport.category)));
+			params.put("pay_channel_id", new JSONArray(gson.toJson(posport.pay_channel_id)));
+			params.put("pay_card_id", new JSONArray(gson.toJson(posport.pay_card_id)));
+			params.put("trade_type_id", new JSONArray(gson.toJson(posport.trade_type_id)));
+			params.put("sale_slip_id", new JSONArray(gson.toJson(posport.sale_slip_id)));
+			params.put("tDate", new JSONArray(gson.toJson(posport.tDate)));
+		} catch (JSONException e1) {
+			
+			e1.printStackTrace();
+		}
 		System.out.println("keys```"+keys+orderType);
 		params.setUseJsonStreamer(true);
 
@@ -329,7 +347,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 							jsonobject = new JSONObject(responseMsg);
 							code = jsonobject.getString("code");
 							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
+							if(a==Config.CODE){ 
+							
 								String res =jsonobject.getString("result");
 								jsonobject = new JSONObject(res);	
 								moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<PosEntity>>() {
@@ -359,6 +378,12 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		switch (resultCode) {
+		case 0:
+			myList.clear();
+			page=1;
+				getData();
+
+			break;
 		case 1:
 			if(data!=null){
 				System.out.println("进入条件选择回调···");

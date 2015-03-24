@@ -91,7 +91,7 @@ public class API {
 
     // upload image url
     public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
-
+    public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -288,7 +288,15 @@ public class API {
         params.put("pageNum", pageSize);
         new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
     }
+    public static void test(
+            Context context,
+            String customerId,
 
+            HttpCallback callback) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("codeNumber", customerId);
+        new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind", params);
+    }
     public static void getChannelList(
             Context context,
             HttpCallback callback) {
@@ -368,5 +376,16 @@ public class API {
             HttpCallback callback) {
         new HttpRequest(context, callback).post(APPLY_CHANNEL_LIST);
     }
-
+	public static void ApiWantBug(
+			Context context,
+			String  name,
+			String phone,
+			String content,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("content", content);
+		new HttpRequest(context, callback).post(WNATBUY, params);
+	}
 }

@@ -29,7 +29,7 @@ public class good_detail_main extends Fragment implements OnClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		 view = inflater.inflate(R.layout.goodmore, container, false);
+		 view = inflater.inflate(R.layout.goodmore1, container, false);
 		 
 		return view;
 	}

@@ -161,8 +161,14 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_pad.activity.ContactUs"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+        </activity>
+                <activity
+            android:name="com.example.zf_pad.activity.PosSearch"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >

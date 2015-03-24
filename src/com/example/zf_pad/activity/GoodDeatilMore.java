@@ -5,6 +5,7 @@ import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.fragment.f_good_detail;
 import com.example.zf_pad.fragment.good_detail_apply;
 import com.example.zf_pad.fragment.good_detail_commet;
+import com.example.zf_pad.fragment.good_detail_trade;
 import com.example.zf_pad.fragment.good_detail_zd;
 import com.example.zf_pad.util.ScrollViewWithListView;
 
@@ -24,6 +25,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	private good_detail_apply apply;
 	private good_detail_commet commet;
 	private good_detail_zd zd;
+	private good_detail_trade jy;
 	private int type;
 	private TextView tv_ms;
 	private TextView tv_kt;
@@ -66,6 +68,13 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 					.replace(R.id.f_good_detail, zd).commit();
 			tv_zd.setTextColor(getResources().getColor(R.color.o));
 			break;
+		case 4:
+			if (jy == null)
+				jy = new good_detail_trade();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, jy).commit();
+			tv_jy.setTextColor(getResources().getColor(R.color.o));
+			break;
 		default:
 			break;
 		}
@@ -92,6 +101,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 		tv_kt.setTextColor(getResources().getColor(R.color.text292929));
 		tv_pl.setTextColor(getResources().getColor(R.color.text292929));
 		tv_zd.setTextColor(getResources().getColor(R.color.text292929));
+		tv_jy.setTextColor(getResources().getColor(R.color.text292929));
 	}
 	@Override
 	public void onClick(View v) {
@@ -130,7 +140,16 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			changColor();
 			tv_pl.setTextColor(getResources().getColor(R.color.o));
 			break;
-
+		case R.id.tv_jy:
+			//Config.goodId = gfe.getId();
+			//Config.commentsCount = commentsCount + "";
+			if (jy == null)
+				jy = new good_detail_trade();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, jy).commit();
+			changColor();
+			tv_pl.setTextColor(getResources().getColor(R.color.o));
+			break;
 		default:
 			break;
 		}
