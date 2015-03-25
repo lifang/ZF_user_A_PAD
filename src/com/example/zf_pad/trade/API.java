@@ -91,7 +91,8 @@ public class API {
 
     // upload image url
     public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
-
+ // Apply Opening Progress Query
+ 	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -367,6 +368,25 @@ public class API {
             Context context,
             HttpCallback callback) {
         new HttpRequest(context, callback).post(APPLY_CHANNEL_LIST);
+    }
+    public static void queryApplyProgress(
+    		Context context,
+    		int id,
+			String phone,
+			HttpCallback callback){
+    	Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("phone", phone);
+		new HttpRequest(context, callback).post(APPLY_PROGRESS, params);
+    		/*Context context,
+			int customerId,
+			String phone,
+			HttpCallback callback) {
+    	String url="http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customerId);
+		params.put("phone", phone);
+		new HttpRequest(context, callback).post(url, params);*/
     }
 
 }

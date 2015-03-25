@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.graphics.Color;
@@ -40,6 +41,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
+@SuppressLint("NewApi")
 public class TerminalManagerDetailActivity extends Activity {
 
 	private int mTerminalStatus;
