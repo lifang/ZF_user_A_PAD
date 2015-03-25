@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<View 
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="#414141"/>
+<TableLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableRow >
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+        android:text="终端号" />
+     <TextView
+        android:id="@+id/tv_ternumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+        android:layout_marginLeft="16dp" />   
+    </TableRow>
+    <TableRow >
+     <TextView
+         android:id="@+id/tv_consumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+         />
+     <TextView
+        android:id="@+id/tv_conmoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+        android:layout_marginLeft="16dp" />   
+    </TableRow>
+   
+    <TableRow >
+     <TextView
+         android:id="@+id/tv_traaccounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+         />
+     <TextView
+        android:id="@+id/tv_tramoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+        android:layout_marginLeft="16dp" />   
+    </TableRow>
+    <TableRow >
+     <TextView
+         android:id="@+id/tv_repayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+         />
+     <TextView
+        android:id="@+id/tv_repmoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8D806D"
+        android:textSize="18sp"
+        android:paddingBottom="22dp"
+        android:layout_marginLeft="16dp" />   
+    </TableRow>
+</TableLayout>
+</LinearLayout>
