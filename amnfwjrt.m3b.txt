@@ -1,0 +1,43 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	AndroidManifest.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 2 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   AndroidManifest.xml
+#	modified:   gen/cn/trinea/android/common/R.java
+#	modified:   gen/com/example/zf_pad/R.java
+#	new file:   res/drawable-ldpi/check_it.png
+#	new file:   res/drawable/item_white_pressed.xml
+#	new file:   res/layout/activity_terminal_detail.xml
+#	modified:   res/layout/activity_terminal_manage.xml
+#	new file:   res/layout/terminal_list.xml
+#	new file:   res/layout/terminal_list_header.xml
+#	new file:   res/layout/terminal_open_column.xml
+#	modified:   res/values/strings.xml
+#	new file:   src/com/example/zf_pad/entity/TerminalApply.java
+#	new file:   src/com/example/zf_pad/entity/TerminalChannel.java
+#	new file:   src/com/example/zf_pad/entity/TerminalComment.java
+#	new file:   src/com/example/zf_pad/entity/TerminalDetail.java
+#	new file:   src/com/example/zf_pad/entity/TerminalItem.java
+#	new file:   src/com/example/zf_pad/entity/TerminalManagerEntity.java
+#	new file:   src/com/example/zf_pad/entity/TerminalOpen.java
+#	new file:   src/com/example/zf_pad/entity/TerminalRate.java
+#	new file:   src/com/example/zf_pad/entity/TerminalTenancy.java
+#
+

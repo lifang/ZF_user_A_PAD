@@ -249,5 +249,6 @@ public class PosAdapter1 extends BaseAdapter {
 		public TextView title3, ys3, tv_price3, tv_td3;
 		public TextView title4, ys4, tv_price4, tv_td4;
 		public LinearLayout ll_m1, ll_m2, ll_m3, ll_m4;
+		public ImageView im1, im2, im3, im4;
 	}
 }

@@ -4,8 +4,8 @@ package com.example.zf_pad;
  
 import java.util.LinkedList;
 import java.util.List;
-
 import com.example.zf_pad.entity.User;
+import com.example.zf_pad.entity.UserEntity;
 import com.loopj.android.http.AsyncHttpClient;
 import android.app.Activity;
 import android.app.Application;
@@ -71,7 +71,7 @@ public class MyApplication extends Application{
 	/**
 	 * 存储当前用户对象信息,需在welcome初始化用户信息
 	 */
-	public static User currentUser = new User();
+
 	//运用list来保存们每一个activity是关键   
     private List<Activity> mList = new LinkedList<Activity>();   
  // add Activity     
@@ -122,6 +122,15 @@ public class MyApplication extends Application{
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-	
+	public static UserEntity NewUser = new UserEntity();
+	public static UserEntity getNewUser() {
+		return NewUser;
+	}
+	public static void setNewUser(UserEntity newUser) {
+		NewUser = newUser;
+	}
+
+
+	public static User currentUser = new User();
  
 }

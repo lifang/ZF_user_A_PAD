@@ -26,12 +26,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.AdressEntity;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,19 +47,19 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 	private LinearLayout ll_choose;
 	private TextView tv_pop,tv_totle,title2,retail_price,showCountText,tv_pay,tv_count;
 	private Button btn_pay;
-	private String comment;
 	private ImageView reduce,add;
 	PopupWindow menuWindow;
 	private int pirce;
 	private int goodId,paychannelId,quantity,addressId,is_need_invoice=0;
 	private EditText buyCountEdit,comment_et,et_titel;
 	private CheckBox item_cb;
-	private int invoice_type=0;//ÂèëÁ•®Á±ªÂûãÔº?0ÂÖ¨Âè∏  1‰∏™‰∫∫Ôº?
+	private int invoice_type=0;
+	private String comment,invoice_info;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.order_comfirm);
+		setContentView(R.layout.good_comfirm);
 		new TitleMenuUtil(GoodConfirm.this, "∂©µ•»∑»œ").show();
 		//			i2.putExtra("getTitle", gfe.getGood_brand());
 //		i2.putExtra("price", gfe.getPrice());
@@ -70,12 +71,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce=getIntent().getIntExtra("price", 0);
-		retail_price.setText("Ôø?"+ pirce);
+		retail_price.setText("£§"+ pirce);
 		goodId=getIntent().getIntExtra("goodId", 1);
 		paychannelId=getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("ÂÆû‰ªòÔºöÔø• "+pirce); 
-		tv_totle.setText("ÂÆû‰ªòÔºöÔø• "+pirce); 
-		getData();
+		tv_pay.setText(" µ∏∂£∫£§ "+pirce); 
+		tv_totle.setText(" µ∏∂£∫£§ "+pirce); 
+		System.out.println("=paychannelId=="+paychannelId);
 		getData1();
 	}
 
@@ -113,21 +114,21 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 				}
 			}
 		});
-		buyCountEdit.addTextChangedListener(new TextWatcher() {
+buyCountEdit.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				// TODO Auto-generated method stub
 				showCountText.setText(arg0.toString());
-				tv_count.setText("ÂÖ±ËÆ°:   "+arg0+"‰ª?");
+				tv_count.setText("π≤º∆:   "+arg0+"º˛");
 				 if( buyCountEdit.getText().toString().equals("")){
 					 quantity=0;
 				 }else{
 					 quantity= Integer.parseInt( buyCountEdit.getText().toString() );
 				 }
 			 
-				 tv_totle.setText("ÂÆû‰ªòÔºöÔø• "+pirce*quantity); 
-				tv_pay.setText("ÂÆû‰ªòÔºöÔø• "+pirce*quantity); 
+				 tv_totle.setText(" µ∏∂£∫£§ "+pirce*quantity); 
+				tv_pay.setText(" µ∏∂£∫£§ "+pirce*quantity); 
 			}
 			
 			@Override
@@ -145,86 +146,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		});
 	}
 
-	private void getData() {
-		// TODO Auto-generated method stub
-	 
-		 
-			RequestParams params = new RequestParams();
-			params.put("customerId", 80);
-			 
-			params.setUseJsonStreamer(true);
-			System.out.println("---getData-");
-			Url=Url+"80";
-			MyApplication.getInstance().getClient()
-					.get(Url, new AsyncHttpResponseHandler() {
-
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
-							System.out.println("----"+responseMsg);
-						 
-							 
-							Gson gson = new Gson();
-							
-							JSONObject jsonobject = null;
-							String code = null;
-							try {
-								jsonobject = new JSONObject(responseMsg);
-								code = jsonobject.getString("code");
-								int a =jsonobject.getInt("code");
-								if(a==Config.CODE){  
-	 								String res =jsonobject.getString("result");
-//									jsonobject = new JSONObject(res);
-					/*				
-	 								moreList= gson.fromJson(res, new TypeToken<List<AdressEntity>>() {
-	 			 					}.getType());
-				 				 
-	 								myList.addAll(moreList);
-	 				 			 for(int i=0;i<myList.size();i++){
-	 				 				 if(myList.get(i).getIsDefault()==1){
-	 				 					tv_sjr.setText("Êî∂‰ª∂‰∫∫Ôºö "+myList.get(i).getReceiver());
-	 				 					tv_tel.setText(myList.get(i).getMoblephone());
-	 				 					tv_adress.setText("Âú∞ÂùÄÔº?"+myList.get(i).getAddress());
-	 				 					addressId=myList.get(i).getId();
-	 				 				 }
-	 				 			 }
-				 					*/  
-				 				 
-				 			 
-								}else{
-									code = jsonobject.getString("message");
-									Toast.makeText(getApplicationContext(), code, 1000).show();
-								}
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								 ;	
-								e.printStackTrace();
-								
-							}
-
-						}
-
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
-	 
-			 
-	 
-	}
 	private void getData1() { 
 
-		// TODO Auto-generated method stub
-
-
- 
 		MyApplication.getInstance().getClient()
 				.post(Config.ChooseAdress+"80", new AsyncHttpResponseHandler() {
 
@@ -255,15 +178,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
  								for(int i =0;i<moreList.size();i++){
  									if(moreList.get(i).getIsDefault()==1) {
  										//tv_name,tv_tel,tv_adresss;
- 										addressId=moreList.get(i).getId();
+ 									/*	addressId=moreList.get(i).getId();
  										tv_adress.setText("Êî∂‰ª∂Âú∞ÂùÄ Ôº? "+moreList.get(i).getAddress());
  										tv_sjr.setText("Êî∂‰ª∂‰∫? Ôº? "+moreList.get(i).getReceiver());
- 										tv_tel.setText( moreList.get(i).getMoblephone());
+ 										tv_tel.setText( moreList.get(i).getMoblephone());*/
  									}
- 								}
- 								
- 								
- 								
+ 								}	
  								
 // 							myList.addAll(moreList);
 // 				 				handler.sendEmptyMessage(0);
@@ -336,7 +256,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		 
 		 //quantity addressId comment is_need_invoice et_titel  
 		quantity= Integer.parseInt( buyCountEdit.getText().toString() );
-		comment=comment_et.getText().toString();
+		//comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
 		params.put("customerId", 80);
 		params.put("goodId", goodId);
@@ -348,53 +268,35 @@ public class GoodConfirm extends BaseActivity implements OnClickListener{
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
-		 
-		String Urla=Config.SHOPORDER;
-		MyApplication.getInstance().getClient()
-				.get(Urla, new AsyncHttpResponseHandler() {
+//		int customerId,
+//		int goodId,
+//		int paychannelId,
+//		int quantity,
+//		int addressId,
+//		String  comment,
+//		int is_need_invoice,
+//		int invoice_type,
+//		String  invoice_info,
+		invoice_info=et_titel.getText().toString();
+		//Log.e("goodId="+goodId+"paychannelId="+paychannelId+"quantity="+,)
+		API.GOODCONFIRM(GoodConfirm.this,80,goodId,paychannelId,
+				quantity,1,comment,is_need_invoice,invoice_type,invoice_info,
+        		
+                new HttpCallback  (GoodConfirm.this) {
 
 					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						System.out.println("----"+responseMsg);
+					public void onSuccess(Object data) {
+						Toast.makeText(getApplicationContext(), "¥¥Ω®∂©µ•≥…π¶", 1000).show();
 					 
-						 
-						Gson gson = new Gson();
-						
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a =jsonobject.getInt("code");
-							if(a==Config.CODE){  
- 							 
-			 				 
-			 			 
-							}else{
-								code = jsonobject.getString("message");
-								Toast.makeText(getApplicationContext(), code, 1000).show();
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							 ;	
-							e.printStackTrace();
-							
-						}
-
 					}
 
 					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
+					public TypeToken getTypeToken() {
 						// TODO Auto-generated method stub
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+						return  null;
 					}
-				});
+                });
+
  
 	}
 }

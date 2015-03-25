@@ -7,9 +7,9 @@ import android.content.Context;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
-
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
@@ -387,5 +387,65 @@ public class API {
 		params.put("phone", phone);
 		params.put("content", content);
 		new HttpRequest(context, callback).post(WNATBUY, params);
+	}
+	public static void Login1(
+			Context context,
+			String  username,
+			String  passsword,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		params.put("password", passsword);
+		new HttpRequest(context, callback).post(Config.LOGIN, params);
+	}
+	public static void GOODCONFIRM(
+			Context context,
+			int customerId,
+			int goodId,
+			int paychannelId,
+			int quantity,
+			int addressId,
+			String  comment,
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId); 
+		params.put("goodId", goodId);
+		params.put("paychannelId", paychannelId);
+		params.put("quantity", quantity);
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+	public static void CARTFIRM(
+			Context context,
+			int customerId,
+			int [] cartid,
+			int addressId,
+			String  comment,
+			
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", 80); 
+	 	int aa[]=new int []{138,140};
+		params.put("cartid",  aa); 
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
 	}
 }

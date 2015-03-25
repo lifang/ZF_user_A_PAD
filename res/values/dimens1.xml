@@ -30,7 +30,21 @@
     <dimen name="textmids">16sp</dimen>
     <dimen name="textsmall">13sp</dimen>
     <!-- 编辑框 -->
-    <dimen name="edwidth">228sp</dimen>
-    <dimen name="edheight">42sp</dimen>
-
+    <dimen name="edwidth">228dp</dimen>
+    <dimen name="edheight">42dp</dimen>
+	<!-- 登陆 -->
+	<dimen name="dlpad">50dp</dimen>
+	<dimen name="dltext">23dp</dimen>
+	<dimen name="dlimg">36dp</dimen>
+	<dimen name="dlheight">36dp</dimen>
+	<!-- 订单确认-->
+	<dimen name="ddheight">136dp</dimen>
+	<dimen name="ddheight1">130dp</dimen>
+	<dimen name="ddimg">100dp</dimen>
+	<!-- 订单编辑框-->
+	<dimen name="ddrl_width">180dp</dimen>
+	<dimen name="ddrl_height">44dp</dimen>
+		<!-- 下拉选择框-->
+	<dimen name="sp_width">160dp</dimen>
+	<dimen name="sp_height">44dp</dimen>
 </resources>

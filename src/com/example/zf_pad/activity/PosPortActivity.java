@@ -14,12 +14,14 @@ import com.example.zf_pad.entity.PosItem;
 import com.example.zf_pad.entity.PosSelectEntity;
 import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.entity.category;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,13 +63,15 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	private boolean isload = false;
 	private EditText ed_min;
 	private EditText ed_max;
-
+	  private Dialog loadingDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_port1);
 		new TitleMenuUtil(this, "ɸѡ").show();
+		   loadingDialog = DialogUtil.getLoadingDialg(this);
+		 
 		initView();
 		getData();
 	}
@@ -77,7 +81,18 @@ public class PosPortActivity extends Activity implements OnClickListener {
 		params.setUseJsonStreamer(true);
 		MyApplication.getInstance().getClient()
 				.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {
-
+					@Override
+					public void onStart() {
+						// TODO Auto-generated method stub
+						super.onStart();
+						  loadingDialog.show();
+					}
+					@Override
+					public void onFinish() {
+						// TODO Auto-generated method stub
+						super.onFinish();
+						loadingDialog.dismiss();
+					}
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
@@ -103,6 +118,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 								isload = true;
 								inittype();
 								initData();
+								
 							} else {
 								code = jsonobject.getString("message");
 								Toast.makeText(getApplicationContext(), code,
@@ -121,6 +137,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						Log.e("print", "-onFailure---" + error);
 					}
 				});
+	
 	}
 
 	void inittype() {

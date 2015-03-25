@@ -290,7 +290,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				startActivity(i21);
 			} else {
 
-				Intent i2 = new Intent(GoodDeatail.this, ConfirmOrder.class);
+				Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
 				i2.putExtra("getTitle", gfe.getTitle());
 				i2.putExtra("price", gfe.getPrice());
 				i2.putExtra("model", gfe.getModel_number());

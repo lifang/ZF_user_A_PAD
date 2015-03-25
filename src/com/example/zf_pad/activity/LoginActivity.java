@@ -1,6 +1,9 @@
 package com.example.zf_pad.activity;
 
+
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.Header;
@@ -30,13 +33,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.entity.UserEntity;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+
+/***
+ *   ÔøΩÔøΩ¬º“≥ÔøΩÔøΩ
+ * 
+ * @author Lijinpeng
+ * 
+ *         comdo
+ */
 public class LoginActivity extends Activity implements OnClickListener {
 	private String name,pass,url,deviceToken;
 	private ImageView loginImage;
@@ -61,7 +78,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
 						Toast.LENGTH_SHORT).show();
 				break;
-			case 2: // Õ¯¬Á”–Œ Ã‚
+			case 2: // ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 				Toast.makeText(getApplicationContext(), R.string.no_internet,
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -80,34 +97,35 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.login);
+		setContentView(R.layout.popwin_login);
 		
 		initView();
-		new TitleMenuUtil(LoginActivity.this, "µ«¬º").show();
+		new TitleMenuUtil(LoginActivity.this, "ÁôªÈôÜ").show();
 		//new ClientUpdate(LoginActivity.this).checkSetting();
+		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
+		editor = mySharedPreferences.edit();
 	}
 
 	private void initView() {
 		// TODO Auto-generated method stub
 
-		// ≥ı ºªØ
+		// ÔøΩÔøΩ ºÔøΩÔøΩ
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
  
-		//login_text_forget = (TextView) findViewById(R.id.login_text_forget);
+		login_text_forget = (TextView) findViewById(R.id.login_text_forget);
 		//login_text_forget.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		login_text_forget.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				/*Intent i = new Intent(getApplicationContext(),
-						FindPass.class);
-				startActivity(i);*/
+				//Intent i = new Intent(getApplicationContext(),
+				//		FindPass.class);
+				//startActivity(i);
 			}
 		});
-	/*	msg = (LinearLayout) findViewById(R.id.msg);
-		login_info = (TextView) findViewById(R.id.login_info);
+		
 		 
 		zhuche_ll= (LinearLayout) findViewById(R.id.zhuche_ll);
 		zhuche_ll.setOnClickListener(this);
@@ -116,7 +134,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		login_edit_pass = (EditText) findViewById(R.id.login_edit_pass);
 		
 		login_linear_deletename = (LinearLayout) findViewById(R.id.login_linear_deletename);
-		login_linear_deletepass = (LinearLayout) findViewById(R.id.login_linear_deletepass);*/
+		login_linear_deletepass = (LinearLayout) findViewById(R.id.login_linear_deletepass);
 		login_linear_deletepass.setOnClickListener(this);
 		login_linear_deletename.setOnClickListener(this);
 		login_edit_name.addTextChangedListener(new TextWatcher() {
@@ -162,7 +180,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			}
 		});
 		 
-		//login_linear_login = (LinearLayout) findViewById(R.id.login_linear_login);
+		login_linear_login = (LinearLayout) findViewById(R.id.login_linear_login);
 		login_linear_login.setOnClickListener(this);
 		isFirst = mySharedPreferences.getBoolean("isRemeber", false);
 		if (isFirst) {
@@ -178,9 +196,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-/*		switch (v.getId()) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
 		case R.id.login_linear_login: 
-			// µ«¬º
+			// ÔøΩÔøΩ¬º
 			if(check()){
 				login();
 			}
@@ -188,8 +207,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.zhuche_ll: 
-		// µ«¬º
-		startActivity(new Intent(LoginActivity.this,Register.class));
+		// ÔøΩÔøΩ¬º
+		//startActivity(new Intent(LoginActivity.this,Register.class));
 	 
 
 		break;
@@ -201,85 +220,58 @@ public class LoginActivity extends Activity implements OnClickListener {
 			break;
 		default:
 			break;
-		}*/
+		}
 	}
 
 	private void login() {
-		// TODO Auto-generated method stub
-		AsyncHttpClient client = new AsyncHttpClient(); // ¥¥Ω®“Ï≤Ω«Î«ÛµƒøÕªß∂À∂‘œÛ
-		RequestParams params = new RequestParams();
-	 
 
-		params.put("username", usename);
-		params.put("password", passsword);
-		params.setUseJsonStreamer(true);
-		
-		
-		String url=Config.LOGIN;
-		System.out.println("usename`` `" + usename);
-		System.out.println("passsword`` `" + passsword);
-		client.post(Config.LOGIN, params, new AsyncHttpResponseHandler() {
-
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					byte[] responseBody) {
-				// TODO Auto-generated method stub
-				String userMsg = new String(responseBody).toString();
-				System.out.println("userMsg`` `" + userMsg);
-			 
-				Gson gson = new Gson();
-
-// 
-//				ResultCode rc = gson.fromJson(userMsg.toString(), new TypeToken<ResultCode>() {
-//					}.getType());
-//				 
-//				 if(rc.getSolution()!=null&& rc.getSolution().length()>0){
-//					 // ≈–∂œ¥ÌŒÛ∑µªÿ£¨∏¯Ã· æ–≈œ¢
-//						msg.setVisibility(View.VISIBLE);
-//						login_info.setText(rc.getMessage().toString());
-//				 }else{
-//					 
-//					 
-// 						User current = gson.fromJson(userMsg.toString(), new TypeToken<User>() {
-// 					}.getType());
-// 						MyApplication.currentUser = current;
-// 			 
-// 					
-// 					
-// 					Intent i =new Intent(getApplicationContext(),Main.class);
-// 					startActivity(i);
-// 					finish();
-//					System.out.println("”√ªßµ«¬º≥…π¶--±£≥÷µ«¬º–≈œ¢"+mySharedPreferences.getBoolean("isRemeber", false));
-//				 }
- 			 
- 			 
  
-			}
+ 		System.out.println("usename`` `" + usename);
+ 		System.out.println("passsword`` `" + passsword);
+		 API.Login1(LoginActivity.this,usename,passsword,
+	        		
+	                new HttpCallback<UserEntity> (LoginActivity.this) {
 
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
-				System.out.println("onFailure`` `"  );
-			}
-		});
+						@Override
+						public void onSuccess(UserEntity data) {
+							// TODO Auto-generated method stub
+							System.out.println("id```"+data.getId());
+							MyApplication.NewUser = data;
+		 					editor.putBoolean("islogin", true);
+			 				editor.putString("name", data.getUsername());
+			 				editor.putInt("id", data.getId());
+			 				editor.commit();
+			 				System.out.println(mySharedPreferences.getBoolean("islogin", false)+"---");
+							Intent i =new Intent(getApplicationContext(), MainActivity.class);
+							startActivity(i);
+							finish();	
+						}
+
+						@Override
+						public TypeToken getTypeToken() {
+							// TODO Auto-generated method stub
+							return  new TypeToken<UserEntity>() {
+							};
+						}
+	                });
 
 	}
 	private boolean check() {
 		// TODO Auto-generated method stub
-/*		usename=StringUtil.replaceBlank(login_edit_name.getText().toString());
+		usename=StringUtil.replaceBlank(login_edit_name.getText().toString());
 		if(usename.length()==0){
-			Toast.makeText(getApplicationContext(), "«Î ‰»Î”√ªß√˚£°",
+			Toast.makeText(getApplicationContext(), "Áî®Êà∑Âêç‰∏çËÉΩ‰∏∫Á©∫",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		passsword=StringUtil.replaceBlank(login_edit_pass.getText().toString());
 		if(passsword.length()==0){
-			Toast.makeText(getApplicationContext(), "«Î ‰»Î√‹¬Î£°",
+			Toast.makeText(getApplicationContext(), "ËØ∑ËæìÂÖ•Áî®Êà∑ÂØÜÁ†Å",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		passsword=StringUtil.Md5(passsword);*/
+	 	passsword=StringUtil.Md5(passsword);
+		System.out.println("---login-"+passsword);
 		return true;
 	}
 
