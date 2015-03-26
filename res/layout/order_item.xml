@@ -280,7 +280,7 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="5dp"
+        android:layout_height="1dp"
         android:background="@color/F3F2F2" />
 
 </LinearLayout>

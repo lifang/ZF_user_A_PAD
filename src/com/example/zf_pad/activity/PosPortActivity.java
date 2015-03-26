@@ -64,14 +64,14 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	private EditText ed_min;
 	private EditText ed_max;
 	  private Dialog loadingDialog;
+	  private boolean isClick=true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_port1);
 		new TitleMenuUtil(this, "筛选").show();
-		   loadingDialog = DialogUtil.getLoadingDialg(this);
-		 
+		   loadingDialog = DialogUtil.getLoadingDialg(this); 
 		initView();
 		getData();
 	}
@@ -290,115 +290,139 @@ public class PosPortActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		
+		 
 		switch (v.getId()) {
 		case R.id.bt_cancel:
 			this.finish();
 			break;
 		case R.id.bt_confirm:
+			if(isClick){
+				isClick=false;
 			initport();
 			if (isload) {
 				// pos品牌
+				List<PosItem> tem=new ArrayList<PosItem>();
 				for (PosItem p : pe0.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.brands_id = new int[posport.brands_id.length + 1];
-						posport.brands_id[posport.brands_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				
 				for (PosItem p : pe.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.brands_id = new int[posport.brands_id.length + 1];
-						posport.brands_id[posport.brands_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				
+				posport.brands_id = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.brands_id[i]=tem.get(i).getId();
+				
+				}
 				// pos类型
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe1.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.category = new int[posport.category.length + 1];
-						posport.category[posport.category.length - 1] = p
-								.getId();
+						tem.add(p);
+					
 					}
 				}
 				for (PosItem p : pe7.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.category = new int[posport.category.length + 1];
-						posport.category[posport.category.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				posport.category = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.category[i]=tem.get(i).getId();
+				
+				}
 				// 支付通道
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe2.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.pay_channel_id = new int[posport.pay_channel_id.length + 1];
-						posport.pay_channel_id[posport.pay_channel_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
 				for (PosItem p : pe8.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.pay_channel_id = new int[posport.pay_channel_id.length + 1];
-						posport.pay_channel_id[posport.pay_channel_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				posport.pay_channel_id = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.pay_channel_id[i]=tem.get(i).getId();
+				
+				}
 				// 支付卡类型
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe3.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.pay_card_id = new int[posport.pay_card_id.length + 1];
-						posport.pay_card_id[posport.pay_card_id.length - 1] = p
-								.getId();
+						tem.add(p);
+		
 					}
 				}
 				for (PosItem p : pe9.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.pay_card_id = new int[posport.pay_card_id.length + 1];
-						posport.pay_card_id[posport.pay_card_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				posport.pay_card_id = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.pay_card_id[i]=tem.get(i).getId();
+				
+				}
 				// 支付交易类型
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe4.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.trade_type_id = new int[posport.trade_type_id.length + 1];
-						posport.trade_type_id[posport.trade_type_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
 				for (PosItem p : pe10.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.trade_type_id = new int[posport.trade_type_id.length + 1];
-						posport.trade_type_id[posport.trade_type_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				posport.trade_type_id = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.trade_type_id[i]=tem.get(i).getId();
+				
+				}
 				// 签购单方式
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe5.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.sale_slip_id = new int[posport.sale_slip_id.length + 1];
-						posport.sale_slip_id[posport.sale_slip_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
 				for (PosItem p : pe11.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.sale_slip_id = new int[posport.sale_slip_id.length + 1];
-						posport.sale_slip_id[posport.sale_slip_id.length - 1] = p
-								.getId();
+						tem.add(p);
 					}
 				}
+				posport.sale_slip_id = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.sale_slip_id[i]=tem.get(i).getId();
+				
+				}
 				// 到账日期
+				tem=new ArrayList<PosItem>();
 				for (PosItem p : pe6.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.tDate = new int[posport.tDate.length + 1];
-						posport.tDate[posport.tDate.length - 1] = p.getId();
+						tem.add(p);
 					}
 				}
 				for (PosItem p : pe12.getChildlist()) {
 					if (p.getIsCheck()) {
-						posport.tDate = new int[posport.tDate.length + 1];
-						posport.tDate[posport.tDate.length - 1] = p.getId();
+						tem.add(p);
 					}
+				}
+				posport.tDate = new int[tem.size()];
+				for(int i=0;i<tem.size();i++){
+					posport.tDate[i]=tem.get(i).getId();
+				
 				}
 			}
 			if(!check(ed_min.getText().toString())){
@@ -411,12 +435,16 @@ public class PosPortActivity extends Activity implements OnClickListener {
 			}
 			posport.minPrice=Double.valueOf(ed_min.getText().toString());
 			posport.maxPrice=Double.valueOf(ed_max.getText().toString());
-			Log.i("ccccc", posport.brands_id.length + "");
+			String str="";
+			for(int i=0;i<posport.brands_id.length;i++){
+				str=posport.brands_id[i]+"+"+str;
+			}
+			Log.i("ccccc",str + "");
 			Intent intent = new Intent();
 
 			PosPortActivity.this.setResult(0, intent);
 			finish();
-
+			}
 			break;
 
 		default:

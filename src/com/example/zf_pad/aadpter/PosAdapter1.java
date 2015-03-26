@@ -30,6 +30,7 @@ public class PosAdapter1 extends BaseAdapter {
 	public PosAdapter1(Context context, List<PosEntity> list) {
 		this.context = context;
 		this.list = list;
+		
 
 	}
 

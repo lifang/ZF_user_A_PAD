@@ -63,8 +63,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 				tv_pay.setText("支付方式  ：   "+entity.getOrder_payment_type());
 				tv_time.setText("实付金额  ：   ￥"+entity.getOrder_totalprice());
 				tv_money.setText("订单日期  ：   "+entity.getOrder_createTime());
-				tv_gj.setText("共计  ：   "+entity.getOrder_totalNum()+"件");
-			 
+				tv_gj.setText("共计  ：   "+entity.getOrder_totalNum()+"件");			 
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -90,31 +89,22 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 			new TitleMenuUtil(OrderDetail.this, "订单详情").show();
 			status=getIntent().getIntExtra("status", 0);
 			id=Integer.parseInt(getIntent().getStringExtra("id"));
-			Toast.makeText(getApplication(), status+"+"+id, 1000).show();
-			
-			getData();
-			
+			Toast.makeText(getApplication(), status+"+"+id, 1000).show();			
+			getData();			
 		}
 		private void getData() {
-
 			RequestParams params = new RequestParams();
-			params.put("id", 108);
-		 
+			params.put("id", id);		 
 			System.out.println("id```" +id);
 			params.setUseJsonStreamer(true);
-
 			MyApplication.getInstance().getClient()
 					.post(Config.ORDERDETAIL, params, new AsyncHttpResponseHandler() {
-
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
 								byte[] responseBody) {
 							String responseMsg = new String(responseBody)
 									.toString();
-							Log.e("print", responseMsg);
-
-						 
-							 
+							Log.e("print", responseMsg); 
 							Gson gson = new Gson();
 							
 							JSONObject jsonobject = null;
@@ -152,12 +142,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener{
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								 ;	
-								e.printStackTrace();
-								
+								e.printStackTrace();								
 							}
-
 						}
-
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {

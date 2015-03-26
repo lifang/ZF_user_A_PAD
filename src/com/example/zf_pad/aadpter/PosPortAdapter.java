@@ -39,8 +39,8 @@ public class PosPortAdapter extends BaseExpandableListAdapter {
 		this.context = context;
 		this.list = list;
 		this.glist = glist;
-		 Toast.makeText(context, +glist.size()+"",
-		 1000).show();
+		
+
 	}
 
 	public void setListView(ExpandableListView listView) {

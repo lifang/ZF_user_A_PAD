@@ -27,7 +27,7 @@
              >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_gm"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,7 +39,7 @@
     android:layout_height="fill_parent"
     android:background="#414141"/>
 <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_zl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

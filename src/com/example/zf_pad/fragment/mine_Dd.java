@@ -31,13 +31,15 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class mine_Dd extends Fragment implements  IXListViewListener{
+public class mine_Dd extends Fragment implements  IXListViewListener,OnClickListener{
 	private View view;
 	private XListView Xlistview;
 	private int page=1;
@@ -45,6 +47,7 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private OrderAdapter myAdapter;
+	String type=null;
 	List<OrderEntity>  myList = new ArrayList<OrderEntity>();
 	List<OrderEntity>  moreList = new ArrayList<OrderEntity>();
 	private Handler handler = new Handler() {
@@ -77,6 +80,8 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
 			}
 		}
 	};
+	private TextView tv_gm;
+	private TextView tv_zl;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -107,6 +112,8 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
 	}
 	
 	private void initView() {
+		tv_gm = (TextView)view.findViewById(R.id.tv_gm);
+		tv_zl = (TextView)view.findViewById(R.id.tv_zl);
 		myAdapter=new OrderAdapter(getActivity(), myList);
 		eva_nodata=(LinearLayout)view.findViewById(R.id.eva_nodata);
 		Xlistview=(XListView)view.findViewById(R.id.x_listview);
@@ -114,15 +121,14 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
-
 		Xlistview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent i = new Intent(getActivity(), OrderDetail.class);
-				i.putExtra("status", myList.get(position-1).getOrder_status());
-				i.putExtra("id", myList.get(position-1).getOrder_id());
+				i.putExtra("status", myList.get(position).getOrder_status());
+				i.putExtra("id", myList.get(position).getOrder_id());
 				startActivity(i);
 			}
 		});
@@ -172,7 +178,9 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
 		RequestParams params = new RequestParams();
 		params.put("customer_id", 80);
 		params.put("page", page);
-		params.put("pageSize", 2);
+		params.put("p", type);
+		params.put("pageSize", 5);
+		//params.put("pageSize", 2);
 		 
 		params.setUseJsonStreamer(true);
 
@@ -233,5 +241,31 @@ public class mine_Dd extends Fragment implements  IXListViewListener{
  
 		 
 	
+	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_gm:
+			type="1";
+			tv_gm.setTextColor(getResources().getColor(R.color.white));
+			tv_zl.setTextColor(getResources().getColor(R.color.white));
+			tv_gm.setTextColor(getResources().getColor(R.color.o));
+			page = 1;
+			myList.clear();
+			getData();
+			break;
+		case R.id.tv_zl:
+			type="2";
+			tv_gm.setTextColor(getResources().getColor(R.color.white));
+			tv_zl.setTextColor(getResources().getColor(R.color.white));
+			tv_zl.setTextColor(getResources().getColor(R.color.o));
+			page = 1;
+			myList.clear();
+			getData();
+			break;
+		default:
+			break;
+		}
+		
 	}
 }
