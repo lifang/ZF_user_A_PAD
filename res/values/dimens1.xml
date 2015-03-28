@@ -37,6 +37,8 @@
 	<dimen name="dltext">23dp</dimen>
 	<dimen name="dlimg">36dp</dimen>
 	<dimen name="dlheight">36dp</dimen>
+	<dimen name="dlwidth">460dp</dimen>
+	<dimen name="dlpad">100dp</dimen>
 	<!-- 订单确认-->
 	<dimen name="ddheight">136dp</dimen>
 	<dimen name="ddheight1">130dp</dimen>
@@ -47,4 +49,13 @@
 		<!-- 下拉选择框-->
 	<dimen name="sp_width">160dp</dimen>
 	<dimen name="sp_height">44dp</dimen>
+			<!-- 注册找回密码-->
+	<dimen name="zc_rl_w">300dp</dimen>
+	<dimen name="zc_rl_h">48dp</dimen>
+	<dimen name="zc_land_w">260dp</dimen>
+	<dimen name="zc_land_h">44dp</dimen>
+	<dimen name="zc_margin">14dp</dimen>
+	<dimen name="zc_margin_top">20dp</dimen>
+	<dimen name="zc_margin_top1">40dp</dimen>
+	<dimen name="zc_margin_top2">10dp</dimen>
 </resources>

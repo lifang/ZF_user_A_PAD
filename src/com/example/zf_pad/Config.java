@@ -6,6 +6,8 @@ import java.util.List;
 import com.example.zf_pad.entity.ApplyneedEntity;
 import com.example.zf_pad.entity.ChanelEntitiy;
 import com.example.zf_pad.entity.GoodinfoEntity;
+import com.example.zf_pad.entity.Goodlist;
+import com.example.zf_pad.entity.OrderDetailEntity;
 import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.tDates;
 import com.example.zf_pad.entity.other_rate;
@@ -54,6 +56,8 @@ public class Config {
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
 	public static final String SHOPORDER=PATHS+"order/shop";
 	public static final String SHOPDELETE=PATHS+"cart/delete";
+	public final static String updatePassword = PATHS+"user/updatePassword";
+	public static final String FINDPASSGETCODE = PATHS + "user/sendPhoneVerificationCodeFind";
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<tDates> tDates = new ArrayList<tDates>();
@@ -61,10 +65,11 @@ public class Config {
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();
 	public static List<PosEntity>  myList = new ArrayList<PosEntity>();
-	
+	public static List<Goodlist> list  =new ArrayList<Goodlist>();
 	public static String suportare;
 	public static String suportcl;
 	public static String tv_sqkt;
 	public static int goodId;
 	public static String commentsCount;
+	public static boolean iszl=false;
 }

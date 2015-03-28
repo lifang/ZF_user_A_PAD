@@ -1,7 +1,4 @@
 package com.example.zf_pad.activity;
-
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,18 +17,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -39,21 +33,7 @@ import com.example.zf_pad.entity.UserEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.StringUtil;
-import com.example.zf_pad.util.TitleMenuUtil;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-
-/***
- *   ��¼ҳ��
- * 
- * @author Lijinpeng
- * 
- *         comdo
- */
 public class LoginActivity extends Activity implements OnClickListener {
 	private String name,pass,url,deviceToken;
 	private ImageView loginImage;
@@ -92,6 +72,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			}
 		}
 	};
+	private Button close;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,16 +81,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.popwin_login);
 		
 		initView();
-		new TitleMenuUtil(LoginActivity.this, "登陆").show();
 		//new ClientUpdate(LoginActivity.this).checkSetting();
 		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
-
-		// ��ʼ��
 		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
 		editor = mySharedPreferences.edit();
  
@@ -118,14 +95,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 		login_text_forget.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//Intent i = new Intent(getApplicationContext(),
-				//		FindPass.class);
-				//startActivity(i);
+			public void onClick(View v) {			
+				Intent i = new Intent(getApplicationContext(),
+						FindPass.class);
+				startActivity(i);
 			}
 		});
-		
+		msg = (LinearLayout) findViewById(R.id.msg);
+		login_info = (TextView) findViewById(R.id.login_info);
 		 
 		zhuche_ll= (LinearLayout) findViewById(R.id.zhuche_ll);
 		zhuche_ll.setOnClickListener(this);
@@ -192,6 +169,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			login_edit_name.setText(mySharedPreferences.getString("username",
 					""));
 		}
+		close = (Button)findViewById(R.id.close);
+		close.setOnClickListener(this);
 	}
 
 	@Override
@@ -199,18 +178,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.login_linear_login: 
-			// ��¼
 			if(check()){
 				login();
 			}
-		 
-
 			break;
 		case R.id.zhuche_ll: 
-		// ��¼
-		//startActivity(new Intent(LoginActivity.this,Register.class));
-	 
-
+		// 注册
+		startActivity(new Intent(LoginActivity.this,Register.class));
 		break;
 		case R.id.login_linear_deletename:
 			login_edit_name.setText("");
@@ -218,14 +192,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 		case R.id.login_linear_deletepass:
 			login_edit_pass.setText("");
 			break;
+		case R.id.close:
+			this.finish();
+			break;
 		default:
 			break;
 		}
 	}
 
 	private void login() {
-
- 
  		System.out.println("usename`` `" + usename);
  		System.out.println("passsword`` `" + passsword);
 		 API.Login1(LoginActivity.this,usename,passsword,

@@ -23,7 +23,13 @@ public class MyApplication extends Application{
 	private static  String versionCode="";
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
-	
+	private static int CITYID=1;
+	public static int getCITYID() {
+		return CITYID;
+	}
+	public static void setCITYID(int cITYID) {
+		CITYID = cITYID;
+	}
 	public static Boolean getIsSelect() {
 		return isSelect;
 	}

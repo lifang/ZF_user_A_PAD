@@ -42,7 +42,7 @@ public class AfterSaleMarkActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_after_sale_mark);
-		new TitleMenuUtil(this, getString(R.string.title_after_sale_mark)).show();
+		//new TitleMenuUtil(this, getString(R.string.title_after_sale_mark)).show();
 
 		mCompanyEdit = (EditText) findViewById(R.id.after_sale_mark_company);
 		mNumberEdit = (EditText) findViewById(R.id.after_sale_mark_number);

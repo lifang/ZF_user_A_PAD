@@ -2,6 +2,7 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.OrderDetail;
 import com.example.zf_pad.entity.OrderEntity;
@@ -46,6 +47,7 @@ public class OrderAdapter extends BaseAdapter{
  		if(convertView == null){
 			holder = new ViewHolder();
  			convertView = inflater.inflate(R.layout.order_item, null);
+ 			holder.isshow=(TextView)convertView.findViewById(R.id.tv_isshow);
  			holder.content = (TextView) convertView.findViewById(R.id.content_pp);
  		holder.tv_ddbh = (TextView) convertView.findViewById(R.id.tv_ddbh);		 
  		holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);		
@@ -68,6 +70,11 @@ public class OrderAdapter extends BaseAdapter{
  		}else{
  		holder = (ViewHolder)convertView.getTag();
  	}
+ 		if(Config.iszl){
+ 			holder.isshow.setVisibility(View.VISIBLE);
+ 		}else{
+ 			holder.isshow.setVisibility(View.GONE);
+ 		}
  		holder.tv_price.setText(list.get(position).getOrder_goodsList().get(0).getGood_price().equals("")
  				?"":"гд"+list.get(position).getOrder_goodsList().get(0).getGood_price());
  		holder.content2.setText(list.get(position).getOrder_goodsList().get(0).getGood_brand());
@@ -133,7 +140,7 @@ public class OrderAdapter extends BaseAdapter{
 	}
 
 	public final class ViewHolder {
-		public TextView tv_goodnum,tv_price,content,tv_ddbh,tv_time,tv_status,tv_sum,tv_psf,tv_pay,tv_gtd,content2,content_pp;
+		public TextView tv_goodnum,tv_price,content,tv_ddbh,tv_time,tv_status,tv_sum,tv_psf,tv_pay,tv_gtd,content2,content_pp,isshow;
 		private LinearLayout ll_ishow;
 	}
 }

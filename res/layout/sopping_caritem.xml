@@ -70,7 +70,7 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="$ 1999"
+                        android:text="￥ 1999"
                         android:textColor="#292929"
                         android:textSize="21sp" />
 

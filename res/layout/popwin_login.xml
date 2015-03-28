@@ -5,10 +5,10 @@
     android:background="#b0000000"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="100dp" >
+    android:paddingBottom="@dimen/dlpad" >
 
     <LinearLayout
-        android:layout_width="460dp"
+        android:layout_width="@dimen/dlwidth"
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:orientation="vertical" >
@@ -21,10 +21,10 @@
 
             <Button
                 android:id="@+id/close"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/dlimg"
+                android:layout_height="@dimen/dlimg"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/zc_margin_top"
                 android:background="@drawable/lgclose"
                 android:text="" />
 
@@ -48,8 +48,8 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="@dimen/textbig"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/dlpad"
-            android:paddingRight="@dimen/dlpad" >
+            android:paddingLeft="@dimen/zc_land_h"
+            android:paddingRight="@dimen/zc_land_h" >
 
             <LinearLayout
                 android:id="@+id/msg"
@@ -63,8 +63,8 @@
 
                 <Button
                     android:id="@+id/regist_pass_btn"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="@dimen/zc_margin"
+                    android:layout_height="@dimen/zc_margin"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/login_error" />
 
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:textColor="@color/bg_FF0404"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/zc_margin" />
             </LinearLayout>
 
             <RelativeLayout
@@ -102,7 +102,7 @@
                     android:layout_toRightOf="@id/login_img_pass"
                     android:background="@drawable/shape_edittext"
                     android:hint="@string/hintname"
-                    android:maxWidth="20dp"
+                    android:maxWidth="@dimen/zc_margin_top"
                     android:paddingBottom="8dp"
                     android:paddingLeft="6dp"
                     android:paddingTop="8dp"
@@ -177,7 +177,7 @@
                 android:id="@+id/login_linear_login"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/zc_margin_top"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
@@ -221,7 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="@dimen/zc_margin_top"
                         android:text="@string/forgetpass"
                         android:textColor="#FF5C16"
                         android:textSize="@dimen/textbig" />

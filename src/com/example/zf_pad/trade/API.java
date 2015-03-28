@@ -96,7 +96,9 @@ public class API {
 
  // Apply Opening Progress Query
  	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
-
+	public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
+	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
+	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -474,6 +476,55 @@ public class API {
 		params.put("phone", phone);
 		new HttpRequest(context, callback).post(url, params);*/
     }
+    public static void AddAdres1(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETCODE4PHONE, params);
+	}
+    public static void zhuche(
+			Context context,
+			String  username,
+			 
+			String  password,
+			String  code,
+			int  cityId,
+			Boolean accountType,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		 
+		params.put("password", password);
+		params.put("code", code);
+		params.put("cityId", cityId);
+		params.put("accountType", accountType);
 
-
+		new HttpRequest(context, callback).post(ZHUCHE, params);
+	}
+    public static void PhonefindPass(
+			Context context,
+			String  password,
+			String code,
+			String username,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("password", password);
+		params.put("code", code);
+		params.put("username", username);
+		new HttpRequest(context, callback).post(Config.updatePassword, params);
+	}
+	public static void getEmailPass(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
 }
