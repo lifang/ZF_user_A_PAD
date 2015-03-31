@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <Button 
+        android:id="@+id/btn_exchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="积分兑换"
+        android:textColor="#FFE9C1"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:background="#FF5A10"
+        
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="650dp"/>
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#FAE2C3"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="40dp">
+     <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="订单编号" />
+    <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="交易时间" />
+    <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="实付金额" />
+    <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="获得积分" />
+    <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="积分类型" />
+</LinearLayout>
+<com.example.zf_pad.util.XListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/F3F2F2"
+		android:divider="@color/F3F2F2"
+		android:dividerHeight="8dp"
+		android:scrollbars="none"/>
+</LinearLayout>

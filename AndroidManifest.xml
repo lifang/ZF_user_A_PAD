@@ -151,6 +151,30 @@
             android:name="com.example.zf_pad.activity.TerminalManagerDetailActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.example.zf_pad.activity.CreatMerchant"
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
+            
+        </activity>
+        <activity
+            android:name="com.example.zf_pad.activity.AdressEdit"
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
+            
+        </activity>
+         <activity
+            android:name="com.example.zf_pad.trade.CityProvinceActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
+            
+        </activity>
+        <activity
+            android:name="com.example.zf_pad.activity.Exchange"
+            android:label="@string/app_name" 
+            android:screenOrientation="landscape">
+            
+        </activity>
     </application>
 
 </manifest>

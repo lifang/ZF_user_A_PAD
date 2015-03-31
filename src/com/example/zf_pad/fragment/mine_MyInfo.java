@@ -5,13 +5,21 @@ import com.example.zf_pad.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-public class mine_MyInfo extends Fragment {
+public class mine_MyInfo extends Fragment implements OnClickListener{
 	private View view;
+	private TextView tv_score,tv_manageradress,tv_info;
+	private Mine_score score;
+	private mine_Address address;
+	private Mine_baseinfo info;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -20,20 +28,81 @@ public class mine_MyInfo extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-	/*	if (view == null) {
-			view = inflater.inflate(R.layout.f_mine_myinfo, null);	
-		}*/
+
+		// view = inflater.inflate(R.layout.f_mine, container,false);
+		// initView();
+
 		if (view != null) {
+			Log.i("222222", "11111111");
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
-				 parent.removeView(view);
+				parent.removeView(view);
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
 			
 		} catch (InflateException e) {
-		
+
 		}
+
 		return view;
 	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		init();
+	}
+	
+	private void init() {
+		tv_score=(TextView) view.findViewById(R.id.tv_score);
+		tv_manageradress=(TextView) view.findViewById(R.id.tv_manageradress);
+		tv_info=(TextView) view.findViewById(R.id.tv_info);
+		tv_score.setOnClickListener(this);
+		tv_manageradress.setOnClickListener(this);
+		tv_info.setOnClickListener(this);
+	}
+	@Override
+	public void onDestroyView() {
+		try {
+		FragmentTransaction transaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
+		if (address != null)
+			transaction.remove(address);
+		if (score != null)
+			transaction.remove(score);
+		if (info != null)
+			transaction.remove(info);
+		transaction.commit();
+		} catch (Exception e) {
+		}
+		super.onDestroyView();
+	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_score:
+			if (score == null)
+				score = new Mine_score();
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fm, score).commit();
+			break;
+		case R.id.tv_manageradress:
+			if(address==null)
+				address=new mine_Address();
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fm, address).commit();
+			break;
+		case R.id.tv_info:
+			if(info==null)
+				info=new Mine_baseinfo();
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fm, info).commit();
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
 }

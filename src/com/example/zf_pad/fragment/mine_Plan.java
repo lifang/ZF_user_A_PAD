@@ -145,9 +145,9 @@ public class mine_Plan extends Fragment implements OnClickListener{
 								
 								if(aaa.length==1){
 									dataser.add(new ApplySerch(i, result.getJSONObject(i).getString("serial_num"),
-											aaa[0], ddd[0], 
-											"", "", 
-											"", ""));
+											aaa[0], ddd[0],
+											"","",
+											"",""));
 								}
 								else if(aaa.length==2){
 									dataser.add(new ApplySerch(i, result.getJSONObject(i).getString("serial_num"),

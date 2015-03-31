@@ -1,12 +1,14 @@
 package com.example.zf_pad.trade;
 
 import android.content.Context;
+import android.util.Log;
 
 
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.zf_pad.fragment.mine_Address;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 
@@ -93,6 +95,16 @@ public class API {
     public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
  // Apply Opening Progress Query
  	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
+ 	// Get merchant list
+ 	public static String GET_MERCHANTLIST=SCHEMA + HOST+"/ZFMerchant/api/merchant/findList/";
+ 	// Add address
+ 	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
+ 	// update address
+ 	public static final String update_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/updateAddress/";
+ 	// get totalscore
+ 	public static String total_score = SCHEMA + HOST + "/ZFMerchant/api/customers/getIntegralTotal/";
+ 	// exchange score
+ 	public static String exchange_score = SCHEMA + HOST + "/ZFMerchant/api/customers/insertIntegralConvert";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -388,5 +400,74 @@ public class API {
 		params.put("phone", phone);
 		new HttpRequest(context, callback).post(url, params);*/
     }
-
+    public static void getmerchantlist(
+			Context context,
+			int customerId,
+			int page,
+			int rows,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId);
+		params.put("page", page);
+		params.put("rows", rows);
+		GET_MERCHANTLIST=GET_MERCHANTLIST+customerId+"/";
+		GET_MERCHANTLIST=GET_MERCHANTLIST+page+"/";
+		GET_MERCHANTLIST=GET_MERCHANTLIST+rows;
+		Log.e("GET_MERCHANTLIST", GET_MERCHANTLIST);
+		new HttpRequest(context, callback).post(GET_MERCHANTLIST);
+	}
+    public static void AddAdres(
+			Context context,
+			String  cityId,
+			String  receiver,
+			String 	moblephone,
+			String 	zipCode,
+			String 	address,
+			int 	isDefault,
+			int 	customerId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("cityId", cityId);
+		params.put("receiver", receiver);
+		params.put("moblephone", moblephone);
+		params.put("zipCode", zipCode);
+		params.put("address", address);
+		params.put("isDefault", isDefault);
+        if(!mine_Address.isclickitem){
+        	params.put("customerId", customerId);
+		}
+        else{
+        	params.put("id", customerId);
+        }
+		System.out.println("--ccc----"+params);
+		Log.e("params", String.valueOf(params));
+		if(!mine_Address.isclickitem){
+			new HttpRequest(context, callback).post(Add_ress, params);
+		}
+		else{
+			new HttpRequest(context, callback).post(update_ress, params);
+		}
+	}
+    public static void gettotalscore(
+    		Context context,
+    		int customerId,
+    		HttpCallback callback){
+    	total_score=total_score+80;
+    	new HttpRequest(context, callback).post(total_score);
+    }
+    public static void exchange(
+    		Context context,
+    		int customerId,
+    		String name,
+    		String phone,
+    		int price,
+    		HttpCallback callback){
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("customerId", customerId);
+    	params.put("name", name);
+    	params.put("phone", phone);
+    	params.put("price", price);
+    	new HttpRequest(context, callback).post(exchange_score, params);
+    }
 }
