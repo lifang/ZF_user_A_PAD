@@ -63,10 +63,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#292929"
-                    android:textSize="@dimen/textbig"
                     android:layout_gravity="left|center_vertical"
-                    android:text="@string/after_sale_mark_company" />
+                    android:text="@string/after_sale_mark_company"
+                    android:textColor="#292929"
+                    android:textSize="@dimen/textbig" />
 
                 <EditText
                     android:id="@+id/after_sale_mark_company"
@@ -77,7 +77,6 @@
                     android:ems="10"
                     android:padding="4dp" >
 
-                    <requestFocus />
                 </EditText>
             </LinearLayout>
 
@@ -89,16 +88,16 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                                       android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#292929"
-                    android:textSize="@dimen/textbig"
                     android:layout_gravity="left|center_vertical"
-                    android:text="@string/after_sale_mark_number" />
+                    android:text="@string/after_sale_mark_number"
+                    android:textColor="#292929"
+                    android:textSize="@dimen/textbig" />
 
                 <EditText
                     android:id="@+id/after_sale_mark_number"
-                   android:layout_width="@dimen/edwidth"
+                    android:layout_width="@dimen/edwidth"
                     android:layout_height="@dimen/edheight"
                     android:layout_marginLeft="@dimen/textbig"
                     android:background="@drawable/shape_edittext"

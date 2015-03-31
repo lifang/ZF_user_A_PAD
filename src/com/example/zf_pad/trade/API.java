@@ -527,4 +527,14 @@ public class API {
  
 		new HttpRequest(context, callback).post(GETEMAILPASS, params);
 	}
+	public static void PostSearch(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
 }

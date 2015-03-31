@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/normal_height1"
                 android:text="最短租赁时间"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" />
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+        		android:layout_marginTop="@dimen/zc_margin_top2"
                 android:text="30天"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" />
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/normal_height1"
                 android:text="最长租赁时间"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig"  />
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+        		android:layout_marginTop="@dimen/zc_margin_top2"
                 android:text="365天"
                 android:textColor="@color/text292929"
                  android:textSize="@dimen/textbig" />
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/normal_height1"
                 android:text="每月租金"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" />
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+        		android:layout_marginTop="@dimen/zc_margin_top2"
                 android:text="￥9999"
                 android:textColor="@color/text292929"
                  android:textSize="@dimen/textbig" />
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/normal_height1"
                 android:text="说明"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig"  />
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+        		android:layout_marginTop="@dimen/zc_margin_top2"
                 android:text="这里是租赁说明"
                 android:textColor="@color/text292929"
                  android:textSize="@dimen/textbig" />
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/normal_height1"
                 android:text="对个人开通"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" />
@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left2"
-        		android:layout_marginTop="10dp"
+        		android:layout_marginTop="@dimen/zc_margin_top2"
                 android:text="这里是租赁协议"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig"  />

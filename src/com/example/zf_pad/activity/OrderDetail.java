@@ -89,6 +89,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	private Button bt_pj;
 	private TextView tv_price;
 	private TextView tv_sl;
+	private TextView tv_comment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 												OrderDetail.this, goodlist,
 												status);
 										pos_lv.setAdapter(posAdapter);
+										if(relist.size()==0){
+											tv_comment.setVisibility(View.GONE);
+										}
 										reAdapter = new RecordAdapter(
 												OrderDetail.this, relist);
 										his_lv.setAdapter(reAdapter);
@@ -184,6 +188,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 						});
 	}
 	private void initView() {
+		tv_comment = (TextView)findViewById(R.id.tv_comment);
 		tv_money = (TextView) findViewById(R.id.tv_money);
 		bt_pj = (Button) findViewById(R.id.btn_pj);
 		bt_pj.setOnClickListener(this);

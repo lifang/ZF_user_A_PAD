@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="110dp"
+    android:layout_height="@dimen/alertheight"
     android:background="@drawable/dialog"
     android:orientation="vertical" 
     android:layout_gravity="center_horizontal">
@@ -9,8 +9,8 @@
     
 
     <LinearLayout
-         android:layout_width="240dp"
-    android:layout_height="110dp"
+         android:layout_width="@dimen/alertwidth"
+    android:layout_height="@dimen/alertheight"
     android:background="@drawable/dialog"
     android:orientation="vertical" 
     
@@ -22,10 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/zc_margin_top2"
         android:textStyle="bold"
         android:textColor="#545454"
-        android:textSize="18sp"
+        android:textSize="@dimen/textmid"
         android:text="TextView" />
 
     <TextView
@@ -34,10 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/title"
         android:layout_centerVertical="true"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/zc_margin_top2"
         android:textColor="#545454"
-         android:textSize="18sp"
-        android:layout_marginBottom="10dp"
+         android:textSize="@dimen/textmid"
+        android:layout_marginBottom="@dimen/zc_margin_top2"
         android:text="TextView" />
  <View
                 android:layout_width="fill_parent"

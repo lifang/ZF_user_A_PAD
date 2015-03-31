@@ -59,7 +59,7 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 				if (myList.size() == 0) {
 					// norecord_text_to.setText("��û����ص���Ʒ");
 					Xlistview.setVisibility(View.GONE);
-					eva_nodata.setVisibility(View.VISIBLE);
+					//eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true;
 				myAdapter.notifyDataSetChanged();
@@ -270,6 +270,8 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 			page = 1;
 			myList.clear();
 			getData();
+			myAdapter = new OrderAdapter(getActivity(), myList);
+			Xlistview.setAdapter(myAdapter);
 			break;
 		case R.id.tv_zl:
 			Config.iszl=true;
@@ -280,6 +282,8 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 			page = 1;
 			myList.clear();
 			getData();
+			myAdapter = new OrderAdapter(getActivity(), myList);
+			Xlistview.setAdapter(myAdapter);
 			break;
 		default:
 			break;

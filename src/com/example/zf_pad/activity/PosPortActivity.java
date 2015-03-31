@@ -132,7 +132,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
+						
 						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
@@ -151,10 +151,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 				p.setValue(ch.getValue());
 				types.add(p);
 			}
-			PosItem p = new PosItem();
-			p.setId(c.getId());
-			p.setValue(c.getValue());
-			types.add(p);
+	
 		}
 		for (category c : pse1.getCategory()) {
 
@@ -165,10 +162,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 				p.setValue(ch.getValue());
 				types2.add(p);
 			}
-			PosItem p = new PosItem();
-			p.setId(c.getId());
-			p.setValue(c.getValue());
-			types2.add(p);
+	
 		}
 
 	}
@@ -470,6 +464,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 			double min = Double.valueOf(str);// 把字符串强制转换为数字
 			return true;// 如果是数字，返回True
 		} catch (Exception e) {
+			
 			return false;// 如果抛出异常，返回False
 		}
 	}

@@ -311,8 +311,13 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		params.put("city_id", 1);
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
-	 	//params.put("page", page);
-	 	//params.put("rows", 2);
+	 	if(list_port==1){
+	 		params.put("rows", 12);
+	 	}else{
+	 		params.put("rows",10);
+	 	}
+	 	params.put("page", page);
+	 	
 		params.put("minPrice", minPrice);
 	 	params.put("maxPrice", maxPrice);
 	 	params.put("has_purchase", posport.has_purchase);
@@ -369,7 +374,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 							byte[] responseBody, Throwable error) {
 						// TODO Auto-generated method stub
 						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+						
 					}
 				});
 	}

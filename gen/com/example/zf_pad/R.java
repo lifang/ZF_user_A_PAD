@@ -212,6 +212,12 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f060007;
         public static final int activity_vertical_margin=0x7f060008;
+        public static final int alertheight=0x7f060049;
+        public static final int alertll=0x7f06004a;
+        /**  弹窗 
+ 弹窗 
+         */
+        public static final int alertwidth=0x7f060048;
         public static final int d_10dp=0x7f060018;
         public static final int d_11dp=0x7f060019;
         public static final int d_12dp=0x7f06001a;
@@ -236,22 +242,25 @@ containing a value of this type.
         public static final int d_7dp=0x7f060015;
         public static final int d_8dp=0x7f060016;
         public static final int d_9dp=0x7f060017;
-        /**  订单确认
+        /**  订单确认 
+ 订单确认 
          */
-        public static final int ddheight=0x7f06004c;
-        public static final int ddheight1=0x7f06004d;
-        public static final int ddimg=0x7f06004e;
-        public static final int ddrl_height=0x7f060050;
-        /**  订单编辑框
+        public static final int ddheight=0x7f060050;
+        public static final int ddheight1=0x7f060051;
+        public static final int ddimg=0x7f060052;
+        public static final int ddrl_height=0x7f060054;
+        /**  订单编辑框 
+ 订单编辑框 
          */
-        public static final int ddrl_width=0x7f06004f;
-        public static final int dlheight=0x7f06004a;
-        public static final int dlimg=0x7f060049;
+        public static final int ddrl_width=0x7f060053;
+        public static final int dlheight=0x7f06004e;
+        public static final int dlimg=0x7f06004d;
         /**  登陆 
+ 登陆 
          */
-        public static final int dlpad=0x7f060047;
-        public static final int dltext=0x7f060048;
-        public static final int dlwidth=0x7f06004b;
+        public static final int dlpad=0x7f06004b;
+        public static final int dltext=0x7f06004c;
+        public static final int dlwidth=0x7f06004f;
         public static final int drop_down_list_footer_button_height=0x7f060006;
         public static final int drop_down_list_footer_button_margin_left=0x7f060005;
         public static final int drop_down_list_footer_progress_bar_height=0x7f060004;
@@ -259,21 +268,25 @@ containing a value of this type.
         public static final int drop_down_list_header_padding_top=0x7f060000;
         public static final int drop_down_list_header_progress_bar_height=0x7f060003;
         public static final int drop_down_list_header_release_min_distance=0x7f060002;
-        public static final int edheight=0x7f060046;
+        public static final int edheight=0x7f060047;
         /**  编辑框 
+ 编辑框 
          */
-        public static final int edwidth=0x7f060045;
+        public static final int edwidth=0x7f060046;
         /**  首页 
+ 首页 
          */
         public static final int iconma=0x7f060038;
         public static final int itemheight=0x7f06003c;
         /**  POS机列表 
+ POS机列表 
          */
         public static final int itemheight1=0x7f06003a;
         public static final int itemwidth1=0x7f06003b;
         public static final int leftfristtop=0x7f06003f;
         public static final int leftitemheight=0x7f060040;
         /**  我的 
+ 我的 
          */
         public static final int leftwidth=0x7f06003e;
         public static final int mainvpheight=0x7f060039;
@@ -287,6 +300,13 @@ containing a value of this type.
         public static final int normai_height=0x7f060035;
         public static final int normai_height1=0x7f060036;
         public static final int normai_height3=0x7f060037;
+        public static final int normal_height1=0x7f06005f;
+        public static final int normal_height2=0x7f060060;
+        public static final int normal_width1=0x7f060061;
+        public static final int normal_width2=0x7f060062;
+        public static final int normal_width3=0x7f060063;
+        public static final int normal_width4=0x7f060064;
+        public static final int order_image=0x7f060065;
         public static final int postimg=0x7f06003d;
         public static final int s_12sp=0x7f06002b;
         public static final int s_13sp=0x7f06002c;
@@ -296,33 +316,38 @@ containing a value of this type.
         public static final int s_19sp=0x7f060027;
         public static final int s_20sp=0x7f060028;
         public static final int s_24sp=0x7f060029;
-        public static final int sp_height=0x7f060052;
-        /**  下拉选择框
+        public static final int sp_height=0x7f060056;
+        /**  下拉选择框 
+ 下拉选择框 
          */
-        public static final int sp_width=0x7f060051;
+        public static final int sp_width=0x7f060055;
         public static final int sy_bt_height=0x7f060034;
         public static final int sy_rl_margin=0x7f060033;
+        public static final int textbig=0x7f060042;
         /**  文字大小 
+ 文字大小 
          */
-        public static final int textbig=0x7f060041;
-        public static final int textmid=0x7f060042;
-        public static final int textmids=0x7f060043;
-        public static final int textsmall=0x7f060044;
+        public static final int textbigs=0x7f060041;
+        public static final int textmid=0x7f060043;
+        public static final int textmids=0x7f060044;
+        public static final int textsmall=0x7f060045;
         /**  Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
          */
         public static final int titilepad=0x7f06002f;
         public static final int titilepad1=0x7f060030;
         public static final int titleback_height=0x7f060009;
-        public static final int zc_land_h=0x7f060056;
-        public static final int zc_land_w=0x7f060055;
-        public static final int zc_margin=0x7f060057;
-        public static final int zc_margin_top=0x7f060058;
-        public static final int zc_margin_top1=0x7f060059;
-        public static final int zc_margin_top2=0x7f06005a;
-        public static final int zc_rl_h=0x7f060054;
-        /**  注册找回密码
+        public static final int zc_land_h=0x7f06005a;
+        public static final int zc_land_w=0x7f060059;
+        public static final int zc_margin=0x7f06005b;
+        public static final int zc_margin_top=0x7f06005c;
+        public static final int zc_margin_top1=0x7f06005d;
+        public static final int zc_margin_top2=0x7f06005e;
+        public static final int zc_rl_h=0x7f060058;
+        /**  注册找回密码 
+ 注册找回密码 
          */
-        public static final int zc_rl_w=0x7f060053;
+        public static final int zc_rl_w=0x7f060057;
     }
     public static final class drawable {
         public static final int back=0x7f020000;
@@ -455,7 +480,7 @@ containing a value of this type.
         public static final int Forum=0x7f0b0087;
         public static final int Forum1=0x7f0b008e;
         public static final int Model_number=0x7f0b00d7;
-        public static final int action_settings=0x7f0b01a6;
+        public static final int action_settings=0x7f0b01a8;
         public static final int add=0x7f0b00db;
         public static final int adress_name=0x7f0b0060;
         public static final int after_sale_button_center=0x7f0b00b1;
@@ -491,9 +516,10 @@ containing a value of this type.
         public static final int apply_terminal_number=0x7f0b0058;
         public static final int apply_terminal_status=0x7f0b0059;
         public static final int bt_bj=0x7f0b0116;
-        public static final int bt_cancel=0x7f0b015d;
-        public static final int bt_confirm=0x7f0b015e;
+        public static final int bt_cancel=0x7f0b015f;
+        public static final int bt_confirm=0x7f0b0160;
         public static final int bt_del=0x7f0b0117;
+        public static final int btn_cancle=0x7f0b0130;
         public static final int btn_delect=0x7f0b0119;
         public static final int btn_exit=0x7f0b0114;
         public static final int btn_ishow=0x7f0b0124;
@@ -518,14 +544,14 @@ containing a value of this type.
         public static final int comment_person=0x7f0b0051;
         public static final int comment_time=0x7f0b0052;
         public static final int confirm=0x7f0b00b7;
-        public static final int content=0x7f0b0146;
+        public static final int content=0x7f0b0148;
         public static final int content1=0x7f0b0065;
         public static final int content2=0x7f0b0066;
         public static final int content_pp=0x7f0b0063;
         public static final int current=0x7f0b0021;
         public static final int dcxx=0x7f0b00fb;
-        public static final int del=0x7f0b0186;
-        public static final int delete=0x7f0b0169;
+        public static final int del=0x7f0b0188;
+        public static final int delete=0x7f0b016b;
         public static final int dialogRoot=0x7f0b006b;
         public static final int dialog_icon=0x7f0b006c;
         public static final int dialog_text=0x7f0b006d;
@@ -536,18 +562,18 @@ containing a value of this type.
         public static final int drop_down_list_header_image=0x7f0b0072;
         public static final int drop_down_list_header_progress_bar=0x7f0b0070;
         public static final int drop_down_list_header_second_text=0x7f0b0074;
-        public static final int ed_max=0x7f0b015c;
-        public static final int ed_min=0x7f0b015b;
+        public static final int ed_max=0x7f0b015e;
+        public static final int ed_min=0x7f0b015d;
         public static final int editText1=0x7f0b001d;
         public static final int et_contetn=0x7f0b0113;
         public static final int et_process=0x7f0b00a5;
-        public static final int et_search=0x7f0b016a;
+        public static final int et_search=0x7f0b016c;
         public static final int et_titel=0x7f0b00df;
         public static final int eva_nodata=0x7f0b00b4;
         public static final int evevt_img=0x7f0b0062;
-        public static final int evevt_img2=0x7f0b014a;
-        public static final int evevt_img3=0x7f0b014f;
-        public static final int evevt_img4=0x7f0b0155;
+        public static final int evevt_img2=0x7f0b014c;
+        public static final int evevt_img3=0x7f0b0151;
+        public static final int evevt_img4=0x7f0b0157;
         public static final int f_good_detail=0x7f0b0105;
         public static final int f_mine=0x7f0b009e;
         public static final int fac_detai=0x7f0b00eb;
@@ -555,8 +581,8 @@ containing a value of this type.
         public static final int fptt=0x7f0b0127;
         public static final int gv1=0x7f0b00e7;
         public static final int gview=0x7f0b0104;
-        public static final int has_purchase=0x7f0b015a;
-        public static final int his_lv=0x7f0b012b;
+        public static final int has_purchase=0x7f0b015c;
+        public static final int his_lv=0x7f0b012c;
         public static final int howMoney=0x7f0b00b6;
         public static final int igw=0x7f0b002a;
         public static final int im1=0x7f0b0091;
@@ -568,22 +594,22 @@ containing a value of this type.
         public static final int im_wd=0x7f0b0030;
         public static final int image=0x7f0b010d;
         public static final int imageView1=0x7f0b010e;
-        public static final int imageView2=0x7f0b0135;
-        public static final int img3=0x7f0b0172;
+        public static final int imageView2=0x7f0b0137;
+        public static final int img3=0x7f0b0174;
         public static final int img_check=0x7f0b00bf;
         public static final int img_check_n=0x7f0b00c0;
-        public static final int img_on_off=0x7f0b0140;
-        public static final int img_type=0x7f0b0145;
+        public static final int img_on_off=0x7f0b0142;
+        public static final int img_type=0x7f0b0147;
         public static final int in_no_record=0x7f0b0107;
         public static final int indicator=0x7f0b007b;
         public static final int isshow=0x7f0b00bc;
         public static final int isshow1=0x7f0b00c2;
         public static final int item_cb=0x7f0b00b5;
-        public static final int item_cb1=0x7f0b015f;
-        public static final int item_cb2=0x7f0b0161;
-        public static final int item_cb3=0x7f0b0163;
-        public static final int item_cb4=0x7f0b0165;
-        public static final int item_cb_all=0x7f0b0167;
+        public static final int item_cb1=0x7f0b0161;
+        public static final int item_cb2=0x7f0b0163;
+        public static final int item_cb3=0x7f0b0165;
+        public static final int item_cb4=0x7f0b0167;
+        public static final int item_cb_all=0x7f0b0169;
         public static final int item_et=0x7f0b0068;
         public static final int jifen=0x7f0b009f;
         public static final int jtdd3=0x7f0b0083;
@@ -598,51 +624,51 @@ containing a value of this type.
         public static final int letter_list_view=0x7f0b0024;
         public static final int linearLayout1=0x7f0b001b;
         public static final int list=0x7f0b00a1;
-        public static final int list_item_textview=0x7f0b017b;
+        public static final int list_item_textview=0x7f0b017d;
         public static final int ll_buttom=0x7f0b00f2;
-        public static final int ll_clean=0x7f0b0143;
+        public static final int ll_clean=0x7f0b0145;
         public static final int ll_dd=0x7f0b008f;
         public static final int ll_ishow=0x7f0b011e;
-        public static final int ll_jy_type=0x7f0b0179;
-        public static final int ll_listflag=0x7f0b0177;
-        public static final int ll_m1=0x7f0b0148;
-        public static final int ll_m2=0x7f0b0149;
-        public static final int ll_m3=0x7f0b014e;
-        public static final int ll_m4=0x7f0b0154;
-        public static final int ll_mail=0x7f0b0131;
-        public static final int ll_mr=0x7f0b016c;
+        public static final int ll_jy_type=0x7f0b017b;
+        public static final int ll_listflag=0x7f0b0179;
+        public static final int ll_m1=0x7f0b014a;
+        public static final int ll_m2=0x7f0b014b;
+        public static final int ll_m3=0x7f0b0150;
+        public static final int ll_m4=0x7f0b0156;
+        public static final int ll_mail=0x7f0b0133;
+        public static final int ll_mr=0x7f0b016e;
         public static final int ll_myinfo=0x7f0b0095;
         public static final int ll_mysh=0x7f0b0098;
-        public static final int ll_new=0x7f0b0141;
-        public static final int ll_pj=0x7f0b0173;
+        public static final int ll_new=0x7f0b0143;
+        public static final int ll_pj=0x7f0b0175;
         public static final int ll_plan=0x7f0b009b;
-        public static final int ll_request=0x7f0b0134;
+        public static final int ll_request=0x7f0b0136;
         public static final int ll_select=0x7f0b00d8;
-        public static final int ll_sh=0x7f0b0133;
+        public static final int ll_sh=0x7f0b0135;
         public static final int ll_shjl=0x7f0b0092;
-        public static final int ll_tel=0x7f0b0130;
-        public static final int ll_updown=0x7f0b0170;
-        public static final int ll_xxyx=0x7f0b016e;
+        public static final int ll_tel=0x7f0b0132;
+        public static final int ll_updown=0x7f0b0172;
+        public static final int ll_xxyx=0x7f0b0170;
         public static final int login_edit_code=0x7f0b00bd;
         public static final int login_edit_email=0x7f0b00b8;
         public static final int login_edit_name=0x7f0b010f;
         public static final int login_edit_name1=0x7f0b0111;
         public static final int login_edit_pass=0x7f0b00c3;
         public static final int login_edit_pass2=0x7f0b00c4;
-        public static final int login_img_pass=0x7f0b013a;
-        public static final int login_img_pass1=0x7f0b013b;
-        public static final int login_info=0x7f0b0139;
+        public static final int login_img_pass=0x7f0b013c;
+        public static final int login_img_pass1=0x7f0b013d;
+        public static final int login_info=0x7f0b013b;
         public static final int login_linear_deletemali=0x7f0b00b9;
         public static final int login_linear_deletename=0x7f0b0110;
         public static final int login_linear_deletename1=0x7f0b0112;
-        public static final int login_linear_deletepass=0x7f0b013c;
+        public static final int login_linear_deletepass=0x7f0b013e;
         public static final int login_linear_deletpass=0x7f0b00be;
         public static final int login_linear_deletpass2=0x7f0b00c5;
-        public static final int login_linear_login=0x7f0b013d;
+        public static final int login_linear_login=0x7f0b013f;
         public static final int login_linear_no=0x7f0b0069;
         public static final int login_linear_signin=0x7f0b00c6;
         public static final int login_linear_yes=0x7f0b006a;
-        public static final int login_text_forget=0x7f0b013e;
+        public static final int login_text_forget=0x7f0b0140;
         public static final int lv=0x7f0b0007;
         public static final int lv_result=0x7f0b00a8;
         public static final int m_fragment=0x7f0b0033;
@@ -660,38 +686,38 @@ containing a value of this type.
         public static final int main_rl_xtgg=0x7f0b008b;
         public static final int main_rl_zdgl=0x7f0b0081;
         public static final int message=0x7f0b0054;
-        public static final int msg=0x7f0b0137;
-        public static final int msg_conten=0x7f0b0189;
-        public static final int msg_time=0x7f0b0188;
-        public static final int msg_title=0x7f0b0187;
+        public static final int msg=0x7f0b0139;
+        public static final int msg_conten=0x7f0b018b;
+        public static final int msg_time=0x7f0b018a;
+        public static final int msg_title=0x7f0b0189;
         public static final int next_sure=0x7f0b0076;
         public static final int norecord_linear_go=0x7f0b010a;
         public static final int norecord_text_to=0x7f0b0108;
         public static final int norecord_text_to2=0x7f0b0109;
         public static final int norecord_text_to3=0x7f0b010b;
         public static final int other=0x7f0b0080;
-        public static final int port_list1=0x7f0b0175;
-        public static final int port_list2=0x7f0b0176;
+        public static final int port_list1=0x7f0b0177;
+        public static final int port_list2=0x7f0b0178;
         public static final int pos_lv1=0x7f0b005e;
         public static final int pos_lv2=0x7f0b005f;
         public static final int pos_lv3=0x7f0b0101;
-        public static final int pos_select=0x7f0b016b;
+        public static final int pos_select=0x7f0b016d;
         public static final int ppxx=0x7f0b00fa;
         public static final int reduce=0x7f0b00d9;
-        public static final int regist_pass_btn=0x7f0b0138;
+        public static final int regist_pass_btn=0x7f0b013a;
         public static final int retail_price=0x7f0b00d3;
         public static final int rl_imgs=0x7f0b00e3;
         public static final int search=0x7f0b007a;
         public static final int search2=0x7f0b00e2;
-        public static final int search_item_tv=0x7f0b017d;
-        public static final int search_rl_tiem=0x7f0b017c;
-        public static final int serch_edit=0x7f0b0168;
+        public static final int search_item_tv=0x7f0b017f;
+        public static final int search_rl_tiem=0x7f0b017e;
+        public static final int serch_edit=0x7f0b016a;
         public static final int set=0x7f0b0032;
         public static final int setting_btn_clear=0x7f0b00f1;
         public static final int setting_btn_clear1=0x7f0b00ef;
         public static final int setting_rl_exit=0x7f0b00ee;
         public static final int setting_rl_exit2=0x7f0b00f0;
-        public static final int showCountText=0x7f0b0185;
+        public static final int showCountText=0x7f0b0187;
         public static final int si_rt_msxf=0x7f0b0067;
         public static final int spinner=0x7f0b00de;
         public static final int spms=0x7f0b00f9;
@@ -707,18 +733,18 @@ containing a value of this type.
         public static final int terminal_comment_container=0x7f0b003f;
         public static final int terminal_detail_status=0x7f0b0034;
         public static final int terminal_list=0x7f0b0040;
-        public static final int terminal_open_icon_left=0x7f0b0190;
-        public static final int terminal_open_icon_right=0x7f0b0193;
-        public static final int terminal_open_key_left=0x7f0b018f;
-        public static final int terminal_open_key_right=0x7f0b0192;
-        public static final int terminal_open_left=0x7f0b018e;
-        public static final int terminal_open_right=0x7f0b0191;
+        public static final int terminal_open_icon_left=0x7f0b0192;
+        public static final int terminal_open_icon_right=0x7f0b0195;
+        public static final int terminal_open_key_left=0x7f0b0191;
+        public static final int terminal_open_key_right=0x7f0b0194;
+        public static final int terminal_open_left=0x7f0b0190;
+        public static final int terminal_open_right=0x7f0b0193;
         public static final int terminal_rates=0x7f0b003e;
         public static final int testbutton=0x7f0b0075;
-        public static final int text1=0x7f0b0160;
-        public static final int text2=0x7f0b0162;
-        public static final int text3=0x7f0b0164;
-        public static final int text4=0x7f0b0166;
+        public static final int text1=0x7f0b0162;
+        public static final int text2=0x7f0b0164;
+        public static final int text3=0x7f0b0166;
+        public static final int text4=0x7f0b0168;
         public static final int textView1=0x7f0b000f;
         public static final int textView2=0x7f0b0014;
         public static final int textView3=0x7f0b001c;
@@ -736,20 +762,20 @@ containing a value of this type.
         public static final int textwdxx=0x7f0b0096;
         public static final int title=0x7f0b0053;
         public static final int title2=0x7f0b00d2;
-        public static final int title3=0x7f0b0150;
-        public static final int title4=0x7f0b0156;
+        public static final int title3=0x7f0b0152;
+        public static final int title4=0x7f0b0158;
         public static final int titleback_image_back=0x7f0b0078;
         public static final int titleback_linear_back=0x7f0b0077;
         public static final int titleback_text_title=0x7f0b00b3;
-        public static final int trade_account=0x7f0b0198;
-        public static final int trade_amount=0x7f0b019a;
+        public static final int trade_account=0x7f0b019a;
+        public static final int trade_amount=0x7f0b019c;
         public static final int trade_bank_key_container=0x7f0b0049;
         public static final int trade_bank_value_container=0x7f0b004a;
         public static final int trade_client=0x7f0b00c7;
-        public static final int trade_client_channel=0x7f0b0196;
+        public static final int trade_client_channel=0x7f0b0198;
         public static final int trade_client_name=0x7f0b00c8;
-        public static final int trade_client_number=0x7f0b019c;
-        public static final int trade_client_selected=0x7f0b0195;
+        public static final int trade_client_number=0x7f0b019e;
+        public static final int trade_client_selected=0x7f0b0197;
         public static final int trade_commercial_key_container=0x7f0b0047;
         public static final int trade_commercial_value_container=0x7f0b0048;
         public static final int trade_container=0x7f0b00d0;
@@ -759,7 +785,7 @@ containing a value of this type.
         public static final int trade_detail_time=0x7f0b0046;
         public static final int trade_end=0x7f0b00cb;
         public static final int trade_end_date=0x7f0b00cc;
-        public static final int trade_receive_account=0x7f0b0199;
+        public static final int trade_receive_account=0x7f0b019b;
         public static final int trade_record_list=0x7f0b00d1;
         public static final int trade_search=0x7f0b00cd;
         public static final int trade_search_content=0x7f0b00cf;
@@ -771,85 +797,86 @@ containing a value of this type.
         public static final int trade_statistic_client=0x7f0b004e;
         public static final int trade_statistic_count=0x7f0b004c;
         public static final int trade_statistic_time=0x7f0b004d;
-        public static final int trade_status=0x7f0b019b;
-        public static final int trade_time=0x7f0b0197;
+        public static final int trade_status=0x7f0b019d;
+        public static final int trade_time=0x7f0b0199;
         public static final int tv1=0x7f0b0000;
         public static final int tv2=0x7f0b0001;
         public static final int tv3=0x7f0b0002;
         public static final int tv4=0x7f0b0003;
         public static final int tv5=0x7f0b0004;
-        public static final int tv_2=0x7f0b016f;
-        public static final int tv_3=0x7f0b0171;
-        public static final int tv_4=0x7f0b0174;
+        public static final int tv_2=0x7f0b0171;
+        public static final int tv_3=0x7f0b0173;
+        public static final int tv_4=0x7f0b0176;
         public static final int tv_PP=0x7f0b00e5;
         public static final int tv_adress=0x7f0b0122;
-        public static final int tv_back=0x7f0b0194;
+        public static final int tv_back=0x7f0b0196;
         public static final int tv_bug=0x7f0b00ec;
-        public static final int tv_ccc=0x7f0b0136;
+        public static final int tv_ccc=0x7f0b0138;
         public static final int tv_check=0x7f0b00c1;
         public static final int tv_city=0x7f0b0079;
-        public static final int tv_clean=0x7f0b0144;
+        public static final int tv_clean=0x7f0b0146;
         public static final int tv_code=0x7f0b00ba;
-        public static final int tv_conmoney=0x7f0b0180;
-        public static final int tv_consumption=0x7f0b017f;
+        public static final int tv_comment=0x7f0b012b;
+        public static final int tv_conmoney=0x7f0b0182;
+        public static final int tv_consumption=0x7f0b0181;
         public static final int tv_count=0x7f0b00dc;
         public static final int tv_ddbh=0x7f0b0123;
         public static final int tv_dec=0x7f0b00f8;
         public static final int tv_fplx=0x7f0b0126;
         public static final int tv_gj=0x7f0b0129;
         public static final int tv_gm=0x7f0b00a2;
-        public static final int tv_goodnum=0x7f0b012e;
-        public static final int tv_gtd=0x7f0b012c;
-        public static final int tv_isshow=0x7f0b012d;
+        public static final int tv_goodnum=0x7f0b012f;
+        public static final int tv_gtd=0x7f0b012d;
+        public static final int tv_isshow=0x7f0b012e;
         public static final int tv_jm=0x7f0b00fe;
         public static final int tv_jy=0x7f0b00f7;
-        public static final int tv_jy_type=0x7f0b017a;
+        public static final int tv_jy_type=0x7f0b017c;
         public static final int tv_kt=0x7f0b00f4;
         public static final int tv_lea=0x7f0b00ed;
         public static final int tv_lx=0x7f0b00e6;
         public static final int tv_ly=0x7f0b0125;
-        public static final int tv_mail=0x7f0b0132;
+        public static final int tv_mail=0x7f0b0134;
         public static final int tv_mmcz=0x7f0b00bb;
         public static final int tv_money=0x7f0b012a;
-        public static final int tv_mr=0x7f0b016d;
+        public static final int tv_mr=0x7f0b016f;
         public static final int tv_ms=0x7f0b00f3;
         public static final int tv_name=0x7f0b0005;
-        public static final int tv_openstate=0x7f0b018d;
+        public static final int tv_openstate=0x7f0b018f;
         public static final int tv_pay=0x7f0b00e0;
-        public static final int tv_paychannel=0x7f0b018c;
+        public static final int tv_paychannel=0x7f0b018e;
         public static final int tv_pl=0x7f0b00f5;
-        public static final int tv_postype=0x7f0b018b;
+        public static final int tv_postype=0x7f0b018d;
         public static final int tv_price=0x7f0b0006;
-        public static final int tv_price2=0x7f0b014c;
-        public static final int tv_price3=0x7f0b0152;
-        public static final int tv_price4=0x7f0b0158;
+        public static final int tv_price2=0x7f0b014e;
+        public static final int tv_price3=0x7f0b0154;
+        public static final int tv_price4=0x7f0b015a;
         public static final int tv_psf=0x7f0b011d;
         public static final int tv_qgd=0x7f0b00fd;
         public static final int tv_quantity=0x7f0b0128;
-        public static final int tv_repayment=0x7f0b0183;
+        public static final int tv_repayment=0x7f0b0185;
         public static final int tv_reperson=0x7f0b0120;
-        public static final int tv_repmoney=0x7f0b0184;
+        public static final int tv_repmoney=0x7f0b0186;
         public static final int tv_shopname=0x7f0b0118;
         public static final int tv_sjhttp=0x7f0b00ea;
         public static final int tv_sjps=0x7f0b011c;
         public static final int tv_spxx=0x7f0b0103;
         public static final int tv_sqkt=0x7f0b0102;
         public static final int tv_status=0x7f0b011b;
-        public static final int tv_sum=0x7f0b012f;
-        public static final int tv_td=0x7f0b0147;
-        public static final int tv_td2=0x7f0b014b;
-        public static final int tv_td3=0x7f0b0151;
-        public static final int tv_td4=0x7f0b0157;
+        public static final int tv_sum=0x7f0b0131;
+        public static final int tv_td=0x7f0b0149;
+        public static final int tv_td2=0x7f0b014d;
+        public static final int tv_td3=0x7f0b0153;
+        public static final int tv_td4=0x7f0b0159;
         public static final int tv_tel=0x7f0b0121;
-        public static final int tv_terminal_id=0x7f0b018a;
-        public static final int tv_ternumber=0x7f0b017e;
+        public static final int tv_terminal_id=0x7f0b018c;
+        public static final int tv_ternumber=0x7f0b0180;
         public static final int tv_time=0x7f0b011a;
         public static final int tv_title=0x7f0b00e4;
-        public static final int tv_tme=0x7f0b0178;
+        public static final int tv_tme=0x7f0b017a;
         public static final int tv_totle=0x7f0b00dd;
-        public static final int tv_traaccounts=0x7f0b0181;
-        public static final int tv_tramoney=0x7f0b0182;
-        public static final int tv_type=0x7f0b0142;
+        public static final int tv_traaccounts=0x7f0b0183;
+        public static final int tv_tramoney=0x7f0b0184;
+        public static final int tv_type=0x7f0b0144;
         public static final int tv_x=0x7f0b0064;
         public static final int tv_zd=0x7f0b00f6;
         public static final int tv_zl=0x7f0b00a3;
@@ -859,22 +886,22 @@ containing a value of this type.
         public static final int wayName=0x7f0b00d5;
         public static final int wkxx=0x7f0b00fc;
         public static final int x_listview=0x7f0b00a4;
-        public static final int xlistview_footer_content=0x7f0b019d;
-        public static final int xlistview_footer_hint_textview=0x7f0b019f;
-        public static final int xlistview_footer_progressbar=0x7f0b019e;
-        public static final int xlistview_header_arrow=0x7f0b01a4;
-        public static final int xlistview_header_content=0x7f0b01a0;
-        public static final int xlistview_header_hint_textview=0x7f0b01a2;
-        public static final int xlistview_header_progressbar=0x7f0b01a5;
-        public static final int xlistview_header_text=0x7f0b01a1;
-        public static final int xlistview_header_time=0x7f0b01a3;
+        public static final int xlistview_footer_content=0x7f0b019f;
+        public static final int xlistview_footer_hint_textview=0x7f0b01a1;
+        public static final int xlistview_footer_progressbar=0x7f0b01a0;
+        public static final int xlistview_header_arrow=0x7f0b01a6;
+        public static final int xlistview_header_content=0x7f0b01a2;
+        public static final int xlistview_header_hint_textview=0x7f0b01a4;
+        public static final int xlistview_header_progressbar=0x7f0b01a7;
+        public static final int xlistview_header_text=0x7f0b01a3;
+        public static final int xlistview_header_time=0x7f0b01a5;
         public static final int ys=0x7f0b0106;
-        public static final int ys2=0x7f0b014d;
-        public static final int ys3=0x7f0b0153;
-        public static final int ys4=0x7f0b0159;
+        public static final int ys2=0x7f0b014f;
+        public static final int ys3=0x7f0b0155;
+        public static final int ys4=0x7f0b015b;
         public static final int zf_item=0x7f0b00d6;
         public static final int zftd=0x7f0b00d4;
-        public static final int zhuche_ll=0x7f0b013f;
+        public static final int zhuche_ll=0x7f0b0141;
     }
     public static final class layout {
         public static final int act_leas_in=0x7f030000;

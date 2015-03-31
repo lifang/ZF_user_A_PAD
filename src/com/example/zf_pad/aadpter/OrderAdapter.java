@@ -2,18 +2,28 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.OrderDetail;
+import com.example.zf_pad.activity.PayFromCar;
 import com.example.zf_pad.entity.OrderEntity;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,7 +74,9 @@ public class OrderAdapter extends BaseAdapter{
  		holder.content_pp = (TextView) convertView.findViewById(R.id.content_pp);
  		holder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
  		holder.tv_goodnum = (TextView) convertView.findViewById(R.id.tv_goodnum);
- 		
+		holder.btn_cancle= (Button) convertView.findViewById(R.id.btn_cancle);
+ 		holder.btn_pay= (Button) convertView.findViewById(R.id.btn_pay);
+ 		holder.btn_cancle.setTag(list.get(position).getOrder_id());
  		 
 			convertView.setTag(holder);
  		}else{
@@ -121,7 +133,74 @@ public class OrderAdapter extends BaseAdapter{
  		holder.tv_ddbh.setText("¶©µ¥±àºÅ: "+list.get(position).getOrder_number()	);
  		holder.tv_ddbh.setText("¶©µ¥±àºÅ: "+list.get(position).getOrder_number()	);
  		holder.tv_ddbh.setText("¶©µ¥±àºÅ: "+list.get(position).getOrder_number()	);
- 		
+	holder.btn_cancle.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+
+				
+				RequestParams params = new RequestParams();
+				 params.put("id", arg0.getTag());
+				 System.out.println("`getTag``"+arg0.getTag());
+				 
+				params.setUseJsonStreamer(true);
+
+				MyApplication.getInstance().getClient()
+						.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
+
+							@Override
+							public void onSuccess(int statusCode, Header[] headers,
+									byte[] responseBody) {
+								String responseMsg = new String(responseBody)
+										.toString();
+								Log.e("print", responseMsg);			 
+								Gson gson = new Gson();								
+								JSONObject jsonobject = null;
+								String code = null;
+								try {
+									jsonobject = new JSONObject(responseMsg);
+									code = jsonobject.getString("code");
+									int a =jsonobject.getInt("code");
+									if(a==Config.CODE){  
+										String res =jsonobject.getString("result");
+										jsonobject = new JSONObject(res);
+										holder.isshow.setVisibility(View.GONE);
+									}else{
+										code = jsonobject.getString("message");
+										Toast.makeText(context, code, 1000).show();
+									}
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									 ;	
+									e.printStackTrace();
+									
+								}
+
+							}
+
+							@Override
+							public void onFailure(int statusCode, Header[] headers,
+									byte[] responseBody, Throwable error) {
+								// TODO Auto-generated method stub
+								System.out.println("-onFailure---");
+								Log.e("print", "-onFailure---" + error);
+							}
+						});
+		 
+				 
+			
+			
+			}
+		});
+ 		holder.btn_pay.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(context,PayFromCar.class);
+				context.startActivity(i);
+			}
+		});
  		convertView.setId(position);
   		convertView.setOnClickListener(new OnClickListener() {
 			
@@ -142,5 +221,6 @@ public class OrderAdapter extends BaseAdapter{
 	public final class ViewHolder {
 		public TextView tv_goodnum,tv_price,content,tv_ddbh,tv_time,tv_status,tv_sum,tv_psf,tv_pay,tv_gtd,content2,content_pp,isshow;
 		private LinearLayout ll_ishow;
+		public Button btn_cancle,btn_pay;
 	}
 }

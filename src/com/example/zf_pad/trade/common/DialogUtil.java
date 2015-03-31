@@ -23,7 +23,7 @@ public class DialogUtil {
         lp.width = (int) (0.6 * screenW);
 
         TextView titleText = (TextView) dialog.findViewById(R.id.dialog_text);
-        titleText.setText(context.getString(R.string.loading_data));
+        titleText.setText("МгдиЪ§Он...");
         return dialog;
     }
 
