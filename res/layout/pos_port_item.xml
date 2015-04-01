@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/titilepad"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/zc_rl_w"
-        android:paddingRight="@dimen/normal_height3" >
+        android:paddingRight="@dimen/normal_height3"
+        android:paddingLeft="@dimen/zc_rl_w" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -23,19 +23,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/zc_margin" />
+                android:layout_marginLeft="14dp" />
 
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/check_left"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
+                
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
         </LinearLayout>
 
-        <LinearLayout
+           <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -47,19 +49,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/zc_margin" />
+                android:layout_marginLeft="14dp" />
 
             <TextView
                 android:id="@+id/text2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/check_left"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
         </LinearLayout>
 
-        <LinearLayout
+           <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -71,19 +74,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/zc_margin" />
+                android:layout_marginLeft="14dp" />
 
             <TextView
                 android:id="@+id/text3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/check_left"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
         </LinearLayout>
 
-        <LinearLayout
+            <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -95,13 +99,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/zc_margin" />
+                android:layout_marginLeft="14dp" />
 
             <TextView
                 android:id="@+id/text4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/check_left"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
