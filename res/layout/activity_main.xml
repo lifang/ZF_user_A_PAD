@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="64dp"
+        android:layout_width="@dimen/titilepad"
         android:layout_height="fill_parent"
         android:background="#262729"
         android:orientation="vertical" >
@@ -16,7 +16,7 @@
             android:id="@+id/main_rl_sy"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp" >
+            android:layout_marginTop="@dimen/normai_height1" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/laa1"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="@dimen/textsmall"
                     android:text="首页"
                     android:textColor="@color/bgtitle"
                     android:textSize="@dimen/textsmall" />
@@ -51,7 +51,7 @@
             android:id="@+id/main_rl_gwc"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp" >
+            android:layout_marginTop="@dimen/sy_rl_margin" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/igw"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="@dimen/textsmall"
                     android:text="购物车"
                     android:textColor="#f3f2f2"
                     android:textSize="@dimen/textsmall" />
@@ -86,7 +86,7 @@
             android:id="@+id/main_rl_pos1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"  >
+             android:layout_marginTop="@dimen/sy_rl_margin"  >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/im_mess"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="@dimen/textsmall"
                     android:text="我的消息"
                     android:textColor="#f3f2f2"
                     android:textSize="@dimen/textsmall" />
@@ -121,7 +121,7 @@
             android:id="@+id/main_rl_my"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"  >
+             android:layout_marginTop="@dimen/sy_rl_margin"  >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textmes"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="@dimen/textsmall"
                     android:text="我的"
                     android:textColor="#f3f2f2"
                     android:textSize="@dimen/textsmall" />
@@ -158,11 +158,11 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/sy_bt_height"
                 android:id="@+id/set"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginBottom="47dp"
+                android:layout_marginBottom="@dimen/normai_height1"
                 android:gravity="center"
                 android:orientation="vertical" >
 

@@ -8,13 +8,13 @@
 
     <View
         style="@style/Divider"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="@dimen/normal_width3"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"
-        android:paddingLeft="24dp">
+        android:paddingLeft="@dimen/normal_width2">
 
         <TextView
             android:id="@+id/current"
@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:text="@string/city_current"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="@dimen/s_13sp"/>
+            android:textSize="@dimen/textmid"/>
 
         <TextView
             android:id="@+id/city_current"
@@ -31,13 +31,14 @@
             android:text="上海"
             android:layout_toRightOf="@+id/current"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="12dp"/>
+            android:textSize="@dimen/textmid"
+            android:layout_marginLeft="@dimen/normal_width3"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="@dimen/normal_width2"
             android:layout_centerVertical="true"
             android:src="@drawable/city_location"/>
 
@@ -61,11 +62,11 @@
         <com.example.zf_pad.trade.widget.LetterListView
             android:id="@+id/letter_list_view"
             android:background="@android:color/transparent"
-            android:layout_width="30dip"
+            android:layout_width="@dimen/normal_height1"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginRight="@dimen/normal_width3"
+            android:layout_marginTop="@dimen/normal_width3"
             android:layout_marginBottom="6dp"/>
 
     </RelativeLayout>

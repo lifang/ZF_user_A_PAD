@@ -29,16 +29,18 @@ public class MessageAdapter extends BaseAdapter {
 	private ViewHolder holder = null;
 	private int type;
 	private CheckBox cb_all;
+	private int flag=0;
 	Activity a;
-	public MessageAdapter(Context context, List<MessageEntity> list) {
+	public MessageAdapter(Context context, List<MessageEntity> list,CheckBox c) {
 		this.context = context;
 		this.list = list;
+		this.cb_all=c;
 	}
 	public MessageAdapter(Context context, List<MessageEntity> list,int type) {
 		this.context = context;
 		this.list = list;
 		this.type=type;
-		a=(Activity)context;
+	
 		
 	}
 
@@ -71,23 +73,12 @@ public class MessageAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.tv_title.setText(list.get(position).getContent());
+		holder.tv_title.setText(list.get(position).getTitle());
 		holder.tv_time.setText(list.get(position).getCreate_at());
-		View view = inflater.inflate(R.layout.m_wdxx, null);
-		cb_all = (CheckBox)view.findViewById(R.id.cb_all);
+		
+		
 		if(type!=1){
-			boolean isall=true;
-			for(MessageEntity me:list){
-				if(!me.getIscheck()){
-					isall=false;
-					break;
-				}	
-			}
-			if(isall){
-				cb_all.setChecked(true);
-			}else{
-				cb_all.setChecked(false);
-			}
+		
 			if(!list.get(position).getStatus()){
 				holder.tv_title.setTextColor(context.getResources().getColor(R.color.NoRead));
 			}
@@ -97,14 +88,26 @@ public class MessageAdapter extends BaseAdapter {
 			}else{
 				holder.item_cb.setChecked(false);
 			}
+			
 			holder.item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {	
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					list.get(position).setIscheck(isChecked);
+					if(isChecked){
+						flag++;
+					}else{
+						flag--;
+					}
+					if(flag==list.size()){
+						cb_all.setChecked(true);
+					}else if(flag==0){
+						cb_all.setChecked(false);
+					}
 				}
 			});
+	
 		}else{
-			holder.item_cb.setVisibility(View.GONE);
+			holder.item_cb.setVisibility(View.INVISIBLE);
 		}	
 		return convertView;
 	}

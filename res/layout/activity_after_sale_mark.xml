@@ -1,55 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/F3F2F2">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b0000000"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dlpad" >
 
-	<include layout="@layout/title_back"/>
+    <LinearLayout
+        android:layout_width="@dimen/dlwidth"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical" >
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingTop="24dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normai_height1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-		<View style="@style/Divider"/>
+            <Button
+                android:id="@+id/close"
+                android:layout_width="@dimen/dlimg"
+                android:layout_height="@dimen/dlimg"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/zc_margin_top"
+                android:background="@drawable/lgclose"
+                android:text="" />
 
-		<FrameLayout style="@style/FrameItem">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="提交物流信息"
+                android:textColor="#292929"
+                android:textSize="@dimen/dltext" />
+        </RelativeLayout>
 
-			<TextView
-				style="@style/TextItem"
-				android:layout_gravity="left|center_vertical"
-				android:text="@string/after_sale_mark_company"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#484849" />
 
-			<EditText
-				android:id="@+id/after_sale_mark_company"
-				style="@style/EditTextItem"/>
-		</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/normai_height"
+            android:paddingRight="@dimen/titilepad"
+            android:paddingTop="@dimen/sy_rl_margin" >
 
-		<View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
-		<FrameLayout style="@style/FrameItem">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/zc_margin_top"
+                android:orientation="horizontal" >
 
-			<TextView
-				style="@style/TextItem"
-				android:layout_gravity="left|center_vertical"
-				android:text="@string/after_sale_mark_number"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:text="@string/after_sale_mark_company"
+                    android:textColor="#292929"
+                    android:textSize="@dimen/textbig" />
 
-			<EditText
-				android:id="@+id/after_sale_mark_number"
-				style="@style/EditTextItem"/>
-		</FrameLayout>
+                <EditText
+                    android:id="@+id/after_sale_mark_company"
+                    android:layout_width="@dimen/edwidth"
+                    android:layout_height="@dimen/edheight"
+                    android:layout_marginLeft="@dimen/textbig"
+                    android:background="@drawable/shape_edittext"
+                    android:ems="10"
+                    android:padding="4dp" >
 
-		<View style="@style/Divider"/>
+                </EditText>
+            </LinearLayout>
 
-	</LinearLayout>
+            <View style="@style/Divider" />
 
-	<Button
-		android:id="@+id/after_sale_mark_submit"
-		style="@style/ButtonNormal"
-		android:layout_marginTop="24dp"
-		android:text="@string/button_submit"
-		android:enabled="false"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:text="@string/after_sale_mark_number"
+                    android:textColor="#292929"
+                    android:textSize="@dimen/textbig" />
+
+                <EditText
+                    android:id="@+id/after_sale_mark_number"
+                    android:layout_width="@dimen/edwidth"
+                    android:layout_height="@dimen/edheight"
+                    android:layout_marginLeft="@dimen/textbig"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="4dp" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/after_sale_mark_submit"
+            style="@style/ButtonNormal"
+            android:layout_marginBottom="@dimen/zc_margin_top"
+            android:layout_marginTop="@dimen/titilepad"
+            android:enabled="false"
+            android:text="保存" />
+    </LinearLayout>
 
 </LinearLayout>

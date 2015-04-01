@@ -39,12 +39,19 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	}
 	try {
 		view = inflater.inflate(R.layout.baseinfo, container, false);
-		init();
+		
 	} catch (InflateException e) {
 
 	}
 
 	return view;
+}
+@Override
+public void onStart() {
+	// TODO Auto-generated method stub
+	super.onStart();
+	init();
+	
 }
 private void init() {
 	tv_city_select=(TextView) view.findViewById(R.id.tv_city_select);

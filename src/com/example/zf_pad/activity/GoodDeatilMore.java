@@ -2,48 +2,157 @@ package com.example.zf_pad.activity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.HuilvAdapter;
+import com.example.zf_pad.fragment.f_good_detail;
+import com.example.zf_pad.fragment.good_detail_apply;
+import com.example.zf_pad.fragment.good_detail_commet;
+import com.example.zf_pad.fragment.good_detail_trade;
+import com.example.zf_pad.fragment.good_detail_zd;
 import com.example.zf_pad.util.ScrollViewWithListView;
 
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class GoodDeatilMore extends Activity{
-	private HuilvAdapter lvAdapter1,lvAdapter2,lvAdapter3;
-	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;
-	private TextView ppxx;
-	private TextView wkxx;
-	private TextView tv_qgd;
-	private TextView tv_jm;
+public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
+
+	private f_good_detail detail;
+	private good_detail_apply apply;
+	private good_detail_commet commet;
+	private good_detail_zd zd;
+	private good_detail_trade jy;
+	private int type;
+	private TextView tv_ms;
+	private TextView tv_kt;
+	private TextView tv_pl;
+	private TextView tv_zd;
+	private TextView tv_jy;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.goodmore);
+		setContentView(R.layout.goodmoremain);
+		type = getIntent().getIntExtra("type", 0);
 		initView();
+		switch (type) {
+		case 0:
+			if (detail == null)
+				detail = new f_good_detail();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, detail).commit();
+			tv_ms.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 1:
+			if (apply == null)
+				apply = new good_detail_apply();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, apply).commit();
+			tv_kt.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 2:
+			if (commet == null)
+				commet = new good_detail_commet();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, commet).commit();
+			tv_pl.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 3:
+			if (zd == null)
+				zd = new good_detail_zd();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, zd).commit();
+			tv_zd.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 4:
+			if (jy == null)
+				jy = new good_detail_trade();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, jy).commit();
+			tv_jy.setTextColor(getResources().getColor(R.color.o));
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	private void initView() {
-		ppxx = (TextView) findViewById(R.id.ppxx);
-		wkxx = (TextView) findViewById(R.id.wkxx);
-		TextView dcxx=(TextView) findViewById(R.id.dcxx);
-		tv_qgd = (TextView) findViewById(R.id.tv_qgd);
-		tv_jm = (TextView) findViewById(R.id.tv_jm);
-		pos_lv1=(ScrollViewWithListView) findViewById(R.id.pos_lv1);
-		pos_lv2=(ScrollViewWithListView) findViewById(R.id.pos_lv2);
-		pos_lv3=(ScrollViewWithListView) findViewById(R.id.pos_lv3);
-		lvAdapter1 = new HuilvAdapter(this,Config.celist);
-		lvAdapter2 = new HuilvAdapter(this,Config.tDates,0);
-		lvAdapter3 = new HuilvAdapter(this,Config.other_rate,1,"1");
-		pos_lv1.setAdapter(lvAdapter1);
-		pos_lv2.setAdapter(lvAdapter2);
-		pos_lv3.setAdapter(lvAdapter3);
-		ppxx.setText(Config.gfe.getModel_number() );
-		wkxx.setText(Config.gfe.getShell_material() );
-		dcxx.setText(Config.gfe.getBattery_info());
-		tv_qgd.setText(Config.gfe.getSign_order_way());
-		tv_jm.setText(Config.gfe.getEncrypt_card_way());
+		
+		tv_ms = (TextView) findViewById(R.id.tv_ms);
+		tv_ms.setOnClickListener(this);
+		tv_kt = (TextView) findViewById(R.id.tv_kt);
+		tv_kt.setOnClickListener(this);
+		tv_pl = (TextView) findViewById(R.id.tv_pl);
+		tv_pl.setOnClickListener(this);
+		tv_zd = (TextView) findViewById(R.id.tv_zd);
+		tv_zd.setOnClickListener(this);
+		tv_jy = (TextView) findViewById(R.id.tv_jy);
+		tv_jy.setOnClickListener(this);
+
+		
+	}
+	private void changColor(){
+		tv_ms.setTextColor(getResources().getColor(R.color.text292929));
+		tv_kt.setTextColor(getResources().getColor(R.color.text292929));
+		tv_pl.setTextColor(getResources().getColor(R.color.text292929));
+		tv_zd.setTextColor(getResources().getColor(R.color.text292929));
+		tv_jy.setTextColor(getResources().getColor(R.color.text292929));
+	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_zd:
+			if (zd == null)
+				zd = new good_detail_zd();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, zd).commit();
+			changColor();
+			tv_zd.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case R.id.tv_ms:
+			if (detail == null)
+				detail = new f_good_detail();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, detail).commit();
+			changColor();
+			tv_ms.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case R.id.tv_kt:
+			if (apply == null)
+				apply = new good_detail_apply();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, apply).commit();
+			changColor();
+			tv_kt.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case R.id.tv_pl:
+			//Config.goodId = gfe.getId();
+			//Config.commentsCount = commentsCount + "";
+			if (commet == null)
+				commet = new good_detail_commet();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, commet).commit();
+			changColor();
+			tv_pl.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case R.id.tv_jy:
+			//Config.goodId = gfe.getId();
+			//Config.commentsCount = commentsCount + "";
+			if (jy == null)
+				jy = new good_detail_trade();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, jy).commit();
+			changColor();
+			tv_pl.setTextColor(getResources().getColor(R.color.o));
+			break;
+		default:
+			break;
+		}
 		
 	}
 

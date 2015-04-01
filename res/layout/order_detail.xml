@@ -6,7 +6,9 @@
     android:orientation="vertical" >
 
     <include layout="@layout/title_back" />
-
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -52,14 +54,21 @@
                     android:textColor="@color/text292929"
                     android:textSize="18sp" />
             </LinearLayout>
-
-            <LinearLayout
+<RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center|right"
+                    android:layout_weight="1" >
+                <LinearLayout
                 android:id="@+id/ll_ishow"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                         android:layout_marginBottom="11dp"
+   
                 android:gravity="right|center_vertical"
                 android:paddingTop="20dp" >
+
+                
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -86,18 +95,22 @@
                         android:layout_width="@dimen/normai_button_width"
                         android:layout_height="@dimen/normai_button_height"
                         android:background="#FF6727"
-                        android:text="评价"
-                        android:textColor="@color/ffffff"
-                        android:visibility="gone" />
-
-                    <Button
-                        android:layout_width="@dimen/normai_button_width"
-                        android:layout_height="@dimen/normai_button_height"
-                        android:background="#FF6727"
                         android:text="付款"
                         android:textColor="@color/ffffff" />
                 </LinearLayout>
             </LinearLayout>
+            <Button
+                         android:id="@+id/btn_pj"
+                        android:layout_width="@dimen/normai_button_width"
+                        android:layout_height="@dimen/normai_button_height"
+                        android:background="#FF6727"
+                        android:text="评价"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/ffffff"
+                        android:visibility="gone"
+                         />
+                </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -254,7 +267,7 @@
                 android:text="商品" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -262,7 +275,7 @@
                 android:text="单价" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -303,15 +316,16 @@
                 android:layout_marginRight="7dp"
                 android:text="实付金额：9999"
                 android:textColor="@color/text292929"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textmid" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="追踪记录"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="15sp" />
+            android:textSize="@dimen/textmid" />
 
         <com.example.zf_pad.util.ScrollViewWithListView
             android:id="@+id/his_lv"
@@ -323,5 +337,5 @@
             android:divider="@null" >
         </com.example.zf_pad.util.ScrollViewWithListView>
     </LinearLayout>
-
+</ScrollView>
 </LinearLayout>

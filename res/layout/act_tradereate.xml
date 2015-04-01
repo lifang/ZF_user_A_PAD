@@ -3,21 +3,34 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
   	android:orientation="vertical"
-  	android:background="@color/F3F2F2"
-  	 >
 
- <include layout="@layout/title_back" />
+  	android:background="#f8f8f8"
+  	 >
+  <View android:layout_width="fill_parent"
+		    android:layout_height="@dimen/titilepad1"
+		/>
+  	 <LinearLayout 
+  	     android:layout_width="@dimen/normal_width1"
+  	     android:layout_gravity="center_horizontal"
+  	     android:layout_height="wrap_content"
+  	     android:orientation="vertical"
+  	     >
+  	     <View android:layout_width="fill_parent"
+		    android:layout_height="1dp"
+		  
+		    android:background="@color/Viewc2"/>
+ 
  <LinearLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
- 
+ 		
         android:orientation="horizontal" >
 				<View android:layout_width="0.5dp"
 		    android:layout_height="fill_parent"
 		    android:background="@color/Viewc2"/>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="32dp"
+             android:layout_height="@dimen/normai_height"
             android:layout_weight="1"
              android:background="@color/F3F3F3"
             android:orientation="vertical" >
@@ -28,9 +41,10 @@
                 android:id="@+id/tv_name"
                 
                 android:layout_width="fill_parent"
-                android:layout_height="31dp"
+                android:layout_height="@dimen/normai_height"
                 android:gravity="center"
                 android:text="结算时间"
+                android:textSize="@dimen/textmids"
                 android:textColor="@color/text292929" />
             <View android:layout_width="fill_parent"
 		    android:layout_height="1dp"
@@ -42,7 +56,7 @@
 		    android:background="@color/Viewc2"/>
            <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/normal_height1"
             android:layout_weight="1"
              android:background="@color/F3F3F3"
             android:orientation="vertical" >
@@ -52,9 +66,10 @@
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="fill_parent"
-                android:layout_height="31dp"
+                android:layout_height="@dimen/normal_height1"
                 android:gravity="center"
                 android:text="资金服务费（/天）"
+                android:textSize="@dimen/textmids"
                 android:textColor="@color/text292929" />
             <View android:layout_width="fill_parent"
 		    android:layout_height="1dp"
@@ -68,5 +83,8 @@
     </LinearLayout>
 	<ListView  android:layout_height="wrap_content"
 	    android:layout_width="fill_parent"
+	    android:background="#f8f8f8"
 	    android:id="@+id/lv"></ListView>
+  	 </LinearLayout>
+ 
 </LinearLayout>

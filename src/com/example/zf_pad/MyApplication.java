@@ -23,7 +23,13 @@ public class MyApplication extends Application{
 	private static  String versionCode="";
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
-	
+	private static int CITYID=1;
+	public static int getCITYID() {
+		return CITYID;
+	}
+	public static void setCITYID(int cITYID) {
+		CITYID = cITYID;
+	}
 	public static Boolean getIsSelect() {
 		return isSelect;
 	}
@@ -66,18 +72,12 @@ public class MyApplication extends Application{
 	public static void setToken(String token) {
 		MyApplication.token = token;
 	}
-	public static UserEntity NewUser = new UserEntity();
-	public static UserEntity getNewUser() {
-		return NewUser;
-	}
-	public static void setNewUser(UserEntity newUser) {
-		NewUser = newUser;
-	}
+	
 
 	/**
 	 * 存储当前用户对象信息,需在welcome初始化用户信息
 	 */
-	public static User currentUser = new User();
+
 	//运用list来保存们每一个activity是关键   
     private List<Activity> mList = new LinkedList<Activity>();   
  // add Activity     
@@ -128,6 +128,15 @@ public class MyApplication extends Application{
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-	
+	public static UserEntity NewUser = new UserEntity();
+	public static UserEntity getNewUser() {
+		return NewUser;
+	}
+	public static void setNewUser(UserEntity newUser) {
+		NewUser = newUser;
+	}
+
+
+	public static User currentUser = new User();
  
 }

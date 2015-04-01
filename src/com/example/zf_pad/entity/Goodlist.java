@@ -11,6 +11,21 @@ public class Goodlist {
 //    "good_chagood_channelnnel": "拉卡拉测试支付�?�道",
 //    "good_actualprice": 35000,
 //    "good_id": "21"
+	private String score;
+	private String content;
+	
+	public String getScore() {
+		return score;
+	}
+	public void setScore(String score) {
+		this.score = score;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	private int good_actualprice;
 	private String terminals;
 	

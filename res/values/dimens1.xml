@@ -2,19 +2,74 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="titilepad">64dp</dimen>
+    <dimen name="titilepad1">80dp</dimen>
     <dimen name="normai_button_width">118dp</dimen>
     <dimen name="normai_button_height">40dp</dimen>
-
-    <!--首页 -->
+    <dimen name="sy_rl_margin">25dp</dimen>
+    <dimen name="sy_bt_height">60dp</dimen>
+    <dimen name="normai_height">32dp</dimen>
+    <dimen name="normai_height1">48dp</dimen>
+    <dimen name="normai_height3">74dp</dimen>
+    <!-- 首页 -->
     <dimen name="iconma">16dp</dimen>
     <dimen name="mainvpheight">360dp</dimen>
-    <!--POS机列表-->
+    <!-- POS机列表 -->
     <dimen name="itemheight1">314dp</dimen>
     <dimen name="itemwidth1">224dp</dimen>
     <dimen name="itemheight">144dp</dimen>
-    <!--文字大小 -->
-	<dimen name="textbig">21sp</dimen>
-	<dimen name="textmid">18sp</dimen>
-	<dimen name="textmids">16sp</dimen>
-	<dimen name="textsmall">13sp</dimen>
+    <dimen name="postimg">126dp</dimen>
+
+    <!-- 我的 -->
+    <dimen name="leftwidth">160dp</dimen>
+    <dimen name="leftfristtop">52dp</dimen>
+    <dimen name="leftitemheight">75dp</dimen>
+
+    <!-- 文字大小 -->
+    <dimen name="textbigs">50sp</dimen>
+    <dimen name="textbig">21sp</dimen>
+    <dimen name="textmid">18sp</dimen>
+    <dimen name="textmids">16sp</dimen>
+    <dimen name="textsmall">13sp</dimen>
+    <!-- 编辑框 -->
+    <dimen name="edwidth">228dp</dimen>
+    <dimen name="edheight">42dp</dimen>
+    <!-- 弹窗 -->
+    <dimen name="alertwidth">240dp</dimen>
+    <dimen name="alertheight">110dp</dimen>
+    <dimen name="alertll">34dp</dimen>
+    <!-- 登陆 -->
+    <dimen name="dlpad">50dp</dimen>
+    <dimen name="dltext">23dp</dimen>
+    <dimen name="dlimg">36dp</dimen>
+    <dimen name="dlheight">36dp</dimen>
+    <dimen name="dlwidth">460dp</dimen>
+    <dimen name="dlpad">100dp</dimen>
+    <!-- 订单确认 -->
+    <dimen name="ddheight">136dp</dimen>
+    <dimen name="ddheight1">130dp</dimen>
+    <dimen name="ddimg">100dp</dimen>
+    <!-- 订单编辑框 -->
+    <dimen name="ddrl_width">180dp</dimen>
+    <dimen name="ddrl_height">44dp</dimen>
+    
+    <!-- 下拉选择框 -->
+    <dimen name="sp_width">160dp</dimen>
+    <dimen name="sp_height">44dp</dimen>
+    <!-- 注册找回密码 -->
+    <dimen name="zc_rl_w">300dp</dimen>
+    <dimen name="zc_rl_h">48dp</dimen>
+    <dimen name="zc_land_w">260dp</dimen>
+    <dimen name="zc_land_h">44dp</dimen>
+    <dimen name="zc_margin">14dp</dimen>
+    <dimen name="zc_margin_top">20dp</dimen>
+    <dimen name="zc_margin_top1">40dp</dimen>
+    <dimen name="zc_margin_top2">10dp</dimen>
+    <dimen name="normal_height1">30dp</dimen>
+    <dimen name="normal_height2">28dp</dimen>
+    <dimen name="normal_width1">700dp</dimen>
+    <dimen name="normal_width2">24dp</dimen>
+    <dimen name="normal_width3">12dp</dimen>
+    <dimen name="normal_width4">600dp</dimen>
+    <dimen name="order_image">86dp</dimen>
+
 </resources>

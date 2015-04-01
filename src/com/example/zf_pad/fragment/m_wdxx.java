@@ -140,7 +140,26 @@ public class m_wdxx extends Fragment implements OnClickListener,
 		// next_sure.setVisibility(View.VISIBLE);
 		// next_sure.setText("编辑");
 		// new TitleMenuUtil(MyMessage.this, "系统公告").show();
-		myAdapter = new MessageAdapter(mActivity, myList);
+		ckall = (CheckBox) view.findViewById(R.id.cb_all);
+		ckall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if (arg1) {
+					for (MessageEntity item : myList) {
+						item.setIscheck(true);
+						myAdapter.notifyDataSetChanged();
+					}
+				} else {
+					for (MessageEntity item : myList) {
+						item.setIscheck(false);
+						myAdapter.notifyDataSetChanged();
+					}
+				}
+
+			}
+		});
+		myAdapter = new MessageAdapter(mActivity, myList,ckall);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
@@ -163,25 +182,7 @@ public class m_wdxx extends Fragment implements OnClickListener,
 		bt_bj.setOnClickListener(this);
 		bt_del = (Button) view.findViewById(R.id.bt_del);
 		bt_del.setOnClickListener(this);
-		ckall = (CheckBox) view.findViewById(R.id.cb_all);
-		ckall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1) {
-					for (MessageEntity item : myList) {
-						item.setIscheck(true);
-						myAdapter.notifyDataSetChanged();
-					}
-				} else {
-					for (MessageEntity item : myList) {
-						item.setIscheck(false);
-						myAdapter.notifyDataSetChanged();
-					}
-				}
-
-			}
-		});
+		
 	}
 
 	@Override

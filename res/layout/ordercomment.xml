@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b0000000"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="100dp" >
+
+    <LinearLayout
+        android:layout_width="800dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normai_height1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/close"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/lgclose"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="评价"
+                android:textColor="#292929"
+                android:textSize="@dimen/dltext" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#484849" />
+        <LinearLayout android:orientation="vertical"
+ 	        android:layout_height="wrap_content"
+ 	        android:gravity="center_horizontal"
+ 	        android:layout_width="fill_parent">
+ 	        
+ 	        <com.example.zf_pad.util.ScrollViewWithListView
+                android:id="@+id/pos_lv1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null" >
+            </com.example.zf_pad.util.ScrollViewWithListView>
+ 	        <Button
+                android:id="@+id/btn_pay"
+                android:layout_width="240dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/bg_blue_shape"
+                android:text="提交"
+                android:textColor="@color/ffffff" />
+ 	        
+ 	    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

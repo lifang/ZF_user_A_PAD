@@ -7,11 +7,6 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        
-
-   
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -94,6 +89,7 @@
 					android:layout_height="40dp"
 					android:textColor="@color/blank_button_selector"
 					android:background="@drawable/blank_button_selector"
+					android:layout_marginBottom="16dp"
 					android:visibility="visible"/>
 
 				<Button
@@ -101,6 +97,7 @@
 					android:layout_width="118dp"
 					android:layout_height="40dp"
 					android:textColor="@color/white"
+					
 					android:background="@drawable/normal_button_selector"
 					android:visibility="visible"/>
 
@@ -109,6 +106,7 @@
 					android:layout_width="118dp"
 					android:layout_height="40dp"
 					android:textColor="@color/white"
+				
 					android:background="@drawable/normal_button_selector"
 					android:visibility="gone"
 					/>
@@ -118,6 +116,7 @@
 					android:layout_width="118dp"
 					android:layout_height="40dp"
 					android:textColor="@color/blank_button_selector"
+					
 					android:background="@drawable/blank_button_selector"
 					android:visibility="gone"
 					/>
@@ -126,7 +125,10 @@
         </LinearLayout>
             </LinearLayout>
             
-      
+    
     </LinearLayout>
-
+  <View 
+          android:layout_width="fill_parent"
+          android:layout_height="1dp"
+          android:background="#DAD8D9"/>
 </LinearLayout>

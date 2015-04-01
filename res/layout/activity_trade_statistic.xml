@@ -14,20 +14,20 @@
         <TextView
             style="@style/TextStatistic.Small"
             android:text="@string/trade_amount"
-            android:layout_marginTop="33dp"/>
+            android:layout_marginTop="@dimen/normai_height"/>
 
         <TextView
             android:id="@+id/trade_statistic_amount"
             style="@style/TextStatistic"
-            android:textSize="50sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="@dimen/textbigs"
+            android:layout_marginTop="@dimen/zc_margin_top"
+            android:layout_marginBottom="@dimen/zc_margin_top"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="@dimen/normal_width3">
 
             <TextView
                 style="@style/TextStatistic.Small"
@@ -45,14 +45,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="20dp">
+        android:paddingLeft="@dimen/normal_width3"
+        android:paddingRight="@dimen/normal_width3"
+        android:paddingTop="@dimen/zc_margin_top">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="12dp">
+            android:paddingRight="@dimen/normal_width3">
 
             <TextView
                 android:id="@+id/trade_statistic_time"
@@ -68,7 +68,7 @@
         <View
             style="@style/Divider"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="@dimen/normal_width3"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/normal_width3"
             android:orientation="horizontal">
 
             <TextView

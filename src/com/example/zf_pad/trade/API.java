@@ -8,10 +8,13 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import com.example.zf_pad.fragment.mine_Address;
+
+import com.example.zf_pad.Config;
+
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
-
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
@@ -93,8 +96,12 @@ public class API {
 
     // upload image url
     public static final String UPLOAD_IMAGE = SCHEMA + HOST + "/ZFMerchant/api/comment/upload/tempImage";
+
+    public static final String WNATBUY = SCHEMA + HOST + "/ZFMerchant/api/paychannel/intention/add";
+
  // Apply Opening Progress Query
  	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
+
  	// Get merchant list
  	public static String GET_MERCHANTLIST=SCHEMA + HOST+"/ZFMerchant/api/merchant/findList/";
  	// Add address
@@ -105,6 +112,11 @@ public class API {
  	public static String total_score = SCHEMA + HOST + "/ZFMerchant/api/customers/getIntegralTotal/";
  	// exchange score
  	public static String exchange_score = SCHEMA + HOST + "/ZFMerchant/api/customers/insertIntegralConvert";
+
+	public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
+	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
+	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
+
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -301,7 +313,15 @@ public class API {
         params.put("pageNum", pageSize);
         new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
     }
+    public static void test(
+            Context context,
+            String customerId,
 
+            HttpCallback callback) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("codeNumber", customerId);
+        new HttpRequest(context, callback).post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind", params);
+    }
     public static void getChannelList(
             Context context,
             HttpCallback callback) {
@@ -381,6 +401,80 @@ public class API {
             HttpCallback callback) {
         new HttpRequest(context, callback).post(APPLY_CHANNEL_LIST);
     }
+
+	public static void ApiWantBug(
+			Context context,
+			String  name,
+			String phone,
+			String content,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("content", content);
+		new HttpRequest(context, callback).post(WNATBUY, params);
+	}
+	public static void Login1(
+			Context context,
+			String  username,
+			String  passsword,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		params.put("password", passsword);
+		new HttpRequest(context, callback).post(Config.LOGIN, params);
+	}
+	public static void GOODCONFIRM(
+			Context context,
+			int customerId,
+			int goodId,
+			int paychannelId,
+			int quantity,
+			int addressId,
+			String  comment,
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", customerId); 
+		params.put("goodId", goodId);
+		params.put("paychannelId", paychannelId);
+		params.put("quantity", quantity);
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+	public static void CARTFIRM(
+			Context context,
+			int customerId,
+			int [] cartid,
+			int addressId,
+			String  comment,
+			
+			int is_need_invoice,
+			int invoice_type,
+			String  invoice_info,
+		
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", 80); 
+	 	int aa[]=new int []{138,140};
+		params.put("cartid",  aa); 
+		params.put("addressId", addressId);
+		params.put("comment", comment);
+		params.put("is_need_invoice", is_need_invoice);
+		params.put("invoice_type", invoice_type);
+		params.put("invoice_info", invoice_info);
+		System.out.println("参数--"+params.toString());
+		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+	}
+
     public static void queryApplyProgress(
     		Context context,
     		int id,
@@ -400,6 +494,7 @@ public class API {
 		params.put("phone", phone);
 		new HttpRequest(context, callback).post(url, params);*/
     }
+
     public static void getmerchantlist(
 			Context context,
 			int customerId,
@@ -470,4 +565,67 @@ public class API {
     	params.put("price", price);
     	new HttpRequest(context, callback).post(exchange_score, params);
     }
+
+    public static void AddAdres1(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETCODE4PHONE, params);
+	}
+    public static void zhuche(
+			Context context,
+			String  username,
+			 
+			String  password,
+			String  code,
+			int  cityId,
+			Boolean accountType,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		 
+		params.put("password", password);
+		params.put("code", code);
+		params.put("cityId", cityId);
+		params.put("accountType", accountType);
+
+		new HttpRequest(context, callback).post(ZHUCHE, params);
+	}
+    public static void PhonefindPass(
+			Context context,
+			String  password,
+			String code,
+			String username,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("password", password);
+		params.put("code", code);
+		params.put("username", username);
+		new HttpRequest(context, callback).post(Config.updatePassword, params);
+	}
+	public static void getEmailPass(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
+	public static void PostSearch(
+			Context context,
+			String  codeNumber,
+	 
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codeNumber", codeNumber);
+ 
+		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
+
 }

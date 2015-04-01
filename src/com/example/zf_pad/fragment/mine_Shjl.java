@@ -81,6 +81,8 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	private View.OnClickListener mPayMaintainListener;
 	// submit cancel button listener
 	private View.OnClickListener mSubmitCancelListener;
+	private TextView tv1;
+	private TextView tv2;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -111,19 +113,13 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		mEntities = new ArrayList<AfterSaleRecord>();
 		mListView = (XListView)view.findViewById(R.id.after_sale_list);
 		mAdapter = new RecordListAdapter();
-
 		// init the XListView
 		mListView.initHeaderAndFooter();
 		mListView.setXListViewListener(this);
 		mListView.setPullLoadEnable(true);
-
 		mListView.setAdapter(mAdapter);
 		initButtonListeners();
 		loadData();
-		
-
-	
-		
 	}
 	private void loadData() {
 		API.getAfterSaleRecordList(mActivity, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(mActivity) {
@@ -173,6 +169,8 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
         }
         mTabWidget.updateTabs(0);
         mTabWidget.setonTabLintener(this);
+        tv1 = (TextView)view.findViewById(R.id.tv1);
+        tv2 = (TextView)view.findViewById(R.id.tv2);
         
 	}
 	class RecordListAdapter extends BaseAdapter {
@@ -447,6 +445,35 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	@Override
 	public void chang(int index) {
 		mRecordType=index;
+		switch (mRecordType) {
+		case 0:
+			tv1.setText("维修单号");
+			tv2.setText("维修状态");
+			break;
+		case 1:
+			tv1.setText("注销单号");
+			tv2.setText("注销状态");
+			break;
+		case 2:
+			tv1.setText("退货单号");
+			tv2.setText("退货状态");
+			break;
+		case 3:
+			tv1.setText("换货单号");
+			tv2.setText("换货状态");
+			break;
+		case 4:
+			tv1.setText("更新资料单号");
+			tv2.setText("更新资料状态");
+			break;
+		case 5:
+			tv1.setText("租赁单号");
+			tv2.setText("租赁状态");
+			break;
+
+		default:
+			break;
+		}
 		page = 0;
 		if(mRecordType==1){
 			mRecordType=2;	
@@ -472,5 +499,12 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 			loadData();
 		}
 		
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		page = 0;
+		mEntities.clear();
+		loadData();
 	}
 }

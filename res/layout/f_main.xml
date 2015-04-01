@@ -5,7 +5,13 @@
     android:orientation="vertical" > 
 <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainvpheight" >
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </android.support.v4.view.ViewPager>
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -78,11 +84,6 @@
             android:background="@drawable/main_right" />
 
     </RelativeLayout>
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-            </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:id="@+id/indicator"
@@ -97,9 +98,10 @@
         </RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_height="fill_parent"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
+            android:layout_marginBottom="@dimen/normal_height1"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -427,12 +429,7 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:background="@color/Viewc" />
+       
 
             
         </LinearLayout>

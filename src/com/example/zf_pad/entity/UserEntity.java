@@ -2,22 +2,24 @@ package com.example.zf_pad.entity;
 
 public class UserEntity {
 
-//  "updatedAt": 1427099891000,
-//  "id": 188,
+
+
+//    "updatedAt": 1427099891000,
+//    "id": 188,
 	private int id;
-//  "phone": "15050411623",
+//    "phone": "15050411623",
 	private String phone;
-//  "lastLoginedAt": 1427161088000,
-//  "username": "15050411623",
+//    "lastLoginedAt": 1427161088000,
+//    "username": "15050411623",
 	private String username;
-//  "status": 2,
+//    "status": 2,
 	private int status;
-//  "cityId": 90,
+//    "cityId": 90,
 	private int cityId;
 	private int accountType;
-//  "createdAt": 1427086468000,
-//  "accountType": 0,
-//  "types": 1
+//    "createdAt": 1427086468000,
+//    "accountType": 0,
+//    "types": 1
 	private int type;
 	public int getId() {
 		return id;
@@ -62,5 +64,4 @@ public class UserEntity {
 		this.type = type;
 	}
 	
-
 }

@@ -108,6 +108,6 @@
 
 	<color name="background_pressed">#dedede</color>
 	<color name="background_tab">#EFEBEF</color>
-
+<color name="bg0etitle">#0eFF6624</color>
 <color name="NoRead">#C1C1C1</color>
 </resources>

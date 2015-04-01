@@ -19,28 +19,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ButtonGridviewAdapter;
 import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.entity.ApplyneedEntity;
 import com.example.zf_pad.entity.ChanelEntitiy;
 import com.example.zf_pad.entity.FactoryEntity;
 import com.example.zf_pad.entity.GoodinfoEntity;
+import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.other_rate;
 import com.example.zf_pad.entity.tDates;
 import com.example.zf_pad.fragment.f_good_detail;
 import com.example.zf_pad.fragment.good_detail_apply;
 import com.example.zf_pad.fragment.good_detail_commet;
 import com.example.zf_pad.fragment.good_detail_zd;
+import com.example.zf_pad.trade.entity.GriviewEntity;
 import com.example.zf_pad.util.ImageCacheUtil;
+import com.example.zf_pad.util.ScrollViewWithGView;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,8 +57,8 @@ import com.loopj.android.http.RequestParams;
 public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private Button setting_btn_clear1, setting_btn_clear;
 	private int id;
-	private TextView eventsFinshTime, tv_detail, name, creat_tv, location,
-			tv_time, tv_tel2;
+	private TextView tvc_zx, tvc_qy, eventsFinshTime, tv_detail, name,
+			creat_tv, location, tv_time, tv_tel2;
 	private LinearLayout titleback_linear_back;
 	private ImageView image, search2, fac_img;
 	private RelativeLayout ri_tel;
@@ -66,17 +72,25 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private RelativeLayout rl_imgs, rela_loc;
 	private int index_ima = 0;
 	GoodinfoEntity gfe;
+	private String chanel = "通道3";
+	private ArrayList<String> arelist = new ArrayList<String>();
 	private int commentsCount;
 	FactoryEntity factoryEntity;
-	private TextView tv_title, content1, tv_pp, tv_xh, tv_ys, tv_price, tv_lx,
-			tv_sjhttp, tv_spxx, fac_detai, ppxx, wkxx, dcxx, tv_qgd, tv_jm;
+	private TextView tv_bug, tv_lea, tv_title, content1, tv_pp, tv_xh, tv_ys,
+			tv_price, tv_lx, tv_sjhttp, tv_spxx, fac_detai, ppxx, wkxx, dcxx,
+			tv_qgd, tv_jm;
 	private ScrollViewWithListView pos_lv1;
 	private HuilvAdapter lvAdapter;
 	private ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
+	private ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
 	private String phoneNumber, locName;
 	private float lat, lng;
-	private int paychannelId ,goodId,quantity;
+	private int paychannelId, goodId, quantity;
 	List<View> list = new ArrayList<View>();
+	private ScrollViewWithGView gview, gview1;
+	private ButtonGridviewAdapter buttonAdapter;
+	List<GriviewEntity> User_button = new ArrayList<GriviewEntity>();
+	private Boolean islea = false;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -93,7 +107,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				tv_pp.setText(gfe.getGood_brand());
 				// tv_xh.setText(gfe.getModel_number());
 				// tv_ys.setText("宸插敭"+gfe.getVolume_number());
-				tv_price.setText(" " + gfe.getPrice());
+				tv_price.setText("￥" + gfe.getPrice());
 				tv_lx.setText(gfe.getCategory());
 				tv_sjhttp.setText(factoryEntity.getWebsite_url());
 				// tv_spxx.setText(gfe.getDescription() );
@@ -103,7 +117,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				// dcxx.setText(gfe.getBattery_info());
 				// tv_qgd.setText(gfe.getSign_order_way());
 				// tv_jm.setText(gfe.getEncrypt_card_way());
-
 				// lvAdapter.notifyDataSetChanged();
 				break;
 			case 1:
@@ -122,36 +135,30 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			}
 		}
 	};
-	private TextView tv_ms;
-	private f_good_detail detail;
-	private good_detail_apply apply;
-	private good_detail_commet commet;
-	private good_detail_zd zd;
+	private Intent i;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-		paychannelId=3;
+		paychannelId = 3;
 		id = getIntent().getIntExtra("id", 0);
 		innitView();
 		getdata();
-
 		System.out.println("-Xlistview--" + id);
-
-	}
-
-	private void initFragment() {
-		if (detail == null)
-			detail = new f_good_detail();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.f_good_detail, detail).commit();
-
 	}
 
 	private void innitView() {
-		// TODO Auto-generated method stub
+		setting_btn_clear = (Button) findViewById(R.id.setting_btn_clear);
+		setting_btn_clear.setOnClickListener(this);
+		setting_btn_clear1 = (Button) findViewById(R.id.setting_btn_clear1);
+		setting_btn_clear1.setOnClickListener(this);
+		tv_lea = (TextView) findViewById(R.id.tv_lea);
+		tv_lea.setOnClickListener(this);
+		tv_bug = (TextView) findViewById(R.id.tv_bug);
+		tv_bug.setOnClickListener(this);
+		gview1 = (ScrollViewWithGView) findViewById(R.id.gv1);
 		rl_imgs = (RelativeLayout) findViewById(R.id.rl_imgs);
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		inflater = LayoutInflater.from(this);
@@ -197,34 +204,64 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.tv_bug:
+			islea = false;
+			setting_btn_clear1.setClickable(true);
+			setting_btn_clear.setText("立即购买");
+			setting_btn_clear1.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.bg_shape));
+			setting_btn_clear1.setTextColor(getResources().getColor(
+					R.color.bgtitle));
+			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
+			tv_lea.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.send_out_goods_shape));
+			tv_bug.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.bg_shape));
+			break;
+		case R.id.tv_lea:
+			// tv_bug
+			islea = true;
+			setting_btn_clear1.setClickable(false);
+			setting_btn_clear.setText("立即租赁");
+			setting_btn_clear1.setTextColor(getResources().getColor(
+					R.color.bg0etitle));
+			setting_btn_clear1.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.bg0e_shape));
+			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
+			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
+			tv_lea.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.bg_shape));
+			tv_bug.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.send_out_goods_shape));
+			break;
 		case R.id.setting_btn_clear1:
 			addGood();
+			break;
 		case R.id.tv_zd:
-			if (zd == null)
-				zd = new good_detail_zd();
-
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_good_detail, zd).commit();
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 3);
+			startActivity(i);
 			break;
 		case R.id.tv_ms:
-			if (detail == null)
-				detail = new f_good_detail();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_good_detail, detail).commit();
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 0);
+			startActivity(i);
 			break;
 		case R.id.tv_kt:
-			if (apply == null)
-				apply = new good_detail_apply();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_good_detail, apply).commit();
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 1);
+			startActivity(i);
 			break;
 		case R.id.tv_pl:
-			Config.goodId = gfe.getId();
-			Config.commentsCount = commentsCount + "";
-			if (commet == null)
-				commet = new good_detail_commet();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_good_detail, commet).commit();
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 2);
+			startActivity(i);
+			break;
+		case R.id.tv_jy:
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 4);
+			startActivity(i);
 			break;
 		case R.id.titleback_linear_back:
 			finish();
@@ -240,7 +277,28 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			intent.setData(content_url);
 			startActivity(intent);
 			break;
+		case R.id.setting_btn_clear: // tv_comment
+			if (islea) {
 
+				Intent i21 = new Intent(GoodDeatail.this, LeaseConfirm.class);
+				i21.putExtra("getTitle", gfe.getTitle());
+				i21.putExtra("price", gfe.getPrice());
+				i21.putExtra("model", gfe.getModel_number());
+				i21.putExtra("chanel", chanel);
+				i21.putExtra("paychannelId", paychannelId);
+				i21.putExtra("goodId", gfe.getId());
+				startActivity(i21);
+			} else {
+
+				Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
+				i2.putExtra("getTitle", gfe.getTitle());
+				i2.putExtra("price", gfe.getPrice());
+				i2.putExtra("model", gfe.getModel_number());
+				i2.putExtra("chanel", chanel);
+				i2.putExtra("paychannelId", paychannelId);
+				i2.putExtra("goodId", gfe.getId());
+				startActivity(i2);
+			}
 		default:
 			break;
 		}
@@ -264,7 +322,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 								// TODO Auto-generated method stub
 								String userMsg = new String(responseBody)
 										.toString();
-
 								Log.i("ljp", userMsg);
 								Gson gson = new Gson();
 								// EventEntity
@@ -278,16 +335,45 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												LoginActivity.class);
 										startActivity(i);
 									} else if (code == 1) {
+
 										String res = jsonobject
 												.getString("result");
 										jsonobject = new JSONObject(res);
-
 										List<String> piclist = gson.fromJson(
 												jsonobject
 														.getString("goodPics"),
 												new TypeToken<List<String>>() {
 												}.getType());
+										User_button = gson.fromJson(
+												jsonobject
+														.getString("payChannelList"),
+												new TypeToken<List<GriviewEntity>>() {
+												}.getType());
+										buttonAdapter = new ButtonGridviewAdapter(
+												GoodDeatail.this, User_button,
+												0);
+										gview1.setAdapter(buttonAdapter);
+										gview1.setOnItemClickListener(new OnItemClickListener() {
 
+											@Override
+											public void onItemClick(
+													AdapterView<?> arg0,
+													View arg1, int arg2,
+													long arg3) {
+												// TODO Auto-generated method
+												// stub
+												buttonAdapter.setIndex(arg2);
+												getdataByChanel(User_button
+														.get(arg2).getId());
+												buttonAdapter
+														.notifyDataSetChanged();
+											}
+										});
+										Config.myList = gson.fromJson(
+												jsonobject
+														.getString("relativeShopList"),
+												new TypeToken<List<PosEntity>>() {
+												}.getType());
 										gfe = gson.fromJson(
 												jsonobject
 														.getString("goodinfo"),
@@ -332,16 +418,63 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 														.getString("requireMaterial_pra"),
 												new TypeToken<List<ApplyneedEntity>>() {
 												}.getType());
-										initFragment();
+
 										System.out.println("``celist`"
 												+ celist.size());
 										lvAdapter = new HuilvAdapter(
 												GoodDeatail.this, celist);
 										// pos_lv1.setAdapter(lvAdapter);
+
+										Toast.makeText(GoodDeatail.this,
+												piclist.size() + "", 1000)
+												.show();
 										for (int i = 0; i < piclist.size(); i++) {
 											ma.add(piclist.get(i));
 										}
+										// User_button=gson.fromJson(jsonobject.getString("payChannelList"),
+										// new TypeToken<List<GriviewEntity>>()
+										// {
+										// }.getType());
+										// buttonAdapter=new
+										// ButtonGridviewAdapter(GoodDeatail.this,
+										// User_button,0);
+										// gview1.setAdapter(buttonAdapter);
+										if (jsonobject
+												.getBoolean("support_type")) {
+											arelist = gson.fromJson(
+													jsonobject
+															.getString("supportArea"),
+													new TypeToken<List<String>>() {
+													}.getType());
+											String a = "";
+											for (int i = 0; i < arelist.size(); i++) {
+												a = a + arelist.get(i);
+											}
+											Toast.makeText(GoodDeatail.this,
+													a + "", 1000).show();
+											Config.suportare = a;
+										} else {
+											Config.suportare = "不支持";
+											Toast.makeText(GoodDeatail.this,
+													"不支持", 1000).show();
+										}
+										if (jsonobject
+												.getBoolean("support_cancel_flag")) {
+											Config.suportcl = "支持";
 
+										} else {
+											Config.suportcl = "不支持";
+										}
+										celist2 = gson.fromJson(
+												jsonobject.getString("tDates"),
+												new TypeToken<List<ChanelEntitiy>>() {
+												}.getType());
+										Config.celist = celist2;
+										Config.tv_sqkt = jsonobject
+												.getString("opening_requirement");
+										Toast.makeText(GoodDeatail.this,
+												"222" + Config.tv_sqkt, 1000)
+												.show();
 										handler.sendEmptyMessage(0);
 									} else {
 										Toast.makeText(
@@ -361,7 +494,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 									Header[] headers, byte[] responseBody,
 									Throwable error) {
 								// TODO Auto-generated method stub
-
 							}
 						});
 
@@ -526,6 +658,140 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 			return mList.get(position);
 		}
+
+	}
+
+	private void getdataByChanel(int pcid) {
+
+		RequestParams params = new RequestParams();
+		params.put("pcid", pcid);
+		System.out.println("---支付通道ID--" + pcid);
+
+		params.setUseJsonStreamer(true);
+		MyApplication
+				.getInstance()
+				.getClient()
+				.post(Config.paychannel_info, params,
+						new AsyncHttpResponseHandler() {
+
+							@Override
+							public void onSuccess(int statusCode,
+									Header[] headers, byte[] responseBody) {
+								// TODO Auto-generated method stub
+								String userMsg = new String(responseBody)
+										.toString();
+
+								Log.i("ljp", userMsg);
+								Gson gson = new Gson();
+								// EventEntity
+								JSONObject jsonobject = null;
+								int code = 0;
+								try {
+									jsonobject = new JSONObject(userMsg);
+									code = jsonobject.getInt("code");
+									if (code == -2) {
+										Intent i = new Intent(getApplication(),
+												LoginActivity.class);
+										startActivity(i);
+									} else if (code == 1) {
+										String res = jsonobject
+												.getString("result");
+										jsonobject = new JSONObject(res);
+
+										Config.tv_sqkt = jsonobject
+												.getString("opening_requirement");
+										// ImageCacheUtil.IMAGE_CACHE.get(
+										// factoryEntity.getLogo_file_path(),
+										// fac_img); 鍥剧墖璺緞寰呭畾
+										//
+										Config.celist = gson.fromJson(
+												jsonobject
+														.getString("standard_rates"),
+												new TypeToken<List<ChanelEntitiy>>() {
+												}.getType());
+										Config.tDates = gson.fromJson(
+												jsonobject.getString("tDates"),
+												new TypeToken<List<tDates>>() {
+												}.getType());
+										Config.other_rate = gson.fromJson(
+												jsonobject
+														.getString("other_rate"),
+												new TypeToken<List<other_rate>>() {
+												}.getType());
+										Config.pub = gson.fromJson(
+												jsonobject
+														.getString("requireMaterial_pub"),
+												new TypeToken<List<ApplyneedEntity>>() {
+												}.getType());
+										;
+										Config.single = gson.fromJson(
+												jsonobject
+														.getString("requireMaterial_pra"),
+												new TypeToken<List<ApplyneedEntity>>() {
+												}.getType());
+
+										System.out.println("``celist`"
+												+ celist.size());
+										lvAdapter = new HuilvAdapter(
+												GoodDeatail.this, celist);
+										// pos_lv1.setAdapter(lvAdapter);
+
+										// User_button=gson.fromJson(jsonobject.getString("payChannelList"),
+										// new TypeToken<List<GriviewEntity>>()
+										// {
+										// }.getType());
+										// buttonAdapter=new
+										// ButtonGridviewAdapter(GoodDeatail.this,
+										// User_button,0);
+										// gview1.setAdapter(buttonAdapter);
+										if (jsonobject
+												.getBoolean("support_type")) {
+											arelist = gson.fromJson(
+													jsonobject
+															.getString("supportArea"),
+													new TypeToken<List<String>>() {
+													}.getType());
+											String a = "";
+											for (int i = 0; i < arelist.size(); i++) {
+												a = a + arelist.get(i);
+											}
+											Toast.makeText(GoodDeatail.this,
+													a + "", 1000).show();
+											Config.suportare = a;
+										} else {
+											Config.suportare = "不支持";
+											Toast.makeText(GoodDeatail.this,
+													"不支持", 1000).show();
+										}
+										if (jsonobject
+												.getBoolean("support_cancel_flag")) {
+											Config.suportcl = "支持";
+
+										} else {
+											Config.suportcl = "不支持";
+										}
+
+									} else {
+										Toast.makeText(
+												getApplicationContext(),
+												jsonobject.getString("message"),
+												Toast.LENGTH_SHORT).show();
+									}
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+							}
+
+							@Override
+							public void onFailure(int statusCode,
+									Header[] headers, byte[] responseBody,
+									Throwable error) {
+								// TODO Auto-generated method stub
+
+							}
+						});
 
 	}
 
