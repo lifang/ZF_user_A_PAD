@@ -218,6 +218,7 @@ containing a value of this type.
  弹窗 
          */
         public static final int alertwidth=0x7f060048;
+        public static final int check_left=0x7f060066;
         public static final int d_10dp=0x7f060018;
         public static final int d_11dp=0x7f060019;
         public static final int d_12dp=0x7f06001a;
@@ -302,12 +303,12 @@ containing a value of this type.
         public static final int normai_height3=0x7f060037;
         public static final int normal_height1=0x7f06005f;
         public static final int normal_height2=0x7f060060;
-        public static final int normal_height3=0x7f060066;
+        public static final int normal_height3=0x7f060067;
         public static final int normal_width1=0x7f060061;
         public static final int normal_width2=0x7f060062;
         public static final int normal_width3=0x7f060063;
         public static final int normal_width4=0x7f060064;
-        public static final int normal_width5=0x7f060067;
+        public static final int normal_width5=0x7f060068;
         public static final int order_image=0x7f060065;
         public static final int postimg=0x7f06003d;
         public static final int s_12sp=0x7f06002b;
@@ -1196,6 +1197,11 @@ containing a value of this type.
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
