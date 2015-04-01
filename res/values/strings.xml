@@ -214,6 +214,7 @@
     <string name="apply_detail_model">POS型号</string>
     <string name="apply_detail_serial">终 端 号</string>
     <string name="apply_detail_channel">支付通道</string>
+    <string name="toast_no_sdcard">SD卡未挂载</string>
 
     <string-array name="apply_detail_merchant_keys">
         <item>选择已有商户</item>
@@ -231,9 +232,35 @@
         <item>女</item>
         <item>其他</item>
     </string-array>
-
-    <string name="apply_upload_photo">上传图片</string>
-
+    <string-array name="my_apply_detail_merchant_keys">
+        <item>选择已有商户</item>
+        <item>姓名</item>
+        <item>店铺名称</item>
+        <item>性别</item>
+        <item>选择生日</item>
+        <item>身份证号</item>
+        <item>电话</item>
+        <item>邮箱</item>
+        <item>选择所在地</item>
+    </string-array>
+    <string-array name="my_apply_detail_bank_keys">
+        <item>结算银行名称</item>
+        <item>结算银行代码</item>
+        <item>结算银行账户</item>
+        <item>税务登记证号</item>
+        <item>组织机构号</item>
+        <item>支付通道</item>
+        <item>blank</item>
+        <item>选择银行</item>
+    </string-array>
+    <string-array name="apply_detail_upload">
+        <item>选择照片</item>
+        <item>拍照上传</item>
+    </string-array>
+    <string name="apply_upload_photo">上传图片</string>
+    <string name="apply_uploading">上传中...</string>
+    <string name="apply_upload_again">重新上传</string>
+    <string name="apply_upload_success">上传成功</string>
     <!-- ====================================================== -->
     <!-- 终端管理 -->
     <!-- ====================================================== -->
@@ -252,7 +279,8 @@
     <string name="terminal_no_detail">暂无终端详情</string>
     <string name="terminal_category_apply">终端信息</string>
     <string name="terminal_category_open">开通详情</string>
-<string name="apply_progress_no_data">无查询结果,请填写正确的手机号码!</string>
+    <string name="apply_progress_no_data">无查询结果,请填写正确的手机号码!</string>
+
     <string-array name="terminal_apply_keys">
         <item>终 端 号</item>
         <item>POS品牌</item>
