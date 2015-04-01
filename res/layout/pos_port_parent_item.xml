@@ -11,14 +11,14 @@
          >
 
         <LinearLayout
-            android:layout_width="310dp"
+            android:layout_width="@dimen/zc_rl_w"
             android:layout_height="wrap_content"
             android:gravity="center_vertical" >
             
         <TextView
             android:id="@+id/title"
-            android:layout_width="190dp"
-            android:layout_height="68dp"
+            android:layout_width="@dimen/ddrl_width"
+            android:layout_height="@dimen/titilepad"
             android:gravity="right|center_vertical"
             android:text="POS品牌"
             
@@ -30,25 +30,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="14dp" />
+            android:layout_marginLeft="@dimen/zc_margin" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+        
             android:text="全部"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="15sp" />
+            android:textSize="@dimen/textmids" />
         </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/titilepad"
         android:layout_weight="1"
         android:gravity="center_vertical" >
            <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            
             android:gravity="center_vertical" >
 
             <CheckBox
@@ -57,17 +58,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="14dp" />
+                android:layout_marginLeft="@dimen/zc_margin" 
+                 />
 
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+  
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
+               
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
            <LinearLayout
@@ -82,17 +85,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="14dp" />
+                android:layout_marginLeft="@dimen/zc_margin" />
 
             <TextView
                 android:id="@+id/text2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+               
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
            <LinearLayout
@@ -107,17 +110,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="14dp" />
+                android:layout_marginLeft="@dimen/zc_margin" />
 
             <TextView
                 android:id="@+id/text3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+ 
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
             <LinearLayout
@@ -132,21 +135,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="14dp" />
+                android:layout_marginLeft="@dimen/zc_margin" />
 
             <TextView
                 android:id="@+id/text4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
     </LinearLayout>
 <RelativeLayout 
-    android:layout_width="220dp"
+    android:layout_width="@dimen/normal_height3"
     android:layout_height="wrap_content"
       
     >
@@ -154,7 +156,7 @@
         <TextView
             android:id="@+id/tv1"
             android:layout_width="fill_parent"
-            android:layout_height="68dp"
+            android:layout_height="@dimen/titilepad"
             android:layout_alignParentRight="true"
           
             android:gravity="left|center_vertical"

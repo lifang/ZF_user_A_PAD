@@ -6,10 +6,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/titilepad"
         android:gravity="center_vertical"
-        android:paddingRight="220dp"
-        android:paddingLeft="310dp" >
+        android:paddingRight="@dimen/normal_height3"
+        android:paddingLeft="@dimen/zc_rl_w" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -30,11 +30,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
            <LinearLayout
@@ -56,10 +56,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
            <LinearLayout
@@ -81,10 +81,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
             <LinearLayout
@@ -106,10 +106,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="34dp"
+                android:layout_marginRight="@dimen/alertll"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
     </LinearLayout>
 

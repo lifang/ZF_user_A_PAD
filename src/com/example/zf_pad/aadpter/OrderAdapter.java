@@ -162,9 +162,11 @@ public class OrderAdapter extends BaseAdapter{
 									code = jsonobject.getString("code");
 									int a =jsonobject.getInt("code");
 									if(a==Config.CODE){  
-										String res =jsonobject.getString("result");
-										jsonobject = new JSONObject(res);
+										//String res =jsonobject.getString("result");
+										//jsonobject = new JSONObject(res);
 										holder.isshow.setVisibility(View.GONE);
+										OrderAdapter.this.notifyDataSetChanged();
+										
 									}else{
 										code = jsonobject.getString("message");
 										Toast.makeText(context, code, 1000).show();

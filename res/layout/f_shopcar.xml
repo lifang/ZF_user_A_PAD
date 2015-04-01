@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="@dimen/order_image"
         android:orientation="vertical"
-        android:paddingTop="40dp" >
+        android:paddingTop="@dimen/zc_margin_top1" >
 
         <TextView
              android:id="@+id/titleback_text_title"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="购物车"
             android:textColor="#6C6C6C"
-            android:textSize="21sp" />
+            android:textSize="@dimen/textbig" />
     </LinearLayout>
 <View 
             android:layout_width="fill_parent"
@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="74dp"
+        android:layout_height="@dimen/normai_height3"
         android:background="#E1E0E0"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -89,13 +89,13 @@
                 android:layout_marginLeft="7dp"
                 android:text="共计："
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="17sp" />
+                android:textSize="@dimen/textmid" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="@dimen/alertll"
         android:layout_marginBottom="@dimen/normai_height1" >
         <LinearLayout
             android:layout_width="0dp"
@@ -110,14 +110,14 @@
                 android:layout_marginLeft="7dp"
                 android:text="合计：￥0"
                 android:textColor="@color/text292929"
-                android:textSize="17sp" />
+                android:textSize="@dimen/textmid" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:text="（不含配送费）"
                 android:textColor="@color/text292929"
-                android:textSize="8sp" />
+                android:textSize="@dimen/textsmall" />
         </LinearLayout>
         <Button
             android:id="@+id/confirm"

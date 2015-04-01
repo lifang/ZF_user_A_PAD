@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.PosEntity;
+import com.example.zf_pad.util.ImageCacheUtil;
 
 public class PosAdapter extends BaseAdapter {
 	private Context context;
@@ -59,6 +60,7 @@ public class PosAdapter extends BaseAdapter {
 			holder.content1 = (TextView) convertView
 					.findViewById(R.id.content1);
 			holder.tv_td = (TextView) convertView.findViewById(R.id.tv_td);
+			holder.im=(ImageView)convertView.findViewById(R.id.evevt_img);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -66,6 +68,8 @@ public class PosAdapter extends BaseAdapter {
 		// volume_number":123,"id":2,"good_brand":"Ʒ��1","total_score":1,
 		// "retail_price":72464,"pay_channe":"ͨ��2",
 		// "Title":"̩ɽPos�콢��2","Model_number":"�ͺ�10"}
+		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
+ 				holder.im);
 		holder.title.setText(list.get(position).getTitle());
 		holder.tv_price.setText("��" + list.get(position).getRetail_price() / 100
 				+ "");
@@ -86,7 +90,7 @@ public class PosAdapter extends BaseAdapter {
 	public final class ViewHolder {
 		public TextView title, ys, tv_price, content1, tv_td;
 		public CheckBox item_cb;
-		public ImageView img_type;
+		public ImageView img_type,im;
 
 	}
 }
