@@ -116,7 +116,11 @@ public class API {
 	public static final String GETCODE4PHONE = SCHEMA + HOST + "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
 	public static final String ZHUCHE = SCHEMA + HOST + "/ZFMerchant/api/user/userRegistration";
 	public static final String GETEMAILPASS = SCHEMA + HOST + "/ZFMerchant/api/user/sendEmailVerificationCode";
-
+    //  get userInfo
+	public static String GET_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/getOne/";
+	// change userinfo
+	public static String CHANGE_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/update/";
+	public static String CHANGE_PAW=SCHEMA + HOST + "/ZFMerchant/api/customers/updatePassword";
 	public static void getTerminalList(
 			Context context,
 			int customerId,
@@ -626,6 +630,41 @@ public class API {
 		params.put("codeNumber", codeNumber);
  
 		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+	}
+	public static void getUserinfo(
+			Context context,
+			
+			HttpCallback callback){
+		GET_USERINFO=GET_USERINFO+80;
+		new HttpRequest(context, callback).post(GET_USERINFO);
+	}
+	public static void changeuserinfo(
+			Context context,
+			int id,
+			String name,
+			String phone,
+			String email,
+			int cityId,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("email", email);
+		params.put("cityId", cityId);
+		new HttpRequest(context, callback).post(CHANGE_USERINFO, params);
+	}
+	public static void changepaw(
+			Context context,
+			int id,
+			String passwordOld,
+			String password,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("passwordOld", passwordOld);
+		params.put("password", password);
+		new HttpRequest(context, callback).post(CHANGE_PAW, params);
 	}
 
 }

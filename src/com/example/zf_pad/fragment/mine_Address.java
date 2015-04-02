@@ -35,6 +35,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class mine_Address extends Fragment implements OnClickListener{
 	private Context context;
 	private Button btn_add;
 	public static boolean isclickitem=false;
+	public static LinearLayout ll_address;
 	//private TextView info,safe,manageradress,score;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,6 +130,7 @@ private void getData() {
 		
 	}
 private void init() {
+	ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 	dataadress=new ArrayList<AddressManager>();
 	addressadapter=new AddressManagerAdapter(dataadress, getActivity().getBaseContext());
 	list=(ListView) view.findViewById(R.id.list);
