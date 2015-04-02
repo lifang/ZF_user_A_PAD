@@ -8,13 +8,19 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 
 import com.example.zf_pad.fragment.mine_Address;
 
 import com.example.zf_pad.Config;
+import com.example.zf_pad.posport;
 
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
+import com.google.gson.Gson;
+
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
@@ -617,15 +623,37 @@ public class API {
  
 		new HttpRequest(context, callback).post(GETEMAILPASS, params);
 	}
+	static Gson gson = new Gson();
 	public static void PostSearch(
 			Context context,
-			String  codeNumber,
-	 
+			String  keys,
+			int city_id,
+			int rows,
+			int page,
+			int orderType,		
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("codeNumber", codeNumber);
- 
-		new HttpRequest(context, callback).post(GETEMAILPASS, params);
+		params.put("keys", keys);
+		params.put("city_id", city_id);
+		params.put("rows", rows);
+		params.put("page", page);
+		params.put("orderType", orderType);
+		params.put("has_purchase", posport.has_purchase);
+		params.put("minPrice",posport.minPrice);
+		params.put("maxPrice",posport.maxPrice);
+		try {
+			params.put("brands_id", new JSONArray(gson.toJson(posport.brands_id)));
+			params.put("category", new JSONArray(gson.toJson(posport.category)));
+			params.put("pay_channel_id", new JSONArray(gson.toJson(posport.pay_channel_id)));
+			params.put("pay_card_id", new JSONArray(gson.toJson(posport.pay_card_id)));
+			params.put("trade_type_id", new JSONArray(gson.toJson(posport.trade_type_id)));
+			params.put("sale_slip_id", new JSONArray(gson.toJson(posport.sale_slip_id)));
+			params.put("tDate", new JSONArray(gson.toJson(posport.tDate)));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new HttpRequest(context, callback).post(Config.POSLIST, params);
 	}
 
 }

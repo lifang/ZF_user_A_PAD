@@ -267,6 +267,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.search2:
+			Config.shopcar=true;
 			Intent i = new Intent(GoodDeatail.this, MainActivity.class);
 			startActivity(i);
 			break;

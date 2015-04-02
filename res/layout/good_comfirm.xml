@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical" 
+    android:background="#FDFBFB">
+	
 <include layout="@layout/title_back" />
  
 	<RelativeLayout 
@@ -242,7 +243,7 @@
                     android:maxLines="1"
                     android:text="泰山TS900"
                     android:textColor="@color/text292929"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -260,7 +261,7 @@
                         android:maxLines="1"
                         android:text="$ 1999"
                         android:textColor="#292929"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig" />
 
                     <LinearLayout
                         android:id="@+id/zftd"
@@ -279,7 +280,7 @@
                             android:maxLines="1"
                             android:text="支付通道"
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/textmid" />
 
                         <TextView
                             android:id="@+id/wayName"
@@ -291,7 +292,7 @@
                             android:maxLines="1"
                             android:text="支付宝"
                             android:textColor="@color/text292929"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/textmid" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -311,7 +312,7 @@
                             android:maxLines="1"
                             android:text="品牌型号"
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/textmid" />
 
                         <TextView
                             android:id="@+id/content2"
@@ -323,7 +324,7 @@
                             android:maxLines="1"
                             android:text="泰山TS9000"
                             android:textColor="@color/text292929"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/textmid" />
                     </LinearLayout>
 
                     
@@ -505,7 +506,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="74dp"
+                        android:layout_height="@dimen/normai_button_width"
                         android:background="#ffffff"
                         android:paddingRight="@dimen/titilepad1"
                         android:gravity="center_vertical"

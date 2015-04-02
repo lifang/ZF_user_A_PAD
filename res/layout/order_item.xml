@@ -227,7 +227,7 @@
 
                 <Button
                     android:layout_width="@dimen/normai_button_height"
-                    android:layout_height="18dp"
+                    android:layout_height="@dimen/textmid"
                     android:background="@color/ffffff" />
 
                 <Button

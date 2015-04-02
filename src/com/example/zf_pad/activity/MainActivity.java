@@ -9,6 +9,10 @@ import java.util.List;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -67,6 +71,8 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
 import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
+	private LocationClient mLocationClient;
+	private TextView LocationResult;
 	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
 			main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
 			main_rl_lxwm, main_rl_my, main_rl_pos1, main_rl_gwc;
@@ -150,7 +156,28 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Log.i("111","width="+width+"height="+height);
 		initView();
 		getdata();
+	//地图功能
+		
+		mLocationClient = ((MyApplication)getApplication()).mLocationClient;
+		
+		LocationResult = (TextView)findViewById(R.id.tv_city);
+		 ((MyApplication)getApplication()).mLocationResult = LocationResult;
+		InitLocation();
+		mLocationClient.start();
+		
+		
+		 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
 		//getdata1();
+	}
+	private void InitLocation(){
+		LocationClientOption option = new LocationClientOption();
+		option.setLocationMode(LocationMode.Hight_Accuracy);//设置定位模式
+		option.setCoorType("gcj02");//返回的定位结果是百度经纬度，默认值gcj02
+		int span=1000;
+ 
+		option.setScanSpan(span);//设置发起定位请求的间隔时间为5000ms
+		option.setIsNeedAddress(true);
+		mLocationClient.setLocOption(option);
 	}
 	private void getdata1() {
 		API.test(MainActivity.this, "18762091710", new HttpCallback(MainActivity.this) {

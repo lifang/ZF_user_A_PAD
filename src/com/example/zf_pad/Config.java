@@ -73,4 +73,5 @@ public class Config {
 	public static int goodId;
 	public static String commentsCount;
 	public static boolean iszl=false;
+	
 }

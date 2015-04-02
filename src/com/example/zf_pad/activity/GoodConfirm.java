@@ -334,7 +334,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		Log.e("goodId=" + goodId + "paychannelId=" + paychannelId + "quantity="
 				+ quantity + "is_need_invoice=" + is_need_invoice, "ccccccccc");
 		API.GOODCONFIRM(GoodConfirm.this, 80, goodId, paychannelId, quantity,
-				113, "222", is_need_invoice, invoice_type, invoice_info,
+				113, "222", is_need_invoice, invoice_type, "111",
 
 				new HttpCallback(GoodConfirm.this) {
 

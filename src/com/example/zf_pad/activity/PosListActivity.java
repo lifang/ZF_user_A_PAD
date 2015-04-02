@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.posport;
@@ -15,6 +16,12 @@ import com.example.zf_pad.aadpter.PosAdapter1;
 import com.example.zf_pad.aadpter.PosPortAdapter;
 import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.TestEntitiy;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.AfterSaleDetailActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.common.Page;
+import com.example.zf_pad.trade.entity.TerminalItem;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
@@ -48,7 +55,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private ImageView pos_select,search2,img3;	
 	private Parcelable listState;
 	private XListView Xlistview;
-	private int page=1;
+	private int page=0;
+	private int page1=0;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata,ll_xxyx,ll_mr,ll_updown,ll_pj;
 	private boolean onRefresh_number = true;
@@ -59,7 +67,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private int orderType=0;
 	private EditText et_search;
 	private int list_port=1;
-	private int maxPrice=0,minPrice=0;
+	private double maxPrice=0,minPrice=0;
+	private boolean isSearch=false;
+	private String keyword;
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
 	private Handler handler = new Handler() {
@@ -112,7 +122,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.poslist_activity);
 		initView();
-		getData();
+		//getData();
+		Search();
 	}
 	private void initView() {
 		ll_listflag = (LinearLayout)findViewById(R.id.ll_listflag);
@@ -222,7 +233,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
-			getData();
+			//getData();
+			Search();
+			Xlistview.setSelection(0);
 			break;	
 		case R.id.ll_xxyx:
 			orderType=1;
@@ -231,7 +244,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
-			getData();
+			//getData();
+			Search();
+			Xlistview.setSelection(0);
 			break;	
 		case R.id.ll_updown:
 			if(isDown){
@@ -249,7 +264,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			tv_3.setTextColor(getResources().getColor(R.color.bgtitle));
 			tv_4.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			myList.clear();
-			getData();
+			//getData();
+			Search();
+			Xlistview.setSelection(0);
 			break;	
 		case R.id.ll_pj:
 			orderType=4;
@@ -258,7 +275,9 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			tv_3.setTextColor(getResources().getColor(R.color.bg_575D5F));
 			tv_4.setTextColor(getResources().getColor(R.color.bgtitle));
 			myList.clear();
-			getData();
+			//getData();
+			Search();
+			Xlistview.setSelection(0);
 			break;	
 		default:
 			break;
@@ -274,7 +293,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		 System.out.println("onRefresh1");
 		myList.clear();
 		 System.out.println("onRefresh2");
-		getData();
+		//getData();
+		 Search();
 	}
 
 
@@ -285,7 +305,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			page = page+1;
 			
 			onRefresh_number = false;
-			getData();
+			//getData();
+			Search();
 			
  
 		}
@@ -302,7 +323,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	public void buttonClick() {
 		page = 1;
 		myList.clear();
-		getData();
+		//getData();
+		Search();
 	}
 	 
 	private void getData() {
@@ -386,7 +408,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		case 0:
 			myList.clear();
 			page=1;
-				getData();
+				//getData();
+			Search();
 
 			break;
 		case 1:
@@ -396,16 +419,21 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 				maxPrice=data.getIntExtra("maxPrice", 1000000);
 				System.out.println(maxPrice+"进入条件选择回调···"+minPrice); 
 				myList.clear();
-				getData();
+				//getData();
+				Search();
 			}
 			
 			break;
 		case 2:
 			if(data!=null){
 				String  a =data.getStringExtra("text");
-				keys=a;
+				//keys=a;
 				et_search.setText(a);
-				getData();
+				page=0;
+				keyword=a;
+				myList.clear();
+				Search();
+				Xlistview.setSelection(0);
 			}
 			
 			break;
@@ -415,5 +443,27 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 
+	}
+	private void Search() {
+		API.PostSearch(getApplicationContext(), keyword,1,12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
+			@Override
+			public void onSuccess(Page<PosEntity> data) {
+				if(myList.size()!=0&&data.getList().size()==0)
+					Toast.makeText(getApplicationContext(), "没有更多数据!", 1000).show();
+				myList.addAll(data.getList());
+				
+				handler.sendEmptyMessage(0); 
+				
+			}
+
+			@Override
+			public TypeToken<Page<PosEntity>> getTypeToken() {
+				return new TypeToken<Page<PosEntity>>() {
+				};
+			}
+
+
+		});
+		
 	}
 }

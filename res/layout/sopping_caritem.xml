@@ -72,7 +72,7 @@
                         android:maxLines="1"
                         android:text="￥ 1999"
                         android:textColor="#292929"
-                        android:textSize="21sp" />
+                        android:textSize="@dimen/textbig" />
 
                     <LinearLayout
                         android:id="@+id/zftd"
@@ -169,22 +169,22 @@
 
                 <ImageView
                     android:id="@+id/reduce"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/normal_height1"
+                    android:layout_height="@dimen/normal_height1"
                     android:background="@drawable/jian" />
 
                 <EditText
                     android:id="@+id/buyCountEdit"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/normal_height1"
+                    android:layout_height="@dimen/normal_height1"
                     android:background="@color/ffffff"
                     android:gravity="center"
                     android:text="1" />
 
                 <ImageView
                     android:id="@+id/add"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/normal_height1"
+                    android:layout_height="@dimen/normal_height1"
                     android:background="@drawable/jia" />
             </LinearLayout>
         </RelativeLayout>
