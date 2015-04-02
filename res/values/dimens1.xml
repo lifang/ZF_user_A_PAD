@@ -66,10 +66,12 @@
     <dimen name="zc_margin_top2">10dp</dimen>
     <dimen name="normal_height1">30dp</dimen>
     <dimen name="normal_height2">28dp</dimen>
+    <dimen name="normal_height3">220dp</dimen>
     <dimen name="normal_width1">700dp</dimen>
     <dimen name="normal_width2">24dp</dimen>
     <dimen name="normal_width3">12dp</dimen>
     <dimen name="normal_width4">600dp</dimen>
+     <dimen name="normal_width5">70dp</dimen>
     <dimen name="order_image">86dp</dimen>
 
 </resources>

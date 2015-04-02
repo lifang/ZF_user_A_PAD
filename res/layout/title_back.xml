@@ -42,8 +42,9 @@
         android:layout_centerInParent="true"
         android:singleLine="true"
         android:text=""
+        
         android:textColor="@color/white"
-        android:textSize="@dimen/textmid" />
+        android:textSize="@dimen/textbig" />
 
     <ImageView
         android:id="@+id/search"

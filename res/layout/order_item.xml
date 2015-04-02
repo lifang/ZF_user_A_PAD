@@ -222,6 +222,7 @@
                     android:background="@drawable/shape_o"
                     android:text="取消订单"
                     android:id="@+id/btn_cancle"
+                    android:textSize="@dimen/textmid"
                     android:textColor="@color/bgtitle" />
 
                 <Button
@@ -235,6 +236,7 @@
                     android:layout_height="@dimen/normai_button_height"
                     android:background="@drawable/bg_blue_shape"
                     android:text="付款"
+                    android:textSize="@dimen/textmid"
                     android:textColor="@color/ffffff" />
             </LinearLayout>
 

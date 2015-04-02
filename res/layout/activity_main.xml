@@ -7,14 +7,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="@dimen/titilepad"
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/zc_margin_top2"
+        android:paddingRight="@dimen/zc_margin_top2"
         android:layout_height="fill_parent"
         android:background="#262729"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
         <RelativeLayout
             android:id="@+id/main_rl_sy"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normai_height1" >
 
@@ -43,13 +46,13 @@
                     android:layout_marginTop="@dimen/textsmall"
                     android:text="首页"
                     android:textColor="@color/bgtitle"
-                    android:textSize="@dimen/textsmall" />
+                    android:textSize="@dimen/textmids" />
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/main_rl_gwc"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/sy_rl_margin" >
 
@@ -78,13 +81,13 @@
                     android:layout_marginTop="@dimen/textsmall"
                     android:text="购物车"
                     android:textColor="#f3f2f2"
-                    android:textSize="@dimen/textsmall" />
+                    android:textSize="@dimen/textmids" />
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/main_rl_pos1"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_marginTop="@dimen/sy_rl_margin"  >
 
@@ -113,13 +116,13 @@
                     android:layout_marginTop="@dimen/textsmall"
                     android:text="我的消息"
                     android:textColor="#f3f2f2"
-                    android:textSize="@dimen/textsmall" />
+                    android:textSize="@dimen/textmids" />
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/main_rl_my"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_marginTop="@dimen/sy_rl_margin"  >
 
@@ -148,16 +151,16 @@
                     android:layout_marginTop="@dimen/textsmall"
                     android:text="我的"
                     android:textColor="#f3f2f2"
-                    android:textSize="@dimen/textsmall" />
+                    android:textSize="@dimen/textmids" />
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent" >
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/sy_bt_height"
                 android:id="@+id/set"
                 android:layout_alignParentBottom="true"

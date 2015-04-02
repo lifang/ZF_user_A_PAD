@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="314dp"
+        android:layout_height="@dimen/itemheight1"
         android:background="@color/white"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/normal_height1"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/evevt_img"
-                android:layout_width="224dp"
-                android:layout_height="224dp"
+                android:layout_width="@dimen/itemwidth1"
+                android:layout_height="@dimen/itemwidth1"
                 android:background="@drawable/testphone401" />
 
             <LinearLayout
@@ -113,8 +113,8 @@
 
             <ImageView
                 android:id="@+id/evevt_img2"
-                android:layout_width="224dp"
-                android:layout_height="224dp"
+                android:layout_width="@dimen/itemwidth1"
+                android:layout_height="@dimen/itemwidth1"
                 android:background="@drawable/testphone401" />
 
             <LinearLayout
@@ -204,8 +204,8 @@
 
             <ImageView
                 android:id="@+id/evevt_img3"
-                android:layout_width="224dp"
-                android:layout_height="224dp"
+                android:layout_width="@dimen/itemwidth1"
+                android:layout_height="@dimen/itemwidth1"
                 android:background="@drawable/testphone401" />
 
             <LinearLayout

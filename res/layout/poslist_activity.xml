@@ -22,21 +22,21 @@
 
             <ImageView
                 android:id="@+id/titleback_image_back"
-                android:layout_width="20dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="60dp"
+                android:layout_width="@dimen/zc_margin_top"
+                android:layout_height="@dimen/normal_height1"
+                android:layout_marginLeft="@dimen/titilepad"
                 android:background="@drawable/back" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+          android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <RelativeLayout
-                android:layout_width="700dp"
+                android:layout_width="@dimen/normal_width1"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal" >
 
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/editText1"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="220dp"
+                    android:layout_marginLeft="@dimen/normal_height3"
                     android:src="@drawable/search_bg" />
 
                 <EditText
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="@dimen/titilepad"
                 android:background="@drawable/car11" />
 
             <ImageView
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="@dimen/titilepad"
                 android:background="@drawable/car22" />
         </LinearLayout>
     </LinearLayout>
@@ -90,11 +90,11 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="@dimen/order_image"
         android:gravity="center" >
 
         <LinearLayout
-            android:layout_width="700dp"
+            android:layout_width="@dimen/normal_width1"
             android:layout_height="@dimen/titleback_height"
             android:layout_gravity="center"
             android:background="@color/F6F9FA"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="默认排序"
                     android:textColor="#575d5f"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,8 +135,8 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginBottom="@dimen/normal_width3"
+                android:layout_marginTop="@dimen/normal_width3"
                 android:background="#ADAEAF" />
 
             <LinearLayout
@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="价格降序"
                     android:textColor="#575d5f"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:text="评分最高"
                     android:textColor="#575d5f"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/textmid" />
             </LinearLayout>
         </LinearLayout>
 
@@ -184,26 +184,26 @@
             android:id="@+id/port_list1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="62dp"
+            android:layout_marginLeft="@dimen/titilepad"
             android:background="@drawable/pos_px1" />
 
         <ImageView
             android:id="@+id/port_list2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="@dimen/normal_width5"
             android:background="@drawable/pos_pxf" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_listflag"
         android:layout_width="fill_parent"
-        android:layout_height="28dp"
+        android:layout_height="@dimen/normal_height2"
         android:background="#E9E8E8" 
-        android:paddingRight="80dp"
+        android:paddingRight="@dimen/titilepad1"
         android:gravity="center_vertical"
         android:visibility="gone"
-        android:paddingLeft="240dp">
+        android:paddingLeft="@dimen/alertwidth">
 
         <TextView
             android:id="@+id/textView1"
@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="@dimen/titilepad"
             android:layout_height="fill_parent"
             android:textColor="#292929"
             android:text="价格" />
@@ -253,8 +253,8 @@
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginLeft="@dimen/dlimg"
+        android:layout_marginRight="@dimen/dlimg"
         android:background="@color/white"
         android:fadingEdge="none"
         android:layout_gravity="center_horizontal"

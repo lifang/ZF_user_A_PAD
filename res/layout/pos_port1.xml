@@ -19,18 +19,20 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/normai_height3"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:gravity="center_vertical"
             android:paddingBottom="12dp"
+           
             android:paddingLeft="@dimen/titilepad"
             android:paddingRight="@dimen/titilepad"
             android:paddingTop="12dp" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_centerVertical="true" >
 
                 <CheckBox
@@ -45,7 +47,7 @@
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/cb_all"
@@ -57,7 +59,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:orientation="horizontal" >
@@ -65,7 +67,7 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="价格: " />
 
@@ -82,7 +84,7 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text=" - "
                     android:textSize="30sp" />

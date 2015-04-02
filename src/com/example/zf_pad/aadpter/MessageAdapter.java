@@ -107,7 +107,7 @@ public class MessageAdapter extends BaseAdapter {
 			});
 	
 		}else{
-			holder.item_cb.setVisibility(View.INVISIBLE);
+			holder.item_cb.setVisibility(View.GONE);
 		}	
 		return convertView;
 	}

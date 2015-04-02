@@ -20,6 +20,13 @@ public class PosEntity {
 	private String pay_channe;
 	private String Title;
 	private String Model_number;
+	private String url_path;
+	public String getUrl_path() {
+		return url_path;
+	}
+	public void setUrl_path(String url_path) {
+		this.url_path = url_path;
+	}
 	public int getVolume_number() {
 		return volume_number;
 	}

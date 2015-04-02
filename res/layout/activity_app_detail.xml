@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:background="#E9E8E8"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:background="#E9E8E8"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="240dp"
+                    android:layout_height="fill_parent" >
+
+                    <TextView
+                        android:id="@+id/toPublic"
+                        android:layout_width="120dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/tab_bg"
+                        android:gravity="center"
+                        android:text="对公"
+                        android:textColor="#292929"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/toPrivate"
+                        android:layout_width="120dp"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="对私"
+                        android:textColor="#292929"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="64dp"
+                android:paddingRight="64dp"
+                android:paddingTop="30dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="10dp" >
+
+                    <LinearLayout
+                        android:id="@+id/apply_detail_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/apply_detail_brand"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/apply_detail_model"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/apply_detail_serial"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/apply_detail_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/apply_detail_brand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_serial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mMerchantContainer_0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="26dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom|left"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/Divider"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="64dp" />
+
+            <LinearLayout
+                android:id="@+id/apply_detail_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingTop="20dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="26dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:id="@+id/mMerchantContainer_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginRight="11dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mMerchantContainer_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginRight="64dp" />
+
+                <LinearLayout
+                    android:id="@+id/apply_detail_customer_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:id="@+id/mCustomerContainer_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginRight="11dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mCustomerContainer_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginRight="64dp" />
+
+                <LinearLayout
+                    android:id="@+id/apply_detail_material_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginRight="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginRight="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mMaterialContainer_9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="26dp"
+                            android:layout_marginRight="11dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/apply_submit"
+                    style="@style/ButtonNormal"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:enabled="false"
+                    android:text="@string/button_submit" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
