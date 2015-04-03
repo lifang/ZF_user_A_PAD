@@ -9,6 +9,7 @@ import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.util.ImageCacheUtil;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import android.R.integer;
@@ -111,6 +112,7 @@ public class ShopcarAdapter extends BaseAdapter {
 			 holder.title = (TextView) convertView.findViewById(R.id.title);
 			 holder.evevt_img = (ImageView)
 			 convertView.findViewById(R.id.evevt_img);
+			
 			//holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			//holder.editBtn.setOnClickListener(onClick);
 			holder.ll_select = (LinearLayout) convertView
@@ -121,7 +123,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					.findViewById(R.id.buyCountEdit);
 			holder.showCountText = (TextView) convertView
 					.findViewById(R.id.showCountText);
-
+			
 			holder.add = convertView.findViewById(R.id.add);
 
 			holder.reduce.setTag(holder);
@@ -148,6 +150,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.retail_price.setText("$ " + good.getRetail_price());
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
+		 ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
 		return convertView;
 	}
 

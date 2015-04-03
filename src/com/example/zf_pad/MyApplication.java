@@ -10,6 +10,8 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
+
+import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.entity.User;
 import com.example.zf_pad.entity.UserEntity;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -73,7 +75,14 @@ public class MyApplication extends Application{
 		MyApplication.currentUser = currentUser;
 	}
 
-
+	public static List<Good> comfirmList=new LinkedList<Good>();
+	
+	public static List<Good> getComfirmList() {
+		return comfirmList;
+	}
+	public static void setComfirmList(List<Good> comfirmList) {
+		MyApplication.comfirmList = comfirmList;
+	}
 	private static String token="";
 	AsyncHttpClient client = new AsyncHttpClient(); //  
 	
@@ -153,7 +162,7 @@ public class MyApplication extends Application{
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-	public static UserEntity NewUser = new UserEntity();
+	public static UserEntity NewUser = null;
 	public static UserEntity getNewUser() {
 		return NewUser;
 	}
@@ -230,4 +239,5 @@ public class MyApplication extends Application{
 			e.printStackTrace();
 		}
 	}
+	
 }

@@ -55,10 +55,12 @@ public class Config {
 	public static final String paychannel_info =PATHS+"paychannel/info";
 	public static final String ChooseAdress = PATHS+"customers/getAddressList/";
 	public static final String SHOPORDER=PATHS+"order/shop";
+	public static final String SHOPCART=PATHS+"order/cart";
 	public static final String SHOPDELETE=PATHS+"cart/delete";
 	public final static String updatePassword = PATHS+"user/updatePassword";
 	public static final String FINDPASSGETCODE = PATHS + "user/sendPhoneVerificationCodeFind";
 	public static final String ORDERCANL = PATHS + "order/cancelMyOrder";
+	public static final String ZDORDER = PATHS + "order/lease";
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<tDates> tDates = new ArrayList<tDates>();

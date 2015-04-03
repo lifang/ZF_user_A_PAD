@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-              android:paddingBottom="@dimen/edheight"
+            android:paddingBottom="@dimen/edheight"
             android:paddingLeft="@dimen/titilepad"
             android:paddingRight="@dimen/titilepad"
             android:paddingTop="@dimen/edheight" >
@@ -23,9 +23,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/zc_margin_top2"
                 
-                android:gravity="center_horizontal" >
+                android:layout_marginTop="@dimen/zc_margin_top2"
+                android:gravity="center" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -37,8 +37,8 @@
                     android:textSize="@dimen/textbig" />
 
                 <RelativeLayout
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <EditText
@@ -52,7 +52,7 @@
                     </EditText>
 
                     <LinearLayout
-                         android:id="@+id/login_linear_deletemali"
+                        android:id="@+id/login_linear_deletemali"
                         android:layout_width="@dimen/zc_rl_h"
                         android:layout_height="fill_parent"
                         android:layout_alignParentRight="true"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/zc_margin_top"
-                android:gravity="center_horizontal" >
+               android:gravity="center"  >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -95,8 +95,8 @@
                     android:textSize="@dimen/textbig" />
 
                 <RelativeLayout
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <EditText
@@ -148,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sy_bt_height"
-                android:gravity="center_horizontal" >
+               android:gravity="center"  >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -160,8 +160,8 @@
                     android:textSize="@dimen/textbig" />
 
                 <RelativeLayout
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <EditText
@@ -171,6 +171,7 @@
                         android:layout_marginRight="@dimen/zc_margin"
                         android:background="@drawable/shape_edittext"
                         android:hint="请输入密码"
+                        android:inputType="textPassword"
                         android:paddingLeft="@dimen/zc_margin" >
                     </EditText>
 
@@ -186,8 +187,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/login_delete"
-                             />
+                            android:background="@drawable/login_delete" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -205,7 +205,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/zc_margin_top"
-                android:gravity="center_horizontal" >
+                android:gravity="center"  >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -217,8 +217,8 @@
                     android:textSize="@dimen/textbig" />
 
                 <RelativeLayout
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <EditText
@@ -228,6 +228,7 @@
                         android:layout_marginRight="@dimen/zc_margin"
                         android:background="@drawable/shape_edittext"
                         android:hint="请确认密码"
+                        android:inputType="textPassword"
                         android:paddingLeft="@dimen/zc_margin" >
                     </EditText>
 
@@ -237,14 +238,13 @@
                         android:layout_height="fill_parent"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/zc_margin_top2"
-                        android:visibility="gone"
-                        android:gravity="center_vertical" >
+                        android:gravity="center_vertical"
+                        android:visibility="gone" >
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/login_delete"
-                           />
+                            android:background="@drawable/login_delete" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -262,7 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/zc_margin_top"
-                android:gravity="center_horizontal" >
+                android:gravity="center"  >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -275,8 +275,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_jy_type"
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <RelativeLayout
@@ -289,8 +289,8 @@
                             android:id="@+id/tv_jy_type"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:gravity="center_vertical"
                             android:layout_marginLeft="@dimen/textmids"
+                            android:gravity="center_vertical"
                             android:maxLength="8"
                             android:singleLine="true"
                             android:text="上海"

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -33,9 +34,12 @@ import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.AddressManagerAdapter;
+import com.example.zf_pad.aadpter.ChooseAdressAdapter;
 import com.example.zf_pad.entity.AdressEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -59,6 +63,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private CheckBox item_cb;
 	private int invoice_type = 0;
 	private String comment, invoice_info;
+	private ScrollViewWithListView sclist;
+	private ChooseAdressAdapter myAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +89,24 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		tv_totle.setText("Êµ¸¶£º£¤ " + pirce);
 		System.out.println("=paychannelId==" + paychannelId);
 		getData1();
+	
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
+		sclist = (ScrollViewWithListView)findViewById(R.id.pos_lv1);
+		myAdapter = new ChooseAdressAdapter(this, myList);
+		sclist.setAdapter(myAdapter);
+		sclist.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+					long arg3) {
+				addressId=myList.get(position).getId();
+				myAdapter.chang();
+				myList.get(position).setIscheck(true);
+				myAdapter.notifyDataSetChanged();
+			}
+		});
 		add = (ImageView) findViewById(R.id.add);
 		reduce = (ImageView) findViewById(R.id.reduce);
 		reduce.setOnClickListener(this);
@@ -216,28 +236,17 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 														new TypeToken<List<AdressEntity>>() {
 														}.getType());
 
-										for (int i = 0; i < moreList.size(); i++) {
-											if (moreList.get(i).getIsDefault() == 1) {
-												// tv_name,tv_tel,tv_adresss;
-												/*
-												 * addressId=moreList.get(i).getId
-												 * ();
-												 * tv_adress.setText("æ”¶ä»¶åœ°å€ ï¼? "
-												 * +
-												 * moreList.get(i).getAddress())
-												 * ; tv_sjr.setText("æ”¶ä»¶äº? ï¼? "+
-												 * moreList
-												 * .get(i).getReceiver());
-												 * tv_tel.setText(
-												 * moreList.get(i
-												 * ).getMoblephone());
-												 */
-											}
-										}
+										for(int i =0;i<moreList.size();i++){
+		 									if(moreList.get(i).getIsDefault()==1) {
+		 										//tv_name,tv_tel,tv_adresss;
+		 										addressId=moreList.get(i).getId();
+		 										
+		 									}
+		 								}
 
-										// myList.addAll(moreList);
-										// handler.sendEmptyMessage(0);
-
+										 myList.addAll(moreList);
+										
+										myAdapter.notifyDataSetChanged();
 									} else {
 										code = jsonobject.getString("message");
 										Toast.makeText(getApplicationContext(),
@@ -270,8 +279,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 		case R.id.btn_pay:
 			confirmGood();
-			Intent i1 = new Intent(GoodConfirm.this, PayFromCar.class);
-			startActivity(i1);
+			
 			break;
 		case R.id.add:
 			quantity = Integer.parseInt(buyCountEdit.getText().toString()) + 1;
@@ -289,20 +297,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		}
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == 11) {
-			if (data != null) {
 
-				addressId = data.getIntExtra("id", addressId);
-				tv_adress.setText("æ”¶ä»¶åœ°å€ ï¼? " + data.getStringExtra("adree"));
-				tv_sjr.setText("æ”¶ä»¶äº? ï¼? " + data.getStringExtra("name"));
-				tv_tel.setText(data.getStringExtra("tel"));
-			}
-		}
-	}
 
 	private void confirmGood() {
 		// TODO Auto-generated method stub
@@ -333,24 +328,25 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		invoice_info = et_titel.getText().toString();
 		Log.e("goodId=" + goodId + "paychannelId=" + paychannelId + "quantity="
 				+ quantity + "is_need_invoice=" + is_need_invoice, "ccccccccc");
-		API.GOODCONFIRM(GoodConfirm.this, 80, goodId, paychannelId, quantity,
-				113, "222", is_need_invoice, invoice_type, "111",
-
-				new HttpCallback(GoodConfirm.this) {
+		API.GOODCONFIRM(GoodConfirm.this,80,goodId,paychannelId,
+				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
+        		
+				
+                new HttpCallback  (GoodConfirm.this) {
 
 					@Override
 					public void onSuccess(Object data) {
-						Toast.makeText(getApplicationContext(), "´´½¨¶©µ¥³É¹¦", 1000)
-								.show();
-
+						Intent i1 = new Intent(GoodConfirm.this, PayFromCar.class);
+						startActivity(i1);
+					 
 					}
 
 					@Override
 					public TypeToken getTypeToken() {
 						// TODO Auto-generated method stub
-						return null;
+						return  null;
 					}
-				});
+                });
 
 	}
 }

@@ -108,13 +108,13 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
-                        android:layout_height="@dimen/ddheight1" >
+                        
+                        android:layout_height="wrap_content" >
 
                         <com.example.zf_pad.util.ScrollViewWithListView
                             android:id="@+id/pos_lv1"
                             android:layout_width="fill_parent"
-                            android:layout_height="@dimen/ddheight"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/textmid"
                             android:divider="@null" >
                         </com.example.zf_pad.util.ScrollViewWithListView>
@@ -131,6 +131,7 @@
                             android:layout_alignParentRight="true"
                             android:background="#FF6624"
                             android:text="地址管理"
+                                                        android:textSize="@dimen/textmid"
                             android:textColor="#ffffff" />
 
                         <Button
@@ -141,7 +142,8 @@
                             android:layout_marginRight="@dimen/textbig"
                             android:layout_toLeftOf="@+id/button1"
                             android:background="#FF6624"
-                            android:text="地址管理"
+                            android:text="新增地址"
+                            android:textSize="@dimen/textmid"
                             android:textColor="#ffffff" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -473,7 +475,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginRight="18dp"
                         android:layout_marginTop="8dp"
-                        android:text="发票类型"
+                        android:text="发票抬头"
                         android:textColor="#292929"
                         android:textSize="@dimen/textbig" />
 
@@ -545,6 +547,7 @@
                             android:layout_marginRight="7dp"
                             android:background="@drawable/normal_button_selector"
                             android:text="结算"
+                            android:textSize="@dimen/textmid"
                             android:textColor="@color/ffffff" />
                     </LinearLayout>
                 </LinearLayout>
