@@ -44,7 +44,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private LinearLayout login_linear_deletename, login_linear_deletepass,zhuche_ll,
 			login_linear_login, msg;
 	private String sign, pass1, usename, passsword;
-	private SharedPreferences mySharedPreferences;
+	public static SharedPreferences mySharedPreferences;
 	private Editor editor;
 	private Boolean isFirst;
 	private String sessionId;

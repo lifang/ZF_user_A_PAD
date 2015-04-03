@@ -16,10 +16,12 @@ import android.widget.TextView;
 
 public class mine_MyInfo extends Fragment implements OnClickListener{
 	private View view;
-	private TextView tv_score,tv_manageradress,tv_info;
+	private TextView tv_score,tv_manageradress,tv_info,tv_safe;
 	private Mine_score score;
 	private mine_Address address;
 	private Mine_baseinfo info;
+	private Mine_chgpaw chgpaw;
+	private FragmentTransaction transaction ;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,24 +57,29 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 	}
 	
 	private void init() {
+		tv_safe=(TextView) view.findViewById(R.id.tv_safe);
 		tv_score=(TextView) view.findViewById(R.id.tv_score);
 		tv_manageradress=(TextView) view.findViewById(R.id.tv_manageradress);
 		tv_info=(TextView) view.findViewById(R.id.tv_info);
 		tv_score.setOnClickListener(this);
 		tv_manageradress.setOnClickListener(this);
 		tv_info.setOnClickListener(this);
+		tv_safe.setOnClickListener(this);
+		transaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
 	}
 	@Override
 	public void onDestroyView() {
 		try {
-		FragmentTransaction transaction = getActivity()
-				.getSupportFragmentManager().beginTransaction();
+		
 		if (address != null)
 			transaction.remove(address);
 		if (score != null)
 			transaction.remove(score);
 		if (info != null)
 			transaction.remove(info);
+		if(chgpaw!=null)
+			transaction.remove(chgpaw);
 		transaction.commit();
 		} catch (Exception e) {
 		}
@@ -86,6 +93,8 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 				score = new Mine_score();
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.fm, score).commit();
+			//mine_Address.ll_address.setVisibility(View.GONE);
+				
 			break;
 		case R.id.tv_manageradress:
 			if(address==null)
@@ -98,6 +107,12 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 				info=new Mine_baseinfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, info).commit();
+			break;
+		case R.id.tv_safe:
+			if(chgpaw==null)
+				chgpaw=new Mine_chgpaw();
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fm, chgpaw).commit();
 			break;
 		default:
 			break;

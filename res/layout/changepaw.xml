@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    <TableLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
+    android:layout_marginLeft="26dp">
+    <TableRow 
+        >
+   <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="原始密码"
+    android:textColor="#887C6B"
+    android:textSize="20sp"/>
+   <EditText 
+       android:id="@+id/et_oldpaw"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:background="@drawable/sc_edit"
+    android:layout_marginLeft="10dp"/>    
+   </TableRow> 
+   <TableRow android:layout_marginTop="40dp">
+   <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="新密码"
+    android:textColor="#887C6B"
+    android:layout_gravity="center_vertical"
+    android:textSize="20sp"/>
+   <EditText 
+       android:id="@+id/et_newpaw"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:background="@drawable/sc_edit"
+    android:layout_marginLeft="10dp"
+    android:layout_gravity="center_vertical"/>    
+   </TableRow> 
+      <TableRow android:layout_marginTop="40dp">
+   <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="确认密码"
+    android:textColor="#887C6B"
+    android:layout_gravity="center_vertical"
+    android:textSize="20sp"/>
+   <EditText 
+       android:id="@+id/et_confirmpaw"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:background="@drawable/sc_edit"
+    android:layout_marginLeft="10dp"
+    android:layout_gravity="center_vertical"/>    
+   </TableRow>
+      <TableRow android:layout_marginTop="40dp">
+   <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"/>
+   <Button 
+    android:id="@+id/btn_save"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FF5A10"
+    android:layout_marginLeft="10dp"
+    android:text="保      存"
+    android:textColor="#FFE9C1"
+    android:textSize="22sp"
+    android:gravity="center"
+    android:layout_gravity="center_vertical"/>    
+   </TableRow>
+    </TableLayout>
+    
+</LinearLayout>

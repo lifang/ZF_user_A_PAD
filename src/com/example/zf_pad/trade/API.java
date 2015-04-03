@@ -32,11 +32,18 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 public class API {
+
 	static Gson gson = new Gson();
+
+
+
 	public static final String SCHEMA = "http://";
 	public static final String HOST = "114.215.149.242:18080";
 	// public static final String HOST = "192.168.1.101:8080";
-
+	public static String GET_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/getOne/";
+	// change userinfo
+	public static String CHANGE_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/update/";
+	public static String CHANGE_PAW=SCHEMA + HOST + "/ZFMerchant/api/customers/updatePassword";
 	// selection terminal list
 	public static final String TERMINAL_LIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/trade/record/getTerminals/%d";
@@ -300,6 +307,7 @@ public class API {
 	}
 
 	public static void resubmitCancel(Context context, int recordId,
+
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
@@ -637,6 +645,41 @@ public class API {
 		}
 		new HttpRequest(context, callback).post(Config.POSLIST, params);
 
+	}
+	public static void getUserinfo(
+			Context context,
+			
+			HttpCallback callback){
+		GET_USERINFO=GET_USERINFO+80;
+		new HttpRequest(context, callback).post(GET_USERINFO);
+	}
+	public static void changeuserinfo(
+			Context context,
+			int id,
+			String name,
+			String phone,
+			String email,
+			int cityId,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("name", name);
+		params.put("phone", phone);
+		params.put("email", email);
+		params.put("cityId", cityId);
+		new HttpRequest(context, callback).post(CHANGE_USERINFO, params);
+	}
+	public static void changepaw(
+			Context context,
+			int id,
+			String passwordOld,
+			String password,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("passwordOld", passwordOld);
+		params.put("password", password);
+		new HttpRequest(context, callback).post(CHANGE_PAW, params);
 	}
 
 	public static void submitApply(Context context, Map<String, Object> params,
