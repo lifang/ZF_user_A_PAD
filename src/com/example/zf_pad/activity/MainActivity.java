@@ -366,7 +366,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, f_wdxx).commit();
 			break;
 		case R.id.main_rl_my:
-			//if(LoginActivity.islogin){
+			if(LoginActivity.islogin){
 				changTabBg();
 				im_wd.setBackgroundResource(R.drawable.mine);
 				textwd.setTextColor(getResources().getColor(R.color.o));
@@ -375,10 +375,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 				getSupportFragmentManager().beginTransaction()
 						.replace(R.id.m_fragment, m_my).commit();
-			//}
-			//else{
-			//	Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
-			//}
+			}
+			else{
+				Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
+			}
 			break;
 		case R.id.set:
 			showSet();

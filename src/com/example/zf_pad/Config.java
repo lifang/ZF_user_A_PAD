@@ -61,6 +61,7 @@ public class Config {
 	public static final String FINDPASSGETCODE = PATHS + "user/sendPhoneVerificationCodeFind";
 	public static final String ORDERCANL = PATHS + "order/cancelMyOrder";
 	public static final String ZDORDER = PATHS + "order/lease";
+	public static final String MERCHANTINFO=PATHS + "merchant/getOne/";
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<tDates> tDates = new ArrayList<tDates>();

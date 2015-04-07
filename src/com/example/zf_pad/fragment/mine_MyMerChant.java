@@ -40,6 +40,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Toast;
@@ -54,6 +56,8 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	public static Handler myHandler;
 	private Button btn_creat;
 	private int[] id;
+	public static boolean isFromItem=false;
+	private int customerId=MyApplication.NewUser.getId();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,7 +77,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		try {
 			view = inflater.inflate(R.layout.f_mine_mymer, container, false);
 			init();
-			getData();
+			
 		} catch (InflateException e) {
 		
 		}
@@ -83,6 +87,10 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		if(datasho.size()!=0){
+			datasho.clear();
+		}
+		getData();
 		myHandler=new Handler(){
 			public void handleMessage(android.os.Message msg) {
 				switch (msg.what) {
@@ -94,7 +102,9 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 					delect();
 					break;
 				case 2:
+					isFromItem=true;
 					Intent intent=new Intent(getActivity(),CreatMerchant.class);
+					intent.putExtra("position", id[ShopAdapter.pp]);
 					startActivity(intent);
 					break;
 				default:
@@ -169,7 +179,8 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		
 	}
 	private void getData() {
-		MyApplication.getInstance().getClient().post(API.GET_MERCHANTLIST+Constants.TEST_CUSTOMER+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
+		
+		MyApplication.getInstance().getClient().post(API.GET_MERCHANTLIST+customerId+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -230,7 +241,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
-				
+				Log.e("url", API.GET_MERCHANTLIST+Constants.TEST_CUSTOMER+"/"+page+"/"+rows);
 			}
 		});
 		}

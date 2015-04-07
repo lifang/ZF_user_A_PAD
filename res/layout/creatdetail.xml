@@ -28,7 +28,7 @@
        android:id="@+id/et_shopname"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="地域+经营商铺名+行业"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/>
         <TextView 
@@ -42,7 +42,7 @@
        android:id="@+id/et_name"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="张大宝"
+   
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/> 
     </TableRow>
@@ -78,7 +78,7 @@
        android:id="@+id/et_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="12345678765435678"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/>
         <TextView 
@@ -92,7 +92,7 @@
        android:id="@+id/et_license_code"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="12345673278"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/> 
     </TableRow>
@@ -109,7 +109,7 @@
        android:id="@+id/et_tax_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="12376543"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/>
         <TextView 
@@ -123,7 +123,7 @@
        android:id="@+id/et_certificate_no"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="1234378"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/> 
     </TableRow>
@@ -176,7 +176,7 @@
        android:id="@+id/et_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="中国银行"
+   
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="45dp"/>
         <TextView 
@@ -190,7 +190,7 @@
        android:id="@+id/et_licencenum_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:hint="12376543"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/> 
     </TableRow>    

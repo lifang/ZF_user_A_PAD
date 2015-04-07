@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import com.example.zf_pad.fragment.mine_Address;
 import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 
 import com.example.zf_pad.posport;
 
@@ -161,10 +162,9 @@ public class API {
 	// Apply Opening Progress Query
 	public static final String APPLY_PROGRESS = SCHEMA + HOST
 			+ "/ZFMerchant/api/terminal/openStatus";
-
 	// Get merchant list
-	public static String GET_MERCHANTLIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/merchant/findList/";
+		public static String GET_MERCHANTLIST = SCHEMA + HOST
+				+ "/ZFMerchant/api/merchant/getList/";
 	// Add address
 	public static final String Add_ress = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/insertAddress/";
@@ -190,7 +190,9 @@ public class API {
 	// delect merchant
 	 	public static String DELECT_MERCHANTLIST=SCHEMA + HOST
 	 			+"/ZFMerchant/api/merchant/delete/";
-	 	
+	// update merchant
+	 	public static String UPDATE_MERCHANT=SCHEMA + HOST
+	 			+"/ZFMerchant/api/merchant/update/";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -703,5 +705,84 @@ public class API {
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
 	}
-
+	public static void insertmerchant(
+			Context context,
+			String title,
+			String legalPersonName,
+			String legalPersonCardId,
+			String businessLicenseNo,
+			String taxRegisteredNo,
+			String organizationCodeNo,
+			int cityId,
+			String accountBankName,
+			String bankOpenAccount,
+			String cardIdFrontPhotoPath,
+			String cardIdBackPhotoPath,
+			String bodyPhotoPath,
+			String licenseNoPicPath,
+			String taxNoPicPath,
+			String orgCodeNoPicPath,
+			String accountPicPath,
+			int customerId,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", title);
+		params.put("legalPersonName", legalPersonName);
+		params.put("legalPersonCardId", legalPersonCardId);
+		params.put("businessLicenseNo", businessLicenseNo);
+		params.put("taxRegisteredNo", taxRegisteredNo);
+		params.put("organizationCodeNo", organizationCodeNo);
+		params.put("cityId", cityId);
+		params.put("accountBankName", accountBankName);
+		params.put("bankOpenAccount", bankOpenAccount);
+		params.put("cardIdFrontPhotoPath", cardIdFrontPhotoPath);
+		params.put("cardIdBackPhotoPath", cardIdBackPhotoPath);
+		params.put("bodyPhotoPath", bodyPhotoPath);
+		params.put("licenseNoPicPath", licenseNoPicPath);
+		params.put("taxNoPicPath", taxNoPicPath);
+		params.put("orgCodeNoPicPath", orgCodeNoPicPath);
+		params.put("accountPicPath", accountPicPath);
+		params.put("customerId", customerId);
+		new HttpRequest(context, callback).post(CREAT_MERCHANT, params);
+	}
+	public static void updatemerchant(
+			Context context,
+			String title,
+			String legalPersonName,
+			String legalPersonCardId,
+			String businessLicenseNo,
+			String taxRegisteredNo,
+			String organizationCodeNo,
+			int cityId,
+			String accountBankName,
+			String bankOpenAccount,
+			String cardIdFrontPhotoPath,
+			String cardIdBackPhotoPath,
+			String bodyPhotoPath,
+			String licenseNoPicPath,
+			String taxNoPicPath,
+			String orgCodeNoPicPath,
+			String accountPicPath,
+			int id,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", title);
+		params.put("legalPersonName", legalPersonName);
+		params.put("legalPersonCardId", legalPersonCardId);
+		params.put("businessLicenseNo", businessLicenseNo);
+		params.put("taxRegisteredNo", taxRegisteredNo);
+		params.put("organizationCodeNo", organizationCodeNo);
+		params.put("cityId", cityId);
+		params.put("accountBankName", accountBankName);
+		params.put("bankOpenAccount", bankOpenAccount);
+		params.put("cardIdFrontPhotoPath", cardIdFrontPhotoPath);
+		params.put("cardIdBackPhotoPath", cardIdBackPhotoPath);
+		params.put("bodyPhotoPath", bodyPhotoPath);
+		params.put("licenseNoPicPath", licenseNoPicPath);
+		params.put("taxNoPicPath", taxNoPicPath);
+		params.put("orgCodeNoPicPath", orgCodeNoPicPath);
+		params.put("accountPicPath", accountPicPath);
+		params.put("id", id);
+		new HttpRequest(context, callback).post(UPDATE_MERCHANT, params);
+	}
 }
