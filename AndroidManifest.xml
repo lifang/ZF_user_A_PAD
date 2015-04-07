@@ -35,6 +35,20 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+                   <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+
+        <!-- meta-data需要写在application中 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="Vrv5gxzAzSi2QEEvEoKeZ5rH" />
         <activity
             android:name="com.example.zf_pad.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -229,10 +243,12 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.AdressEdit"
+
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
+
         <activity
             android:name="com.example.zf_pad.activity.Exchange"
             android:label="@string/app_name"
@@ -249,6 +265,10 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.MyApplyDetail"
+            android:label="@string/app_name" >
+        </activity>
+               <activity
+            android:name="com.example.zf_pad.activity.LeaseConfirm"
             android:label="@string/app_name" >
         </activity>
     </application>

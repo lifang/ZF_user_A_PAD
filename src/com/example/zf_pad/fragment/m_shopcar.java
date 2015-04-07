@@ -102,7 +102,13 @@ public class m_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 			@Override
 			public void onClick(View v) {
-			
+				MyApplication.getComfirmList().clear();
+				for(Good good:myShopList){
+					if(good.isChecked()){
+						MyApplication.getComfirmList().add(good);
+					}
+				}
+			//MyApplication.setComfirmList(myShopList);
 				Intent i = new Intent(getActivity(), ConfirmOrder.class);
 				startActivity(i);
 			}

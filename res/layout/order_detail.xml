@@ -84,6 +84,7 @@
                         android:layout_height="@dimen/normai_button_height"
                         android:background="@drawable/shape_o"
                         android:text="取消订单"
+                        android:textSize="@dimen/textmid"
                         android:textColor="@color/bgtitle" />
 
                     <Button
@@ -96,6 +97,7 @@
                         android:layout_height="@dimen/normai_button_height"
                         android:background="#FF6727"
                         android:text="付款"
+                        android:textSize="@dimen/textmid"
                         android:textColor="@color/ffffff" />
                 </LinearLayout>
             </LinearLayout>
@@ -210,6 +212,7 @@
                         android:layout_marginRight="24dp"
                         android:background="@drawable/shape_o"
                         android:text="查看终端号"
+                        android:visibility="gone"
                         android:textColor="@color/bgtitle"
                         android:textSize="18sp" />
                 </LinearLayout>

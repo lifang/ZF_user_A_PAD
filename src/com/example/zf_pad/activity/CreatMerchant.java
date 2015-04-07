@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.CityProvinceActivity;
 import com.example.zf_pad.trade.entity.City;
@@ -324,6 +325,14 @@ private void sumbitMerchantInfo() {
 	
 	String accountBankName=et_bank.getText().toString();
 	String bankOpenAccount=et_licencenum_bank.getText().toString();
+	String cardIdFrontPhotoPath=imgPath[0];
+	String cardIdBackPhotoPath =imgPath[1];
+	String bodyPhotoPath=imgPath[2];
+	String licenseNoPicPath=imgPath[3];
+	String taxNoPicPath =imgPath[4];
+	String orgCodeNoPicPath=imgPath[5];
+	String accountPicPath=imgPath[6];
+	int customerId=MyApplication.NewUser.getId();
 }
 
 }

@@ -73,5 +73,7 @@
     <dimen name="normal_width4">600dp</dimen>
      <dimen name="normal_width5">70dp</dimen>
     <dimen name="order_image">86dp</dimen>
+    <dimen name="order_image1">86dp</dimen>
+    <dimen name="goodimg">560dp</dimen>
 
 </resources>

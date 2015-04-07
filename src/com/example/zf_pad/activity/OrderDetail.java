@@ -221,20 +221,20 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		switch (status) {
 		case 1:
 			tv_status.setText("未付款");
-			btn_ishow.setVisibility(View.VISIBLE);
+			
 			break;
 		case 2:
 			tv_status.setText("已付款");
-
+			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 3:
 			tv_status.setText("已发货");
-
+			btn_ishow.setVisibility(View.VISIBLE);
 			bt_pj.setVisibility(View.VISIBLE);
 			break;
 		case 4:
 			tv_status.setText("已评价");
-
+			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 5:
 			tv_status.setText("已取消");
@@ -252,9 +252,6 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
-		case R.id.btn_ishow:
-			Toast.makeText(getApplicationContext(), "请先付款···", 1000).show();
-			break;
 		case R.id.btn_pj:
 			Config.list = ode.get(0).getOrder_goodsList();
 			if (Config.list.size() != 0) {

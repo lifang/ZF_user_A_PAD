@@ -15,6 +15,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ import com.example.zf_pad.fragment.f_good_detail;
 import com.example.zf_pad.fragment.good_detail_apply;
 import com.example.zf_pad.fragment.good_detail_commet;
 import com.example.zf_pad.fragment.good_detail_zd;
+import com.example.zf_pad.popwindow.FactoryPopWindow;
+import com.example.zf_pad.popwindow.SetPopWindow;
 import com.example.zf_pad.trade.entity.GriviewEntity;
 import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.ScrollViewWithGView;
@@ -136,13 +139,14 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		}
 	};
 	private Intent i;
+	private LinearLayout ll_Factory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-		paychannelId = 3;
+	
 		id = getIntent().getIntExtra("id", 0);
 		innitView();
 		getdata();
@@ -150,6 +154,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	}
 
 	private void innitView() {
+		
 		setting_btn_clear = (Button) findViewById(R.id.setting_btn_clear);
 		setting_btn_clear.setOnClickListener(this);
 		setting_btn_clear1 = (Button) findViewById(R.id.setting_btn_clear1);
@@ -204,6 +209,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.mer_detail:
+			FactoryPopWindow fact = new FactoryPopWindow(this,factoryEntity.getLogo_file_path(),factoryEntity.getName(),factoryEntity.getDescription());
+			fact.showAtLocation(findViewById(R.id.main), Gravity.CENTER
+					| Gravity.CENTER, 0, 0);
+			break;
 		case R.id.tv_bug:
 			islea = false;
 			setting_btn_clear1.setClickable(true);
@@ -267,6 +277,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.search2:
+			Config.shopcar=true;
 			Intent i = new Intent(GoodDeatail.this, MainActivity.class);
 			startActivity(i);
 			break;
@@ -352,6 +363,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										buttonAdapter = new ButtonGridviewAdapter(
 												GoodDeatail.this, User_button,
 												0);
+										
 										gview1.setAdapter(buttonAdapter);
 										gview1.setOnItemClickListener(new OnItemClickListener() {
 
@@ -393,6 +405,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										String res2 = jsonobject
 												.getString("paychannelinfo");
 										jsonobject = new JSONObject(res2);
+										 paychannelId=jsonobject.getInt("id");
 										Config.celist = gson.fromJson(
 												jsonobject
 														.getString("standard_rates"),
@@ -425,9 +438,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												GoodDeatail.this, celist);
 										// pos_lv1.setAdapter(lvAdapter);
 
-										Toast.makeText(GoodDeatail.this,
-												piclist.size() + "", 1000)
-												.show();
+										
 										for (int i = 0; i < piclist.size(); i++) {
 											ma.add(piclist.get(i));
 										}
@@ -450,13 +461,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 											for (int i = 0; i < arelist.size(); i++) {
 												a = a + arelist.get(i);
 											}
-											Toast.makeText(GoodDeatail.this,
-													a + "", 1000).show();
+											
 											Config.suportare = a;
 										} else {
 											Config.suportare = "不支持";
-											Toast.makeText(GoodDeatail.this,
-													"不支持", 1000).show();
+											
 										}
 										if (jsonobject
 												.getBoolean("support_cancel_flag")) {
@@ -472,9 +481,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										Config.celist = celist2;
 										Config.tv_sqkt = jsonobject
 												.getString("opening_requirement");
-										Toast.makeText(GoodDeatail.this,
-												"222" + Config.tv_sqkt, 1000)
-												.show();
+										ll_Factory = (LinearLayout)findViewById(R.id.mer_detail);
+										ll_Factory.setOnClickListener(GoodDeatail.this);
 										handler.sendEmptyMessage(0);
 									} else {
 										Toast.makeText(
@@ -503,7 +511,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 		RequestParams params = new RequestParams();
 		params.put("customerId", 80);
-		params.put("goodId", 1);
+		params.put("goodId", gfe.getId());
 		// paychannelId
 		params.put("paychannelId", paychannelId);
 		params.setUseJsonStreamer(true);
@@ -755,13 +763,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 											for (int i = 0; i < arelist.size(); i++) {
 												a = a + arelist.get(i);
 											}
-											Toast.makeText(GoodDeatail.this,
-													a + "", 1000).show();
+						
 											Config.suportare = a;
 										} else {
 											Config.suportare = "不支持";
-											Toast.makeText(GoodDeatail.this,
-													"不支持", 1000).show();
+										
 										}
 										if (jsonobject
 												.getBoolean("support_cancel_flag")) {

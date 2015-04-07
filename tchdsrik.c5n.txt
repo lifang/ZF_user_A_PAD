@@ -1,0 +1,72 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	AndroidManifest.xml
+	src/com/example/zf_pad/activity/MainActivity.java
+	src/com/example/zf_pad/trade/API.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 4 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   AndroidManifest.xml
+#	modified:   gen/cn/trinea/android/common/R.java
+#	modified:   gen/com/example/zf_pad/R.java
+#	new file:   res/drawable-ldpi/my_choose.png
+#	new file:   res/drawable/tv_bg.xml
+#	new file:   res/layout/activity_app_detail.xml
+#	new file:   res/layout/choose_adress_item.xml
+#	modified:   res/layout/findpass.xml
+#	modified:   res/layout/fragment_trade_flow.xml
+#	modified:   res/layout/good_comfirm.xml
+#	new file:   res/layout/good_comfirm1.xml
+#	modified:   res/layout/good_detail.xml
+#	new file:   res/layout/my_apply_detail_item_choose.xml
+#	new file:   res/layout/my_apply_detail_item_edit.xml
+#	new file:   res/layout/my_apply_detail_item_upload.xml
+#	new file:   res/layout/my_apply_detail_item_view.xml
+#	modified:   res/layout/order_comfirm.xml
+#	modified:   res/layout/order_detail.xml
+#	new file:   res/layout/popwin_factory.xml
+#	modified:   res/layout/popwin_login.xml
+#	modified:   res/layout/register.xml
+#	new file:   res/layout/shoporderitem.xml
+#	modified:   res/layout/sopping_caritem.xml
+#	modified:   res/values/strings.xml
+#	modified:   src/com/example/zf_pad/Config.java
+#	modified:   src/com/example/zf_pad/MyApplication.java
+#	new file:   src/com/example/zf_pad/aadpter/ChooseAdressAdapter.java
+#	modified:   src/com/example/zf_pad/aadpter/ShopcarAdapter.java
+#	new file:   src/com/example/zf_pad/aadpter/ShopcarOrderAdapter.java
+#	modified:   src/com/example/zf_pad/activity/ConfirmOrder.java
+#	modified:   src/com/example/zf_pad/activity/GoodConfirm.java
+#	modified:   src/com/example/zf_pad/activity/GoodDeatail.java
+#	modified:   src/com/example/zf_pad/activity/LeaseConfirm.java
+#	modified:   src/com/example/zf_pad/activity/MainActivity.java
+#	modified:   src/com/example/zf_pad/activity/OrderDetail.java
+#	new file:   src/com/example/zf_pad/activity/TerminalManagerActivity.java
+#	modified:   src/com/example/zf_pad/entity/AdressEntity.java
+#	modified:   src/com/example/zf_pad/fragment/m_shopcar.java
+#	new file:   src/com/example/zf_pad/popwindow/FactoryPopWindow.java
+#	modified:   src/com/example/zf_pad/trade/API.java
+#	new file:   src/com/example/zf_pad/trade/MyApplyDetail.java
+#	modified:   src/com/example/zf_pad/trade/common/CommonUtil.java
+#	new file:   src/com/example/zf_pad/trade/entity/MerchantForApply.java
+#	new file:   src/com/example/zf_pad/trade/entity/MyApplyCustomerDetail.java
+#	new file:   src/com/example/zf_pad/trade/entity/MyApplyMaterial.java
+#	new file:   src/com/example/zf_pad/trade/entity/MyApplyTerminalDetail.java
+#	new file:   src/com/example/zf_pad/trade/entity/My_ApplyDetail.java
+#
+

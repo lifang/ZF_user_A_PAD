@@ -2,20 +2,39 @@ package com.example.zf_pad;
 
  
  
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.GeofenceClient;
+import com.baidu.location.LocationClient;
+
+import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.entity.User;
 import com.example.zf_pad.entity.UserEntity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
+import android.os.Vibrator;
+import android.util.Log;
+import android.widget.TextView;
  
  
  
 
 public class MyApplication extends Application{
-	
+	public TextView mLocationResult,logMsg;
 	private static MyApplication  mInstance=null;
+	public LocationClient mLocationClient;
+	public GeofenceClient mGeofenceClient;
+	public MyLocationListener mMyLocationListener;
+	public Vibrator mVibrator;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
 	 * 验证信息token
@@ -24,6 +43,7 @@ public class MyApplication extends Application{
 	private static int notifyId=0;
 	private static Boolean isSelect=false;
 	private static int CITYID=1;
+	private List<City> mCities = new ArrayList<City>();
 	public static int getCITYID() {
 		return CITYID;
 	}
@@ -55,7 +75,14 @@ public class MyApplication extends Application{
 		MyApplication.currentUser = currentUser;
 	}
 
-
+	public static List<Good> comfirmList=new LinkedList<Good>();
+	
+	public static List<Good> getComfirmList() {
+		return comfirmList;
+	}
+	public static void setComfirmList(List<Good> comfirmList) {
+		MyApplication.comfirmList = comfirmList;
+	}
 	private static String token="";
 	AsyncHttpClient client = new AsyncHttpClient(); //  
 	
@@ -101,7 +128,14 @@ public class MyApplication extends Application{
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		mInstance = this;		 
+		mInstance = this;
+		mLocationClient = new LocationClient(this.getApplicationContext());
+		mMyLocationListener = new MyLocationListener();
+		mLocationClient.registerLocationListener(mMyLocationListener);
+		mGeofenceClient = new GeofenceClient(getApplicationContext());
+		
+		
+		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
 //		initImageLoader(getApplicationContext());
 //		SDKInitializer.initialize(this);
 //		  PackageManager packageManager = getPackageManager();
@@ -128,7 +162,7 @@ public class MyApplication extends Application{
 	public static MyApplication getInstance() {
 		return mInstance;
 	}
-	public static UserEntity NewUser = new UserEntity();
+	public static UserEntity NewUser = null;
 	public static UserEntity getNewUser() {
 		return NewUser;
 	}
@@ -138,5 +172,72 @@ public class MyApplication extends Application{
 
 
 	public static User currentUser = new User();
- 
+	public class MyLocationListener implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			//Receive Location 
+			StringBuffer sb = new StringBuffer(256);
+//			sb.append("time : ");
+//			sb.append(location.getTime());
+//			sb.append("\nerror code : ");
+//			sb.append(location.getLocType());
+//			sb.append("\nlatitude : ");
+//			sb.append(location.getLatitude());
+//			sb.append("\nlontitude : ");
+//			sb.append(location.getLongitude());
+//			sb.append("\nradius : ");
+//			sb.append(location.getRadius());
+//			if (location.getLocType() == BDLocation.TypeGpsLocation){
+//				sb.append("\nspeed : ");
+//				sb.append(location.getSpeed());
+//				sb.append("\nsatellite : ");
+//				sb.append(location.getSatelliteNumber());
+//				sb.append("\ndirection : ");
+//				sb.append("\naddr : ");
+//				sb.append(location.getAddrStr());
+//				sb.append(location.getDirection());
+//			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
+//				sb.append("\naddr : ");
+//				sb.append(location.getAddrStr());
+//				//运营商信息
+//				sb.append("\noperationers : ");
+//				sb.append(location.getOperators());
+//			}
+			sb.append(location.getAddrStr());
+			
+			logMsg(location.getCity());
+	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
+            for (Province province : provinces) {
+                List<City> cities = province.getCities();
+              
+                mCities.addAll(cities);
+                 
+            }
+			 for(City cc:mCities ){
+				 if(location.getCity()!=null&&!location.getCity().equals("")){
+					 if(cc.getName().endsWith(location.getCity())){
+						 System.out.println("当前城市 ID----"+cc.getId());
+						 setCITYID(cc.getId());
+					 }
+				 } 
+			 }
+			 
+			Log.i("BaiduLocationApiDem", sb.toString());
+		}
+	}
+	/**
+	 * 显示请求字符串
+	 * @param str
+	 */
+	public void logMsg(String str) {
+		try {
+			if (mLocationResult != null)
+				mLocationResult.setText(str);
+			mLocationClient.stop();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

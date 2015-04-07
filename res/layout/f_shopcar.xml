@@ -127,6 +127,7 @@
             android:layout_marginRight="7dp"
             android:background="@drawable/normal_button_selector"
             android:text="结算"
+            android:textSize="@dimen/textmid"
             android:textColor="@color/ffffff" />
     </LinearLayout>
 

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#F8F8F8"
+    android:id="@+id/main"
     android:orientation="vertical" >
 <ScrollView 
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+  android:fillViewport="true"
+>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -18,12 +21,12 @@
             android:layout_gravity="center_vertical"
             android:background="@color/bgtitle"
             android:orientation="horizontal"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp" >
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad" >
 
             <LinearLayout
                 android:id="@+id/titleback_linear_back"
-                android:layout_width="40dp"
+                android:layout_width="@dimen/normai_button_height"
                 android:layout_height="@dimen/titleback_height"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
@@ -59,20 +62,21 @@
         </LinearLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="560dp"
-                        android:layout_height="560dp"
+                        android:layout_width="@dimen/goodimg"
+                        android:layout_height="@dimen/normal_width4"
                         android:orientation="vertical" >
 <RelativeLayout
                 android:id="@+id/rl_imgs"
@@ -168,6 +172,7 @@
                                 android:layout_marginLeft="@dimen/margin_left2"
                                 android:layout_marginRight="@dimen/margin_left2"
                                 android:gravity="center"
+                                android:id="@+id/mer_detail"
                                 android:orientation="horizontal" >
 
                                 <TextView
@@ -417,17 +422,16 @@
 
                         <LinearLayout
                             android:layout_width="fill_parent"
-                            android:layout_height="56dp"
-                            android:background="@color/ffffff"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginTop="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp" >
+                            android:layout_marginTop="@dimen/zc_margin_top"
+                            android:paddingLeft="@dimen/zc_margin_top"
+                            android:paddingRight="@dimen/zc_margin_top" >
 
                             <RelativeLayout
                                 android:id="@+id/setting_rl_exit"
                                 android:layout_width="wrap_content"
-                                android:layout_height="fill_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical" >
 
                                 <Button
@@ -435,17 +439,18 @@
                                     android:layout_width="184dp"
                                     android:layout_height="42dp"
                                     android:layout_centerInParent="true"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="@dimen/zc_margin_top"
+                                    android:layout_marginRight="@dimen/zc_margin_top"
                                     android:background="#FCA103"
                                     android:text="加入购物车"
+                                    android:textSize="@dimen/textmid"
                                     android:textColor="#ffffff" />
                             </RelativeLayout>
 
                             <RelativeLayout
                                 android:id="@+id/setting_rl_exit2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="36dp"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical" >
 
                                 <Button
@@ -457,6 +462,7 @@
                                     android:layout_marginRight="15dp"
                                     android:background="#FF6624"
                                     android:text="立即购买"
+                                      android:textSize="@dimen/textmid"
                                     android:textColor="@color/fffefe" />
                             </RelativeLayout>
                         </LinearLayout>
@@ -466,7 +472,7 @@
 <RelativeLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_weight="1">
+    android:layout_alignParentBottom="true"/>
                      <View 
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
@@ -475,12 +481,12 @@
      <LinearLayout
          android:id="@+id/ll_buttom"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="@dimen/titilepad"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingLeft="64dp"
+                    android:paddingLeft="@dimen/titilepad"
                     android:layout_alignParentBottom="true"
-                    android:paddingRight="64dp" >
+                    android:paddingRight="@dimen/titilepad" >
 
                     <TextView
                         android:id="@+id/tv_ms"
@@ -494,7 +500,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/zc_margin_top1"
                         android:background="#DAD8D8" />
 
                     <TextView
@@ -509,7 +515,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/zc_margin_top1"
                         android:background="#DAD8D8" />
 
                     <TextView
@@ -524,7 +530,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/zc_margin_top1"
                         android:background="#DAD8D8" />
 
                     <TextView
@@ -539,7 +545,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/zc_margin_top1"
                         android:background="#DAD8D8" />
 
                     <TextView
@@ -554,7 +560,11 @@
                 </LinearLayout>
 </RelativeLayout>
                
-            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+</RelativeLayout>
     </LinearLayout>
 </ScrollView>
 </LinearLayout>
