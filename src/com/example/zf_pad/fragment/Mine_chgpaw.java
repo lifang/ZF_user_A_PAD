@@ -72,26 +72,6 @@ public void onStart() {
 	});
 }
 protected void changepaw() {
-/*String url="http://114.215.149.242:18080/ZFMerchant/api/customers/updatePassword/";
-RequestParams params=new RequestParams();
-params.put("id", id);
-params.put("passwordOld", StringUtil.Md5(et_oldpaw.getText().toString()));
-params.put("password", StringUtil.Md5(et_newpaw.getText().toString()));
-	MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
-		
-		@Override
-		public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-			// TODO Auto-generated method stub
-			Toast.makeText(getActivity(), "ÐÞ¸ÄÃÜÂë³É¹¦", Toast.LENGTH_SHORT).show();
-		}
-		
-		@Override
-		public void onFailure(int statusCode, Header[] headers,
-				byte[] responseBody, Throwable error) {
-			// TODO Auto-generated method stub
-			
-		}
-	});*/
 	API.changepaw(getActivity(), id, StringUtil.Md5(et_oldpaw.getText().toString()), 
 			StringUtil.Md5(et_newpaw.getText().toString()), 
 			new HttpCallback(getActivity()) {

@@ -34,6 +34,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,7 +107,6 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	protected void delect() {
 		int[] ids=new int[1];
 		ids[0]=id[ShopAdapter.pp];
-		String url="http://114.215.149.242:18080/ZFMerchant/api/merchant/delete";
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
 		try {
@@ -115,7 +115,8 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
+		params.setUseJsonStreamer(true);
+		MyApplication.getInstance().getClient().post(API.DELECT_MERCHANTLIST, params, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -133,7 +134,24 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				String responseMsg = new String(responseBody)
 				.toString();
-				
+				JSONObject jsonobject = null;
+				int code = 0;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getInt("code");
+					if(code==1){
+						datasho.remove(ShopAdapter.pp);
+						shoaadapter.notifyDataSetChanged();
+						Log.e("size", datasho.size()+"");
+					}
+					else{
+						Toast.makeText(getActivity(), jsonobject.getString("message"),
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			@Override
@@ -151,9 +169,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		
 	}
 	private void getData() {
-		String url="http://114.215.149.242:18080/ZFMerchant/api/merchant/getList/";
-		url=url+Constants.TEST_CUSTOMER+"/"+page+"/"+rows;
-		MyApplication.getInstance().getClient().post(url, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient().post(API.GET_MERCHANTLIST+Constants.TEST_CUSTOMER+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -171,6 +187,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				String responseMsg = new String(responseBody)
 				.toString();
+				Log.e("responseMsg", responseMsg);
 				Gson gson = new Gson();
 				
 				JSONObject jsonobject = null;
@@ -216,25 +233,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 				
 			}
 		});
-		/*
-		API.getmerchantlist(getActivity().getBaseContext(), 
-				80, page, rows, new HttpCallback<List<Shopname>>(getActivity()) {
-
-					@Override
-					public void onSuccess(List<Shopname> data) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public TypeToken<List<Shopname>> getTypeToken() {
-						// TODO Auto-generated method stub
-						return new TypeToken<List<Shopname>>() {
-						};
-					}
-				});
-		
-	*/}
+		}
 	private void init() {
 		btn_creat=(Button) view.findViewById(R.id.btn_creat);
 		xxlistview=(XListView) view.findViewById(R.id.list);

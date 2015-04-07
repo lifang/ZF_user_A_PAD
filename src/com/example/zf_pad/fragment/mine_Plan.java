@@ -89,8 +89,7 @@ public class mine_Plan extends Fragment implements OnClickListener{
 			params.put("id", 80);
 			params.put("phone", et_process.getText().toString());
 			params.setUseJsonStreamer(true);
-			String url="http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
-			MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
+			MyApplication.getInstance().getClient().post(API.APPLY_PROGRESS, params, new AsyncHttpResponseHandler() {
 				private Dialog loadingDialog;
 
 				@Override
@@ -206,8 +205,8 @@ public class mine_Plan extends Fragment implements OnClickListener{
 							return new TypeToken<List<ApplySerch>>() {
 							};
 						}
-					});*/
-
+					});
+*/
 						
 
 					

@@ -6,10 +6,15 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import com.example.zf_pad.fragment.mine_Address;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
+import com.google.gson.Gson;
+import com.loopj.android.http.RequestParams;
 
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
@@ -20,7 +25,7 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 public class API {
 
-<<<<<<< HEAD
+
     public static final String SCHEMA = "http://";
     public static final String HOST = "114.215.149.242:18080";
 //    public static final String HOST = "192.168.1.101:8080";
@@ -99,13 +104,15 @@ public class API {
  	public static final String APPLY_PROGRESS = SCHEMA + HOST + "/ZFMerchant/api/terminal/openStatus";
 
  	// Get merchant list
- 	public static String GET_MERCHANTLIST=SCHEMA + HOST+"/ZFMerchant/api/merchant/findList/";
+ 	public static String GET_MERCHANTLIST=SCHEMA + HOST+"/ZFMerchant/api/merchant/getList/";
+ 	// delect merchant
+ 	public static String DELECT_MERCHANTLIST=SCHEMA + HOST+"/ZFMerchant/api/merchant/delete/";
  	// Add address
  	public static final String Add_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/insertAddress/";
  	// update address
  	public static final String update_ress = SCHEMA + HOST + "/ZFMerchant/api/customers/updateAddress/";
  	// get totalscore
- 	public static String total_score = SCHEMA + HOST + "/ZFMerchant/api/customers/getIntegralTotal/";
+ 	public static String total_score = SCHEMA + HOST + "/ZFMerchant/api/customers/getjifen/";
  	// exchange score
  	public static String exchange_score = SCHEMA + HOST + "/ZFMerchant/api/customers/insertIntegralConvert";
 
@@ -117,149 +124,11 @@ public class API {
 	// change userinfo
 	public static String CHANGE_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/update/";
 	public static String CHANGE_PAW=SCHEMA + HOST + "/ZFMerchant/api/customers/updatePassword";
-	public static void getTerminalList(
-			Context context,
-			int customerId,
-=======
-	public static final String SCHEMA = "http://";
-	public static final String HOST = "114.215.149.242:18080";
-	// public static final String HOST = "192.168.1.101:8080";
+	//get addresslist
+	public static String GET_ADRESS=SCHEMA + HOST + "/ZFMerchant/api/customers/getAddressList/";
 
-	// selection terminal list
-	public static final String TERMINAL_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/trade/record/getTerminals/%d";
-	// trade record list
-	public static final String TRADE_RECORD_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
-	// trade record statistic
-	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST
-			+ "/ZFMerchant/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
-	// trade record detail
-	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/trade/record/getTradeRecord/%d/%d";
-
-	// After sale record list
-	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/repair/getAll";
-	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/return/getAll";
-	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/cancels/getAll";
-	public static final String AFTER_SALE_CHANGE_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/change/getAll";
-	public static final String AFTER_SALE_UPDATE_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/update/info/getAll";
-	public static final String AFTER_SALE_LEASE_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/lease/returns/getAll";
-
-	// After sale record detail
-	public static final String AFTER_SALE_MAINTAIN_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/repair/getRepairById";
-	public static final String AFTER_SALE_RETURN_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/return/getReturnById";
-	public static final String AFTER_SALE_CANCEL_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/cancels/getCanCelById";
-	public static final String AFTER_SALE_CHANGE_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/change/getChangeById";
-	public static final String AFTER_SALE_UPDATE_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/update/info/getInfoById";
-	public static final String AFTER_SALE_LEASE_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/lease/returns/getById";
-
-	// After sale record cancel apply
-	public static final String AFTER_SALE_MAINTAIN_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/repair/cancelApply";
-	public static final String AFTER_SALE_RETURN_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/return/cancelApply";
-	public static final String AFTER_SALE_CANCEL_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/cancels/cancelApply";
-	public static final String AFTER_SALE_CHANGE_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/change/cancelApply";
-	public static final String AFTER_SALE_UPDATE_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/update/info/cancelApply";
-	public static final String AFTER_SALE_LEASE_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/lease/returns/cancelApply";
-
-	// After sale resubmit cancel
-	public static final String AFTER_SALE_RESUBMIT_CANCEL = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/cancels/resubmitCancel";
-
-	// After sale add mark
-	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/repair/addMark";
-	public static final String AFTER_SALE_RETURN_ADD_MARK = SCHEMA + HOST
-			+ "/ZFMerchant/api/return/addMark";
-	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/change/addMark";
-	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST
-			+ "/ZFMerchant/api/cs/lease/returns/addMark";
-
-	// Terminal list
-	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/getApplyList";
-	// Channel list
-	public static final String CHANNEL_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/getFactories";
-	// Terminal Add
-	public static final String TERMINAL_ADD = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/addTerminal";
-	// Terminal detail
-	public static final String TERMINAL_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/getApplyDetails";
-
-	// synchronise terminal
-	public static final String TERMINAL_SYNC = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/synchronous";
-	// find pos password
-	public static final String TERMINAL_FIND_POS = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/Encryption";
-
-	// Apply List
-	public static final String APPLY_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/apply/getApplyList";
-	// Apply Detail
-	public static final String APPLY_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/apply/getApplyDetails";
-	// Get the Merchant Detail
-	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST
-			+ "/ZFMerchant/api/apply/getMerchant";
-	// Get the Channel List
-	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/apply/getChannels";
-
-	// upload image url
-	public static final String UPLOAD_IMAGE = SCHEMA + HOST
-			+ "/ZFMerchant/api/comment/upload/tempImage";
-
-	public static final String WNATBUY = SCHEMA + HOST
-			+ "/ZFMerchant/api/paychannel/intention/add";
-
-	// Apply Opening Progress Query
-	public static final String APPLY_PROGRESS = SCHEMA + HOST
-			+ "/ZFMerchant/api/terminal/openStatus";
-
-	// Get merchant list
-	public static String GET_MERCHANTLIST = SCHEMA + HOST
-			+ "/ZFMerchant/api/merchant/findList/";
-	// Add address
-	public static final String Add_ress = SCHEMA + HOST
-			+ "/ZFMerchant/api/customers/insertAddress/";
-	// update address
-	public static final String update_ress = SCHEMA + HOST
-			+ "/ZFMerchant/api/customers/updateAddress/";
-	// get totalscore
-	public static String total_score = SCHEMA + HOST
-			+ "/ZFMerchant/api/customers/getIntegralTotal/";
-	// exchange score
-	public static String exchange_score = SCHEMA + HOST
-			+ "/ZFMerchant/api/customers/insertIntegralConvert";
-
-	public static final String GETCODE4PHONE = SCHEMA + HOST
-			+ "/ZFMerchant/api/user/sendPhoneVerificationCodeReg";
-	public static final String ZHUCHE = SCHEMA + HOST
-			+ "/ZFMerchant/api/user/userRegistration";
-	public static final String GETEMAILPASS = SCHEMA + HOST
-			+ "/ZFMerchant/api/user/sendEmailVerificationCode";
+    // creat merchant
+	public static String CREAT_MERCHANT=SCHEMA + HOST + "/ZFMerchant/api/merchant/insert/";
 	// Apply Submit
 	public static final String APPLY_SUBMIT = SCHEMA + HOST
 			+ "/ZFMerchant/api/apply/addOpeningApply";
@@ -388,7 +257,7 @@ public class API {
 	}
 
 	public static void resubmitCancel(Context context, int recordId,
->>>>>>> 01e14a7b3fc37665a895a1d9dc374c928c83184b
+
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
@@ -597,24 +466,33 @@ public class API {
 		params.put("zipCode", zipCode);
 		params.put("address", address);
 		params.put("isDefault", isDefault);
-		if (!mine_Address.isclickitem) {
-			params.put("customerId", customerId);
-		} else {
-			params.put("id", customerId);
-		}
+		params.put("customerId", customerId);
 		System.out.println("--ccc----" + params);
 		Log.e("params", String.valueOf(params));
-		if (!mine_Address.isclickitem) {
 			new HttpRequest(context, callback).post(Add_ress, params);
-		} else {
-			new HttpRequest(context, callback).post(update_ress, params);
-		}
+	}
+	public static void changeAdres(Context context,int id,String cityId,String receiver,
+			String moblephone,String zipCode,String address,int isDefault,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("cityId", cityId);
+		params.put("receiver", receiver);
+		params.put("moblephone", moblephone);
+		params.put("zipCode", zipCode);
+		params.put("address", address);
+		params.put("isDefault", isDefault);
+		Log.e("params", String.valueOf(params));
+		new HttpRequest(context, callback).post(update_ress, params);
 	}
 
-	public static void gettotalscore(Context context, int customerId,
+	public static void gettotalscore(Context context, int customer_id,
 			HttpCallback callback) {
-		total_score = total_score + 80;
-		new HttpRequest(context, callback).post(total_score);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customer_id", customer_id);
+		
+		
+		new HttpRequest(context, callback).post(total_score, params);
 	}
 
 	public static void exchange(Context context, int customerId, String name,

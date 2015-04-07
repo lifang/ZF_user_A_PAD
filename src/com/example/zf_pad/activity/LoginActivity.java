@@ -48,6 +48,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private Editor editor;
 	private Boolean isFirst;
 	private String sessionId;
+	public static boolean islogin=false;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -209,6 +210,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 						@Override
 						public void onSuccess(UserEntity data) {
+							islogin=true;
 							// TODO Auto-generated method stub
 							System.out.println("id```"+data.getId());
 							MyApplication.NewUser = data;

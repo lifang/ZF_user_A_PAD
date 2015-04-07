@@ -24,7 +24,7 @@
  	        android:layout_marginLeft="@dimen/margin_left2"
  	        android:textSize="20sp"
  	        android:textColor="@color/text292929"
- 	        android:text="现有积分 ； "/>
+ 	        android:text="现有积分 : "/>
  	     	    <TextView  android:layout_height="wrap_content"
  	        android:layout_width="wrap_content"
  	        android:layout_marginLeft="10dp"
@@ -32,16 +32,18 @@
  	         	        android:layout_marginTop="30dp"
  	         	        android:textSize="20sp"
  	        android:textColor="@color/text292929"
- 	        android:text="999"/>
+ 	        />
  	</LinearLayout>
- 	 	     	    <TextView  android:layout_height="wrap_content"
+ 	 	     	    <TextView  
+ 	 	     	        android:id="@+id/tv_sxf"
+ 	 	     	        android:layout_height="wrap_content"
  	        android:layout_width="wrap_content"
  	   
  	        android:layout_marginLeft="@dimen/margin_left2"
  	       
  	         	        android:textSize="10sp"
  	        android:textColor="@color/text292929"
- 	        android:text="最高可以兑换手续费： ￥ 0"/>
+ 	        android:text="最高可以兑换手续费： ￥ "/>
 	<View android:layout_height="0.5dp"
 	    android:layout_width="wrap_content"
 	    android:layout_marginTop="8dp"

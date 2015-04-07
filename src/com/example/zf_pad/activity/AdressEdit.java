@@ -48,14 +48,27 @@ public class AdressEdit extends BaseActivity{
 	private TextView tv4;
 	private CheckBox item_cb;
 	private LinearLayout mi_r4;
-	
+	private int id=MyApplication.NewUser.getId();
+	private int pp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_edit);
 		initView();
-		new TitleMenuUtil(AdressEdit.this, "新增地址").show();
+		if(mine_Address.isclickitem){
+			new TitleMenuUtil(AdressEdit.this, "修改地址").show();
+		}
+		else{
+			new TitleMenuUtil(AdressEdit.this, "新增地址").show();
+		}
+		
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		mine_Address.isclickitem=false;
 	}
 	private Boolean check() {
 		// TODO Auto-generated method stub
@@ -85,19 +98,8 @@ public class AdressEdit extends BaseActivity{
 		}
 		return true;
 	}
-	
-//	String  cityId,
-//	String  receiver,
-//	String 	moblephone,
-//	String 	zipCode,
-//	String 	address,
-//	int 	isDefault,
-//	int 	customerId,
-	
 	private void getData() {
-		//API.AddAdres(AdressEdit.this, cityId, receiver, moblephone, zipCode, address, isDefault, customerId, callback)
-		// TODO Auto-generated method stub
-        API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,80,
+        API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,id,
         		
                 new HttpCallback(AdressEdit.this) {
            
@@ -106,15 +108,7 @@ public class AdressEdit extends BaseActivity{
 					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
 						Log.e("data", String.valueOf(data));
-						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show();
-					 
-					 
-					/*	Intent intent2 = new Intent();
-					 
-						AdressEdit.this.setResult(1, intent2);
-						finish();*/
-						 
-						 
+						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
 					}
 
 					@Override
@@ -126,6 +120,7 @@ public class AdressEdit extends BaseActivity{
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
+		
 		tv1=(EditText) findViewById(R.id.tv1);
 		tv2=(EditText) findViewById(R.id.tv2);
 		tv3=(EditText) findViewById(R.id.tv3);
@@ -134,7 +129,7 @@ public class AdressEdit extends BaseActivity{
 		//tv4.setText(MyApplication.getCITYNAME());
 		if(mine_Address.isclickitem){
 			Bundle bundle=this.getIntent().getExtras();
-			int pp=bundle.getInt("position");
+			pp=bundle.getInt("position");
 			tv1.setText(mine_Address.dataadress.get(pp).getConsignee());
 			tv2.setText(mine_Address.dataadress.get(pp).getPhone());
 			tv3.setText(mine_Address.dataadress.get(pp).getZipcode());
@@ -149,7 +144,13 @@ public class AdressEdit extends BaseActivity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if(check()){
-					getData();
+					if(mine_Address.isclickitem){
+						changeData();
+					}
+					else{
+						getData();
+					}
+					
 				}
 			}
 		});
@@ -178,6 +179,26 @@ public class AdressEdit extends BaseActivity{
 						com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY);
 			}
 		});
+	}
+	protected void changeData() {
+		
+		API.changeAdres(AdressEdit.this, mine_Address.idd[pp], Cityid+"", name, tel, 
+				stringcode, address, isDefault, new HttpCallback(AdressEdit.this) {
+
+					@Override
+					public void onSuccess(Object data) {
+						Toast.makeText(AdressEdit.this, "修改地址成功", Toast.LENGTH_SHORT).show();
+						//mine_Address.dataadress
+						Log.e("da", String.valueOf(mine_Address.dataadress));
+					}
+
+					@Override
+					public TypeToken getTypeToken() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				});
+		
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

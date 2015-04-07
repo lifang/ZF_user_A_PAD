@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:background="#E9E8E8"
         android:orientation="vertical"
         android:paddingTop="14dp" >
@@ -21,66 +21,24 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent" >
-
-                    <TextView
-                        android:id="@+id/tv_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:background="#E9E8E8"
-                        android:gravity="bottom"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="基础信息"
-                        android:textColor="#6c6c6c"
-                        android:textSize="21sp" />
-
-                    <TextView
-                       android:id="@+id/tv_safe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:background="#E9E8E8"
-                        android:gravity="bottom"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="安全"
-                        android:textColor="#6c6c6c"
-                        android:textSize="21sp" />
-
-                    <TextView
-                        android:id="@+id/tv_manageradress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:background="#E9E8E8"
-                        android:gravity="bottom"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="地址管理"
-                        android:textColor="#6c6c6c"
-                        android:textSize="21sp" />
-
-                    <TextView
-                        android:id="@+id/tv_score"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:background="#E9E8E8"
-                        android:gravity="bottom"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="积分"
-                        android:textColor="#6c6c6c"
-                        android:textSize="21sp" />
-                </LinearLayout>
+           <com.example.zf_pad.trade.widget.MTabWidget
+            android:id="@+id/tab_widget"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="104dp"
+            android:layout_marginTop="12dp"
+            android:divider="#E9E8E8"
+            android:layout_gravity="center_horizontal"
+           />
+               
             </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
 <fragment 
     android:id="@+id/fm"
-    android:name="com.example.zf_pad.fragment.mine_Address"
+    android:name="com.example.zf_pad.fragment.Mine_baseinfo"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
 

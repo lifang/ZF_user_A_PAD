@@ -15,6 +15,7 @@ import com.example.zf_pad.aadpter.AddressManagerAdapter;
 import com.example.zf_pad.activity.AdressEdit;
 import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.entity.OrderEntity;
+import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,6 +25,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
@@ -38,6 +40,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class mine_Address extends Fragment implements OnClickListener{
 	private View view;
@@ -49,6 +52,10 @@ public class mine_Address extends Fragment implements OnClickListener{
 	private Button btn_add;
 	public static boolean isclickitem=false;
 	public static LinearLayout ll_address;
+	public static Handler myHandler;
+	private int j=0;
+	private int id=MyApplication.NewUser.getId();
+	public static int[] idd;
 	//private TextView info,safe,manageradress,score;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,17 +68,31 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	}
 	try {
 		view = inflater.inflate(R.layout.manageradress, container, false);
-		init();
-		getData();
+		
 	} catch (InflateException e) {
 	
 	}
 	return view;
 }
+@Override
+public void onStart() {
+	// TODO Auto-generated method stub
+	super.onStart();
+	init();
+	getData();
+	myHandler=new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			if(msg.what==1){
+				isclickitem=true;
+				Intent intent=new Intent(getActivity(),AdressEdit.class);
+				intent.putExtra("position", AddressManagerAdapter.pp);
+				startActivity(intent);
+			}
+		};
+	};
+}
 private void getData() {
-		String url="http://114.215.149.242:18080/ZFMerchant/api/customers/getAddressList/";
-		url=url+80;
-		MyApplication.getInstance().getClient().post(url, new AsyncHttpResponseHandler() {
+		MyApplication.getInstance().getClient().post(API.GET_ADRESS+id, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -100,14 +121,19 @@ private void getData() {
 					int a =jsonobject.getInt("code");
 					if(a==Config.CODE){ 
 						JSONArray result =jsonobject.getJSONArray("result");
+						idd=new int[result.length()];
 						for(int i=0;i<result.length();i++){
+			
+							idd[i]=result.getJSONObject(i).getInt("id");
 							dataadress.add(new AddressManager(i, 
 									result.getJSONObject(i).getString("receiver"),
-									result.getJSONObject(i).getString("city_parent_name"), 
 									result.getJSONObject(i).getString("city"), 
+									result.getJSONObject(i).getString("address"), 
 									result.getJSONObject(i).getString("zipCode"),
 									result.getJSONObject(i).getString("moblephone")));
+							
 						}
+					
 						list.setAdapter(addressadapter);
 					}
 					else{
@@ -116,6 +142,7 @@ private void getData() {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					Toast.makeText(getActivity(), String.valueOf(j), Toast.LENGTH_SHORT).show();
 				}
 				
 			}
@@ -136,18 +163,6 @@ private void init() {
 	list=(ListView) view.findViewById(R.id.list);
 	btn_add=(Button) view.findViewById(R.id.btn_add);
 	btn_add.setOnClickListener(this);
-	list.setOnItemClickListener(new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view,
-				int position, long id) {
-			isclickitem=true;
-			Intent intent=new Intent(getActivity(),AdressEdit.class);
-			intent.putExtra("position", position);
-			startActivity(intent);
-			
-		}
-	});
 	}
 @Override
 public void onClick(View v) {
