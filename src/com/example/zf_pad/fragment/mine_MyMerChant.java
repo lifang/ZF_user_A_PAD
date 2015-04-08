@@ -59,7 +59,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	private int[] id;
 	public static boolean isFromItem=false;
 	private int customerId=MyApplication.NewUser.getId();
-	private LinearLayout ll_merchant;
+	//private LinearLayout ll_merchant;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -120,13 +120,13 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		ll_merchant.setVisibility(View.VISIBLE);
+		//ll_merchant.setVisibility(View.VISIBLE);
 	}
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		ll_merchant.setVisibility(View.GONE);
+		//ll_merchant.setVisibility(View.GONE);
 	}
 	protected void delect() {
 		int[] ids=new int[1];
@@ -260,7 +260,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		});
 		}
 	private void init() {
-		ll_merchant=(LinearLayout) view.findViewById(R.id.ll_merchant);
+		//ll_merchant=(LinearLayout) view.findViewById(R.id.ll_merchant);
 		btn_creat=(Button) view.findViewById(R.id.btn_creat);
 		xxlistview=(XListView) view.findViewById(R.id.list);
 		

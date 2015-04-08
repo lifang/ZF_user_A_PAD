@@ -26,7 +26,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	private Mine_chgpaw chgpaw;
 	private FragmentTransaction transaction ;
 	int mRecordType=0;
-	private LinearLayout ll_myinfo;
+	//private LinearLayout ll_myinfo;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -63,16 +63,16 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		ll_myinfo.setVisibility(View.VISIBLE);
+		//ll_myinfo.setVisibility(View.VISIBLE);
 	}
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		ll_myinfo.setVisibility(View.GONE);
+		//ll_myinfo.setVisibility(View.GONE);
 	}
 	private void init() {
-		ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
+		//ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
 		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
 		 // add tabs to the TabWidget
        String[] tabs = getResources().getStringArray(R.array.mine_myinfo);

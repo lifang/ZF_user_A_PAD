@@ -48,7 +48,7 @@ public class mine_Plan extends Fragment implements OnClickListener{
 	private Button btn_serch;
 	private EditText et_process;
 	private TextView apply_progress_tips;
-	private LinearLayout ll_plan;
+	//private LinearLayout ll_plan;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -77,16 +77,16 @@ public class mine_Plan extends Fragment implements OnClickListener{
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		ll_plan.setVisibility(View.GONE);
+		//ll_plan.setVisibility(View.GONE);
 	}
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		ll_plan.setVisibility(View.VISIBLE);
+		//ll_plan.setVisibility(View.VISIBLE);
 	}
 	private void init() {
-		ll_plan=(LinearLayout) view.findViewById(R.id.ll_plan);
+		//ll_plan=(LinearLayout) view.findViewById(R.id.ll_plan);
 		apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
 		et_process=(EditText) view.findViewById(R.id.et_process);
 		btn_serch=(Button) view.findViewById(R.id.btn_serch);
