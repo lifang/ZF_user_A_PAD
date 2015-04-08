@@ -9,12 +9,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.posport;
 import com.example.zf_pad.aadpter.PosAdapter;
 import com.example.zf_pad.aadpter.PosAdapter1;
 import com.example.zf_pad.aadpter.PosPortAdapter;
 import com.example.zf_pad.entity.PosEntity;
+import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.AfterSaleDetailActivity;
@@ -55,8 +57,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private ImageView pos_select,search2,img3;	
 	private Parcelable listState;
 	private XListView Xlistview;
-	private int page=0;
-	private int page1=0;
+	private int page=1;
+	private int page1=1;
 	private int rows=Config.ROWS;
 	private LinearLayout eva_nodata,ll_xxyx,ll_mr,ll_updown,ll_pj;
 	private boolean onRefresh_number = true;
@@ -223,7 +225,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 			startActivity(ii);
 			break;
 		case R.id.et_search:
-			Intent i =  new Intent(PosListActivity.this,PosSearch.class);
+			Intent i =  new Intent(PosListActivity.this,PosSearch1.class);
 			startActivityForResult(i, 2);
 			break;	
 		case R.id.ll_mr:
@@ -330,7 +332,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private void getData() {
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
-		params.put("city_id", 1);
+		params.put("city_id",MyApplication.NewUser.getId());
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
 	 	if(list_port==1){
@@ -429,7 +431,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 				String  a =data.getStringExtra("text");
 				//keys=a;
 				et_search.setText(a);
-				page=0;
+				page=1;
 				keyword=a;
 				myList.clear();
 				Search();
@@ -445,7 +447,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 
 	}
 	private void Search() {
-		API.PostSearch(getApplicationContext(), keyword,1,12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
+		//Toast.makeText(getApplicationContext(), page+"", 1000).show();
+		API.PostSearch(getApplicationContext(), keyword,MyApplication.getCITYID(),12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
 			@Override
 			public void onSuccess(Page<PosEntity> data) {
 				if(myList.size()!=0&&data.getList().size()==0)
@@ -465,5 +468,19 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 
 		});
 		
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		posport.brands_id=null;
+		posport.category=null;
+		posport.pay_channel_id=null;
+		posport. pay_card_id=null;
+		posport.trade_type_id=null;
+		posport.sale_slip_id=null;
+		posport.tDate=null;
+		posport. has_purchase=0;
+		posport.minPrice=0;
+		posport.maxPrice=0;
 	}
 }

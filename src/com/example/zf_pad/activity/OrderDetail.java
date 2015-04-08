@@ -29,6 +29,7 @@ import com.example.zf_pad.aadpter.RecordAdapter;
 import com.example.zf_pad.entity.Goodlist;
 import com.example.zf_pad.entity.MarkEntity;
 import com.example.zf_pad.entity.OrderDetailEntity;
+import com.example.zf_pad.util.AlertMessDialog;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
@@ -90,6 +91,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	private TextView tv_price;
 	private TextView tv_sl;
 	private TextView tv_comment;
+	private AlertMessDialog amd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -257,6 +259,19 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			if (Config.list.size() != 0) {
 				startActivity(new Intent(OrderDetail.this, Comment.class));
 			}
+			break;
+		case R.id.btn_ishow:
+			amd = new AlertMessDialog(OrderDetail.this);
+			amd.setTitle("查看终端号");
+			amd.setMessage(ode.get(0).get);
+			amd.setNegativeButton("确认", new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					amd.dismiss();
+					
+				}
+			});
 			break;
 		default:
 			break;

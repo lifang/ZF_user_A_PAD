@@ -87,6 +87,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private int index=0;
 	private TextView tv_hj;
 	private TextView tv_totle;
+	private EditText et_comment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		MyApplication
 				.getInstance()
 				.getClient()
-				.post(Config.ChooseAdress + "80",
+				.post(Config.ChooseAdress + MyApplication.NewUser.getId()+"",
 						new AsyncHttpResponseHandler() {
 
 							@Override
@@ -234,15 +235,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	
 	public void getpay(){
 		
-		
-//		int customerId,
-//		int [] cartid,
-//		int addressId,
-//		String  comment,
-//		
-//		int is_need_invoice,
-//		int invoice_type,
-//		String  invoice_info,
+		et_comment = (EditText)findViewById(R.id.ed_comment);
+		comment=et_comment.getText().toString();
 		int [] cartid=new int[comfirmList.size()];
 		for(int i=0;i<comfirmList.size();i++){
 			 
@@ -253,6 +247,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		}else{
 			is_need_invoice=0;
 		}
+		
 		//comment=et_comment.getText().toString();
 		//invoice_info =et_info.getText().toString();
 		invoice_info=ed_fp.getText().toString();

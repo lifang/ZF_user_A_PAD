@@ -1,4 +1,6 @@
-package com.example.zf_pad;
+package com.example.zf_pad.util;
+
+import com.example.zf_pad.R;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,21 +11,21 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-public class AlertDialog {
+public class AlertMessDialog {
 	Context context;
 	android.app.AlertDialog ad;
 	TextView titleView;
 	TextView messageView;
 	LinearLayout buttonLayout1;
 	private LinearLayout buttonLayout2;
-	public AlertDialog(Context context) {
+	public AlertMessDialog(Context context) {
 		// TODO Auto-generated constructor stub
 		this.context=context;
 		ad=new android.app.AlertDialog.Builder(context).create();
 		ad.show();
 		//关键在下面的两行,使用window.setContentView,替换整个对话框窗口的布局
 		Window window = ad.getWindow();
-		window.setContentView(R.layout.alertdialog);
+		window.setContentView(R.layout.alertmessdialog);
 		titleView=(TextView)window.findViewById(R.id.title);
 		messageView=(TextView)window.findViewById(R.id.message);
 		buttonLayout1=(LinearLayout)window.findViewById(R.id.buttonLayout1);
@@ -44,23 +46,7 @@ public class AlertDialog {
 	{
 		messageView.setText(message);
 	}
-	/**
-	 * 设置按钮
-	 * @param text
-	 * @param listener
-	 */
-	public void setPositiveButton(String text,final View.OnClickListener listener)
-	{
-		Button button=new Button(context);
-		LinearLayout.LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		button.setLayoutParams(params);
-		button.setBackgroundResource(R.drawable.dialog);
-		button.setText(text);
-		button.setTextColor(Color.BLUE);
-		button.setTextSize(16);
-		button.setOnClickListener(listener);
-		buttonLayout1.addView(button);
-	}
+
 	
 	/**
 	 * 设置按钮

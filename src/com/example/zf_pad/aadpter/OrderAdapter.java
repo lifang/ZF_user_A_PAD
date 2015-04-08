@@ -11,12 +11,14 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.activity.OrderDetail;
 import com.example.zf_pad.activity.PayFromCar;
 import com.example.zf_pad.entity.OrderEntity;
+import com.example.zf_pad.util.AlertDialog;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,61 +139,69 @@ public class OrderAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View arg0) {
+				final AlertDialog ad = new AlertDialog(context);
+				ad.setTitle("提示");
+				ad.setMessage("确认取消?");
+				ad.setPositiveButton("取消", new OnClickListener() {				
+					@Override
+					public void onClick(View arg0) {
+						ad.dismiss();				
+					}
+				});
+				ad.setNegativeButton("确定", new OnClickListener() {
+					
+					@Override
+					public void onClick(final View arg0) {
+						ad.dismiss();
+						RequestParams params = new RequestParams();
+						 params.put("id", arg0.getTag());
+						 System.out.println("`getTag``"+arg0.getTag());
+						 
+						params.setUseJsonStreamer(true);
 
-				
-				RequestParams params = new RequestParams();
-				 params.put("id", arg0.getTag());
-				 System.out.println("`getTag``"+arg0.getTag());
-				 
-				params.setUseJsonStreamer(true);
+						MyApplication.getInstance().getClient()
+								.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
 
-				MyApplication.getInstance().getClient()
-						.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
-
-							@Override
-							public void onSuccess(int statusCode, Header[] headers,
-									byte[] responseBody) {
-								String responseMsg = new String(responseBody)
-										.toString();
-								Log.e("print", responseMsg);			 
-								Gson gson = new Gson();								
-								JSONObject jsonobject = null;
-								String code = null;
-								try {
-									jsonobject = new JSONObject(responseMsg);
-									code = jsonobject.getString("code");
-									int a =jsonobject.getInt("code");
-									if(a==Config.CODE){  
-										//String res =jsonobject.getString("result");
-										//jsonobject = new JSONObject(res);
-										holder.isshow.setVisibility(View.GONE);
-										OrderAdapter.this.notifyDataSetChanged();
-										
-									}else{
-										code = jsonobject.getString("message");
-										Toast.makeText(context, code, 1000).show();
+									@Override
+									public void onSuccess(int statusCode, Header[] headers,
+											byte[] responseBody) {
+										String responseMsg = new String(responseBody)
+												.toString();
+										Log.e("print", responseMsg);			 
+										Gson gson = new Gson();								
+										JSONObject jsonobject = null;
+										String code = null;
+										try {
+											jsonobject = new JSONObject(responseMsg);
+											code = jsonobject.getString("code");
+											int a =jsonobject.getInt("code");
+											if(a==Config.CODE){  
+												//String res =jsonobject.getString("result");
+												//jsonobject = new JSONObject(res);
+												//holder.isshow.setVisibility(View.GONE);
+												//list.get((Integer) arg0.getTag()).setOrder_status(6);
+												//OrderAdapter.this.notifyDataSetChanged();
+												
+											}else{
+												code = jsonobject.getString("message");
+												Toast.makeText(context, code, 1000).show();
+											}
+										} catch (JSONException e) {
+											 ;	
+											e.printStackTrace();									
+										}
 									}
-								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									 ;	
-									e.printStackTrace();
-									
-								}
-
-							}
-
-							@Override
-							public void onFailure(int statusCode, Header[] headers,
-									byte[] responseBody, Throwable error) {
-								// TODO Auto-generated method stub
-								System.out.println("-onFailure---");
-								Log.e("print", "-onFailure---" + error);
-							}
-						});
-		 
-				 
-			
-			
+									@Override
+									public void onFailure(int statusCode, Header[] headers,
+											byte[] responseBody, Throwable error) {
+										// TODO Auto-generated method stub
+										System.out.println("-onFailure---");
+										Log.e("print", "-onFailure---" + error);
+									}
+								});	
+					}
+				});
+				
 			}
 		});
  		holder.btn_pay.setOnClickListener(new OnClickListener() {

@@ -57,7 +57,7 @@ public class MymsgDetail extends BaseActivity {
 	private void getData() {
 		if(type==null){
 			params = new RequestParams();
-			params.put("customer_id", 80);
+			params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("id", id);
 			params.setUseJsonStreamer(true);
 			url=Config.getMSGById;
@@ -125,7 +125,7 @@ public class MymsgDetail extends BaseActivity {
 
 	private void delOne() {
 		params = new RequestParams();
-		params.put("customer_id", 80);
+		params.put("customer_id", MyApplication.NewUser.getId());
 		params.put("id", id);
 		params.setUseJsonStreamer(true);
 		MyApplication.getInstance().getClient().post(Config.MSGEDLONE, params, new AsyncHttpResponseHandler() {

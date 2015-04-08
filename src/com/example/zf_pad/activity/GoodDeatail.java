@@ -318,7 +318,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private void getdata() {
 		RequestParams params = new RequestParams();
 		params.put("goodId", id);
-		params.put("city_id", 1);
+		params.put("city_id", MyApplication.getCITYID());
 
 		params.setUseJsonStreamer(true);
 		MyApplication
@@ -510,7 +510,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private void addGood() {
 
 		RequestParams params = new RequestParams();
-		params.put("customerId", 80);
+		params.put("customerId", MyApplication.NewUser.getId());
 		params.put("goodId", gfe.getId());
 		// paychannelId
 		params.put("paychannelId", paychannelId);

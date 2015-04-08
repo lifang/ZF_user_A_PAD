@@ -168,7 +168,7 @@ public class PosAdapter1 extends BaseAdapter {
 				holder.ys2.setText("“— €"
 						+ list.get(position*4 + 1).getVolume_number());
 				ImageCacheUtil.IMAGE_CACHE.get(list.get(position*4+1).getUrl_path(),
-		 				holder.im1);
+		 				holder.im2);
 				holder.ll_m3.setVisibility(View.INVISIBLE);
 				holder.ll_m4.setVisibility(View.INVISIBLE);
 				break;

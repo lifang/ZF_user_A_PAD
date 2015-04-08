@@ -644,7 +644,7 @@ public class API {
 			e.printStackTrace();
 		}
 		new HttpRequest(context, callback).post(Config.POSLIST, params);
-
+		System.out.println("²ÎÊý--" + params.toString());
 	}
 	public static void getUserinfo(
 			Context context,

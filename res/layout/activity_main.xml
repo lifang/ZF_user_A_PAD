@@ -182,7 +182,7 @@
     </LinearLayout>
 <fragment 
     android:id="@+id/m_fragment"
-     android:name="com.example.zf_pad.fragment.m_MianFragment"  
+     android:name="com.example.zf_pad.fragment.MianFragment"  
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
 </LinearLayout>

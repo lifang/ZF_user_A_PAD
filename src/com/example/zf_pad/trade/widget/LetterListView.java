@@ -1,5 +1,6 @@
 package com.example.zf_pad.trade.widget;
 
+import com.example.zf_pad.trade.widget.LetterListView.OnTouchingLetterChangedListener;
 import com.example.zf_pad.R;
 
 import android.content.Context;

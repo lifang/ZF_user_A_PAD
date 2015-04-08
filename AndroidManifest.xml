@@ -197,6 +197,7 @@
             android:name="com.example.zf_pad.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent" 
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -266,6 +267,14 @@
         </activity>
                <activity
             android:name="com.example.zf_pad.activity.LeaseConfirm"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.zf_pad.activity.PosSearch1"
+            android:label="@string/app_name" >
+        </activity>
+                <activity
+            android:name="com.example.zf_pad.activity.MyWebView"
             android:label="@string/app_name" >
         </activity>
     </application>

@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.http.Header;
 
-import com.example.zf_pad.AlertDialog;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.util.AlertDialog;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import android.R.integer;
@@ -72,7 +72,7 @@ public class ShopcarOrderAdapter extends BaseAdapter {
 			holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
 			holder.Model_number = (TextView) convertView
 					.findViewById(R.id.Model_number);
-			
+			holder.showCountText=(TextView)convertView.findViewById(R.id.showCountText);
 			 holder.evevt_img = (ImageView)
 			 convertView.findViewById(R.id.evevt_img);
 			//holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
@@ -93,9 +93,9 @@ public class ShopcarOrderAdapter extends BaseAdapter {
 		
 		Good good = list.get(position);
 		holder.title.setText(good.getTitle());
-		
+		holder.showCountText.setText("X "+String.valueOf(good.getQuantity()));
 	
-		holder.retail_price.setText("X " + good.getRetail_price());
+		holder.retail_price.setText("¥ " + good.getRetail_price());
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 		return convertView;
@@ -111,7 +111,7 @@ public class ShopcarOrderAdapter extends BaseAdapter {
 		private View delete;
 		private View reduce;
 		private View add;
-		public TextView Model_number;
+		public TextView Model_number,showCountText;
 		public TextView wayName,del;
 		public ImageView evevt_img;
 	}

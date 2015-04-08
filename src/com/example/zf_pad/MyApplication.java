@@ -68,12 +68,7 @@ public class MyApplication extends Application{
 	public static void setVersionCode(String versionCode) {
 		MyApplication.versionCode = versionCode;
 	}
-	public static User getCurrentUser() {
-		return currentUser;
-	}
-	public static void setCurrentUser(User currentUser) {
-		MyApplication.currentUser = currentUser;
-	}
+
 
 	public static List<Good> comfirmList=new LinkedList<Good>();
 	
@@ -163,15 +158,7 @@ public class MyApplication extends Application{
 		return mInstance;
 	}
 	public static UserEntity NewUser = null;
-	public static UserEntity getNewUser() {
-		return NewUser;
-	}
-	public static void setNewUser(UserEntity newUser) {
-		NewUser = newUser;
-	}
-
-
-	public static User currentUser = new User();
+	
 	public class MyLocationListener implements BDLocationListener {
 
 		@Override
@@ -205,7 +192,7 @@ public class MyApplication extends Application{
 //				sb.append(location.getOperators());
 //			}
 			sb.append(location.getAddrStr());
-			
+			Config.CITY=location.getCity();
 			logMsg(location.getCity());
 	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
             for (Province province : provinces) {
@@ -222,7 +209,7 @@ public class MyApplication extends Application{
 					 }
 				 } 
 			 }
-			 
+			 Config.isFRIST=true;
 			Log.i("BaiduLocationApiDem", sb.toString());
 		}
 	}

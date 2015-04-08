@@ -77,7 +77,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	}
 
 	private void getData() {
-		RequestParams params = new RequestParams("city_id", 1);
+		RequestParams params = new RequestParams("city_id", MyApplication.getCITYID());
 		params.setUseJsonStreamer(true);
 		MyApplication.getInstance().getClient()
 				.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {

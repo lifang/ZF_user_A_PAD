@@ -108,7 +108,7 @@ public class m_my extends Fragment implements OnClickListener {
 		switch (view.getId()) {
 		case R.id.ll_dd:
 
-			if (m_dd == null)
+			//if (m_dd == null)
 				m_dd = new mine_Dd();
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -118,7 +118,7 @@ public class m_my extends Fragment implements OnClickListener {
 			tvdd.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_shjl:
-			if (m_shjl == null)
+			//if (m_shjl == null)
 				m_shjl = new mine_Shjl();
 	
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -128,7 +128,7 @@ public class m_my extends Fragment implements OnClickListener {
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_myinfo:
-			if (m_info == null)
+			//if (m_info == null)
 				m_info = new mine_MyInfo();
 	
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -138,7 +138,7 @@ public class m_my extends Fragment implements OnClickListener {
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_mysh:
-			if (m_sh == null)
+			//if (m_sh == null)
 				m_sh = new mine_MyMerChant();
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -148,7 +148,7 @@ public class m_my extends Fragment implements OnClickListener {
 			tvwdsh.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_plan:
-			if (m_plan == null)
+			//if (m_plan == null)
 				m_plan = new mine_Plan();
 
 			getActivity().getSupportFragmentManager().beginTransaction()

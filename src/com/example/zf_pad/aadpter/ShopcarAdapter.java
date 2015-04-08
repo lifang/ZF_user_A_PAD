@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.http.Header;
 
-import com.example.zf_pad.AlertDialog;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.util.AlertDialog;
 import com.example.zf_pad.util.ImageCacheUtil;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

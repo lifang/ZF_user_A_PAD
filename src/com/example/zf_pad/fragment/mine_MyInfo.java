@@ -35,7 +35,6 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 		// initView();
 
 		if (view != null) {
-			Log.i("222222", "11111111");
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
 				parent.removeView(view);

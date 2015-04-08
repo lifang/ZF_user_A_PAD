@@ -19,6 +19,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,6 +80,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.popwin_login);
 		
 		initView();
@@ -217,9 +220,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 			 				editor.putInt("id", data.getId());
 			 				editor.commit();
 			 				System.out.println(mySharedPreferences.getBoolean("islogin", false)+"---");
-							Intent i =new Intent(getApplicationContext(), MainActivity.class);
-							startActivity(i);
-							finish();	
+			 				MyApplication.NewUser=data;
+			 					Intent i =new Intent(getApplicationContext(), MainActivity.class);
+								startActivity(i);
+								finish();	
+			 				
+							
 						}
 
 						@Override

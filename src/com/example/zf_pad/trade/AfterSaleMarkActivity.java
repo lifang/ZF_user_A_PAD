@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.TextWatcherAdapter;
@@ -53,7 +54,7 @@ public class AfterSaleMarkActivity extends Activity {
 		mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, 16,
+				API.addMark(AfterSaleMarkActivity.this, mRecordType, mRecordId, MyApplication.NewUser.getId(),
 						mCompanyEdit.getText().toString(), mNumberEdit.getText().toString(),
 						new HttpCallback(AfterSaleMarkActivity.this) {
 							@Override

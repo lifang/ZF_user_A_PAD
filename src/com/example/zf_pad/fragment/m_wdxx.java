@@ -282,7 +282,7 @@ public class m_wdxx extends Fragment implements OnClickListener,
 	private void getData(final int type) {
 		RequestParams params = new RequestParams();
 		Gson gson = new Gson();
-		params.put("customer_id", 80);
+		params.put("customer_id", MyApplication.NewUser.getId());
 		if (type == 0) {
 			Url = Config.getmes;
 			params.put("page", page);

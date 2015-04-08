@@ -153,7 +153,7 @@ public class m_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	}
 	private void getData() {
 
-		RequestParams params = new RequestParams("customerId", "80");
+		RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
 		params.setUseJsonStreamer(true);
 
 		MyApplication.getInstance().getClient()

@@ -65,6 +65,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private String comment, invoice_info;
 	private ScrollViewWithListView sclist;
 	private ChooseAdressAdapter myAdapter;
+	private EditText et_comment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -207,7 +208,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		MyApplication
 				.getInstance()
 				.getClient()
-				.post(Config.ChooseAdress + "80",
+				.post(Config.ChooseAdress + MyApplication.NewUser.getId()+"",
 						new AsyncHttpResponseHandler() {
 
 							@Override
@@ -300,13 +301,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 
 	private void confirmGood() {
-		// TODO Auto-generated method stub
-
-		// quantity addressId comment is_need_invoice et_titel
+		et_comment = (EditText)findViewById(R.id.ed_comment);
+		comment=et_comment.getText().toString();
 		quantity = Integer.parseInt(buyCountEdit.getText().toString());
 		// comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
-		params.put("customerId", 80);
+		params.put("customerId", MyApplication.NewUser.getId());
 		params.put("goodId", goodId);
 		params.put("paychannelId", paychannelId);
 		params.put("addressId", addressId);

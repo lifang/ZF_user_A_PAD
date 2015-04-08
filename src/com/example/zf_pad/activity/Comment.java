@@ -66,17 +66,13 @@ public class Comment extends BaseActivity{
 		for(int i=0;i<goodlist.size();i++){
 			Answer aaa=new Answer();
  			aaa.setContent(goodlist.get(i).getContent());
- 			aaa.setCustomer_id(80);
+ 			aaa.setCustomer_id(MyApplication.NewUser.getId());
  			aaa.setGood_id(Integer.parseInt( goodlist.get(i).getGood_id()));
  			aaa.setScore(Integer.parseInt( goodlist.get(i).getScore()));
  			as.add(aaa);
 			System.out.println(goodlist.get(i).getScore()+"---submit---"+goodlist.get(i).getContent()+"id-"+goodlist.get(i).getGood_id());
 		}
- 
-		
-		
-		// TODO Auto-generated method stub
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/order/batchSaveComment";
+		String url = Config.Comment;
 		RequestParams params = new RequestParams();
 		Gson gson = new Gson();
 		try {

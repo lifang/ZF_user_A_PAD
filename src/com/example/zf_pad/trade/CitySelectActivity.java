@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
@@ -35,6 +36,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CitySelectActivity extends Activity {
 
@@ -57,9 +59,8 @@ public class CitySelectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_select);
-
+        
         mCitySelected = getIntent().getStringExtra(CITY_NAME);
-
         new TitleMenuUtil(this, getString(R.string.title_city_select)).show();
         initViews();
     }

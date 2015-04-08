@@ -22,6 +22,7 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 import com.example.zf_pad.trade.AfterSaleMarkActivity;
 import com.example.zf_pad.trade.AfterSalePayActivity;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 
 import com.example.zf_pad.trade.API;
@@ -122,7 +123,7 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		loadData();
 	}
 	private void loadData() {
-		API.getAfterSaleRecordList(mActivity, mRecordType, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(mActivity) {
+		API.getAfterSaleRecordList(mActivity, mRecordType, MyApplication.NewUser.getId(), page + 1, rows, new HttpCallback<Pageable<AfterSaleRecord>>(mActivity) {
 			private Dialog loadingDialog;
 
 			@Override

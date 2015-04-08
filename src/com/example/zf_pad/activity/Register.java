@@ -39,7 +39,6 @@ public class Register extends Activity implements OnClickListener {
 	private Boolean isRun = true;
 	private ImageView img_check, img_check_n;
 	public String vcode = "";
-	public int cityid = 80;
 	private String url, email, pass;
 	private Boolean chenckcode = false;
 	private Runnable runnable;
@@ -69,12 +68,12 @@ public class Register extends Activity implements OnClickListener {
 		}
 	};
 	private LinearLayout ll_isshow;
+	private int cityid=MyApplication.getCITYID();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		cityid = MyApplication.getCITYID();
 
 		new TitleMenuUtil(Register.this, "注册").show();
 		System.out.println("Register4phone---");
@@ -121,7 +120,7 @@ public class Register extends Activity implements OnClickListener {
 		String s = getIntent().getStringExtra("phone");
 		login_edit_email.setText(s);
 		vcode = getIntent().getStringExtra("vcode");
-		login_edit_email.setText("592264978@qq.com");
+	
 		login_edit_email.addTextChangedListener(new TextWatcher() {
 
 			@Override

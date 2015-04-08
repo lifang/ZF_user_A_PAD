@@ -181,7 +181,7 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 	private void getData() {
 
 		RequestParams params = new RequestParams();
-		params.put("customer_id", 80);
+		params.put("customer_id", MyApplication.NewUser.getId());
 		params.put("page", page);
 		params.put("p", type);
 		params.put("pageSize", 5);

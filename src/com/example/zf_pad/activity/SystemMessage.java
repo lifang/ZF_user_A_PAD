@@ -84,8 +84,8 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 		protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.my_message);
-			initView();
+			setContentView(R.layout.my_message);				
+			initView();			
 			getData();
 		}
 
@@ -162,7 +162,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 		private void getData() {
 			RequestParams params = new RequestParams();
 		  
-			params.put("customer_id", 80);
+			params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("page", page);
 			params.setUseJsonStreamer(true);
 			MyApplication.getInstance().getClient()
