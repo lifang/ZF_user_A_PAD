@@ -51,7 +51,7 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 	String type = null;
 	List<OrderEntity> myList = new ArrayList<OrderEntity>();
 	List<OrderEntity> moreList = new ArrayList<OrderEntity>();
-	private LinearLayout ll_DD;
+	//private LinearLayout ll_DD;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -95,7 +95,7 @@ public void onPause() {
 	// TODO Auto-generated method stub
 	super.onPause();
 	Log.e("onPause", "onPause");
-	ll_DD.setVisibility(View.GONE);
+	//ll_DD.setVisibility(View.GONE);
 }
 @Override
 public void onStop() {
@@ -130,10 +130,10 @@ public void onStop() {
 public void onStart() {
 	// TODO Auto-generated method stub
 	super.onStart();
-	ll_DD.setVisibility(View.VISIBLE);
+	//ll_DD.setVisibility(View.VISIBLE);
 }
 	private void initView() {
-		ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
+		//ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
 		tv_gm = (TextView) view.findViewById(R.id.tv_gm);
 		tv_zl = (TextView) view.findViewById(R.id.tv_zl);
 		tv_gm.setOnClickListener(this);
