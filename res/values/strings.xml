@@ -47,6 +47,12 @@
         <item>更新资料</item>
         <item>租赁退还</item>
     </string-array>
+    <string-array name="mine_myinfo">
+        <item>基础信息</item>
+        <item>安全</item>
+        <item>地址管理</item>
+        <item>积分</item>
+    </string-array>
 
     <string name="trade_client">请选择终端号</string>
     <string name="trade_start_date">请选择开始时间</string>

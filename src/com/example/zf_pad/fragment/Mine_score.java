@@ -43,7 +43,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private List<Score> moreList;
 	private XListView xxlistview;
 	private BaseAdapter scoreadapter;
-	private int customerId=80;
+	private int customerId=MyApplication.NewUser.getId();
 	private int page=1;
 	private int rows=2;
 	private Handler myHandler;
@@ -51,6 +51,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private int a=1;
 	private boolean isLoadMore=false;
 	private Button btn_exchange;
+	
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -104,14 +105,9 @@ protected void onLoad() {
 private void getData() {
 	
 	String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralList/";
-	RequestParams params = new RequestParams();
-	url=url+customerId+"/"+page+"/"+rows;
-	params.put("customerId", 8);
-	params.put("page", page);
-	params.put("rows", rows);
-	params.setUseJsonStreamer(true);
+	url=url+80+"/"+page+"/"+rows;
 	MyApplication.getInstance().getClient()
-	.post(url,null, new AsyncHttpResponseHandler() {
+	.post(url, new AsyncHttpResponseHandler() {
 
 		@Override
 		public void onSuccess(int statusCode, Header[] headers,
@@ -124,6 +120,7 @@ private void getData() {
 			
 			String responseMsg = new String(responseBody)
 					.toString();
+			String ss=responseMsg;
 			Log.e("print", responseMsg);
 
 		 
@@ -141,6 +138,11 @@ private void getData() {
 					jsonobject = new JSONObject(res);
 					Log.e("jsonobject", String.valueOf(jsonobject));
 					JSONArray list=jsonobject.getJSONArray("list");
+					if(list.length()==0){
+						Toast.makeText(getActivity(), ss, 
+								Toast.LENGTH_SHORT).show();
+						return;
+					}
 					if(list.length()==0&&isLoadMore){
 						CommonUtil.toastShort(getActivity(), "没有更多数据");
 						isLoadMore=false;
@@ -193,7 +195,12 @@ private void init() {
 		
 		@Override
 		public void onClick(View v) {
+			int total=0;
+			for(int i=0;i<datasco.size();i++){
+				total=total+Integer.parseInt(datasco.get(i).getGotscore());
+			}
 			Intent intent=new Intent(getActivity(),Exchange.class);
+			intent.putExtra("price", total);
 			startActivity(intent);
 			
 		}

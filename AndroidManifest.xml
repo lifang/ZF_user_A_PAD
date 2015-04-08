@@ -239,19 +239,22 @@
         <activity
             android:name="com.example.zf_pad.activity.CreatMerchant"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.AdressEdit"
 
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
 
         <activity
             android:name="com.example.zf_pad.activity.Exchange"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.TerminalManagerActivity"

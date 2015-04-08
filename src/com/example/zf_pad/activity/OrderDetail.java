@@ -263,7 +263,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		case R.id.btn_ishow:
 			amd = new AlertMessDialog(OrderDetail.this);
 			amd.setTitle("查看终端号");
-			amd.setMessage(ode.get(0).get);
+			amd.setMessage(ode.get(0).getOrder_number());
 			amd.setNegativeButton("确认", new OnClickListener() {
 				
 				@Override

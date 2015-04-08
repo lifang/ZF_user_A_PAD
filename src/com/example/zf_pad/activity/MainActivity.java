@@ -49,6 +49,7 @@ import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -207,14 +208,19 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, f_wdxx).commit();
 			break;
 		case R.id.main_rl_my:
-			changTabBg();
-			im_wd.setBackgroundResource(R.drawable.mine);
-			textwd.setTextColor(getResources().getColor(R.color.o));
-			if (m_my == null)
-				m_my = new m_my();
+			if(LoginActivity.islogin){
+				changTabBg();
+				im_wd.setBackgroundResource(R.drawable.mine);
+				textwd.setTextColor(getResources().getColor(R.color.o));
+				if (m_my == null)
+					m_my = new m_my();
 
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, m_my).commit();
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.m_fragment, m_my).commit();
+			}
+			else{
+				Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
+			}
 			break;
 		case R.id.set:
 			showSet();

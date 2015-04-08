@@ -2,6 +2,8 @@ package com.example.zf_pad.fragment;
 
 
 import com.example.zf_pad.R;
+import com.example.zf_pad.trade.widget.MTabWidget;
+import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,9 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class mine_MyInfo extends Fragment implements OnClickListener{
+public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	private View view;
 	private TextView tv_score,tv_manageradress,tv_info,tv_safe;
 	private Mine_score score;
@@ -22,6 +25,8 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 	private Mine_baseinfo info;
 	private Mine_chgpaw chgpaw;
 	private FragmentTransaction transaction ;
+	int mRecordType=0;
+	private LinearLayout ll_myinfo;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -54,16 +59,28 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 		super.onStart();
 		init();
 	}
-	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		ll_myinfo.setVisibility(View.VISIBLE);
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		ll_myinfo.setVisibility(View.GONE);
+	}
 	private void init() {
-		tv_safe=(TextView) view.findViewById(R.id.tv_safe);
-		tv_score=(TextView) view.findViewById(R.id.tv_score);
-		tv_manageradress=(TextView) view.findViewById(R.id.tv_manageradress);
-		tv_info=(TextView) view.findViewById(R.id.tv_info);
-		tv_score.setOnClickListener(this);
-		tv_manageradress.setOnClickListener(this);
-		tv_info.setOnClickListener(this);
-		tv_safe.setOnClickListener(this);
+		ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
+		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
+		 // add tabs to the TabWidget
+       String[] tabs = getResources().getStringArray(R.array.mine_myinfo);
+       for (int i = 0; i < tabs.length; i++) {
+           mTabWidget.addTab(tabs[i]);
+       }
+       mTabWidget.updateTabs(0);
+       mTabWidget.setonTabLintener(this);
 		transaction = getActivity()
 				.getSupportFragmentManager().beginTransaction();
 	}
@@ -85,38 +102,36 @@ public class mine_MyInfo extends Fragment implements OnClickListener{
 		super.onDestroyView();
 	}
 	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.tv_score:
-			if (score == null)
-				score = new Mine_score();
-			getActivity().getSupportFragmentManager().beginTransaction()
-					.replace(R.id.fm, score).commit();
-			//mine_Address.ll_address.setVisibility(View.GONE);
-				
-			break;
-		case R.id.tv_manageradress:
-			if(address==null)
-				address=new mine_Address();
-			getActivity().getSupportFragmentManager().beginTransaction()
-			.replace(R.id.fm, address).commit();
-			break;
-		case R.id.tv_info:
+	public void chang(int index) {
+		mRecordType=index;
+		switch (mRecordType) {
+		case 0:
 			if(info==null)
 				info=new Mine_baseinfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, info).commit();
 			break;
-		case R.id.tv_safe:
+		case 1:
 			if(chgpaw==null)
 				chgpaw=new Mine_chgpaw();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, chgpaw).commit();
 			break;
+		case 2:
+			if(address==null)
+				address=new mine_Address();
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fm, address).commit();
+			break;
+		case 3:
+			if (score == null)
+				score = new Mine_score();
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fm, score).commit();
+			break;
 		default:
 			break;
 		}
-		
 	}
 	
 }

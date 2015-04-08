@@ -61,9 +61,6 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
 
-	// view = inflater.inflate(R.layout.f_mine, container,false);
-	// initView();
-
 	if (view != null) {
 		Log.i("222222", "11111111");
 		ViewGroup parent = (ViewGroup) view.getParent();
@@ -72,7 +69,8 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	}
 	try {
 		view = inflater.inflate(R.layout.baseinfo, container, false);
-		
+		init();
+		getUserInfo();
 	} catch (InflateException e) {
 
 	}
@@ -83,12 +81,11 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 public void onStart() {
 	// TODO Auto-generated method stub
 	super.onStart();
-	init();
-	getUserInfo();
+	
 	myHandler=new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-			case 0:
+			case 3:
 				try {
 					Log.e("res", String.valueOf(result));
 					pawwword=result.getString("password");
@@ -96,7 +93,7 @@ public void onStart() {
 					
 					et_phone.setText(result.getString("phone"));
 					tv_city_select.setText(findcity(result.getInt("city_id")));
-					
+					Log.e("2", tv_city_select.getText().toString());
 					et_name.setText(result.getString("name"));
 					et_email.setText(result.getString("email"));
 				} catch (Exception e) {
@@ -131,9 +128,7 @@ protected String findcity(int id) {
 	 return a;
 }
 private void getUserInfo() {
-	String url="http://114.215.149.242:18080/ZFMerchant/api/customers/getOne/"+id;
-	Log.e("url", String.valueOf(url));
-	MyApplication.getInstance().getClient().post(url, new AsyncHttpResponseHandler() {
+	MyApplication.getInstance().getClient().post(API.GET_USERINFO+id, new AsyncHttpResponseHandler() {
 		private Dialog loadingDialog;
 
 		@Override
@@ -161,7 +156,7 @@ private void getUserInfo() {
 					result=jsonobject.getJSONObject("result");
 					Log.e("result", String.valueOf(result));
 					
-					myHandler.sendEmptyMessage(0);
+					myHandler.sendEmptyMessage(3);
 				}
 				else{
 					code = jsonobject.getString("message");
@@ -215,10 +210,16 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	// TODO Auto-generated method stub
 	super.onActivityResult(requestCode, resultCode, data);
 	switch (requestCode) {
-	case REQUEST_CITY:
-		cityId = data.getIntExtra(CITY_ID, 0);
+	//case REQUEST_CITY:
+	//case com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY:
+	case com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY:
+		City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
+		cityId=mMerchantCity.getId() ;
+		tv_city_select.setText(mMerchantCity.getName());
+		Log.e("1", tv_city_select.getText().toString());
+		/*cityId = data.getIntExtra(CITY_ID, 0);
 		cityName = data.getStringExtra(CITY_NAME);
-		tv_city_select.setText(cityName);
+		tv_city_select.setText(cityName);*/
 		break;
 	
 	default:
@@ -226,7 +227,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
 }
 private void changeUserinfo() {
-	API.changeuserinfo(getActivity(), 80, et_name.getText().toString(), 
+	API.changeuserinfo(getActivity(), id, et_name.getText().toString(), 
 			et_phone.getText().toString(), et_email.getText().toString(), cityId, 
 			new HttpCallback(getActivity()) {
 
@@ -250,9 +251,10 @@ public void onClick(View v) {
 	switch (v.getId()) {
 	case R.id.tv_city_select:
 		Intent intent = new Intent(getActivity(),
-				CitySelectActivity.class);
-		intent.putExtra(CITY_NAME, cityName);
-		startActivityForResult(intent, REQUEST_CITY);
+				CityProvinceActivity.class);
+		//intent.putExtra(CITY_NAME, cityName);
+		//startActivityForResult(intent, REQUEST_CITY);
+		startActivityForResult(intent, com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY);
 		break;
 	case R.id.btn_save:
 		changeUserinfo();

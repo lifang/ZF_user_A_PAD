@@ -78,6 +78,7 @@ public class ShopAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View arg0) {
+				pp=position;
 				Message msg=mine_MyMerChant.myHandler.obtainMessage();
 				msg.what=2;
 				msg.sendToTarget();

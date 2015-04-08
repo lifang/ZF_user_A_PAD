@@ -34,13 +34,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class mine_MyMerChant extends Fragment implements IXListViewListener{
@@ -53,6 +57,9 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	public static Handler myHandler;
 	private Button btn_creat;
 	private int[] id;
+	public static boolean isFromItem=false;
+	private int customerId=MyApplication.NewUser.getId();
+	private LinearLayout ll_merchant;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -72,7 +79,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		try {
 			view = inflater.inflate(R.layout.f_mine_mymer, container, false);
 			init();
-			getData();
+			
 		} catch (InflateException e) {
 		
 		}
@@ -82,6 +89,10 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		if(datasho.size()!=0){
+			datasho.clear();
+		}
+		getData();
 		myHandler=new Handler(){
 			public void handleMessage(android.os.Message msg) {
 				switch (msg.what) {
@@ -93,7 +104,9 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 					delect();
 					break;
 				case 2:
+					isFromItem=true;
 					Intent intent=new Intent(getActivity(),CreatMerchant.class);
+					intent.putExtra("position", id[ShopAdapter.pp]);
 					startActivity(intent);
 					break;
 				default:
@@ -103,10 +116,21 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			};
 		};
 	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		ll_merchant.setVisibility(View.VISIBLE);
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		ll_merchant.setVisibility(View.GONE);
+	}
 	protected void delect() {
 		int[] ids=new int[1];
 		ids[0]=id[ShopAdapter.pp];
-		String url="http://114.215.149.242:18080/ZFMerchant/api/merchant/delete";
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
 		try {
@@ -115,7 +139,8 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
+		params.setUseJsonStreamer(true);
+		MyApplication.getInstance().getClient().post(API.DELECT_MERCHANTLIST, params, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -133,7 +158,24 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				String responseMsg = new String(responseBody)
 				.toString();
-				
+				JSONObject jsonobject = null;
+				int code = 0;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getInt("code");
+					if(code==1){
+						datasho.remove(ShopAdapter.pp);
+						shoaadapter.notifyDataSetChanged();
+						Log.e("size", datasho.size()+"");
+					}
+					else{
+						Toast.makeText(getActivity(), jsonobject.getString("message"),
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			@Override
@@ -151,9 +193,8 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 		
 	}
 	private void getData() {
-		String url="http://114.215.149.242:18080/ZFMerchant/api/merchant/getList/";
-		url=url+Constants.TEST_CUSTOMER+"/"+page+"/"+rows;
-		MyApplication.getInstance().getClient().post(url, new AsyncHttpResponseHandler() {
+		
+		MyApplication.getInstance().getClient().post(API.GET_MERCHANTLIST+customerId+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -171,6 +212,7 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				String responseMsg = new String(responseBody)
 				.toString();
+				Log.e("responseMsg", responseMsg);
 				Gson gson = new Gson();
 				
 				JSONObject jsonobject = null;
@@ -213,29 +255,12 @@ public class mine_MyMerChant extends Fragment implements IXListViewListener{
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
-				
+				Log.e("url", API.GET_MERCHANTLIST+Constants.TEST_CUSTOMER+"/"+page+"/"+rows);
 			}
 		});
-		/*
-		API.getmerchantlist(getActivity().getBaseContext(), 
-				80, page, rows, new HttpCallback<List<Shopname>>(getActivity()) {
-
-					@Override
-					public void onSuccess(List<Shopname> data) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public TypeToken<List<Shopname>> getTypeToken() {
-						// TODO Auto-generated method stub
-						return new TypeToken<List<Shopname>>() {
-						};
-					}
-				});
-		
-	*/}
+		}
 	private void init() {
+		ll_merchant=(LinearLayout) view.findViewById(R.id.ll_merchant);
 		btn_creat=(Button) view.findViewById(R.id.btn_creat);
 		xxlistview=(XListView) view.findViewById(R.id.list);
 		

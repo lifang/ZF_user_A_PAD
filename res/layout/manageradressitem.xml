@@ -41,6 +41,13 @@
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     />  
+     />
+     <TextView 
+     android:id="@+id/change"
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:text="修改"
+     android:textColor="#FD8631"/>  
      </LinearLayout>
 </LinearLayout>

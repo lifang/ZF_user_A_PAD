@@ -35,7 +35,6 @@ public class m_my extends Fragment implements OnClickListener {
 	private TextView tvwdsh;
 	private TextView tvsq;
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -102,7 +101,6 @@ public class m_my extends Fragment implements OnClickListener {
 		tvwdsh.setTextColor(getResources().getColor(R.color.white));
 		tvsq.setTextColor(getResources().getColor(R.color.white));
 	}
-
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
@@ -113,6 +111,7 @@ public class m_my extends Fragment implements OnClickListener {
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_dd).commit();
+			
 			setback();
 			im1.setVisibility(View.VISIBLE);
 			tvdd.setTextColor(getResources().getColor(R.color.o));
@@ -153,6 +152,7 @@ public class m_my extends Fragment implements OnClickListener {
 
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_plan).commit();
+			
 			setback();
 			im5.setVisibility(View.VISIBLE);
 			tvsq.setTextColor(getResources().getColor(R.color.o));
@@ -167,8 +167,8 @@ public class m_my extends Fragment implements OnClickListener {
 	public void onDestroyView() {
 		Log.i("onDestroyView", "onDestroyView");
 		try {
-			FragmentTransaction transaction = getActivity()
-					.getSupportFragmentManager().beginTransaction();
+			FragmentTransaction transaction =getActivity()
+			.getSupportFragmentManager().beginTransaction();;
 			if (m_dd != null)
 				transaction.remove(m_dd);
 			if (m_shjl != null)
