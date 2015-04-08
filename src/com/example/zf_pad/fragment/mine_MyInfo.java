@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class mine_MyInfo extends Fragment implements OnTabOnclik{
@@ -25,6 +26,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	private Mine_chgpaw chgpaw;
 	private FragmentTransaction transaction ;
 	int mRecordType=0;
+	private LinearLayout ll_myinfo;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -58,8 +60,20 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 		super.onStart();
 		init();
 	}
-	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		ll_myinfo.setVisibility(View.VISIBLE);
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		ll_myinfo.setVisibility(View.GONE);
+	}
 	private void init() {
+		ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
 		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
 		 // add tabs to the TabWidget
        String[] tabs = getResources().getStringArray(R.array.mine_myinfo);

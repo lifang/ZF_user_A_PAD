@@ -72,7 +72,7 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	private int total = 0;
 	private final int rows = 10;
 	private LayoutInflater mInflater;
-
+    private LinearLayout ll_shjl;
 	// cancel apply button listener
 	private View.OnClickListener mCancelApplyListener;
 	// submit mark button listener
@@ -88,6 +88,8 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -107,6 +109,18 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		
 		}
 		return view;
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		ll_shjl.setVisibility(View.VISIBLE);
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		ll_shjl.setVisibility(View.GONE);
 	}
 	private void init() {
 		mInflater = LayoutInflater.from(getActivity());
@@ -161,6 +175,7 @@ public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		mListView.setRefreshTime(Tools.getHourAndMin());
 	}
 	private void initView() {
+		ll_shjl=(LinearLayout) view.findViewById(R.id.ll_shjl);
 		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
 		 // add tabs to the TabWidget
         String[] tabs = getResources().getStringArray(R.array.mine_shjl_tabs);
