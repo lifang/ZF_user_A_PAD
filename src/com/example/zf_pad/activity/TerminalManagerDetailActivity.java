@@ -1,6 +1,7 @@
 package com.example.zf_pad.activity;
 
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.CANCELED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.OPENED;
@@ -35,6 +36,7 @@ import com.example.zf_pad.entity.TerminalComment;
 import com.example.zf_pad.entity.TerminalDetail;
 import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
+import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -45,6 +47,7 @@ import com.google.gson.reflect.TypeToken;
 public class TerminalManagerDetailActivity extends Activity {
 
 	private int mTerminalStatus;
+	private String mTerminalNumber;
 	private int mTerminalId;
 
 	private LayoutInflater mInflater;
@@ -67,6 +70,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
+		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
 
 		setContentView(R.layout.activity_terminal_detail);
@@ -137,34 +141,32 @@ public class TerminalManagerDetailActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId,
-				new HttpCallback<TerminalDetail>(this) {
-					@Override
-					public void onSuccess(TerminalDetail data) {
-						TerminalApply apply = data.getApplyDetails();
-						List<TerminalComment> comments = data.getTrackRecord();
-						List<TerminalRate> rates = data.getRates();
-						List<TerminalOpen> openDetails = data
-								.getOpeningDetails();
+		API.getTerminalDetail(this, mTerminalId, Constants.TEST_CUSTOMER, new HttpCallback<TerminalDetail>(this) {
+			@Override
+			public void onSuccess(TerminalDetail data) {
+				TerminalApply apply = data.getApplyDetails();
+				List<TerminalComment> comments = data.getTrackRecord();
+				List<TerminalRate> rates = data.getRates();
+				List<TerminalOpen> openDetails = data.getOpeningDetails();
 
-						// set the status and buttons
-						setStatusAndButtons(apply);
-						// render terminal info
-						LinearLayout terminalCategory = setTerminalInfo(apply);
-						// add rate's table
-						addRatesTable(terminalCategory, rates);
-						// render terminal open info
-						setOpenInfo(openDetails);
-						// add terminal trace records
-						addComments(comments);
-					}
+				// set the status and buttons
+				setStatusAndButtons(apply);
+				// render terminal info
+				LinearLayout terminalCategory = setTerminalInfo(apply);
+				// add rate's table
+				addRatesTable(terminalCategory, rates);
+				// render terminal open info
+				setOpenInfo(openDetails);
+				// add terminal trace records
+				addComments(comments);
+			}
 
-					@Override
-					public TypeToken<TerminalDetail> getTypeToken() {
-						return new TypeToken<TerminalDetail>() {
-						};
-					}
-				});
+			@Override
+			public TypeToken<TerminalDetail> getTypeToken() {
+				return new TypeToken<TerminalDetail>() {
+				};
+			}
+		});
 	}
 
 	private void setStatusAndButtons(TerminalApply apply) {
@@ -397,10 +399,19 @@ public class TerminalManagerDetailActivity extends Activity {
 
 	private LinearLayout renderCategoryTemplate(int titleRes,
 			LinkedHashMap<String, String> pairs) {
-		LinearLayout terminal_category = (LinearLayout) findViewById(R.id.terminal_category);
-		TextView title = (TextView) findViewById(R.id.category_title);
-		LinearLayout keyContainer = (LinearLayout) findViewById(R.id.category_key_container);
-		LinearLayout valueContainer = (LinearLayout) findViewById(R.id.category_value_container);
+//		LinearLayout terminal_category = (LinearLayout) findViewById(R.id.terminal_category);
+//		TextView title = (TextView) findViewById(R.id.category_title);
+//		LinearLayout keyContainer = (LinearLayout) findViewById(R.id.category_key_container);
+//		LinearLayout valueContainer = (LinearLayout) findViewById(R.id.category_value_container);
+//
+//		title.setText(getString(titleRes));
+		
+		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_category, null);
+		mCategoryContainer.addView(terminalCategory);
+
+		TextView title = (TextView) terminalCategory.findViewById(R.id.category_title);
+		LinearLayout keyContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_key_container);
+		LinearLayout valueContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_value_container);
 
 		title.setText(getString(titleRes));
 		for (Map.Entry<String, String> pair : pairs.entrySet()) {
@@ -412,7 +423,7 @@ public class TerminalManagerDetailActivity extends Activity {
 			value.setText(pair.getValue());
 			valueContainer.addView(value);
 		}
-		return terminal_category;
+		return terminalCategory;
 	}
 
 }

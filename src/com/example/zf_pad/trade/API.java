@@ -387,12 +387,19 @@ public class API {
 		new HttpRequest(context, callback).post(TERMINAL_ADD, params);
 	}
 
-	public static void getTerminalDetail(Context context, int terminalId,
-			HttpCallback callback) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("terminalsId", terminalId + "");
-		new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
-	}
+	public static void getTerminalDetail(
+            Context context,
+            int terminalId,
+            int customerId,
+            HttpCallback callback) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("terminalsId", terminalId);
+        params.put("customerId", customerId);
+        new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
+    }
+
+
+
 
 	public static void findPosPassword(Context context, int terminalId,
 			HttpCallback callback) {
