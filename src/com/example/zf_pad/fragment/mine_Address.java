@@ -16,7 +16,9 @@ import com.example.zf_pad.activity.AdressEdit;
 import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.entity.OrderEntity;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -92,6 +94,10 @@ public void onStart() {
 	};
 }
 private void getData() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 		MyApplication.getInstance().getClient().post(API.GET_ADRESS+id, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 

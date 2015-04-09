@@ -28,6 +28,7 @@ import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -73,6 +74,10 @@ protected void onStart() {
 	};
 }
  private void getscore() {
+	 if(!Tools.isConnect(getApplicationContext())){
+			CommonUtil.toastShort(getApplicationContext(), "网络异常");
+			return;
+		}
 	  String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getjifen";
 	  RequestParams params = new RequestParams();
 		Gson gson = new Gson();
@@ -163,6 +168,10 @@ protected void onStart() {
 	}
 
 	private void getData() {
+		if(!Tools.isConnect(getApplicationContext())){
+			CommonUtil.toastShort(getApplicationContext(), "网络异常");
+			return;
+		}
 		name=et_name.getText().toString();
 		phone=et_tel.getText().toString();
 		prices=t_y.getText().toString();
@@ -205,9 +214,17 @@ protected void onStart() {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.next_sure:
+			if(Integer.parseInt(t_y.getText().toString())>sxfmoney){
+				CommonUtil.toastShort(Exchange.this, "超过最大可兑换积分数");
+				return;
+			}
 			getData();
 			break;
 		case R.id.btn_exit:
+			if(Integer.parseInt(t_y.getText().toString())>sxfmoney){
+				CommonUtil.toastShort(Exchange.this, "超过最大可兑换积分数");
+				return;
+			}
 			getData();
 			break;
 		default:

@@ -42,6 +42,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.TitleMenuUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -84,6 +85,10 @@ protected void onStart() {
 	init();
 }
 private void getmerchantInfo() {
+	if(!Tools.isConnect(getApplicationContext())){
+		CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 	Intent intent=getIntent();
 	id=intent.getIntExtra("position", 0);
 	MyApplication.getInstance().getClient().post(Config.MERCHANTINFO+id, new AsyncHttpResponseHandler() {
@@ -220,9 +225,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	super.onActivityResult(requestCode, resultCode, data);
 	switch (requestCode) {
 	case com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY:
-		City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
-		cityId=mMerchantCity.getId() ;
-		tv_adress.setText(mMerchantCity.getName());
+		if(CityProvinceActivity.isClickconfirm){
+			City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
+			cityId=mMerchantCity.getId() ;
+			tv_adress.setText(mMerchantCity.getName());
+			CityProvinceActivity.isClickconfirm=false;
+		}
+		
 		break;
 	case 1001:
 		Log.e("localCameraPath", String.valueOf(localCameraPath));
@@ -392,6 +401,10 @@ public void onClick(View v) {
 	
 }
 private void changeMerchantInfo() {
+	if(!Tools.isConnect(getApplicationContext())){
+		CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 	String title=et_shopname.getText().toString();
 	String legalPersonName=et_name.getText().toString();
 	String legalPersonCardId=et_id_number.getText().toString();

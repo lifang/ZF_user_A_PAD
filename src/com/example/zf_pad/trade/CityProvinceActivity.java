@@ -32,7 +32,7 @@ public class CityProvinceActivity extends Activity {
 
     private Province mSelectedProvince;
     private City mSelectedCity;
-
+    public static boolean isClickconfirm=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +48,7 @@ public class CityProvinceActivity extends Activity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            	isClickconfirm=true;
                 Intent intent = new Intent();
                 intent.putExtra(SELECTED_PROVINCE, mSelectedProvince);
                 intent.putExtra(SELECTED_CITY, mSelectedCity);
