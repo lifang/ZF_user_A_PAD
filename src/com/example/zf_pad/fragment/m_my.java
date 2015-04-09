@@ -127,7 +127,7 @@ public class m_my extends Fragment implements OnClickListener {
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_myinfo:
-			//if (m_info == null)
+			if (m_info == null)
 				m_info = new mine_MyInfo();
 	
 			getActivity().getSupportFragmentManager().beginTransaction()

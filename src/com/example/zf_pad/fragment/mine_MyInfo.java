@@ -24,9 +24,9 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	private mine_Address address;
 	private Mine_baseinfo info;
 	private Mine_chgpaw chgpaw;
-	private FragmentTransaction transaction ;
 	int mRecordType=0;
 	//private LinearLayout ll_myinfo;
+	private MTabWidget mTabWidget;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,7 +46,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
-			
+			init();
 		} catch (InflateException e) {
 
 		}
@@ -57,12 +57,14 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		init();
+		Log.e("viewS", String.valueOf(view));
+		
 	}
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		Log.e("viewR", String.valueOf(view));
 		//ll_myinfo.setVisibility(View.VISIBLE);
 	}
 	@Override
@@ -73,7 +75,8 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	}
 	private void init() {
 		//ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
-		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
+		Log.e("viewR", String.valueOf(view));
+		mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
 		 // add tabs to the TabWidget
        String[] tabs = getResources().getStringArray(R.array.mine_myinfo);
        for (int i = 0; i < tabs.length; i++) {
@@ -81,13 +84,13 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
        }
        mTabWidget.updateTabs(0);
        mTabWidget.setonTabLintener(this);
-		transaction = getActivity()
-				.getSupportFragmentManager().beginTransaction();
+		
 	}
 	@Override
 	public void onDestroyView() {
 		try {
-		
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
 		if (address != null)
 			transaction.remove(address);
 		if (score != null)

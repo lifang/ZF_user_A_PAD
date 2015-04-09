@@ -23,6 +23,7 @@ import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -57,6 +58,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private Button btn_save,btn_exit;
 	public static String pawwword="";
 	private int id=MyApplication.NewUser.getId();
+	
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -128,6 +130,10 @@ protected String findcity(int id) {
 	 return a;
 }
 private void getUserInfo() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 	MyApplication.getInstance().getClient().post(API.GET_USERINFO+id, new AsyncHttpResponseHandler() {
 		private Dialog loadingDialog;
 
@@ -213,13 +219,17 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	//case REQUEST_CITY:
 	//case com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY:
 	case com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY:
-		City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
-		cityId=mMerchantCity.getId() ;
-		tv_city_select.setText(mMerchantCity.getName());
-		Log.e("1", tv_city_select.getText().toString());
-		/*cityId = data.getIntExtra(CITY_ID, 0);
-		cityName = data.getStringExtra(CITY_NAME);
-		tv_city_select.setText(cityName);*/
+		if(CityProvinceActivity.isClickconfirm){
+			City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
+			cityId=mMerchantCity.getId() ;
+			tv_city_select.setText(mMerchantCity.getName());
+			Log.e("1", tv_city_select.getText().toString());
+			CityProvinceActivity.isClickconfirm=false;
+			/*cityId = data.getIntExtra(CITY_ID, 0);
+			cityName = data.getStringExtra(CITY_NAME);
+			tv_city_select.setText(cityName);*/
+		}
+		
 		break;
 	
 	default:
@@ -227,6 +237,10 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
 }
 private void changeUserinfo() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 	API.changeuserinfo(getActivity(), id, et_name.getText().toString(), 
 			et_phone.getText().toString(), et_email.getText().toString(), cityId, 
 			new HttpCallback(getActivity()) {

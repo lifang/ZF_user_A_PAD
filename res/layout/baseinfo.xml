@@ -24,7 +24,7 @@
        android:id="@+id/et_name"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:text="王小小"
+   
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/>    
    </TableRow> 
@@ -40,7 +40,7 @@
        android:id="@+id/et_phone"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:text="12345678976"
+    
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"
     android:layout_gravity="center_vertical"/>    
@@ -57,7 +57,7 @@
        android:id="@+id/et_email"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:text="1234@qq.com"
+   
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"
     android:layout_gravity="center_vertical"/>    

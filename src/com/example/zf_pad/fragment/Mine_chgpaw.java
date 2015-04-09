@@ -10,8 +10,10 @@ import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.StringUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -72,6 +74,10 @@ public void onStart() {
 	});
 }
 protected void changepaw() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+		return;
+	}
 	API.changepaw(getActivity(), id, StringUtil.Md5(et_oldpaw.getText().toString()), 
 			StringUtil.Md5(et_newpaw.getText().toString()), 
 			new HttpCallback(getActivity()) {

@@ -24,10 +24,12 @@ import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.fragment.mine_Address;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
 public class AdressEdit extends BaseActivity{
@@ -44,7 +46,7 @@ public class AdressEdit extends BaseActivity{
 	//private int id=MyApplication.NewUser.getId();
 	private int Cityid=MyApplication.NewUser.getCityId();
 	private String name,tel,stringcode ,address;
-	private int isDefault=2;
+	private int isDefault=1;
 	private TextView tv4;
 	private CheckBox item_cb;
 	private LinearLayout mi_r4;
@@ -99,6 +101,10 @@ public class AdressEdit extends BaseActivity{
 		return true;
 	}
 	private void getData() {
+		if(!Tools.isConnect(getApplicationContext())){
+			CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
         API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,id,
         		
                 new HttpCallback(AdressEdit.this) {
@@ -181,7 +187,10 @@ public class AdressEdit extends BaseActivity{
 		});
 	}
 	protected void changeData() {
-		
+		if(!Tools.isConnect(getApplicationContext())){
+			CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		API.changeAdres(AdressEdit.this, mine_Address.idd[pp], Cityid+"", name, tel, 
 				stringcode, address, isDefault, new HttpCallback(AdressEdit.this) {
 

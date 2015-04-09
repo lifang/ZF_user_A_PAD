@@ -35,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Mine_score extends Fragment implements IXListViewListener{
@@ -51,7 +52,8 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private int a=1;
 	private boolean isLoadMore=false;
 	private Button btn_exchange;
-	
+	private TextView tv_total;
+	private int totalscore=0;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public void onStart() {
 			switch (msg.what) {
 			case 0:
 				onLoad();
+				tv_total.setText("总积分:"+totalscore);
 				if(datasco.size()!=0){
 				xxlistview.setAdapter(scoreadapter);
 				}
@@ -103,7 +106,10 @@ protected void onLoad() {
 	
 }
 private void getData() {
-	
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "网络异常");
+		return;
+	}
 	String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralList/";
 	url=url+80+"/"+page+"/"+rows;
 	MyApplication.getInstance().getClient()
@@ -136,6 +142,7 @@ private void getData() {
 				if(a==Config.CODE){  
 					String res =jsonobject.getString("result");
 					jsonobject = new JSONObject(res);
+					totalscore=jsonobject.getInt("total");
 					Log.e("jsonobject", String.valueOf(jsonobject));
 					JSONArray list=jsonobject.getJSONArray("list");
 					if(list.length()==0){
@@ -148,12 +155,22 @@ private void getData() {
 						isLoadMore=false;
 					}
 					for(int i=0;i<list.length();i++){
-						datasco.add(new Score(i, 
-								list.getJSONObject(i).getString("order_number"),
-								list.getJSONObject(i).getString("payedAt"),
-								list.getJSONObject(i).getString("quantity"), 
-								list.getJSONObject(i).getString("target_type"), 
-								list.getJSONObject(i).getString("types")));
+						if(list.getJSONObject(i).getInt("types")==1){
+							datasco.add(new Score(i, 
+									list.getJSONObject(i).getString("order_number"),
+									list.getJSONObject(i).getString("payedAt"),
+									list.getJSONObject(i).getString("quantity"), 
+									list.getJSONObject(i).getString("target_type"), 
+									"收入"));
+						}
+						else{
+							datasco.add(new Score(i, 
+									list.getJSONObject(i).getString("order_number"),
+									list.getJSONObject(i).getString("payedAt"),
+									list.getJSONObject(i).getString("quantity"), 
+									list.getJSONObject(i).getString("target_type"), 
+									"支出"));
+						}
 					}
 					
 	 				myHandler.sendEmptyMessage(0);
@@ -183,6 +200,7 @@ private void getData() {
 	});
 }
 private void init() {
+	tv_total=(TextView) view.findViewById(R.id.tv_total);
 	btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
 	moreList=new ArrayList<Score>();
 	datasco=new ArrayList<Score>();
@@ -208,6 +226,10 @@ private void init() {
 }
 @Override
 public void onRefresh() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "网络异常");
+		return;
+	}
 	isrefersh=true;
 	a=page;
 	rows=a*rows;
@@ -218,6 +240,10 @@ public void onRefresh() {
 }
 @Override
 public void onLoadMore() {
+	if(!Tools.isConnect(getActivity())){
+		CommonUtil.toastShort(getActivity(), "网络异常");
+		return;
+	}
 	isLoadMore=true;
 	page+=1;
 	getData();
