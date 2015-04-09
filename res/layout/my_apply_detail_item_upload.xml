@@ -16,7 +16,7 @@
             android:textSize="42px" />
 
         <Button
-            android:id="@+id/apply_detail_key"
+			android:id="@+id/apply_detail_value"
             style="@style/ButtonNormal"
             android:layout_width="200px"
             android:layout_height="80px"

@@ -17,6 +17,7 @@ import java.util.Map;
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -34,10 +35,12 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalApply;
 import com.example.zf_pad.entity.TerminalComment;
 import com.example.zf_pad.entity.TerminalDetail;
+import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
 import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
@@ -58,6 +61,7 @@ public class TerminalManagerDetailActivity extends Activity {
 	private Button mBtnRightBottom;
 	private LinearLayout mCategoryContainer;
 	private LinearLayout mCommentContainer;
+	private LinearLayout mTerminalContainer;
 
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
@@ -66,7 +70,7 @@ public class TerminalManagerDetailActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
@@ -91,6 +95,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		mBtnRightBottom = (Button) findViewById(R.id.terminal_button_right_bottom);
 		mCategoryContainer = (LinearLayout) findViewById(R.id.terminal_category_container);
 		mCommentContainer = (LinearLayout) findViewById(R.id.terminal_comment_container);
+		mTerminalContainer = (LinearLayout) findViewById(R.id.terminal_category);
 	}
 
 	private void initBtnListeners() {
@@ -104,13 +109,14 @@ public class TerminalManagerDetailActivity extends Activity {
 		mOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// TODO:
-				// Intent intent = new
-				// Intent(TerminalManagerDetailActivity.this,
-				// ApplyDetailActivity.class);
-				// intent.putExtra(TERMINAL_ID, mTerminalId);
-				// intent.putExtra(TERMINAL_STATUS, mTerminalStatus);
-				// startActivity(intent);
+				TerminalManagerEntity item = (TerminalManagerEntity) view
+						.getTag();
+				Intent intent = new Intent(TerminalManagerDetailActivity.this,
+						MyApplyDetail.class);
+				intent.putExtra(TERMINAL_ID, item.getId());
+				intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
+				intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+				startActivity(intent);
 			}
 		};
 		mPosListener = new View.OnClickListener() {
@@ -141,32 +147,40 @@ public class TerminalManagerDetailActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId, Constants.TEST_CUSTOMER, new HttpCallback<TerminalDetail>(this) {
-			@Override
-			public void onSuccess(TerminalDetail data) {
-				TerminalApply apply = data.getApplyDetails();
-				List<TerminalComment> comments = data.getTrackRecord();
-				List<TerminalRate> rates = data.getRates();
-				List<TerminalOpen> openDetails = data.getOpeningDetails();
+		API.getTerminalDetail(this, mTerminalId, Constants.TEST_CUSTOMER,
+				new HttpCallback<TerminalDetail>(this) {
+					@Override
+					public void onSuccess(TerminalDetail data) {
+						TerminalApply apply = data.getApplyDetails();
+						List<TerminalComment> comments = data.getTrackRecord();
+						List<TerminalRate> rates = data.getRates();
+						List<TerminalOpen> openDetails = data
+								.getOpeningDetails();
 
-				// set the status and buttons
-				setStatusAndButtons(apply);
-				// render terminal info
-				LinearLayout terminalCategory = setTerminalInfo(apply);
-				// add rate's table
-				addRatesTable(terminalCategory, rates);
-				// render terminal open info
-				setOpenInfo(openDetails);
-				// add terminal trace records
-				addComments(comments);
-			}
+						// set the status and buttons
+						setStatusAndButtons(apply);
+						// render terminal info
+						LinearLayout terminalCategory = setTerminalInfo(apply);
+						// add rate's table
+						addRatesTable(terminalCategory, rates);
+						// render terminal open info
+						setOpenInfo(openDetails);
+						// add terminal trace records
+						addComments(comments);
+					}
 
-			@Override
-			public TypeToken<TerminalDetail> getTypeToken() {
-				return new TypeToken<TerminalDetail>() {
-				};
-			}
-		});
+					@Override
+					public void onFailure(String message) {
+
+						super.onFailure(message);
+					}
+
+					@Override
+					public TypeToken<TerminalDetail> getTypeToken() {
+						return new TypeToken<TerminalDetail>() {
+						};
+					}
+				});
 	}
 
 	private void setStatusAndButtons(TerminalApply apply) {
@@ -229,7 +243,7 @@ public class TerminalManagerDetailActivity extends Activity {
 			LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 			pairs.put(getString(R.string.terminal_no_detail), "");
 			return renderCategoryTemplate(R.string.terminal_category_apply,
-					pairs);
+					pairs, false);
 		}
 		LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 		String[] keys = getResources().getStringArray(
@@ -240,7 +254,8 @@ public class TerminalManagerDetailActivity extends Activity {
 		pairs.put(keys[3], apply.getFactorName());
 		pairs.put(keys[4], apply.getTitle());
 		pairs.put(keys[5], apply.getPhone());
-		return renderCategoryTemplate(R.string.terminal_category_apply, pairs);
+		return renderCategoryTemplate(R.string.terminal_category_apply, pairs,
+				false);
 	}
 
 	private void addRatesTable(LinearLayout category, List<TerminalRate> rates) {
@@ -284,12 +299,15 @@ public class TerminalManagerDetailActivity extends Activity {
 
 	private void setOpenInfo(List<TerminalOpen> openDetails) {
 
-		LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 		if (openDetails == null || openDetails.size() <= 0) {
-			renderCategoryTemplate(R.string.terminal_category_open, pairs);
+
+			LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
+			pairs.put(getString(R.string.terminal_no_open_detail), "");
+			renderCategoryTemplate(R.string.terminal_category_open, pairs, true);
 			return;
 		}
 
+		LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 		List<TerminalOpen> photoOpens = new ArrayList<TerminalOpen>();
 		final List<String> imageUrls = new ArrayList<String>();
 		final List<String> imageNames = new ArrayList<String>();
@@ -305,7 +323,7 @@ public class TerminalManagerDetailActivity extends Activity {
 			}
 		}
 		LinearLayout category = renderCategoryTemplate(
-				R.string.terminal_category_open, pairs);
+				R.string.terminal_category_open, pairs, true);
 
 		View.OnClickListener onViewPhotoListener = new View.OnClickListener() {
 			@Override
@@ -398,20 +416,32 @@ public class TerminalManagerDetailActivity extends Activity {
 	}
 
 	private LinearLayout renderCategoryTemplate(int titleRes,
-			LinkedHashMap<String, String> pairs) {
-//		LinearLayout terminal_category = (LinearLayout) findViewById(R.id.terminal_category);
-//		TextView title = (TextView) findViewById(R.id.category_title);
-//		LinearLayout keyContainer = (LinearLayout) findViewById(R.id.category_key_container);
-//		LinearLayout valueContainer = (LinearLayout) findViewById(R.id.category_value_container);
-//
-//		title.setText(getString(titleRes));
-		
-		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_category, null);
-		mCategoryContainer.addView(terminalCategory);
+			LinkedHashMap<String, String> pairs, Boolean isOpen) {
+		// LinearLayout terminal_category = (LinearLayout)
+		// findViewById(R.id.terminal_category);
+		// TextView title = (TextView) findViewById(R.id.category_title);
+		// LinearLayout keyContainer = (LinearLayout)
+		// findViewById(R.id.category_key_container);
+		// LinearLayout valueContainer = (LinearLayout)
+		// findViewById(R.id.category_value_container);
+		//
+		// title.setText(getString(titleRes));
 
-		TextView title = (TextView) terminalCategory.findViewById(R.id.category_title);
-		LinearLayout keyContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_key_container);
-		LinearLayout valueContainer = (LinearLayout) terminalCategory.findViewById(R.id.category_value_container);
+		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(
+				R.layout.after_sale_detail_category, null);
+		
+		if (isOpen) {
+			mCategoryContainer.addView(terminalCategory);
+		} else {
+			mTerminalContainer.addView(terminalCategory);
+		}
+
+		TextView title = (TextView) terminalCategory
+				.findViewById(R.id.category_title);
+		LinearLayout keyContainer = (LinearLayout) terminalCategory
+				.findViewById(R.id.category_key_container);
+		LinearLayout valueContainer = (LinearLayout) terminalCategory
+				.findViewById(R.id.category_value_container);
 
 		title.setText(getString(titleRes));
 		for (Map.Entry<String, String> pair : pairs.entrySet()) {
