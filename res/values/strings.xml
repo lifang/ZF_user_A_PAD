@@ -284,6 +284,7 @@
     <string name="terminal_button_reopen">重新开通申请</string>
     <string name="terminal_no_detail">暂无终端详情</string>
     <string name="terminal_category_apply">终端信息</string>
+    <string name="terminal_no_open_detail">暂无开通详情</string>
     <string name="terminal_category_open">开通详情</string>
     <string name="apply_progress_no_data">无查询结果,请填写正确的手机号码!</string>
 
@@ -302,5 +303,8 @@
     <string name="terminal_rate">费率</string>
     <string name="terminal_status">开通状态</string>
     <string name="notation_percent">%</string>
-
+  <string name="button_cancel">取消</string> 
+  <string name="button_copy">复制</string> 
+  <string name="toast_copy_password">密码已复制到剪贴板</string> 
+    
 </resources>

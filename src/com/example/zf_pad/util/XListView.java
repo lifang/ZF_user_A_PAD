@@ -47,7 +47,30 @@ public class XListView extends ListView implements OnScrollListener {
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
 
+	public void initHeaderAndFooter() {
+		// init header view
+		mHeaderView = new XListViewHeader(getContext());
+		mHeaderViewContent = (RelativeLayout) mHeaderView
+				.findViewById(R.id.xlistview_header_content);
+		mHeaderTimeView = (TextView) mHeaderView
+				.findViewById(R.id.xlistview_header_time);
+		addHeaderView(mHeaderView);
 
+		// init footer view
+		mFooterView = new XListViewFooter(getContext());
+
+		// init header height
+		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
+				new OnGlobalLayoutListener() {
+					@Override
+					public void onGlobalLayout() {
+						mHeaderViewHeight = mHeaderViewContent.getHeight();
+						getViewTreeObserver()
+								.removeGlobalOnLayoutListener(this);
+					}
+				});
+	}
+	
 	
 	
 	public XListViewFooter getmFooterView() {

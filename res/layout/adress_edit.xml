@@ -3,7 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/F3F2F2"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     android:focusable="true"  
+        android:focusableInTouchMode="true" >
 
     <include layout="@layout/title_back" />
 
@@ -94,7 +96,8 @@
                     android:singleLine="true"
                   
                     android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    />
 
                 <ImageView
                     android:layout_width="wrap_content"

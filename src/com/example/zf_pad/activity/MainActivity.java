@@ -219,7 +219,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					M_my = new M_my();
 
 				getSupportFragmentManager().beginTransaction()
+
 						.replace(R.id.m_fragment, M_my).commit();
+
 			//}
 			//else{
 			//	Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();

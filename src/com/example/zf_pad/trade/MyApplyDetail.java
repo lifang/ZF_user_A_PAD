@@ -11,6 +11,9 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
+
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.CHOOSE_TITLE;
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.CHOOSE_ITEMS;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -308,6 +311,7 @@ public class MyApplyDetail extends FragmentActivity {
 									}
 								});
 						// set the customer details
+						// TODO:
 						setCustomerDetail(customerDetails);
 
 					}
@@ -457,6 +461,10 @@ public class MyApplyDetail extends FragmentActivity {
 	 */
 	private void setItemValue(String key, String value) {
 		LinearLayout item = (LinearLayout) mContainer.findViewWithTag(key);
+
+		if (item == null) {
+			item = (LinearLayout) mMerchantContainer_0.findViewWithTag(key);
+		}
 		TextView tvValue = (TextView) item
 				.findViewById(R.id.apply_detail_value);
 		tvValue.setText(value);
@@ -643,11 +651,12 @@ public class MyApplyDetail extends FragmentActivity {
 	 */
 	private void startChooseItemActivity(int requestCode, String title,
 			int selectedId, ArrayList<ApplyChooseItem> items) {
-		// Intent intent = new Intent(ApplyDe.this, ApplyChooseActivity.class);
-		// intent.putExtra(CHOOSE_TITLE, title);
-		// intent.putExtra(SELECTED_ID, selectedId);
-		// intent.putExtra(CHOOSE_ITEMS, items);
-		// startActivityForResult(intent, requestCode);
+		Intent intent = new Intent(MyApplyDetail.this,
+				ApplyChooseActivity.class);
+		intent.putExtra(CHOOSE_TITLE, title);
+		intent.putExtra(SELECTED_ID, selectedId);
+		intent.putExtra(CHOOSE_ITEMS, items);
+		startActivityForResult(intent, requestCode);
 	}
 
 	/**
@@ -664,8 +673,8 @@ public class MyApplyDetail extends FragmentActivity {
 			switch (customerDetail.getTypes()) {
 
 			case TYPE_TEXT:
-				mMaterialContainer.addView(getDetailItem(ITEM_EDIT,
-						customerDetail.getKey(), customerDetail.getValue()));
+				// mMaterialContainer.addView(getDetailItem(ITEM_EDIT,
+				// customerDetail.getKey(), customerDetail.getValue()));
 				break;
 			case TYPE_IMAGE:
 

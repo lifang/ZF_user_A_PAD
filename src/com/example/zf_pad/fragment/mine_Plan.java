@@ -36,7 +36,6 @@ import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,7 +47,6 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 	private Button btn_serch;
 	private EditText et_process;
 	private TextView apply_progress_tips;
-	private LinearLayout ll_plan;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,20 +71,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 		}
 		return view;
 	}
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		ll_plan.setVisibility(View.GONE);
-	}
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		ll_plan.setVisibility(View.VISIBLE);
-	}
 	private void init() {
-		ll_plan=(LinearLayout) view.findViewById(R.id.ll_plan);
 		apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
 		et_process=(EditText) view.findViewById(R.id.et_process);
 		btn_serch=(Button) view.findViewById(R.id.btn_serch);
@@ -104,7 +89,8 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 			params.put("id", 80);
 			params.put("phone", et_process.getText().toString());
 			params.setUseJsonStreamer(true);
-			MyApplication.getInstance().getClient().post(API.APPLY_PROGRESS, params, new AsyncHttpResponseHandler() {
+			String url="http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
+			MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
 				private Dialog loadingDialog;
 
 				@Override
@@ -220,8 +206,8 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 							return new TypeToken<List<ApplySerch>>() {
 							};
 						}
-					});
-*/
+					});*/
+
 						
 
 					

@@ -35,7 +35,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-                   <service
+        <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
@@ -49,6 +49,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Vrv5gxzAzSi2QEEvEoKeZ5rH" />
+
         <activity
             android:name="com.example.zf_pad.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -197,8 +198,8 @@
             android:name="com.example.zf_pad.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent" 
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.Register"
@@ -244,12 +245,10 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.AdressEdit"
-
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
-
         <activity
             android:name="com.example.zf_pad.activity.Exchange"
             android:label="@string/app_name"
@@ -258,17 +257,23 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.TerminalManagerActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.TerminalManagerDetailActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
         <activity
             android:name="com.example.zf_pad.trade.MyApplyDetail"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
-               <activity
+        <activity
             android:name="com.example.zf_pad.activity.LeaseConfirm"
             android:label="@string/app_name" >
         </activity>
@@ -276,9 +281,15 @@
             android:name="com.example.zf_pad.activity.PosSearch1"
             android:label="@string/app_name" >
         </activity>
-                <activity
+        <activity
             android:name="com.example.zf_pad.activity.MyWebView"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.zf_pad.trade.ApplyChooseActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
     </application>
 

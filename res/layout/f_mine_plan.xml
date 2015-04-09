@@ -35,7 +35,7 @@
         android:layout_marginLeft="8dp"
         android:background="#FF5A10"/>
     </LinearLayout>
-    <TextView
+   <TextView
 		android:id="@+id/apply_progress_tips"
 		style="@style/TextItem"
 		android:layout_gravity="center"

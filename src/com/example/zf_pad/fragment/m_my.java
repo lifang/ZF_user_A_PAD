@@ -130,7 +130,9 @@ public class M_my extends Fragment implements OnClickListener {
 			break;
 		case R.id.ll_myinfo:
 			if (m_info == null)
+
 				m_info = new Mine_MyInfo();
+
 	
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_info).commit();

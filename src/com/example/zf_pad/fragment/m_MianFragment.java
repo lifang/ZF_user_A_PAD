@@ -25,6 +25,7 @@ import com.example.zf_pad.activity.MainActivity;
 import com.example.zf_pad.activity.MyWebView;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
+import com.example.zf_pad.activity.TerminalManagerActivity;
 import com.example.zf_pad.entity.PicEntity;
 import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.ApplyListActivity;
@@ -193,8 +194,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		case R.id.main_rl_lxwm:
 			startActivity(new Intent(getActivity(), ContactUs.class));
 
-		case R.id.main_rl_zdgl:
-			startActivity(new Intent(getActivity(), MyApplyDetail.class));
+		case R.id.main_rl_zdgl: // ÷’∂ÀœÍ«È
+			startActivity(new Intent(getActivity(), TerminalManagerActivity.class));
 			break;
 		default:
 			break;

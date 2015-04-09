@@ -2,6 +2,7 @@ package com.example.zf_pad.trade.common;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import android.content.ClipboardManager;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.entity.Province;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +33,14 @@ import java.util.List;
 
 public class CommonUtil {
 
+	public static void copy(Context context, String content) {
+		ClipboardManager clipboard = (ClipboardManager) context
+				.getSystemService(Context.CLIPBOARD_SERVICE);
+		ClipData clip = ClipData.newPlainText("label", content);
+		clipboard.setPrimaryClip(clip);
+	}
+
+	
 	public static void toastShort(Context context, int res) {
 		String message = context.getString(res);
 		toastShort(context, message);

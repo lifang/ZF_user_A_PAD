@@ -1,17 +1,48 @@
 package com.example.zf_pad.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TerminalManagerEntity {
 
-	private int posPortID;// 终端号
+
+	private int id;
+	
+	@SerializedName("serial_num")
+	private String posPortID;// 终端号
+
+	@SerializedName("brandsName")
 	private String pos;// POS机
+
+	@SerializedName("model_number")
+	private String posname;// POS机
+	
+	@SerializedName("channelName")
 	private String payChannel;// 支付通道
+
+	@SerializedName("status")
 	private int openState;// 开通状态
 
-	public int getPosPortID() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPosname() {
+		return posname;
+	}
+
+	public void setPosname(String posname) {
+		this.posname = posname;
+	}
+
+	public String getPosPortID() {
 		return posPortID;
 	}
 
-	public void setPosPortID(int posPortID) {
+	public void setPosPortID(String posPortID) {
 		this.posPortID = posPortID;
 	}
 

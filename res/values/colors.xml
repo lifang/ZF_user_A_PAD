@@ -70,7 +70,7 @@
     <color name="seekbar_bg">#e5e5e5</color>
     <color name="progress_bg">#FF9900</color>
     <!-- new  FF1F1F color -->
-
+	<color name="mybutton">#FD8936</color>
     <color name="bg_1FB8FE">#1FB8FE</color>
     <color name="bg_0AB2FF">#0AB2FF</color>
     <color name="bg_575D5F">#575D5F</color>

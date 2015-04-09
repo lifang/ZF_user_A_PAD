@@ -16,6 +16,7 @@ import com.example.zf_pad.aadpter.ShopAdapter;
 import com.example.zf_pad.activity.CreatMerchant;
 import com.example.zf_pad.entity.Shopname;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.Tools;
@@ -59,7 +60,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	private int[] id;
 	public static boolean isFromItem=false;
 	private int customerId=MyApplication.NewUser.getId();
-	private LinearLayout ll_merchant;
+	//private LinearLayout ll_merchant;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -92,6 +93,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		if(datasho.size()!=0){
 			datasho.clear();
 		}
+		
 		getData();
 		myHandler=new Handler(){
 			public void handleMessage(android.os.Message msg) {
@@ -120,15 +122,19 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		ll_merchant.setVisibility(View.VISIBLE);
+		//ll_merchant.setVisibility(View.VISIBLE);
 	}
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		ll_merchant.setVisibility(View.GONE);
+		//ll_merchant.setVisibility(View.GONE);
 	}
 	protected void delect() {
+		if(!Tools.isConnect(getActivity())){
+			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		int[] ids=new int[1];
 		ids[0]=id[ShopAdapter.pp];
 		Gson gson = new Gson();
@@ -193,7 +199,10 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		
 	}
 	private void getData() {
-		
+		if(!Tools.isConnect(getActivity())){
+			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		MyApplication.getInstance().getClient().post(API.GET_MERCHANTLIST+customerId+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
@@ -260,7 +269,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		});
 		}
 	private void init() {
-		ll_merchant=(LinearLayout) view.findViewById(R.id.ll_merchant);
+		//ll_merchant=(LinearLayout) view.findViewById(R.id.ll_merchant);
 		btn_creat=(Button) view.findViewById(R.id.btn_creat);
 		xxlistview=(XListView) view.findViewById(R.id.list);
 		
@@ -281,6 +290,10 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	}
 	@Override
 	public void onRefresh() {
+		if(!Tools.isConnect(getActivity())){
+			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		page=1;
 		datasho.clear();
 		getData();
@@ -288,6 +301,10 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	}
 	@Override
 	public void onLoadMore() {
+		if(!Tools.isConnect(getActivity())){
+			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		page+=1;
 		getData();
 		

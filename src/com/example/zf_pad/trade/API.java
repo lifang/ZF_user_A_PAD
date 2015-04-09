@@ -23,7 +23,6 @@ import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 
-
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
@@ -33,23 +32,25 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 public class API {
 
-
 	static Gson gson = new Gson();
-
-
 
 	public static final String SCHEMA = "http://";
 	public static final String HOST = "114.215.149.242:18080";
 	// public static final String HOST = "192.168.1.101:8080";
-	public static String GET_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/getOne/";
+	public static String GET_USERINFO = SCHEMA + HOST
+			+ "/ZFMerchant/api/customers/getOne/";
 	// change userinfo
-	public static String CHANGE_USERINFO = SCHEMA + HOST + "/ZFMerchant/api/customers/update/";
-	public static String CHANGE_PAW=SCHEMA + HOST + "/ZFMerchant/api/customers/updatePassword";
-	//get addresslist
-	public static String GET_ADRESS=SCHEMA + HOST + "/ZFMerchant/api/customers/getAddressList/";
+	public static String CHANGE_USERINFO = SCHEMA + HOST
+			+ "/ZFMerchant/api/customers/update/";
+	public static String CHANGE_PAW = SCHEMA + HOST
+			+ "/ZFMerchant/api/customers/updatePassword";
+	// get addresslist
+	public static String GET_ADRESS = SCHEMA + HOST
+			+ "/ZFMerchant/api/customers/getAddressList/";
 
-    // creat merchant
-	public static String CREAT_MERCHANT=SCHEMA + HOST + "/ZFMerchant/api/merchant/insert/";
+	// creat merchant
+	public static String CREAT_MERCHANT = SCHEMA + HOST
+			+ "/ZFMerchant/api/merchant/insert/";
 	// selection terminal list
 	public static final String TERMINAL_LIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/trade/record/getTerminals/%d";
@@ -163,8 +164,8 @@ public class API {
 	public static final String APPLY_PROGRESS = SCHEMA + HOST
 			+ "/ZFMerchant/api/terminal/openStatus";
 	// Get merchant list
-		public static String GET_MERCHANTLIST = SCHEMA + HOST
-				+ "/ZFMerchant/api/merchant/getList/";
+	public static String GET_MERCHANTLIST = SCHEMA + HOST
+			+ "/ZFMerchant/api/merchant/getList/";
 	// Add address
 	public static final String Add_ress = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/insertAddress/";
@@ -188,11 +189,12 @@ public class API {
 	public static final String APPLY_SUBMIT = SCHEMA + HOST
 			+ "/ZFMerchant/api/apply/addOpeningApply";
 	// delect merchant
-	 	public static String DELECT_MERCHANTLIST=SCHEMA + HOST
-	 			+"/ZFMerchant/api/merchant/delete/";
+	public static String DELECT_MERCHANTLIST = SCHEMA + HOST
+			+ "/ZFMerchant/api/merchant/delete/";
 	// update merchant
-	 	public static String UPDATE_MERCHANT=SCHEMA + HOST
-	 			+"/ZFMerchant/api/merchant/update/";
+	public static String UPDATE_MERCHANT = SCHEMA + HOST
+			+ "/ZFMerchant/api/merchant/update/";
+
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -318,7 +320,7 @@ public class API {
 
 	public static void resubmitCancel(Context context, int recordId,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
 		new HttpRequest(context, callback).post(AFTER_SALE_RESUBMIT_CANCEL,
@@ -354,11 +356,11 @@ public class API {
 	}
 
 	public static void getTerminalApplyList(Context context, int customerId,
-			int page, int pageSize, HttpCallback callback) {
+			int page, int rows, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customersId", customerId);
-		params.put("indexPage", page);
-		params.put("pageNum", pageSize);
+		params.put("page", page);
+		params.put("rows", rows);
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
 
@@ -388,9 +390,10 @@ public class API {
 	}
 
 	public static void getTerminalDetail(Context context, int terminalId,
-			HttpCallback callback) {
+			int customerId, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("terminalsId", terminalId + "");
+		params.put("terminalsId", terminalId);
+		params.put("customerId", customerId);
 		new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
 	}
 
@@ -402,11 +405,11 @@ public class API {
 	}
 
 	public static void getApplyList(Context context, int customerId, int page,
-			int pageSize, HttpCallback callback) {
+			int rows, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customersId", customerId);
-		params.put("indexPage", page);
-		params.put("pageNum", pageSize);
+		params.put("page", page);
+		params.put("rows", rows);
 		new HttpRequest(context, callback).post(APPLY_LIST, params);
 	}
 
@@ -465,11 +468,13 @@ public class API {
 		params.put("invoice_info", invoice_info);
 		System.out.println("参数--" + params.toString());
 		new HttpRequest(context, callback).post(Config.SHOPORDER, params);
-		//new HttpRequest(context, callback).post(Config.ZDORDER, params);
+		// new HttpRequest(context, callback).post(Config.ZDORDER, params);
 	}
-	public static void GOODCONFIRM1(Context context, int customerId, int goodId,
-			int paychannelId, int quantity, int addressId, String comment,
-			int is_need_invoice, int invoice_type, String invoice_info,
+
+	public static void GOODCONFIRM1(Context context, int customerId,
+			int goodId, int paychannelId, int quantity, int addressId,
+			String comment, int is_need_invoice, int invoice_type,
+			String invoice_info,
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -483,18 +488,20 @@ public class API {
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", invoice_info);
 		System.out.println("参数--" + params.toString());
-		//new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+		// new HttpRequest(context, callback).post(Config.SHOPORDER, params);
 		new HttpRequest(context, callback).post(Config.ZDORDER, params);
 	}
+
 	public static void CARTFIRM(Context context, int customerId, int[] cartid,
 			int addressId, String comment,
 
-			int is_need_invoice, int invoice_type, String invoice_info,String token,
+			int is_need_invoice, int invoice_type, String invoice_info,
+			String token,
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", 80);
-		//int aa[] = new int[] { 138, 140 };
+		// int aa[] = new int[] { 138, 140 };
 		try {
 			params.put("cartid", new JSONArray(gson.toJson(cartid)));
 		} catch (JSONException e) {
@@ -554,11 +561,12 @@ public class API {
 		params.put("customerId", customerId);
 		System.out.println("--ccc----" + params);
 		Log.e("params", String.valueOf(params));
-			new HttpRequest(context, callback).post(Add_ress, params);
+		new HttpRequest(context, callback).post(Add_ress, params);
 	}
-	public static void changeAdres(Context context,int id,String cityId,String receiver,
-			String moblephone,String zipCode,String address,int isDefault,
-			HttpCallback callback){
+
+	public static void changeAdres(Context context, int id, String cityId,
+			String receiver, String moblephone, String zipCode, String address,
+			int isDefault, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("cityId", cityId);
@@ -575,8 +583,7 @@ public class API {
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customer_id", customer_id);
-		
-		
+
 		new HttpRequest(context, callback).post(total_score, params);
 	}
 
@@ -632,32 +639,32 @@ public class API {
 		new HttpRequest(context, callback).post(GETEMAILPASS, params);
 	}
 
-	
-	public static void PostSearch(
-			Context context,
-			String  keys,
-			int city_id,
-			int rows,
-			int page,
-			int orderType,		
-			HttpCallback callback) {
+	public static void PostSearch(Context context, String keys, int city_id,
+			int rows, int page, int orderType, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("keys", keys);
 		params.put("city_id", city_id);
 		params.put("rows", rows);
 		params.put("page", page);
 		params.put("orderType", orderType);
+
 		params.put("has_purchase", Posport.has_purchase);
-		params.put("minPrice",Posport.minPrice);
-		params.put("maxPrice",Posport.maxPrice);
+		params.put("minPrice", Posport.minPrice);
+		params.put("maxPrice", Posport.maxPrice);
 		try {
-			params.put("brands_id", new JSONArray(gson.toJson(Posport.brands_id)));
+			params.put("brands_id",
+					new JSONArray(gson.toJson(Posport.brands_id)));
 			params.put("category", new JSONArray(gson.toJson(Posport.category)));
-			params.put("pay_channel_id", new JSONArray(gson.toJson(Posport.pay_channel_id)));
-			params.put("pay_card_id", new JSONArray(gson.toJson(Posport.pay_card_id)));
-			params.put("trade_type_id", new JSONArray(gson.toJson(Posport.trade_type_id)));
-			params.put("sale_slip_id", new JSONArray(gson.toJson(Posport.sale_slip_id)));
+			params.put("pay_channel_id",
+					new JSONArray(gson.toJson(Posport.pay_channel_id)));
+			params.put("pay_card_id",
+					new JSONArray(gson.toJson(Posport.pay_card_id)));
+			params.put("trade_type_id",
+					new JSONArray(gson.toJson(Posport.trade_type_id)));
+			params.put("sale_slip_id",
+					new JSONArray(gson.toJson(Posport.sale_slip_id)));
 			params.put("tDate", new JSONArray(gson.toJson(Posport.tDate)));
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -665,21 +672,16 @@ public class API {
 		new HttpRequest(context, callback).post(Config.POSLIST, params);
 		System.out.println("参数--" + params.toString());
 	}
-	public static void getUserinfo(
-			Context context,
-			
-			HttpCallback callback){
-		GET_USERINFO=GET_USERINFO+80;
+
+	public static void getUserinfo(Context context,
+
+	HttpCallback callback) {
+		GET_USERINFO = GET_USERINFO + 80;
 		new HttpRequest(context, callback).post(GET_USERINFO);
 	}
-	public static void changeuserinfo(
-			Context context,
-			int id,
-			String name,
-			String phone,
-			String email,
-			int cityId,
-			HttpCallback callback){
+
+	public static void changeuserinfo(Context context, int id, String name,
+			String phone, String email, int cityId, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("name", name);
@@ -688,12 +690,9 @@ public class API {
 		params.put("cityId", cityId);
 		new HttpRequest(context, callback).post(CHANGE_USERINFO, params);
 	}
-	public static void changepaw(
-			Context context,
-			int id,
-			String passwordOld,
-			String password,
-			HttpCallback callback){
+
+	public static void changepaw(Context context, int id, String passwordOld,
+			String password, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("passwordOld", passwordOld);
@@ -705,26 +704,16 @@ public class API {
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
 	}
-	public static void insertmerchant(
-			Context context,
-			String title,
-			String legalPersonName,
-			String legalPersonCardId,
-			String businessLicenseNo,
-			String taxRegisteredNo,
-			String organizationCodeNo,
-			int cityId,
-			String accountBankName,
-			String bankOpenAccount,
-			String cardIdFrontPhotoPath,
-			String cardIdBackPhotoPath,
-			String bodyPhotoPath,
-			String licenseNoPicPath,
-			String taxNoPicPath,
-			String orgCodeNoPicPath,
-			String accountPicPath,
-			int customerId,
-			HttpCallback callback){
+
+	public static void insertmerchant(Context context, String title,
+			String legalPersonName, String legalPersonCardId,
+			String businessLicenseNo, String taxRegisteredNo,
+			String organizationCodeNo, int cityId, String accountBankName,
+			String bankOpenAccount, String cardIdFrontPhotoPath,
+			String cardIdBackPhotoPath, String bodyPhotoPath,
+			String licenseNoPicPath, String taxNoPicPath,
+			String orgCodeNoPicPath, String accountPicPath, int customerId,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("title", title);
 		params.put("legalPersonName", legalPersonName);
@@ -745,26 +734,16 @@ public class API {
 		params.put("customerId", customerId);
 		new HttpRequest(context, callback).post(CREAT_MERCHANT, params);
 	}
-	public static void updatemerchant(
-			Context context,
-			String title,
-			String legalPersonName,
-			String legalPersonCardId,
-			String businessLicenseNo,
-			String taxRegisteredNo,
-			String organizationCodeNo,
-			int cityId,
-			String accountBankName,
-			String bankOpenAccount,
-			String cardIdFrontPhotoPath,
-			String cardIdBackPhotoPath,
-			String bodyPhotoPath,
-			String licenseNoPicPath,
-			String taxNoPicPath,
-			String orgCodeNoPicPath,
-			String accountPicPath,
-			int id,
-			HttpCallback callback){
+
+	public static void updatemerchant(Context context, String title,
+			String legalPersonName, String legalPersonCardId,
+			String businessLicenseNo, String taxRegisteredNo,
+			String organizationCodeNo, int cityId, String accountBankName,
+			String bankOpenAccount, String cardIdFrontPhotoPath,
+			String cardIdBackPhotoPath, String bodyPhotoPath,
+			String licenseNoPicPath, String taxNoPicPath,
+			String orgCodeNoPicPath, String accountPicPath, int id,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("title", title);
 		params.put("legalPersonName", legalPersonName);
