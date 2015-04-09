@@ -49,7 +49,7 @@
                 android:singleLine="true"
                 android:text="商品详情"
                 android:textColor="@color/white"
-                android:textSize="@dimen/textmid" />
+                android:textSize="@dimen/textbig" />
 
             <ImageView
                 android:id="@+id/search2"
@@ -75,13 +75,13 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="@dimen/goodimg"
-                        android:layout_height="@dimen/normal_width4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical" >
 <RelativeLayout
                 android:id="@+id/rl_imgs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                   android:layout_width="@dimen/goodimg"
+                android:layout_height="@dimen/goodimg"
                 android:layout_weight="1"
                 android:background="@color/F3F3F3" >
 
@@ -186,8 +186,8 @@
                                     android:textSize="@dimen/textmids" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="@dimen/iconma"
+                                    android:layout_height="@dimen/iconma"
                                     android:layout_marginLeft="7dp"
                                     android:background="@drawable/see" />
                             </LinearLayout>
@@ -324,8 +324,8 @@
 
                                     <ImageView
                                         android:id="@+id/fac_img"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_width="80dp"
+                                        android:layout_height="30dp"
                                         android:background="@drawable/sj_sjtest" />
 
                                     <TextView

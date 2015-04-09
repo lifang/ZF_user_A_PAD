@@ -102,6 +102,7 @@ public class PosAdapter1 extends BaseAdapter {
 				Toast.makeText(context,list.get(position*4).getTitle(), 1000).show();
 				Intent i =new Intent (context,GoodDeatail.class);
 				i.putExtra("id", list.get(position*4).getId());
+				//Toast.makeText(context, "cccfcc"+list.get(position*4).getId(), 1000).show();
 				context.startActivity(i);
 			}
 		});

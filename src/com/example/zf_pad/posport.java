@@ -1,6 +1,6 @@
 package com.example.zf_pad;
 
-public class posport {
+public class Posport {
 	public static int[] brands_id={};
 	public static int[] category={};
 	public static int[] pay_channel_id={};

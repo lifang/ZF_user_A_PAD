@@ -40,7 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class mine_Plan extends Fragment implements OnClickListener{
+public class Mine_Plan extends Fragment implements OnClickListener{
 	private View view;
 	private List<ApplySerch> dataser;
 	private BaseAdapter applyadapter;

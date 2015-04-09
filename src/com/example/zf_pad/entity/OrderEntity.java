@@ -7,7 +7,14 @@ public class OrderEntity {
 //        "order_number": "120150312154424229",
 	
 	private String order_number;
-//        "order_psf": "0",
+	private String order_type;
+public String getOrder_type() {
+		return order_type;
+	}
+	public void setOrder_type(String order_type) {
+		this.order_type = order_type;
+	}
+	//        "order_psf": "0",
 	private int order_psf;
 //        "order_createTime": "2015-03-12 15:44:24",
 	private String order_createTime;

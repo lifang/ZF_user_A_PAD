@@ -91,7 +91,7 @@
             android:id="@+id/f_good_detail"
             android:layout_marginLeft="@dimen/titilepad"
             android:layout_marginRight="@dimen/titilepad"
-            android:name="com.example.zf_pad.fragment.good_detail_main" 
+            android:name="com.example.zf_pad.fragment.Good_detail_main" 
             
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>

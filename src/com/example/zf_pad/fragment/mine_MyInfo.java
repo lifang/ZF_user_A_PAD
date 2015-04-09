@@ -17,11 +17,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class mine_MyInfo extends Fragment implements OnTabOnclik{
+public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	private View view;
 	private TextView tv_score,tv_manageradress,tv_info,tv_safe;
 	private Mine_score score;
-	private mine_Address address;
+	private Mine_Address address;
 	private Mine_baseinfo info;
 	private Mine_chgpaw chgpaw;
 	private FragmentTransaction transaction ;
@@ -46,7 +46,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
-			
+			init();
 		} catch (InflateException e) {
 
 		}
@@ -57,7 +57,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		init();
+		
 	}
 	@Override
 	public void onResume() {
@@ -119,7 +119,7 @@ public class mine_MyInfo extends Fragment implements OnTabOnclik{
 			break;
 		case 2:
 			if(address==null)
-				address=new mine_Address();
+				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, address).commit();
 			break;

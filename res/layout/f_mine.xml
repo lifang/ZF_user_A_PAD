@@ -169,7 +169,7 @@
         android:orientation="vertical" >
 <fragment 
     android:id="@+id/f_mine"
-     android:name="com.example.zf_pad.fragment.mine_Dd" 
+     android:name="com.example.zf_pad.fragment.Mine_Dd" 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
        

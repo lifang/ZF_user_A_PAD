@@ -33,7 +33,7 @@ import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.fragment.mine_MyMerChant;
+import com.example.zf_pad.fragment.Mine_MyMerChant;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -74,7 +74,7 @@ protected void onCreate(Bundle savedInstanceState) {
 @Override
 protected void onStart() {
 	super.onStart();
-	if(mine_MyMerChant.isFromItem){
+	if(Mine_MyMerChant.isFromItem){
 		new TitleMenuUtil(CreatMerchant.this, "ÐÞ¸ÄÉÌ»§").show();
 		getmerchantInfo();
 	}
@@ -343,7 +343,7 @@ public void onClick(View v) {
 		startActivityForResult(intent, com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY);
 		break;
 	case R.id.btn_creat:
-		if(mine_MyMerChant.isFromItem){
+		if(Mine_MyMerChant.isFromItem){
 			changeMerchantInfo();
 		}
 		else{

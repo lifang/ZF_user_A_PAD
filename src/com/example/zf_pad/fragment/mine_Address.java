@@ -42,7 +42,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class mine_Address extends Fragment implements OnClickListener{
+public class Mine_Address extends Fragment implements OnClickListener{
 	private View view;
 	public static List<AddressManager> dataadress;
 	
@@ -108,7 +108,7 @@ private void getData() {
 			}
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				mine_Address.isclickitem=false;
+				Mine_Address.isclickitem=false;
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg); 

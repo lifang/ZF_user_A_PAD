@@ -49,7 +49,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class m_wdxx extends Fragment implements OnClickListener,
+public class M_wdxx extends Fragment implements OnClickListener,
 		IXListViewListener {
 	private View view;
 	private XListView Xlistview;

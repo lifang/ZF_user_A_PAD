@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.posport;
+import com.example.zf_pad.Posport;
 import com.example.zf_pad.aadpter.PosAdapter;
 import com.example.zf_pad.aadpter.PosAdapter1;
 import com.example.zf_pad.aadpter.PosPortAdapter;
@@ -344,15 +344,15 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	 	
 		params.put("minPrice", minPrice);
 	 	params.put("maxPrice", maxPrice);
-	 	params.put("has_purchase", posport.has_purchase);
+	 	params.put("has_purchase", Posport.has_purchase);
 	 	try {
-			params.put("brands_id", new JSONArray(gson.toJson(posport.brands_id)));
-			params.put("category", new JSONArray(gson.toJson(posport.category)));
-			params.put("pay_channel_id", new JSONArray(gson.toJson(posport.pay_channel_id)));
-			params.put("pay_card_id", new JSONArray(gson.toJson(posport.pay_card_id)));
-			params.put("trade_type_id", new JSONArray(gson.toJson(posport.trade_type_id)));
-			params.put("sale_slip_id", new JSONArray(gson.toJson(posport.sale_slip_id)));
-			params.put("tDate", new JSONArray(gson.toJson(posport.tDate)));
+			params.put("brands_id", new JSONArray(gson.toJson(Posport.brands_id)));
+			params.put("category", new JSONArray(gson.toJson(Posport.category)));
+			params.put("pay_channel_id", new JSONArray(gson.toJson(Posport.pay_channel_id)));
+			params.put("pay_card_id", new JSONArray(gson.toJson(Posport.pay_card_id)));
+			params.put("trade_type_id", new JSONArray(gson.toJson(Posport.trade_type_id)));
+			params.put("sale_slip_id", new JSONArray(gson.toJson(Posport.sale_slip_id)));
+			params.put("tDate", new JSONArray(gson.toJson(Posport.tDate)));
 		} catch (JSONException e1) {
 			
 			e1.printStackTrace();
@@ -448,7 +448,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	}
 	private void Search() {
 		//Toast.makeText(getApplicationContext(), page+"", 1000).show();
-		API.PostSearch(getApplicationContext(), keyword,MyApplication.getCITYID(),12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
+		API.PostSearch(getApplicationContext(), keyword,1,12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
 			@Override
 			public void onSuccess(Page<PosEntity> data) {
 				if(myList.size()!=0&&data.getList().size()==0)
@@ -472,15 +472,15 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		posport.brands_id=null;
-		posport.category=null;
-		posport.pay_channel_id=null;
-		posport. pay_card_id=null;
-		posport.trade_type_id=null;
-		posport.sale_slip_id=null;
-		posport.tDate=null;
-		posport. has_purchase=0;
-		posport.minPrice=0;
-		posport.maxPrice=0;
+		Posport.brands_id=null;
+		Posport.category=null;
+		Posport.pay_channel_id=null;
+		Posport. pay_card_id=null;
+		Posport.trade_type_id=null;
+		Posport.sale_slip_id=null;
+		Posport.tDate=null;
+		Posport. has_purchase=0;
+		Posport.minPrice=0;
+		Posport.maxPrice=0;
 	}
 }

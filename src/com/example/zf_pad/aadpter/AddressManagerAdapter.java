@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.AdressEdit;
 import com.example.zf_pad.entity.AddressManager;
-import com.example.zf_pad.fragment.mine_Address;
+import com.example.zf_pad.fragment.Mine_Address;
 
 import android.content.Context;
 import android.content.Intent;
@@ -73,7 +73,7 @@ public class AddressManagerAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				pp=position;
-				Message msg=mine_Address.myHandler.obtainMessage();
+				Message msg=Mine_Address.myHandler.obtainMessage();
 				msg.what=1;
 				msg.sendToTarget();
 				

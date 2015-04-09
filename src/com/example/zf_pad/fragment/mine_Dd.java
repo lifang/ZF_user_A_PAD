@@ -39,7 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class mine_Dd extends Fragment implements IXListViewListener,
+public class Mine_Dd extends Fragment implements IXListViewListener,
 		OnClickListener {
 	private View view;
 	private XListView Xlistview;
@@ -63,6 +63,7 @@ public class mine_Dd extends Fragment implements IXListViewListener,
 					//eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true;
+				
 				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
@@ -138,23 +139,25 @@ public void onStart() {
 		tv_zl = (TextView) view.findViewById(R.id.tv_zl);
 		tv_gm.setOnClickListener(this);
 		tv_zl.setOnClickListener(this);
-		myAdapter = new OrderAdapter(getActivity(), myList);
+		myAdapter = new OrderAdapter(getActivity(), myList,this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
-		Xlistview.setOnItemClickListener(new OnItemClickListener() {
+/*		Xlistview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent i = new Intent(getActivity(), OrderDetail.class);
 				i.putExtra("status", myList.get(position).getOrder_status());
 				i.putExtra("id", myList.get(position).getOrder_id());
+				i.putExtra("type", myList.get(position).getOrder_type());
+				Toast.makeText(getActivity(), myList.get(position).getOrder_type(), 1000).show();
 				startActivity(i);
 			}
-		});
+		});*/
 		Xlistview.setAdapter(myAdapter);
 	}
 
@@ -197,7 +200,12 @@ public void onStart() {
 		myList.clear();
 		getData();
 	}
-
+	public  void DataChange(){
+		page = 1;
+		myList.clear();
+		getData();
+		
+	}
 	private void getData() {
 
 		RequestParams params = new RequestParams();
@@ -205,6 +213,7 @@ public void onStart() {
 		params.put("page", page);
 		params.put("p", type);
 		params.put("pageSize", 5);
+
 		// params.put("pageSize", 2);
 
 		params.setUseJsonStreamer(true);
@@ -254,6 +263,8 @@ public void onStart() {
 										}.getType());
 								System.out
 										.println("-sendEmptyMessage String()--");
+								if(myList.size()!=0&&moreList.size()==0)
+									Toast.makeText(getActivity(), "没有更多数据!", 1000).show();
 								myList.addAll(moreList);
 								handler.sendEmptyMessage(0);
 							} else {
@@ -290,7 +301,7 @@ public void onStart() {
 			page = 1;
 			myList.clear();
 			getData();
-			myAdapter = new OrderAdapter(getActivity(), myList);
+			myAdapter = new OrderAdapter(getActivity(), myList,this);
 			Xlistview.setAdapter(myAdapter);
 			break;
 		case R.id.tv_zl:
@@ -302,7 +313,7 @@ public void onStart() {
 			page = 1;
 			myList.clear();
 			getData();
-			myAdapter = new OrderAdapter(getActivity(), myList);
+			myAdapter = new OrderAdapter(getActivity(), myList,this);
 			Xlistview.setAdapter(myAdapter);
 			break;
 		default:
@@ -310,11 +321,12 @@ public void onStart() {
 		}
 
 	}
-
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
+		
 		super.onResume();
-
+		page = 1;
+		myList.clear();
+		getData();
 	}
 }

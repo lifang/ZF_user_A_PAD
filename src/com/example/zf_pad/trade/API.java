@@ -8,11 +8,11 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import com.example.zf_pad.fragment.mine_Address;
+import com.example.zf_pad.fragment.Mine_Address;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 
-import com.example.zf_pad.posport;
+import com.example.zf_pad.Posport;
 
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
@@ -647,17 +647,17 @@ public class API {
 		params.put("rows", rows);
 		params.put("page", page);
 		params.put("orderType", orderType);
-		params.put("has_purchase", posport.has_purchase);
-		params.put("minPrice",posport.minPrice);
-		params.put("maxPrice",posport.maxPrice);
+		params.put("has_purchase", Posport.has_purchase);
+		params.put("minPrice",Posport.minPrice);
+		params.put("maxPrice",Posport.maxPrice);
 		try {
-			params.put("brands_id", new JSONArray(gson.toJson(posport.brands_id)));
-			params.put("category", new JSONArray(gson.toJson(posport.category)));
-			params.put("pay_channel_id", new JSONArray(gson.toJson(posport.pay_channel_id)));
-			params.put("pay_card_id", new JSONArray(gson.toJson(posport.pay_card_id)));
-			params.put("trade_type_id", new JSONArray(gson.toJson(posport.trade_type_id)));
-			params.put("sale_slip_id", new JSONArray(gson.toJson(posport.sale_slip_id)));
-			params.put("tDate", new JSONArray(gson.toJson(posport.tDate)));
+			params.put("brands_id", new JSONArray(gson.toJson(Posport.brands_id)));
+			params.put("category", new JSONArray(gson.toJson(Posport.category)));
+			params.put("pay_channel_id", new JSONArray(gson.toJson(Posport.pay_channel_id)));
+			params.put("pay_card_id", new JSONArray(gson.toJson(Posport.pay_card_id)));
+			params.put("trade_type_id", new JSONArray(gson.toJson(Posport.trade_type_id)));
+			params.put("sale_slip_id", new JSONArray(gson.toJson(Posport.sale_slip_id)));
+			params.put("tDate", new JSONArray(gson.toJson(Posport.tDate)));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

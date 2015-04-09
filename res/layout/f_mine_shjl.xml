@@ -51,7 +51,7 @@
                 android:paddingLeft="18dp"
                 android:textColor="#292929"
                 
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
 
             <TextView
              
@@ -61,7 +61,7 @@
                 android:text="终端号"
                 android:textColor="#292929"
                 android:layout_weight="1"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
 
             <TextView
      
@@ -71,7 +71,7 @@
                 android:text="申请日期"
                 android:layout_weight="1"
                 android:textColor="#292929"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
 
             <TextView
                 android:id="@+id/tv2"
@@ -81,7 +81,7 @@
                 android:text="维修状态"
                 android:layout_weight="1"
                 android:textColor="#292929"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="120dp"
@@ -90,7 +90,7 @@
              
                 
                 android:textColor="#292929"
-                android:textSize="15sp" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
 <com.example.zf_pad.trade.widget.XListView
@@ -98,8 +98,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:paddingTop="8dp"
-		android:background="@color/F3F2F2"
-		android:divider="@color/F3F2F2"
+		android:background="#FDFCFC"
+		android:divider="#FDFCFC"
 		android:dividerHeight="8dp"
 		android:scrollbars="none"/>
     </LinearLayout>

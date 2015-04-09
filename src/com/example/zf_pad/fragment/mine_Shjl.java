@@ -59,7 +59,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListener{
+public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListener{
 	private View view;
 	Activity mActivity;
 	int mRecordType=0;

@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.posport;
+import com.example.zf_pad.Posport;
 import com.example.zf_pad.aadpter.PosPortAdapter;
 import com.example.zf_pad.entity.PosItem;
 import com.example.zf_pad.entity.PosSelectEntity;
@@ -253,21 +253,21 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	private void initView() {
 		ed_min = (EditText) findViewById(R.id.ed_min);
 		ed_max = (EditText) findViewById(R.id.ed_max);
-		ed_min.setText(String.valueOf(posport.minPrice));
-		ed_max.setText(String.valueOf(posport.maxPrice));
+		ed_min.setText(String.valueOf(Posport.minPrice));
+		ed_max.setText(String.valueOf(Posport.maxPrice));
 		has_purchase = (CheckBox) findViewById(R.id.has_purchase);
 		has_purchase.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean b) {
 				if (b) {
-					posport.has_purchase = 1;
+					Posport.has_purchase = 1;
 				} else {
-					posport.has_purchase = 0;
+					Posport.has_purchase = 0;
 				}
 			}
 		});
-		if (posport.has_purchase == 0) {
+		if (Posport.has_purchase == 0) {
 			has_purchase.setChecked(false);
 		} else {
 			has_purchase.setChecked(true);
@@ -309,9 +309,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 					}
 				}
 				
-				posport.brands_id = new int[tem.size()];
+				Posport.brands_id = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.brands_id[i]=tem.get(i).getId();
+					Posport.brands_id[i]=tem.get(i).getId();
 				
 				}
 				// pos类型
@@ -327,9 +327,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.category = new int[tem.size()];
+				Posport.category = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.category[i]=tem.get(i).getId();
+					Posport.category[i]=tem.get(i).getId();
 				
 				}
 				// 支付通道
@@ -344,9 +344,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.pay_channel_id = new int[tem.size()];
+				Posport.pay_channel_id = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.pay_channel_id[i]=tem.get(i).getId();
+					Posport.pay_channel_id[i]=tem.get(i).getId();
 				
 				}
 				// 支付卡类型
@@ -362,9 +362,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.pay_card_id = new int[tem.size()];
+				Posport.pay_card_id = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.pay_card_id[i]=tem.get(i).getId();
+					Posport.pay_card_id[i]=tem.get(i).getId();
 				
 				}
 				// 支付交易类型
@@ -379,9 +379,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.trade_type_id = new int[tem.size()];
+				Posport.trade_type_id = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.trade_type_id[i]=tem.get(i).getId();
+					Posport.trade_type_id[i]=tem.get(i).getId();
 				
 				}
 				// 签购单方式
@@ -396,9 +396,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.sale_slip_id = new int[tem.size()];
+				Posport.sale_slip_id = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.sale_slip_id[i]=tem.get(i).getId();
+					Posport.sale_slip_id[i]=tem.get(i).getId();
 				
 				}
 				// 到账日期
@@ -413,9 +413,9 @@ public class PosPortActivity extends Activity implements OnClickListener {
 						tem.add(p);
 					}
 				}
-				posport.tDate = new int[tem.size()];
+				Posport.tDate = new int[tem.size()];
 				for(int i=0;i<tem.size();i++){
-					posport.tDate[i]=tem.get(i).getId();
+					Posport.tDate[i]=tem.get(i).getId();
 				
 				}
 			}
@@ -427,11 +427,11 @@ public class PosPortActivity extends Activity implements OnClickListener {
 				Toast.makeText(getApplicationContext(), "请输入数字", 1000).show();
 				break;
 			}
-			posport.minPrice=Double.valueOf(ed_min.getText().toString());
-			posport.maxPrice=Double.valueOf(ed_max.getText().toString());
+			Posport.minPrice=Double.valueOf(ed_min.getText().toString());
+			Posport.maxPrice=Double.valueOf(ed_max.getText().toString());
 			String str="";
-			for(int i=0;i<posport.brands_id.length;i++){
-				str=posport.brands_id[i]+"+"+str;
+			for(int i=0;i<Posport.brands_id.length;i++){
+				str=Posport.brands_id[i]+"+"+str;
 			}
 			Log.i("ccccc",str + "");
 			Intent intent = new Intent();
@@ -448,13 +448,13 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	}
 
 	private void initport() {
-		posport.brands_id = new int[0];
-		posport.category = new int[0];
-		posport.pay_channel_id = new int[0];
-		posport.pay_card_id = new int[0];
-		posport.trade_type_id = new int[0];
-		posport.sale_slip_id = new int[0];
-		posport.tDate = new int[0];
+		Posport.brands_id = new int[0];
+		Posport.category = new int[0];
+		Posport.pay_channel_id = new int[0];
+		Posport.pay_card_id = new int[0];
+		Posport.trade_type_id = new int[0];
+		Posport.sale_slip_id = new int[0];
+		Posport.tDate = new int[0];
 
 	}
 

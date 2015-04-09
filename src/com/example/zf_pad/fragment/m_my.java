@@ -15,19 +15,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class m_my extends Fragment implements OnClickListener {
+public class M_my extends Fragment implements OnClickListener {
 	private View view;
 	private RelativeLayout ll_dd;
 	private RelativeLayout ll_shjl;
 	private RelativeLayout ll_myinfo;
 	private RelativeLayout ll_mysh;
 	private RelativeLayout ll_plan;
-	private mine_Dd m_dd;
-	private mine_Shjl m_shjl;
-	private mine_MyInfo m_info;
-	private mine_MyMerChant m_sh;
-	private mine_Plan m_plan;
+	private Mine_Dd m_dd;
+	private Mine_Shjl m_shjl;
+	private Mine_MyInfo m_info;
+	private Mine_MyMerChant m_sh;
+	private Mine_Plan m_plan;
 	private ImageView im1,im2,im3,im4,im5;
 	private TextView tvdd;
 	private TextView tvshjv;
@@ -55,6 +56,7 @@ public class m_my extends Fragment implements OnClickListener {
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine, container, false);
+			
 			initView();
 		} catch (InflateException e) {
 
@@ -107,7 +109,7 @@ public class m_my extends Fragment implements OnClickListener {
 		case R.id.ll_dd:
 
 			//if (m_dd == null)
-				m_dd = new mine_Dd();
+				m_dd = new Mine_Dd();
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_dd).commit();
@@ -118,7 +120,7 @@ public class m_my extends Fragment implements OnClickListener {
 			break;
 		case R.id.ll_shjl:
 			//if (m_shjl == null)
-				m_shjl = new mine_Shjl();
+				m_shjl = new Mine_Shjl();
 	
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_shjl).commit();
@@ -127,8 +129,8 @@ public class m_my extends Fragment implements OnClickListener {
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.ll_myinfo:
-			//if (m_info == null)
-				m_info = new mine_MyInfo();
+			if (m_info == null)
+				m_info = new Mine_MyInfo();
 	
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_info).commit();
@@ -138,7 +140,7 @@ public class m_my extends Fragment implements OnClickListener {
 			break;
 		case R.id.ll_mysh:
 			//if (m_sh == null)
-				m_sh = new mine_MyMerChant();
+				m_sh = new Mine_MyMerChant();
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_sh).commit();
@@ -148,7 +150,7 @@ public class m_my extends Fragment implements OnClickListener {
 			break;
 		case R.id.ll_plan:
 			//if (m_plan == null)
-				m_plan = new mine_Plan();
+				m_plan = new Mine_Plan();
 
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_plan).commit();
@@ -191,6 +193,7 @@ public class m_my extends Fragment implements OnClickListener {
 		super.onResume();
 		setback();
 		im1.setVisibility(View.VISIBLE);
-		tvdd.setTextColor(getResources().getColor(R.color.white));
+		tvdd.setTextColor(getResources().getColor(R.color.o));
+		
 	}
 }

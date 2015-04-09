@@ -2,11 +2,11 @@ package com.example.zf_pad.activity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.HuilvAdapter;
-import com.example.zf_pad.fragment.f_good_detail;
-import com.example.zf_pad.fragment.good_detail_apply;
-import com.example.zf_pad.fragment.good_detail_commet;
-import com.example.zf_pad.fragment.good_detail_trade;
-import com.example.zf_pad.fragment.good_detail_zd;
+import com.example.zf_pad.fragment.F_good_detail;
+import com.example.zf_pad.fragment.Good_detail_apply;
+import com.example.zf_pad.fragment.Good_detail_commet;
+import com.example.zf_pad.fragment.Good_detail_trade;
+import com.example.zf_pad.fragment.Good_detail_zd;
 import com.example.zf_pad.util.ScrollViewWithListView;
 
 
@@ -21,11 +21,11 @@ import android.widget.Toast;
 
 public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 
-	private f_good_detail detail;
-	private good_detail_apply apply;
-	private good_detail_commet commet;
-	private good_detail_zd zd;
-	private good_detail_trade jy;
+	private F_good_detail detail;
+	private Good_detail_apply apply;
+	private Good_detail_commet commet;
+	private Good_detail_zd zd;
+	private Good_detail_trade jy;
 	private int type;
 	private TextView tv_ms;
 	private TextView tv_kt;
@@ -42,35 +42,35 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 		switch (type) {
 		case 0:
 			if (detail == null)
-				detail = new f_good_detail();
+				detail = new F_good_detail();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, detail).commit();
 			tv_ms.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case 1:
 			if (apply == null)
-				apply = new good_detail_apply();
+				apply = new Good_detail_apply();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, apply).commit();
 			tv_kt.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case 2:
 			if (commet == null)
-				commet = new good_detail_commet();
+				commet = new Good_detail_commet();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, commet).commit();
 			tv_pl.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case 3:
 			if (zd == null)
-				zd = new good_detail_zd();
+				zd = new Good_detail_zd();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, zd).commit();
 			tv_zd.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case 4:
 			if (jy == null)
-				jy = new good_detail_trade();
+				jy = new Good_detail_trade();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, jy).commit();
 			tv_jy.setTextColor(getResources().getColor(R.color.o));
@@ -108,7 +108,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.tv_zd:
 			if (zd == null)
-				zd = new good_detail_zd();
+				zd = new Good_detail_zd();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, zd).commit();
 			changColor();
@@ -116,7 +116,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			break;
 		case R.id.tv_ms:
 			if (detail == null)
-				detail = new f_good_detail();
+				detail = new F_good_detail();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, detail).commit();
 			changColor();
@@ -124,7 +124,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			break;
 		case R.id.tv_kt:
 			if (apply == null)
-				apply = new good_detail_apply();
+				apply = new Good_detail_apply();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, apply).commit();
 			changColor();
@@ -134,7 +134,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			//Config.goodId = gfe.getId();
 			//Config.commentsCount = commentsCount + "";
 			if (commet == null)
-				commet = new good_detail_commet();
+				commet = new Good_detail_commet();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, commet).commit();
 			changColor();
@@ -144,7 +144,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			//Config.goodId = gfe.getId();
 			//Config.commentsCount = commentsCount + "";
 			if (jy == null)
-				jy = new good_detail_trade();
+				jy = new Good_detail_trade();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, jy).commit();
 			changColor();
