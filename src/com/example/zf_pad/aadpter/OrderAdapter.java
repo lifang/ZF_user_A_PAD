@@ -104,7 +104,7 @@ public class OrderAdapter extends BaseAdapter{
  		
  		 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getOrder_goodsList().get(0).getGood_logo(), holder.im);
  		holder.tv_price.setText(list.get(position).getOrder_goodsList().get(0).getGood_price().equals("")
- 				?"":"￥"+list.get(position).getOrder_goodsList().get(0).getGood_price());
+ 				?"":"￥"+check(list.get(position).getOrder_goodsList().get(0).getGood_price())/100);
  		holder.content2.setText(list.get(position).getOrder_goodsList().get(0).getGood_brand());
  		holder.tv_gtd.setText(list.get(position).getOrder_goodsList().get(0).getGood_channel());
  		holder.content_pp.setText(list.get(position).getOrder_goodsList().get(0).getGood_name()); 		 
@@ -252,5 +252,15 @@ public class OrderAdapter extends BaseAdapter{
 		private LinearLayout ll_ishow;
 		public Button btn_cancle,btn_pay;
 		public ImageView im;
+	}
+	double check(String str) {
+		try {
+
+			double min = Double.valueOf(str);// 把字符串强制转换为数字
+			return min;// 如果是数字，返回True
+		} catch (Exception e) {
+			
+			return 0;// 如果抛出异常，返回False
+		}
 	}
 }

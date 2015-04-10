@@ -197,6 +197,7 @@
         <activity
             android:name="com.example.zf_pad.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
+           
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent" >

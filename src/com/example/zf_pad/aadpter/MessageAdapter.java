@@ -79,8 +79,9 @@ public class MessageAdapter extends BaseAdapter {
 		
 		if(type!=1){
 		
-			if(!list.get(position).getStatus()){
+			if(list.get(position).getStatus()){
 				holder.tv_title.setTextColor(context.getResources().getColor(R.color.NoRead));
+				holder.tv_time.setTextColor(context.getResources().getColor(R.color.NoRead));
 			}
 			//list.get(position).setIscheck(holder.item_cb.isChecked());
 			if(list.get(position).getIscheck()){

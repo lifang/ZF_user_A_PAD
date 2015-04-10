@@ -125,9 +125,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth=display.getWidth();
 		Config.ScreenHeight=display.getHeight();
-		UserEntity ue=new UserEntity();
+	/*	UserEntity ue=new UserEntity();
 		ue.setId(80);
-		MyApplication.NewUser=ue;
+		MyApplication.NewUser=ue;*/
 		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
 		if (f_sy == null)
 			f_sy = new M_MianFragment();
@@ -191,16 +191,20 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, f_sy).commit();
 			break;
 		case R.id.main_rl_gwc:
-			changTabBg();
-			im_ghc.setBackgroundResource(R.drawable.shopping);
-			textghc.setTextColor(getResources().getColor(R.color.o));
+			if(Config.CheckIsLogin(MainActivity.this)){
+				changTabBg();
+				im_ghc.setBackgroundResource(R.drawable.shopping);
+				textghc.setTextColor(getResources().getColor(R.color.o));
 
-			f_gwc = new M_shopcar();
+				f_gwc = new M_shopcar();
 
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_gwc).commit();
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.m_fragment, f_gwc).commit();
+			}
+			
 			break;
 		case R.id.main_rl_pos1:
+			if(Config.CheckIsLogin(MainActivity.this)){
 			changTabBg();
 			im_mess.setBackgroundResource(R.drawable.message);
 			textmes.setTextColor(getResources().getColor(R.color.o));
@@ -209,9 +213,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_wdxx).commit();
+			}
 			break;
 		case R.id.main_rl_my:
-			//if(LoginActivity.islogin){
+			if(Config.CheckIsLogin(MainActivity.this)){
 				changTabBg();
 				im_wd.setBackgroundResource(R.drawable.mine);
 				textwd.setTextColor(getResources().getColor(R.color.o));
@@ -222,7 +227,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 						.replace(R.id.m_fragment, M_my).commit();
 
-			//}
+			}
 			//else{
 			//	Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
 			//}

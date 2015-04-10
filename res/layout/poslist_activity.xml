@@ -90,14 +90,15 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/order_image"
+        android:paddingLeft="@dimen/order_image"
+        android:background="@color/F6F9FA"
         android:gravity="center" >
 
         <LinearLayout
             android:layout_width="@dimen/normal_width1"
             android:layout_height="@dimen/titleback_height"
             android:layout_gravity="center"
-            android:background="@color/F6F9FA"
+            
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -115,7 +116,12 @@
                     android:textColor="#575d5f"
                     android:textSize="@dimen/textmid" />
             </LinearLayout>
-
+<View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/normal_width3"
+                android:layout_marginTop="@dimen/normal_width3"
+                android:background="#ADAEAF" />
             <LinearLayout
                 android:id="@+id/ll_xxyx"
                 android:layout_width="0dp"
@@ -162,7 +168,12 @@
                     android:id="@+id/img3"
                     android:background="@drawable/ti_down" />
             </LinearLayout>
-
+<View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/normal_width3"
+                android:layout_marginTop="@dimen/normal_width3"
+                android:background="#ADAEAF" />
             <LinearLayout
                 android:id="@+id/ll_pj"
                 android:layout_width="0dp"
