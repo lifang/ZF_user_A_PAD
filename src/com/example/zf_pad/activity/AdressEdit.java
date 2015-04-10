@@ -21,7 +21,7 @@ import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.AddressManager;
-import com.example.zf_pad.fragment.mine_Address;
+import com.example.zf_pad.fragment.Mine_Address;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -58,7 +58,7 @@ public class AdressEdit extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_edit);
 		initView();
-		if(mine_Address.isclickitem){
+		if(Mine_Address.isclickitem){
 			new TitleMenuUtil(AdressEdit.this, "修改地址").show();
 		}
 		else{
@@ -70,7 +70,7 @@ public class AdressEdit extends BaseActivity{
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		mine_Address.isclickitem=false;
+		Mine_Address.isclickitem=false;
 	}
 	private Boolean check() {
 		// TODO Auto-generated method stub
@@ -126,21 +126,29 @@ public class AdressEdit extends BaseActivity{
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
-		
+		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		tv1=(EditText) findViewById(R.id.tv1);
 		tv2=(EditText) findViewById(R.id.tv2);
 		tv3=(EditText) findViewById(R.id.tv3);
 		tv5=(EditText) findViewById(R.id.tv5);
 		tv4=(TextView) findViewById(R.id.tv4);
 		//tv4.setText(MyApplication.getCITYNAME());
-		if(mine_Address.isclickitem){
+		if(Mine_Address.isclickitem){
 			Bundle bundle=this.getIntent().getExtras();
 			pp=bundle.getInt("position");
-			tv1.setText(mine_Address.dataadress.get(pp).getConsignee());
-			tv2.setText(mine_Address.dataadress.get(pp).getPhone());
-			tv3.setText(mine_Address.dataadress.get(pp).getZipcode());
-			tv4.setText(mine_Address.dataadress.get(pp).getArea());
-			tv5.setText(mine_Address.dataadress.get(pp).getDetailadress());
+			tv1.setText(Mine_Address.dataadress.get(pp).getConsignee());
+			tv2.setText(Mine_Address.dataadress.get(pp).getPhone());
+			tv3.setText(Mine_Address.dataadress.get(pp).getZipcode());
+			tv4.setText(Mine_Address.dataadress.get(pp).getArea());
+			tv5.setText(Mine_Address.dataadress.get(pp).getDetailadress());
+			if(Mine_Address.dataadress.get(pp).getIsdefau().equals("默认")){
+				//item_cb.setBackgroundResource(R.drawable.cb_y);
+				item_cb.setChecked(true);
+			}
+			else{
+				//item_cb.setBackgroundResource(R.drawable.cb_n1);
+				item_cb.setChecked(false);
+			}
 			
 		}
 		adresslist=(Button) findViewById(R.id.adresslist);
@@ -150,7 +158,7 @@ public class AdressEdit extends BaseActivity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if(check()){
-					if(mine_Address.isclickitem){
+					if(Mine_Address.isclickitem){
 						changeData();
 					}
 					else{
@@ -160,7 +168,7 @@ public class AdressEdit extends BaseActivity{
 				}
 			}
 		});
-		item_cb=(CheckBox) findViewById(R.id.item_cb);
+		
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -191,14 +199,14 @@ public class AdressEdit extends BaseActivity{
 			CommonUtil.toastShort(getApplicationContext(), "网络异常");
 			return;
 		}
-		API.changeAdres(AdressEdit.this, mine_Address.idd[pp], Cityid+"", name, tel, 
+		API.changeAdres(AdressEdit.this, Mine_Address.idd[pp], Cityid+"", name, tel, 
 				stringcode, address, isDefault, new HttpCallback(AdressEdit.this) {
 
 					@Override
 					public void onSuccess(Object data) {
 						Toast.makeText(AdressEdit.this, "修改地址成功", Toast.LENGTH_SHORT).show();
 						//mine_Address.dataadress
-						Log.e("da", String.valueOf(mine_Address.dataadress));
+						Log.e("da", String.valueOf(Mine_Address.dataadress));
 					}
 
 					@Override

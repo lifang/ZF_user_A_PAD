@@ -39,7 +39,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class mine_Plan extends Fragment implements OnClickListener{
+public class Mine_Plan extends Fragment implements OnClickListener{
 	private View view;
 	private List<ApplySerch> dataser;
 	private BaseAdapter applyadapter;
@@ -79,7 +79,7 @@ public class mine_Plan extends Fragment implements OnClickListener{
 		dataser=new ArrayList<ApplySerch>();
 		applyadapter=new ApplySearch(dataser, getActivity().getBaseContext());
 		lv_result=(ListView) view.findViewById(R.id.lv_result);
-		lv_result.setAdapter(applyadapter);
+		
 	}
 	@Override
 	public void onClick(View v) {
@@ -122,6 +122,7 @@ public class mine_Plan extends Fragment implements OnClickListener{
 							String[]num=new String[3];
 							String[] status=new String[6];
 							for(int i=0;i<result.length();i++){
+								
 								num[i]=result.getJSONObject(i).getString("serial_num");
 								JSONArray statu=result.getJSONObject(i).getJSONArray("openStatus");
 								Log.e("statu", String.valueOf(statu));

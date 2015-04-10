@@ -48,7 +48,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class mine_MyMerChant extends Fragment implements IXListViewListener{
+public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	private View view;
 	private XListView xxlistview;
 	private List<Shopname> datasho;

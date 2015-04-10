@@ -19,7 +19,7 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.ApplySearch.ViewHoldel;
 import com.example.zf_pad.activity.CreatMerchant;
 import com.example.zf_pad.entity.Shopname;
-import com.example.zf_pad.fragment.mine_MyMerChant;
+import com.example.zf_pad.fragment.Mine_MyMerChant;
 
 public class ShopAdapter extends BaseAdapter{
 	private List<Shopname> datasho;
@@ -69,7 +69,7 @@ public class ShopAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				pp=position;
-				Message msg=mine_MyMerChant.myHandler.obtainMessage();
+				Message msg=Mine_MyMerChant.myHandler.obtainMessage();
 				msg.what=1;
 				msg.sendToTarget();
 			}
@@ -79,7 +79,7 @@ public class ShopAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View arg0) {
 				pp=position;
-				Message msg=mine_MyMerChant.myHandler.obtainMessage();
+				Message msg=Mine_MyMerChant.myHandler.obtainMessage();
 				msg.what=2;
 				msg.sendToTarget();
 				

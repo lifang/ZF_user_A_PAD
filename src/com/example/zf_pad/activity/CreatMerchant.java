@@ -14,7 +14,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +31,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +39,7 @@ import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.fragment.mine_MyMerChant;
+import com.example.zf_pad.fragment.Mine_MyMerChant;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -41,11 +47,13 @@ import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class CreatMerchant extends BaseActivity implements OnClickListener{
 	private TextView tv_adress;
@@ -60,10 +68,12 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 	public static final String IMAGE_UNSPECIFIED = "image/*";
 	 private String imageDir;
 	 private String localSelectPath;
-	 private int tag=0;
+	 private int tag;
 	 private String[] imgPath=new String[7];
 	 private List<City> mCities = new ArrayList<City>();
 	 private int id;
+	 private String[] imgLocalPath=new String[7];
+	 public static boolean isdown=false;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
@@ -75,7 +85,7 @@ protected void onCreate(Bundle savedInstanceState) {
 @Override
 protected void onStart() {
 	super.onStart();
-	if(mine_MyMerChant.isFromItem){
+	if(Mine_MyMerChant.isFromItem){
 		new TitleMenuUtil(CreatMerchant.this, "修改商户").show();
 		getmerchantInfo();
 	}
@@ -84,7 +94,15 @@ protected void onStart() {
 	}
 	init();
 }
+@Override
+protected void onDestroy() {
+	// TODO Auto-generated method stub
+	super.onDestroy();
+	isdown=false;
+	Log.e("isdown", String.valueOf(isdown));
+}
 private void getmerchantInfo() {
+	isdown=true;
 	if(!Tools.isConnect(getApplicationContext())){
 		CommonUtil.toastShort(getApplicationContext(), "网络异常");
 		return;
@@ -120,6 +138,10 @@ private void getmerchantInfo() {
 				int a =jsonobject.getInt("code");
 				if(a==Config.CODE){
 					JSONObject result=jsonobject.getJSONObject("result");
+					/*if(result.length()!=17){
+						CommonUtil.toastShort(getApplicationContext(), "服务器返回数据不完全");
+						return;
+					}*/
 					et_shopname.setText(result.getString("title"));
 					et_name.setText(result.getString("legal_person_name"));
 					et_id_number.setText(result.getString("legal_person_card_id"));
@@ -129,13 +151,14 @@ private void getmerchantInfo() {
 					tv_adress.setText(findcity(result.getInt("id")));
 					et_bank.setText(result.getString("account_bank_name"));
 					et_licencenum_bank.setText(result.getString("bank_open_account"));
-					imgPath[0]=result.getString("card_id_front_photo_path");
-					imgPath[1] =result.getString("card_id_back_photo_path");
+					
 					imgPath[2]=result.getString("body_photo_path");
 					imgPath[3]=result.getString("license_no_pic_path");
 					imgPath[4] =result.getString("tax_no_pic_path");
-					imgPath[5]=result.getString("organization_code_no");
+					imgPath[5]=result.getString("org_code_no_pic_path");
 					imgPath[6]=result.getString("account_pic_path");
+					//imgPath[0]=result.getString("card_id_front_photo_path");
+					//imgPath[1] =result.getString("card_id_back_photo_path");
 					btn_legal_photo.setBackgroundResource(R.drawable.check_it);
 					btn_legal_photo.setText("");
 					btn_license_photos.setBackgroundResource(R.drawable.check_it);
@@ -237,45 +260,108 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.e("localCameraPath", String.valueOf(localCameraPath));
 		switch (tag) {
 		case 1:
-			btn_legal_photo.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[0]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_legal_photo);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_legal_photo.setBackgroundResource(R.drawable.check_it);
 			btn_legal_photo.setText("");
-			imgPath[0]=localCameraPath;
+			imgPath[0]=localCameraPath;*/
 			
 			break;
 		case 2:
-			btn_license_photos.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[1]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_license_photos);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_license_photos.setBackgroundResource(R.drawable.check_it);
 			btn_license_photos.setText("");
-			imgPath[1]=localCameraPath;
+			imgPath[1]=localCameraPath;*/
 			
 			break;
 		case 3:
-			btn_legal_back_photos.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[2]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_legal_back_photos);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_legal_back_photos.setBackgroundResource(R.drawable.check_it);
 			btn_legal_back_photos.setText("");
-			imgPath[2]=localCameraPath;
+			imgPath[2]=localCameraPath;*/
 			
 			break;
 		case 4:
-			btn_tax_regist.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[3]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_tax_regist);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_tax_regist.setBackgroundResource(R.drawable.check_it);
 			btn_tax_regist.setText("");
-			imgPath[3]=localCameraPath;
+			imgPath[3]=localCameraPath;*/
 			
 			break;
 		case 5:
-			btn_person_photograph.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[4]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_person_photograph);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_person_photograph.setBackgroundResource(R.drawable.check_it);
 			btn_person_photograph.setText("");
-			imgPath[4]=localCameraPath;
+			imgPath[4]=localCameraPath;*/
 		
 			break;
 		case 6:
-			btn_organization_code_photos.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[5]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_organization_code_photos);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_organization_code_photos.setBackgroundResource(R.drawable.check_it);
 			btn_organization_code_photos.setText("");
-			imgPath[5]=localCameraPath;
+			imgPath[5]=localCameraPath;*/
 			
 			break;
 		case 7:
-			btn_bank_license_photos.setBackgroundResource(R.drawable.check_it);
+			try {
+				imgLocalPath[6]=localCameraPath;
+				uploadFile(localCameraPath,tag,btn_bank_license_photos);
+				
+				//uploadFile(localSelectPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*btn_bank_license_photos.setBackgroundResource(R.drawable.check_it);
 			btn_bank_license_photos.setText("");
-			imgPath[6]=localCameraPath;
+			imgPath[6]=localCameraPath;*/
 			
 			break;
 		default:
@@ -295,39 +381,99 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 cursor.close();
                 switch (tag) {
         		case 1:
-        			btn_legal_photo.setBackgroundResource(R.drawable.check_it);
-        			btn_legal_photo.setText("");
-        			imgPath[0]=localSelectPath;
+        			try {
+        				imgLocalPath[0]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_legal_photo);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         			break;
         		case 2:
-        			btn_license_photos.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[1]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_license_photos);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_license_photos.setBackgroundResource(R.drawable.check_it);
         			btn_license_photos.setText("");
-        			imgPath[1]=localSelectPath;
+        			imgPath[1]=localSelectPath;*/
         			break;
         		case 3:
-        			btn_legal_back_photos.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[2]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_legal_back_photos);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_legal_back_photos.setBackgroundResource(R.drawable.check_it);
         			btn_legal_back_photos.setText("");
-        			imgPath[2]=localSelectPath;
+        			imgPath[2]=localSelectPath;*/
         			break;
         		case 4:
-        			btn_tax_regist.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[3]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_tax_regist);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_tax_regist.setBackgroundResource(R.drawable.check_it);
         			btn_tax_regist.setText("");
-        			imgPath[3]=localSelectPath;
+        			imgPath[3]=localSelectPath;*/
         			break;
         		case 5:
-        			btn_person_photograph.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[4]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_person_photograph);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_person_photograph.setBackgroundResource(R.drawable.check_it);
         			btn_person_photograph.setText("");
-        			imgPath[4]=localSelectPath;
+        			imgPath[4]=localSelectPath;*/
         			break;
         		case 6:
-        			btn_organization_code_photos.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[5]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_organization_code_photos);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_organization_code_photos.setBackgroundResource(R.drawable.check_it);
         			btn_organization_code_photos.setText("");
-        			imgPath[5]=localSelectPath;
+        			imgPath[5]=localSelectPath;*/
         			break;
         		case 7:
-        			btn_bank_license_photos.setBackgroundResource(R.drawable.check_it);
+        			try {
+        				imgLocalPath[6]=localSelectPath;
+        				uploadFile(localSelectPath,tag,btn_bank_license_photos);
+        				
+						//uploadFile(localSelectPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        			/*btn_bank_license_photos.setBackgroundResource(R.drawable.check_it);
         			btn_bank_license_photos.setText("");
-        			imgPath[6]=localSelectPath;
+        			imgPath[6]=localSelectPath;*/
         			break;
         		default:
         			break;
@@ -343,6 +489,78 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		break;
 	}
 }
+private void uploadFile(String path,final int tag,final Button btn)throws Exception {
+	File file=new File(path);
+	if (file.exists() && file.length() > 0) {
+		File fileImg = new File(localSelectPath);
+		RequestParams params=new RequestParams();
+		params.put("fileImg", fileImg);
+		MyApplication.getInstance().getClient().post(API.UPDATE_FILE,
+				params, new AsyncHttpResponseHandler() {
+			private Dialog loadingDialog;
+
+			@Override
+			public void onStart() {	
+				super.onStart();
+				loadingDialog = DialogUtil.getLoadingDialg(CreatMerchant.this);
+				loadingDialog.show();
+			}
+			@Override
+			public void onFinish() {
+				super.onFinish();
+				loadingDialog.dismiss();
+			}
+					@Override
+					public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+						String responseMsg = new String(responseBody)
+						.toString();
+						String code = null;
+						try {
+							JSONObject jsonobject = new JSONObject(responseMsg);
+							code = jsonobject.getString("code");
+							int a =jsonobject.getInt("code");
+							if(a==Config.CODE){ 
+								CommonUtil.toastShort(getApplicationContext(), "图片上传成功");
+								btn.setBackgroundResource(R.drawable.check_it);
+								btn.setText("");
+								String str=jsonobject.getJSONObject("result").getString("filePath");
+			        			imgPath[tag]=jsonobject.getJSONObject("result").getString("filePath");
+			        			Log.e("tag", String.valueOf(tag));
+			        			Log.e("imgPath", imgPath[tag]);
+							}
+							else{
+								code = jsonobject.getString("message");
+								Toast.makeText(getApplicationContext(), code, 1000).show();
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						
+					}
+					
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							byte[] responseBody, Throwable error) {
+						System.out.println("-onFailure---");
+						Log.e("print", "-onFailure---" + error);
+						Toast.makeText(CreatMerchant.this, String.valueOf(error), 1000)
+						.show();
+						
+					}
+					@Override
+					public void onRetry(int retryNo) {
+						// TODO Auto-generated method stub
+						super.onRetry(5);
+					}
+				});
+	}
+	else{
+		CommonUtil.toastShort(getApplicationContext(), "文件不存在");
+	}
+	
+}
 @Override
 public void onClick(View v) {
 	switch (v.getId()) {
@@ -352,52 +570,56 @@ public void onClick(View v) {
 		startActivityForResult(intent, com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY);
 		break;
 	case R.id.btn_creat:
-		if(mine_MyMerChant.isFromItem){
+		if(Mine_MyMerChant.isFromItem){
 			changeMerchantInfo();
 		}
 		else{
-			for(int i=0;i<imgPath.length;i++){
+			/*for(int i=0;i<imgPath.length;i++){
 				if(imgPath[i].equals("")){
 					Toast.makeText(getApplicationContext(), "有图片未上传", Toast.LENGTH_SHORT).show();
 					return;
 				}
-			}
+			}*/
 			sumbitMerchantInfo();
 		}
 		
 		break;
 	case R.id.btn_legal_photo:
 		tag=1;
-		showchooseDialog();
+		showchooseDialog(btn_legal_photo,tag);
 		break;
 	case R.id.btn_license_photos:
 		tag=2;
-		showchooseDialog();
+		showchooseDialog(btn_license_photos,tag);
 		break;
 	case R.id.btn_legal_back_photos:
 		tag=3;
-		showchooseDialog();
+		showchooseDialog(btn_legal_back_photos,tag);
 		break;
 	case R.id.btn_tax_regist:
 		tag=4;
-		showchooseDialog();
+		showchooseDialog(btn_tax_regist,tag);
 		break;
 	case R.id.btn_person_photograph:
 		tag=5;
-		showchooseDialog();
+		showchooseDialog(btn_person_photograph,tag);
 		break;
 	case R.id.btn_organization_code_photos:
 		tag=6;
-		showchooseDialog();
+		showchooseDialog(btn_organization_code_photos,tag);
 		break;
 	case R.id.btn_bank_license_photos:
 		tag=7;
-		showchooseDialog();
+		showchooseDialog(btn_bank_license_photos,tag);
 		break;
 	
 	default:
 		break;
 	}
+	
+}
+private void showchooseorseeDialog() {
+	// TODO Auto-generated method stub
 	
 }
 private void changeMerchantInfo() {
@@ -455,14 +677,38 @@ private void changeMerchantInfo() {
 			});
 	
 }
-private void showchooseDialog() {
-	AlertDialog.Builder builder = new AlertDialog.Builder(CreatMerchant.this);
+private void showchooseDialog(Button btn,final int tag) {
+	final AlertDialog.Builder builder = new AlertDialog.Builder(CreatMerchant.this);
 	LayoutInflater factory = LayoutInflater.from(this);
 	final View textEntryView = factory.inflate(R.layout.choosedialog, null);
-	 builder.setTitle("自定义输入框");
+	// builder.setTitle("自定义输入框");
      builder.setView(textEntryView);
+     final Button seeimg=(Button) textEntryView.findViewById(R.id.seeimg);
+     final View line_one=textEntryView.findViewById(R.id.line_one);
      final Button choosealbum=(Button) textEntryView.findViewById(R.id.choosealbum);
      final Button choosecamera=(Button) textEntryView.findViewById(R.id.choosecamera);
+     if(btn.getText().toString().equals("")){
+    	 seeimg.setVisibility(View.VISIBLE);
+    	 line_one.setVisibility(View.VISIBLE);
+     }
+     
+     seeimg.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if(isdown){
+				openimg(tag);
+				builder.create().cancel();
+			}
+			else{
+				Intent intent = new Intent(Intent.ACTION_VIEW);    
+	            intent.setDataAndType(Uri.parse("file://"+imgLocalPath[tag-1]), "image/*"); 
+	            startActivity(intent);
+			}
+			
+			
+		}
+	});
      choosealbum.setOnClickListener(new OnClickListener() {
 		
 		@Override
@@ -497,6 +743,17 @@ private void showchooseDialog() {
          }
      });
      builder.create().show();
+}
+protected void openimg(int tag) {
+	AlertDialog.Builder build = new AlertDialog.Builder(CreatMerchant.this);
+	LayoutInflater factory = LayoutInflater.from(this);
+	final View textEntryView = factory.inflate(R.layout.img, null);
+	 //build.setTitle("自定义输入框");
+     build.setView(textEntryView);
+     final ImageView view=(ImageView) textEntryView.findViewById(R.id.imag);
+     int ppp=tag-1;
+     ImageCacheUtil.IMAGE_CACHE.get(imgPath[ppp], view);
+     build.create().show();
 }
 protected void openAlbum() {
 	 Intent intent;  

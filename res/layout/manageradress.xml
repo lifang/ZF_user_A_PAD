@@ -8,36 +8,55 @@
      >
  <LinearLayout 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:orientation="horizontal"
-    android:background="#FAE2C3"
+    android:background="#E9E8E8"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="40dp" >
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="收货人" />
+    android:text="收货人"
+     android:textSize="18sp"
+     android:textColor="#848383"
+    android:gravity="center_vertical"/>
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="所在地区" />
+    android:text="所在地区"
+     android:textSize="18sp"
+     android:textColor="#848383"
+    android:gravity="center_vertical" />
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="详细地址" />
+    android:text="详细地址"
+     android:textSize="18sp"
+     android:textColor="#848383"
+    android:gravity="center_vertical" />
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="邮编" />
+    android:text="邮编"
+     android:textSize="18sp"
+     android:textColor="#848383"
+    android:gravity="center_vertical" />
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="电话" />
+    android:text="电话"
+     android:textSize="18sp"
+     android:textColor="#848383"
+    android:gravity="center_vertical" />
+    <TextView 
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
     <TextView 
     android:layout_weight="1"
     android:layout_width="match_parent"
