@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,6 +49,7 @@ import com.example.zf_pad.fragment.Good_detail_commet;
 import com.example.zf_pad.fragment.Good_detail_zd;
 import com.example.zf_pad.popwindow.FactoryPopWindow;
 import com.example.zf_pad.popwindow.SetPopWindow;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.entity.GriviewEntity;
 import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.ScrollViewWithGView;
@@ -110,7 +113,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				tv_pp.setText(gfe.getGood_brand());
 				// tv_xh.setText(gfe.getModel_number());
 				// tv_ys.setText("宸插敭"+gfe.getVolume_number());
-				tv_price.setText("￥" + gfe.getPrice());
+				tv_price.setText("￥" + ((double)gfe.getPrice())/100);
 				tv_lx.setText(gfe.getCategory());
 				tv_sjhttp.setText(factoryEntity.getWebsite_url());
 				// tv_spxx.setText(gfe.getDescription() );
@@ -143,18 +146,18 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-	
+
 		id = getIntent().getIntExtra("id", 0);
-		innitView();
+		
 		getdata();
 		System.out.println("-Xlistview--" + id);
 	}
 
 	private void innitView() {
-		
+
 		setting_btn_clear = (Button) findViewById(R.id.setting_btn_clear);
 		setting_btn_clear.setOnClickListener(this);
 		setting_btn_clear1 = (Button) findViewById(R.id.setting_btn_clear1);
@@ -165,9 +168,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		tv_bug.setOnClickListener(this);
 		gview1 = (ScrollViewWithGView) findViewById(R.id.gv1);
 		rl_imgs = (RelativeLayout) findViewById(R.id.rl_imgs);
-		LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) rl_imgs.getLayoutParams();
-		linearParams.width=Config.ScreenWidth/2;
-		linearParams.height=Config.ScreenHeight-340;
+		LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) rl_imgs
+				.getLayoutParams();
+		linearParams.width = Config.ScreenWidth / 2;
+		linearParams.height = Config.ScreenHeight - 340;
 		rl_imgs.setLayoutParams(linearParams);
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		inflater = LayoutInflater.from(this);
@@ -211,46 +215,54 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+	
 		switch (v.getId()) {
 		case R.id.mer_detail:
-			FactoryPopWindow fact = new FactoryPopWindow(this,factoryEntity.getLogo_file_path(),factoryEntity.getName(),factoryEntity.getDescription());
+			FactoryPopWindow fact = new FactoryPopWindow(this,
+					factoryEntity.getLogo_file_path(), factoryEntity.getName(),
+					factoryEntity.getDescription());
 			fact.showAtLocation(findViewById(R.id.main), Gravity.CENTER
 					| Gravity.CENTER, 0, 0);
 			break;
 		case R.id.tv_bug:
 			islea = false;
-			setting_btn_clear1.setClickable(true);
-			setting_btn_clear.setText("立即购买");
-			setting_btn_clear1.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.bg_shape));
-			setting_btn_clear1.setTextColor(getResources().getColor(
-					R.color.bgtitle));
-			tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
-			tv_lea.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.send_out_goods_shape));
-			tv_bug.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.bg_shape));
+			if (Config.CheckIsLogin(GoodDeatail.this)) {
+				setting_btn_clear1.setClickable(true);
+				setting_btn_clear.setText("立即购买");
+				setting_btn_clear1.setBackgroundDrawable(getResources()
+						.getDrawable(R.drawable.bg_shape));
+				setting_btn_clear1.setTextColor(getResources().getColor(
+						R.color.bgtitle));
+				tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
+				tv_lea.setTextColor(getResources().getColor(R.color.text292929));
+				tv_lea.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.send_out_goods_shape));
+				tv_bug.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.bg_shape));
+			}
 			break;
 		case R.id.tv_lea:
 			// tv_bug
-			islea = true;
-			setting_btn_clear1.setClickable(false);
-			setting_btn_clear.setText("立即租赁");
-			setting_btn_clear1.setTextColor(getResources().getColor(
-					R.color.bg0etitle));
-			setting_btn_clear1.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.bg0e_shape));
-			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
-			tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
-			tv_lea.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.bg_shape));
-			tv_bug.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.send_out_goods_shape));
+			if (Config.CheckIsLogin(GoodDeatail.this)) {
+				islea = true;
+				setting_btn_clear1.setClickable(false);
+				setting_btn_clear.setText("立即租赁");
+				setting_btn_clear1.setTextColor(getResources().getColor(
+						R.color.bg0etitle));
+				setting_btn_clear1.setBackgroundDrawable(getResources()
+						.getDrawable(R.drawable.bg0e_shape));
+				tv_bug.setTextColor(getResources().getColor(R.color.text292929));
+				tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
+				tv_lea.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.bg_shape));
+				tv_bug.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.send_out_goods_shape));
+			}
 			break;
 		case R.id.setting_btn_clear1:
-			addGood();
+			if (Config.CheckIsLogin(GoodDeatail.this)) {
+				addGood();
+			}
 			break;
 		case R.id.tv_zd:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
@@ -281,9 +293,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.search2:
-			Config.shopcar=true;
-			Intent i = new Intent(GoodDeatail.this, MainActivity.class);
-			startActivity(i);
+			if (Config.CheckIsLogin(GoodDeatail.this)) {
+				Config.shopcar = true;
+				Intent i = new Intent(GoodDeatail.this, MainActivity.class);
+				startActivity(i);
+			}
 			break;
 		case R.id.tv_sjhttp:
 			Intent intent = new Intent();
@@ -330,13 +344,30 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				.getClient()
 				.post(Config.GOODDETAIL, params,
 						new AsyncHttpResponseHandler() {
+							private Dialog loadingDialog;
+
+							@Override
+							public void onStart() {
+								
+								super.onStart();
+								loadingDialog = DialogUtil.getLoadingDialg(GoodDeatail.this);
+								loadingDialog.show();
+							}
+
+							@Override
+							public void onFinish() {
+								
+								super.onFinish();
+								loadingDialog.dismiss();
+							}
 
 							@Override
 							public void onSuccess(int statusCode,
 									Header[] headers, byte[] responseBody) {
-								// TODO Auto-generated method stub
+								
 								String userMsg = new String(responseBody)
 										.toString();
+								innitView();
 								Log.i("ljp", userMsg);
 								Gson gson = new Gson();
 								// EventEntity
@@ -367,7 +398,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										buttonAdapter = new ButtonGridviewAdapter(
 												GoodDeatail.this, User_button,
 												0);
-										
+
 										gview1.setAdapter(buttonAdapter);
 										gview1.setOnItemClickListener(new OnItemClickListener() {
 
@@ -376,8 +407,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 													AdapterView<?> arg0,
 													View arg1, int arg2,
 													long arg3) {
-												// TODO Auto-generated method
-												// stub
+								
+											
 												buttonAdapter.setIndex(arg2);
 												getdataByChanel(User_button
 														.get(arg2).getId());
@@ -399,17 +430,18 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												jsonobject.getString("factory"),
 												new TypeToken<FactoryEntity>() {
 												}.getType());
-										 ImageCacheUtil.IMAGE_CACHE.get(
-										factoryEntity.getLogo_file_path(),
-										fac_img); 
-										
+										ImageCacheUtil.IMAGE_CACHE.get(
+												factoryEntity
+														.getLogo_file_path(),
+												fac_img);
+
 										commentsCount = jsonobject
 												.getInt("commentsCount");
 										Config.gfe = gfe;
 										String res2 = jsonobject
 												.getString("paychannelinfo");
 										jsonobject = new JSONObject(res2);
-										 paychannelId=jsonobject.getInt("id");
+										paychannelId = jsonobject.getInt("id");
 										Config.celist = gson.fromJson(
 												jsonobject
 														.getString("standard_rates"),
@@ -442,7 +474,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												GoodDeatail.this, celist);
 										// pos_lv1.setAdapter(lvAdapter);
 
-										
 										for (int i = 0; i < piclist.size(); i++) {
 											ma.add(piclist.get(i));
 										}
@@ -465,11 +496,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 											for (int i = 0; i < arelist.size(); i++) {
 												a = a + arelist.get(i);
 											}
-											
+
 											Config.suportare = a;
 										} else {
 											Config.suportare = "不支持";
-											
+
 										}
 										if (jsonobject
 												.getBoolean("support_cancel_flag")) {
@@ -485,8 +516,9 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										Config.celist = celist2;
 										Config.tv_sqkt = jsonobject
 												.getString("opening_requirement");
-										ll_Factory = (LinearLayout)findViewById(R.id.mer_detail);
-										ll_Factory.setOnClickListener(GoodDeatail.this);
+										ll_Factory = (LinearLayout) findViewById(R.id.mer_detail);
+										ll_Factory
+												.setOnClickListener(GoodDeatail.this);
 										handler.sendEmptyMessage(0);
 									} else {
 										Toast.makeText(
@@ -495,7 +527,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												Toast.LENGTH_SHORT).show();
 									}
 								} catch (JSONException e) {
-									// TODO Auto-generated catch block
+									
 									e.printStackTrace();
 								}
 
@@ -505,7 +537,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							public void onFailure(int statusCode,
 									Header[] headers, byte[] responseBody,
 									Throwable error) {
-								// TODO Auto-generated method stub
+								
 							}
 						});
 
@@ -525,7 +557,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-						// TODO Auto-generated method stub
+						
 						String userMsg = new String(responseBody).toString();
 
 						Log.i("ljp", userMsg);
@@ -549,7 +581,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 
@@ -558,7 +590,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
+						
 
 					}
 				});
@@ -616,7 +648,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		 */
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
+		
 			return mList.size();
 		}
 
@@ -628,14 +660,14 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		 */
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			// TODO Auto-generated method stub
+		
 			container.removeView(mList.get(position));
 
 		}
 
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
-			// TODO Auto-generated method stub
+			
 			return arg0 == arg1;
 		}
 
@@ -658,7 +690,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					
 					//
 					// Intent i=new Intent(AroundDetail.this,VPImage.class);
 					//
@@ -689,7 +721,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							@Override
 							public void onSuccess(int statusCode,
 									Header[] headers, byte[] responseBody) {
-								// TODO Auto-generated method stub
+								
 								String userMsg = new String(responseBody)
 										.toString();
 
@@ -767,11 +799,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 											for (int i = 0; i < arelist.size(); i++) {
 												a = a + arelist.get(i);
 											}
-						
+
 											Config.suportare = a;
 										} else {
 											Config.suportare = "不支持";
-										
+
 										}
 										if (jsonobject
 												.getBoolean("support_cancel_flag")) {
@@ -788,7 +820,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												Toast.LENGTH_SHORT).show();
 									}
 								} catch (JSONException e) {
-									// TODO Auto-generated catch block
+								
 									e.printStackTrace();
 								}
 
@@ -798,7 +830,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							public void onFailure(int statusCode,
 									Header[] headers, byte[] responseBody,
 									Throwable error) {
-								// TODO Auto-generated method stub
+								
 
 							}
 						});
@@ -809,7 +841,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 		@Override
 		public void onPageScrollStateChanged(int state) {
-			// TODO Auto-generated method stub
+			
 			if (state == 0) {
 				// new MyAdapter(null).notifyDataSetChanged();
 			}
@@ -817,7 +849,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
+			
 
 		}
 

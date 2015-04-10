@@ -12,20 +12,20 @@
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:paddingLeft="198dp"
-	    android:paddingRight="198dp"
+	    android:paddingLeft="@dimen/ddrl_width"
+	    android:paddingRight="@dimen/ddrl_width"
 	    android:orientation="vertical" >
 
 	    	 <TextView
 	    	     android:id="@+id/msg_title"
 	    	     android:layout_width="fill_parent"
-	    	     android:layout_height="106dp"
+	    	     android:layout_height="@dimen/ddimg"
 	    	     android:layout_marginLeft="@dimen/margin_left2"
 	    	     android:layout_marginRight="@dimen/margin_left2"
 	    	     android:gravity="bottom"
 	    	     android:maxLines="2"
-	    	     android:paddingBottom="20dp"
-	    	     android:text="中国最好的POS机器经销商中 ,POS机器立刻购买获取20000积分中国最好的POS机器经销商中中国最1111111111111好的POS机器经销商中中国最好的POS机器经销商中11111111sssssssssssssssss"
+	    	     android:paddingBottom="@dimen/zc_margin_top"
+	    	     android:text=""
 	    	     android:textColor="@color/text6c6c6c6"
 	    	     android:textSize="21sp" />
 
@@ -39,7 +39,7 @@
 	    android:layout_marginRight="@dimen/margin_left2"
 	   	android:textColor="@color/text6c6c6c6"
 	   	android:textSize="12sp"
-	    android:text="2015-1-1 12:00:00"/>
+	    android:text=""/>
 	<View  android:layout_marginLeft="@dimen/margin_left2"
 	    android:layout_marginRight="@dimen/margin_left2"
 	    android:layout_height="0.5dp"
@@ -56,7 +56,7 @@
 	    android:layout_marginRight="@dimen/margin_left2"
 	   	android:textColor="@color/text6c6c6c6"
 	   	android:textSize="18sp"
-	    android:text="中国最好的POS机器经销商中 ,POS机器立刻购买获取20000积分"/>
+	    android:text=""/>
 	</LinearLayout>
 
 </LinearLayout>

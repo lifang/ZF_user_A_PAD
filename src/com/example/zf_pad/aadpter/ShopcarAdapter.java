@@ -99,8 +99,7 @@ public class ShopcarAdapter extends BaseAdapter {
 							ad.dismiss();
 							del(id,v.getId());						
 						}
-					});
-					
+					});					
 				}
 			});
 			holder.checkBox = (CheckBox) convertView.findViewById(R.id.item_cb);

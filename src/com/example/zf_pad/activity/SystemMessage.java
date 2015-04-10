@@ -162,7 +162,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 		private void getData() {
 			RequestParams params = new RequestParams();
 		  
-			params.put("customer_id", MyApplication.NewUser.getId());
+			//params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("page", page);
 			params.setUseJsonStreamer(true);
 			MyApplication.getInstance().getClient()

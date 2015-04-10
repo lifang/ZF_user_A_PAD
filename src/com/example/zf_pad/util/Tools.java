@@ -62,7 +62,7 @@ public class Tools {
 	static int index2 = 0;
 	static ArrayList<ImageView> imageviewList0;
 	private static Bitmap bm = null;
-
+	
 	// 判断应用前台还是后台
 	public static boolean isApplicationBroughtToBackground(final Context context) {
 		ActivityManager am = (ActivityManager) context

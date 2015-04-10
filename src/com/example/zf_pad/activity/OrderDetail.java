@@ -57,7 +57,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			case 0:
 				OrderDetailEntity entity = ode.get(0);
 				tv_sjps.setText("实际配送金额(含配送费) ：￥ "
-						+ entity.getOrder_totalprice());
+						+check(entity.getOrder_totalprice())/100 );
 				tv_psf.setText("含配送费 ：￥ " + entity.getOrder_psf());
 				tv_reperson.setText("收件人  ：   " + entity.getOrder_receiver());
 				tv_tel.setText(entity.getOrder_receiver_phone());
@@ -68,9 +68,9 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 				fptt.setText("发票抬头  ：   " + entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号  ：   " + entity.getOrder_number());
 				tv_pay.setText("支付方式  ：   " + entity.getOrder_payment_type());
-				tv_time.setText("实付金额  ：   ￥" + entity.getOrder_totalprice());
+				tv_time.setText("实付金额  ：   ￥" + check(entity.getOrder_totalprice())/100);
 				tv_money.setText("订单日期  ：   " + entity.getOrder_createTime());
-				tv_gj.setText("共计  ：   " + entity.getOrder_totalNum() + "件");
+				tv_gj.setText("共计  ：   " + entity.getOrder_totalNum() + "件商品");
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -351,6 +351,16 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			break;
 		default:
 			break;
+		}
+	}
+	double check(String str) {
+		try {
+
+			double min = Double.valueOf(str);// 把字符串强制转换为数字
+			return min;// 如果是数字，返回True
+		} catch (Exception e) {
+			
+			return 0;// 如果抛出异常，返回False
 		}
 	}
 }

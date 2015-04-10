@@ -223,10 +223,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			 				editor.commit();
 			 				System.out.println(mySharedPreferences.getBoolean("islogin", false)+"---");
 			 				MyApplication.NewUser=data;
-			 					Intent i =new Intent(getApplicationContext(), MainActivity.class);
-								startActivity(i);
+			 					
 								finish();	
-			 				
 							
 						}
 

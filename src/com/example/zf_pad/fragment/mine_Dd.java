@@ -129,7 +129,7 @@ public void onStop() {
 	}
 @Override
 public void onStart() {
-	// TODO Auto-generated method stub
+	
 	super.onStart();
 	//ll_DD.setVisibility(View.VISIBLE);
 }
