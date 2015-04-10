@@ -17,30 +17,35 @@
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     /> 
+     
+     android:textColor="#505050"/> 
      <TextView 
      android:id="@+id/time"
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     />
+    
+     android:textColor="#505050"/>
      <TextView 
      android:id="@+id/money"
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     />
+    
+    android:textColor="#505050" />
      <TextView 
      android:id="@+id/gotscore"
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     />
+    
+     android:textColor="#505050"/>
      <TextView 
      android:id="@+id/scoretype"
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     />  
+    
+    android:textColor="#505050"/>  
      </LinearLayout>
 </LinearLayout>

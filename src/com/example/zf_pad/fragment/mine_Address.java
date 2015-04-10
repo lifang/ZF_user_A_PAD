@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
@@ -58,6 +59,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	private int j=0;
 	private int id=MyApplication.NewUser.getId();
 	public static int[] idd;
+	public static int type=0;
 	//private TextView info,safe,manageradress,score;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,14 +131,38 @@ private void getData() {
 						JSONArray result =jsonobject.getJSONArray("result");
 						idd=new int[result.length()];
 						for(int i=0;i<result.length();i++){
-			
+							type=result.getJSONObject(i).getInt("isDefault");
+							Log.e("type", String.valueOf(type));
+			               /* if(result.getJSONObject(i).getInt("isDefault")==1){
+			                	Message msg=AddressManagerAdapter.myHandler.obtainMessage();
+			                	msg.what=1;
+			                	msg.sendToTarget();
+			                }*/
 							idd[i]=result.getJSONObject(i).getInt("id");
-							dataadress.add(new AddressManager(i, 
+							if(result.getJSONObject(i).getInt("isDefault")==1){
+								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("receiver"),
+										result.getJSONObject(i).getString("city"),
+										result.getJSONObject(i).getString("address"),
+										result.getJSONObject(i).getString("zipCode"),
+										result.getJSONObject(i).getString("moblephone"),
+										"д╛хо"));
+							}
+							else{
+								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("receiver"),
+										result.getJSONObject(i).getString("city"),
+										result.getJSONObject(i).getString("address"),
+										result.getJSONObject(i).getString("zipCode"),
+										result.getJSONObject(i).getString("moblephone"),
+										"  "));
+							}
+							/*dataadress.add(new AddressManager(i, 
 									result.getJSONObject(i).getString("receiver"),
 									result.getJSONObject(i).getString("city"), 
 									result.getJSONObject(i).getString("address"), 
 									result.getJSONObject(i).getString("zipCode"),
-									result.getJSONObject(i).getString("moblephone")));
+									result.getJSONObject(i).getString("moblephone")));*/
 							
 						}
 					

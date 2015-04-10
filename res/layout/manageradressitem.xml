@@ -43,6 +43,12 @@
     android:layout_height="match_parent"
      />
      <TextView 
+     android:id="@+id/defau"
+     android:layout_weight="1"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:textColor="#FDD0B1"/>
+     <TextView 
      android:id="@+id/change"
     android:layout_weight="1"
     android:layout_width="match_parent"

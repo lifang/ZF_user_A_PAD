@@ -126,7 +126,7 @@ public class AdressEdit extends BaseActivity{
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
-		
+		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		tv1=(EditText) findViewById(R.id.tv1);
 		tv2=(EditText) findViewById(R.id.tv2);
 		tv3=(EditText) findViewById(R.id.tv3);
@@ -141,6 +141,14 @@ public class AdressEdit extends BaseActivity{
 			tv3.setText(Mine_Address.dataadress.get(pp).getZipcode());
 			tv4.setText(Mine_Address.dataadress.get(pp).getArea());
 			tv5.setText(Mine_Address.dataadress.get(pp).getDetailadress());
+			if(Mine_Address.dataadress.get(pp).getIsdefau().equals("д╛хо")){
+				//item_cb.setBackgroundResource(R.drawable.cb_y);
+				item_cb.setChecked(true);
+			}
+			else{
+				//item_cb.setBackgroundResource(R.drawable.cb_n1);
+				item_cb.setChecked(false);
+			}
 			
 		}
 		adresslist=(Button) findViewById(R.id.adresslist);
@@ -160,7 +168,7 @@ public class AdressEdit extends BaseActivity{
 				}
 			}
 		});
-		item_cb=(CheckBox) findViewById(R.id.item_cb);
+		
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -193,7 +201,6 @@ public class AdressEdit extends BaseActivity{
 			return;
 		}
 		API.changeAdres(AdressEdit.this, Mine_Address.idd[pp], Cityid+"", name, tel, 
-
 				stringcode, address, isDefault, new HttpCallback(AdressEdit.this) {
 
 					@Override
