@@ -325,8 +325,8 @@
 
             <LinearLayout
                 android:id="@+id/login_linear_signin"
-                android:layout_width="@dimen/zc_land_w"
-                android:layout_height="@dimen/zc_land_h"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/zc_land_h"
                 android:background="@drawable/bg_blue_shape"
