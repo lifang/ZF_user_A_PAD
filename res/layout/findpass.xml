@@ -29,12 +29,12 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="@dimen/normai_button_width"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="手机号/邮箱"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="22sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -70,24 +70,24 @@
 
                 <TextView
                     android:id="@+id/tv_code"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:gravity="center"
                     android:text="发送验证码"
                     
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/textmid" />
+                    android:textSize="18sp" />
                 <TextView
                     android:id="@+id/tv_mmcz"
-                    android:layout_width="@dimen/sp_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:gravity="center"
                     android:text="发送重置密码邮件"
                     android:textColor="#ffffff"
                      android:visibility="gone"
-                    android:textSize="@dimen/textmid" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -99,12 +99,12 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="@dimen/normai_button_width"
+                  android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="输入 验证码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="22sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -112,8 +112,8 @@
                     android:gravity="center_vertical" >
 
                       <RelativeLayout
-                    android:layout_width="@dimen/zc_rl_w"
-                    android:layout_height="@dimen/zc_rl_h"
+                    android:layout_width="300dp"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical" >
 
                     <EditText
@@ -170,14 +170,14 @@
 
                 <TextView
                     android:id="@+id/tv_check"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:gravity="center"
                     android:text="检查"
                     android:textColor="#ffffff"
                     
-                    android:textSize="@dimen/textmid" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -195,12 +195,12 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="@dimen/normai_button_width"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="输  入 密 码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="22sp" />
 
    
                 <RelativeLayout
@@ -238,8 +238,8 @@
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                  android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:text="获取验证m码"
                     android:textColor="#ffffff"
@@ -254,12 +254,12 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="@dimen/normai_button_width"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="确  认 密 码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="22sp" />
 
                    <RelativeLayout
                     android:layout_width="300dp"
@@ -294,8 +294,8 @@
                 </RelativeLayout>
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                       android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:text="获取验证m码"
                     android:textColor="#ffffff"
@@ -312,8 +312,8 @@
 
             <LinearLayout
                 android:id="@+id/login_linear_signin"
-                android:layout_width="@dimen/zc_land_w"
-                android:layout_height="@dimen/zc_land_h"
+                android:layout_width="260dp"
+                android:layout_height="44dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/zc_land_h"
                 android:background="@drawable/bg_blue_shape"
@@ -325,7 +325,7 @@
                     android:layout_height="wrap_content"
                     android:text="提交"
                     android:textColor="@color/fffefe"
-                    android:textSize="@dimen/s_17sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
              </LinearLayout>
         </LinearLayout>

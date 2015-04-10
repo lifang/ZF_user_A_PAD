@@ -34,7 +34,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="手机号/邮箱"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -69,13 +69,13 @@
 
                 <TextView
                     android:id="@+id/tv_code"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:gravity="center"
                     android:text="发送验证码"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/textmid" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,7 +92,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="输入 验证码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -135,13 +135,13 @@
 
                 <TextView
                     android:id="@+id/tv_check"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:gravity="center"
                     android:text="检查"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/textmid" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -157,7 +157,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="输  入 密 码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -193,8 +193,8 @@
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                     android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:text="获取验证m码"
                     android:textColor="#ffffff"
@@ -214,7 +214,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="确  认 密 码"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <RelativeLayout
                     android:layout_width="300dp"
@@ -250,8 +250,8 @@
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                     android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:text="获取验证m码"
                     android:textColor="#ffffff"
@@ -271,7 +271,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="所    在    地"
                     android:textColor="#292929"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:id="@+id/ll_jy_type"
@@ -295,7 +295,7 @@
                             android:singleLine="true"
                             android:text="上海"
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="@dimen/textmid" />
+                            android:textSize="18sp" />
 
                         <ImageView
                             android:id="@+id/imageView1"
@@ -309,8 +309,8 @@
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                   android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/normal_button_selector"
                     android:text="获取验证m码"
                     android:textColor="#ffffff"

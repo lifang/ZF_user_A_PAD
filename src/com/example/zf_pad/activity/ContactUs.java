@@ -2,6 +2,7 @@ package com.example.zf_pad.activity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.RegText;
 import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
@@ -61,6 +62,11 @@ public class ContactUs extends Activity {
 
 		if (phone.length() == 0) {
 			Toast.makeText(getApplicationContext(), "请输入联系方式",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if(!RegText.isMobileNO(phone)){
+			Toast.makeText(getApplicationContext(), "请输入正确的联系方式",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
