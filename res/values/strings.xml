@@ -256,8 +256,6 @@
         <item>税务登记证号</item>
         <item>组织机构号</item>
         <item>支付通道</item>
-        <item>blank</item>
-        <item>选择银行</item>
     </string-array>
     <string-array name="apply_detail_upload">
         <item>选择照片</item>
@@ -267,6 +265,13 @@
     <string name="apply_uploading">上传中...</string>
     <string name="apply_upload_again">重新上传</string>
     <string name="apply_upload_success">上传成功</string>
+    <string name="terminal_add_channel">指定支付通道</string>
+    <string name="terminal_add_number">填入终端号</string>
+    <string name="terminal_add_name">填入商户名称</string>
+
+	<string name="apply_bank_input">请输入银行名称</string>
+	<string name="apply_bank_result">搜索结果</string>
+	<string name="title_apply_choose_bank">选择银行</string>
     <!-- ====================================================== -->
     <!-- 终端管理 -->
     <!-- ====================================================== -->

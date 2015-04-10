@@ -152,6 +152,9 @@ public class API {
 	// Get the Channel List
 	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/apply/getChannels";
+	// Get the Bank List
+	public static final String APPLY_BANK_LIST = SCHEMA + HOST
+			+ "/ZFMerchant/api/apply/ChooseBank";
 
 	// upload image url
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST
@@ -763,5 +766,12 @@ public class API {
 		params.put("accountPicPath", accountPicPath);
 		params.put("id", id);
 		new HttpRequest(context, callback).post(UPDATE_MERCHANT, params);
+	}
+
+	public static void getApplyBankList(Context context, String terminalNumber,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("serial_num", terminalNumber);
+		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
 	}
 }

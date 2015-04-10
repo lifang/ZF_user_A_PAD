@@ -1,5 +1,6 @@
 package com.example.zf_pad.trade;
 
+
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
@@ -12,11 +13,16 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
 
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BANK;
+
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_BANK;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.CHOOSE_TITLE;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.CHOOSE_ITEMS;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONException;
@@ -42,10 +48,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.entity.ApplyBank;
 import com.example.zf_pad.trade.entity.ApplyChooseItem;
+import com.example.zf_pad.trade.entity.ApplyCustomerDetail;
+import com.example.zf_pad.trade.entity.ApplyMaterial;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.MerchantForApply;
 import com.example.zf_pad.trade.entity.MyApplyCustomerDetail;
@@ -99,15 +110,15 @@ public class MyApplyDetail extends FragmentActivity {
 	// private LinearLayout mCustomerContainer;
 	private LinearLayout mMaterialContainer;
 
-	private LinearLayout mMaterialContainer_1;
-	private LinearLayout mMaterialContainer_2;
-	private LinearLayout mMaterialContainer_3;
-	private LinearLayout mMaterialContainer_4;
-	private LinearLayout mMaterialContainer_5;
-	private LinearLayout mMaterialContainer_6;
-	private LinearLayout mMaterialContainer_7;
-	private LinearLayout mMaterialContainer_8;
-	private LinearLayout mMaterialContainer_9;
+//	private LinearLayout mMaterialContainer_1;
+//	private LinearLayout mMaterialContainer_2;
+//	private LinearLayout mMaterialContainer_3;
+//	private LinearLayout mMaterialContainer_4;
+//	private LinearLayout mMaterialContainer_5;
+//	private LinearLayout mMaterialContainer_6;
+//	private LinearLayout mMaterialContainer_7;
+//	private LinearLayout mMaterialContainer_8;
+//	private LinearLayout mMaterialContainer_9;
 
 	private Button mApplySubmit;
 
@@ -118,13 +129,18 @@ public class MyApplyDetail extends FragmentActivity {
 	private City mMerchantCity;
 	private int mChannelId;
 
+	private String mTerminalNumber;
 	private String photoPath;
 	private TextView uploadingTextView;
-
+	private ApplyBank mChosenBank;
+	private String mBankKey;
+	private String mUploadKey;
 	private ArrayList<ApplyChooseItem> mChannelItems = new ArrayList<ApplyChooseItem>();
 
 	private List<String> mImageUrls = new ArrayList<String>();
 	private List<String> mImageNames = new ArrayList<String>();
+
+	private LinkedHashMap<Integer, MyApplyMaterial> mMaterials = new LinkedHashMap<Integer, MyApplyMaterial>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,15 +203,16 @@ public class MyApplyDetail extends FragmentActivity {
 		mCustomerContainer_2 = (LinearLayout) findViewById(R.id.mCustomerContainer_2);
 		// mCustomerContainer = (LinearLayout)
 		// findViewById(R.id.apply_detail_customer_container);
-		mMaterialContainer_1 = (LinearLayout) findViewById(R.id.mMaterialContainer_1);
-		mMaterialContainer_2 = (LinearLayout) findViewById(R.id.mMaterialContainer_2);
-		mMaterialContainer_3 = (LinearLayout) findViewById(R.id.mMaterialContainer_3);
-		mMaterialContainer_4 = (LinearLayout) findViewById(R.id.mMaterialContainer_4);
-		mMaterialContainer_5 = (LinearLayout) findViewById(R.id.mMaterialContainer_5);
-		mMaterialContainer_6 = (LinearLayout) findViewById(R.id.mMaterialContainer_6);
-		mMaterialContainer_7 = (LinearLayout) findViewById(R.id.mMaterialContainer_7);
-		mMaterialContainer_8 = (LinearLayout) findViewById(R.id.mMaterialContainer_8);
-		mMaterialContainer_9 = (LinearLayout) findViewById(R.id.mMaterialContainer_9);
+		mMaterialContainer =(LinearLayout) findViewById(R.id.apply_detail_material_container);
+//		mMaterialContainer_1 = (LinearLayout) findViewById(R.id.mMaterialContainer_1);
+//		mMaterialContainer_2 = (LinearLayout) findViewById(R.id.mMaterialContainer_2);
+//		mMaterialContainer_3 = (LinearLayout) findViewById(R.id.mMaterialContainer_3);
+//		mMaterialContainer_4 = (LinearLayout) findViewById(R.id.mMaterialContainer_4);
+//		mMaterialContainer_5 = (LinearLayout) findViewById(R.id.mMaterialContainer_5);
+//		mMaterialContainer_6 = (LinearLayout) findViewById(R.id.mMaterialContainer_6);
+//		mMaterialContainer_7 = (LinearLayout) findViewById(R.id.mMaterialContainer_7);
+//		mMaterialContainer_8 = (LinearLayout) findViewById(R.id.mMaterialContainer_8);
+//		mMaterialContainer_9 = (LinearLayout) findViewById(R.id.mMaterialContainer_9);
 
 		mApplySubmit = (Button) findViewById(R.id.apply_submit);
 
@@ -254,16 +271,16 @@ public class MyApplyDetail extends FragmentActivity {
 		mCustomerContainer_1.removeAllViews();
 		mCustomerContainer_2.removeAllViews();
 		// mCustomerContainer.removeAllViews();
-		// mMaterialContainer.removeAllViews();
-		mMaterialContainer_1.removeAllViews();
-		mMaterialContainer_2.removeAllViews();
-		mMaterialContainer_3.removeAllViews();
-		mMaterialContainer_4.removeAllViews();
-		mMaterialContainer_5.removeAllViews();
-		mMaterialContainer_6.removeAllViews();
-		mMaterialContainer_7.removeAllViews();
-		mMaterialContainer_8.removeAllViews();
-		mMaterialContainer_9.removeAllViews();
+		 mMaterialContainer.removeAllViews();
+//		mMaterialContainer_1.removeAllViews();
+//		mMaterialContainer_2.removeAllViews();
+//		mMaterialContainer_3.removeAllViews();
+//		mMaterialContainer_4.removeAllViews();
+//		mMaterialContainer_5.removeAllViews();
+//		mMaterialContainer_6.removeAllViews();
+//		mMaterialContainer_7.removeAllViews();
+//		mMaterialContainer_8.removeAllViews();
+//		mMaterialContainer_9.removeAllViews();
 		initMerchantDetailKeys();
 
 		API.getApplyDetail(this, 80, mTerminalId, applyType,
@@ -311,11 +328,15 @@ public class MyApplyDetail extends FragmentActivity {
 									}
 								});
 						// set the customer details
-						// TODO:
-						setCustomerDetail(customerDetails);
+						setCustomerDetail(materials, customerDetails);
 
 					}
 
+					@Override
+					public void onFailure(String message) {
+				
+						super.onFailure(message);
+					}
 					@Override
 					public TypeToken<My_ApplyDetail> getTypeToken() {
 						return new TypeToken<My_ApplyDetail>() {
@@ -611,12 +632,6 @@ public class MyApplyDetail extends FragmentActivity {
 		});
 		mCustomerContainer_2.addView(chooseChannel);
 
-		mCustomerContainer_1.addView(getDetailItem(ITEM_BLANK, mBankKeys[6],
-				null));
-		// TODO:选择银行未实现
-		mCustomerContainer_2.addView(getDetailItem(ITEM_CHOOSE, mBankKeys[7],
-				null));
-
 	}
 
 	/**
@@ -664,156 +679,50 @@ public class MyApplyDetail extends FragmentActivity {
 	 * 
 	 * @param customerDetails
 	 */
-	private void setCustomerDetail(List<MyApplyCustomerDetail> customerDetails) {
-
-		int i = 1;
-
-		for (MyApplyCustomerDetail customerDetail : customerDetails) {
-
-			switch (customerDetail.getTypes()) {
-
-			case TYPE_TEXT:
-				// mMaterialContainer.addView(getDetailItem(ITEM_EDIT,
-				// customerDetail.getKey(), customerDetail.getValue()));
-				break;
-			case TYPE_IMAGE:
-
-				String imageName = customerDetail.getKey();
-				String imageUrl = customerDetail.getValue();
-				switch (i) {
-				case 1:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_1.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_1.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 2:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_2.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_2.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 3:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_3.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_3.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 4:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_4.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_4.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 5:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_5.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_5.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 6:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_6.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_6.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 7:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_7.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_7.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
-				case 8:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_8.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_8.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-
-					break;
-
-				case 9:
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(customerDetail.getKey());
-						mImageUrls.add(customerDetail.getValue());
-						mMaterialContainer_9.addView(getDetailItem(ITEM_VIEW,
-								imageName, imageUrl));
-					} else {
-						mMaterialContainer_9.addView(getDetailItem(ITEM_UPLOAD,
-								imageName, imageUrl));
-					}
-
-					i++;
-					break;
-
+	private void setCustomerDetail(List<MyApplyMaterial> materials, List<MyApplyCustomerDetail> customerDetails) {
+		if (null == materials || materials.size() <= 0) return;
+		for (MyApplyMaterial material : materials) {
+			mMaterials.put(material.getId(), material);
+		}
+		if (null != customerDetails && customerDetails.size() > 0) {
+			for (MyApplyCustomerDetail customerDetail : customerDetails) {
+				MyApplyMaterial material = mMaterials.get(customerDetail.getTargetId());
+				if (null != material) {
+					material.setValue(customerDetail.getValue());
 				}
+			}
+		}
 
-				break;
-			case TYPE_BANK:
-
-				break;
+		for (final MyApplyMaterial material : mMaterials.values()) {
+			switch (material.getTypes()) {
+				case TYPE_TEXT:
+					mMaterialContainer.addView(getDetailItem(ITEM_EDIT, material.getName(), material.getValue()));
+					break;
+				case TYPE_IMAGE:
+					String imageName = material.getName();
+					String imageUrl = material.getValue();
+					if (!TextUtils.isEmpty(imageUrl)) {
+						mImageNames.add(imageName);
+						mImageUrls.add(imageUrl);
+						mMaterialContainer.addView(getDetailItem(ITEM_VIEW, imageName, imageUrl));
+					} else {
+						mMaterialContainer.addView(getDetailItem(ITEM_UPLOAD, imageName, imageUrl));
+					}
+					break;
+				case TYPE_BANK:
+					View chooseBank = getDetailItem(ITEM_CHOOSE, material.getName(), null);
+					chooseBank.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							mBankKey = material.getName();
+							Intent intent = new Intent(MyApplyDetail.this, ApplyBankActivity.class);
+							intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+							intent.putExtra(SELECTED_BANK, mChosenBank);
+							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
+						}
+					});
+					mMaterialContainer.addView(chooseBank);
+					break;
 			}
 		}
 
