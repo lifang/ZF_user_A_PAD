@@ -57,7 +57,9 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+
 		Log.e("viewS", String.valueOf(view));
+
 		
 	}
 	@Override

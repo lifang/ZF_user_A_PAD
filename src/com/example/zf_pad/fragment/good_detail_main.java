@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class good_detail_main extends Fragment implements OnClickListener{
+public class Good_detail_main extends Fragment implements OnClickListener{
 	private View view;
 	private HuilvAdapter lvAdapter1,lvAdapter2,lvAdapter3;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.Goodlist;
+import com.example.zf_pad.util.ImageCacheUtil;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
  
 public class OrderDetail_PosAdapter extends BaseAdapter{
@@ -49,6 +51,7 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
  		holder.btn_ishow = (Button) convertView.findViewById(R.id.btn_ishow);		 
  		holder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
  		holder.tv_x = (TextView) convertView.findViewById(R.id.tv_x);
+ 		holder.im=(ImageView)convertView.findViewById(R.id.evevt_img);
 			convertView.setTag(holder);
  		}else{
  		holder = (ViewHolder)convertView.getTag();
@@ -58,7 +61,7 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
   		 	holder.tv_price .setText("гд "+list.get(position).getGood_actualprice());
   			holder.tv_x .setText(list.get(position).getGood_actualprice()+"");
 			holder.btn_ishow.setVisibility(state==3?View.GONE:View.GONE);
-		 
+			 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getGood_logo(), holder.im);
 		
 		return convertView;
 	}
@@ -66,5 +69,6 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
 	public final class ViewHolder {
 		public TextView content,tv_price,tv_x;
 		public Button btn_ishow;
+		public ImageView im;
 	}
 }

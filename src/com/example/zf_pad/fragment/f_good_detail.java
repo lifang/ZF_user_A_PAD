@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
-public class f_good_detail extends Fragment implements OnClickListener{
+public class F_good_detail extends Fragment implements OnClickListener{
 	private View view;
 	private HuilvAdapter lvAdapter1,lvAdapter2,lvAdapter3;
 	private ScrollViewWithListView  pos_lv1,pos_lv2,pos_lv3;

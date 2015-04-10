@@ -41,10 +41,10 @@ import com.example.zf_pad.entity.GoodinfoEntity;
 import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.other_rate;
 import com.example.zf_pad.entity.tDates;
-import com.example.zf_pad.fragment.f_good_detail;
-import com.example.zf_pad.fragment.good_detail_apply;
-import com.example.zf_pad.fragment.good_detail_commet;
-import com.example.zf_pad.fragment.good_detail_zd;
+import com.example.zf_pad.fragment.F_good_detail;
+import com.example.zf_pad.fragment.Good_detail_apply;
+import com.example.zf_pad.fragment.Good_detail_commet;
+import com.example.zf_pad.fragment.Good_detail_zd;
 import com.example.zf_pad.popwindow.FactoryPopWindow;
 import com.example.zf_pad.popwindow.SetPopWindow;
 import com.example.zf_pad.trade.entity.GriviewEntity;
@@ -74,7 +74,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private LayoutInflater inflater;
 	private RelativeLayout rl_imgs, rela_loc;
 	private int index_ima = 0;
-	GoodinfoEntity gfe;
+	private GoodinfoEntity gfe;
 	private String chanel = "ͨ��3";
 	private ArrayList<String> arelist = new ArrayList<String>();
 	private int commentsCount;
@@ -165,6 +165,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		tv_bug.setOnClickListener(this);
 		gview1 = (ScrollViewWithGView) findViewById(R.id.gv1);
 		rl_imgs = (RelativeLayout) findViewById(R.id.rl_imgs);
+		LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) rl_imgs.getLayoutParams();
+		linearParams.width=Config.ScreenWidth/2;
+		linearParams.height=Config.ScreenHeight-340;
+		rl_imgs.setLayoutParams(linearParams);
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list);
@@ -318,7 +322,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private void getdata() {
 		RequestParams params = new RequestParams();
 		params.put("goodId", id);
-		params.put("city_id", MyApplication.getCITYID());
+		params.put("city_id", 1);
 
 		params.setUseJsonStreamer(true);
 		MyApplication
@@ -395,10 +399,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												jsonobject.getString("factory"),
 												new TypeToken<FactoryEntity>() {
 												}.getType());
-										// ImageCacheUtil.IMAGE_CACHE.get(
-										// factoryEntity.getLogo_file_path(),
-										// fac_img); 图片路径待定
-										//
+										 ImageCacheUtil.IMAGE_CACHE.get(
+										factoryEntity.getLogo_file_path(),
+										fac_img); 
+										
 										commentsCount = jsonobject
 												.getInt("commentsCount");
 										Config.gfe = gfe;

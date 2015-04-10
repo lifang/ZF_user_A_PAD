@@ -1,6 +1,5 @@
 package com.example.zf_pad.activity;
 
-import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -18,7 +17,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -33,15 +31,17 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
-import com.google.gson.reflect.TypeToken;
 import com.example.zf_pad.util.XListView;
+import com.google.gson.reflect.TypeToken;
 
-public class TerminalManagerActivity extends Activity implements XListView.IXListViewListener {
+public class TerminalManagerActivity extends Activity implements
+		XListView.IXListViewListener {
 
 	// private LayoutInflater layoutInflater;
 	// private ListView listview;
@@ -52,11 +52,10 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 	private List<TerminalManagerEntity> mTerminalItems;
 	private TerminalListAdapter mAdapter;
 
-	
 	private int page = 0;
 	private int total = 0;
 	private final int rows = 10;
-	
+
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
 	private View.OnClickListener mPosListener;
@@ -76,8 +75,6 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 
 	}
 
-
-
 	private void initViews() {
 		mInflater = LayoutInflater.from(this);
 		mTerminalList = (XListView) findViewById(R.id.terminal_list);
@@ -88,13 +85,12 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 				R.layout.terminal_list_header, null);
 
 		mTerminalList.addHeaderView(listHeader);
-		
 
 		// init the XListView
 		mTerminalList.initHeaderAndFooter();
 		mTerminalList.setXListViewListener(this);
 		mTerminalList.setPullLoadEnable(true);
-		
+
 		mTerminalList.setAdapter(mAdapter);
 	}
 
@@ -133,17 +129,26 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 						.findViewById(R.id.tv_openstate);
 				holder.llButtonContainer = (LinearLayout) convertView
 						.findViewById(R.id.terminal_button_container);
-				holder.llButtons = (LinearLayout) convertView.findViewById(R.id.terminal_buttons);
-						
+				holder.llButtons = (LinearLayout) convertView
+						.findViewById(R.id.terminal_buttons);
 				convertView.setTag(holder);
-
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-
 			final TerminalManagerEntity item = getItem(i);
 			holder.tv_terminal_id.setText(item.getPosPortID());
-			holder.tv_postype.setText(item.getPos()+item.getPosname());
+			if (item.getPos() != null || item.getPosname() != null) {
+				if (item.getPos() == null) {
+					holder.tv_postype.setText(item.getPosname());
+				} else if (item.getPosname() == null) {
+					holder.tv_postype.setText(item.getPos());
+				} else {
+					holder.tv_postype
+							.setText(item.getPos() + item.getPosname());
+				}
+			} else {
+				holder.tv_postype.setText("-");
+			}
 			holder.tv_paychannel.setText(item.getPayChannel());
 			String[] status = getResources().getStringArray(
 					R.array.terminal_status);
@@ -154,36 +159,36 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 			switch (item.getOpenState()) {
 			case OPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				addButton(holder.llButtons,
-						R.string.terminal_button_video, item, mVideoListener);
-				addButton(holder.llButtons,
-						R.string.terminal_button_pos, item, mPosListener);
+				addButton(holder.llButtons, R.string.terminal_button_video,
+						item, mVideoListener);
+				addButton(holder.llButtons, R.string.terminal_button_pos, item,
+						mPosListener);
 				break;
 			case PART_OPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				addButton(holder.llButtons,
-						R.string.terminal_button_sync, item, mSyncListener);
-				addButton(holder.llButtons,
-						R.string.terminal_button_reopen, item, mOpenListener);
-				addButton(holder.llButtons,
-						R.string.terminal_button_video, item, mVideoListener);
-				addButton(holder.llButtons,
-						R.string.terminal_button_pos, item, mPosListener);
+				addButton(holder.llButtons, R.string.terminal_button_sync,
+						item, mSyncListener);
+				addButton(holder.llButtons, R.string.terminal_button_reopen,
+						item, mOpenListener);
+				addButton(holder.llButtons, R.string.terminal_button_video,
+						item, mVideoListener);
+				addButton(holder.llButtons, R.string.terminal_button_pos, item,
+						mPosListener);
 				break;
 			case UNOPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				addButton(holder.llButtons,
-						R.string.terminal_button_open, item, mOpenListener);
-				addButton(holder.llButtons,
-						R.string.terminal_button_video, item, mVideoListener);
+				addButton(holder.llButtons, R.string.terminal_button_open,
+						item, mOpenListener);
+				addButton(holder.llButtons, R.string.terminal_button_video,
+						item, mVideoListener);
 				break;
 			case CANCELED:
 				holder.llButtonContainer.setVisibility(View.GONE);
 				break;
 			case STOPPED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
-				addButton(holder.llButtons,
-						R.string.terminal_button_sync, item, mSyncListener);
+				addButton(holder.llButtons, R.string.terminal_button_sync,
+						item, mSyncListener);
 				break;
 			}
 			convertView.setOnClickListener(new View.OnClickListener() {
@@ -209,7 +214,7 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 			button.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.shape_o));
 			button.setText(res);
-			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 			button.setTextColor(getResources().getColorStateList(
 					R.color.mybutton));
 			if (null != tag) {
@@ -249,12 +254,11 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 			public void onClick(View view) {
 				TerminalManagerEntity item = (TerminalManagerEntity) view
 						.getTag();
-				// TODO:
-				// Intent intent = new Intent(TerminalManagerActivity.this,
-				// ApplyDetailActivity.class);
-				// intent.putExtra(TERMINAL_ID, item.getId());
-				// intent.putExtra(TERMINAL_STATUS, item.getStatus());
-				// startActivity(intent);
+				Intent intent = new Intent(TerminalManagerActivity.this, MyApplyDetail.class);
+				intent.putExtra(TERMINAL_ID, item.getId());
+				intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
+				intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+				startActivity(intent);
 			}
 		};
 		mPosListener = new View.OnClickListener() {
@@ -262,36 +266,49 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 			public void onClick(View view) {
 				TerminalManagerEntity item = (TerminalManagerEntity) view
 						.getTag();
-				API.findPosPassword(TerminalManagerActivity.this, item
-						.getId(), new HttpCallback(
-						TerminalManagerActivity.this) {
-					@Override
-					public void onSuccess(Object data) {
-						final String password = data.toString();
-						final AlertDialog.Builder builder = new AlertDialog.Builder(TerminalManagerActivity.this);
-						builder.setMessage(password);
-						builder.setPositiveButton(getString(R.string.button_copy), new DialogInterface.OnClickListener() {
+				API.findPosPassword(TerminalManagerActivity.this, item.getId(),
+						new HttpCallback(TerminalManagerActivity.this) {
 							@Override
-							public void onClick(DialogInterface dialogInterface, int i) {
-								CommonUtil.copy(TerminalManagerActivity.this, password);
-								dialogInterface.dismiss();
-								CommonUtil.toastShort(TerminalManagerActivity.this, getString(R.string.toast_copy_password));
+							public void onSuccess(Object data) {
+								final String password = data.toString();
+								final AlertDialog.Builder builder = new AlertDialog.Builder(
+										TerminalManagerActivity.this);
+								builder.setMessage(password);
+								builder.setPositiveButton(
+										getString(R.string.button_copy),
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialogInterface,
+													int i) {
+												CommonUtil
+														.copy(TerminalManagerActivity.this,
+																password);
+												dialogInterface.dismiss();
+												CommonUtil
+														.toastShort(
+																TerminalManagerActivity.this,
+																getString(R.string.toast_copy_password));
+											}
+										});
+								builder.setNegativeButton(
+										getString(R.string.button_cancel),
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialogInterface,
+													int i) {
+												dialogInterface.dismiss();
+											}
+										});
+								builder.show();
 							}
-						});
-						builder.setNegativeButton(getString(R.string.button_cancel), new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialogInterface, int i) {
-								dialogInterface.dismiss();
-							}
-						});
-						builder.show();
-					}
 
-					@Override
-					public TypeToken getTypeToken() {
-						return null;
-					}
-				});
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
+							}
+						});
 			}
 		};
 		mVideoListener = new View.OnClickListener() {
@@ -304,47 +321,47 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 	}
 
 	private void loadData() {
-		
-		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows, new HttpCallback<Page<TerminalManagerEntity>>(this) {
-			@Override
-			public void onSuccess(Page<TerminalManagerEntity> data) {
-				if (null != data.getList()) {
-					mTerminalItems.addAll(data.getList());
-				}
-				total = data.getTotal();
-				page++;
-				mAdapter.notifyDataSetChanged();
-			}
 
-			@Override
-			public void onFailure(String message) {
-				
-				super.onFailure(message);
-			}
-			@Override
-			public void preLoad() {
-			}
+		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows,
+				new HttpCallback<Page<TerminalManagerEntity>>(this) {
+					@Override
+					public void onSuccess(Page<TerminalManagerEntity> data) {
+						if (null != data.getList()) {
+							mTerminalItems.addAll(data.getList());
+						}
+						total = data.getTotal();
+						page++;
+						mAdapter.notifyDataSetChanged();
+					}
 
-			@Override
-			public void postLoad() {
-				loadFinished();
-			}
+					@Override
+					public void onFailure(String message) {
 
-			@Override
-			public TypeToken<Page<TerminalManagerEntity>> getTypeToken() {
-				return new TypeToken<Page<TerminalManagerEntity>>() {
-				};
-			}
-		});
+						super.onFailure(message);
+					}
+
+					@Override
+					public void preLoad() {
+					}
+
+					@Override
+					public void postLoad() {
+						loadFinished();
+					}
+
+					@Override
+					public TypeToken<Page<TerminalManagerEntity>> getTypeToken() {
+						return new TypeToken<Page<TerminalManagerEntity>>() {
+						};
+					}
+				});
 	}
-	
+
 	private void loadFinished() {
 		mTerminalList.stopRefresh();
 		mTerminalList.stopLoadMore();
 		mTerminalList.setRefreshTime(Tools.getHourAndMin());
 	}
-
-
 
 	@Override
 	public void onRefresh() {
@@ -352,8 +369,6 @@ public class TerminalManagerActivity extends Activity implements XListView.IXLis
 		mTerminalItems.clear();
 		loadData();
 	}
-
-
 
 	@Override
 	public void onLoadMore() {

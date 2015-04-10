@@ -38,7 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class good_detail_commet extends Fragment implements  IXListViewListener{
+public class Good_detail_commet extends Fragment implements  IXListViewListener{
 	private View view;
 	private XListView Xlistview;
 	private int page=1;

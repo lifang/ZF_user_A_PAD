@@ -195,6 +195,7 @@ public class AdressEdit extends BaseActivity{
 		});
 	}
 	protected void changeData() {
+
 		if(!Tools.isConnect(getApplicationContext())){
 			CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
 			return;

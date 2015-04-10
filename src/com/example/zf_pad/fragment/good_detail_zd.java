@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class good_detail_zd extends Fragment implements OnClickListener{
+public class Good_detail_zd extends Fragment implements OnClickListener{
 	private View view;
 	public GoodinfoEntity gfe=new GoodinfoEntity();
 	private TextView tv1,tv2,tv3,tv4,tv5;

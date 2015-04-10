@@ -60,7 +60,7 @@
                         android:background="@drawable/shape_o"
                         android:textColor="#FD8936"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
 
                     <Button
                         android:id="@+id/terminal_button_left_bottom"
@@ -71,7 +71,7 @@
                         android:background="@drawable/shape_o"
                         android:textColor="#FD8936"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
 
                     <Button
                         android:id="@+id/terminal_button_right_top"
@@ -82,7 +82,7 @@
                         android:background="@drawable/shape_o"
                         android:textColor="#FD8936"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
 
                     <Button
                         android:id="@+id/terminal_button_right_bottom"
@@ -92,331 +92,45 @@
                         android:background="@drawable/shape_o"
                         android:textColor="#FD8936"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
                 </LinearLayout>
             </RelativeLayout>
 
+			<View style="@style/Divider"/>
+			
             <LinearLayout
                 android:id="@+id/terminal_category_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:id="@+id/terminal_category"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/category_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal" >
-
-                        <LinearLayout
-                            android:id="@+id/category_key_container"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/category_value_container"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TableLayout
-                    android:id="@+id/terminal_rates"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:background="#c9c9c9" >
-                </TableLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="开通详情"
-                    android:textColor="#292929"
-                    android:textSize="36px" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/terminal_category"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="开通类型"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="商户资料"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="名        称"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="商户电话"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TableLayout
+                        android:id="@+id/terminal_rates"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="对公"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="动动数码"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="1390988876"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="233449558696960707"
-                            android:textColor="#292929"
-                            android:textSize="36px" />
-                    </LinearLayout>
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="#c9c9c9" >
+                    </TableLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <TableLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp" >
-
-                <TableRow
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="营    业    执    照"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="140dp"
-                        android:text="法人身份证正面照"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="组 织 机 构 照 片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="140dp"
-                        android:text="法人身份证反面照"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="对公银行卡照片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="140dp"
-                        android:text="个 人 上 半 身 照 片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="税务登记证照片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="140dp"
-                        android:text="个  人  签  名  照  片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="对私银行卡照片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="140dp"
-                        android:text="其      他      照      片"
-                        android:textColor="#292929"
-                        android:textSize="36px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/check_it" />
-                </TableRow>
-            </TableLayout>
+            
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -437,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:background="#e5e4e4"
                     android:orientation="vertical"
-                    android:paddingBottom="20dp" >
+                    android:paddingBottom="50dp" >
                 </LinearLayout>
             </LinearLayout>
             <!-- title -->

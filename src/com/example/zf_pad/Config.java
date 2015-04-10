@@ -31,7 +31,7 @@ public class Config {
 	public static String MSGEDLALL = PATHS + "message/receiver/batchDelete";
 	public static String MSGREAD = PATHS + "message/receiver/batchRead";
 	public final static String LOGIN = PATHS + "user/studentLogin";
-	public static final int CITY_ID = 1;
+
 	public static int UserID = 1;
 	// user/userRegistration
 	public final static String UserRegistration = PATHS
@@ -83,6 +83,8 @@ public class Config {
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();
 	public static List<PosEntity> myList = new ArrayList<PosEntity>();
 	public static List<Goodlist> list = new ArrayList<Goodlist>();
+	public static int ScreenWidth=0;
+	public static int ScreenHeight=0;
 	public static String suportare;
 	public static String suportcl;
 	public static String tv_sqkt;

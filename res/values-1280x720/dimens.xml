@@ -3,8 +3,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="titilepad">40dp</dimen>
     <dimen name="titilepad1">50dp</dimen>
-    <dimen name="normai_button_width">74dp</dimen>
-    <dimen name="normai_button_height">25dp</dimen>
+    <dimen name="normai_button_width">84dp</dimen>
+    <dimen name="normai_button_height">32dp</dimen>
     <dimen name="sy_rl_margin">16dp</dimen>
     <dimen name="sy_bt_height">38dp</dimen>
     <dimen name="normai_height">20dp</dimen>
@@ -27,7 +27,7 @@
     <!-- 文字大小 -->
     <dimen name="textbigs">31sp</dimen>
     <dimen name="textbig">13sp</dimen>
-    <dimen name="textmid">11sp</dimen>
+    <dimen name="textmid">10sp</dimen>
     <dimen name="textmids">10sp</dimen>
     <dimen name="textsmall">8sp</dimen>
     <!-- 编辑框 -->

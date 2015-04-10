@@ -24,10 +24,10 @@ import com.example.zf_pad.aadpter.ShopcarAdapter;
 import com.example.zf_pad.entity.PicEntity;
 import com.example.zf_pad.entity.PostPortEntity;
 import com.example.zf_pad.entity.UserEntity;
-import com.example.zf_pad.fragment.m_MianFragment;
-import com.example.zf_pad.fragment.m_my;
-import com.example.zf_pad.fragment.m_shopcar;
-import com.example.zf_pad.fragment.m_wdxx;
+import com.example.zf_pad.fragment.M_MianFragment;
+import com.example.zf_pad.fragment.M_my;
+import com.example.zf_pad.fragment.M_shopcar;
+import com.example.zf_pad.fragment.M_wdxx;
 import com.example.zf_pad.popwindow.SetPopWindow;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.AfterSaleDetailActivity;
@@ -88,15 +88,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private RelativeLayout re_myinfo;
 	private RelativeLayout re_mine;
 	private RelativeLayout re_sy;
-	private m_MianFragment f_sy;
-	private m_my m_my;
+	private M_MianFragment f_sy;
+	private M_my M_my;
 	private LinearLayout set;
 	private ImageView im_sy;
 	private ImageView im_ghc;
 	private ImageView im_mess;
 	private ImageView im_wd;
-	private m_shopcar f_gwc;
-	private m_wdxx f_wdxx;
+	private M_shopcar f_gwc;
+	private M_wdxx f_wdxx;
 	
 	private TextView textsy;
 	private TextView textghc;
@@ -119,15 +119,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Config.cityId=394;
+		Config.CITY="ÉÏº£";
+		Config.isFRIST=false;
 		Display display = getWindowManager().getDefaultDisplay();
-		int width = display.getWidth();
-		int height = display.getHeight();
+		Config.ScreenWidth=display.getWidth();
+		Config.ScreenHeight=display.getHeight();
 		UserEntity ue=new UserEntity();
 		ue.setId(80);
 		MyApplication.NewUser=ue;
-		Log.i("111", "width=" + width + "height=" + height);
+		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
 		if (f_sy == null)
-			f_sy = new m_MianFragment();
+			f_sy = new M_MianFragment();
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
@@ -182,7 +185,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			im_sy.setBackgroundResource(R.drawable.home);
 			textsy.setTextColor(getResources().getColor(R.color.o));
 			//if (f_sy == null)
-				f_sy = new m_MianFragment();
+				f_sy = new M_MianFragment();
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_sy).commit();
@@ -192,7 +195,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			im_ghc.setBackgroundResource(R.drawable.shopping);
 			textghc.setTextColor(getResources().getColor(R.color.o));
 
-			f_gwc = new m_shopcar();
+			f_gwc = new M_shopcar();
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_gwc).commit();
@@ -202,7 +205,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			im_mess.setBackgroundResource(R.drawable.message);
 			textmes.setTextColor(getResources().getColor(R.color.o));
 			if (f_wdxx == null)
-				f_wdxx = new m_wdxx();
+				f_wdxx = new M_wdxx();
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_wdxx).commit();
@@ -212,11 +215,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				changTabBg();
 				im_wd.setBackgroundResource(R.drawable.mine);
 				textwd.setTextColor(getResources().getColor(R.color.o));
-				if (m_my == null)
-					m_my = new m_my();
+				if (M_my == null)
+					M_my = new M_my();
 
 				getSupportFragmentManager().beginTransaction()
-						.replace(R.id.m_fragment, m_my).commit();
+
+						.replace(R.id.m_fragment, M_my).commit();
+
 			//}
 			//else{
 			//	Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
@@ -241,6 +246,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case REQUEST_CITY:
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
+		
 			cityTextView.setText(cityName);
 			break;
 		case REQUEST_CITY_WHEEL:
@@ -264,7 +270,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
 			if (f_gwc == null)
-				f_gwc = new m_shopcar();
+				f_gwc = new M_shopcar();
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_gwc).commit();

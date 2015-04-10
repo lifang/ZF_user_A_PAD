@@ -154,7 +154,7 @@
             android:layout_width="@dimen/order_image"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/shape"
+           
             android:orientation="vertical"
             android:paddingBottom="2dp" >
 
@@ -165,6 +165,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_margin="2dp"
+          
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -177,8 +178,9 @@
                     android:id="@+id/buyCountEdit"
                     android:layout_width="@dimen/normal_height1"
                     android:layout_height="@dimen/normal_height1"
-                    android:background="@color/ffffff"
+                    
                     android:gravity="center"
+                    android:background="@drawable/shape"
                     android:textSize="@dimen/textmid"
                     android:text="1" />
 

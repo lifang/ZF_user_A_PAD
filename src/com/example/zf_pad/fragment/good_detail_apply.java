@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class good_detail_apply extends Fragment implements OnClickListener{
+public class Good_detail_apply extends Fragment implements OnClickListener{
 	private View view;
 	private AppleNeedAdapter myAdapter,myAdapter2;
 	private ScrollViewWithListView   pos_lv1,pos_lv2;

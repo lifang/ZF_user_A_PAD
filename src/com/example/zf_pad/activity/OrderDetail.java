@@ -29,6 +29,7 @@ import com.example.zf_pad.aadpter.RecordAdapter;
 import com.example.zf_pad.entity.Goodlist;
 import com.example.zf_pad.entity.MarkEntity;
 import com.example.zf_pad.entity.OrderDetailEntity;
+import com.example.zf_pad.util.AlertDialog;
 import com.example.zf_pad.util.AlertMessDialog;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
@@ -92,16 +93,25 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	private TextView tv_sl;
 	private TextView tv_comment;
 	private AlertMessDialog amd;
+	private String type="1";
+	private Button bt_pay;
+	private Button bt_cancel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_detail);
-		new TitleMenuUtil(OrderDetail.this, "订单详情").show();
+	
 		status = getIntent().getIntExtra("status", 0);
 		id = Integer.parseInt(getIntent().getStringExtra("id"));
-		Toast.makeText(getApplication(), status + "+" + id, 1000).show();
+		type =getIntent().getStringExtra("type");
+		if(type.equals("2")){
+			new TitleMenuUtil(OrderDetail.this, "租赁订单详情").show();
+		}else{
+			new TitleMenuUtil(OrderDetail.this, "订单详情").show();
+		}
+		
 		getData();
 	}
 
@@ -173,8 +183,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 												code, 1000).show();
 									}
 								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									;
+							
 									e.printStackTrace();
 								}
 							}
@@ -183,14 +192,18 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 							public void onFailure(int statusCode,
 									Header[] headers, byte[] responseBody,
 									Throwable error) {
-								// TODO Auto-generated method stub
+								
 								System.out.println("-onFailure---");
 								Log.e("print", "-onFailure---" + error);
 							}
 						});
 	}
 	private void initView() {
+		bt_pay = (Button)findViewById(R.id.bt_pay);
+		bt_pay.setOnClickListener(this);
+		bt_cancel = (Button)findViewById(R.id.bt_cancel);
 		tv_comment = (TextView)findViewById(R.id.tv_comment);
+		bt_cancel.setOnClickListener(this);
 		tv_money = (TextView) findViewById(R.id.tv_money);
 		bt_pj = (Button) findViewById(R.id.btn_pj);
 		bt_pj.setOnClickListener(this);
@@ -216,7 +229,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		his_lv = (ScrollViewWithListView) findViewById(R.id.his_lv);
 		tv_price = (TextView)findViewById(R.id.tv_price);
 		tv_sl = (TextView)findViewById(R.id.tv_quantity);
-		if(Config.iszl){
+		if(type.equals("2")){
 			tv_price.setText("押金");
 			tv_sl.setText("租赁数量");
 		}
@@ -263,13 +276,76 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		case R.id.btn_ishow:
 			amd = new AlertMessDialog(OrderDetail.this);
 			amd.setTitle("查看终端号");
-			amd.setMessage(ode.get(0).getOrder_number());
+			amd.setMessage(ode.get(0).getTerminals());
 			amd.setNegativeButton("确认", new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					amd.dismiss();
 					
+				}
+			});
+			break;
+		case R.id.bt_pay:
+			startActivity(new Intent(OrderDetail.this,PayFromCar.class));
+			break;
+		case R.id.bt_cancel:
+			final AlertDialog ad = new AlertDialog(OrderDetail.this);
+			ad.setTitle("提示");
+			ad.setMessage("确认取消?");
+			ad.setPositiveButton("取消", new OnClickListener() {				
+				@Override
+				public void onClick(View arg0) {
+					ad.dismiss();				
+				}
+			});
+			ad.setNegativeButton("确定", new OnClickListener() {
+				
+				@Override
+				public void onClick(final View arg0) {
+					ad.dismiss();
+					RequestParams params = new RequestParams();
+					params.put("id", id);
+					 System.out.println("`getTag``"+id);
+					 
+					params.setUseJsonStreamer(true);
+
+					MyApplication.getInstance().getClient()
+							.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
+
+								@Override
+								public void onSuccess(int statusCode, Header[] headers,
+										byte[] responseBody) {
+									String responseMsg = new String(responseBody)
+											.toString();
+									Log.e("print", responseMsg);			 
+									Gson gson = new Gson();								
+									JSONObject jsonobject = null;
+									String code = null;
+									try {
+										jsonobject = new JSONObject(responseMsg);
+										code = jsonobject.getString("code");
+										int a =jsonobject.getInt("code");
+										if(a==Config.CODE){  
+											Toast.makeText(OrderDetail.this, jsonobject.getString("message"), 1000).show();
+											ll_ishow.setVisibility(View.INVISIBLE);
+										}else{
+											code = jsonobject.getString("message");
+											Toast.makeText(OrderDetail.this, code, 1000).show();
+										}
+									} catch (JSONException e) {
+										 ;	
+										e.printStackTrace();									
+									}
+								}
+								@Override
+								public void onFailure(int statusCode, Header[] headers,
+										byte[] responseBody, Throwable error) {
+									// TODO Auto-generated method stub
+									System.out.println("-onFailure---");
+									Log.e("print", "-onFailure---" + error);
+								}
+							});	
 				}
 			});
 			break;

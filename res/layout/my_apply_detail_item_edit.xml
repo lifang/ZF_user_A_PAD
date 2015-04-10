@@ -24,6 +24,7 @@
         android:background="@drawable/tv_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:clickable="true"
         android:paddingLeft="6dp" >
 
         <EditText

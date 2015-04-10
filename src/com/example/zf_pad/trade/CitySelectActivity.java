@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
@@ -120,9 +121,9 @@ public class CitySelectActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String cityName = ((TextView) view).getText().toString();
                 if (mLetters.contains(cityName))
-                    return;
-
+                    return;       
                 City city = (City) view.getTag(R.id.city_current);
+            	MyApplication.setCITYID(city.getId());
                 Intent intent = new Intent();
                 intent.putExtra(CITY_ID, city.getId());
                 intent.putExtra(CITY_NAME, city.getName());

@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
-public class good_detail_trade extends Fragment implements OnClickListener{
+public class Good_detail_trade extends Fragment implements OnClickListener{
 	private View view;
 	private ListView lv;
 	private JiaoyiHuilvAdapter myAdapter;

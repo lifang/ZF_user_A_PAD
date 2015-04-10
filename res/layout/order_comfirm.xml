@@ -125,8 +125,8 @@
 
                         <Button
                             android:id="@+id/button1"
-                            android:layout_width="118dp"
-                            android:layout_height="40dp"
+                            android:layout_width="@dimen/normai_button_width"
+                            android:layout_height="@dimen/normai_button_height"
                             android:layout_alignParentRight="true"
                             android:background="#FF6624"
                             android:text="地址管理"
@@ -140,7 +140,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_toLeftOf="@+id/button1"
                             android:background="#FF6624"
-                            android:text="地址管理"
+                            android:text="新增地址"
                             android:textColor="#ffffff" />
                     </RelativeLayout>
                 </LinearLayout>

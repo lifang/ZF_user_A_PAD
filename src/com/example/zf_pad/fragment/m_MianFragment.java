@@ -25,6 +25,7 @@ import com.example.zf_pad.activity.MainActivity;
 import com.example.zf_pad.activity.MyWebView;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
+import com.example.zf_pad.activity.TerminalManagerActivity;
 import com.example.zf_pad.entity.PicEntity;
 import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.ApplyListActivity;
@@ -60,7 +61,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class m_MianFragment extends Fragment implements OnClickListener {
+public class M_MianFragment extends Fragment implements OnClickListener {
 	private View view;
 	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
 			main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
@@ -193,8 +194,8 @@ public class m_MianFragment extends Fragment implements OnClickListener {
 		case R.id.main_rl_lxwm:
 			startActivity(new Intent(getActivity(), ContactUs.class));
 
-		case R.id.main_rl_zdgl:
-			startActivity(new Intent(getActivity(), MyApplyDetail.class));
+		case R.id.main_rl_zdgl: // 终端详情
+			startActivity(new Intent(getActivity(), TerminalManagerActivity.class));
 			break;
 		default:
 			break;
@@ -297,11 +298,11 @@ public class m_MianFragment extends Fragment implements OnClickListener {
 
 	private void initIndicator() {
 
-		ImageView imgView;
+		//ImageView imgView;
 		View v = view.findViewById(R.id.indicator);// 线性水平布局，负责动态调整导航图标
 
 		for (int i = 0; i < ma.size(); i++) {
-			imgView = new ImageView(getActivity());
+			ImageView imgView = new ImageView(getActivity());
 			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
 					10, 10);
 			params_linear.setMargins(7, 10, 7, 10);
@@ -468,5 +469,9 @@ public class m_MianFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
-
+@Override
+public void onResume() {
+	// TODO Auto-generated method stub
+	super.onResume();
+}
 }

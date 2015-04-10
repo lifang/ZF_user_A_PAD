@@ -33,7 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class m_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
+public class M_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
 	private View view;
 	private XListView Xlistview;
 	private int page = 1;
