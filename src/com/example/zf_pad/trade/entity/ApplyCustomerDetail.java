@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Leo on 2015/3/6.
  */
-public class MyApplyCustomerDetail {
+public class ApplyCustomerDetail {
 
 	private String key;
 

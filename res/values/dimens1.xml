@@ -26,6 +26,7 @@
 
     <!-- 文字大小 -->
     <dimen name="textbigs">50sp</dimen>
+    <dimen name="textbig1">30sp</dimen>
     <dimen name="textbig">22sp</dimen>
     <dimen name="textmid">18sp</dimen>
     <dimen name="textmids">16sp</dimen>

@@ -1,5 +1,7 @@
 package com.example.zf_pad.activity;
 
+
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_ADD;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,10 +46,11 @@ import com.google.gson.reflect.TypeToken;
 public class TerminalManagerActivity extends Activity implements
 		XListView.IXListViewListener {
 
-	// private LayoutInflater layoutInflater;
-	// private ListView listview;
-	// private List<TerminalManagerEntity> listData;
 
+	private LinearLayout titleback_linear_back;
+	private TextView titleback_text_title;
+	private ImageView titleback_image_back,addTerminal;
+	
 	private LayoutInflater mInflater;
 	private XListView mTerminalList;
 	private List<TerminalManagerEntity> mTerminalItems;
@@ -65,10 +69,7 @@ public class TerminalManagerActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_terminal_manage);
-		new TitleMenuUtil(this, getString(R.string.title_terminal_management))
-				.show();
-		// DEBUG
-		// initView();
+
 		initViews();
 		initBtnListeners();
 		loadData();
@@ -78,6 +79,10 @@ public class TerminalManagerActivity extends Activity implements
 	private void initViews() {
 		mInflater = LayoutInflater.from(this);
 		mTerminalList = (XListView) findViewById(R.id.terminal_list);
+		titleback_linear_back = (LinearLayout) findViewById(R.id.titleback_linear_back);
+		titleback_text_title = (TextView) findViewById(R.id.titleback_text_title);
+		titleback_image_back = (ImageView) findViewById(R.id.titleback_image_back);
+		addTerminal = (ImageView) findViewById(R.id.add);
 		mTerminalItems = new ArrayList<TerminalManagerEntity>();
 		mAdapter = new TerminalListAdapter();
 
@@ -242,6 +247,30 @@ public class TerminalManagerActivity extends Activity implements
 	}
 
 	private void initBtnListeners() {
+		
+		titleback_linear_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				TerminalManagerActivity.this.finish();
+			}
+		});
+		
+		titleback_image_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				TerminalManagerActivity.this.finish();
+			}
+		});
+		
+		titleback_text_title.setText(getString(R.string.title_terminal_management));
+		
+		
+		addTerminal.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivityForResult(new Intent(TerminalManagerActivity.this, TerminalAddActivity.class), REQUEST_ADD);
+			}
+		});
 		mSyncListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

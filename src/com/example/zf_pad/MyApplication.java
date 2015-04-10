@@ -194,6 +194,7 @@ public class MyApplication extends Application{
 //				sb.append(location.getOperators());
 //			}
 			sb.append(location.getAddrStr());
+			if(location.getCity()!=null&&!location.getCity().equals("")){
 			Config.CITY=location.getCity();
 			logMsg(location.getCity());
 	        List<Province> provinces = CommonUtil.readProvincesAndCities(getApplicationContext());
@@ -214,6 +215,7 @@ public class MyApplication extends Application{
 			 Config.isFRIST=true;
 			Log.i("BaiduLocationApiDem", sb.toString());
 		}
+	}
 	}
 	/**
 	 * ÏÔÊ¾ÇëÇó×Ö·û´®

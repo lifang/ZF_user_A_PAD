@@ -5,13 +5,19 @@
     android:orientation="vertical" >
 
     <include layout="@layout/title_back" />
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   android:fillViewport="true"
+    >
+    
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="81dp"
-        android:layout_marginRight="81dp"
-        android:layout_marginTop="94dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/order_image"
+        android:paddingRight="@dimen/order_image"
+        android:paddingTop="@dimen/sy_bt_height"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -26,7 +32,7 @@
                 android:layout_height="42dp"
                 android:text="客服热线"
                 android:textColor="#6c6c6c"
-                android:textSize="30sp" />
+                android:textSize="@dimen/textbig1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,7 +53,7 @@
                     android:layout_marginTop="12dp"
                     android:text="400-880-9988"
                     android:textColor="#292929"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/textbig1" />
             </LinearLayout>
 
             <View
@@ -68,7 +74,14 @@
                     android:gravity="center_vertical"
                     android:text="微信公众平台"
                     android:textColor="#6c6c6c"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/textbig1" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/weichat" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -81,8 +94,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:orientation="vertical"           
             android:paddingLeft="12dp" >
 
             <LinearLayout
@@ -106,7 +119,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:background="@drawable/shape"
-                            android:hint="您的称呼                       先生/女士"
+                            android:hint="您的称呼  先生/女士"
                             android:paddingLeft="14dp"
                             android:paddingRight="14dp" >
                         </EditText>
@@ -191,10 +204,21 @@
                         android:layout_height="fill_parent"
                         android:background="@drawable/shape"
                         android:gravity="left|top"
-                        android:hint="最多填写200个汉字"
-                        android:paddingLeft="4dp"
-                        android:paddingRight="4dp" >
+                        android:hint="需要我们提供什么"
+                        android:padding="6dp" >
                     </EditText>
+
+                    <TextView
+                        android:id="@+id/tv_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/et_contetn"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginRight="12dp"
+                        android:textColor="#898989"
+                        android:text="最多填写200个汉字" />
+
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -205,15 +229,16 @@
 
                 <Button
                     android:id="@+id/btn_exit"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:background="#FD6A00"
                     android:text="提交"
+                    android:textSize="18dp"
                     android:textColor="@color/ffffff" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-
+</ScrollView>
 </LinearLayout>

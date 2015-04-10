@@ -124,7 +124,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+
 	}
 
 	@Override
@@ -143,15 +143,16 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			ImageView im = (ImageView) view.findViewById(R.id.testbutton);
 			im.setOnClickListener(this);
 			initView();
-			if(!Config.isFRIST){
-			mLocationClient = ((MyApplication)getActivity().getApplication()).mLocationClient;
-			
-			LocationResult = (TextView)view.findViewById(R.id.tv_city);
-			 ((MyApplication)getActivity().getApplication()).mLocationResult = LocationResult;
-			InitLocation();
-			mLocationClient.start();
-		
-			 System.out.println("当前城市 ID----" +MyApplication.getCITYID());
+			if (!Config.isFRIST) {
+				mLocationClient = ((MyApplication) getActivity()
+						.getApplication()).mLocationClient;
+
+				LocationResult = (TextView) view.findViewById(R.id.tv_city);
+				((MyApplication) getActivity().getApplication()).mLocationResult = LocationResult;
+				InitLocation();
+				mLocationClient.start();
+
+				System.out.println("当前城市 ID----" + MyApplication.getCITYID());
 			}
 			getdata();
 		} catch (InflateException e) {
@@ -169,23 +170,25 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 			break;
 		case R.id.titleback_linear_back:
-			Intent intent = new Intent(getActivity(),
-					CitySelectActivity.class);
-			cityName=cityTextView.getText().toString();
+			Intent intent = new Intent(getActivity(), CitySelectActivity.class);
+			cityName = cityTextView.getText().toString();
 			intent.putExtra(CITY_NAME, cityName);
 			startActivityForResult(intent, REQUEST_CITY);
 			break;
 		case R.id.main_rl_jyls: // 交易流水
-
-			startActivity(new Intent(getActivity(), TradeFlowActivity.class));
+			if (Config.CheckIsLogin(getActivity())) {
+				startActivity(new Intent(getActivity(), TradeFlowActivity.class));
+			}
 			break;
 		case R.id.main_rl_pos: // 购买pos机
 
 			startActivity(new Intent(getActivity(), PosListActivity.class));
+			
 			break;
 		case R.id.main_rl_renzhen: // 开通认证
-
+			if (Config.CheckIsLogin(getActivity())) {
 			startActivity(new Intent(getActivity(), ApplyListActivity.class));
+			}
 			break;
 		case R.id.main_rl_xtgg: // 系统公告
 
@@ -193,9 +196,12 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.main_rl_lxwm:
 			startActivity(new Intent(getActivity(), ContactUs.class));
-
+			break;
 		case R.id.main_rl_zdgl: // 终端详情
-			startActivity(new Intent(getActivity(), TerminalManagerActivity.class));
+			if (Config.CheckIsLogin(getActivity())) {
+			startActivity(new Intent(getActivity(),
+					TerminalManagerActivity.class));
+			}
 			break;
 		default:
 			break;
@@ -218,7 +224,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 		main_rl_pos = (RelativeLayout) view.findViewById(R.id.main_rl_pos);
 		main_rl_pos.setOnClickListener(this);
-		main_rl_renzhen = (RelativeLayout) view.findViewById(R.id.main_rl_renzhen);
+		main_rl_renzhen = (RelativeLayout) view
+				.findViewById(R.id.main_rl_renzhen);
 		main_rl_renzhen.setOnClickListener(this);
 		main_rl_zdgl = (RelativeLayout) view.findViewById(R.id.main_rl_zdgl);
 		main_rl_zdgl.setOnClickListener(this);
@@ -234,7 +241,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		main_rl_xtgg.setOnClickListener(this);
 		cityTextView = (TextView) view.findViewById(R.id.tv_city);
 		cityTextView.setText(Config.CITY);
-		citySelect =view. findViewById(R.id.titleback_linear_back);
+		citySelect = view.findViewById(R.id.titleback_linear_back);
 
 		citySelect.setOnClickListener(this);
 		view_pager = (ViewPager) view.findViewById(R.id.view_pager);
@@ -298,25 +305,31 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 	private void initIndicator() {
 
-		//ImageView imgView;
+		// ImageView imgView;
 		View v = view.findViewById(R.id.indicator);// 线性水平布局，负责动态调整导航图标
 
 		for (int i = 0; i < ma.size(); i++) {
-			ImageView imgView = new ImageView(getActivity());
-			LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
-					10, 10);
-			params_linear.setMargins(7, 10, 7, 10);
-			imgView.setLayoutParams(params_linear);
-			indicator_imgs[i] = imgView;
+			try {
+				ImageView imgView = new ImageView(getActivity());
 
-			if (i == 0) { // 初始化第一个为选中状态
+				LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
+						10, 10);
+				params_linear.setMargins(7, 10, 7, 10);
+				imgView.setLayoutParams(params_linear);
+				indicator_imgs[i] = imgView;
+				if (i == 0) { // 初始化第一个为选中状态
 
-				indicator_imgs[i]
-						.setBackgroundResource(R.drawable.indicator_focused);
-			} else {
-				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
+					indicator_imgs[i]
+							.setBackgroundResource(R.drawable.indicator_focused);
+				} else {
+					indicator_imgs[i]
+							.setBackgroundResource(R.drawable.indicator);
+				}
+				((ViewGroup) v).addView(indicator_imgs[i]);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			((ViewGroup) v).addView(indicator_imgs[i]);
+
 		}
 
 	}
@@ -450,6 +463,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		}
 
 	}
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -460,7 +474,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
-			Config.CITY=cityName;
+			Config.CITY = cityName;
 			break;
 		case REQUEST_CITY_WHEEL:
 			province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
@@ -469,9 +483,10 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
-@Override
-public void onResume() {
-	// TODO Auto-generated method stub
-	super.onResume();
-}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
 }

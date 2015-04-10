@@ -7,8 +7,6 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/dlpad" >
 
-    
-
     <LinearLayout
         android:layout_width="460dp"
         android:layout_height="wrap_content"
@@ -35,9 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="登陆"
+                android:text="添加其它终端"
                 android:textColor="#292929"
-                android:textSize="@dimen/dltext" />
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <View
@@ -86,30 +84,27 @@
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp" >
 
-                <ImageView
+                <TextView
                     android:id="@+id/login_img_pass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/minedl" />
+                    android:text="收单机构"
+                    android:textColor="#292929"
+                    android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/login_edit_name"
+                <Spinner
+                    android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/login_img_pass"
-                    android:background="@drawable/shape_edittext"
-                    android:hint="@string/hintname"
-                    android:maxWidth="@dimen/zc_margin_top"
+                    android:background="@drawable/ed_adress"
                     android:paddingBottom="8dp"
                     android:paddingLeft="6dp"
-                    android:paddingTop="8dp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/textbig" />
+                    android:paddingTop="8dp" />
 
                 <LinearLayout
                     android:id="@+id/login_linear_deletename"
@@ -131,33 +126,34 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/textbig"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp" >
 
-                <ImageView
+                <TextView
                     android:id="@+id/login_img_pass1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/pass" />
+                    android:text=" 终 端 号 "
+                    android:textColor="#292929"
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/login_edit_pass"
+                    android:id="@+id/terminal_num"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/login_img_pass1"
                     android:background="@drawable/shape_edittext"
-                    android:hint="@string/hintpass"
-                    android:inputType="textPassword"
                     android:paddingBottom="8dp"
                     android:paddingLeft="6dp"
                     android:paddingTop="8dp"
                     android:singleLine="true"
-                    android:textSize="@dimen/textbig" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:id="@+id/login_linear_deletepass"
@@ -175,22 +171,70 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" >
+
+                <TextView
+                    android:id="@+id/login_img_pass2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="商户名称"
+                    android:textColor="#292929"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/shop_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/login_img_pass2"
+                    android:background="@drawable/shape_edittext"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/login_linear_deletepass2"
+                    android:layout_width="@dimen/dlimg"
+                    android:layout_height="@dimen/dlimg"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/login_delete" />
+                </LinearLayout>
+            </RelativeLayout>
+
             <LinearLayout
-                android:id="@+id/login_linear_login"
-                android:layout_width="match_parent"
+                android:id="@+id/terminal_submit"
+                android:layout_width="120dp"
                 android:layout_height="42dp"
                 android:layout_marginBottom="@dimen/zc_margin_top"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginRight="120dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/bg_blue_shape"
+                android:clickable="true"
                 android:gravity="center"
                 android:orientation="horizontal" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="登"
+                    android:text="提"
                     android:textColor="@color/fffefe"
                     android:textSize="16sp" />
 
@@ -198,56 +242,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
-                    android:text="录"
+                    android:text="交"
                     android:textColor="@color/fffefe"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="@dimen/textbig"
-                android:layout_marginBottom="@dimen/textbig"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
-
-                    <TextView
-                        android:id="@+id/login_text_forget"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="@dimen/zc_margin_top"
-                        android:text="@string/forgetpass"
-                        android:textColor="#FF5C16"
-                        android:textSize="@dimen/textbig" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/zhuche_ll"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="注册"
-                        android:textColor="#FF5C16"
-                         android:textSize="@dimen/textbig"  />
-                </LinearLayout>
-            </LinearLayout>
-            
     </LinearLayout>
 
 </LinearLayout>

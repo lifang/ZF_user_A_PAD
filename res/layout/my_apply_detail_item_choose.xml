@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingRight="30dp"
-            android:text="1231254565554"
             android:textColor="@color/text6c6c6c6"
             android:textSize="20sp" />
     </LinearLayout>

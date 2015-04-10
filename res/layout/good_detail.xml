@@ -8,7 +8,7 @@
 <ScrollView 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  android:fillViewport="true"
+android:fillViewport="true"
 >
     <LinearLayout
         android:layout_width="fill_parent"
@@ -119,7 +119,7 @@
                             android:layout_marginLeft="@dimen/margin_left2"
                             android:layout_marginTop="18dp"
                             android:ellipsize="end"
-                            android:text="2015最新POS机器旗舰版  1.0"
+                            android:text=""
                             android:textColor="#292929"
                             android:textSize="@dimen/textbig" />
 
@@ -132,7 +132,7 @@
                             android:ellipsize="end"
                             android:gravity="bottom"
                             android:maxLines="1"
-                            android:text="xxxx上市"
+                            android:text=""
                             android:textColor="@color/text6c6c6c6"
                             android:textSize="@dimen/textmid" />
 
@@ -162,7 +162,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:text="泰山"
+                                android:text=""
                                 android:textColor="@color/text292929"
                                 android:textSize="@dimen/textmid" />
 
@@ -219,7 +219,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:text="xxx终端"
+                                android:text=""
                                 android:textColor="@color/text292929"
                                 android:textSize="@dimen/textmid" />
                         </LinearLayout>
@@ -250,7 +250,7 @@
                                 android:ellipsize="end"
                                 android:gravity="bottom"
                                 android:maxLines="1"
-                                android:text="999.00"
+                                android:text=""
                                 android:textColor="@color/bgtitle"
                                 android:textSize="@dimen/textmid" />
                         </LinearLayout>
@@ -332,11 +332,11 @@
                                         android:id="@+id/tv_sjhttp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="bottom"
+                                        android:layout_gravity="center_vertical"
                                         android:layout_marginLeft="7dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
-                                        android:text="www.baidu.com"
+                                        android:text=""
                                         android:textColor="@color/text6c6c6c6"
                                         android:textSize="12sp" />
                                 </LinearLayout>
@@ -350,7 +350,7 @@
                                     android:layout_marginRight="@dimen/margin_left2"
                                     android:ellipsize="end"
                                     android:maxLines="2"
-                                    android:text="www.baidu.comwww.baiwww.baidu.comwww.baidu.comwww.baidu.comdu.comwww.baidu.comwww.baidu.comwww.baidu.comwww.baidu.com"
+                                    android:text=""
                                     android:textColor="@color/text6c6c6c6"
                                     android:textSize="12sp" />
                             </LinearLayout>

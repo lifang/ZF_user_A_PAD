@@ -58,8 +58,8 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
  	}
  
   		 	holder.content.setText(list.get(position).getGood_name());
-  		 	holder.tv_price .setText("гд "+list.get(position).getGood_actualprice());
-  			holder.tv_x .setText(list.get(position).getGood_actualprice()+"");
+  		 	holder.tv_price .setText("гд "+((double)list.get(position).getGood_actualprice())/100);
+  			holder.tv_x .setText(list.get(position).getGood_num()+"");
 			holder.btn_ishow.setVisibility(state==3?View.GONE:View.GONE);
 			 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getGood_logo(), holder.im);
 		
@@ -71,4 +71,5 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
 		public Button btn_ishow;
 		public ImageView im;
 	}
+
 }

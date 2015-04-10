@@ -92,6 +92,7 @@ public class M_my extends Fragment implements OnClickListener {
 	}
 
 	private void setback() {
+	
 		im1.setVisibility(View.GONE);
 		im2.setVisibility(View.GONE);
 		im3.setVisibility(View.GONE);

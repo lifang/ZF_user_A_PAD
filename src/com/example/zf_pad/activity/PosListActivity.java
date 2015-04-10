@@ -117,6 +117,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 
 	private Intent i;
 	private LinearLayout ll_listflag;
+	private LinearLayout ll_back;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		Search();
 	}
 	private void initView() {
+		ll_back = (LinearLayout)findViewById(R.id.titleback_linear_back);
+		ll_back.setOnClickListener(this);
 		ll_listflag = (LinearLayout)findViewById(R.id.ll_listflag);
 		ll_mr=(LinearLayout) findViewById(R.id.ll_mr);
 		ll_mr.setOnClickListener(this);
@@ -214,15 +217,20 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.titleback_linear_back:
+			PosListActivity.this.finish();
+			break;
 		case R.id.pos_select:
 			i = new Intent(PosListActivity.this,PosPortActivity.class);
 			startActivityForResult(i, 1);
 			break;
 			//search2
 		case R.id.search2:
+			if(Config.CheckIsLogin(PosListActivity.this)){
 			Intent ii =new Intent(PosListActivity.this,MainActivity.class);
 			Config.shopcar=true;
 			startActivity(ii);
+			}
 			break;
 		case R.id.et_search:
 			Intent i =  new Intent(PosListActivity.this,PosSearch1.class);
