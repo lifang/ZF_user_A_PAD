@@ -23,7 +23,7 @@
     <EditText 
         android:id="@+id/et_process"
         android:layout_width="302dp"
-        android:layout_height="30dp"
+        android:layout_height="32dp"
         android:background="@drawable/sc_edit"/>
     <Button
         android:id="@+id/btn_serch"
@@ -45,7 +45,7 @@
     <ListView 
         android:id="@+id/lv_result"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="110dp"
         android:fadingEdge="none"

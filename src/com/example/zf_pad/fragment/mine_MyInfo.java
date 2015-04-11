@@ -57,7 +57,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-
+		mTabWidget.updateTabs(0);
 		Log.e("viewS", String.valueOf(view));
 
 		
