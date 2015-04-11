@@ -29,6 +29,7 @@ public class Config {
 	public static String token="123";
 	public static Boolean shopcar = false;
 	public static Boolean AderssManger = false;
+	public static Boolean AderssMangerBACK = false;
 	public static String INDEXIMG = PATHS + "index/sysshufflingfigure/getList";
 	public static String getmes = PATHS + "message/receiver/getAll";
 	public static String MSGEDLONE = PATHS + "message/receiver/deleteById";
@@ -99,6 +100,7 @@ public class Config {
 	public static boolean isFRIST = false;
 	public static boolean isExit = false;
 	public static int cityId = 0;
+	public static int MyTab = 0;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
 

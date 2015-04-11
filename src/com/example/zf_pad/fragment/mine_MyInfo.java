@@ -75,6 +75,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, address).commit();
+			Config.AderssMangerBACK=true;
 		}
 	}
 	@Override

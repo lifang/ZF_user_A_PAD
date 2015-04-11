@@ -131,7 +131,7 @@ public void onStop() {
 	}
 @Override
 public void onStart() {
-	
+
 	super.onStart();
 	if(myList.size()!=0){
 		myList.clear();
@@ -272,7 +272,7 @@ public void onStart() {
 								System.out
 										.println("-sendEmptyMessage String()--");
 								if(myList.size()!=0&&moreList.size()==0){
-									Toast.makeText(getActivity(), "娌℃湁鏇村鏁版嵁!", 1000).show();
+									Toast.makeText(getActivity(), "没有更多数据!", 1000).show();
 									Xlistview.getmFooterView().setState2(2);
 									Xlistview.setPullLoadEnable(false);
 								}

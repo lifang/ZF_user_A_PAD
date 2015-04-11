@@ -185,8 +185,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		}
 		tv_count.setText("共计："+index+"件");
 		tv_hj = (TextView)findViewById(R.id.tv_hj);
-		tv_hj.setText("合计:￥"+hj);
-		tv_totle.setText("实付:￥"+hj);
+		tv_hj.setText("合计:￥"+hj/100);
+		tv_totle.setText("实付:￥"+hj/100);
 		shop_lsit = (ScrollViewWithListView)findViewById(R.id.shopcar_list);
 		shopadapter = new ShopcarOrderAdapter(getApplicationContext(), MyApplication.getComfirmList());
 		shop_lsit.setAdapter(shopadapter);

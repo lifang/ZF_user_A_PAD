@@ -45,7 +45,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	private boolean onRefresh_number = true;
 	private ShopcarAdapter myAdapter;
 	private List<Good> myShopList=new ArrayList<Good>();
-
+	private Dialog loadingDialog;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -94,11 +94,18 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	    try {
 	        view = inflater.inflate(R.layout.f_shopcar, container, false);
 	        initView();
-	        getData();
+	       
 	    } catch (InflateException e) {
 	        
 	    }
 	    return view;
+	}
+	@Override
+	public void onStart() {
+		
+		super.onStart();
+		myShopList.clear();
+		getData();
 	}
 	private void initView() {
 		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
@@ -161,7 +168,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 		MyApplication.getInstance().getClient()
 				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
-					private Dialog loadingDialog;
+					
 
 					@Override
 					public void onStart() {

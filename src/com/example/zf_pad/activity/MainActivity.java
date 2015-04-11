@@ -130,7 +130,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		ue.setId(80);
 		MyApplication.NewUser=ue;*/
 		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
-		if (f_sy == null)
+		//if (f_sy == null)
 			f_sy = new M_MianFragment();
 		
 		
@@ -219,6 +219,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			break;
 		case R.id.main_rl_my:
 			if(Config.CheckIsLogin(MainActivity.this)){
+				Config.MyTab=0;
 				changTabBg();
 				im_wd.setBackgroundResource(R.drawable.mine);
 				textwd.setTextColor(getResources().getColor(R.color.o));
@@ -280,6 +281,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		
 		if (Config.shopcar) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
@@ -300,6 +302,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 					.replace(R.id.m_fragment, M_my).commit();
 		}
+		
 		if(Config.isExit){
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
@@ -324,7 +327,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     private long exitTime = 0;  
    @Override  
     public boolean onKeyDown(int keyCode, KeyEvent event) {  
-      
+	   if (Config.AderssMangerBACK) {
+			changTabBg();
+			im_ghc.setBackgroundResource(R.drawable.shopping);
+			textghc.setTextColor(getResources().getColor(R.color.o));
+		/*
+			M_shopcar f_gwc = new M_shopcar();
+
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_gwc).commit();*/
+			startActivity(new Intent(MainActivity.this,ConfirmOrder.class));
+			Config.AderssMangerBACK=false;
+		}
     	if(!f_sy.isVisible()){
     		
 				f_sy = new M_MianFragment();
