@@ -53,7 +53,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 				onLoad();
 				//
 				// if (myShopList.size() == 0) {
-				// // norecord_text_to.setText("��û����ص���Ʒ");
+				// // norecord_text_to.setText("��û����ص����?");
 				// Xlistview.setVisibility(View.GONE);
 				// eva_nodata.setVisibility(View.VISIBLE);
 				// }

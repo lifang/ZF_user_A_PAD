@@ -39,5 +39,5 @@
 <View 
     android:layout_width="fill_parent"
     android:layout_height="1dp"
-    android:background="#D4BEA4"/>
+    android:background="#DAD8D9"/>
 </LinearLayout>

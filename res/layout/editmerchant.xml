@@ -22,52 +22,29 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="店铺名称"
-    android:textColor="#737372"
+    android:textColor="#554E42"
     android:textSize="18sp"/>
-    <RelativeLayout 
-        android:id="@+id/rl"
-        android:layout_width="wrap_content"
-    android:layout_height="30dp">
-   <EditText 
-       android:id="@+id/et_shopname"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
    <TextView 
        android:id="@+id/tv_shopname"
-    android:layout_width="236dp"
+    android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
+   
     android:layout_marginLeft="10dp"/>
-   </RelativeLayout>
+   
         <TextView 
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="商户法人姓名"
-   android:textColor="#737372"
+   android:textColor="#554E42"
     android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
-   <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">     
-   <EditText 
-       android:id="@+id/et_name"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-   
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/> 
-    <TextView 
+    android:layout_marginLeft="100dp"/>
+        
+   <TextView 
        android:id="@+id/tv_name"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
     android:layout_marginLeft="10dp"/> 
-    </RelativeLayout>
+    
     </TableRow>
     <TableRow 
         android:layout_marginLeft="40dp"
@@ -95,51 +72,29 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="法人身份证号"
-    android:textColor="#737372"
+    android:textColor="#554E42"
     android:textSize="18sp"/>
-   <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">    
-   <EditText 
-       android:id="@+id/et_id_number"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
+   
    <TextView 
        android:id="@+id/tv_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-     android:textSize="20sp"
-     android:textColor="#AEAFB0"
     android:layout_marginLeft="10dp"/>
-   </RelativeLayout>
+   
         <TextView 
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="营业执照登记号"
-   android:textColor="#737372"
+   android:textColor="#554E42"
     android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
-     <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">     
-   <EditText 
-       android:id="@+id/et_license_code"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/> 
-       <TextView 
+        
+   <TextView 
        android:id="@+id/tv_license_code"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
     android:layout_marginLeft="10dp"/> 
-    </RelativeLayout>
+    
     </TableRow>
     <TableRow 
         android:layout_marginLeft="40dp"
@@ -148,51 +103,29 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="税务证号"
-    android:textColor="#737372"
+    android:textColor="#554E42"
     android:textSize="18sp"/>
-    <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">  
-   <EditText 
-       android:id="@+id/et_tax_id_number"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
     
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
    <TextView 
        android:id="@+id/tv_tax_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
     android:layout_marginLeft="10dp"/>
-   </RelativeLayout>
+   
         <TextView 
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="组织机构代码证号"
-   android:textColor="#737372"
+   android:textColor="#554E42"
     android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
-    <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">      
-   <EditText 
-       android:id="@+id/et_certificate_no"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
+        
    <TextView 
        android:id="@+id/tv_certificate_no"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
     android:layout_marginLeft="10dp"/>
-   </RelativeLayout>
+   
     </TableRow>
     <TableRow 
         android:layout_marginLeft="40dp"
@@ -201,7 +134,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="商户所在地"
-    android:textColor="#737372"
+    android:textColor="#554E42"
     android:textSize="18sp"/>
    <TextView 
        android:id="@+id/tv_adress"
@@ -236,52 +169,29 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="开户银行"
-    android:textColor="#737372"
+    android:textColor="#554E42"
     android:textSize="18sp"/>
-    <RelativeLayout 
-        android:id="@+id/rldown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">  
-   <EditText 
-       android:id="@+id/et_bank"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
     
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="45dp"/>
    <TextView 
        android:id="@+id/tv_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
     android:layout_marginLeft="45dp"/>
-   </RelativeLayout>
+   
         <TextView 
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:text="银行开户许可证号"
-   android:textColor="#737372"
+   android:textColor="#554E42"
     android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
-    <RelativeLayout 
-        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">      
-   <EditText 
-       android:id="@+id/et_licencenum_bank"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
+        
    <TextView 
        android:id="@+id/tv_licencenum_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:textSize="20sp"
-    android:textColor="#AEAFB0"
-    android:layout_marginLeft="10dp"/>
-   </RelativeLayout>
+    android:layout_marginLeft="10dp"/> 
+    
     </TableRow>    
     </TableLayout>
     <View 

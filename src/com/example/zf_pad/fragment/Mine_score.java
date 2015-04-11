@@ -54,6 +54,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private Button btn_exchange;
 	private TextView tv_total;
 	private int totalscore=0;
+	private boolean isStop=false;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -91,7 +92,10 @@ public void onStart() {
 				xxlistview.setAdapter(scoreadapter);
 				}
 				break;
-
+			case 1:
+				onLoad();
+				
+				break;
 			default:
 				break;
 			}
@@ -146,8 +150,10 @@ private void getData() {
 					Log.e("jsonobject", String.valueOf(jsonobject));
 					JSONArray list=jsonobject.getJSONArray("list");
 					if(list.length()==0){
-						Toast.makeText(getActivity(), ss, 
-								Toast.LENGTH_SHORT).show();
+						myHandler.sendEmptyMessage(0);
+						isStop=true;
+					/*	Toast.makeText(getActivity(), ss, 
+								Toast.LENGTH_SHORT).show();*/
 						return;
 					}
 					if(list.length()==0&&isLoadMore){
@@ -242,6 +248,11 @@ public void onRefresh() {
 public void onLoadMore() {
 	if(!Tools.isConnect(getActivity())){
 		CommonUtil.toastShort(getActivity(), "网络异常");
+		return;
+	}
+	if(isStop){
+		CommonUtil.toastShort(getActivity(), "无更多数据");
+		onLoad();
 		return;
 	}
 	isLoadMore=true;
