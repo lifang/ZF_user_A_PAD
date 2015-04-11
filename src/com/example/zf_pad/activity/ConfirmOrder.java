@@ -257,8 +257,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		//comment=et_comment.getText().toString();
 		//invoice_info =et_info.getText().toString();
 		invoice_info=ed_fp.getText().toString();
-		API.CARTFIRM(ConfirmOrder.this, 80,cartid,
-				addressId,comment,is_need_invoice,invoice_type,invoice_info,"123",
+		API.CARTFIRM(ConfirmOrder.this, MyApplication.NewUser.getId(),cartid,
+				addressId,comment,is_need_invoice,invoice_type,invoice_info,Config.token,
         		
                 new HttpCallback  (ConfirmOrder.this) {
 

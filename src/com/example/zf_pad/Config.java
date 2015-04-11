@@ -26,6 +26,7 @@ public class Config {
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;
+	public static String token="123";
 	public static Boolean shopcar = false;
 	public static Boolean AderssManger = false;
 	public static String INDEXIMG = PATHS + "index/sysshufflingfigure/getList";

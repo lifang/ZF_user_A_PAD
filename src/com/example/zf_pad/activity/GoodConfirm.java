@@ -328,7 +328,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		invoice_info = et_titel.getText().toString();
 		Log.e("goodId=" + goodId + "paychannelId=" + paychannelId + "quantity="
 				+ quantity + "is_need_invoice=" + is_need_invoice, "ccccccccc");
-		API.GOODCONFIRM(GoodConfirm.this,80,goodId,paychannelId,
+		API.GOODCONFIRM(GoodConfirm.this,MyApplication.NewUser.getId(),goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
         		
 				
