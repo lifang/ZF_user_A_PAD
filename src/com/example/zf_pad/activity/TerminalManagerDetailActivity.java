@@ -400,7 +400,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		TextView tv = new TextView(this);
 		tv.setLayoutParams(lp);
 		tv.setTextColor(Color.parseColor("#292929"));
-		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
+		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 		return tv;
 	}
 
@@ -411,7 +411,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		tv.setLayoutParams(lp);
 		tv.setGravity(Gravity.CENTER);
 		tv.setTextColor(Color.parseColor("#292929"));
-		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
+		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 		return tv;
 	}
 
