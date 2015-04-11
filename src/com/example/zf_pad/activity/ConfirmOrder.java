@@ -88,6 +88,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private TextView tv_hj;
 	private TextView tv_totle;
 	private EditText et_comment;
+	private Button bt_add;
+	private Button bt_mange;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +173,10 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 
 
 	private void initView() {
+		bt_add = (Button)findViewById(R.id.bt_add);
+		bt_add.setOnClickListener(this);
+		bt_mange = (Button)findViewById(R.id.bt_mange);
+		bt_mange.setOnClickListener(this);
 		tv_count = (TextView)findViewById(R.id.tv_count);
 		tv_totle = (TextView)findViewById(R.id.tv_totle);
 		for(Good good:comfirmList){
@@ -211,7 +217,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, arr);
         sp.setAdapter(arrayAdapter);  
-        Toast.makeText(getApplicationContext(), "main Thread"+sp.getItemIdAtPosition(sp.getSelectedItemPosition()), Toast.LENGTH_LONG).show();  
+ 
           
         //×¢²áÊÂ¼þ  
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {  
@@ -269,20 +275,35 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 						return  null;
 					}
                 });
-		
-		
-		
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
 		switch (v.getId()) {
 		case R.id.btn_pay:
 			getpay();
 		
 			break;
+		case R.id.bt_add:
+			startActivity(new Intent(ConfirmOrder.this,AdressEdit.class));
+			break;
+		case R.id.bt_mange:
+			Config.AderssManger=true;
+			startActivity(new Intent(ConfirmOrder.this,MainActivity.class));
+			break;
 		default:
 			break;
 		}
+	}
+	@Override
+	protected void onDestroy() {
+		
+		super.onDestroy();
+		
+	}
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		
+		super.onSaveInstanceState(outState);
 	}
 }

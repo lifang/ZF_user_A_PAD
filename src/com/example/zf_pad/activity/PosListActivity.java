@@ -459,8 +459,12 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 		API.PostSearch(getApplicationContext(), keyword,1,12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
 			@Override
 			public void onSuccess(Page<PosEntity> data) {
-				if(myList.size()!=0&&data.getList().size()==0)
+				if(myList.size()!=0&&data.getList().size()==0){
+					Xlistview.getmFooterView().setState2(2);
 					Toast.makeText(getApplicationContext(), "没有更多数据!", 1000).show();
+					Xlistview.setPullLoadEnable(false);
+				}
+					
 				myList.addAll(data.getList());
 				
 				handler.sendEmptyMessage(0); 

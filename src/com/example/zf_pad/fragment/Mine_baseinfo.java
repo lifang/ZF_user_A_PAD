@@ -14,6 +14,7 @@ import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.FindPass;
+import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.activity.MainActivity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
@@ -30,6 +31,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -58,6 +61,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private Button btn_save,btn_exit;
 	public static String pawwword="";
 	private int id=MyApplication.NewUser.getId();
+	private SharedPreferences mySharedPreferences;
 	
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -274,7 +278,15 @@ public void onClick(View v) {
 		changeUserinfo();
 		break;
 	case R.id.btn_exit:
-		getActivity().finish();
+		mySharedPreferences = getActivity().getSharedPreferences(Config.SHARED,getActivity(). MODE_PRIVATE);
+		Config.isExit=true;
+		
+		startActivity(new Intent(getActivity(),MainActivity.class));
+		Editor editor=mySharedPreferences.edit();
+		editor.putBoolean("islogin", false);
+		editor.putString("name", null);
+			editor.putInt("id", -1);
+			editor.commit();
 		break;
 	default:
 		break;

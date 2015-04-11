@@ -11,11 +11,14 @@ import com.example.zf_pad.aadpter.ShopcarAdapter;
 import com.example.zf_pad.activity.ConfirmOrder;
 import com.example.zf_pad.entity.MyShopCar;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -158,7 +161,21 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 		MyApplication.getInstance().getClient()
 				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
+					private Dialog loadingDialog;
 
+					@Override
+					public void onStart() {
+						super.onStart();
+						loadingDialog = DialogUtil
+								.getLoadingDialg(getActivity());
+						loadingDialog.show();
+					}
+
+					@Override
+					public void onFinish() {
+						super.onFinish();
+						loadingDialog.dismiss();
+					}
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {

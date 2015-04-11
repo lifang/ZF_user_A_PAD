@@ -21,6 +21,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class MyApplication extends Application{
 	public GeofenceClient mGeofenceClient;
 	public MyLocationListener mMyLocationListener;
 	public Vibrator mVibrator;
+	public Boolean isLogin=false;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
 	 * 验证信息token
@@ -130,9 +133,15 @@ public class MyApplication extends Application{
 		mMyLocationListener = new MyLocationListener();
 		mLocationClient.registerLocationListener(mMyLocationListener);
 		mGeofenceClient = new GeofenceClient(getApplicationContext());
-		
-		
 		mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+		mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
+		
+		if(mySharedPreferences.getBoolean("islogin", false)){
+			UserEntity ue=new UserEntity();
+			ue.setId(mySharedPreferences.getInt("id", -1));
+			this.NewUser=ue;
+		}
+		
 //		initImageLoader(getApplicationContext());
 //		SDKInitializer.initialize(this);
 //		  PackageManager packageManager = getPackageManager();
@@ -160,6 +169,8 @@ public class MyApplication extends Application{
 		return mInstance;
 	}
 	public static UserEntity NewUser = null;
+	private SharedPreferences mySharedPreferences;
+	
 	
 	public class MyLocationListener implements BDLocationListener {
 

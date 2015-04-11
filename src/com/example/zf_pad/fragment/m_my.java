@@ -1,5 +1,6 @@
 package com.example.zf_pad.fragment;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 
 import android.os.Bundle;
@@ -195,6 +196,17 @@ public class M_my extends Fragment implements OnClickListener {
 		setback();
 		im1.setVisibility(View.VISIBLE);
 		tvdd.setTextColor(getResources().getColor(R.color.o));
+		if(Config.AderssManger){
+			if (m_info == null)
+				m_info = new Mine_MyInfo();
+	
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_mine, m_info).commit();
+			setback();
+			im3.setVisibility(View.VISIBLE);
+			tvwdxx.setTextColor(getResources().getColor(R.color.o));
+		}
 		
 	}
+	
 }
