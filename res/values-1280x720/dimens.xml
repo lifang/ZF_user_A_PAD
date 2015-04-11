@@ -39,7 +39,7 @@
     <dimen name="alertheight">69dp</dimen>
     <dimen name="alertll">21dp</dimen>
     <!-- 登陆 -->
-    <dimen name="dlpad">31dp</dimen>
+ 
     <dimen name="dltext">13dp</dimen>
     <dimen name="dlimg">23dp</dimen>
     <dimen name="dlheight">23dp</dimen>

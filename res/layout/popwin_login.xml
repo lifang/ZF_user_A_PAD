@@ -5,14 +5,18 @@
     android:background="#9000"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/dlpad" >
+    >
 
-    
-
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        
+        >
     <LinearLayout
         android:layout_width="460dp"
         android:layout_height="wrap_content"
         android:background="#ffffff"
+        android:layout_gravity="center"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -249,5 +253,6 @@
             </LinearLayout>
             
     </LinearLayout>
-
+</ScrollView>
+    
 </LinearLayout>

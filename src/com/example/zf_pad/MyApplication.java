@@ -83,6 +83,8 @@ public class MyApplication extends Application{
 	
 	public AsyncHttpClient getClient() {
 		//client.setTimeout(6000);
+		client.setTimeout(10000);// 设置超时时间
+    	client.setMaxConnections(10);
 		return client;
 	}
 	public void setClient(AsyncHttpClient client) {

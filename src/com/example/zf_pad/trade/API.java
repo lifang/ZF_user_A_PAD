@@ -3,6 +3,7 @@ package com.example.zf_pad.trade;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -195,9 +196,11 @@ public class API {
 	public static String DELECT_MERCHANTLIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/merchant/delete/";
 	// update merchant
-	public static String UPDATE_MERCHANT = SCHEMA + HOST
-			+ "/ZFMerchant/api/merchant/update/";
-
+	 	public static String UPDATE_MERCHANT=SCHEMA + HOST
+	 			+"/ZFMerchant/api/merchant/update/";
+	// update file
+	 	public static String UPDATE_FILE=SCHEMA + HOST
+	 			+"/ZFMerchant/api/merchant/upload/file";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -766,6 +769,14 @@ public class API {
 		params.put("accountPicPath", accountPicPath);
 		params.put("id", id);
 		new HttpRequest(context, callback).post(UPDATE_MERCHANT, params);
+	}
+	public static void updateFile(
+			Context context,
+			File fileImg,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("fileImg", fileImg);
+		new HttpRequest(context, callback).post(UPDATE_FILE, params);
 	}
 
 	public static void getApplyBankList(Context context, String terminalNumber,

@@ -7,8 +7,9 @@ private String area;
 private String detailadress;
 private String zipcode;
 private String phone;
+private String isdefau;
 public AddressManager(long id,String consignee,String area,String detailadress,
-		String zipcode,String phone){
+		String zipcode,String phone,String isdefau){
 	super();
 	this.id=id;
 	this.consignee=consignee;
@@ -16,6 +17,7 @@ public AddressManager(long id,String consignee,String area,String detailadress,
 	this.detailadress=detailadress;
 	this.zipcode=zipcode;
 	this.phone=phone;
+	this.isdefau=isdefau;
 }
 public long getId() {
 	return id;
@@ -53,11 +55,17 @@ public String getPhone() {
 public void setPhone(String phone) {
 	this.phone = phone;
 }
+public String getIsdefau() {
+	return isdefau;
+}
+public void setIsdefau(String isdefau) {
+	this.isdefau = isdefau;
+}
 @Override
 public String toString() {
 	return "AddressManager [id=" + id + ", consignee=" + consignee + ", area="
 			+ area + ", detailadress=" + detailadress + ", zipcode=" + zipcode
-			+ ", phone=" + phone + "]";
+			+ ", phone=" + phone + ", isdefau=" + isdefau + "]";
 }
 
 }

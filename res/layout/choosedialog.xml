@@ -12,6 +12,25 @@ android:orientation="horizontal">
 
 <Button android:layout_height="wrap_content"
    android:layout_width="fill_parent"
+  android:id="@+id/seeimg" 
+  android:text="查看原图" 
+  android:background="@android:color/white"
+  android:visibility="gone" />
+</LinearLayout>
+<View 
+            android:id="@+id/line_one"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#F7E0C1"
+            android:visibility="gone"/>
+<LinearLayout
+    android:id="@+id/dialogname"
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent"
+android:orientation="horizontal">
+
+<Button android:layout_height="wrap_content"
+   android:layout_width="fill_parent"
   android:id="@+id/choosealbum" 
   android:text="从相册选择" 
   android:background="@android:color/white" />
