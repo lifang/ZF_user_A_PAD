@@ -58,7 +58,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 			case 0:
 				onLoad();
 				if (myList.size() == 0) {
-					// norecord_text_to.setText("��û����ص���Ʒ");
+					// norecord_text_to.setText("��û����ص����?);
 					Xlistview.setVisibility(View.GONE);
 					//eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -142,7 +142,7 @@ public void onStart() {
 		myAdapter = new OrderAdapter(getActivity(), myList,this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������");
+		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������?);
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);

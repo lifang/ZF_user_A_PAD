@@ -1,6 +1,5 @@
 package com.example.zf_pad.trade;
 
-
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CHANNEL;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
@@ -33,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -46,9 +46,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -64,6 +64,7 @@ import com.example.zf_pad.trade.entity.MyApplyMaterial;
 import com.example.zf_pad.trade.entity.MyApplyTerminalDetail;
 import com.example.zf_pad.trade.entity.My_ApplyDetail;
 import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -108,17 +109,21 @@ public class MyApplyDetail extends FragmentActivity {
 	private LinearLayout mCustomerContainer_1;
 	private LinearLayout mCustomerContainer_2;
 	// private LinearLayout mCustomerContainer;
-	private LinearLayout mMaterialContainer;
+	private LinearLayout mMaterialContainer_1_1;
+	private LinearLayout mMaterialContainer_1_2;
+	private LinearLayout mMaterialContainer_1_3;
+	private LinearLayout mMaterialContainer_2_1;
+	private LinearLayout mMaterialContainer_2_2;
 
-//	private LinearLayout mMaterialContainer_1;
-//	private LinearLayout mMaterialContainer_2;
-//	private LinearLayout mMaterialContainer_3;
-//	private LinearLayout mMaterialContainer_4;
-//	private LinearLayout mMaterialContainer_5;
-//	private LinearLayout mMaterialContainer_6;
-//	private LinearLayout mMaterialContainer_7;
-//	private LinearLayout mMaterialContainer_8;
-//	private LinearLayout mMaterialContainer_9;
+	// private LinearLayout mMaterialContainer_1;
+	// private LinearLayout mMaterialContainer_2;
+	// private LinearLayout mMaterialContainer_3;
+	// private LinearLayout mMaterialContainer_4;
+	// private LinearLayout mMaterialContainer_5;
+	// private LinearLayout mMaterialContainer_6;
+	// private LinearLayout mMaterialContainer_7;
+	// private LinearLayout mMaterialContainer_8;
+	// private LinearLayout mMaterialContainer_9;
 
 	private Button mApplySubmit;
 
@@ -132,6 +137,7 @@ public class MyApplyDetail extends FragmentActivity {
 	private String mTerminalNumber;
 	private String photoPath;
 	private TextView uploadingTextView;
+	private ImageButton uploadingImageButton;
 	private ApplyBank mChosenBank;
 	private String mBankKey;
 	private String mUploadKey;
@@ -141,6 +147,8 @@ public class MyApplyDetail extends FragmentActivity {
 	private List<String> mImageNames = new ArrayList<String>();
 
 	private LinkedHashMap<Integer, MyApplyMaterial> mMaterials = new LinkedHashMap<Integer, MyApplyMaterial>();
+
+	private String mUploadUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -203,16 +211,30 @@ public class MyApplyDetail extends FragmentActivity {
 		mCustomerContainer_2 = (LinearLayout) findViewById(R.id.mCustomerContainer_2);
 		// mCustomerContainer = (LinearLayout)
 		// findViewById(R.id.apply_detail_customer_container);
-		mMaterialContainer =(LinearLayout) findViewById(R.id.apply_detail_material_container);
-//		mMaterialContainer_1 = (LinearLayout) findViewById(R.id.mMaterialContainer_1);
-//		mMaterialContainer_2 = (LinearLayout) findViewById(R.id.mMaterialContainer_2);
-//		mMaterialContainer_3 = (LinearLayout) findViewById(R.id.mMaterialContainer_3);
-//		mMaterialContainer_4 = (LinearLayout) findViewById(R.id.mMaterialContainer_4);
-//		mMaterialContainer_5 = (LinearLayout) findViewById(R.id.mMaterialContainer_5);
-//		mMaterialContainer_6 = (LinearLayout) findViewById(R.id.mMaterialContainer_6);
-//		mMaterialContainer_7 = (LinearLayout) findViewById(R.id.mMaterialContainer_7);
-//		mMaterialContainer_8 = (LinearLayout) findViewById(R.id.mMaterialContainer_8);
-//		mMaterialContainer_9 = (LinearLayout) findViewById(R.id.mMaterialContainer_9);
+		mMaterialContainer_1_1 = (LinearLayout) findViewById(R.id.apply_detail_material_container_1_1);
+		mMaterialContainer_1_2 = (LinearLayout) findViewById(R.id.apply_detail_material_container_1_2);
+		mMaterialContainer_1_3 = (LinearLayout) findViewById(R.id.apply_detail_material_container_1_3);
+		mMaterialContainer_2_1 = (LinearLayout) findViewById(R.id.apply_detail_material_container_2_1);
+		mMaterialContainer_2_2 = (LinearLayout) findViewById(R.id.apply_detail_material_container_2_2);
+
+		// mMaterialContainer_1 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_1);
+		// mMaterialContainer_2 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_2);
+		// mMaterialContainer_3 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_3);
+		// mMaterialContainer_4 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_4);
+		// mMaterialContainer_5 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_5);
+		// mMaterialContainer_6 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_6);
+		// mMaterialContainer_7 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_7);
+		// mMaterialContainer_8 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_8);
+		// mMaterialContainer_9 = (LinearLayout)
+		// findViewById(R.id.mMaterialContainer_9);
 
 		mApplySubmit = (Button) findViewById(R.id.apply_submit);
 
@@ -271,16 +293,20 @@ public class MyApplyDetail extends FragmentActivity {
 		mCustomerContainer_1.removeAllViews();
 		mCustomerContainer_2.removeAllViews();
 		// mCustomerContainer.removeAllViews();
-		 mMaterialContainer.removeAllViews();
-//		mMaterialContainer_1.removeAllViews();
-//		mMaterialContainer_2.removeAllViews();
-//		mMaterialContainer_3.removeAllViews();
-//		mMaterialContainer_4.removeAllViews();
-//		mMaterialContainer_5.removeAllViews();
-//		mMaterialContainer_6.removeAllViews();
-//		mMaterialContainer_7.removeAllViews();
-//		mMaterialContainer_8.removeAllViews();
-//		mMaterialContainer_9.removeAllViews();
+		mMaterialContainer_1_1.removeAllViews();
+		mMaterialContainer_1_2.removeAllViews();
+		mMaterialContainer_1_3.removeAllViews();
+		mMaterialContainer_2_1.removeAllViews();
+		mMaterialContainer_2_2.removeAllViews();
+		// mMaterialContainer_1.removeAllViews();
+		// mMaterialContainer_2.removeAllViews();
+		// mMaterialContainer_3.removeAllViews();
+		// mMaterialContainer_4.removeAllViews();
+		// mMaterialContainer_5.removeAllViews();
+		// mMaterialContainer_6.removeAllViews();
+		// mMaterialContainer_7.removeAllViews();
+		// mMaterialContainer_8.removeAllViews();
+		// mMaterialContainer_9.removeAllViews();
 		initMerchantDetailKeys();
 
 		API.getApplyDetail(this, 80, mTerminalId, applyType,
@@ -334,9 +360,10 @@ public class MyApplyDetail extends FragmentActivity {
 
 					@Override
 					public void onFailure(String message) {
-				
+
 						super.onFailure(message);
 					}
+
 					@Override
 					public TypeToken<My_ApplyDetail> getTypeToken() {
 						return new TypeToken<My_ApplyDetail>() {
@@ -386,6 +413,18 @@ public class MyApplyDetail extends FragmentActivity {
 					data.getStringExtra(SELECTED_TITLE));
 			break;
 		}
+
+		case REQUEST_CHOOSE_BANK: {
+			mChosenBank = (ApplyBank) data.getSerializableExtra(SELECTED_BANK);
+			if (null != mChosenBank) {
+				LinearLayout item = (LinearLayout) mContainer
+						.findViewWithTag(mBankKey);
+				item.setTag(R.id.apply_detail_key, mChosenBank.getCode());
+				setItemValue(mBankKey, mChosenBank.getName());
+			}
+
+			break;
+		}
 		case REQUEST_UPLOAD_IMAGE:
 		case REQUEST_TAKE_PHOTO: {
 
@@ -395,10 +434,18 @@ public class MyApplyDetail extends FragmentActivity {
 					if (msg.what == 1) {
 						CommonUtil.toastShort(MyApplyDetail.this,
 								(String) msg.obj);
+
+						mUploadUri = (String) msg.obj;
 						if (null != uploadingTextView) {
-							uploadingTextView
-									.setText(getString(R.string.apply_upload_success));
-							uploadingTextView.setClickable(false);
+							// uploadingTextView.setBackgroundResource(R.drawable.check_it);
+							// uploadingTextView
+							// .setText("");
+							// uploadingTextView.setClickable(false);
+							uploadingTextView.setVisibility(View.GONE);
+							uploadingImageButton.setVisibility(View.VISIBLE);
+							uploadingImageButton
+									.setOnClickListener(new onWatchListener());
+
 						}
 					} else {
 						CommonUtil.toastShort(MyApplyDetail.this,
@@ -679,50 +726,128 @@ public class MyApplyDetail extends FragmentActivity {
 	 * 
 	 * @param customerDetails
 	 */
-	private void setCustomerDetail(List<MyApplyMaterial> materials, List<MyApplyCustomerDetail> customerDetails) {
-		if (null == materials || materials.size() <= 0) return;
+	private void setCustomerDetail(List<MyApplyMaterial> materials,
+			List<MyApplyCustomerDetail> customerDetails) {
+		if (null == materials || materials.size() <= 0)
+			return;
 		for (MyApplyMaterial material : materials) {
 			mMaterials.put(material.getId(), material);
 		}
 		if (null != customerDetails && customerDetails.size() > 0) {
 			for (MyApplyCustomerDetail customerDetail : customerDetails) {
-				MyApplyMaterial material = mMaterials.get(customerDetail.getTargetId());
+				MyApplyMaterial material = mMaterials.get(customerDetail
+						.getTargetId());
 				if (null != material) {
 					material.setValue(customerDetail.getValue());
 				}
 			}
 		}
+		int pic = 1;
+		int txt = 1;
 
 		for (final MyApplyMaterial material : mMaterials.values()) {
+
 			switch (material.getTypes()) {
-				case TYPE_TEXT:
-					mMaterialContainer.addView(getDetailItem(ITEM_EDIT, material.getName(), material.getValue()));
+			case TYPE_TEXT:
+
+				switch (txt) {
+				case 1:
+
+					mMaterialContainer_2_1.addView(getDetailItem(ITEM_EDIT,
+							material.getName(), material.getValue()));
+
 					break;
-				case TYPE_IMAGE:
-					String imageName = material.getName();
-					String imageUrl = material.getValue();
-					if (!TextUtils.isEmpty(imageUrl)) {
-						mImageNames.add(imageName);
-						mImageUrls.add(imageUrl);
-						mMaterialContainer.addView(getDetailItem(ITEM_VIEW, imageName, imageUrl));
-					} else {
-						mMaterialContainer.addView(getDetailItem(ITEM_UPLOAD, imageName, imageUrl));
+
+				case 2:
+					mMaterialContainer_2_2.addView(getDetailItem(ITEM_EDIT,
+							material.getName(), material.getValue()));
+
+					break;
+				}
+				txt++;
+				break;
+			case TYPE_IMAGE:
+				String imageName = material.getName();
+				String imageUrl = material.getValue();
+				if (!TextUtils.isEmpty(imageUrl)) {
+					mImageNames.add(imageName);
+					mImageUrls.add(imageUrl);
+
+					switch (pic) {
+					case 1:
+
+						mMaterialContainer_1_1.addView(getDetailItem(ITEM_VIEW,
+								imageName, imageUrl));
+
+						break;
+
+					case 2:
+						mMaterialContainer_1_2.addView(getDetailItem(ITEM_VIEW,
+								imageName, imageUrl));
+
+						break;
+
+					case 3:
+						mMaterialContainer_1_3.addView(getDetailItem(ITEM_VIEW,
+								imageName, imageUrl));
+
+						break;
 					}
+				} else {
+
+					switch (pic) {
+					case 1:
+
+						mMaterialContainer_1_1.addView(getDetailItem(
+								ITEM_UPLOAD, imageName, imageUrl));
+
+						break;
+
+					case 2:
+						mMaterialContainer_1_2.addView(getDetailItem(
+								ITEM_UPLOAD, imageName, imageUrl));
+
+						break;
+
+					case 3:
+						mMaterialContainer_1_3.addView(getDetailItem(
+								ITEM_UPLOAD, imageName, imageUrl));
+
+						break;
+					}
+
+				}
+				pic++;
+				break;
+			case TYPE_BANK:
+				View chooseBank = getDetailItem(ITEM_CHOOSE,
+						material.getName(), null);
+				chooseBank.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						mBankKey = material.getName();
+						Intent intent = new Intent(MyApplyDetail.this,
+								ApplyBankActivity.class);
+						intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+						intent.putExtra(SELECTED_BANK, mChosenBank);
+						startActivityForResult(intent, REQUEST_CHOOSE_BANK);
+					}
+				});
+
+				switch (txt) {
+				case 1:
+
+					mMaterialContainer_2_1.addView(chooseBank);
+
 					break;
-				case TYPE_BANK:
-					View chooseBank = getDetailItem(ITEM_CHOOSE, material.getName(), null);
-					chooseBank.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View view) {
-							mBankKey = material.getName();
-							Intent intent = new Intent(MyApplyDetail.this, ApplyBankActivity.class);
-							intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
-							intent.putExtra(SELECTED_BANK, mChosenBank);
-							startActivityForResult(intent, REQUEST_CHOOSE_BANK);
-						}
-					});
-					mMaterialContainer.addView(chooseBank);
+
+				case 2:
+					mMaterialContainer_2_2.addView(chooseBank);
+
 					break;
+				}
+				txt++;
+				break;
 			}
 		}
 
@@ -796,6 +921,8 @@ public class MyApplyDetail extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			final TextView tvValue = (TextView) item
 					.findViewById(R.id.apply_detail_value);
+			final ImageButton uploadingSuccess = (ImageButton) item
+					.findViewById(R.id.apply_detail_view);
 
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
@@ -803,6 +930,7 @@ public class MyApplyDetail extends FragmentActivity {
 				@Override
 				public void onClick(View view) {
 					uploadingTextView = tvValue;
+					uploadingImageButton = uploadingSuccess;
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							MyApplyDetail.this);
 					final String[] items = getResources().getStringArray(
@@ -868,25 +996,97 @@ public class MyApplyDetail extends FragmentActivity {
 					.findViewById(R.id.apply_detail_key);
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
-
+//			mUploadUri = value;
+			//TODO:
+			mUploadUri="http://i2.sinaimg.cn/ty/nba/2015-04-10/U8567P6T12D7570488F44DT20150410181804.jpg";
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
-			ibView.setOnClickListener(new View.OnClickListener() {
+			ibView.setOnClickListener(new onWatchListener()
+			// new View.OnClickListener() {
+			// @Override
+			// public void onClick(View view) {
+			// int position = mImageNames.indexOf(key);
+			// // Intent intent = new Intent(ApplyDe.this,
+			// // ShowWebImageActivity.class);
+			// // intent.putExtra(IMAGE_NAMES,
+			// // StringUtil.join(mImageNames, ","));
+			// // intent.putExtra(IMAGE_URLS,
+			// // StringUtil.join(mImageUrls, ","));
+			// // intent.putExtra(POSITION, position);
+			// // startActivity(intent);
+			//
+			// }
+			// }
+			);
+		}
+		}
+	}
+
+	private class onWatchListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View arg0) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					MyApplyDetail.this);
+			final String[] items = getResources().getStringArray(
+					R.array.apply_detail_view);
+			builder.setItems(items, new DialogInterface.OnClickListener() {
 				@Override
-				public void onClick(View view) {
-					int position = mImageNames.indexOf(key);
-					// Intent intent = new Intent(ApplyDe.this,
-					// ShowWebImageActivity.class);
-					// intent.putExtra(IMAGE_NAMES,
-					// StringUtil.join(mImageNames, ","));
-					// intent.putExtra(IMAGE_URLS,
-					// StringUtil.join(mImageUrls, ","));
-					// intent.putExtra(POSITION, position);
-					// startActivity(intent);
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which) {
+					case 0: {
+
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								MyApplyDetail.this);
+						LayoutInflater factory = LayoutInflater
+								.from(MyApplyDetail.this);
+						final View textEntryView = factory.inflate(
+								R.layout.show_view, null);
+						// build.setTitle("自定义输入框");
+						build.setView(textEntryView);
+						final ImageView view = (ImageView) textEntryView
+								.findViewById(R.id.imag);
+						ImageCacheUtil.IMAGE_CACHE.get(mUploadUri, view);
+						build.create().show();
+						break;
+					}
+					case 1: {
+						Intent intent = new Intent();
+						intent.setType("image/*");
+						intent.setAction(Intent.ACTION_GET_CONTENT);
+						startActivityForResult(intent, REQUEST_UPLOAD_IMAGE);
+						break;
+					}
+					case 2: {
+						String state = Environment.getExternalStorageState();
+						if (state.equals(Environment.MEDIA_MOUNTED)) {
+							Intent intent = new Intent(
+									MediaStore.ACTION_IMAGE_CAPTURE);
+							File outDir = Environment
+									.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+							if (!outDir.exists()) {
+								outDir.mkdirs();
+							}
+							File outFile = new File(outDir, System
+									.currentTimeMillis() + ".jpg");
+							photoPath = outFile.getAbsolutePath();
+							intent.putExtra(MediaStore.EXTRA_OUTPUT,
+									Uri.fromFile(outFile));
+							intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+							startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+						} else {
+							CommonUtil.toastShort(MyApplyDetail.this,
+									getString(R.string.toast_no_sdcard));
+						}
+						break;
+					}
+					}
 				}
 			});
+			builder.show();
+
 		}
-		}
+
 	}
 
 }

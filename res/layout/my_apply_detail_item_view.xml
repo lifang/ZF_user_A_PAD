@@ -2,30 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <FrameLayout style="@style/FrameItem" >
 
         <TextView
             android:id="@+id/apply_detail_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
 			android:layout_gravity="left|center_vertical"
             android:text="TextView"
-            android:textSize="42px" />
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/apply_detail_view"
             style="@style/TextItem"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="20dp"
-            
+            android:layout_marginLeft="20dp"
 			android:layout_gravity="right|center_vertical"
             android:background="@android:color/transparent"
             android:src="@drawable/check_it" />
-    </FrameLayout>
+    
 
 </LinearLayout>
