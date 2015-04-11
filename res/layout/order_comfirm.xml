@@ -124,23 +124,25 @@
                         android:layout_height="wrap_content" >
 
                         <Button
-                            android:id="@+id/button1"
+                            android:id="@+id/bt_mange"
                             android:layout_width="@dimen/normai_button_width"
                             android:layout_height="@dimen/normai_button_height"
                             android:layout_alignParentRight="true"
                             android:background="#FF6624"
                             android:text="地址管理"
+                            android:textSize="@dimen/textmid"
                             android:textColor="#ffffff" />
 
                         <Button
-                             android:id="@+id/button2"
+                             android:id="@+id/bt_add"
                             android:layout_width="@dimen/normai_button_width"
                             android:layout_height="@dimen/normai_button_height"
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="20dp"
-                            android:layout_toLeftOf="@+id/button1"
+                            android:layout_toLeftOf="@+id/bt_mange"
                             android:background="#FF6624"
                             android:text="新增地址"
+                            android:textSize="@dimen/textmid"
                             android:textColor="#ffffff" />
                     </RelativeLayout>
                 </LinearLayout>

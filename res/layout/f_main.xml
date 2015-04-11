@@ -102,6 +102,8 @@
             android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/normal_height1"
+            android:layout_marginRight="@dimen/normal_height1"
+            android:layout_marginLeft="@dimen/normal_height1"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -273,11 +275,6 @@
                 android:orientation="horizontal" >
 
                 
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="fill_parent"
-                    android:background="@color/Viewc" />
 
                 <RelativeLayout
                     android:id="@+id/main_rl_Forum"

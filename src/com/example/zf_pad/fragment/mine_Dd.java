@@ -58,7 +58,9 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 			case 0:
 				onLoad();
 				if (myList.size() == 0) {
+
 					// norecord_text_to.setText("��û����ص����?);
+
 					Xlistview.setVisibility(View.GONE);
 					//eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -120,7 +122,7 @@ public void onStop() {
 		try {
 			view = inflater.inflate(R.layout.f_mine_myorder, container, false);
 			initView();
-			getData();
+			
 		} catch (InflateException e) {
 
 		}
@@ -131,7 +133,11 @@ public void onStop() {
 public void onStart() {
 	
 	super.onStart();
-	//ll_DD.setVisibility(View.VISIBLE);
+	if(myList.size()!=0){
+		myList.clear();
+	}
+	page = 1;
+	getData();
 }
 	private void initView() {
 		//ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
@@ -142,7 +148,9 @@ public void onStart() {
 		myAdapter = new OrderAdapter(getActivity(), myList,this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
+
 		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û�������?);
+
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -263,8 +271,12 @@ public void onStart() {
 										}.getType());
 								System.out
 										.println("-sendEmptyMessage String()--");
-								if(myList.size()!=0&&moreList.size()==0)
+								if(myList.size()!=0&&moreList.size()==0){
 									Toast.makeText(getActivity(), "没有更多数据!", 1000).show();
+									Xlistview.getmFooterView().setState2(2);
+									Xlistview.setPullLoadEnable(false);
+								}
+									
 								myList.addAll(moreList);
 								handler.sendEmptyMessage(0);
 							} else {
@@ -322,11 +334,16 @@ public void onStart() {
 
 	}
 	@Override
+	public void onDestroy() {
+		
+		super.onDestroy();
+		Log.e("onDestroy","onDestroy");
+	}
+	@Override
 	public void onResume() {
 		
 		super.onResume();
-		page = 1;
-		myList.clear();
-		getData();
+	
 	}
+	
 }

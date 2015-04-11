@@ -68,7 +68,8 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		holder.tv_yb.setText(list.get(position).getZipCode());
 		holder.tv_city.setText(list.get(position).getCity());
 		if(list.get(position).getIsDefault()==1){
-			holder.ll_isshow .setVisibility(View.VISIBLE);			 
+			holder.ll_isshow .setVisibility(View.VISIBLE);	
+			holder.tv_default.setVisibility(View.VISIBLE);
 		}else{
 			holder.ll_isshow .setVisibility(View.INVISIBLE);
 			if(list.get(position).getIscheck()){

@@ -1,6 +1,7 @@
 package com.example.zf_pad.fragment;
 
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.widget.MTabWidget;
 import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
@@ -68,6 +69,13 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 		super.onResume();
 		Log.e("viewR", String.valueOf(view));
 		//ll_myinfo.setVisibility(View.VISIBLE);
+		if(Config.AderssManger){
+			 mTabWidget.updateTabs(2);
+			if(address==null)
+				address=new Mine_Address();
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fm, address).commit();
+		}
 	}
 	@Override
 	public void onPause() {
@@ -105,6 +113,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 		} catch (Exception e) {
 		}
 		super.onDestroyView();
+		Config.AderssManger=false;
 	}
 	@Override
 	public void chang(int index) {

@@ -62,6 +62,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,7 +132,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
 		if (f_sy == null)
 			f_sy = new M_MianFragment();
-
+		
+		
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
 		initView();
@@ -220,9 +222,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				changTabBg();
 				im_wd.setBackgroundResource(R.drawable.mine);
 				textwd.setTextColor(getResources().getColor(R.color.o));
-				if (M_my == null)
+				if (M_my == null){
 					M_my = new M_my();
-
+				}
 				getSupportFragmentManager().beginTransaction()
 
 						.replace(R.id.m_fragment, M_my).commit();
@@ -267,7 +269,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		set.showAtLocation(findViewById(R.id.main), Gravity.CENTER
 				| Gravity.CENTER, 0, 0);
 	}
-
+	public void ToIndex(){
+		if (f_sy == null)
+			f_sy = new M_MianFragment();
+		
+		
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.m_fragment, f_sy).commit();
+	}
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -280,6 +289,30 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_gwc).commit();
 		}
+		if (Config.AderssManger) {
+			changTabBg();
+			im_wd.setBackgroundResource(R.drawable.mine);
+			textwd.setTextColor(getResources().getColor(R.color.o));
+			if (M_my == null){
+				M_my = new M_my();
+			}
+			getSupportFragmentManager().beginTransaction()
+
+					.replace(R.id.m_fragment, M_my).commit();
+		}
+		if(Config.isExit){
+			changTabBg();
+			im_sy.setBackgroundResource(R.drawable.home);
+			//if(M_my!=null)
+			//getSupportFragmentManager().beginTransaction().remove(M_my);
+			//if(f_sy==null)
+				f_sy = new M_MianFragment();
+			
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_sy).commit();
+			Config.isExit=false;
+			
+		}
 	}
 
 	@Override
@@ -287,6 +320,29 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		super.onStop();
 		Config.shopcar = false;
 	}
-
+	 // 返回键  
+    private long exitTime = 0;  
+   @Override  
+    public boolean onKeyDown(int keyCode, KeyEvent event) {  
+      
+    	if(!f_sy.isVisible()){
+    		
+				f_sy = new M_MianFragment();
+			
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_sy).commit();
+			changTabBg();
+			im_sy.setBackgroundResource(R.drawable.home);
+    	}else{
+    		  if ((System.currentTimeMillis() - exitTime) > 2000) {  
+                  Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();  
+                  exitTime = System.currentTimeMillis();  
+              } else {  
+                  finish();  
+                  System.exit(0);  
+              }  
+    	}
+        return true;  
+    }  
 	
 }
