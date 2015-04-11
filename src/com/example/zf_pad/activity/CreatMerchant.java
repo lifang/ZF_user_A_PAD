@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -32,6 +33,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,11 +58,14 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+@SuppressLint("NewApi")
 public class CreatMerchant extends BaseActivity implements OnClickListener{
 	private TextView tv_adress;
 	private int cityId;
 	private EditText et_shopname,et_name,et_id_number,et_license_code,et_tax_id_number,
 	et_certificate_no,et_bank,et_licencenum_bank;
+	private TextView tv_shopname,tv_name,tv_id_number,tv_license_code,tv_tax_id_number,
+	tv_certificate_no,tv_bank,tv_licencenum_bank;
 	private Button btn_creat,btn_legal_photo,btn_license_photos,btn_legal_back_photos,
 	btn_tax_regist,btn_person_photograph,btn_organization_code_photos,btn_bank_license_photos;
 	private boolean iscamera=false;
@@ -74,30 +80,70 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 	 private int id;
 	 private String[] imgLocalPath=new String[7];
 	 public static boolean isdown=false;
+	 private boolean isEdit=true;
+	 private RelativeLayout rl,rldown;
+	 private String title,legal_person_name,legal_person_card_id,business_license_no,
+	 tax_registered_no,organization_code_no,account_bank_name,bank_open_account;
+	 //private AlertDialog dialog;
+	 //private  AlertDialog.Builder builder;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.creatdetail);
-	
+	init();
 	
 }
 @Override
 protected void onStart() {
 	super.onStart();
 	if(Mine_MyMerChant.isFromItem){
-		new TitleMenuUtil(CreatMerchant.this, "修改商户").show();
+		new TitleMenuUtil(CreatMerchant.this, "商户详情").show();
+		rl.setMinimumWidth(500);
+		rldown.setMinimumWidth(550);
+		hideEx();
 		getmerchantInfo();
 	}
 	else{
 		new TitleMenuUtil(CreatMerchant.this, "创建商户").show();
+		hideTx();
 	}
-	init();
+}
+private void hideTx() {
+	et_shopname.setVisibility(View.VISIBLE);
+	et_name.setVisibility(View.VISIBLE);
+	et_id_number.setVisibility(View.VISIBLE);
+	et_license_code.setVisibility(View.VISIBLE);
+	et_tax_id_number.setVisibility(View.VISIBLE);
+	et_certificate_no.setVisibility(View.VISIBLE);
+	et_bank.setVisibility(View.VISIBLE);
+	et_licencenum_bank.setVisibility(View.VISIBLE);
+	tv_shopname.setVisibility(View.GONE);
+	tv_name.setVisibility(View.GONE);
+	tv_id_number.setVisibility(View.GONE);
+	tv_license_code.setVisibility(View.GONE);
+	tv_tax_id_number.setVisibility(View.GONE);
+	tv_certificate_no.setVisibility(View.GONE);
+	tv_bank.setVisibility(View.GONE);
+	tv_licencenum_bank.setVisibility(View.GONE);
+	
+}
+private void hideEx() {
+	et_shopname.setVisibility(View.GONE);
+	et_name.setVisibility(View.GONE);
+	et_id_number.setVisibility(View.GONE);
+	et_license_code.setVisibility(View.GONE);
+	et_tax_id_number.setVisibility(View.GONE);
+	et_certificate_no.setVisibility(View.GONE);
+	et_bank.setVisibility(View.GONE);
+	et_licencenum_bank.setVisibility(View.GONE);
+	
 }
 @Override
 protected void onDestroy() {
 	// TODO Auto-generated method stub
 	super.onDestroy();
+	Mine_MyMerChant.isFromItem=false;
 	isdown=false;
 	Log.e("isdown", String.valueOf(isdown));
 }
@@ -142,15 +188,31 @@ private void getmerchantInfo() {
 						CommonUtil.toastShort(getApplicationContext(), "服务器返回数据不完全");
 						return;
 					}*/
-					et_shopname.setText(result.getString("title"));
+					title=result.getString("title");
+					legal_person_name=result.getString("legal_person_name");
+					legal_person_card_id=result.getString("legal_person_card_id");
+					business_license_no=result.getString("business_license_no");
+					tax_registered_no=result.getString("tax_registered_no");
+					organization_code_no=result.getString("organization_code_no");
+					account_bank_name=result.getString("account_bank_name");
+					bank_open_account=result.getString("bank_open_account");
+					tv_shopname.setText(result.getString("title"));
+					tv_name.setText(result.getString("legal_person_name"));
+					tv_id_number.setText(result.getString("legal_person_card_id"));
+					tv_license_code.setText(result.getString("business_license_no"));
+					tv_tax_id_number.setText(result.getString("tax_registered_no"));
+					tv_certificate_no.setText(result.getString("organization_code_no"));
+					tv_bank.setText(result.getString("account_bank_name"));
+					tv_licencenum_bank.setText(result.getString("bank_open_account"));
+					/*et_shopname.setText(result.getString("title"));
 					et_name.setText(result.getString("legal_person_name"));
 					et_id_number.setText(result.getString("legal_person_card_id"));
 					et_license_code.setText(result.getString("business_license_no"));
 					et_tax_id_number.setText(result.getString("tax_registered_no"));
-					et_certificate_no.setText(result.getString("organization_code_no"));
+					et_certificate_no.setText(result.getString("organization_code_no"));*/
 					tv_adress.setText(findcity(result.getInt("id")));
-					et_bank.setText(result.getString("account_bank_name"));
-					et_licencenum_bank.setText(result.getString("bank_open_account"));
+					/*et_bank.setText(result.getString("account_bank_name"));
+					et_licencenum_bank.setText(result.getString("bank_open_account"));*/
 					
 					imgPath[2]=result.getString("body_photo_path");
 					imgPath[3]=result.getString("license_no_pic_path");
@@ -215,6 +277,16 @@ protected String findcity(int id) {
 	 return a;
 }
 private void init() {
+	rldown=(RelativeLayout) findViewById(R.id.rldown);
+	rl=(RelativeLayout) findViewById(R.id.rl);
+	tv_shopname=(TextView) findViewById(R.id.tv_shopname);
+	tv_name=(TextView) findViewById(R.id.tv_name);
+	tv_id_number=(TextView) findViewById(R.id.tv_id_number);
+	tv_license_code=(TextView) findViewById(R.id.tv_license_code);
+	tv_tax_id_number=(TextView) findViewById(R.id.tv_tax_id_number);
+	tv_certificate_no=(TextView) findViewById(R.id.tv_certificate_no);
+	tv_bank=(TextView) findViewById(R.id.tv_bank);
+	tv_licencenum_bank=(TextView) findViewById(R.id.tv_licencenum_bank);
 	btn_legal_photo=(Button) findViewById(R.id.btn_legal_photo);
 	btn_license_photos=(Button) findViewById(R.id.btn_license_photos);
 	btn_legal_back_photos=(Button) findViewById(R.id.btn_legal_back_photos);
@@ -571,6 +643,15 @@ public void onClick(View v) {
 		break;
 	case R.id.btn_creat:
 		if(Mine_MyMerChant.isFromItem){
+			if(isEdit){
+				hideTx();
+				initData();
+				rl.setMinimumWidth(0);
+				rldown.setMinimumWidth(0);
+				isEdit=false;
+				CommonUtil.toastShort(getApplicationContext(), "开始编辑");
+				return;
+			}
 			changeMerchantInfo();
 		}
 		else{
@@ -586,36 +667,83 @@ public void onClick(View v) {
 		break;
 	case R.id.btn_legal_photo:
 		tag=1;
-		showchooseDialog(btn_legal_photo,tag);
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
+			showchooseDialog(btn_legal_photo,tag);
+		}
+		
 		break;
 	case R.id.btn_license_photos:
 		tag=2;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_license_photos,tag);
+		}
 		break;
 	case R.id.btn_legal_back_photos:
 		tag=3;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_legal_back_photos,tag);
+		}
 		break;
 	case R.id.btn_tax_regist:
 		tag=4;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_tax_regist,tag);
+		}
 		break;
 	case R.id.btn_person_photograph:
 		tag=5;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_person_photograph,tag);
+		}
 		break;
 	case R.id.btn_organization_code_photos:
 		tag=6;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_organization_code_photos,tag);
+		}
 		break;
 	case R.id.btn_bank_license_photos:
 		tag=7;
+		if(isEdit){
+			openimg(tag);
+		}
+		else{
 		showchooseDialog(btn_bank_license_photos,tag);
+		}
 		break;
 	
 	default:
 		break;
 	}
+	
+}
+private void initData() {
+	et_shopname.setText(title);
+	et_name.setText(legal_person_name);
+	et_id_number.setText(legal_person_card_id);
+	et_license_code.setText(business_license_no);
+	et_tax_id_number.setText(tax_registered_no);
+	et_certificate_no.setText(organization_code_no);
+	et_bank.setText(account_bank_name);
+	et_licencenum_bank.setText(bank_open_account);
 	
 }
 private void showchooseorseeDialog() {
@@ -687,6 +815,9 @@ private void showchooseDialog(Button btn,final int tag) {
      final View line_one=textEntryView.findViewById(R.id.line_one);
      final Button choosealbum=(Button) textEntryView.findViewById(R.id.choosealbum);
      final Button choosecamera=(Button) textEntryView.findViewById(R.id.choosecamera);
+    
+     //final AlertDialog dialog = builder.show();
+     //dialog=builder.show();
      if(btn.getText().toString().equals("")){
     	 seeimg.setVisibility(View.VISIBLE);
     	 line_one.setVisibility(View.VISIBLE);
@@ -698,15 +829,16 @@ private void showchooseDialog(Button btn,final int tag) {
 		public void onClick(View v) {
 			if(isdown){
 				openimg(tag);
-				builder.create().cancel();
+				
+				
 			}
 			else{
 				Intent intent = new Intent(Intent.ACTION_VIEW);    
 	            intent.setDataAndType(Uri.parse("file://"+imgLocalPath[tag-1]), "image/*"); 
 	            startActivity(intent);
 			}
-			
-			
+			//dialog.dismiss();
+			//builder.show().dismiss(); 
 		}
 	});
      choosealbum.setOnClickListener(new OnClickListener() {
@@ -717,6 +849,7 @@ private void showchooseDialog(Button btn,final int tag) {
 			iscamera=false;
 			choosealbum.setBackgroundColor(Color.BLUE);
 			choosecamera.setBackgroundColor(Color.WHITE);
+			//dialog.dismiss();
 		}
 	});
      choosecamera.setOnClickListener(new OnClickListener() {
@@ -726,6 +859,7 @@ private void showchooseDialog(Button btn,final int tag) {
 			iscamera=true;
 			choosecamera.setBackgroundColor(Color.BLUE);
 			choosealbum.setBackgroundColor(Color.WHITE);
+			//dialog.dismiss();
 		}
 	});
      builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

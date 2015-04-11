@@ -245,6 +245,12 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
         <activity
+            android:name="com.example.zf_pad.activity.EditMerchant"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
+        </activity>
+        <activity
             android:name="com.example.zf_pad.activity.AdressEdit"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
