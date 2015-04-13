@@ -306,4 +306,11 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		
 		super.onSaveInstanceState(outState);
 	}
+	@Override
+	protected void onResume() {
+	
+		super.onResume();
+		myList.clear();
+		getData();
+	}
 }

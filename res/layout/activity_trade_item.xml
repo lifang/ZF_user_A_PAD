@@ -1,159 +1,185 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <include layout="@layout/title_back"/>
+    <include layout="@layout/title_back" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:paddingLeft="@dimen/titilepad"
+        android:paddingRight="@dimen/titilepad"
+        android:paddingTop="10dp"
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/trade_detail_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/normal_width2"
-                android:layout_marginLeft="@dimen/normal_width2"
-                android:textSize="@dimen/textbig"
-                android:textColor="@color/text292929"/>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/normal_width2"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical" >
 
                     <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="@string/trade_amount"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/normal_width2"
+                        android:layout_marginTop="@dimen/normal_width2"
+                        android:text="交易状态"
+                        android:textColor="@color/text292929"
+                        android:textSize="@dimen/textbig" 
+                         />
 
                     <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="@string/trade_charge"/>
-
-                    <TextView
-                        style="@style/TextDetail.Top"
-                        android:text="@string/trade_time"/>
+                        android:id="@+id/trade_detail_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/normal_width2"
+                        android:layout_marginTop="@dimen/normal_width2"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:textColor="@color/text292929"
+                        android:textSize="@dimen/textbigs"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/normal_width2"
+                    android:orientation="horizontal" >
 
-                    <TextView
-                        android:id="@+id/trade_detail_amount"
-                        style="@style/TextDetail.Top"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
 
-                    <TextView
-                        android:id="@+id/trade_detail_poundage"
-                        style="@style/TextDetail.Top"/>
+                        <TextView
+                            style="@style/TextDetail.Top"
+                            android:text="@string/trade_amount" />
 
-                    <TextView
-                        android:id="@+id/trade_detail_time"
-                        style="@style/TextDetail.Top"/>
+                        <TextView
+                            style="@style/TextDetail.Top"
+                            android:text="@string/trade_charge" />
+
+                        <TextView
+                            style="@style/TextDetail.Top"
+                            android:text="@string/trade_time" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/trade_detail_amount"
+                            style="@style/TextDetail.Top" />
+
+                        <TextView
+                            android:id="@+id/trade_detail_poundage"
+                            style="@style/TextDetail.Top" />
+
+                        <TextView
+                            android:id="@+id/trade_detail_time"
+                            style="@style/TextDetail.Top" />
+                    </LinearLayout>
                 </LinearLayout>
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 style="@style/Divider"
                 android:layout_height="1px"
-                android:layout_marginTop="@dimen/normal_width2"
-                android:layout_marginBottom="@dimen/normal_width2"/>
+                android:layout_marginBottom="@dimen/normal_width2"
+                android:layout_marginTop="@dimen/normal_width2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/normal_width2"
-                android:paddingRight="@dimen/normal_width2">
+                android:paddingRight="@dimen/normal_width2" >
 
                 <TextView
                     style="@style/TextDetail.Title"
-                    android:text="@string/trade_item_commercial_info"/>
+                    android:text="@string/trade_item_commercial_info" />
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
-                    android:background="@color/bgtitle"/>
+                    android:layout_marginTop="6dp"
+                    android:background="@color/bgtitle" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal" >
 
                     <LinearLayout
                         android:id="@+id/trade_commercial_key_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
 
                     <LinearLayout
                         android:id="@+id/trade_commercial_value_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
-                        android:orientation="vertical"/>
-
+                        android:orientation="vertical" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/normal_width2"
+                android:layout_marginTop="@dimen/normal_width2"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/normal_width2"
-                android:paddingRight="@dimen/normal_width2"
-                android:layout_marginTop="@dimen/normal_width2"
-                android:layout_marginBottom="@dimen/normal_width2">
+                android:paddingRight="@dimen/normal_width2" >
 
                 <TextView
                     style="@style/TextDetail.Title"
-                    android:text="@string/trade_item_bank_info"/>
+                    android:text="@string/trade_item_bank_info" />
 
                 <View
                     style="@style/Divider"
-                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
-                    android:background="@color/bgtitle"/>
+                    android:layout_marginTop="6dp"
+                    android:background="@color/bgtitle" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal" >
 
                     <LinearLayout
                         android:id="@+id/trade_bank_key_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
 
                     <LinearLayout
                         android:id="@+id/trade_bank_value_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/normal_width3"
-                        android:orientation="vertical"/>
-
+                        android:orientation="vertical" />
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
 
+</LinearLayout>

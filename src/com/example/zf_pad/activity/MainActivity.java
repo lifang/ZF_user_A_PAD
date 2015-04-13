@@ -132,8 +132,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
 		//if (f_sy == null)
 			f_sy = new M_MianFragment();
-		
-		
+
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
 		initView();

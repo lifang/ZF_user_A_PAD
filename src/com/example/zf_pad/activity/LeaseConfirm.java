@@ -186,11 +186,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, arr);
 		sp.setAdapter(arrayAdapter);
-		Toast.makeText(
-				getApplicationContext(),
-				"main Thread"
-						+ sp.getItemIdAtPosition(sp.getSelectedItemPosition()),
-				Toast.LENGTH_LONG).show();
+	
 
 		// 注册事件
 		sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -204,8 +200,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
-				Toast.makeText(getApplicationContext(), "没有改变的处理",
-						Toast.LENGTH_LONG).show();
+				
 			}
 
 		});

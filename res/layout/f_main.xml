@@ -12,6 +12,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
             </android.support.v4.view.ViewPager>
+
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
@@ -43,6 +44,7 @@
             android:id="@+id/titleback_linear_back"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/titleback_height"
+            
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="@dimen/titilepad"

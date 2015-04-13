@@ -349,4 +349,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
                 });
 
 	}
+	@Override
+	protected void onResume() {
+	
+		super.onResume();
+		myList.clear();
+		getData1();
+	}
 }

@@ -13,7 +13,7 @@
 
         <com.example.zf_pad.trade.widget.MyTabWidget
             android:id="@+id/tab_widget"
-            android:layout_width="@dimen/normal_width4"
+            android:layout_width="600dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"

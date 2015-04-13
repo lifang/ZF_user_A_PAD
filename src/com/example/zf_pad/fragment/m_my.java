@@ -77,6 +77,7 @@ public class M_my extends Fragment implements OnClickListener {
 			setback();
 			im1.setVisibility(View.VISIBLE);
 			tvdd.setTextColor(getResources().getColor(R.color.o));
+			if(m_dd==null)
 			m_dd = new Mine_Dd();
 
 			getActivity().getSupportFragmentManager().beginTransaction()
