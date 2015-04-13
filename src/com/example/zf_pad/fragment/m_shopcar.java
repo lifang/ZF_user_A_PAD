@@ -11,11 +11,14 @@ import com.example.zf_pad.aadpter.ShopcarAdapter;
 import com.example.zf_pad.activity.ConfirmOrder;
 import com.example.zf_pad.entity.MyShopCar;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,7 +45,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	private boolean onRefresh_number = true;
 	private ShopcarAdapter myAdapter;
 	private List<Good> myShopList=new ArrayList<Good>();
-
+	private Dialog loadingDialog;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -50,7 +53,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 				onLoad();
 				//
 				// if (myShopList.size() == 0) {
-				// // norecord_text_to.setText("��û����ص���Ʒ");
+				// // norecord_text_to.setText("��û����ص����?");
 				// Xlistview.setVisibility(View.GONE);
 				// eva_nodata.setVisibility(View.VISIBLE);
 				// }
@@ -91,11 +94,18 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	    try {
 	        view = inflater.inflate(R.layout.f_shopcar, container, false);
 	        initView();
-	        getData();
+	       
 	    } catch (InflateException e) {
 	        
 	    }
 	    return view;
+	}
+	@Override
+	public void onStart() {
+		
+		super.onStart();
+		myShopList.clear();
+		getData();
 	}
 	private void initView() {
 		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
@@ -158,7 +168,21 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 		MyApplication.getInstance().getClient()
 				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
+					
 
+					@Override
+					public void onStart() {
+						super.onStart();
+						loadingDialog = DialogUtil
+								.getLoadingDialg(getActivity());
+						loadingDialog.show();
+					}
+
+					@Override
+					public void onFinish() {
+						super.onFinish();
+						loadingDialog.dismiss();
+					}
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {

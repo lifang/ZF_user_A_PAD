@@ -151,7 +151,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 				((MyApplication) getActivity().getApplication()).mLocationResult = LocationResult;
 				InitLocation();
 				mLocationClient.start();
-
+				
 				System.out.println("当前城市 ID----" + MyApplication.getCITYID());
 			}
 			getdata();
@@ -160,7 +160,12 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		}
 		return view;
 	}
-
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		
+	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -257,7 +262,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 	// getdata1();
 	private void getdata() {
-
+		
 		MyApplication.getInstance().getClient()
 				.post(Config.INDEXIMG, new AsyncHttpResponseHandler() {
 

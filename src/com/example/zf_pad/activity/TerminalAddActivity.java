@@ -11,6 +11,8 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +49,7 @@ public class TerminalAddActivity extends Activity implements
 
 	private EditText mTerminalNumber;
 	private EditText mShopName;
-	private LinearLayout mSubmitBtn;
+	private Button mSubmitBtn;
 
 	private String terminalNum, shopName;
 
@@ -56,7 +59,7 @@ public class TerminalAddActivity extends Activity implements
 	private Button close;
 
 	private List<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
-	private List<String> list = new ArrayList<String>();
+	final List<String> list = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public class TerminalAddActivity extends Activity implements
 
 		spinner = (Spinner) findViewById(R.id.spinner);
 		items = new ArrayList<Map<String, Object>>();
-		list = new ArrayList<String>();
+
 		API.getChannelList(this, new HttpCallback<List<TerminalChannel>>(this) {
 
 			@Override
@@ -78,14 +81,8 @@ public class TerminalAddActivity extends Activity implements
 					list.add(channel.getName());
 					items.add(item);
 				}
+				myHandler.sendEmptyMessage(1);
 
-			}
-
-			@Override
-			public void onFailure(String message) {
-
-				super.onFailure(message);
-				list.add("未找到信息");
 			}
 
 			@Override
@@ -96,20 +93,19 @@ public class TerminalAddActivity extends Activity implements
 		});
 
 		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_dropdown_item, list);
+				android.R.layout.simple_spinner_item, list);
 		spinner.setAdapter(adapter);
 
 		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 
-				// mChannelId = (Integer) items.get(arg2).get("id");
-				 arg0.setVisibility(View.VISIBLE);
+				mChannelId = (Integer) items.get(arg2).get("id");
+
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
 
-				// arg0.setVisibility(View.VISIBLE);
 			}
 
 		});
@@ -118,7 +114,7 @@ public class TerminalAddActivity extends Activity implements
 
 		mTerminalNumber = (EditText) findViewById(R.id.terminal_num);
 		mShopName = (EditText) findViewById(R.id.shop_name);
-		mSubmitBtn = (LinearLayout) findViewById(R.id.terminal_submit);
+		mSubmitBtn = (Button) findViewById(R.id.terminal_submit);
 
 		mTerminalNumber.addTextChangedListener(mTextWatcher);
 		mShopName.addTextChangedListener(mTextWatcher);
@@ -127,6 +123,23 @@ public class TerminalAddActivity extends Activity implements
 		close = (Button) findViewById(R.id.close);
 		close.setOnClickListener(this);
 	}
+
+	private Handler myHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+
+			switch (msg.what) {
+			case 1:
+
+				adapter.notifyDataSetChanged();
+
+				break;
+
+			}
+
+		};
+
+	};
 
 	private final TextWatcher mTextWatcher = new TextWatcherAdapter() {
 
@@ -147,15 +160,16 @@ public class TerminalAddActivity extends Activity implements
 		mSubmitBtn.setEnabled(enabled);
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK) {
-			mChannelId = data.getIntExtra(CHANNEL_ID, 0);
-			mChannelName = data.getStringExtra(CHANNEL_NAME);
-			mPayChannel.setText(mChannelName);
-		}
-	}
+	// @Override
+	// protected void onActivityResult(int requestCode, int resultCode, Intent
+	// data) {
+	// super.onActivityResult(requestCode, resultCode, data);
+	// if (resultCode == RESULT_OK) {
+	// mChannelId = data.getIntExtra(CHANNEL_ID, 0);
+	// mChannelName = data.getStringExtra(CHANNEL_NAME);
+	// mPayChannel.setText(mChannelName);
+	// }
+	// }
 
 	@Override
 	public void onClick(View view) {
@@ -163,23 +177,23 @@ public class TerminalAddActivity extends Activity implements
 
 		case R.id.terminal_submit:
 
-			if (check()) {
-				API.addTerminal(TerminalAddActivity.this, 80, mChannelId,
-						mTerminalNumber.getText().toString(), mShopName
-								.getText().toString(), new HttpCallback(
-								TerminalAddActivity.this) {
-							@Override
-							public void onSuccess(Object data) {
-								setResult(RESULT_OK);
-								finish();
-							}
+			// if (check()) {
+			API.addTerminal(TerminalAddActivity.this, 80, mChannelId,
+					mTerminalNumber.getText().toString(), mShopName.getText()
+							.toString(), new HttpCallback(
+							TerminalAddActivity.this) {
+						@Override
+						public void onSuccess(Object data) {
+							setResult(RESULT_OK);
+							finish();
+						}
 
-							@Override
-							public TypeToken getTypeToken() {
-								return null;
-							}
-						});
-			}
+						@Override
+						public TypeToken getTypeToken() {
+							return null;
+						}
+					});
+			// }
 			break;
 		case R.id.close:
 			this.finish();
@@ -188,20 +202,20 @@ public class TerminalAddActivity extends Activity implements
 		}
 	}
 
-	private boolean check() {
-		terminalNum = StringUtil.replaceBlank(mTerminalNumber.getText()
-				.toString());
-		if (terminalNum.length() == 0) {
-			Toast.makeText(getApplicationContext(), "用户名不能为空",
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		shopName = StringUtil.replaceBlank(mShopName.getText().toString());
-		if (shopName.length() == 0) {
-			Toast.makeText(getApplicationContext(), "请输入用户密码",
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		return true;
-	}
+	// private boolean check() {
+	// terminalNum = StringUtil.replaceBlank(mTerminalNumber.getText()
+	// .toString());
+	// if (terminalNum.length() == 0) {
+	// Toast.makeText(getApplicationContext(), "用户名不能为空",
+	// Toast.LENGTH_SHORT).show();
+	// return false;
+	// }
+	// shopName = StringUtil.replaceBlank(mShopName.getText().toString());
+	// if (shopName.length() == 0) {
+	// Toast.makeText(getApplicationContext(), "请输入用户密码",
+	// Toast.LENGTH_SHORT).show();
+	// return false;
+	// }
+	// return true;
+	// }
 }

@@ -31,7 +31,7 @@
                     android:layout_alignParentTop="true"
                     android:text="@string/openstates"
                     android:textColor="#292929"
-                    android:textSize="36px" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/terminal_detail_status"
@@ -41,7 +41,7 @@
                     android:layout_alignParentLeft="true"
                     android:text="未开通"
                     android:textColor="#292929"
-                    android:textSize="42px"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -96,13 +96,14 @@
                 </LinearLayout>
             </RelativeLayout>
 
-			<View style="@style/Divider"/>
+			<View style="@style/Divider"
+                android:layout_marginTop="30dp"/>
 			
             <LinearLayout
                 android:id="@+id/terminal_category_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -128,6 +129,7 @@
                         android:background="#c9c9c9" >
                     </TableLayout>
                 </LinearLayout>
+                
             </LinearLayout>
 
             
@@ -151,7 +153,8 @@
                     android:layout_height="wrap_content"
                     android:background="#e5e4e4"
                     android:orientation="vertical"
-                    android:paddingBottom="50dp" >
+					android:paddingBottom="20dp"
+                    android:layout_marginBottom="30dp" >
                 </LinearLayout>
             </LinearLayout>
             <!-- title -->

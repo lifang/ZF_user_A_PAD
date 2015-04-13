@@ -102,9 +102,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/login_img_pass"
                     android:background="@drawable/ed_adress"
-                    android:paddingBottom="8dp"
-                    android:paddingLeft="6dp"
-                    android:paddingTop="8dp" />
+                    android:drawSelectorOnTop="true"
+                    android:spinnerMode="dropdown" />
 
                 <LinearLayout
                     android:id="@+id/login_linear_deletename"
@@ -218,34 +217,12 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <LinearLayout
+            <Button
                 android:id="@+id/terminal_submit"
-                android:layout_width="120dp"
-                android:layout_height="42dp"
-                android:layout_marginBottom="@dimen/zc_margin_top"
-                android:layout_marginLeft="120dp"
-                android:layout_marginRight="120dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/bg_blue_shape"
-                android:clickable="true"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="提"
-                    android:textColor="@color/fffefe"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:text="交"
-                    android:textColor="@color/fffefe"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                style="@style/ButtonNormal"
+                android:layout_marginTop="24dp"
+                android:enabled="false"
+                android:text="@string/button_submit" />
         </LinearLayout>
     </LinearLayout>
 

@@ -59,7 +59,9 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 			case 0:
 				onLoad();
 				if (myList.size() == 0) {
-					// norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ·");
+
+					// norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ?);
+
 					Xlistview.setVisibility(View.GONE);
 					//eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -109,7 +111,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 		try {
 			view = inflater.inflate(R.layout.f_mine_myorder, container, false);
 			initView();
-			getData();
+			
 		} catch (InflateException e) {
 
 		}
@@ -118,7 +120,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	}
 @Override
 public void onStart() {
-	
+
 	super.onStart();
 	myHandler=new Handler(){
 		public void handleMessage(Message msg) {
@@ -129,6 +131,11 @@ public void onStart() {
 		};
 	};
 	//ll_DD.setVisibility(View.VISIBLE);
+	if(myList.size()!=0){
+		myList.clear();
+	}
+	page = 1;
+	getData();
 }
 @Override
 public void onPause() {
@@ -148,11 +155,6 @@ public void onDestroyView() {
 	// TODO Auto-generated method stub
 	super.onDestroyView();
 }
-@Override
-public void onDestroy() {
-	// TODO Auto-generated method stub
-	super.onDestroy();
-}
 	private void initView() {
 		ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
 		tv_gm = (TextView) view.findViewById(R.id.tv_gm);
@@ -162,7 +164,9 @@ public void onDestroy() {
 		myAdapter = new OrderAdapter(getActivity(), myList,this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
-		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+
+		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?);
+
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
@@ -283,8 +287,12 @@ public void onDestroy() {
 										}.getType());
 								System.out
 										.println("-sendEmptyMessage String()--");
-								if(myList.size()!=0&&moreList.size()==0)
-									Toast.makeText(getActivity(), "æ²¡æœ‰æ›´å¤šæ•°æ®!", 1000).show();
+								if(myList.size()!=0&&moreList.size()==0){
+									Toast.makeText(getActivity(), "Ã»ÓĞ¸ü¶àÊı¾İ!", 1000).show();
+									Xlistview.getmFooterView().setState2(2);
+									Xlistview.setPullLoadEnable(false);
+								}
+									
 								myList.addAll(moreList);
 								handler.sendEmptyMessage(0);
 							} else {
@@ -342,11 +350,16 @@ public void onDestroy() {
 
 	}
 	@Override
+	public void onDestroy() {
+		
+		super.onDestroy();
+		Log.e("onDestroy","onDestroy");
+	}
+	@Override
 	public void onResume() {
 		
 		super.onResume();
-		page = 1;
-		myList.clear();
-		getData();
+	
 	}
+	
 }

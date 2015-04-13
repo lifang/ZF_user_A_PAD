@@ -86,8 +86,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		retail_price.setText("￥" + pirce);
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("实付：￥ " + pirce);
-		tv_totle.setText("实付：￥ " + pirce);
+		tv_pay.setText("实付：￥ " + ((double)pirce)/100);
+		tv_totle.setText("实付：￥ " + ((double)pirce)/100);
 		System.out.println("=paychannelId==" + paychannelId);
 		getData1();
 	
@@ -155,8 +155,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 							.toString());
 				}
 
-				tv_totle.setText("实付：￥ " + pirce * quantity);
-				tv_pay.setText("实付：￥ " + pirce * quantity);
+				tv_totle.setText("实付：￥ " + ((double)pirce)/100 * quantity);
+				tv_pay.setText("实付：￥ " + ((double)pirce)/100 * quantity);
 			}
 
 			@Override
@@ -328,7 +328,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		invoice_info = et_titel.getText().toString();
 		Log.e("goodId=" + goodId + "paychannelId=" + paychannelId + "quantity="
 				+ quantity + "is_need_invoice=" + is_need_invoice, "ccccccccc");
-		API.GOODCONFIRM(GoodConfirm.this,80,goodId,paychannelId,
+		API.GOODCONFIRM(GoodConfirm.this,MyApplication.NewUser.getId(),goodId,paychannelId,
 				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
         		
 				

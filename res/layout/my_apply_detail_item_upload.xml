@@ -2,31 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <FrameLayout style="@style/FrameItem" >
+    <TextView
+        android:id="@+id/apply_detail_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/apply_detail_key"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-			android:layout_gravity="left|center_vertical"
-            android:text="TextView"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/apply_detail_value"
+        style="@style/TextItem"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:background="@drawable/bg_blue_shape"
+        android:layout_marginLeft="20dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/apply_upload_photo"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
-        <Button
-			android:id="@+id/apply_detail_value"
-            style="@style/ButtonNormal"
-            android:layout_width="200px"
-            android:layout_height="80px"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-			android:layout_gravity="right|center_vertical"
-            android:text="上传图片"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </FrameLayout>
+    <ImageButton
+        android:id="@+id/apply_detail_view"
+        style="@style/TextItem"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginLeft="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/check_it"
+        android:visibility="gone" />
 
 </LinearLayout>

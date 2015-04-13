@@ -38,7 +38,6 @@ import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
-import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.google.gson.reflect.TypeToken;

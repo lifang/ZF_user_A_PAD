@@ -1,3 +1,4 @@
+
 eclipse.preferences.version=1
 encoding//assets/city.json=UTF-8
 encoding//src/com/example/zf_pad/aadpter/ShopcarOrderAdapter.java=UTF-8
@@ -9,5 +10,3 @@ encoding//src/com/example/zf_pad/activity/PosSearch1.java=UTF-8
 encoding//src/com/example/zf_pad/activity/Register.java=UTF-8
 encoding//src/com/example/zf_pad/activity/SystemMessage.java=UTF-8
 encoding//src/com/example/zf_pad/fragment/Good_detail_commet.java=UTF-8
-encoding//src/com/example/zf_pad/fragment/M_shopcar.java=UTF-8
-encoding//src/com/example/zf_pad/fragment/Mine_Dd.java=UTF-8

@@ -20,6 +20,8 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
+
+import com.example.zf_pad.activity.SystemMessage;
 import com.example.zf_pad.trade.AfterSaleMarkActivity;
 import com.example.zf_pad.trade.AfterSalePayActivity;
 import com.example.zf_pad.MyApplication;
@@ -144,6 +146,11 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 			public void onSuccess(Pageable<AfterSaleRecord> data) {
 				if (null != data.getContent()) {
 					mEntities.addAll(data.getContent());
+				}
+				if (data.getContent().size() == 0&&mEntities.size()!=0) {
+					Toast.makeText(getActivity(), "没有更多数据",
+							Toast.LENGTH_SHORT).show();
+				
 				}
 				page++;
 				total = data.getTotal();
@@ -516,11 +523,11 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		}
 		
 	}
-	@Override
+/*	@Override
 	public void onResume() {
 		super.onResume();
 		page = 0;
 		mEntities.clear();
 		loadData();
-	}
+	}*/
 }

@@ -1,5 +1,6 @@
 package com.example.zf_pad.fragment;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 
 import android.content.Intent;
@@ -60,6 +61,7 @@ public class M_my extends Fragment implements OnClickListener {
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
 				parent.removeView(view);
+
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine, container, false);
@@ -70,6 +72,47 @@ public class M_my extends Fragment implements OnClickListener {
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		switch (Config.MyTab) {
+		
+		case 0:
+			setback();
+			im1.setVisibility(View.VISIBLE);
+			tvdd.setTextColor(getResources().getColor(R.color.o));
+			m_dd = new Mine_Dd();
+
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_mine, m_dd).commit();
+			break;
+		case 1:
+			setback();
+			im2.setVisibility(View.VISIBLE);
+			tvshjv.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 2:
+			setback();
+			im3.setVisibility(View.VISIBLE);
+			tvwdxx.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 3:
+			setback();
+			im4.setVisibility(View.VISIBLE);
+			tvwdsh.setTextColor(getResources().getColor(R.color.o));
+			break;
+		case 4:
+			setback();
+			im5.setVisibility(View.VISIBLE);
+			tvsq.setTextColor(getResources().getColor(R.color.o));
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	private void initView() {
@@ -91,17 +134,17 @@ public class M_my extends Fragment implements OnClickListener {
 		im3 = (ImageView) view.findViewById(R.id.im3);
 		im4 = (ImageView) view.findViewById(R.id.im4);
 		im5 = (ImageView) view.findViewById(R.id.im5);
-		
-		tvdd = (TextView)view.findViewById(R.id.textdd);
-		tvshjv = (TextView)view.findViewById(R.id.textshjl);
-		tvwdxx = (TextView)view.findViewById(R.id.textwdxx);
-		tvwdsh = (TextView)view.findViewById(R.id.textwdsh);
-		tvsq = (TextView)view.findViewById(R.id.textsq);
+
+		tvdd = (TextView) view.findViewById(R.id.textdd);
+		tvshjv = (TextView) view.findViewById(R.id.textshjl);
+		tvwdxx = (TextView) view.findViewById(R.id.textwdxx);
+		tvwdsh = (TextView) view.findViewById(R.id.textwdsh);
+		tvsq = (TextView) view.findViewById(R.id.textsq);
 
 	}
 
 	private void setback() {
-	
+
 		im1.setVisibility(View.GONE);
 		im2.setVisibility(View.GONE);
 		im3.setVisibility(View.GONE);
@@ -113,25 +156,27 @@ public class M_my extends Fragment implements OnClickListener {
 		tvwdsh.setTextColor(getResources().getColor(R.color.white));
 		tvsq.setTextColor(getResources().getColor(R.color.white));
 	}
+
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.ll_dd:
 
-			//if (m_dd == null)
-				m_dd = new Mine_Dd();
-			
+			// if (m_dd == null)
+			m_dd = new Mine_Dd();
+
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_dd).commit();
-			
+
 			setback();
 			im1.setVisibility(View.VISIBLE);
 			tvdd.setTextColor(getResources().getColor(R.color.o));
+			Config.MyTab=0;
 			break;
 		case R.id.ll_shjl:
-			//if (m_shjl == null)
-				m_shjl = new Mine_Shjl();
-	
+			// if (m_shjl == null)
+			m_shjl = new Mine_Shjl();
+
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_shjl).commit();
 			setback();
@@ -139,7 +184,9 @@ public class M_my extends Fragment implements OnClickListener {
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
 			if(!isHidden)
 				msg.sendToTarget();
+			Config.MyTab=1;
 			break;
+			
 		case R.id.ll_myinfo:
 			if(Mine_MyInfo.mRecordType!=0){
 				return;
@@ -154,11 +201,12 @@ public class M_my extends Fragment implements OnClickListener {
 			if(!isHidden){
 				msg.sendToTarget();	
 			}
+			Config.MyTab=2;
 			break;
 		case R.id.ll_mysh:
-			//if (m_sh == null)
-				m_sh = new Mine_MyMerChant();
-			
+			// if (m_sh == null)
+			m_sh = new Mine_MyMerChant();
+
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_sh).commit();
 			setback();
@@ -166,19 +214,21 @@ public class M_my extends Fragment implements OnClickListener {
 			tvwdsh.setTextColor(getResources().getColor(R.color.o));
 			if(!isHidden)
 			msg.sendToTarget();
+			Config.MyTab=3;
 			break;
 		case R.id.ll_plan:
-			//if (m_plan == null)
-				m_plan = new Mine_Plan();
+			// if (m_plan == null)
+			m_plan = new Mine_Plan();
 
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_plan).commit();
-			
+
 			setback();
 			im5.setVisibility(View.VISIBLE);
 			tvsq.setTextColor(getResources().getColor(R.color.o));
 			if(!isHidden)
 			msg.sendToTarget();
+			Config.MyTab=4;
 			break;
 		default:
 			break;
@@ -190,8 +240,9 @@ public class M_my extends Fragment implements OnClickListener {
 	public void onDestroyView() {
 		Log.i("onDestroyView", "onDestroyView");
 		try {
-			FragmentTransaction transaction =getActivity()
-			.getSupportFragmentManager().beginTransaction();;
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
+			;
 			if (m_dd != null)
 				transaction.remove(m_dd);
 			if (m_shjl != null)
@@ -208,13 +259,23 @@ public class M_my extends Fragment implements OnClickListener {
 
 		super.onDestroyView();
 	}
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		setback();
-		im1.setVisibility(View.VISIBLE);
-		tvdd.setTextColor(getResources().getColor(R.color.o));
-		
+
+		if (Config.AderssManger) {
+			if (m_info == null)
+				m_info = new Mine_MyInfo();
+
+			getActivity().getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_mine, m_info).commit();
+			setback();
+			im3.setVisibility(View.VISIBLE);
+			tvwdxx.setTextColor(getResources().getColor(R.color.o));
+		}
+
 	}
+
 }

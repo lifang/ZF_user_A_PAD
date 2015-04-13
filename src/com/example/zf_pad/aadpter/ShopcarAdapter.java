@@ -146,7 +146,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
 		holder.buyCountEdit.getText();
-		holder.retail_price.setText("$ " + good.getRetail_price());
+		holder.retail_price.setText("￥ " + ((double)good.getRetail_price())/100);
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 		 ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
@@ -154,9 +154,6 @@ public class ShopcarAdapter extends BaseAdapter {
 	}
 
 	private OnClickListener onClick = new OnClickListener() {
-
-		
-
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -175,7 +172,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
 					if (hoder.checkBox.isChecked()) {
 						currentHowMoney -= editGood.getRetail_price();
-						howMoney.setText("合计:" + currentHowMoney);
+						howMoney.setText("合计:" + ((double)currentHowMoney)/100);
 					}
 					
 				    changeContent(position, quantity);
@@ -187,7 +184,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
 				if (hoder.checkBox.isChecked()) {
 					currentHowMoney += editGood.getRetail_price();
-					howMoney.setText("合计:" + currentHowMoney);
+					howMoney.setText("合计:" + ((double)currentHowMoney)/100);
 				}
 				 changeContent(position, quantity);
 				break;
@@ -256,7 +253,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				currentHowMoney += (isChecked ? good.getRetail_price()
 						* good.getQuantity() : -good.getRetail_price()
 						* good.getQuantity());
-				howMoney.setText("合计:" + currentHowMoney);
+				howMoney.setText("合计:" + ((double)currentHowMoney)/100);
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 

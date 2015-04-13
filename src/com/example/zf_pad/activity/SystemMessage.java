@@ -15,6 +15,7 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.entity.TestEntitiy;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
@@ -24,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import android.app.Dialog;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -167,7 +169,21 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 			params.setUseJsonStreamer(true);
 			MyApplication.getInstance().getClient()
 					.post(Config.SYSMSGLIST, params, new AsyncHttpResponseHandler() {
+						private Dialog loadingDialog;
 
+						@Override
+						public void onStart() {
+							
+							super.onStart();
+							loadingDialog = DialogUtil.getLoadingDialg(SystemMessage.this);
+							loadingDialog.show();
+						}
+						@Override
+						public void onFinish() {
+							
+							super.onFinish();
+							loadingDialog.dismiss();
+						}
 						@Override
 						public void onSuccess(int statusCode, Header[] headers,
 								byte[] responseBody) {
@@ -178,6 +194,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 							Gson gson = new Gson();
 							JSONObject jsonobject = null;
 							int code = 0;
+							
 							try {
 								jsonobject = new JSONObject(responseMsg);
 								code = jsonobject.getInt("code");
@@ -185,8 +202,6 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 								if(code==-2){
 								 
 								}else if(code==1){
-									
-									
 									System.out.println("`res``" + res);
 									jsonobject = new JSONObject(res);
 									moreList.clear();
@@ -195,11 +210,11 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 											new TypeToken<List<MessageEntity>>() {
 											}.getType());
 
-									if (moreList.size() == 0) {
+									if (moreList.size() == 0&&myList.size()!=0) {
 										Toast.makeText(SystemMessage.this, "没有更多数据",
 												Toast.LENGTH_SHORT).show();
 										Xlistview.getmFooterView().setState2(2);
-							
+										Xlistview.setPullLoadEnable(false);
 									}
 
 									myList.addAll(moreList);

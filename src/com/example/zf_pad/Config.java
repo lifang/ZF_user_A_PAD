@@ -6,6 +6,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.entity.ApplyneedEntity;
@@ -24,7 +26,10 @@ public class Config {
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;
+	public static String token="123";
 	public static Boolean shopcar = false;
+	public static Boolean AderssManger = false;
+	public static Boolean AderssMangerBACK = false;
 	public static String INDEXIMG = PATHS + "index/sysshufflingfigure/getList";
 	public static String getmes = PATHS + "message/receiver/getAll";
 	public static String MSGEDLONE = PATHS + "message/receiver/deleteById";
@@ -93,11 +98,16 @@ public class Config {
 	public static String CITY = "…œ∫£";
 	public static boolean iszl = false;
 	public static boolean isFRIST = false;
+	public static boolean isExit = false;
 	public static int cityId = 0;
+	public static int MyTab = 0;
 	public static List<City> mCities = new ArrayList<City>();
+	private static SharedPreferences mySharedPreferences;
 
 	public static boolean CheckIsLogin(Context c) {
-		if (MyApplication.NewUser != null) {
+		mySharedPreferences = c.getSharedPreferences(Config.SHARED,c. MODE_PRIVATE);
+
+		if (mySharedPreferences.getBoolean("islogin", false)) {
 			return true;
 		} else {
 			Intent i = new Intent(c, LoginActivity.class);

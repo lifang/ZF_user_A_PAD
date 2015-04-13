@@ -86,8 +86,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		
 		initView();
 		//new ClientUpdate(LoginActivity.this).checkSetting();
-		mySharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
-		editor = mySharedPreferences.edit();
+	
 	}
 
 	private void initView() {

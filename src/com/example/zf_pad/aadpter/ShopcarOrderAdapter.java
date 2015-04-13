@@ -95,7 +95,7 @@ public class ShopcarOrderAdapter extends BaseAdapter {
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X "+String.valueOf(good.getQuantity()));
 	
-		holder.retail_price.setText("¥ " + good.getRetail_price());
+		holder.retail_price.setText("¥ " + ((double)good.getRetail_price())/100);
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
 		return convertView;

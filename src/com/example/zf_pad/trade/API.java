@@ -407,7 +407,7 @@ public class API {
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("terminalid", terminalId);
-		new HttpRequest(context, callback).post(TERMINAL_DETAIL, params);
+		new HttpRequest(context, callback).post(TERMINAL_FIND_POS, params);
 	}
 
 	public static void getApplyList(Context context, int customerId, int page,
