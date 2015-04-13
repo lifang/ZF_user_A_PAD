@@ -41,6 +41,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,14 +52,14 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	public static final int REQUEST_CITY = 1;
 	private int cityId;
 	private JSONObject result;
-	private Handler myHandler;
+	public static Handler myHandler;
 	private EditText et_name,et_phone,et_email,et_address;
 	private List<Province> provinces;
 	private List<City> mCities = new ArrayList<City>();
 	private Button btn_save,btn_exit;
 	public static String pawwword="";
 	private int id=MyApplication.NewUser.getId();
-	
+	private ScrollView sLV;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 public void onStart() {
 	// TODO Auto-generated method stub
 	super.onStart();
-	
+	sLV.setVisibility(View.VISIBLE);
 	myHandler=new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -105,7 +106,13 @@ public void onStart() {
 				}
 				
 				break;
-
+			/*case 1024:
+				sLV.setVisibility(View.GONE);
+				Mine_MyInfo.isHiddenn=true;
+				break;
+			case 1025:
+				sLV.setVisibility(View.VISIBLE);
+				Mine_MyInfo.isHiddenn=false;*/
 			default:
 				break;
 			}
@@ -200,6 +207,7 @@ private void getUserInfo() {
 }
 private void init() {
 	provinces = CommonUtil.readProvincesAndCities(getActivity());
+	sLV=(ScrollView) view.findViewById(R.id.sLV);
 	btn_exit=(Button) view.findViewById(R.id.btn_exit);
 	btn_save=(Button) view.findViewById(R.id.btn_save);
 	et_name=(EditText) view.findViewById(R.id.et_name);

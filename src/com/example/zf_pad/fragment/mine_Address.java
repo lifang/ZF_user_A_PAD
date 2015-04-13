@@ -209,4 +209,19 @@ public void onClick(View v) {
 	}
 	
 }
+@Override
+public void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+}
+@Override
+public void onStop() {
+	// TODO Auto-generated method stub
+	super.onStop();
+}
+@Override
+public void onDestroyView() {
+	// TODO Auto-generated method stub
+	super.onDestroyView();
+}
 }

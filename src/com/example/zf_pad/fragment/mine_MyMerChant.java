@@ -61,6 +61,10 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	private int[] id;
 	public static boolean isFromItem=false;
 	private int customerId=MyApplication.NewUser.getId();
+	private boolean isrefersh=false;
+	private int a=1;
+	private boolean isStop=false;
+	private boolean isLoadMore=false;
 	//private LinearLayout ll_merchant;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +112,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 					break;
 				case 2:
 					isFromItem=true;
-					Intent intent=new Intent(getActivity(),CreatMerchant.class);
+					Intent intent=new Intent(getActivity(),EditMerchant.class);
 					intent.putExtra("position", id[ShopAdapter.pp]);
 					startActivity(intent);
 					break;
@@ -220,6 +224,11 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			}
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+				if(isrefersh){
+					page=a;
+					rows=3;
+					isrefersh=false;
+				}
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("responseMsg", responseMsg);
@@ -233,6 +242,17 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 					int a =jsonobject.getInt("code");
 					if(a==Config.CODE){  
 						JSONArray list=jsonobject.getJSONObject("result").getJSONArray("list");
+						if(list.length()==0){
+							myHandler.sendEmptyMessage(0);
+							isStop=true;
+						/*	Toast.makeText(getActivity(), ss, 
+									Toast.LENGTH_SHORT).show();*/
+							return;
+						}
+						if(list.length()==0&&isLoadMore){
+							CommonUtil.toastShort(getActivity(), "没有更多数据");
+							isLoadMore=false;
+						}
 						id=new int[list.length()];
 						for(int i=0;i<list.length();i++){
 							id[i]=list.getJSONObject(i).getInt("id");
@@ -295,6 +315,9 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "网络异常");
 			return;
 		}
+		isrefersh=true;
+		a=page;
+		rows=a*rows;
 		page=1;
 		datasho.clear();
 		getData();
@@ -306,6 +329,12 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "网络异常");
 			return;
 		}
+		if(isStop){
+			CommonUtil.toastShort(getActivity(), "无更多数据");
+			onLoad();
+			return;
+		}
+		isLoadMore=true;
 		page+=1;
 		getData();
 		

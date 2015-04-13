@@ -6,6 +6,7 @@ import com.example.zf_pad.trade.widget.MTabWidget;
 import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -24,9 +25,11 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	private Mine_Address address;
 	private Mine_baseinfo info;
 	private Mine_chgpaw chgpaw;
-	int mRecordType=0;
+	 public static int mRecordType=0;
 	//private LinearLayout ll_myinfo;
 	private MTabWidget mTabWidget;
+	 private Message msg;
+	    public static boolean isHiddenn=false;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -57,9 +60,9 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		mTabWidget.updateTabs(0);
+		mTabWidget.updateTabs(mRecordType);
 		Log.e("viewS", String.valueOf(view));
-
+		
 		
 	}
 	@Override
@@ -76,6 +79,8 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 		//ll_myinfo.setVisibility(View.GONE);
 	}
 	private void init() {
+		msg=Mine_baseinfo.myHandler.obtainMessage();
+		
 		//ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
 		Log.e("viewR", String.valueOf(view));
 		mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
@@ -91,6 +96,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	@Override
 	public void onDestroyView() {
 		try {
+			mRecordType=0;
 			FragmentTransaction transaction = getActivity()
 					.getSupportFragmentManager().beginTransaction();
 		if (address != null)
@@ -115,24 +121,34 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				info=new Mine_baseinfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, info).commit();
+			
 			break;
 		case 1:
 			if(chgpaw==null)
 				chgpaw=new Mine_chgpaw();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, chgpaw).commit();
+			/*msg.what=1024;
+			if(!isHiddenn)
+				msg.sendToTarget();*/
 			break;
 		case 2:
 			if(address==null)
 				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, address).commit();
+		/*	msg.what=1024;
+			if(!isHiddenn)
+				msg.sendToTarget();*/
 			break;
 		case 3:
 			if (score == null)
 				score = new Mine_score();
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.fm, score).commit();
+			/*msg.what=1024;
+			if(!isHiddenn)
+				msg.sendToTarget();*/
 			break;
 		default:
 			break;

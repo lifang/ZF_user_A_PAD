@@ -16,7 +16,7 @@
     android:layout_height="wrap_content"
     android:layout_width="fill_parent">
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="54dp">
     <TextView 
     android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
        android:id="@+id/tv_shopname"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-   
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
    
         <TextView 
@@ -37,12 +37,13 @@
     android:text="商户法人姓名"
    android:textColor="#554E42"
     android:textSize="18sp"
-    android:layout_marginLeft="100dp"/>
+    android:layout_marginLeft="200dp"/>
         
    <TextView 
        android:id="@+id/tv_name"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/> 
     
     </TableRow>
@@ -66,7 +67,7 @@
     android:layout_marginLeft="10dp"/> 
     </TableRow>
      <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="10dp">
     <TextView 
     android:layout_width="wrap_content"
@@ -79,6 +80,7 @@
        android:id="@+id/tv_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
    
         <TextView 
@@ -87,17 +89,18 @@
     android:text="营业执照登记号"
    android:textColor="#554E42"
     android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
+    android:layout_marginLeft="200dp"/>
         
    <TextView 
        android:id="@+id/tv_license_code"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/> 
     
     </TableRow>
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="54dp">
     <TextView 
     android:layout_width="wrap_content"
@@ -110,6 +113,7 @@
        android:id="@+id/tv_tax_id_number"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
    
         <TextView 
@@ -118,17 +122,19 @@
     android:text="组织机构代码证号"
    android:textColor="#554E42"
     android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
+
+    android:layout_marginLeft="200dp"/>
         
    <TextView 
        android:id="@+id/tv_certificate_no"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+        android:textSize="18sp"
     android:layout_marginLeft="10dp"/>
    
     </TableRow>
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="54dp">
     <TextView 
     android:layout_width="wrap_content"
@@ -141,7 +147,7 @@
     android:layout_width="wrap_content"
     android:layout_height="30dp"
     android:text="上海"
-    android:background="@drawable/ed_adress"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"
     android:gravity="center_vertical|left"/>
         <TextView 
@@ -163,7 +169,7 @@
          android:layout_width="fill_parent"
          android:layout_height="wrap_content">
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="40dp">
     <TextView 
     android:layout_width="wrap_content"
@@ -176,6 +182,7 @@
        android:id="@+id/tv_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="45dp"/>
    
         <TextView 
@@ -184,12 +191,13 @@
     android:text="银行开户许可证号"
    android:textColor="#554E42"
     android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
+    android:layout_marginLeft="280dp"/>
         
    <TextView 
        android:id="@+id/tv_licencenum_bank"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:textSize="18sp"
     android:layout_marginLeft="10dp"/> 
     
     </TableRow>    
@@ -203,7 +211,7 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content">
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="40dp">
         <TextView 
     android:layout_width="wrap_content"
@@ -214,11 +222,9 @@
      android:gravity="center_vertical"/>
    <Button 
        android:id="@+id/btn_legal_photo"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="36dp"/>
         <TextView 
@@ -232,16 +238,14 @@
     />
    <Button 
        android:id="@+id/btn_license_photos"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="54dp"/> 
     </TableRow>
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="40dp">
         <TextView 
     android:layout_width="wrap_content"
@@ -252,11 +256,9 @@
      android:gravity="center_vertical"/>
    <Button 
        android:id="@+id/btn_legal_back_photos"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="36dp"/>
         <TextView 
@@ -270,16 +272,14 @@
     />
    <Button 
        android:id="@+id/btn_tax_regist"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="54dp"/> 
     </TableRow>
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="40dp">
         <TextView 
     android:layout_width="wrap_content"
@@ -290,11 +290,9 @@
      android:gravity="center_vertical"/>
    <Button 
        android:id="@+id/btn_person_photograph"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="36dp"/>
         <TextView 
@@ -308,16 +306,14 @@
     />
    <Button 
        android:id="@+id/btn_organization_code_photos"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="54dp"/> 
     </TableRow>
     <TableRow 
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="54dp"
         android:layout_marginTop="40dp">
         <TextView 
     android:layout_width="wrap_content"
@@ -328,11 +324,9 @@
      android:gravity="center_vertical"/>
    <Button 
        android:id="@+id/btn_bank_license_photos"
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
+    android:background="@drawable/check_it"
     android:gravity="center"
     android:layout_marginLeft="36dp"/>
         <TextView 
@@ -341,7 +335,7 @@
     android:layout_marginLeft="162dp"
     />
    <TextView 
-    android:layout_width="118dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="54dp"/> 
     </TableRow>
@@ -352,10 +346,10 @@
             android:layout_marginTop="40dp"
             android:background="#F7E0C1"/>
     <Button 
-       android:id="@+id/btn_creat"
+       android:id="@+id/btn_edit"
     android:layout_width="258dp"
     android:layout_height="wrap_content"
-    android:text="创建"
+    android:text="编辑"
     android:background="#FF5A10"
     android:textColor="#FFDDB3"
     android:gravity="center"

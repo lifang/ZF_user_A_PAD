@@ -55,6 +55,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private TextView tv_total;
 	private int totalscore=0;
 	private boolean isStop=false;
+	private TextView apply_progress_tips;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -89,7 +90,13 @@ public void onStart() {
 				onLoad();
 				tv_total.setText("总积分:"+totalscore);
 				if(datasco.size()!=0){
+					xxlistview.setVisibility(View.VISIBLE);
+					apply_progress_tips.setVisibility(View.GONE);
 				xxlistview.setAdapter(scoreadapter);
+				}
+				else{
+					apply_progress_tips.setVisibility(View.VISIBLE);
+					xxlistview.setVisibility(View.GONE);
 				}
 				break;
 			case 1:
@@ -115,7 +122,7 @@ private void getData() {
 		return;
 	}
 	String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralList/";
-	url=url+80+"/"+page+"/"+rows;
+	url=url+customerId+"/"+page+"/"+rows;
 	MyApplication.getInstance().getClient()
 	.post(url, new AsyncHttpResponseHandler() {
 
@@ -147,6 +154,10 @@ private void getData() {
 					String res =jsonobject.getString("result");
 					jsonobject = new JSONObject(res);
 					totalscore=jsonobject.getInt("total");
+					if(totalscore==0){
+						myHandler.sendEmptyMessage(0);
+						return;
+					}
 					Log.e("jsonobject", String.valueOf(jsonobject));
 					JSONArray list=jsonobject.getJSONArray("list");
 					if(list.length()==0){
@@ -188,10 +199,9 @@ private void getData() {
 					Toast.makeText(getActivity(), code, 1000).show();
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				 ;	
+				// TODO Auto-generated catch block	
 				e.printStackTrace();
-				
+				CommonUtil.toastShort(getActivity(), "服务器返回数据不完整，缺少属性");
 			}
 
 		}
@@ -206,6 +216,7 @@ private void getData() {
 	});
 }
 private void init() {
+	apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
 	tv_total=(TextView) view.findViewById(R.id.tv_total);
 	btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
 	moreList=new ArrayList<Score>();
