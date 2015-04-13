@@ -16,6 +16,7 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.ApplySearch;
 import com.example.zf_pad.entity.ApplySerch;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.google.gson.Gson;
@@ -85,6 +86,10 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_serch:
+			if(et_process.getText().toString().equals("")){
+				CommonUtil.toastShort(getActivity(), "手机号码不可为空");
+				return;
+			}
 			RequestParams params = new RequestParams();
 			params.put("id", 80);
 			params.put("phone", et_process.getText().toString());
