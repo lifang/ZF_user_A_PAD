@@ -1,39 +1,31 @@
 package com.example.zf_pad.activity;
 
-import static com.example.zf_pad.fragment.Constants.TerminalIntent.CHANNEL_ID;
-import static com.example.zf_pad.fragment.Constants.TerminalIntent.CHANNEL_NAME;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalChannel;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.TextWatcherAdapter;
-import com.example.zf_pad.util.StringUtil;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -178,7 +170,7 @@ public class TerminalAddActivity extends Activity implements
 		case R.id.terminal_submit:
 
 			// if (check()) {
-			API.addTerminal(TerminalAddActivity.this, 80, mChannelId,
+			API.addTerminal(TerminalAddActivity.this, MyApplication.getInstance().NewUser.getId(), mChannelId,
 					mTerminalNumber.getText().toString(), mShopName.getText()
 							.toString(), new HttpCallback(
 							TerminalAddActivity.this) {

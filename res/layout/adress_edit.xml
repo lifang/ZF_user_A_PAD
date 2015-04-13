@@ -225,7 +225,6 @@
                     android:layout_weight="1"
                     android:background="@color/ffffff"
                     android:gravity="right"
-                    android:maxLength="8"
                     android:singleLine="true"
                    
                     android:textColor="@color/text6c6c6c6"

@@ -3,7 +3,10 @@ package com.example.zf_pad.fragment;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 
+import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -30,13 +33,17 @@ public class M_my extends Fragment implements OnClickListener {
 	private Mine_MyInfo m_info;
 	private Mine_MyMerChant m_sh;
 	private Mine_Plan m_plan;
-	private ImageView im1, im2, im3, im4, im5;
+	private Mine_chgpaw m_chgpaw;
+	private Mine_Address m_address;
+	private Mine_score m_score;
+	private ImageView im1,im2,im3,im4,im5;
 	private TextView tvdd;
 	private TextView tvshjv;
 	private TextView tvwdxx;
 	private TextView tvwdsh;
 	private TextView tvsq;
-
+    private Message msg;
+    public static boolean isHidden=false;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -110,6 +117,8 @@ public class M_my extends Fragment implements OnClickListener {
 	}
 
 	private void initView() {
+		msg=Mine_Dd.myHandler.obtainMessage();
+		msg.what=1023;
 		ll_dd = (RelativeLayout) view.findViewById(R.id.ll_dd);
 		ll_shjl = (RelativeLayout) view.findViewById(R.id.ll_shjl);
 		ll_myinfo = (RelativeLayout) view.findViewById(R.id.ll_myinfo);
@@ -174,18 +183,25 @@ public class M_my extends Fragment implements OnClickListener {
 			setback();
 			im2.setVisibility(View.VISIBLE);
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
+			if(!isHidden)
+				msg.sendToTarget();
 			Config.MyTab=1;
 			break;
 			
 		case R.id.ll_myinfo:
+			if(Mine_MyInfo.mRecordType!=0){
+				return;
+			}
 			if (m_info == null)
 				m_info = new Mine_MyInfo();
-
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_info).commit();
 			setback();
 			im3.setVisibility(View.VISIBLE);
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));
+			if(!isHidden){
+				msg.sendToTarget();	
+			}
 			Config.MyTab=2;
 			break;
 		case R.id.ll_mysh:
@@ -197,6 +213,8 @@ public class M_my extends Fragment implements OnClickListener {
 			setback();
 			im4.setVisibility(View.VISIBLE);
 			tvwdsh.setTextColor(getResources().getColor(R.color.o));
+			if(!isHidden)
+			msg.sendToTarget();
 			Config.MyTab=3;
 			break;
 		case R.id.ll_plan:
@@ -209,6 +227,8 @@ public class M_my extends Fragment implements OnClickListener {
 			setback();
 			im5.setVisibility(View.VISIBLE);
 			tvsq.setTextColor(getResources().getColor(R.color.o));
+			if(!isHidden)
+			msg.sendToTarget();
 			Config.MyTab=4;
 			break;
 		default:

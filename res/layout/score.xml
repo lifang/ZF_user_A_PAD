@@ -90,6 +90,13 @@
      />
     </LinearLayout>
 </LinearLayout>
+<TextView
+		android:id="@+id/apply_progress_tips"
+		style="@style/TextItem"
+		android:layout_gravity="center"
+		android:layout_marginTop="36dp"
+		android:text="@string/apply_progress_no_data"
+		android:visibility="gone"/>
 <com.example.zf_pad.util.XListView
         android:id="@+id/list"
         android:layout_width="match_parent"

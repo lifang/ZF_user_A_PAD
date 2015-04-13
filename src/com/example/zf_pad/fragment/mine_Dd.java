@@ -51,7 +51,8 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	String type = null;
 	List<OrderEntity> myList = new ArrayList<OrderEntity>();
 	List<OrderEntity> moreList = new ArrayList<OrderEntity>();
-	//private LinearLayout ll_DD;
+	private LinearLayout ll_DD;
+	public static Handler myHandler;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -93,19 +94,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 		super.onCreate(savedInstanceState);
 
 	}
-@Override
-public void onPause() {
-	// TODO Auto-generated method stub
-	super.onPause();
-	Log.e("onPause", "onPause");
-	//ll_DD.setVisibility(View.GONE);
-}
-@Override
-public void onStop() {
-	// TODO Auto-generated method stub
-	super.onStop();
-	Log.e("onStop", "onStop");
-}
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,14 +122,41 @@ public void onStop() {
 public void onStart() {
 
 	super.onStart();
+	myHandler=new Handler(){
+		public void handleMessage(Message msg) {
+			if(msg.what==1023){
+				ll_DD.setVisibility(View.GONE);
+				M_my.isHidden=true;
+			}
+		};
+	};
+	//ll_DD.setVisibility(View.VISIBLE);
 	if(myList.size()!=0){
 		myList.clear();
 	}
 	page = 1;
 	getData();
 }
+@Override
+public void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+	Log.e("onPause", "onPause");
+	//ll_DD.setVisibility(View.GONE);
+}
+@Override
+public void onStop() {
+	// TODO Auto-generated method stub
+	super.onStop();
+	Log.e("onStop", "onStop");
+}
+@Override
+public void onDestroyView() {
+	// TODO Auto-generated method stub
+	super.onDestroyView();
+}
 	private void initView() {
-		//ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
+		ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
 		tv_gm = (TextView) view.findViewById(R.id.tv_gm);
 		tv_zl = (TextView) view.findViewById(R.id.tv_zl);
 		tv_gm.setOnClickListener(this);
