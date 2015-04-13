@@ -30,9 +30,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
-import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -350,7 +350,7 @@ public class TerminalManagerActivity extends Activity implements
 
 	private void loadData() {
 
-		API.getTerminalApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows,
+		API.getTerminalApplyList(this, MyApplication.getInstance().NewUser.getId(), page + 1, rows,
 				new HttpCallback<Page<TerminalManagerEntity>>(this) {
 					@Override
 					public void onSuccess(Page<TerminalManagerEntity> data) {

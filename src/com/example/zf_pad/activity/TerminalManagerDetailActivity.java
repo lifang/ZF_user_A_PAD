@@ -31,6 +31,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalApply;
 import com.example.zf_pad.entity.TerminalComment;
@@ -38,7 +39,6 @@ import com.example.zf_pad.entity.TerminalDetail;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
-import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -147,7 +147,7 @@ public class TerminalManagerDetailActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId, Constants.TEST_CUSTOMER,
+		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance().NewUser.getId(),
 				new HttpCallback<TerminalDetail>(this) {
 					@Override
 					public void onSuccess(TerminalDetail data) {
