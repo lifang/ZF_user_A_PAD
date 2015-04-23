@@ -147,7 +147,7 @@ public class TerminalManagerDetailActivity extends Activity {
 	}
 
 	private void loadData() {
-		API.getTerminalDetail(this, mTerminalId, MyApplication.getInstance().NewUser.getId(),
+		API.getTerminalDetail(this, mTerminalId, MyApplication.NewUser.getId(),
 				new HttpCallback<TerminalDetail>(this) {
 					@Override
 					public void onSuccess(TerminalDetail data) {

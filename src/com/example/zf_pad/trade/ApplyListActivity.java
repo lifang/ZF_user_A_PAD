@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.fragment.Constants;
@@ -74,7 +75,7 @@ public class ApplyListActivity extends Activity implements
 	}
 
 	private void loadData() {
-		API.getApplyList(this, Constants.TEST_CUSTOMER, page + 1, rows,
+		API.getApplyList(this, MyApplication.NewUser.getId(), page + 1, rows,
 				new HttpCallback<List<TerminalManagerEntity>>(this) {
 					@Override
 					public void onSuccess(List<TerminalManagerEntity> data) {

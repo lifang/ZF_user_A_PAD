@@ -53,6 +53,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -347,7 +348,7 @@ public class MyApplyDetail extends FragmentActivity {
 		// mMaterialContainer_9.removeAllViews();
 		initMerchantDetailKeys();
 
-		API.getApplyDetail(this, 80, mTerminalId, applyType,
+		API.getApplyDetail(this, MyApplication.NewUser.getId(), mTerminalId, applyType,
 				new HttpCallback<My_ApplyDetail>(this) {
 					@Override
 					public void onSuccess(My_ApplyDetail data) {
