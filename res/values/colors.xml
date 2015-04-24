@@ -110,4 +110,8 @@
 	<color name="background_tab">#EFEBEF</color>
 <color name="bg0etitle">#0eFF6624</color>
 <color name="NoRead">#C1C1C1</color>
+
+    <color name="trans_white">#20ffffff</color>
+    <color name="trans">#00000000</color>
+    <color name="blue">#cc33b5e5</color>
 </resources>

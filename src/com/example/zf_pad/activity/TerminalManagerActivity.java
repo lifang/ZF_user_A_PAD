@@ -40,6 +40,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
+import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 public class TerminalManagerActivity extends Activity implements
@@ -342,8 +343,13 @@ public class TerminalManagerActivity extends Activity implements
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalManagerActivity.this,
-						"not yet completed...");
+				//ÃÌº” ”∆µ…Û∫À
+				TerminalManagerEntity item = (TerminalManagerEntity) view
+						.getTag();
+				
+				Intent intent = new Intent(TerminalManagerActivity.this, VideoActivity.class);
+				intent.putExtra(TERMINAL_ID, item.getId());
+				startActivity(intent);
 			}
 		};
 	}

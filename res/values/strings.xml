@@ -315,4 +315,5 @@
   <string name="button_copy">复制</string> 
   <string name="toast_copy_password">密码已复制到剪贴板</string> 
     
+  <string name="endCall1">结束视频</string>
 </resources>

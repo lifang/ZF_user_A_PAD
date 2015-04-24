@@ -21,7 +21,10 @@ import com.example.zf_pad.entity.other_rate;
 import com.example.zf_pad.trade.entity.City;
 
 public class Config {
-
+	// ”∆µÕ®ª∞
+	public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	public static final int VIDEO_SERVER_PORT = 8906;
+	
 	public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";

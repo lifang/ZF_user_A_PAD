@@ -30,6 +30,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
+import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 public class ApplyListActivity extends Activity implements
@@ -195,8 +196,9 @@ public class ApplyListActivity extends Activity implements
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					CommonUtil.toastShort(ApplyListActivity.this,
-							"not yet completed...");
+					Intent intent = new Intent(ApplyListActivity.this, VideoActivity.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					startActivity(intent);
 				}
 			});
 			return convertView;

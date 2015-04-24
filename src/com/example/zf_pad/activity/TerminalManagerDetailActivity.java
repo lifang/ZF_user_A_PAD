@@ -44,6 +44,7 @@ import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
+import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 @SuppressLint("NewApi")
@@ -140,8 +141,9 @@ public class TerminalManagerDetailActivity extends Activity {
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalManagerDetailActivity.this,
-						"not yet completed...");
+				Intent intent = new Intent(TerminalManagerDetailActivity.this, VideoActivity.class);
+				intent.putExtra(TERMINAL_ID, mTerminalId);
+				startActivity(intent);
 			}
 		};
 	}
