@@ -311,6 +311,7 @@ public class MyApplyDetail extends FragmentActivity {
 					public void onSuccess(Object data) {
 						CommonUtil.toastShort(MyApplyDetail.this,
 								data.toString());
+						finish();
 					}
 
 					@Override

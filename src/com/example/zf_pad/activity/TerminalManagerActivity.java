@@ -164,6 +164,9 @@ public class TerminalManagerActivity extends Activity implements
 			switch (item.getOpenState()) {
 			case OPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
+
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
 				addButton(holder.llButtons, R.string.terminal_button_video,
 						item, mVideoListener);
 				addButton(holder.llButtons, R.string.terminal_button_pos, item,
@@ -182,16 +185,28 @@ public class TerminalManagerActivity extends Activity implements
 				break;
 			case UNOPENED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
+
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
 				addButton(holder.llButtons, R.string.terminal_button_open,
 						item, mOpenListener);
 				addButton(holder.llButtons, R.string.terminal_button_video,
 						item, mVideoListener);
 				break;
 			case CANCELED:
-				holder.llButtonContainer.setVisibility(View.GONE);
+				holder.llButtonContainer.setVisibility(View.VISIBLE);
+
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
 				break;
 			case STOPPED:
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
+
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
+				addButton(holder.llButtons);
 				addButton(holder.llButtons, R.string.terminal_button_sync,
 						item, mSyncListener);
 				break;
@@ -219,7 +234,7 @@ public class TerminalManagerActivity extends Activity implements
 			button.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.shape_o));
 			button.setText(res);
-			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 			button.setTextColor(getResources().getColorStateList(
 					R.color.mybutton));
 			if (null != tag) {
@@ -228,8 +243,19 @@ public class TerminalManagerActivity extends Activity implements
 			if (null != listener) {
 				button.setOnClickListener(listener);
 			}
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(145,
-					LayoutParams.MATCH_PARENT, 0);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,
+					LayoutParams.MATCH_PARENT, 1);
+			if (ll.getChildCount() > 0) {
+				lp.setMargins(10, 0, 0, 0);
+			}
+			ll.addView(button, lp);
+		}
+
+		private void addButton(LinearLayout ll) {
+			Button button = new Button(TerminalManagerActivity.this);
+			button.setVisibility(View.INVISIBLE);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,
+					LayoutParams.MATCH_PARENT, 1);
 			if (ll.getChildCount() > 0) {
 				lp.setMargins(10, 0, 0, 0);
 			}
