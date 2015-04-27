@@ -327,7 +327,7 @@ public class Register extends Activity implements OnClickListener {
 			// tv_code.setText("120秒");
 			getCode();
 			break;
-		case R.id.tv_check: // ��ȡ��֤��
+		case R.id.tv_check:
 			System.out.println("vcode" + vcode);
 
 			if (login_edit_code.getText().toString().equals(vcode)) {

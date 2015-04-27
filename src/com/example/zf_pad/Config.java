@@ -22,10 +22,18 @@ import com.example.zf_pad.trade.entity.City;
 
 public class Config {
 
+
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
 	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+
+	// ”∆µÕ®ª∞
+	public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	public static final int VIDEO_SERVER_PORT = 8906;
+	
+	//public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
+
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;

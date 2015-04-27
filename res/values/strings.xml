@@ -236,7 +236,6 @@
     <string-array name="apply_detail_gender">
         <item>男</item>
         <item>女</item>
-        <item>其他</item>
     </string-array>
     <string-array name="my_apply_detail_merchant_keys">
         <item>选择已有商户</item>
@@ -316,4 +315,5 @@
   <string name="button_copy">复制</string> 
   <string name="toast_copy_password">密码已复制到剪贴板</string> 
     
+  <string name="endCall1">结束视频</string>
 </resources>

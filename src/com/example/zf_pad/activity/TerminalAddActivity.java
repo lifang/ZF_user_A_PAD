@@ -170,7 +170,7 @@ public class TerminalAddActivity extends Activity implements
 		case R.id.terminal_submit:
 
 			// if (check()) {
-			API.addTerminal(TerminalAddActivity.this, MyApplication.getInstance().NewUser.getId(), mChannelId,
+			API.addTerminal(TerminalAddActivity.this, MyApplication.NewUser.getId(), mChannelId,
 					mTerminalNumber.getText().toString(), mShopName.getText()
 							.toString(), new HttpCallback(
 							TerminalAddActivity.this) {
