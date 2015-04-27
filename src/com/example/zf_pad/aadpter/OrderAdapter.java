@@ -60,7 +60,7 @@ public class OrderAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
  		if(convertView == null){
 			holder = new ViewHolder();
@@ -223,8 +223,8 @@ public class OrderAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				Intent i = new Intent(context,PayFromCar.class);
+				i.putExtra("orderId", list.get(position).getOrder_id());
 				context.startActivity(i);
 			}
 		});

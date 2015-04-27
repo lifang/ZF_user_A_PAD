@@ -7,7 +7,6 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -287,7 +286,10 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			});
 			break;
 		case R.id.bt_pay:
-			startActivity(new Intent(OrderDetail.this,PayFromCar.class));
+			Intent i = new Intent(getApplicationContext(),PayFromCar.class);
+			i.putExtra("orderId", id+"");
+			startActivity(i);
+			finish();
 			break;
 		case R.id.bt_cancel:
 			final AlertDialog ad = new AlertDialog(OrderDetail.this);

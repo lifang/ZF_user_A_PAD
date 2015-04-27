@@ -9,16 +9,14 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import com.example.zf_pad.fragment.Mine_Address;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-
 import com.example.zf_pad.Posport;
-
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
-
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
@@ -196,11 +194,15 @@ public class API {
 	public static String DELECT_MERCHANTLIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/merchant/delete/";
 	// update merchant
-	 	public static String UPDATE_MERCHANT=SCHEMA + HOST
-	 			+"/ZFMerchant/api/merchant/update/";
+	public static String UPDATE_MERCHANT=SCHEMA + HOST
+			+"/ZFMerchant/api/merchant/update/";
 	// update file
-	 	public static String UPDATE_FILE=SCHEMA + HOST
-	 			+"/ZFMerchant/api/merchant/upload/file";
+	public static String UPDATE_FILE=SCHEMA + HOST
+			+"/ZFMerchant/api/merchant/upload/file";
+
+	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
+			+"/ZFMerchant/api/order/getMyOrderById";
+	
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -326,7 +328,7 @@ public class API {
 
 	public static void resubmitCancel(Context context, int recordId,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
 		new HttpRequest(context, callback).post(AFTER_SALE_RESUBMIT_CANCEL,
@@ -372,12 +374,12 @@ public class API {
 
 	public static void test(Context context, String customerId,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", customerId);
 		new HttpRequest(context, callback)
-				.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
-						params);
+		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
+				params);
 	}
 
 	public static void getChannelList(Context context, HttpCallback callback) {
@@ -605,7 +607,7 @@ public class API {
 
 	public static void AddAdres1(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -614,7 +616,7 @@ public class API {
 
 	public static void zhuche(Context context, String username,
 
-	String password, String code, int cityId, Boolean accountType,
+			String password, String code, int cityId, Boolean accountType,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
@@ -638,7 +640,7 @@ public class API {
 
 	public static void getEmailPass(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -681,7 +683,7 @@ public class API {
 
 	public static void getUserinfo(Context context,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		GET_USERINFO = GET_USERINFO + 80;
 		new HttpRequest(context, callback).post(GET_USERINFO);
 	}
@@ -784,5 +786,14 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("serial_num", terminalNumber);
 		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
+	}
+	//我的订单--订单详情
+	public static void getMyOrderById(
+			Context context,
+			int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id); 
+		new HttpRequest(context, callback).post(URL_GET_MYORDERBYID, params);
 	}
 }

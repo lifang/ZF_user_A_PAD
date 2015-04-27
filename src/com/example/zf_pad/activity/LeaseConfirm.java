@@ -8,21 +8,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,11 +28,11 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.AddressManagerAdapter;
 import com.example.zf_pad.aadpter.ChooseAdressAdapter;
 import com.example.zf_pad.entity.AdressEntity;
 import com.example.zf_pad.trade.API;
@@ -346,10 +344,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void onSuccess(Object data) {
-						// TODO Auto-generated method stub
-						
-						Intent i1 = new Intent(LeaseConfirm.this, PayFromCar.class);
+						Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
+						i1.putExtra("orderId", data.toString()+"");
 						startActivity(i1);
+						finish();
 					}
 
 					@Override
