@@ -5,16 +5,13 @@
   	android:orientation="vertical"
   	android:background="#f8f8f8"
   	 > 
-		<View android:layout_marginTop="11dp"
-	    android:layout_width="fill_parent"
-	    android:background="@color/Viewc2"
-	    android:layout_height="1dp"/>
+
 	 <LinearLayout
         android:id="@+id/eva_nodata"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
-        android:background="@color/ffffff"
+        android:background="#f8f8f8"
         android:orientation="horizontal" 
         android:visibility="gone">
 

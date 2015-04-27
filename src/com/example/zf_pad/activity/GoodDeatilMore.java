@@ -8,14 +8,18 @@ import com.example.zf_pad.fragment.Good_detail_commet;
 import com.example.zf_pad.fragment.Good_detail_trade;
 import com.example.zf_pad.fragment.Good_detail_zd;
 import com.example.zf_pad.util.ScrollViewWithListView;
+import com.example.zf_pad.util.TitleMenuUtil;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +36,16 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	private TextView tv_pl;
 	private TextView tv_zd;
 	private TextView tv_jy;
+	private ImageView search2;
+	private LinearLayout ll_back;
+	private int comments;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.goodmoremain);
+	
 		type = getIntent().getIntExtra("type", 0);
+		comments = getIntent().getIntExtra("comments", 0);
 		initView();
 		switch (type) {
 		case 0:
@@ -82,13 +90,17 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	}
 
 	private void initView() {
-		
+		ll_back = (LinearLayout)findViewById(R.id.titleback_linear_back);
+		ll_back.setOnClickListener(this);
+		search2 = (ImageView) findViewById(R.id.search2);
+		search2.setOnClickListener(this);
 		tv_ms = (TextView) findViewById(R.id.tv_ms);
 		tv_ms.setOnClickListener(this);
 		tv_kt = (TextView) findViewById(R.id.tv_kt);
 		tv_kt.setOnClickListener(this);
 		tv_pl = (TextView) findViewById(R.id.tv_pl);
 		tv_pl.setOnClickListener(this);
+		tv_pl.setText("ÆÀÂÛ"+"("+comments+")");
 		tv_zd = (TextView) findViewById(R.id.tv_zd);
 		tv_zd.setOnClickListener(this);
 		tv_jy = (TextView) findViewById(R.id.tv_jy);
@@ -106,6 +118,15 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.titleback_linear_back:
+			this.finish();
+			break;
+		case R.id.search2:
+			if (Config.CheckIsLogin(GoodDeatilMore.this)) {
+				Config.shopcar = true;
+				Intent i = new Intent(GoodDeatilMore.this, MainActivity.class);
+				startActivity(i);
+			}
 		case R.id.tv_zd:
 			if (zd == null)
 				zd = new Good_detail_zd();

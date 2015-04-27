@@ -19,6 +19,13 @@ import com.example.zf_pad.entity.tDates;
 import com.example.zf_pad.trade.entity.City;
 
 public class Config {
+
+
+	// public final static String PATHS =
+	// "http://114.215.149.242:18080/ZFMerchant/api/";
+	// http://121.40.84.2:28080/ZFAgent/api
+	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+
 	// ”∆µÕ®ª∞
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
 	public static final int VIDEO_SERVER_PORT = 8906;
@@ -41,11 +48,12 @@ public class Config {
 	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
 	
 	
-	public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
+	//public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
+
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;
-	public static String token="123";
+	public static String token = "123";
 	public static Boolean shopcar = false;
 	public static Boolean AderssManger = false;
 	public static Boolean AderssMangerBACK = false;
@@ -55,7 +63,7 @@ public class Config {
 	public static String MSGEDLALL = PATHS + "message/receiver/batchDelete";
 	public static String MSGREAD = PATHS + "message/receiver/batchRead";
 	public final static String LOGIN = PATHS + "user/studentLogin";
-
+	public static int GOODID = -1;
 	public static int UserID = 1;
 	// user/userRegistration
 	public final static String UserRegistration = PATHS
@@ -97,18 +105,19 @@ public class Config {
 
 	public static final String POSTHOT = PATHS + "index/pos_list";
 
-	public static final String MERCHANTINFO=PATHS + "merchant/getOne/";
+	public static final String MERCHANTINFO = PATHS + "merchant/getOne/";
 
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
+	public static ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<tDates> tDates = new ArrayList<tDates>();
 	public static ArrayList<other_rate> other_rate = new ArrayList<other_rate>();
 	public static List<ApplyneedEntity> pub = new LinkedList<ApplyneedEntity>();
 	public static List<ApplyneedEntity> single = new LinkedList<ApplyneedEntity>();
 	public static List<PosEntity> myList = new ArrayList<PosEntity>();
 	public static List<Goodlist> list = new ArrayList<Goodlist>();
-	public static int ScreenWidth=0;
-	public static int ScreenHeight=0;
+	public static int ScreenWidth = 0;
+	public static int ScreenHeight = 0;
 	public static String suportare;
 	public static String suportcl;
 	public static String tv_sqkt;
@@ -124,9 +133,15 @@ public class Config {
 	private static SharedPreferences mySharedPreferences;
 
 	public static boolean CheckIsLogin(Context c) {
-		mySharedPreferences = c.getSharedPreferences(Config.SHARED,c. MODE_PRIVATE);
+		mySharedPreferences = c.getSharedPreferences(Config.SHARED,
+				c.MODE_PRIVATE);
 
-		if (mySharedPreferences.getBoolean("islogin", false)) {
+		/*
+		 * if (mySharedPreferences.getBoolean("islogin", false)) { return true;
+		 * } else { Intent i = new Intent(c, LoginActivity.class);
+		 * c.startActivity(i); return false; }
+		 */
+		if (MyApplication.NewUser!=null) {
 			return true;
 		} else {
 			Intent i = new Intent(c, LoginActivity.class);

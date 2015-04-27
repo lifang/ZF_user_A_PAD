@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingRight="@dimen/dlpad"
-                        android:text="1231254565554" />
+                        android:text="" />
                 </LinearLayout>
 
                 <TextView
@@ -74,7 +74,7 @@
                         android:layout_height="fill_parent"
                         android:gravity="center"
                         android:paddingRight="20dp"
-                        android:text="2014-12-22" />
+                        android:text="" />
                 </RelativeLayout>
 
                 <TextView
@@ -100,7 +100,7 @@
                         android:layout_height="fill_parent"
                         android:gravity="center"
                         android:paddingRight="50dp"
-                        android:text="2014-12-22" />
+                        android:text="" />
                 </RelativeLayout>
             </LinearLayout>
 

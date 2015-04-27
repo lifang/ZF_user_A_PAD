@@ -23,7 +23,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginTop="30dp"
                 android:text="对个人开通"
-                android:textColor="@color/text6c6c6c6"
+               android:textColor="@color/text292929"
                 android:textSize="18sp" />
 
        <View 
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginTop="30dp"
                 android:text="对公开通"
-                android:textColor="@color/text6c6c6c6"
+                android:textColor="@color/text292929"
                 android:textSize="18sp" />
 
             <View

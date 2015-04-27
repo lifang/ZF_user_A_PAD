@@ -111,7 +111,7 @@ public class Good_detail_commet extends Fragment implements  IXListViewListener{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-			//	Intent i = new Intent(GoodComment.this, OrderDetail.class);
+			//	Intent i = new Intent(GoodComment.this, OrderDetailPG.class);
 			//	startActivity(i);
 			}
 		});
@@ -162,14 +162,9 @@ public class Good_detail_commet extends Fragment implements  IXListViewListener{
 	}
  
 	private void getData() {
-		// TODO Auto-generated method stub
-		 
-	 
-
-		// TODO Auto-generated method stub
 		String url = Config.goodcomment;
 		RequestParams params = new RequestParams();
-		params.put("goodId", 1);
+		params.put("goodId", Config.goodId);
 		params.put("indexPage", page);
 	 	params.put("rows", rows);
 	 	System.out.println("---"+page);

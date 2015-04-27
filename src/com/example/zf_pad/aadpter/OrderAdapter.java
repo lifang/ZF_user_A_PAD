@@ -228,21 +228,23 @@ public class OrderAdapter extends BaseAdapter{
 				context.startActivity(i);
 			}
 		});
- 		convertView.setId(position);
+ 	/*	convertView.setId(position);
 		convertView.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				int index=v.getId();
-				Intent i = new Intent(context, OrderDetail.class);
-				i.putExtra("status", list.get(index).getOrder_status());
-				i.putExtra("id", list.get(index).getOrder_id());
-				i.putExtra("type", list.get(v.getId()).getOrder_type());
-				
+				//int index=v.getId();
+				if(list.size()!=0){
+					Intent i = new Intent(context, OrderDetail.class);
+					i.putExtra("status", list.get(v.getId()).getOrder_status());
+					i.putExtra("id", list.get(v.getId()).getOrder_id());
+					i.putExtra("type", list.get(v.getId()).getOrder_type());
+					context.startActivity(i);
+				}			
 				//Toast.makeText(context, list.get(index).getOrder_status()+"+"+list.get(index).getOrder_id(), 1000).show();
-				context.startActivity(i);
+				
 			}
-		});
+		});*/
 		
 		return convertView;
 	}

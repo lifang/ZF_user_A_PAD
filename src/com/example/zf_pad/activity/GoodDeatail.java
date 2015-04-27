@@ -80,7 +80,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private GoodinfoEntity gfe;
 	private String chanel = "Í¨µÀ3";
 	private ArrayList<String> arelist = new ArrayList<String>();
-	private int commentsCount;
+	private int commentsCount=0;
 	FactoryEntity factoryEntity;
 	private TextView tv_bug, tv_lea, tv_title, content1, tv_pp, tv_xh, tv_ys,
 			tv_price, tv_lx, tv_sjhttp, tv_spxx, fac_detai, ppxx, wkxx, dcxx,
@@ -97,6 +97,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private ButtonGridviewAdapter buttonAdapter;
 	List<GriviewEntity> User_button = new ArrayList<GriviewEntity>();
 	private Boolean islea = false;
+	private List<String> piclist;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -124,6 +125,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				// tv_qgd.setText(gfe.getSign_order_way());
 				// tv_jm.setText(gfe.getEncrypt_card_way());
 				// lvAdapter.notifyDataSetChanged();
+				tv_pl.setText("ÆÀÂÛ"+"("+commentsCount+")");
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -143,6 +145,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	};
 	private Intent i;
 	private LinearLayout ll_Factory;
+	private TextView tv_pl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +206,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		tv_ms.setOnClickListener(this);
 		TextView tv_kt = (TextView) findViewById(R.id.tv_kt);
 		tv_kt.setOnClickListener(this);
-		TextView tv_pl = (TextView) findViewById(R.id.tv_pl);
+		tv_pl = (TextView) findViewById(R.id.tv_pl);
 		tv_pl.setOnClickListener(this);
 		TextView tv_zd = (TextView) findViewById(R.id.tv_zd);
 		tv_zd.setOnClickListener(this);
@@ -267,26 +270,32 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		case R.id.tv_zd:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 3);
+			i.putExtra("commets", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_ms:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 0);
+			i.putExtra("commets", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_kt:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 1);
+			i.putExtra("commets", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_pl:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 2);
+			i.putExtra("commets", commentsCount);
+			Config.goodId=id;
 			startActivity(i);
 			break;
 		case R.id.tv_jy:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 4);
+			i.putExtra("commets", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.titleback_linear_back:
@@ -307,27 +316,37 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.setting_btn_clear: // tv_comment
-			if (islea) {
+			if (Config.CheckIsLogin(GoodDeatail.this)) {
+				if (islea) {
 
-				Intent i21 = new Intent(GoodDeatail.this, LeaseConfirm.class);
-				i21.putExtra("getTitle", gfe.getTitle());
-				i21.putExtra("price", gfe.getPrice());
-				i21.putExtra("model", gfe.getModel_number());
-				i21.putExtra("chanel", chanel);
-				i21.putExtra("paychannelId", paychannelId);
-				i21.putExtra("goodId", gfe.getId());
-				startActivity(i21);
-			} else {
+					Intent i21 = new Intent(GoodDeatail.this, LeaseConfirm.class);
+					i21.putExtra("getTitle", gfe.getTitle());
+					i21.putExtra("price", gfe.getPrice());
+					i21.putExtra("model", gfe.getModel_number());
+					i21.putExtra("chanel", chanel);
+					i21.putExtra("paychannelId", paychannelId);
+					i21.putExtra("commets", commentsCount);
+					i21.putExtra("goodId", gfe.getId());
+					if(piclist.size()!=0){
+						i21.putExtra("piclist",piclist.get(0));
+					}
+					startActivity(i21);
+				} else {
 
-				Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
-				i2.putExtra("getTitle", gfe.getTitle());
-				i2.putExtra("price", gfe.getPrice());
-				i2.putExtra("model", gfe.getModel_number());
-				i2.putExtra("chanel", chanel);
-				i2.putExtra("paychannelId", paychannelId);
-				i2.putExtra("goodId", gfe.getId());
-				startActivity(i2);
+					Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
+					i2.putExtra("getTitle", gfe.getTitle());
+					i2.putExtra("price", gfe.getPrice());
+					i2.putExtra("model", gfe.getModel_number());
+					i2.putExtra("chanel", chanel);
+					i2.putExtra("paychannelId", paychannelId);
+					i2.putExtra("goodId", gfe.getId());
+					if(piclist.size()!=0){
+						i2.putExtra("piclist",piclist.get(0));
+					}
+					startActivity(i2);
+				}
 			}
+			
 		default:
 			break;
 		}
@@ -336,7 +355,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private void getdata() {
 		RequestParams params = new RequestParams();
 		params.put("goodId", id);
-		params.put("city_id", 1);
+		params.put("city_id", MyApplication.getCITYID());
 
 		params.setUseJsonStreamer(true);
 		MyApplication
@@ -345,6 +364,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				.post(Config.GOODDETAIL, params,
 						new AsyncHttpResponseHandler() {
 							private Dialog loadingDialog;
+							
 
 							@Override
 							public void onStart() {
@@ -385,7 +405,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										String res = jsonobject
 												.getString("result");
 										jsonobject = new JSONObject(res);
-										List<String> piclist = gson.fromJson(
+										
+										piclist = gson.fromJson(
 												jsonobject
 														.getString("goodPics"),
 												new TypeToken<List<String>>() {
@@ -513,7 +534,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												jsonobject.getString("tDates"),
 												new TypeToken<List<ChanelEntitiy>>() {
 												}.getType());
-										Config.celist = celist2;
+										Config.celist2 = celist2;
 										Config.tv_sqkt = jsonobject
 												.getString("opening_requirement");
 										ll_Factory = (LinearLayout) findViewById(R.id.mer_detail);

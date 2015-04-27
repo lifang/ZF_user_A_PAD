@@ -508,7 +508,7 @@ public class API {
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("customerId", 80);
+		params.put("customerId", MyApplication.NewUser.getId());
 		// int aa[] = new int[] { 138, 140 };
 		try {
 			params.put("cartid", new JSONArray(gson.toJson(cartid)));

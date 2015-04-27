@@ -46,7 +46,7 @@
                 android:layout_weight="1"
                 android:textSize="18sp"
                 android:gravity="center_horizontal"
-                android:text="租凭" />
+                android:text="租赁" />
         </LinearLayout>
 
     </RelativeLayout>

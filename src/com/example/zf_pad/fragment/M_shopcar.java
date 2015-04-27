@@ -78,7 +78,6 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	};
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 	@Override
@@ -86,11 +85,11 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 			Bundle savedInstanceState) {
 		
 			//view = inflater.inflate(R.layout.f_main,container,false);
-		if (view != null) {
+		/*if (view != null) {
 	        ViewGroup parent = (ViewGroup) view.getParent();
 	        if (parent != null)
 	            parent.removeView(view);
-	    }
+	    }*/
 	    try {
 	        view = inflater.inflate(R.layout.f_shopcar, container, false);
 	        initView();
@@ -119,8 +118,13 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 					}
 				}
 			//MyApplication.setComfirmList(myShopList);
-				Intent i = new Intent(getActivity(), ConfirmOrder.class);
-				startActivity(i);
+				if(MyApplication.getComfirmList().size()!=0){
+					Intent i = new Intent(getActivity(), ConfirmOrder.class);
+					startActivity(i);
+				}else{
+					Toast.makeText(getActivity(), "请选择要结算商品", 1000).show();
+				}
+				
 			}
 		});
 
@@ -137,8 +141,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-				// Intent i = new Intent(ShopCar.this, OrderDetail.class);
+				// Intent i = new Intent(ShopCar.this, OrderDetailPG.class);
 				// startActivity(i);
 			}
 		});
@@ -147,7 +150,6 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	private void onLoad() {
@@ -211,7 +213,6 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
 						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
@@ -228,7 +229,6 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	}
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		
 	}
 

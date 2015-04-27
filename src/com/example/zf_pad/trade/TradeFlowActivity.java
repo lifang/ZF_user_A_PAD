@@ -11,9 +11,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
+
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.widget.MyTabWidget;
 import com.example.zf_pad.trade.widget.MyViewPager;
+import com.example.zf_pad.util.TitleMenuUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,7 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
     }
 
     private void initViews() {
-       //new TitleMenuUtil(this, getString(R.string.title_trade_flow)).show();
+      new TitleMenuUtil(this, getString(R.string.title_trade_flow)).show();
 
         mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
         mViewPager = (MyViewPager) findViewById(R.id.view_pager);
@@ -45,7 +48,7 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
         String[] tabs = getResources().getStringArray(R.array.trade_flow_tabs);
         for (int i = 0; i < tabs.length; i++) {
             TradeFlowFragment fragment = TradeFlowFragment.newInstance(i + 1);
-            mFragments.add(fragment);
+            //mFragments.add(fragment);
             mTabWidget.addTab(tabs[i]);
         }
         TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(TRANSFER);
