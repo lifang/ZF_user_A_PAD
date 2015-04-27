@@ -11,63 +11,71 @@
 
         <TextView
             android:id="@+id/trade_time"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#292929"
+            android:singleLine="true"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/trade_account"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#292929"
+            android:singleLine="true"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/trade_receive_account"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#292929"
+            android:singleLine="true"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/trade_client_number"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#292929"
+            android:singleLine="true"
+            android:textSize="16sp" />
+           <TextView
+            android:id="@+id/trade_amount"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#292929"
+            android:singleLine="true"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/trade_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#292929"
-            android:textSize="16sp" />
+     
 
         <TextView
             android:id="@+id/trade_status"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#292929"
+            android:singleLine="true"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/trade_client_number"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#292929"
-            android:textSize="16sp" />
+        
     </LinearLayout>
 
 </LinearLayout>

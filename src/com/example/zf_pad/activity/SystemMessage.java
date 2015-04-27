@@ -84,7 +84,6 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 	};
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.my_message);				
 			initView();			
@@ -103,25 +102,31 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 
 			Xlistview.setOnItemClickListener(new OnItemClickListener() {
 
+				private boolean flag=true;
+
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					
- 					Intent i = new Intent(SystemMessage.this, MymsgDetail.class);
- 					i.putExtra("id", myList.get(position - 1).getId());
- 					i.putExtra("type", "1");
- 					startActivity(i);
+					try {
+						myList.get(position).getId();
+					} catch (Exception e) {
+						flag = false;
+					}
+					if (flag) {
+						Intent i = new Intent(SystemMessage.this, MymsgDetail.class);
+	 					i.putExtra("id", myList.get(position - 1).getId());
+	 					i.putExtra("type", "1");
+	 					startActivity(i);
+					}
+ 					
 				}
 			});
 			Xlistview.setAdapter(myAdapter);
 		}
 		@Override
 		public void onRefresh() {
-
 			page = 1;
-	
 			myList.clear();
-
 			getData();
 		}
 
@@ -226,7 +231,6 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 											Toast.LENGTH_SHORT).show();
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							 
@@ -235,7 +239,6 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 						@Override
 						public void onFailure(int statusCode, Header[] headers,
 								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
 							error.printStackTrace();
 						}
 					});

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -196,7 +198,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				changTabBg();
 				im_ghc.setBackgroundResource(R.drawable.shopping);
 				textghc.setTextColor(getResources().getColor(R.color.o));
-
+				if(f_gwc==null)
 				f_gwc = new M_shopcar();
 
 				getSupportFragmentManager().beginTransaction()
@@ -278,9 +280,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				.replace(R.id.m_fragment, f_sy).commit();
 	}
 	@Override
-	protected void onResume() {
-		super.onResume();
-		
+	protected void onRestart() {
+	
+		super.onRestart();
 		if (Config.shopcar) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
@@ -315,6 +317,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			Config.isExit=false;
 			
 		}
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();		
 	}
 
 	@Override

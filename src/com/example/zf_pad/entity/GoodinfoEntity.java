@@ -3,8 +3,14 @@ package com.example.zf_pad.entity;
 public class GoodinfoEntity {
 //	 "lease_agreement": "1",
 	private String lease_agreement;
-	
-//     "encrypt_card_way": "加密卡方�?2",
+	private int purchase_price;
+public int getPurchase_price() {
+		return purchase_price;
+	}
+	public void setPurchase_price(int purchase_price) {
+		this.purchase_price = purchase_price;
+	}
+	//     "encrypt_card_way": "加密卡方�?2",
 	private String encrypt_card_way;
 //     "total_score": 5,
 	private int total_score;

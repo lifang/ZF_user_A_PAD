@@ -67,7 +67,7 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		holder.tv_title.setText(list.get(position).getReceiver());
 		holder.tv_yb.setText(list.get(position).getZipCode());
 		holder.tv_city.setText(list.get(position).getCity());
-		if(list.get(position).getIsDefault()==1){
+		if(list.get(position).getIsDefault().equals("1")){
 			holder.ll_isshow .setVisibility(View.VISIBLE);	
 			holder.tv_default.setVisibility(View.VISIBLE);
 		}else{
@@ -85,7 +85,7 @@ public class ChooseAdressAdapter extends BaseAdapter {
 	}
 	public void chang(){
 		for(AdressEntity ae:list){
-			ae.setIsDefault(0);
+			ae.setIsDefault("0");
 			ae.setIscheck(false);
 		}
 		

@@ -21,10 +21,12 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -53,15 +55,13 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	List<OrderEntity> moreList = new ArrayList<OrderEntity>();
 	private LinearLayout ll_DD;
 	public static Handler myHandler;
-	private Handler handler = new Handler() {
+	private Handler handler = new Handler(Looper.getMainLooper()) {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
 				onLoad();
 				if (myList.size() == 0) {
-
 					// norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ?);
-
 					Xlistview.setVisibility(View.GONE);
 					//eva_nodata.setVisibility(View.VISIBLE);
 				}
@@ -87,10 +87,11 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	};
 	private TextView tv_gm;
 	private TextView tv_zl;
+	private Activity mactivity;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 
 	}
@@ -139,20 +140,18 @@ public void onStart() {
 }
 @Override
 public void onPause() {
-	// TODO Auto-generated method stub
+
 	super.onPause();
 	Log.e("onPause", "onPause");
 	//ll_DD.setVisibility(View.GONE);
 }
 @Override
 public void onStop() {
-	// TODO Auto-generated method stub
 	super.onStop();
 	Log.e("onStop", "onStop");
 }
 @Override
 public void onDestroyView() {
-	// TODO Auto-generated method stub
 	super.onDestroyView();
 }
 	private void initView() {
@@ -170,27 +169,27 @@ public void onDestroyView() {
 		Xlistview.setPullLoadEnable(true);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
-/*		Xlistview.setOnItemClickListener(new OnItemClickListener() {
+		Xlistview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent i = new Intent(getActivity(), OrderDetail.class);
-				i.putExtra("status", myList.get(position).getOrder_status());
-				i.putExtra("id", myList.get(position).getOrder_id());
-				i.putExtra("type", myList.get(position).getOrder_type());
-				Toast.makeText(getActivity(), myList.get(position).getOrder_type(), 1000).show();
-				startActivity(i);
+				if(myList.size()!=0){
+					Intent i = new Intent(getActivity(), OrderDetail.class);
+					i.putExtra("status", myList.get(position-1).getOrder_status());
+					i.putExtra("id", myList.get(position-1).getOrder_id());
+					i.putExtra("type", myList.get(position-1).getOrder_type());				
+					startActivity(i);
+				}
+
 			}
-		});*/
+		});
 		Xlistview.setAdapter(myAdapter);
 	}
 
 	@Override
 	public void onRefresh() {
 		page = 1;
-		System.out.println("onRefresh1");
 		myList.clear();
-		System.out.println("onRefresh2");
 		getData();
 
 	}
@@ -250,7 +249,7 @@ public void onDestroyView() {
 					public void onStart() {
 						super.onStart();
 						loadingDialog = DialogUtil
-								.getLoadingDialg(getActivity());
+								.getLoadingDialg(mactivity);
 						loadingDialog.show();
 					}
 
@@ -287,6 +286,7 @@ public void onDestroyView() {
 										}.getType());
 								System.out
 										.println("-sendEmptyMessage String()--");
+								myAdapter.notifyDataSetChanged();
 								if(myList.size()!=0&&moreList.size()==0){
 									Toast.makeText(getActivity(), "Ã»ÓÐ¸ü¶àÊý¾Ý!", 1000).show();
 									Xlistview.getmFooterView().setState2(2);
@@ -308,7 +308,7 @@ public void onDestroyView() {
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							byte[] responseBody, Throwable error) {
-						// TODO Auto-generated method stub
+						handler.sendEmptyMessage(0);
 						System.out.println("-onFailure---");
 						Log.e("print", "-onFailure---" + error);
 					}
@@ -360,6 +360,12 @@ public void onDestroyView() {
 		
 		super.onResume();
 	
+	}
+	@Override
+	public void onAttach(Activity activity) {
+		
+		super.onAttach(activity);
+		mactivity = activity;
 	}
 	
 }

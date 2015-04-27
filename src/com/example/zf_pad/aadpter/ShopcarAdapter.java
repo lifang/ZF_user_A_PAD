@@ -261,7 +261,6 @@ public class ShopcarAdapter extends BaseAdapter {
 	};
 	public void changeContent(final int index,final int cont){
 		 
-			// TODO Auto-generated method stub
 			String url =  Config.Car_edit;
 			RequestParams params = new RequestParams();
 			params.put("id", list.get(index).getId());

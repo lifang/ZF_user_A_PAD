@@ -249,7 +249,7 @@ public class PosAdapter1 extends BaseAdapter {
 			holder.ys.setText("“— €" + list.get(position*4).getVolume_number());
 			ImageCacheUtil.IMAGE_CACHE.get(list.get(position*4).getUrl_path(),
 	 				holder.im1);
-			Log.i("list",list.get(position*4).getUrl_path());
+			
 			holder.title2.setText(list.get(position*4+1).getTitle());
 			holder.tv_price2.setText("£§"
 					+ ((double)list.get(position*4 + 1).getRetail_price()) / 100 + "");

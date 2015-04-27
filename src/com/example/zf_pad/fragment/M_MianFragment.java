@@ -7,6 +7,8 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -89,6 +91,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 	private ArrayList<String> ma = new ArrayList<String>();
 	private List<City> mCities = new ArrayList<City>();
 	List<View> list = new ArrayList<View>();
+	private static final int time = 5000;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -115,14 +118,19 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 				break;
 			case 4:
 
+				index_ima++;
+				index_ima = index_ima>list.size()-1?0:index_ima;
+				view_pager.setCurrentItem(index_ima);
+				
 				break;
 			}
 		}
 	};
+	private Timer timer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 
 	}
@@ -491,7 +499,22 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
+		timer = new Timer();
+		TimerTask task = new TimerTask()
+		{
+			public void run()
+			{
+				handler.sendEmptyMessage(4);
+			}
+		};
+		timer.schedule(task, 0, time);
+	}
+	@Override
+	public void onStop() {
+		
+		super.onStop();
+
+		timer.cancel();
 	}
 }

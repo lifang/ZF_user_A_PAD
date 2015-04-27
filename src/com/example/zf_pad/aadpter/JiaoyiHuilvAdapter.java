@@ -66,7 +66,7 @@ public class JiaoyiHuilvAdapter extends BaseAdapter {
 		holder.tv_name.setText(list.get(position).getName());
 		holder.tv_price.setText(list.get(position).getService_rate()+"%");
 		 if(list.get(position).getService_rate()==10000){
-				holder.tv_price.setText("璧勯噾鏈嶅姟璐癸紙/澶╋級");
+				holder.tv_price.setText("资金服务费（/天）");
 		 }
 	  
 		return convertView;

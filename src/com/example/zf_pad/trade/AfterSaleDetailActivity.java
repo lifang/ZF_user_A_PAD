@@ -2,9 +2,6 @@ package com.example.zf_pad.trade;
 
 
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_STATUS;
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_TYPE;
@@ -15,6 +12,11 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +27,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -142,7 +143,11 @@ public class AfterSaleDetailActivity extends Activity {
 		mPayMaintainListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(AfterSaleDetailActivity.this, AfterSalePayActivity.class));
+				Intent i1 =new Intent (AfterSaleDetailActivity.this,AfterSalePayActivity.class);
+				i1.putExtra(RECORD_TYPE, mRecordType);
+				i1.putExtra("orderId", mRecordId+"");
+				startActivity(i1);
+				AfterSaleDetailActivity.this.finish();
 			}
 		};
 
