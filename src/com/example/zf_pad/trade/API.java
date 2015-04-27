@@ -37,6 +37,7 @@ public class API {
 
 	public static final String SCHEMA = "http://";
 	public static final String HOST = "114.215.149.242:18080";
+	//114.215.149.242:18080
 	// public static final String HOST = "192.168.1.101:8080";
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/getOne/";
@@ -201,6 +202,9 @@ public class API {
 	// update file
 	 	public static String UPDATE_FILE=SCHEMA + HOST
 	 			+"/ZFMerchant/api/merchant/upload/file";
+	// delect address
+	 	public static String DELECT_ADDRESS=SCHEMA + HOST
+	 			+"/ZFMerchant/api/customers/deleteAddress";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -784,5 +788,18 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("serial_num", terminalNumber);
 		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
+	}
+	public static void delectaddress(
+			Context context,
+			int[] ids,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		try {
+			params.put("ids", new JSONArray(gson.toJson(ids)));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new HttpRequest(context, callback).post(DELECT_ADDRESS, params);
 	}
 }

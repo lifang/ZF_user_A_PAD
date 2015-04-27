@@ -145,7 +145,7 @@
                   android:layout_marginLeft="@dimen/margin_left2"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="您要兑换的金额（￥）"
+            android:text="您要兑换的金额（元）"
             android:textColor="@color/text292929"
             android:textSize="17sp" />
 
