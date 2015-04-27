@@ -3,29 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
- <include 
-     layout="@layout/include_titlebar"></include>"
- <FrameLayout
+
+    <include layout="@layout/title_back" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/sy_bt_height"
-        
-        android:background="#E9E8E8">
+        android:background="#E9E8E8" >
 
         <com.example.zf_pad.trade.widget.MyTabWidget
             android:id="@+id/tab_widget"
             android:layout_width="600dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="12dp"
-            android:divider="#E9E8E8"
-            android:layout_gravity="center_horizontal"
-           />
+            android:divider="#E9E8E8" />
     </FrameLayout>
 
     <com.example.zf_pad.trade.widget.MyViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/zc_rl_h"
+        android:paddingRight="@dimen/zc_rl_h" />
+
 </LinearLayout>

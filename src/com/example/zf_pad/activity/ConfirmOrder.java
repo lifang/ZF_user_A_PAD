@@ -136,7 +136,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 														}.getType());
 
 										for(int i =0;i<moreList.size();i++){
-		 									if(moreList.get(i).getIsDefault()==1) {
+		 									if(moreList.get(i).getIsDefault().equals("1")) {
 		 										//tv_name,tv_tel,tv_adresss;
 		 										addressId=moreList.get(i).getId();
 		 										

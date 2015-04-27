@@ -23,7 +23,7 @@ public class Good_detail_trade extends Fragment implements OnClickListener{
 	private List<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
 	}
 	@Override
@@ -40,7 +40,7 @@ public class Good_detail_trade extends Fragment implements OnClickListener{
 		ce.setName("Ω·À„ ±º‰");
 		ce.setService_rate( 10000);
 		celist.clear();
-		celist.addAll(Config.celist );
+		celist.addAll(Config.celist2);
 		myAdapter =new  JiaoyiHuilvAdapter(getActivity(),celist);
 		lv.setAdapter(myAdapter);
 

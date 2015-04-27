@@ -74,6 +74,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private String keyword;
 	List<PosEntity>  myList = new ArrayList<PosEntity>();
 	List<PosEntity>  moreList = new ArrayList<PosEntity>();
+	private int shoptype=1;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -110,18 +111,14 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	};
 
 	private ImageView port1;
-
 	private ImageView port2;
-
 	private PosAdapter1 myAdapter1;
-
 	private Intent i;
 	private LinearLayout ll_listflag;
 	private LinearLayout ll_back;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.poslist_activity);
 		initView();
@@ -215,7 +212,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
 		switch (v.getId()) {
 		case R.id.titleback_linear_back:
 			PosListActivity.this.finish();
@@ -340,7 +337,8 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	private void getData() {
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
-		params.put("city_id",MyApplication.NewUser.getId());
+		params.put("city_id",MyApplication.getCITYID());
+		
 		params.put("orderType", orderType);
 	 	params.put("keys", keys);
 	 	if(list_port==1){
@@ -456,7 +454,7 @@ public class PosListActivity extends Activity implements OnClickListener,IXListV
 	}
 	private void Search() {
 		//Toast.makeText(getApplicationContext(), page+"", 1000).show();
-		API.PostSearch(getApplicationContext(), keyword,1,12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
+		API.PostSearch(getApplicationContext(), keyword,MyApplication.getCITYID(),12,page,orderType,new HttpCallback<Page<PosEntity>>(this) {
 			@Override
 			public void onSuccess(Page<PosEntity> data) {
 				if(myList.size()!=0&&data.getList().size()==0){

@@ -36,7 +36,6 @@ public class F_good_detail extends Fragment implements OnClickListener{
 	private GridviewAdapter gadapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 	@Override
@@ -76,7 +75,6 @@ public class F_good_detail extends Fragment implements OnClickListener{
 		 tvc_zx.setText(Config.suportcl);
 		 tv_sqkt.setText(Config.tv_sqkt);
 		 tv_spxx.setText(Config.gfe.getDescription());	
-		 Toast.makeText(getActivity(), Config.myList.size()+"", 1000).show();
 		 gadapter=new GridviewAdapter(getActivity(), Config.myList);
 		 gview.setAdapter(gadapter);
 		 gview.setOnItemClickListener(new OnItemClickListener() {

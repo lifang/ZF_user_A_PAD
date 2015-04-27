@@ -326,7 +326,8 @@ android:fillViewport="true"
                                         android:id="@+id/fac_img"
                                         android:layout_width="80dp"
                                         android:layout_height="30dp"
-                                        android:background="@drawable/sj_sjtest" />
+                                        android:background="@drawable/sj_sjtest"
+                                         />
 
                                     <TextView
                                         android:id="@+id/tv_sjhttp"

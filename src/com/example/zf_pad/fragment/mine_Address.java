@@ -64,7 +64,6 @@ public class Mine_Address extends Fragment implements OnClickListener{
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
-	// TODO Auto-generated method stub
 	if (view != null) {
 		ViewGroup parent = (ViewGroup) view.getParent();
 		if (parent != null)
@@ -211,17 +210,14 @@ public void onClick(View v) {
 }
 @Override
 public void onPause() {
-	// TODO Auto-generated method stub
 	super.onPause();
 }
 @Override
 public void onStop() {
-	// TODO Auto-generated method stub
 	super.onStop();
 }
 @Override
 public void onDestroyView() {
-	// TODO Auto-generated method stub
 	super.onDestroyView();
 }
 }

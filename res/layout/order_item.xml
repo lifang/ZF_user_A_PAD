@@ -229,9 +229,11 @@
                     android:layout_height="@dimen/normai_button_height"
                     android:background="@drawable/bg_blue_shape"
                     android:text="付款"
+                    android:focusable="false"
                     android:textSize="@dimen/textmid"
                     android:textColor="@color/ffffff" />
                 <Button
+                    android:focusable="false"
                     android:layout_width="@dimen/normai_button_height"
                     android:layout_height="@dimen/textmid"
                     android:background="@color/ffffff" />
@@ -242,6 +244,7 @@
                     android:layout_height="@dimen/normai_button_height"
                     android:background="@drawable/shape_o"
                     android:text="取消订单"
+                    android:focusable="false"
                     android:id="@+id/btn_cancle"
                     android:textSize="@dimen/textmid"
                     android:textColor="@color/bgtitle" />

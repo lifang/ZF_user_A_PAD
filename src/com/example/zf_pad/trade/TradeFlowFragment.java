@@ -250,6 +250,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	 * @return
 	 */
 	private void toggleButtons() {
+	
 		boolean shouldEnable = !TextUtils.isEmpty(tradeClientName)
 				&& !TextUtils.isEmpty(tradeStartDate)
 				&& !TextUtils.isEmpty(tradeEndDate);
