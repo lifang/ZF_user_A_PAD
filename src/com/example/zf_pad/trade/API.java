@@ -375,15 +375,15 @@ public class API {
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
 
-	public static void test(Context context, String customerId,
-
-			HttpCallback callback) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("codeNumber", customerId);
-		new HttpRequest(context, callback)
-		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
-				params);
-	}
+//	public static void test(Context context, String customerId,
+//
+//			HttpCallback callback) {
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("codeNumber", customerId);
+//		new HttpRequest(context, callback)
+//		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
+//				params);
+//	}
 
 	public static void getChannelList(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(CHANNEL_LIST);
