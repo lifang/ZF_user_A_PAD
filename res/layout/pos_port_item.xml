@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
-        android:paddingRight="@dimen/normal_height3"
+        android:paddingRight="50dp"
         android:paddingLeft="@dimen/zc_rl_w" >
 
         <LinearLayout
@@ -30,7 +30,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="@dimen/alertll"
+                
                 android:text="全部"
                 
                 android:textColor="@color/text6c6c6c6"
@@ -56,7 +56,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="@dimen/alertll"
+    
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
@@ -81,7 +81,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="@dimen/alertll"
+          
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />
@@ -106,7 +106,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="@dimen/alertll"
+            
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmids" />

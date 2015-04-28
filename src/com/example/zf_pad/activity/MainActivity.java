@@ -115,9 +115,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public static final int REQUEST_CITY_WHEEL = 2;
 	private Province province;
 	private City city;
-	private View citySelect;
-	
-	
+	private View citySelect;	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
