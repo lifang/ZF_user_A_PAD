@@ -206,6 +206,12 @@ public class API {
 
 	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
 			+"/ZFMerchant/api/order/getMyOrderById";
+	//get score list
+	public static final String GET_SCORE_LIST =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getIntegralList/";
+	// get score
+	public static final String GET_SCORE =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getjifen";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,

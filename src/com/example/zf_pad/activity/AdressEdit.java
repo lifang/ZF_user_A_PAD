@@ -34,7 +34,6 @@ import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
 public class AdressEdit extends BaseActivity{
-	private String URL="http://114.215.149.242:18080/ZFMerchant/api/customers/insertAddress/";
 //	cityId
 //	receiver
 //	moblephone
