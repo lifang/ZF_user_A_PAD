@@ -8,21 +8,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,15 +28,16 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.AddressManagerAdapter;
 import com.example.zf_pad.aadpter.ChooseAdressAdapter;
 import com.example.zf_pad.entity.AdressEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
@@ -67,50 +66,56 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private ChooseAdressAdapter myAdapter;
 	private TextView tv_zc;
 	private TextView tv_zd;
-	private boolean flag=false;
+	private boolean flag = false;
 	private EditText et_comment;
+	private TextView tv_zl;
+	private int comments;
+	private Button bt_add;
+	private ImageView event_img;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm1);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
-		// i2.putExtra("getTitle", gfe.getGood_brand());
-		// i2.putExtra("price", gfe.getPrice());
-		// i2.putExtra("model", gfe.getModel_number());
-		// i2.putExtra("chanel", chanel);
-		// i2.putExtra("chanelID", paychannelId);
-		// i2.putExtra("id", gfe.getId());
-		// startActivity(i2);
+
 		initView();
+		comments = getIntent().getIntExtra("comments", 0);
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥" + pirce);
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("实付：￥ " + ((double)pirce)/100);
-		tv_totle.setText("实付：￥ " + ((double)pirce)/100);
+		tv_pay.setText("实付：￥ " + ((double) pirce) / 100);
+		tv_totle.setText("实付：￥ " + ((double) pirce) / 100);
 		System.out.println("=paychannelId==" + paychannelId);
 		getData1();
-	
+		String img_url=getIntent().getStringExtra("evevt_img");
+		ImageCacheUtil.IMAGE_CACHE.get(img_url,
+ 				event_img);
 	}
 
 	private void initView() {
-		tv_zc = (TextView)findViewById(R.id.tv_zc);
-		tv_zd = (TextView)findViewById(R.id.tv_zd);
-		if(Config.gfe!=null){
-			tv_zc.setText("最长租赁时间："+Config.gfe.getLease_time()+"天");
-			tv_zd.setText("最短租赁时间："+Config.gfe.getReturn_time()+"天");
+		event_img = (ImageView)findViewById(R.id.evevt_img);
+		bt_add = (Button)findViewById(R.id.bt_add);
+		bt_add.setOnClickListener(this);
+		tv_zl = (TextView) findViewById(R.id.tv_zl);
+		tv_zl.setOnClickListener(this);
+		tv_zc = (TextView) findViewById(R.id.tv_zc);
+		tv_zd = (TextView) findViewById(R.id.tv_zd);
+		if (Config.gfe != null) {
+			tv_zc.setText("最长租赁时间：" + Config.gfe.getLease_time() + "天");
+			tv_zd.setText("最短租赁时间：" + Config.gfe.getReturn_time() + "天");
 		}
-		sclist = (ScrollViewWithListView)findViewById(R.id.pos_lv1);
+		sclist = (ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		myAdapter = new ChooseAdressAdapter(this, myList);
 		sclist.setAdapter(myAdapter);
 		sclist.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long arg3) {
-				addressId=myList.get(position).getId();
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				addressId = myList.get(position).getId();
 				myAdapter.chang();
 				myList.get(position).setIscheck(true);
 				myAdapter.notifyDataSetChanged();
@@ -122,7 +127,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		add.setOnClickListener(this);
 
 		tv_totle = (TextView) findViewById(R.id.tv_totle);
-		//showCountText = (TextView) findViewById(R.id.showCountText);
+		// showCountText = (TextView) findViewById(R.id.showCountText);
 
 		tv_count = (TextView) findViewById(R.id.tv_count);
 		tv_tel = (TextView) findViewById(R.id.tv_tel);
@@ -142,9 +147,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TODO Auto-generated method stub
 				if (arg1) {
-					flag=true;
+					flag = true;
+					
 				} else {
-					flag=false;
+					flag = false;
 				}
 			}
 		});
@@ -153,8 +159,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
-				//showCountText.setText(arg0.toString());
+				// showCountText.setText(arg0.toString());
 				tv_count.setText("共计:   " + arg0 + "件");
 				if (buyCountEdit.getText().toString().equals("")) {
 					quantity = 0;
@@ -163,15 +168,13 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 							.toString());
 				}
 
-				tv_totle.setText("实付：￥ " + ((double)pirce)/100 * quantity);
-				tv_pay.setText("实付：￥ " + ((double)pirce)/100 * quantity);
+				tv_totle.setText("实付：￥ " + ((double) pirce) / 100 * quantity);
+				tv_pay.setText("实付：￥ " + ((double) pirce) / 100 * quantity);
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
+					int arg2, int arg3) {		
 			}
 
 			@Override
@@ -186,7 +189,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, arr);
 		sp.setAdapter(arrayAdapter);
-	
 
 		// 注册事件
 		sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -195,12 +197,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				Spinner spinner = (Spinner) parent;
-				invoice_type=position;
+				invoice_type = position;
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
-				
+
 			}
 
 		});
@@ -211,7 +213,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		MyApplication
 				.getInstance()
 				.getClient()
-				.post(Config.ChooseAdress + MyApplication.NewUser.getId()+"",
+				.post(Config.ChooseAdress + MyApplication.NewUser.getId() + "",
 						new AsyncHttpResponseHandler() {
 
 							@Override
@@ -240,16 +242,17 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 														new TypeToken<List<AdressEntity>>() {
 														}.getType());
 
-										for(int i =0;i<moreList.size();i++){
-		 									if(moreList.get(i).getIsDefault()==1) {
-		 										//tv_name,tv_tel,tv_adresss;
-		 										addressId=moreList.get(i).getId();
-		 										
-		 									}
-		 								}
+										for (int i = 0; i < moreList.size(); i++) {
+											if (moreList.get(i).getIsDefault().equals("1")) {
+												// tv_name,tv_tel,tv_adresss;
+												addressId = moreList.get(i)
+														.getId();
 
-										 myList.addAll(moreList);
-										
+											}
+										}
+
+										myList.addAll(moreList);
+
 										myAdapter.notifyDataSetChanged();
 									} else {
 										code = jsonobject.getString("message");
@@ -280,15 +283,17 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
-
+		case R.id.bt_add:
+			startActivity(new Intent(LeaseConfirm.this,AdressEdit.class));			
+			break;
 		case R.id.btn_pay:
-			
-			if(flag){
+
+			if (flag) {
 				confirmGood();
-			}else{
+			} else {
 				Toast.makeText(getApplicationContext(), "请同意租赁协议", 1000).show();
 			}
-			
+
 			break;
 		case R.id.add:
 			quantity = Integer.parseInt(buyCountEdit.getText().toString()) + 1;
@@ -301,16 +306,20 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			quantity = Integer.parseInt(buyCountEdit.getText().toString()) - 1;
 			buyCountEdit.setText(quantity + "");
 			break;
+		case R.id.tv_zl:
+			Intent i = new Intent(LeaseConfirm.this, GoodDeatilMore.class);
+			i.putExtra("type", 3);
+			i.putExtra("commets", comments);
+			startActivity(i);
+			break;
 		default:
 			break;
 		}
 	}
 
-
-
 	private void confirmGood() {
-		et_comment = (EditText)findViewById(R.id.ed_comment);
-		comment=et_comment.getText().toString();
+		et_comment = (EditText) findViewById(R.id.ed_comment);
+		comment = et_comment.getText().toString();
 
 		// quantity addressId comment is_need_invoice et_titel
 		quantity = Integer.parseInt(buyCountEdit.getText().toString());
@@ -326,38 +335,30 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		params.put("invoice_type", invoice_type);
 		params.put("invoice_info", et_titel.getText().toString());
 		params.setUseJsonStreamer(true);
-		// int customerId,
-		// int goodId,
-		// int paychannelId,
-		// int quantity,
-		// int addressId,
-		// String comment,
-		// int is_need_invoice,
-		// int invoice_type,
-		// String invoice_info,
+
 		invoice_info = et_titel.getText().toString();
-		Log.e("goodId=" + goodId + "paychannelId=" + paychannelId + "quantity="
-				+ quantity + "is_need_invoice=" + is_need_invoice, "ccccccccc");
-		API.GOODCONFIRM1(LeaseConfirm.this,80,goodId,paychannelId,
-				quantity,addressId,comment,is_need_invoice,invoice_type,invoice_info,
-        		
-				
-                new HttpCallback  (LeaseConfirm.this) {
+
+		API.GOODCONFIRM1(LeaseConfirm.this, MyApplication.NewUser.getId(),
+				goodId, paychannelId, quantity, addressId, comment,
+				is_need_invoice, invoice_type, invoice_info,
+
+				new HttpCallback(LeaseConfirm.this) {
 
 					@Override
 					public void onSuccess(Object data) {
-						// TODO Auto-generated method stub
-						
-						Intent i1 = new Intent(LeaseConfirm.this, PayFromCar.class);
+						Intent i1 =new Intent (LeaseConfirm.this,PayFromCar.class);
+						i1.putExtra("orderId", data.toString()+"");
+						i1.putExtra("type", "2");
 						startActivity(i1);
+						finish();
 					}
 
 					@Override
 					public TypeToken getTypeToken() {
-						// TODO Auto-generated method stub
-						return  null;
+
+						return null;
 					}
-                });
+				});
 
 	}
 }

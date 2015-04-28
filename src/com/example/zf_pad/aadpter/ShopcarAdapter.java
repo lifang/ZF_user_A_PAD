@@ -42,13 +42,14 @@ public class ShopcarAdapter extends BaseAdapter {
 	private int currentHowMoney;
 	private CheckBox selectAll_cb;
 	private AlertDialog ad;
+	
 	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
 		this.list = list;
 		activity = (Activity) context;
 		currentHowMoney = 0;
 		howMoney = (TextView) activity.findViewById(R.id.howMoney);
-		
+		tv_gj = (TextView)activity.findViewById(R.id.tv_gj);
 		selectAll_cb = (CheckBox) activity.findViewById(R.id.item_cb);
 		selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
 	}
@@ -173,6 +174,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					if (hoder.checkBox.isChecked()) {
 						currentHowMoney -= editGood.getRetail_price();
 						howMoney.setText("合计:" + ((double)currentHowMoney)/100);
+						//tv_gj.setText("共计"+editGood.getQuantity()+"件");
 					}
 					
 				    changeContent(position, quantity);
@@ -185,6 +187,7 @@ public class ShopcarAdapter extends BaseAdapter {
 				if (hoder.checkBox.isChecked()) {
 					currentHowMoney += editGood.getRetail_price();
 					howMoney.setText("合计:" + ((double)currentHowMoney)/100);
+					//tv_gj.setText("共计"+editGood.getQuantity()+"件");
 				}
 				 changeContent(position, quantity);
 				break;
@@ -254,14 +257,15 @@ public class ShopcarAdapter extends BaseAdapter {
 						* good.getQuantity() : -good.getRetail_price()
 						* good.getQuantity());
 				howMoney.setText("合计:" + ((double)currentHowMoney)/100);
+				//tv_gj.setText("共计"+good.getQuantity()+"件");
 				Log.e("print", "currentHowMoney:"+currentHowMoney);
 			}
 
 		}
 	};
+	private TextView tv_gj;
 	public void changeContent(final int index,final int cont){
 		 
-			// TODO Auto-generated method stub
 			String url =  Config.Car_edit;
 			RequestParams params = new RequestParams();
 			params.put("id", list.get(index).getId());

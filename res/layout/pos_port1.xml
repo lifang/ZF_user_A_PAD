@@ -13,10 +13,9 @@
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingLeft="@dimen/titilepad"
              android:gravity="center"
              android:background="#E6E9ED"
-            android:paddingRight="@dimen/titilepad" >
+  >
         </ExpandableListView>
 
         <RelativeLayout

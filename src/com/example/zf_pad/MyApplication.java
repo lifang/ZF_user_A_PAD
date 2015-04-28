@@ -220,6 +220,7 @@ public class MyApplication extends Application{
 					 if(cc.getName().endsWith(location.getCity())){
 						 System.out.println("当前城市 ID----"+cc.getId());
 						 setCITYID(cc.getId());
+						 
 					 }
 				 } 
 			 }

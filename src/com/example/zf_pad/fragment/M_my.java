@@ -117,8 +117,10 @@ public class M_my extends Fragment implements OnClickListener {
 	}
 
 	private void initView() {
+		if(Mine_Dd.myHandler!=null){
 		msg=Mine_Dd.myHandler.obtainMessage();
 		msg.what=1023;
+		}
 		ll_dd = (RelativeLayout) view.findViewById(R.id.ll_dd);
 		ll_shjl = (RelativeLayout) view.findViewById(R.id.ll_shjl);
 		ll_myinfo = (RelativeLayout) view.findViewById(R.id.ll_myinfo);

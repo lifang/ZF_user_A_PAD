@@ -5,13 +5,58 @@
     android:background="#F8F8F8"
     android:orientation="vertical" >
 <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleback_height"
+            android:layout_gravity="center_vertical"
+            android:background="@color/bgtitle"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad" >
+
+            <LinearLayout
+                android:id="@+id/titleback_linear_back"
+                android:layout_width="@dimen/normai_button_height"
+                android:layout_height="@dimen/titleback_height"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/titleback_image_back"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/d_7dp"
+                    android:background="@drawable/back" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/titleback_text_title"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="商品详情"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textbig" />
+
+            <ImageView
+                android:id="@+id/search2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:src="@drawable/car22" />
+        </LinearLayout>"
+<LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="#ffffff"
+            android:layout_height="58dp"
+            android:background="#FDFCFC"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp" >
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad" >
 
             <TextView
                 android:id="@+id/tv_ms"
@@ -21,11 +66,13 @@
                 android:gravity="center"
                 android:text="商品描述"
                 android:textColor="#292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="#DAD8D8" />
 
             <TextView
@@ -36,11 +83,13 @@
                 android:gravity="center"
                 android:text="开通所需资料"
                 android:textColor="#292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="#DAD8D8" />
 
             <TextView
@@ -51,11 +100,13 @@
                 android:gravity="center"
                 android:text="评论"
                 android:textColor="#292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="18sp" />
 
-            <View
+           <View
                 android:layout_width="1dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="#DAD8D8" />
 
             <TextView
@@ -66,11 +117,13 @@
                 android:gravity="center"
                 android:text="租赁说明"
                 android:textColor="#292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="#DAD8D8" />
 
             <TextView
@@ -81,7 +134,7 @@
                 android:gravity="center"
                 android:text="交易费率说明"
                 android:textColor="#292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="18sp" />
         </LinearLayout>
         <View 
             android:layout_width="fill_parent"

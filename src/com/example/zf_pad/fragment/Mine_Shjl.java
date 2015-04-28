@@ -4,11 +4,6 @@ package com.example.zf_pad.fragment;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_ID;
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_STATUS;
 import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_TYPE;
@@ -21,35 +16,14 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
-import com.example.zf_pad.activity.SystemMessage;
-import com.example.zf_pad.trade.AfterSaleMarkActivity;
-import com.example.zf_pad.trade.AfterSalePayActivity;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.AfterSaleDetailActivity;
-
-import com.example.zf_pad.trade.common.CommonUtil;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.common.Page;
-import com.example.zf_pad.trade.common.Pageable;
-import com.example.zf_pad.trade.entity.AfterSaleRecord;
-import com.example.zf_pad.trade.widget.MTabWidget;
-import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
-import com.example.zf_pad.trade.widget.MyTabWidget;
-import com.example.zf_pad.trade.widget.XListView;
-import com.example.zf_pad.trade.widget.XListView.IXListViewListener;
-import com.example.zf_pad.util.Tools;
-import com.google.gson.reflect.TypeToken;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,9 +31,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.AfterSaleDetailActivity;
+import com.example.zf_pad.trade.AfterSaleMarkActivity;
+import com.example.zf_pad.trade.AfterSalePayActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.common.Pageable;
+import com.example.zf_pad.trade.entity.AfterSaleRecord;
+import com.example.zf_pad.trade.widget.MTabWidget;
+import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
+import com.example.zf_pad.trade.widget.XListView;
+import com.example.zf_pad.trade.widget.XListView.IXListViewListener;
+import com.example.zf_pad.util.Tools;
+import com.google.gson.reflect.TypeToken;
 
 public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListener{
 	private View view;
@@ -404,10 +395,14 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		mPayMaintainListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(mActivity, AfterSalePayActivity.class));
+				final AfterSaleRecord record = (AfterSaleRecord) view.getTag();
+				Intent i1 =new Intent (mActivity,AfterSalePayActivity.class);
+				i1.putExtra("orderId", record.getId()+"");
+				i1.putExtra(RECORD_TYPE, mRecordType);
+				startActivity(i1);	
 			}
 		};
-
+ 
 		mSubmitCancelListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

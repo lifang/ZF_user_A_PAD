@@ -9,16 +9,14 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import com.example.zf_pad.fragment.Mine_Address;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-
 import com.example.zf_pad.Posport;
-
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
-
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
@@ -34,10 +32,13 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 public class API {
 
 	static Gson gson = new Gson();
-
+	
 	public static final String SCHEMA = "http://";
-//	public static final String HOST = "114.215.149.242:18080";
-	 public static final String HOST = "121.40.84.2:28080";
+
+
+	public static final String HOST = "121.40.84.2:8080";
+	//public static final String HOST = "114.215.149.242:18080";
+
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/getOne/";
 	// change userinfo
@@ -200,11 +201,23 @@ public class API {
 	public static String DELECT_MERCHANTLIST = SCHEMA + HOST
 			+ "/ZFMerchant/api/merchant/delete/";
 	// update merchant
-	 	public static String UPDATE_MERCHANT=SCHEMA + HOST
-	 			+"/ZFMerchant/api/merchant/update/";
+	public static String UPDATE_MERCHANT=SCHEMA + HOST
+			+"/ZFMerchant/api/merchant/update/";
 	// update file
 	 	public static String UPDATE_FILE=SCHEMA + HOST
 	 			+"/ZFMerchant/api/merchant/upload/file";
+	// delect address
+	 	public static String DELECT_ADDRESS=SCHEMA + HOST
+	 			+"/ZFMerchant/api/customers/deleteAddress";
+
+	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
+			+"/ZFMerchant/api/order/getMyOrderById";
+	//get score list
+	public static final String GET_SCORE_LIST =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getIntegralList/";
+	// get score
+	public static final String GET_SCORE =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getjifen";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -330,7 +343,7 @@ public class API {
 
 	public static void resubmitCancel(Context context, int recordId,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
 		new HttpRequest(context, callback).post(AFTER_SALE_RESUBMIT_CANCEL,
@@ -376,12 +389,12 @@ public class API {
 
 	public static void test(Context context, String customerId,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", customerId);
 		new HttpRequest(context, callback)
-				.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
-						params);
+		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
+				params);
 	}
 
 	public static void getChannelList(Context context, HttpCallback callback) {
@@ -510,7 +523,7 @@ public class API {
 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("customerId", 80);
+		params.put("customerId", MyApplication.NewUser.getId());
 		// int aa[] = new int[] { 138, 140 };
 		try {
 			params.put("cartid", new JSONArray(gson.toJson(cartid)));
@@ -609,7 +622,7 @@ public class API {
 
 	public static void AddAdres1(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -618,7 +631,7 @@ public class API {
 
 	public static void zhuche(Context context, String username,
 
-	String password, String code, int cityId, Boolean accountType,
+			String password, String code, int cityId, Boolean accountType,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
@@ -642,7 +655,7 @@ public class API {
 
 	public static void getEmailPass(Context context, String codeNumber,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -685,7 +698,7 @@ public class API {
 
 	public static void getUserinfo(Context context,
 
-	HttpCallback callback) {
+			HttpCallback callback) {
 		GET_USERINFO = GET_USERINFO + 80;
 		new HttpRequest(context, callback).post(GET_USERINFO);
 	}
@@ -788,5 +801,27 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("serial_num", terminalNumber);
 		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
+	}
+	public static void delectaddress(
+			Context context,
+			int[] ids,
+			HttpCallback callback){
+		Map<String, Object> params = new HashMap<String, Object>();
+		try {
+			params.put("ids", new JSONArray(gson.toJson(ids)));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new HttpRequest(context, callback).post(DELECT_ADDRESS, params);
+	}
+	//我的订单--订单详情
+	public static void getMyOrderById(
+			Context context,
+			int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id); 
+		new HttpRequest(context, callback).post(URL_GET_MYORDERBYID, params);
 	}
 }

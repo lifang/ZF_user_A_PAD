@@ -14,8 +14,7 @@ public class AdressEntity {
 //    "zipCode": "3456666",
 //    "moblephone": "17887986789",
 //    "city": "甘肃省定西市"
-	private Boolean Ischeck=false;
-	
+	private Boolean Ischeck=false;	
 	public Boolean getIscheck() {
 		return Ischeck;
 	}
@@ -24,16 +23,23 @@ public class AdressEntity {
 	}
 	private int id;
 	private String city_name;
-	private int customerId;
+	private String customerId;
 	private String receiver;
-	private int isDefault;
+	private String isDefault;
 	private String address;
-	private int cityId;
-	private int city_parent_id;
+	private String cityId;
+	private String city_parent_id;
 	private String zipCode;
 	private String moblephone;
 	private String city;
 	private String city_parent_name;
+	private String telphone;
+	public String getTelphone() {
+		return telphone;
+	}
+	public void setTelphone(String telphone) {
+		this.telphone = telphone;
+	}
 	public int getId() {
 		return id;
 	}
@@ -46,10 +52,11 @@ public class AdressEntity {
 	public void setCity_name(String city_name) {
 		this.city_name = city_name;
 	}
-	public int getCustomerId() {
+
+	public String getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 	public String getReceiver() {
@@ -58,10 +65,10 @@ public class AdressEntity {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	public int getIsDefault() {
+	public String getIsDefault() {
 		return isDefault;
 	}
-	public void setIsDefault(int isDefault) {
+	public void setIsDefault(String isDefault) {
 		this.isDefault = isDefault;
 	}
 	public String getAddress() {
@@ -70,16 +77,17 @@ public class AdressEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getCityId() {
+
+	public String getCityId() {
 		return cityId;
 	}
-	public void setCityId(int cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
-	public int getCity_parent_id() {
+	public String getCity_parent_id() {
 		return city_parent_id;
 	}
-	public void setCity_parent_id(int city_parent_id) {
+	public void setCity_parent_id(String city_parent_id) {
 		this.city_parent_id = city_parent_id;
 	}
 	public String getZipCode() {

@@ -8,21 +8,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,15 +28,16 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.AddressManagerAdapter;
 import com.example.zf_pad.aadpter.ChooseAdressAdapter;
 import com.example.zf_pad.entity.AdressEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
@@ -66,20 +65,15 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private ScrollViewWithListView sclist;
 	private ChooseAdressAdapter myAdapter;
 	private EditText et_comment;
+	private Button bt_add;
+	private ImageView event_img;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm);
 		new TitleMenuUtil(GoodConfirm.this, "订单确认").show();
-		// i2.putExtra("getTitle", gfe.getGood_brand());
-		// i2.putExtra("price", gfe.getPrice());
-		// i2.putExtra("model", gfe.getModel_number());
-		// i2.putExtra("chanel", chanel);
-		// i2.putExtra("chanelID", paychannelId);
-		// i2.putExtra("id", gfe.getId());
-		// startActivity(i2);
+
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
@@ -90,10 +84,15 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		tv_totle.setText("实付：￥ " + ((double)pirce)/100);
 		System.out.println("=paychannelId==" + paychannelId);
 		getData1();
-	
+		String img_url=getIntent().getStringExtra("evevt_img");
+		ImageCacheUtil.IMAGE_CACHE.get(img_url,
+ 				event_img);
 	}
 
 	private void initView() {
+		event_img = (ImageView)findViewById(R.id.evevt_img);
+		bt_add = (Button)findViewById(R.id.bt_add);
+		bt_add.setOnClickListener(this);
 		sclist = (ScrollViewWithListView)findViewById(R.id.pos_lv1);
 		myAdapter = new ChooseAdressAdapter(this, myList);
 		sclist.setAdapter(myAdapter);
@@ -135,8 +134,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 				// TODO Auto-generated method stub
 				if (arg1) {
 					is_need_invoice = 1;
+					et_titel.setEnabled(true);
 				} else {
 					is_need_invoice = 0;
+					et_titel.setEnabled(false);
 				}
 			}
 		});
@@ -178,11 +179,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, arr);
 		sp.setAdapter(arrayAdapter);
-		Toast.makeText(
-				getApplicationContext(),
-				"main Thread"
-						+ sp.getItemIdAtPosition(sp.getSelectedItemPosition()),
-				Toast.LENGTH_LONG).show();
+
 
 		// 注册事件
 		sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -238,7 +235,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 														}.getType());
 
 										for(int i =0;i<moreList.size();i++){
-		 									if(moreList.get(i).getIsDefault()==1) {
+		 									if(moreList.get(i).getIsDefault().equals("1")) {
 		 										//tv_name,tv_tel,tv_adresss;
 		 										addressId=moreList.get(i).getId();
 		 										
@@ -254,8 +251,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 												code, 1000).show();
 									}
 								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									;
+									
 									e.printStackTrace();
 
 								}
@@ -266,7 +262,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 							public void onFailure(int statusCode,
 									Header[] headers, byte[] responseBody,
 									Throwable error) {
-								// TODO Auto-generated method stub
 								System.out.println("-onFailure---");
 								Log.e("print", "-onFailure---" + error);
 							}
@@ -275,9 +270,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
-
+		case R.id.bt_add:
+			startActivity(new Intent(GoodConfirm.this,AdressEdit.class));			
+			break;
 		case R.id.btn_pay:
 			confirmGood();
 			
@@ -336,8 +332,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void onSuccess(Object data) {
-						Intent i1 = new Intent(GoodConfirm.this, PayFromCar.class);
-						startActivity(i1);
+						Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
+						String orderId = data.toString();
+						i1.putExtra("orderId", orderId);
+						i1.putExtra("type", "1");
+						startActivity(i1);	
+						finish();
 					 
 					}
 

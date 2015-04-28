@@ -7,23 +7,6 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.zf_pad.BaseActivity;
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.ChooseAdressAdapter;
-import com.example.zf_pad.aadpter.ShopcarOrderAdapter;
-import com.example.zf_pad.entity.MyShopCar.Good;
-import com.example.zf_pad.entity.AdressEntity;
-import com.example.zf_pad.entity.TestEntitiy;
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.util.ScrollViewWithListView;
-import com.example.zf_pad.util.TitleMenuUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,7 +23,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ChooseAdressAdapter;
+import com.example.zf_pad.aadpter.ShopcarOrderAdapter;
+import com.example.zf_pad.entity.AdressEntity;
+import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.entity.TestEntitiy;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.util.ScrollViewWithListView;
+import com.example.zf_pad.util.TitleMenuUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	List<AdressEntity> myList = new ArrayList<AdressEntity>();
@@ -136,7 +136,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 														}.getType());
 
 										for(int i =0;i<moreList.size();i++){
-		 									if(moreList.get(i).getIsDefault()==1) {
+		 									if(moreList.get(i).getIsDefault().equals("1")) {
 		 										//tv_name,tv_tel,tv_adresss;
 		 										addressId=moreList.get(i).getId();
 		 										
@@ -264,9 +264,11 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void onSuccess(Object data) {
-						
-						Intent i = new Intent(ConfirmOrder.this, PayFromCar.class);
-						startActivity(i);
+						Intent i1 =new Intent (ConfirmOrder.this,PayFromCar.class);
+						i1.putExtra("orderId", data.toString());
+						i1.putExtra("type", "1");
+						startActivity(i1);
+						finish();
 					}
 
 					@Override

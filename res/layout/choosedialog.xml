@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_height="wrap_content" 
-android:layout_width="wrap_content"
-android:id="@+id/dialog"
-android:orientation="vertical">
-<LinearLayout
-    android:id="@+id/dialogname"
-android:layout_height="wrap_content" 
-android:layout_width="fill_parent"
-android:orientation="horizontal">
+    android:id="@+id/dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-<Button android:layout_height="wrap_content"
-   android:layout_width="fill_parent"
-  android:id="@+id/seeimg" 
-  android:text="查看原图" 
-  android:background="@android:color/white"
-  android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/dialogname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/seeimg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="查看原图"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_one"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#F7E0C1"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/dialogname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/choosealbum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="从相册选择" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#F7E0C1" />
+
+    <LinearLayout
+        android:id="@+id/dialognum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/choosecamera"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="拍照" />
+    </LinearLayout>
+
 </LinearLayout>
-<View 
-            android:id="@+id/line_one"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#F7E0C1"
-            android:visibility="gone"/>
-<LinearLayout
-    android:id="@+id/dialogname"
-android:layout_height="wrap_content" 
-android:layout_width="fill_parent"
-android:orientation="horizontal">
-
-<Button android:layout_height="wrap_content"
-   android:layout_width="fill_parent"
-  android:id="@+id/choosealbum" 
-  android:text="从相册选择" 
-  android:background="@android:color/white" />
-</LinearLayout>  
-<View 
-            android:id="@+id/line"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#F7E0C1"/>
-<LinearLayout
-android:layout_height="wrap_content" 
-android:layout_width="fill_parent"
-android:orientation="horizontal"
-android:id="@+id/dialognum"
->
-  <Button android:layout_height="wrap_content"
-   android:layout_width="fill_parent"
-  android:id="@+id/choosecamera" 
-  android:text="拍照"
-  android:background="@android:color/white" />
- </LinearLayout>  
-  </LinearLayout>

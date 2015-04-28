@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -94,7 +95,7 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
         	//tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_bg));
             tv.setTextColor(R.color.text292929);
         }
-
+        
         TextView tv = mTabViews.get(position);
         tv.setTextColor(R.color.text292929);
         if (mTabViews.indexOf(tv) == 0) {

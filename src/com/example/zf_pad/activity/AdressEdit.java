@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,6 @@ import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
 public class AdressEdit extends BaseActivity{
-	private String URL="http://114.215.149.242:18080/ZFMerchant/api/customers/insertAddress/";
 //	cityId
 //	receiver
 //	moblephone
@@ -52,6 +52,8 @@ public class AdressEdit extends BaseActivity{
 	private LinearLayout mi_r4;
 	private int id=MyApplication.NewUser.getId();
 	private int pp;
+	private ImageView search;
+	private int[] ids=new int[1];
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -126,14 +128,17 @@ public class AdressEdit extends BaseActivity{
 	}
 	private void initView() {
 		// TODO Auto-generated method stub
+		search=(ImageView) findViewById(R.id.search);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		tv1=(EditText) findViewById(R.id.tv1);
 		tv2=(EditText) findViewById(R.id.tv2);
 		tv3=(EditText) findViewById(R.id.tv3);
 		tv5=(EditText) findViewById(R.id.tv5);
 		tv4=(TextView) findViewById(R.id.tv4);
+		
 		//tv4.setText(MyApplication.getCITYNAME());
 		if(Mine_Address.isclickitem){
+			search.setVisibility(View.VISIBLE);
 			Bundle bundle=this.getIntent().getExtras();
 			pp=bundle.getInt("position");
 			tv1.setText(Mine_Address.dataadress.get(pp).getConsignee());
@@ -168,7 +173,27 @@ public class AdressEdit extends BaseActivity{
 				}
 			}
 		});
-		
+		search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				ids[0]=Mine_Address.idd[pp];
+				API.delectaddress(AdressEdit.this, ids, new HttpCallback(AdressEdit.this) {
+
+					@Override
+					public void onSuccess(Object data) {
+					CommonUtil.toastShort(AdressEdit.this, "É¾³ýµØÖ·³É¹¦");
+					}
+
+					@Override
+					public TypeToken getTypeToken() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				});
+				
+			}
+		});
 		item_cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -223,12 +248,14 @@ public class AdressEdit extends BaseActivity{
 		System.out.println("resultCode"+resultCode+requestCode);
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY){
+			if(CityProvinceActivity.isClickconfirm){
 			System.out.println("REQUEST_CHOOSE_CITY"+resultCode+requestCode);
 			City mMerchantCity = (City) data.getSerializableExtra(com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY);
 			tv4.setText(mMerchantCity.getName());
 			Cityid=mMerchantCity.getId() ;	 
+			CityProvinceActivity.isClickconfirm=false;
 		}
-
+		}
 	}
 }
 
