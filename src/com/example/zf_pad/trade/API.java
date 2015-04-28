@@ -36,8 +36,8 @@ public class API {
 	static Gson gson = new Gson();
 
 	public static final String SCHEMA = "http://";
-	public static final String HOST = "114.215.149.242:18080";
-	// public static final String HOST = "192.168.1.101:8080";
+//	public static final String HOST = "114.215.149.242:18080";
+	 public static final String HOST = "121.40.84.2:28080";
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/getOne/";
 	// change userinfo
@@ -161,6 +161,10 @@ public class API {
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST
 			+ "/ZFMerchant/api/comment/upload/tempImage";
 
+	// upload open url
+	public static final String UPLOAD_OPEN = SCHEMA + HOST
+			+ "/ZFMerchant/api/apply/uploadFile";
+	
 	public static final String WNATBUY = SCHEMA + HOST
 			+ "/ZFMerchant/api/paychannel/intention/add";
 
