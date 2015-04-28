@@ -134,8 +134,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 				// TODO Auto-generated method stub
 				if (arg1) {
 					is_need_invoice = 1;
+					et_titel.setEnabled(true);
 				} else {
 					is_need_invoice = 0;
+					et_titel.setEnabled(false);
 				}
 			}
 		});

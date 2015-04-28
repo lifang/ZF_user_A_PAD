@@ -148,6 +148,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 				// TODO Auto-generated method stub
 				if (arg1) {
 					flag = true;
+					
 				} else {
 					flag = false;
 				}
@@ -158,7 +159,6 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 				// showCountText.setText(arg0.toString());
 				tv_count.setText("¹²¼Æ:   " + arg0 + "¼þ");
 				if (buyCountEdit.getText().toString().equals("")) {
@@ -174,9 +174,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
+					int arg2, int arg3) {		
 			}
 
 			@Override
