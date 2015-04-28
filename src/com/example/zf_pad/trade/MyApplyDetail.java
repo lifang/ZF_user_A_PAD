@@ -571,7 +571,7 @@ public class MyApplyDetail extends FragmentActivity {
 				File img = new File(realPath);
 				RequestParams params = new RequestParams();
 				try {
-					params.put("img", img);
+					params.put("fileImg", img);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
