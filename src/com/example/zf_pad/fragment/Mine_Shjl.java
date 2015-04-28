@@ -402,7 +402,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 				startActivity(i1);	
 			}
 		};
-
+ 
 		mSubmitCancelListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
