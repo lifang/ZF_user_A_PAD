@@ -48,6 +48,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 	private Button btn_serch;
 	private EditText et_process;
 	private TextView apply_progress_tips;
+	private int id=MyApplication.NewUser.getId();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -91,11 +92,11 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 				return;
 			}
 			RequestParams params = new RequestParams();
-			params.put("id", 80);
+			params.put("id", id);
 			params.put("phone", et_process.getText().toString());
 			params.setUseJsonStreamer(true);
-			String url="http://114.215.149.242:18080/ZFMerchant/api/terminal/openStatus";
-			MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
+		
+			MyApplication.getInstance().getClient().post(API.APPLY_PROGRESS, params, new AsyncHttpResponseHandler() {
 				private Dialog loadingDialog;
 
 				@Override
