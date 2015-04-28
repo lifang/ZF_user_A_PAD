@@ -31,8 +31,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -76,6 +78,8 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 			}
 		}
 	};
+	private CheckBox cb;
+	private TextView tv_gj;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,6 +111,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		getData();
 	}
 	private void initView() {
+		tv_gj = (TextView)view.findViewById(R.id.tv_gj);
 		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -127,7 +132,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 				
 			}
 		});
-
+		cb = (CheckBox)view.findViewById(R.id.item_cb);
 		//myAdapter = new ShopcarAdapter(getActivity(), myShopList);
 		eva_nodata = (LinearLayout)view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView)view.findViewById(R.id.x_listview);
@@ -231,6 +236,11 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	public void onLoadMore() {
 		
 	}
-
+@Override
+public void onResume() {
+	
+	super.onResume();
+	cb.setChecked(false);
+}
 
 }

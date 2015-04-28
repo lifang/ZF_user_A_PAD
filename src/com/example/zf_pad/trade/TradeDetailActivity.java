@@ -4,6 +4,10 @@ package com.example.zf_pad.trade;
 
 import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_RECORD_ID;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -43,14 +47,16 @@ public class TradeDetailActivity extends Activity {
         int typeId = getIntent().getIntExtra(TRADE_TYPE, 0);
         int recordId = getIntent().getIntExtra(TRADE_RECORD_ID, 0);
         API.getTradeRecordDetail(this, typeId, recordId, new HttpCallback<TradeDetail>(this) {
+        
             @Override
             public void onSuccess(TradeDetail data) {
-
+            	DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+    			df.applyPattern("0.00");
                 Resources resources = getResources();
                 String[] tradeStatuses = resources.getStringArray(R.array.trade_status);
                 mTradeStatus.setText(tradeStatuses[data.getTradedStatus()]);
-                mTradeAmount.setText(getString(R.string.notation_yuan) + data.getAmount());
-                mTradePoundage.setText(getString(R.string.notation_yuan) + data.getPoundage());
+                mTradeAmount.setText(getString(R.string.notation_yuan) + data.getAmount()*1.0f/100);
+                mTradePoundage.setText(getString(R.string.notation_yuan) + data.getPoundage()*1.0f/100);
                 mTradeTime.setText(data.getTradedTimeStr());
 
                 String[] commercialKeys = resources.getStringArray(R.array.trade_item_commercial);
@@ -60,7 +66,7 @@ public class TradeDetailActivity extends Activity {
                     TextView value = new TextView(TradeDetailActivity.this);
                     value.setGravity(Gravity.LEFT);
                     value.setPadding(0, 5, 0, 5);
-                    value.setTextColor(getResources().getColor(R.color.text6c6c6c6));
+                    value.setTextColor(getResources().getColor(R.color.text292929));
                     value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
                     value.setText(i == 0 ? data.getMerchantNumber()
                             : i == 1 ? data.getAgentId() + ""
@@ -73,14 +79,14 @@ public class TradeDetailActivity extends Activity {
                     TextView value = new TextView(TradeDetailActivity.this);
                     value.setGravity(Gravity.LEFT);
                     value.setPadding(0, 5, 0, 5);
-                    value.setTextColor(resources.getColor(R.color.text6c6c6c6));
+                    value.setTextColor(resources.getColor(R.color.text292929));
                     value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
                     value.setText(i == 0 ? data.getTerminalNumber()
                             : i == 1 ? data.getPayFromAccount()
                             : i == 2 ? data.getPayIntoAccount()
                             : i == 3 ? data.getPayChannelName()
-                            : i == 4 ? data.getProfitPrice() + ""
-                            : i == 5 ? data.getAmount() + ""
+                            : i == 4 ? getString(R.string.notation_yuan)+df.format(data.getProfitPrice()*1.0f/100)
+                            : i == 5 ?getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)
                             : i == 6 ? data.getTradedTimeStr()
                             : i == 7 ? tradeStatuses[data.getTradedStatus()]
                             : i == 8 ? data.getBatchNumber()
@@ -117,7 +123,7 @@ public class TradeDetailActivity extends Activity {
             TextView key = new TextView(this);
             key.setGravity(Gravity.RIGHT);
             key.setPadding(0, 5, 0, 5);
-            key.setTextColor(resources.getColor(R.color.text6c6c6c6));
+            key.setTextColor(resources.getColor(R.color.text292929));
             key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
             key.setText(commercialKeys[i]);
             mCommercialKeyContainer.addView(key);
@@ -127,10 +133,11 @@ public class TradeDetailActivity extends Activity {
             TextView key = new TextView(this);
             key.setGravity(Gravity.RIGHT);
             key.setPadding(0, 5, 0, 5);
-            key.setTextColor(resources.getColor(R.color.text6c6c6c6));
+            key.setTextColor(resources.getColor(R.color.text292929));
             key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
             key.setText(bankKeys[i]);
             mBankKeyContainer.addView(key);
         }
+        
     }
 }
