@@ -78,7 +78,6 @@ protected void onStart() {
 			CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
 			return;
 		}
-	  String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getjifen";
 	  RequestParams params = new RequestParams();
 		Gson gson = new Gson();
 	
@@ -88,7 +87,7 @@ protected void onStart() {
 		params.setUseJsonStreamer(true);
 		System.out.println("---"+params.toString());
 	 MyApplication.getInstance().getClient()
-		.post(url, params,new AsyncHttpResponseHandler() {
+		.post(API.GET_SCORE, params,new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override
@@ -176,7 +175,6 @@ protected void onStart() {
 		phone=et_tel.getText().toString();
 		prices=t_y.getText().toString();
 		int price=Integer.parseInt(prices);
-		String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/insertIntegralConvert";
 		RequestParams params = new RequestParams();
 		
 		if(StringUtil.replaceBlank(name).length()==0){

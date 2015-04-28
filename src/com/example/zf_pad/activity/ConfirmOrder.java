@@ -266,6 +266,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 					public void onSuccess(Object data) {
 						Intent i1 =new Intent (ConfirmOrder.this,PayFromCar.class);
 						i1.putExtra("orderId", data.toString());
+						i1.putExtra("type", "1");
 						startActivity(i1);
 						finish();
 					}

@@ -14,6 +14,7 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.ScoreAdapter;
 import com.example.zf_pad.activity.Exchange;
 import com.example.zf_pad.entity.Score;
+import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
@@ -121,10 +122,8 @@ private void getData() {
 		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
 		return;
 	}
-	String url = "http://114.215.149.242:18080/ZFMerchant/api/customers/getIntegralList/";
-	url=url+customerId+"/"+page+"/"+rows;
 	MyApplication.getInstance().getClient()
-	.post(url, new AsyncHttpResponseHandler() {
+	.post(API.GET_SCORE_LIST+customerId+"/"+page+"/"+rows, new AsyncHttpResponseHandler() {
 
 		@Override
 		public void onSuccess(int statusCode, Header[] headers,

@@ -32,10 +32,10 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 public class API {
 
 	static Gson gson = new Gson();
-
+	
 	public static final String SCHEMA = "http://";
-	public static final String HOST = "114.215.149.242:18080";
-	//114.215.149.242:18080
+	public static final String HOST = "121.40.84.2:8080";
+	//public static final String HOST = "114.215.149.242:18080";
 	// public static final String HOST = "192.168.1.101:8080";
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/getOne/";
@@ -206,6 +206,12 @@ public class API {
 
 	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
 			+"/ZFMerchant/api/order/getMyOrderById";
+	//get score list
+	public static final String GET_SCORE_LIST =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getIntegralList/";
+	// get score
+	public static final String GET_SCORE =SCHEMA + HOST
+			+"/ZFMerchant/api/customers/getjifen";
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,

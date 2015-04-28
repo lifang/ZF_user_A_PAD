@@ -335,6 +335,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 						Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
 						String orderId = data.toString();
 						i1.putExtra("orderId", orderId);
+						i1.putExtra("type", "1");
 						startActivity(i1);	
 						finish();
 					 

@@ -225,6 +225,7 @@ public class OrderAdapter extends BaseAdapter{
 			public void onClick(View arg0) {
 				Intent i = new Intent(context,PayFromCar.class);
 				i.putExtra("orderId", list.get(position).getOrder_id());
+				i.putExtra("type", "1");
 				context.startActivity(i);
 			}
 		});
