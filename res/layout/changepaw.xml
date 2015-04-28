@@ -22,6 +22,7 @@
        android:id="@+id/et_oldpaw"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:inputType="textPassword"
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"/>    
    </TableRow> 
@@ -37,6 +38,7 @@
        android:id="@+id/et_newpaw"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
+    android:inputType="textPassword"
     android:background="@drawable/sc_edit"
     android:layout_marginLeft="10dp"
     android:layout_gravity="center_vertical"/>    
