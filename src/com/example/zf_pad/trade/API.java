@@ -34,9 +34,11 @@ public class API {
 	static Gson gson = new Gson();
 	
 	public static final String SCHEMA = "http://";
+
+
 	public static final String HOST = "121.40.84.2:8080";
 	//public static final String HOST = "114.215.149.242:18080";
-	// public static final String HOST = "192.168.1.101:8080";
+
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/ZFMerchant/api/customers/getOne/";
 	// change userinfo
@@ -160,6 +162,10 @@ public class API {
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST
 			+ "/ZFMerchant/api/comment/upload/tempImage";
 
+	// upload open url
+	public static final String UPLOAD_OPEN = SCHEMA + HOST
+			+ "/ZFMerchant/api/apply/uploadFile";
+	
 	public static final String WNATBUY = SCHEMA + HOST
 			+ "/ZFMerchant/api/paychannel/intention/add";
 
@@ -381,15 +387,15 @@ public class API {
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
 
-	public static void test(Context context, String customerId,
-
-			HttpCallback callback) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("codeNumber", customerId);
-		new HttpRequest(context, callback)
-		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
-				params);
-	}
+//	public static void test(Context context, String customerId,
+//
+//			HttpCallback callback) {
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("codeNumber", customerId);
+//		new HttpRequest(context, callback)
+//		.post("http://114.215.149.242:18080/ZFMerchant/api/user/sendPhoneVerificationCodeFind",
+//				params);
+//	}
 
 	public static void getChannelList(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(CHANNEL_LIST);

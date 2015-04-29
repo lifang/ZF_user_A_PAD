@@ -104,7 +104,6 @@ public class M_wdxx extends Fragment implements OnClickListener,
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		isFrist=true;
 		loadingDialog = DialogUtil.getLoadingDialg(getActivity());
@@ -135,7 +134,6 @@ public class M_wdxx extends Fragment implements OnClickListener,
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		// next_sure=(TextView) findViewById(R.id.next_sure);
 		// next_sure.setVisibility(View.VISIBLE);
 		// next_sure.setText("±à¼­");
