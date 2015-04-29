@@ -173,7 +173,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		set = (LinearLayout) findViewById(R.id.set);
 		set.setOnClickListener(this);
 	}
-
+@Override
+protected void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+}
 	@Override
 	public void onClick(View view) {
 
@@ -279,6 +283,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	protected void onRestart() {
 	
 		super.onRestart();
+		Log.e("here", "here");
 		if (Config.shopcar) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
@@ -316,7 +321,41 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	}
 	@Override
 	protected void onResume() {
-		super.onResume();		
+		super.onResume();	
+		if (Config.shopcar) {
+			changTabBg();
+			im_ghc.setBackgroundResource(R.drawable.shopping);
+			if (f_gwc == null)
+				f_gwc = new M_shopcar();
+
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_gwc).commit();
+		}
+		if (Config.AderssManger) {
+			changTabBg();
+			im_wd.setBackgroundResource(R.drawable.mine);
+			textwd.setTextColor(getResources().getColor(R.color.o));
+			if (M_my == null){
+				M_my = new M_my();
+			}
+			getSupportFragmentManager().beginTransaction()
+
+					.replace(R.id.m_fragment, M_my).commit();
+		}
+		
+		if(Config.isExit){
+			changTabBg();
+			im_sy.setBackgroundResource(R.drawable.home);
+			//if(M_my!=null)
+			//getSupportFragmentManager().beginTransaction().remove(M_my);
+			//if(f_sy==null)
+				f_sy = new M_MianFragment();
+			
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_sy).commit();
+			Config.isExit=false;
+			
+		}
 	}
 
 	@Override

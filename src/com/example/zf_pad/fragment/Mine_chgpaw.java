@@ -96,6 +96,11 @@ protected void changepaw() {
 			});
 	
 }
+@Override
+public void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+}
 private void init() {
 	et_oldpaw=(EditText) view.findViewById(R.id.et_oldpaw);
 	et_newpaw=(EditText) view.findViewById(R.id.et_newpaw);

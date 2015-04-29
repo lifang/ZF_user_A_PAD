@@ -296,6 +296,8 @@ public void onClick(View v) {
 		editor.putString("name", null);
 			editor.putInt("id", -1);
 			editor.commit();
+			Intent i = new Intent(getActivity(), LoginActivity.class);
+			startActivity(i);
 		break;
 	default:
 		break;

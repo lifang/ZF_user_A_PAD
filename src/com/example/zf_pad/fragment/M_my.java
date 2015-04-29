@@ -115,7 +115,11 @@ public class M_my extends Fragment implements OnClickListener {
 		}
 		
 	}
-
+@Override
+public void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+}
 	private void initView() {
 		if(Mine_Dd.myHandler!=null){
 		msg=Mine_Dd.myHandler.obtainMessage();
