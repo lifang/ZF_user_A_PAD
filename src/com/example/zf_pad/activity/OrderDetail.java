@@ -102,7 +102,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.order_detail);
 	
 		status = getIntent().getIntExtra("status", 0);
-		id = Integer.parseInt(getIntent().getStringExtra("id"));
+		id = getIntent().getIntExtra("id", 0);
 		type =getIntent().getStringExtra("type");
 		if(type.equals("2")){
 			new TitleMenuUtil(OrderDetail.this, "×âÁŞ¶©µ¥ÏêÇé").show();

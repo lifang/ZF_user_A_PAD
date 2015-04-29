@@ -1,7 +1,7 @@
 package com.example.zf_pad.trade;
 
-import java.util.List;
-
+import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_ID;
+import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_TYPE;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,17 +17,12 @@ import android.widget.Toast;
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.alipay.RepairPayActivity;
-import com.example.zf_pad.entity.Goodlist;
-import com.example.zf_pad.entity.OrderDetailEntity;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.RepairPayEntity;
 import com.example.zf_pad.util.DialogUtil;
 import com.example.zf_pad.util.DialogUtil.CallBackChange;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
-
-import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_ID;
-import static com.example.zf_pad.fragment.Constants.AfterSaleIntent.RECORD_TYPE;
 /**
  * Created by Leo on 2015/3/2.
  */
