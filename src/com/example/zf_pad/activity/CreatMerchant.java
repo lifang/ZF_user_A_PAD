@@ -79,8 +79,10 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 	 private String[] imgLocalPath=new String[7];
 	 public static boolean isdown=false;
 	 private RelativeLayout rl,rldown;
-	 private String title,legal_person_name,legal_person_card_id,business_license_no,
-	 tax_registered_no,organization_code_no,account_bank_name,bank_open_account;
+	 private String title="",legal_person_name="",legal_person_card_id="",business_license_no="",
+	 tax_registered_no="",organization_code_no="",account_bank_name="",bank_open_account="",cardIdFrontPhotoPath=""
+			 ,cardIdBackPhotoPath="",bodyPhotoPath="",licenseNoPicPath="",taxNoPicPath=""
+					 ,orgCodeNoPicPath="",accountPicPath="";
 	 //private AlertDialog dialog;
 	 //private  AlertDialog.Builder builder;
 @Override
@@ -128,6 +130,7 @@ private void getmerchantInfo() {
 	imgPath[4]=intent.getExtras().getString("tax_no_pic_path");
 	imgPath[5]=intent.getExtras().getString("org_code_no_pic_path");
 	imgPath[6]=intent.getExtras().getString("account_pic_path");
+	id=intent.getExtras().getInt("id");
 	isdown=true;
 	btn_legal_photo.setBackgroundResource(R.drawable.check_it);
 	btn_legal_photo.setText("");
@@ -143,6 +146,7 @@ private void getmerchantInfo() {
 	btn_organization_code_photos.setText("");
 	btn_bank_license_photos.setBackgroundResource(R.drawable.check_it);
 	btn_bank_license_photos.setText("");
+	btn_creat.setText("修改");
 	/*
 	isdown=true;
 	if(!Tools.isConnect(getApplicationContext())){
@@ -592,9 +596,11 @@ private void uploadFile(String path,final int tag,final Button btn)throws Except
 							//	String str=jsonobject.getJSONObject("result").getString("filePath");
 								String str=jsonobject.getString("result");
 			        		//	imgPath[tag]=jsonobject.getJSONObject("result").getString("filePath");
-								imgPath[tag]=jsonobject.getString("result");
+								 int cc=tag;
+								 cc=cc-1;
+								imgPath[cc]=jsonobject.getString("result");
 			        			Log.e("tag", String.valueOf(tag));
-			        			Log.e("imgPath", imgPath[tag]);
+			        			Log.e("imgPath", imgPath[cc]);
 							}
 							else{
 								code = jsonobject.getString("message");
@@ -776,7 +782,7 @@ private void changeMerchantInfo() {
 				@Override
 				public void onSuccess(Object data) {
 					Toast.makeText(getApplicationContext(), "修改成功", 1000).show();
-					
+					finish();
 				}
 
 				@Override
@@ -902,22 +908,86 @@ protected void opencamera() {
 	
 }
 private void sumbitMerchantInfo() {
+	
 	String title=et_shopname.getText().toString();
 	String legalPersonName=et_name.getText().toString();
 	String legalPersonCardId=et_id_number.getText().toString();
 	String businessLicenseNo=et_license_code.getText().toString();
 	String taxRegisteredNo=et_tax_id_number.getText().toString();
 	String organizationCodeNo=et_certificate_no.getText().toString();
-	
 	String accountBankName=et_bank.getText().toString();
 	String bankOpenAccount=et_licencenum_bank.getText().toString();
-	String cardIdFrontPhotoPath=imgPath[0];
-	String cardIdBackPhotoPath =imgPath[1];
-	String bodyPhotoPath=imgPath[2];
-	String licenseNoPicPath=imgPath[3];
-	String taxNoPicPath =imgPath[4];
-	String orgCodeNoPicPath=imgPath[5];
-	String accountPicPath=imgPath[6];
+	 cardIdFrontPhotoPath=imgPath[0];
+	 cardIdBackPhotoPath =imgPath[1];
+	 bodyPhotoPath=imgPath[2];
+	 licenseNoPicPath=imgPath[3];
+	 taxNoPicPath =imgPath[4];
+	 orgCodeNoPicPath=imgPath[5];
+	 accountPicPath=imgPath[6];
+	if(title.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入店铺名称");
+		return;
+	}
+	if(legalPersonName.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入商户法人姓名");
+		return;
+	}
+	if(legalPersonCardId.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入法人身份证号");
+		return;
+	}
+	if(businessLicenseNo.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入营业执照登记号");
+		return;
+	}
+	if(taxRegisteredNo.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入税务证号");
+		return;
+	}
+	if(organizationCodeNo.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入组织机构代码证号");
+		return;
+	}
+	if(tv_adress.getText().toString().equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请选择商户所在地");
+		return;
+	}
+	if(accountBankName.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入开户银行");
+		return;
+	}
+	if(bankOpenAccount.equals("")){
+		CommonUtil.toastShort(getApplicationContext(), "请输入银行开户许可证号");
+		return;
+	}
+	if(cardIdFrontPhotoPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传商户法人身份证正面照片");
+		return;
+	}
+	if(cardIdBackPhotoPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传营业执照照片");
+		return;
+	}
+	if(bodyPhotoPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传商户法人身份证背面照片");
+		return;
+	}
+	if(licenseNoPicPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传税务登记证照片");
+		return;
+	}
+	if(taxNoPicPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传商户法人上半身照片");
+		return;
+	}
+	if(orgCodeNoPicPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传组织机构代码证照片");
+		return;
+	}
+	if(accountPicPath==null){
+		CommonUtil.toastShort(getApplicationContext(), "请上传开户银行许可证照片");
+		return;
+	}
 	int customerId=MyApplication.NewUser.getId();
 	API.insertmerchant(CreatMerchant.this, 
 			title, 
@@ -940,8 +1010,8 @@ private void sumbitMerchantInfo() {
 
 				@Override
 				public void onSuccess(Object data) {
+					//finish();
 					Toast.makeText(getApplicationContext(), "创建商户成功", 1000).show();
-					
 				}
 
 				@Override
