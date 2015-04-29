@@ -29,6 +29,8 @@ public class Config {
 	// ”∆µÕ®ª∞
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
 	public static final int VIDEO_SERVER_PORT = 8906;
+	
+	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
 	/*
 	 * alipay
 	*/

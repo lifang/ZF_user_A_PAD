@@ -834,4 +834,11 @@ public class API {
 		params.put("id", id); 
 		new HttpRequest(context, callback).post(URL_REPAIRPAY, params);
 	}
+	public static void noticeVideo(
+ 			Context context,
+ 			int terminalId) {
+		RequestParams params = new RequestParams();
+ 		params.put("terminalId", terminalId);
+ 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
+ 	}
 }
