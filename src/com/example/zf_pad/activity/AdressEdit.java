@@ -117,7 +117,7 @@ public class AdressEdit extends BaseActivity{
 						// TODO Auto-generated method stub
 						Log.e("data", String.valueOf(data));
 						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
-						finish();
+						//finish();
 					}
 
 					@Override

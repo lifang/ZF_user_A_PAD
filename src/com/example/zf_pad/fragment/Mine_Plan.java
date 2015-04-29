@@ -73,6 +73,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 		}
 		return view;
 	}
+	
 	private void init() {
 		apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
 		et_process=(EditText) view.findViewById(R.id.et_process);
