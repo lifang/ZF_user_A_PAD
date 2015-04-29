@@ -101,6 +101,13 @@ public class StringUtil {
 
 		return t;
 	}
+	//判断是否为空
+		public static boolean isNull(String s) {
+			if (null == s || s.equals("") || s.equalsIgnoreCase("null")) {
+				return true;
+			}
+			return false;
+		}
 
 	/**
 	 * MD5加密算法

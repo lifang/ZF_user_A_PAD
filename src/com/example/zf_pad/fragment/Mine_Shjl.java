@@ -49,6 +49,7 @@ import com.example.zf_pad.trade.widget.MTabWidget;
 import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
 import com.example.zf_pad.trade.widget.XListView;
 import com.example.zf_pad.trade.widget.XListView.IXListViewListener;
+import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
@@ -241,11 +242,13 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 							: mRecordType == UPDATE ? R.array.update_status
 							: R.array.lease_status
 			);
-			holder.tvStatus.setText(status[data.getStatus()]);
+			if (!StringUtil.isNull(data.getStatus())) {
+				holder.tvStatus.setText(status[Integer.valueOf(data.getStatus())]);
+			}
 
 			switch (mRecordType) {
 				case MAINTAIN:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.VISIBLE);
 						holder.btnRight.setVisibility(View.VISIBLE);
@@ -257,8 +260,9 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 						holder.btnLeft.setOnClickListener(mCancelApplyListener);
 
 						holder.btnRight.setText(getString(R.string.button_pay));
+						holder.btnRight.setTag(data);
 						holder.btnRight.setOnClickListener(mPayMaintainListener);
-					} else if (data.getStatus() == 2) {
+					} else if (data.getStatus().equals("2")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -273,7 +277,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 					}
 					break;
 				case CANCEL:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -283,7 +287,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
 						holder.btnCenterBlank.setTag(data);
 						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-					} else if (data.getStatus() == 5) {
+					} else if (data.getStatus().equals("5")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -298,7 +302,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 					}
 					break;
 				case UPDATE:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -315,7 +319,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 				case RETURN:
 				case CHANGE:
 				case LEASE:
-					if (data.getStatus() == 1) {
+					if (data.getStatus().equals("1")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -325,7 +329,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 						holder.btnCenterBlank.setText(R.string.button_cancel_apply);
 						holder.btnCenterBlank.setTag(data);
 						holder.btnCenterBlank.setOnClickListener(mCancelApplyListener);
-					} else if (data.getStatus() == 2) {
+					} else if (data.getStatus().equals("2")) {
 						holder.llButtonContainer.setVisibility(View.VISIBLE);
 						holder.btnLeft.setVisibility(View.GONE);
 						holder.btnRight.setVisibility(View.GONE);
@@ -368,7 +372,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 				API.cancelAfterSaleApply(mActivity, mRecordType, record.getId(), new HttpCallback(mActivity) {
 					@Override
 					public void onSuccess(Object data) {
-						record.setStatus(5);
+						record.setStatus(5+"");
 						mAdapter.notifyDataSetChanged();
 						CommonUtil.toastShort(mActivity, getString(R.string.toast_cancel_apply_success));
 					}
@@ -397,6 +401,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 			public void onClick(View view) {
 				final AfterSaleRecord record = (AfterSaleRecord) view.getTag();
 				Intent i1 =new Intent (mActivity,AfterSalePayActivity.class);
+				System.out.println("orderId£º£º"+record.getId());
 				i1.putExtra("orderId", record.getId()+"");
 				i1.putExtra(RECORD_TYPE, mRecordType);
 				startActivity(i1);	
@@ -410,7 +415,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 				API.resubmitCancel(mActivity, record.getId(), new HttpCallback(mActivity) {
 					@Override
 					public void onSuccess(Object obj) {
-						record.setStatus(1);
+						record.setStatus(1+"");
 						mAdapter.notifyDataSetChanged();
 						CommonUtil.toastShort(mActivity, getString(R.string.toast_resubmit_cancel_success));
 					}
@@ -447,7 +452,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 					if (id > 0 && status > 0) {
 						for (AfterSaleRecord record : mEntities) {
 							if (record.getId() == id) {
-								record.setStatus(status);
+								record.setStatus(status+"");
 								mAdapter.notifyDataSetChanged();
 							}
 						}
