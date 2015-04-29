@@ -14,6 +14,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -218,5 +219,9 @@ public class StringUtil {
 		Log.e("sign", sign.toString());
 		return sign.toString();
 	}
-
+	public static String formatNull(String str) {
+		if (TextUtils.isEmpty(str))
+			return "";
+		return str;
+	}
 }
