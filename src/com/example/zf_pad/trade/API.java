@@ -1,5 +1,6 @@
 package com.example.zf_pad.trade;
 
+import android.R.integer;
 import android.content.Context;
 import android.util.Log;
 
@@ -797,10 +798,13 @@ public class API {
 		new HttpRequest(context, callback).post(UPDATE_FILE, params);
 	}
 
-	public static void getApplyBankList(Context context, String terminalNumber,
+	public static void getApplyBankList(Context context,int page, String keyword,int pageSize, String terminalId, 
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("serial_num", terminalNumber);
+		params.put("page", page);
+		params.put("keyword", keyword);
+		params.put("pageSize", pageSize);
+		params.put("terminalId", terminalId);
 		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
 	}
 	public static void delectaddress(
