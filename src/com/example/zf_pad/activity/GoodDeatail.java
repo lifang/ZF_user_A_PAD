@@ -2,6 +2,7 @@ package com.example.zf_pad.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
@@ -57,7 +59,6 @@ import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 

@@ -2,6 +2,7 @@ package com.example.zf_pad.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.AppleNeedAdapter;
@@ -10,7 +11,6 @@ import com.example.zf_pad.entity.ApplyneedEntity;
 import com.example.zf_pad.entity.GoodinfoEntity;
 import com.example.zf_pad.util.ScrollViewWithListView;
 import com.example.zf_pad.util.TitleMenuUtil;
-
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

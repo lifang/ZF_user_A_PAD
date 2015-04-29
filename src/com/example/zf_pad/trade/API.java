@@ -212,6 +212,8 @@ public class API {
 
 	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
 			+"/ZFMerchant/api/order/getMyOrderById";
+	public static final String URL_REPAIRPAY =SCHEMA + HOST
+			+"/ZFMerchant/api/cs/repair/repairPay";
 	//get score list
 	public static final String GET_SCORE_LIST =SCHEMA + HOST
 			+"/ZFMerchant/api/customers/getIntegralList/";
@@ -823,5 +825,13 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id); 
 		new HttpRequest(context, callback).post(URL_GET_MYORDERBYID, params);
+	}
+	public static void getRepairPay(
+			Context context,
+			int id,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id); 
+		new HttpRequest(context, callback).post(URL_REPAIRPAY, params);
 	}
 }

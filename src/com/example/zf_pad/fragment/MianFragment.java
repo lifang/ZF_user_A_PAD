@@ -3,7 +3,6 @@ package com.example.zf_pad.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.activity.LoginActivity;
@@ -19,7 +18,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;

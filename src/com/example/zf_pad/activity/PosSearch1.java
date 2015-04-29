@@ -5,12 +5,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.example.zf_pad.aadpter.SearchAdapter;
 import com.example.zf_pad.entity.HotEntity;
 import com.example.zf_pad.entity.PostPortEntity;

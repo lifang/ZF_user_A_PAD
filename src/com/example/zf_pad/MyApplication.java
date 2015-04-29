@@ -10,14 +10,14 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
-
-import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.entity.User;
 import com.example.zf_pad.entity.UserEntity;
+import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
+
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;

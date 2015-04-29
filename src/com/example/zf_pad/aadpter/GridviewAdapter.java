@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.List;
 
 import com.example.zf_pad.R;

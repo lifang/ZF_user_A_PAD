@@ -51,7 +51,7 @@ public class WelcomeActivity extends Activity implements OnPageChangeListener,
 					sp.edit().putBoolean("isOpen", true).commit();
 				} else {
 					Intent i = new Intent(getApplicationContext(),
-							LoginActivity.class);
+							MainActivity.class);
 					startActivity(i);
 					finish();
 				}
@@ -109,7 +109,7 @@ public class WelcomeActivity extends Activity implements OnPageChangeListener,
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						Intent i = new Intent(WelcomeActivity.this,
-								LoginActivity.class);
+								MainActivity.class);
 						startActivity(i);
 						finish();
 					}

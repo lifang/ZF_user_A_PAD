@@ -20,6 +20,7 @@ import com.example.zf_pad.alipay.RepairPayActivity;
 import com.example.zf_pad.entity.Goodlist;
 import com.example.zf_pad.entity.OrderDetailEntity;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.entity.RepairPayEntity;
 import com.example.zf_pad.util.DialogUtil;
 import com.example.zf_pad.util.DialogUtil.CallBackChange;
 import com.example.zf_pad.util.TitleMenuUtil;
@@ -116,25 +117,21 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	
 	private void getData() {
 
-		API.getMyOrderById(this, Integer.parseInt(orderId), 
-				new HttpCallback<List<OrderDetailEntity>>(this) {
+		API.getRepairPay(this, Integer.parseInt(orderId), 
+				new HttpCallback<RepairPayEntity>(this) {
 
 			@Override
-			public void onSuccess(List<OrderDetailEntity> data) {
-		 		OrderDetailEntity orderDetail = data.get(0);
-				List<Goodlist> goodlist= orderDetail.getOrder_goodsList();
-				if (goodlist.size()>0) {
-					subject = goodlist.get(0).getGood_name();
+			public void onSuccess(RepairPayEntity data) {
+					subject = data.getMiaoshu();
 					body = subject;
-				}
-				outTradeNo = orderDetail.getOrder_number();
-				price = orderDetail.getOrder_totalprice();
+				outTradeNo = data.getApply_num();
+				price = data.getRepair_price();
 				price = String.format("%.2f", Integer.parseInt(price)/100f);
 				handler.sendEmptyMessage(0);
 			}
 			@Override
-			public TypeToken<List<OrderDetailEntity>> getTypeToken() {
-				return new TypeToken<List<OrderDetailEntity>>() {
+			public TypeToken<RepairPayEntity> getTypeToken() {
+				return new TypeToken<RepairPayEntity>() {
 				};
 			}
 		});

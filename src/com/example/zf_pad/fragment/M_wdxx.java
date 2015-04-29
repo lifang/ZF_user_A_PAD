@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -27,7 +28,6 @@ import com.loopj.android.http.RequestParams;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
