@@ -55,7 +55,7 @@
     
     <!-- 下拉选择框 -->
     <dimen name="sp_width">160dp</dimen>
-    <dimen name="sp_height">44dp</dimen>
+    <dimen name="sp_height">40dp</dimen>
     <!-- 注册找回密码 -->
     <dimen name="zc_rl_w">300dp</dimen>
     <dimen name="zc_rl_h">48dp</dimen>
@@ -68,6 +68,7 @@
     <dimen name="normal_height1">30dp</dimen>
     <dimen name="normal_height2">28dp</dimen>
     <dimen name="normal_height3">220dp</dimen>
+    <dimen name="normal_height4">200dp</dimen>
     <dimen name="normal_width1">700dp</dimen>
     <dimen name="normal_width2">24dp</dimen>
     <dimen name="normal_width3">12dp</dimen>

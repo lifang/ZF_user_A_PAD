@@ -165,7 +165,7 @@ public class Good_detail_commet extends Fragment implements  IXListViewListener{
 		String url = Config.goodcomment;
 		RequestParams params = new RequestParams();
 		params.put("goodId", Config.goodId);
-		params.put("indexPage", page);
+		params.put("page", page);
 	 	params.put("rows", rows);
 	 	System.out.println("---"+page);
 		params.setUseJsonStreamer(true);

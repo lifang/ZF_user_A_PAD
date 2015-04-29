@@ -211,5 +211,8 @@ public class StringUtil {
 		Log.e("sign", sign.toString());
 		return sign.toString();
 	}
+	public static String getMoneyString(int money){
+		return String.format("%.2f", money/100f);
 
+	}
 }

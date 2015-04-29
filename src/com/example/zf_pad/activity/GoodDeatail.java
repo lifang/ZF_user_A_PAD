@@ -54,6 +54,7 @@ import com.example.zf_pad.trade.entity.GriviewEntity;
 import com.example.zf_pad.util.ImageCacheUtil;
 import com.example.zf_pad.util.ScrollViewWithGView;
 import com.example.zf_pad.util.ScrollViewWithListView;
+import com.example.zf_pad.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -98,7 +99,11 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	List<GriviewEntity> User_button = new ArrayList<GriviewEntity>();
 	private Boolean islea = false;
 	private List<String> piclist;
+	private int opening_cost;
+	private int all_price;
 	private Handler handler = new Handler() {
+		
+
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
@@ -114,7 +119,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				tv_pp.setText(gfe.getGood_brand());
 				// tv_xh.setText(gfe.getModel_number());
 				// tv_ys.setText("宸插敭"+gfe.getVolume_number());
-				tv_price.setText("￥" + ((double)gfe.getPrice())/100);
+				//tv_price.setText("￥" + ((double)gfe.getPrice())/100);
 				tv_lx.setText(gfe.getCategory());
 				tv_sjhttp.setText(factoryEntity.getWebsite_url());
 				// tv_spxx.setText(gfe.getDescription() );
@@ -126,6 +131,14 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				// tv_jm.setText(gfe.getEncrypt_card_way());
 				// lvAdapter.notifyDataSetChanged();
 				tv_pl.setText("评论"+"("+commentsCount+")");
+				if (islea == false) {
+					all_price = gfe.getRetail_price()+opening_cost;
+					tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+				}else {
+					//租赁
+					all_price = gfe.getLease_deposit()+opening_cost;
+					tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+				}
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,
@@ -228,6 +241,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					| Gravity.CENTER, 0, 0);
 			break;
 		case R.id.tv_bug:
+			all_price = gfe.getRetail_price()+opening_cost;
+			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea = false;
 			if (Config.CheckIsLogin(GoodDeatail.this)) {
 				setting_btn_clear1.setClickable(true);
@@ -245,7 +260,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			}
 			break;
 		case R.id.tv_lea:
-			// tv_bug
+			all_price = gfe.getLease_deposit()+opening_cost;
+			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 			if (Config.CheckIsLogin(GoodDeatail.this)) {
 				islea = true;
 				setting_btn_clear1.setClickable(false);
@@ -321,7 +337,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 					Intent i21 = new Intent(GoodDeatail.this, LeaseConfirm.class);
 					i21.putExtra("getTitle", gfe.getTitle());
-					i21.putExtra("price", gfe.getPrice());
+					i21.putExtra("price", gfe.getPrice()+opening_cost);
 					i21.putExtra("model", gfe.getModel_number());
 					i21.putExtra("chanel", chanel);
 					i21.putExtra("paychannelId", paychannelId);
@@ -335,7 +351,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 					Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
 					i2.putExtra("getTitle", gfe.getTitle());
-					i2.putExtra("price", gfe.getPrice());
+					i2.putExtra("price", gfe.getPrice()+opening_cost);
 					i2.putExtra("model", gfe.getModel_number());
 					i2.putExtra("chanel", chanel);
 					i2.putExtra("paychannelId", paychannelId);
@@ -364,8 +380,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				.post(Config.GOODDETAIL, params,
 						new AsyncHttpResponseHandler() {
 							private Dialog loadingDialog;
-							
-
 							@Override
 							public void onStart() {
 								
@@ -530,6 +544,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										} else {
 											Config.suportcl = "不支持";
 										}
+										opening_cost = jsonobject.getInt("opening_cost");
 										celist2 = gson.fromJson(
 												jsonobject.getString("tDates"),
 												new TypeToken<List<ChanelEntitiy>>() {
@@ -833,7 +848,15 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										} else {
 											Config.suportcl = "不支持";
 										}
-
+										if (islea == false) {
+											//购买
+											all_price = gfe.getRetail_price()+opening_cost;
+											tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+										}else {
+											//租赁
+											all_price = gfe.getLease_deposit()+opening_cost;
+											tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+										}
 									} else {
 										Toast.makeText(
 												getApplicationContext(),

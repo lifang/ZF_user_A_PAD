@@ -48,7 +48,6 @@ public class Good_detail_trade extends Fragment implements OnClickListener{
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
