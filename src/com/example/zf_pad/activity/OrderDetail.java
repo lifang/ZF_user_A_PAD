@@ -286,7 +286,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.bt_pay:
 			Intent i = new Intent(getApplicationContext(),PayFromCar.class);
-			i.putExtra("orderId", id+"");
+			i.putExtra("orderId", id);
 			i.putExtra("type", "1");
 			startActivity(i);
 			finish();
