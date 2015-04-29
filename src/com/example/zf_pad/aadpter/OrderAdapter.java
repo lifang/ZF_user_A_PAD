@@ -86,6 +86,7 @@ public class OrderAdapter extends BaseAdapter{
  		holder.tv_goodnum = (TextView) convertView.findViewById(R.id.tv_goodnum);
 		holder.btn_cancle= (Button) convertView.findViewById(R.id.btn_cancle);
  		holder.btn_pay= (Button) convertView.findViewById(R.id.btn_pay);
+ 		holder.btn_pay.setId(position);
  		holder.im=(ImageView)convertView.findViewById(R.id.evevt_img);
  		//holder.btn_cancle.setTag(list.get(position).getOrder_id());
  		holder.btn_cancle.setId(Integer.parseInt(list.get(position).getOrder_id()));
@@ -225,8 +226,17 @@ public class OrderAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View arg0) {
 				Intent i = new Intent(context,PayFromCar.class);
-				i.putExtra("orderId", list.get(position).getOrder_id());
-				i.putExtra("type", "1");
+				try {
+					i.putExtra("orderId",Integer.parseInt(list.get(position).getOrder_id()));
+				} catch (Exception e) {
+					
+				}
+				if(list.get(position).getOrder_type().equals("2")){
+					i.putExtra("type", 1);
+		 		}else{
+		 			i.putExtra("type",0);
+		 		}
+				
 				context.startActivity(i);
 			}
 		});

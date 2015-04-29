@@ -337,8 +337,13 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 					public void onSuccess(Object data) {
 						Intent i1 =new Intent (GoodConfirm.this,PayFromCar.class);
 						String orderId = data.toString();
-						i1.putExtra("orderId", orderId);
-						i1.putExtra("type", "1");
+						try {
+							i1.putExtra("orderId", Integer.parseInt(orderId));
+						} catch (Exception e) {
+						
+						}
+						
+						i1.putExtra("type", 0);
 						startActivity(i1);	
 						finish();
 					 
@@ -346,7 +351,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 					@Override
 					public TypeToken getTypeToken() {
-						// TODO Auto-generated method stub
 						return  null;
 					}
                 });
