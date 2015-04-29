@@ -303,6 +303,25 @@ public class TerminalManagerActivity extends Activity implements
 			public void onClick(View view) {
 				CommonUtil.toastShort(TerminalManagerActivity.this,
 						"synchronising...");
+
+
+//				TerminalManagerEntity item = (TerminalManagerEntity) view
+//						.getTag();
+//				Config.synchronous(TerminalManagerActivity.this, item
+//						.getPosPortID(), new HttpCallback(
+//						TerminalManagerActivity.this) {
+//
+//					@Override
+//					public void onSuccess(Object data) {
+//						System.out.println();
+//					}
+//
+//					@Override
+//					public TypeToken getTypeToken() {
+//						return null;
+//					}
+//				});
+			
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
