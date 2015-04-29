@@ -177,11 +177,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.testbutton:
-			Intent i = new Intent(getActivity(), LoginActivity.class);
-			startActivity(i);
-
-			break;
+	
 		case R.id.titleback_linear_back:
 			Intent intent = new Intent(getActivity(), CitySelectActivity.class);
 			cityName = cityTextView.getText().toString();
