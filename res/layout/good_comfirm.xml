@@ -551,7 +551,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="（ 含配送费：￥999）"
+                        android:text="（ 含配送费：￥0）"
                         android:textColor="@color/text292929"
                         android:textSize="@dimen/textsmall" />
                 </LinearLayout>

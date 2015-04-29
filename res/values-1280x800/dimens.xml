@@ -67,6 +67,7 @@
     <dimen name="zc_margin_top2">6dp</dimen>
     <dimen name="normal_height1">19dp</dimen>
     <dimen name="normal_height2">18dp</dimen>
+    <dimen name="normal_height4">130dp</dimen>
     <dimen name="normal_width1">438dp</dimen>
     <dimen name="normal_width2">15dp</dimen>
     <dimen name="normal_width3">8dp</dimen>

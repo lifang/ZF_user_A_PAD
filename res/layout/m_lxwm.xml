@@ -120,6 +120,7 @@
                             android:layout_height="fill_parent"
                             android:background="@drawable/shape"
                             android:hint="您的称呼  先生/女士"
+                            android:singleLine="true"
                             android:paddingLeft="14dp"
                             android:paddingRight="14dp" >
                         </EditText>
@@ -163,6 +164,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:background="@drawable/shape"
+                            android:singleLine="true"
                              android:paddingLeft="14dp"
                             android:paddingRight="14dp"
                             android:hint="您的联系方式" >

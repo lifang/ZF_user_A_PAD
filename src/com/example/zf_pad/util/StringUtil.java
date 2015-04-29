@@ -14,6 +14,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -101,6 +102,13 @@ public class StringUtil {
 
 		return t;
 	}
+	//判断是否为空
+		public static boolean isNull(String s) {
+			if (null == s || s.equals("") || s.equalsIgnoreCase("null")) {
+				return true;
+			}
+			return false;
+		}
 
 	/**
 	 * MD5加密算法
@@ -212,4 +220,14 @@ public class StringUtil {
 		return sign.toString();
 	}
 
+	public static String getMoneyString(int money){
+		return String.format("%.2f", money/100f);
+	}
+
+	public static String formatNull(String str) {
+		if (TextUtils.isEmpty(str))
+			return "";
+		return str;
+
+	}
 }

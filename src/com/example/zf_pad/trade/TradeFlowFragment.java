@@ -41,6 +41,8 @@ import com.google.gson.reflect.TypeToken;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,6 +78,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	private List<TradeRecord> mRecords;
 	private boolean hasSearched = false;
 
+	private DecimalFormat df;
+
 	public static TradeFlowFragment newInstance(int tradeType) {
 		TradeFlowFragment fragment = new TradeFlowFragment();
 		Bundle args = new Bundle();
@@ -99,6 +103,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		if (getArguments() != null) {
 			mTradeType = getArguments().getInt(TRADE_TYPE);
 		}
+		df = (DecimalFormat)NumberFormat.getInstance();
+		df.applyPattern("0.00");
 	}
 
 	@Override
@@ -386,7 +392,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 			holder.tvStatus.setText(getResources().getStringArray(R.array.trade_status)[record.getTradedStatus()]);
 			holder.tvTime.setText(record.getTradedTimeStr());
 			holder.tvClientNumber.setText(record.getTerminalNumber());
-			holder.tvAmount.setText(getString(R.string.notation_yuan) + record.getAmount());
+			holder.tvAmount.setText(getString(R.string.notation_yuan) + df.format(record.getAmount()*1.0f/100));
 
 			return convertView;
 		}

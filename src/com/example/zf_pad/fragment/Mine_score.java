@@ -175,7 +175,7 @@ private void getData() {
 							datasco.add(new Score(i, 
 									list.getJSONObject(i).getString("order_number"),
 									list.getJSONObject(i).getString("payedAt"),
-									list.getJSONObject(i).getString("quantity"), 
+									"£§"+list.getJSONObject(i).getString("quantity")+".00", 
 									list.getJSONObject(i).getString("target_type"), 
 									" ’»Î"));
 						}

@@ -65,6 +65,7 @@ public class Config {
 	public final static String LOGIN = PATHS + "user/studentLogin";
 	public static int GOODID = -1;
 	public static int UserID = 1;
+	public static boolean iszd = false;
 	// user/userRegistration
 	public final static String UserRegistration = PATHS
 			+ "user/userRegistration";

@@ -1,5 +1,7 @@
 package com.example.zf_pad.activity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +80,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm1);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
-
+		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+		df.applyPattern("0.00");
 		initView();
 		comments = getIntent().getIntExtra("comments", 0);
 		title2.setText(getIntent().getStringExtra("getTitle"));
@@ -86,7 +89,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		retail_price.setText("￥" + pirce);
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("实付：￥ " + ((double) pirce) / 100);
+		retail_price.setText("￥" +df.format( pirce*1.0f/100));
 		tv_totle.setText("实付：￥ " + ((double) pirce) / 100);
 		System.out.println("=paychannelId==" + paychannelId);
 		getData1();
@@ -310,6 +313,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			Intent i = new Intent(LeaseConfirm.this, GoodDeatilMore.class);
 			i.putExtra("type", 3);
 			i.putExtra("commets", comments);
+			Config.iszd=true;
 			startActivity(i);
 			break;
 		default:

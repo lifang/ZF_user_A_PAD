@@ -20,13 +20,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normai_button_height"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="@dimen/dlimg"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="@dimen/titilepad"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="18dp"
                     android:text="终端号"
@@ -35,8 +35,8 @@
 
                 <LinearLayout
                     android:id="@+id/trade_client"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_width="@dimen/normal_height4"
+                    android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -63,13 +63,13 @@
 
                 <RelativeLayout
                     android:id="@+id/trade_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/normal_height4"
+                    android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
 
                     <TextView
-                         android:id="@+id/trade_start_date"
+                        android:id="@+id/trade_start_date"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:gravity="center"
@@ -81,21 +81,20 @@
                     android:id="@+id/textView1"
                     android:layout_width="40dp"
                     android:layout_height="fill_parent"
-                    
-                    android:text="-"
                     android:gravity="center"
+                    android:text="-"
                     android:textColor="#6c6c6c"
                     android:textSize="21sp" />
 
                 <RelativeLayout
                     android:id="@+id/trade_end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/normal_height4"
+                    android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
 
                     <TextView
-                         android:id="@+id/trade_end_date"
+                        android:id="@+id/trade_end_date"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:gravity="center"
@@ -115,19 +114,18 @@
                     android:layout_width="118dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="60dp"
-                    
-                    android:text="开始查询"
+                    android:background="@drawable/normal_button_selector"
                     android:enabled="false"
-                     android:background="@drawable/normal_button_selector"
+                    android:text="开始查询"
                     android:textColor="#ffffff" />
 
                 <Button
                     android:id="@+id/trade_statistic"
                     android:layout_width="118dp"
                     android:layout_height="40dp"
-                     android:background="@drawable/normal_button_selector"
-                    android:text="开始统计"
+                    android:background="@drawable/normal_button_selector"
                     android:enabled="false"
+                    android:text="开始统计"
                     android:textColor="#ffffff" />
             </LinearLayout>
 
@@ -169,7 +167,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="交易时间"
-                    
                     android:textColor="#292929"
                     android:textSize="15sp" />
 
@@ -212,6 +209,7 @@
                     android:text="交易金额"
                     android:textColor="#292929"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="fill_parent"

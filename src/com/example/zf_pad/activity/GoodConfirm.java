@@ -1,5 +1,7 @@
 package com.example.zf_pad.activity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,11 +75,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm);
 		new TitleMenuUtil(GoodConfirm.this, "订单确认").show();
-
+		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+		df.applyPattern("0.00");
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
-		retail_price.setText("￥" + pirce);
+		retail_price.setText("￥" +df.format( pirce*1.0f/100));
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
 		tv_pay.setText("实付：￥ " + ((double)pirce)/100);

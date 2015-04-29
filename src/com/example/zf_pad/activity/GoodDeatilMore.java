@@ -39,6 +39,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	private ImageView search2;
 	private LinearLayout ll_back;
 	private int comments;
+	private LinearLayout ll_isshow;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -90,6 +91,9 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	}
 
 	private void initView() {
+		ll_isshow = (LinearLayout)findViewById(R.id.ll_isshow);
+		if(Config.iszd)
+			ll_isshow.setVisibility(View.GONE);
 		ll_back = (LinearLayout)findViewById(R.id.titleback_linear_back);
 		ll_back.setOnClickListener(this);
 		search2 = (ImageView) findViewById(R.id.search2);
@@ -175,6 +179,12 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			break;
 		}
 		
+	}
+	@Override
+	protected void onDestroy() {
+		
+		super.onDestroy();
+		Config.iszd=false;
 	}
 
 }

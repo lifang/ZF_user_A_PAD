@@ -288,7 +288,7 @@ containing a value of this type.
  编辑框 
          */
         public static final int edwidth=0x7f060047;
-        public static final int goodimg=0x7f060068;
+        public static final int goodimg=0x7f060069;
         /**  首页 
  首页 
  首页 
@@ -321,14 +321,15 @@ containing a value of this type.
         public static final int normai_height3=0x7f060037;
         public static final int normal_height1=0x7f060060;
         public static final int normal_height2=0x7f060061;
-        public static final int normal_height3=0x7f060069;
-        public static final int normal_width1=0x7f060062;
-        public static final int normal_width2=0x7f060063;
-        public static final int normal_width3=0x7f060064;
-        public static final int normal_width4=0x7f060065;
-        public static final int normal_width5=0x7f06006a;
-        public static final int order_image=0x7f060066;
-        public static final int order_image1=0x7f060067;
+        public static final int normal_height3=0x7f06006a;
+        public static final int normal_height4=0x7f060062;
+        public static final int normal_width1=0x7f060063;
+        public static final int normal_width2=0x7f060064;
+        public static final int normal_width3=0x7f060065;
+        public static final int normal_width4=0x7f060066;
+        public static final int normal_width5=0x7f06006b;
+        public static final int order_image=0x7f060067;
+        public static final int order_image1=0x7f060068;
         public static final int postimg=0x7f06003d;
         public static final int s_12sp=0x7f06002b;
         public static final int s_13sp=0x7f06002c;
