@@ -20,6 +20,17 @@ public class My_ApplyDetail {
 
 	@SerializedName("applyFor")
 	private List<MyApplyCustomerDetail> customerDetails;
+	
+	@SerializedName("openingInfos")
+	private OpeningInfos openingInfos;
+
+	public OpeningInfos getOpeningInfos() {
+		return openingInfos;
+	}
+
+	public void setOpeningInfos(OpeningInfos openingInfos) {
+		this.openingInfos = openingInfos;
+	}
 
 	public MyApplyTerminalDetail getTerminalDetail() {
 		return terminalDetail;

@@ -187,7 +187,8 @@ public class TerminalManagerActivity extends Activity implements
 				holder.llButtonContainer.setVisibility(View.VISIBLE);
 
 				addButton(holder.llButtons);
-				addButton(holder.llButtons);
+				addButton(holder.llButtons, R.string.terminal_button_sync,
+						item, mSyncListener);
 				addButton(holder.llButtons, R.string.terminal_button_open,
 						item, mOpenListener);
 				addButton(holder.llButtons, R.string.terminal_button_video,

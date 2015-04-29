@@ -16,7 +16,7 @@ public class AfterSaleRecord {
 	@SerializedName("terminal_num")
 	private String terminalNum;
 
-	private int status;
+	private String status;
 
 	public int getId() {
 		return id;
@@ -50,11 +50,11 @@ public class AfterSaleRecord {
 		this.terminalNum = terminalNum;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 }

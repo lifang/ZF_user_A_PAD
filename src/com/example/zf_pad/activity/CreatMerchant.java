@@ -589,8 +589,10 @@ private void uploadFile(String path,final int tag,final Button btn)throws Except
 								CommonUtil.toastShort(getApplicationContext(), "图片上传成功");
 								btn.setBackgroundResource(R.drawable.check_it);
 								btn.setText("");
-								String str=jsonobject.getJSONObject("result").getString("filePath");
-			        			imgPath[tag]=jsonobject.getJSONObject("result").getString("filePath");
+							//	String str=jsonobject.getJSONObject("result").getString("filePath");
+								String str=jsonobject.getString("result");
+			        		//	imgPath[tag]=jsonobject.getJSONObject("result").getString("filePath");
+								imgPath[tag]=jsonobject.getString("result");
 			        			Log.e("tag", String.valueOf(tag));
 			        			Log.e("imgPath", imgPath[tag]);
 							}

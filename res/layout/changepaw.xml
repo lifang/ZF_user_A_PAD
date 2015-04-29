@@ -56,6 +56,7 @@
     android:layout_width="wrap_content"
     android:layout_height="30dp"
     android:background="@drawable/sc_edit"
+    android:inputType="textPassword"
     android:layout_marginLeft="10dp"
     android:layout_gravity="center_vertical"/>    
    </TableRow>

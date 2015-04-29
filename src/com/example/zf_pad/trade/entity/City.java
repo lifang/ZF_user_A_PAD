@@ -4,53 +4,65 @@ import java.io.Serializable;
 
 
 public class City implements Serializable {
-    private int id;
-    private String name;
-    private int parentId;
-    private String pinyin;
+	private int id;
+	private String name;
+	private int parentId;
+	private String pinyin;
 
-    public int getId() {
-        return id;
-    }
+	private Province province;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public int getParentId() {
-        return parentId;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
-    }
+	public int getParentId() {
+		return parentId;
+	}
 
-    public String getPinyin() {
-        return pinyin;
-    }
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
 
-    public void setPinyin(String pinyin) {
-        this.pinyin = pinyin;
-    }
+	public String getPinyin() {
+		return pinyin;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (null == o) return false;
-        if (!(o instanceof City)) return false;
-        City that = (City) o;
-        return that.getId() == this.getId();
-    }
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
 
-    @Override
-    public String toString() {
-        return name;
-    }
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (null == o)
+			return false;
+		if (!(o instanceof City))
+			return false;
+		City that = (City) o;
+		return that.getId() == this.getId();
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
