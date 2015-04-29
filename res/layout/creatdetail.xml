@@ -151,7 +151,6 @@
        android:id="@+id/tv_adress"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
-    android:text="上海"
     android:background="@drawable/ed_adress"
     android:layout_marginLeft="10dp"
     android:gravity="center_vertical|left"/>

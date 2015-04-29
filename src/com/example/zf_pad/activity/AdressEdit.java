@@ -183,7 +183,8 @@ public class AdressEdit extends BaseActivity{
 
 					@Override
 					public void onSuccess(Object data) {
-					CommonUtil.toastShort(AdressEdit.this, "删除地址成功");
+					//CommonUtil.toastShort(AdressEdit.this, "删除地址成功");
+					finish();
 					}
 
 					@Override

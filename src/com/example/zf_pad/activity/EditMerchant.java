@@ -98,6 +98,7 @@ private void getData() {
 				int a =jsonobject.getInt("code");
 				if(a==Config.CODE){
 					JSONObject result=jsonobject.getJSONObject("result");
+					Log.e("result", String.valueOf(result));
 					/*if(result.length()!=17){
 						CommonUtil.toastShort(getApplicationContext(), "服务器返回数据不完全");
 						return;
@@ -111,7 +112,7 @@ private void getData() {
 					account_bank_name=result.getString("account_bank_name");
 					bank_open_account=result.getString("bank_open_account");*/
 					
-					tv_shopname.setText(result.getString("title"));
+					/*tv_shopname.setText(result.getString("title"));
 					tv_name.setText(result.getString("legal_person_name"));
 					tv_id_number.setText(result.getString("legal_person_card_id"));
 					tv_license_code.setText(result.getString("business_license_no"));
@@ -126,7 +127,23 @@ private void getData() {
 					imgPath[5]=result.getString("org_code_no_pic_path");
 					imgPath[6]=result.getString("account_pic_path");
 					imgPath[1] =result.getString("card_id_back_photo_path");
-					imgPath[0]=result.getString("card_id_front_photo_path");
+					imgPath[0]=result.getString("card_id_front_photo_path");*/
+					tv_shopname.setText(result.getString("title"));
+					tv_name.setText(result.getString("legalPersonName"));
+					tv_id_number.setText(result.getString("legalPersonCardId"));
+					tv_license_code.setText(result.getString("businessLicenseNo"));
+					tv_tax_id_number.setText(result.getString("taxRegisteredNo"));
+					tv_certificate_no.setText(result.getString("organizationCodeNo"));
+					tv_bank.setText(result.getString("accountBankName"));
+					tv_licencenum_bank.setText(result.getString("bankOpenAccount"));
+					tv_adress.setText(findcity(result.getInt("id")));
+					imgPath[2]=result.getString("bodyPhotoPath");
+					imgPath[3]=result.getString("licenseNoPicPath");
+					imgPath[4] =result.getString("taxNoPicPath");
+					imgPath[5]=result.getString("orgCodeNoPicPath");
+					imgPath[6]=result.getString("accountPicPath");
+					imgPath[1] =result.getString("cardIdBackPhotoPath");
+					imgPath[0]=result.getString("cardIdFrontPhotoPath");
 					
 					}
 				else{
@@ -217,6 +234,7 @@ public void onClick(View v) {
 		intent.putExtra("tax_no_pic_path", imgPath[4]);
 		intent.putExtra("org_code_no_pic_path", imgPath[5]);
 		intent.putExtra("account_pic_path", imgPath[6]);
+		intent.putExtra("id", id);
 		startActivity(intent);
 		break;
 	case R.id.btn_legal_photo:
