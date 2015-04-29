@@ -130,7 +130,7 @@ public class MyApplyDetail extends FragmentActivity {
 	private Button mApplySubmit;
 
 	private int mMerchantId;
-	private int mMerchantGender = 3;
+	private int mMerchantGender = 1;
 	private String mMerchantBirthday;
 	private Province mMerchantProvince;
 	private City mMerchantCity;
@@ -933,7 +933,7 @@ public class MyApplyDetail extends FragmentActivity {
 						mBankKey = material.getName();
 						Intent intent = new Intent(MyApplyDetail.this,
 								ApplyBankActivity.class);
-						intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+						intent.putExtra(TERMINAL_ID, mTerminalId);
 						intent.putExtra(SELECTED_BANK, mChosenBank);
 						startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 					}

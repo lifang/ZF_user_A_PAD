@@ -3,7 +3,7 @@ package com.example.zf_pad.trade;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BANK;
 import android.app.Activity;
@@ -31,9 +31,11 @@ import com.google.gson.reflect.TypeToken;
  * Created by Leo on 2015/3/16.
  */
 public class ApplyBankActivity extends Activity implements View.OnClickListener {
-
+	private int mTerminalId;
 	private String mTerminalNumber;
 
+	private int page = 1;
+	private int pageSize = 20;
 	private EditText mBankInput;
 	private ImageButton mBankSearch;
 	private LinearLayout mResultContainer;
@@ -48,9 +50,11 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_apply_bank);
-		new TitleMenuUtil(this, getString(R.string.title_apply_choose_bank)).show();
-		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
-		mChosenBank = (ApplyBank) getIntent().getSerializableExtra(SELECTED_BANK);
+		new TitleMenuUtil(this, getString(R.string.title_apply_choose_bank))
+				.show();
+		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
+		mChosenBank = (ApplyBank) getIntent().getSerializableExtra(
+				SELECTED_BANK);
 
 		mBankInput = (EditText) findViewById(R.id.apply_bank_input);
 		mBankSearch = (ImageButton) findViewById(R.id.apply_bank_search);
@@ -62,7 +66,8 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 
 		mBankList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+			public void onItemClick(AdapterView<?> adapterView, View view,
+					int i, long l) {
 				ApplyBank bank = (ApplyBank) view.getTag(R.id.item_id);
 				Intent intent = new Intent();
 				intent.putExtra(SELECTED_BANK, bank);
@@ -71,35 +76,36 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 			}
 		});
 
-		API.getApplyBankList(this, mTerminalNumber, new HttpCallback<List<ApplyBank>>(this) {
-			@Override
-			public void onSuccess(List<ApplyBank> data) {
-				mResultContainer.setVisibility(View.VISIBLE);
-				mAllBanks = data;
-				mBanks.clear();
-				if (null != data && data.size() > 0)
-					mBanks.addAll(data);
-				mAdapter.notifyDataSetChanged();
-			}
-
-			@Override
-			public TypeToken<List<ApplyBank>> getTypeToken() {
-				return new TypeToken<List<ApplyBank>>() {
-				};
-			}
-		});
 	}
 
 	@Override
 	public void onClick(View view) {
 		String keyword = mBankInput.getText().toString();
 		mBanks.clear();
-		for (ApplyBank bank : mAllBanks) {
-			if (bank.getName().indexOf(keyword) > -1) {
-				mBanks.add(bank);
-			}
-		}
-		mAdapter.notifyDataSetChanged();
+		API.getApplyBankList(this, page, keyword, pageSize, String.valueOf(mTerminalId),
+				new HttpCallback<List<ApplyBank>>(this) {
+					@Override
+					public void onSuccess(List<ApplyBank> data) {
+						mResultContainer.setVisibility(View.VISIBLE);
+						mAllBanks = data;
+						mBanks.clear();
+						if (null != data && data.size() > 0)
+							mBanks.addAll(data);
+						mAdapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public TypeToken<List<ApplyBank>> getTypeToken() {
+						return new TypeToken<List<ApplyBank>>() {
+						};
+					}
+				});
+		// for (ApplyBank bank : mAllBanks) {
+		// if (bank.getName().indexOf(keyword) > -1) {
+		// mBanks.add(bank);
+		// }
+		// }
+//		mAdapter.notifyDataSetChanged();
 	}
 
 	private class BankListAdapter extends BaseAdapter {
@@ -125,9 +131,12 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 		public View getView(int i, View convertView, ViewGroup viewGroup) {
 			ViewHolder holder = new ViewHolder();
 			if (null == convertView) {
-				convertView = LayoutInflater.from(ApplyBankActivity.this).inflate(R.layout.simple_list_item, null);
-				holder.icon = (ImageView) convertView.findViewById(R.id.item_selected);
-				holder.name = (TextView) convertView.findViewById(R.id.item_name);
+				convertView = LayoutInflater.from(ApplyBankActivity.this)
+						.inflate(R.layout.simple_list_item, null);
+				holder.icon = (ImageView) convertView
+						.findViewById(R.id.item_selected);
+				holder.name = (TextView) convertView
+						.findViewById(R.id.item_name);
 				holder.id = (TextView) convertView.findViewById(R.id.item_id);
 				convertView.setTag(holder);
 			} else {
@@ -139,9 +148,11 @@ public class ApplyBankActivity extends Activity implements View.OnClickListener 
 			if (null != bank) {
 				holder.id.setText(bank.getCode());
 				holder.name.setText(bank.getName());
-				if (null != mChosenBank && bank.getCode().equals(mChosenBank.getCode())) {
+				if (null != mChosenBank
+						&& bank.getCode().equals(mChosenBank.getCode())) {
 					holder.icon.setVisibility(View.VISIBLE);
-					holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.icon_selected));
+					holder.icon.setImageDrawable(getResources().getDrawable(
+							R.drawable.icon_selected));
 				} else {
 					holder.icon.setVisibility(View.INVISIBLE);
 				}
