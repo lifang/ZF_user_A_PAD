@@ -24,7 +24,7 @@ public class Config {
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
-	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+	public final static String PATHS = "http://121.40.64.167:8080/api/";
 
 	// ”∆µÕ®ª∞
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";

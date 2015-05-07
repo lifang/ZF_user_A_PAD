@@ -27,8 +27,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.zf_pad.MyApplication;
@@ -41,7 +39,6 @@ import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.MyApplyDetail;
-import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.video.VideoActivity;
@@ -103,8 +100,19 @@ public class TerminalManagerDetailActivity extends Activity {
 		mSyncListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalManagerDetailActivity.this,
-						"synchronising...");
+				API.synchronous(TerminalManagerDetailActivity.this, String
+						.valueOf(mTerminalId), new HttpCallback(
+						TerminalManagerDetailActivity.this) {
+
+					@Override
+					public void onSuccess(Object data) {
+					}
+
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				});
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
@@ -141,7 +149,8 @@ public class TerminalManagerDetailActivity extends Activity {
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(TerminalManagerDetailActivity.this, VideoActivity.class);
+				Intent intent = new Intent(TerminalManagerDetailActivity.this,
+						VideoActivity.class);
 				intent.putExtra(TERMINAL_ID, mTerminalId);
 				startActivity(intent);
 			}
@@ -216,13 +225,13 @@ public class TerminalManagerDetailActivity extends Activity {
 			mBtnRightBottom.setOnClickListener(mPosListener);
 			break;
 		case UNOPENED:
-			mBtnLeftTop.setVisibility(View.VISIBLE);
-			mBtnLeftBottom.setVisibility(View.INVISIBLE);
+			mBtnLeftBottom.setVisibility(View.VISIBLE);
+			// mBtnLeftBottom.setVisibility(View.INVISIBLE);
 			mBtnRightTop.setVisibility(View.VISIBLE);
 			mBtnRightBottom.setVisibility(View.VISIBLE);
 
-			mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
-			mBtnLeftTop.setOnClickListener(mSyncListener);
+			mBtnLeftBottom.setText(getString(R.string.terminal_button_sync));
+			mBtnLeftBottom.setOnClickListener(mSyncListener);
 			mBtnRightTop.setText(getString(R.string.terminal_button_open));
 			mBtnRightTop.setOnClickListener(mOpenListener);
 			mBtnRightBottom.setText(getString(R.string.terminal_button_video));
@@ -231,10 +240,10 @@ public class TerminalManagerDetailActivity extends Activity {
 		case CANCELED:
 			break;
 		case STOPPED:
-			mBtnRightTop.setVisibility(View.VISIBLE);
+			mBtnRightBottom.setVisibility(View.VISIBLE);
 
-			mBtnRightTop.setText(getString(R.string.terminal_button_sync));
-			mBtnRightTop.setOnClickListener(mSyncListener);
+			mBtnRightBottom.setText(getString(R.string.terminal_button_sync));
+			mBtnRightBottom.setOnClickListener(mSyncListener);
 			break;
 		}
 	}
@@ -244,8 +253,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		if (null == apply) {
 			LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 			pairs.put(getString(R.string.terminal_no_detail), "");
-			return renderCategoryTemplate(R.string.terminal_category_apply,
-					pairs, false);
+			return renderCategoryTemplate(pairs, false);
 		}
 		LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 		String[] keys = getResources().getStringArray(
@@ -256,46 +264,86 @@ public class TerminalManagerDetailActivity extends Activity {
 		pairs.put(keys[3], apply.getFactorName());
 		pairs.put(keys[4], apply.getTitle());
 		pairs.put(keys[5], apply.getPhone());
-		return renderCategoryTemplate(R.string.terminal_category_apply, pairs,
-				false);
+		pairs.put(keys[6], apply.getOrderNumber());
+		pairs.put(keys[7], apply.getCreatedAt());
+		return renderCategoryTemplate(pairs, false);
 	}
 
 	private void addRatesTable(LinearLayout category, List<TerminalRate> rates) {
 
-		TableLayout terminal_rates = (TableLayout) findViewById(R.id.terminal_rates);
+		// TableLayout terminal_rates = (TableLayout)
+		// findViewById(R.id.terminal_rates);
+		//
+		// if (null == category || null == rates || rates.size() <= 0) {
+		// terminal_rates.setVisibility(View.GONE);
+		// return;
+		// }
+		//
+		// for (int i = 0; i < rates.size(); i++) {
+		//
+		// TerminalRate rate = rates.get(i);
+		//
+		// TableRow tableRow = new TableRow(this);
+		// LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT,
+		// LayoutParams.WRAP_CONTENT);
+		// if (i == rates.size() - 1)
+		// lp.setMargins(1, 0, 1, 1);
+		// lp.setMargins(1, 0, 1, 0);
+		// tableRow.setLayoutParams(lp);
+		// tableRow.setPadding(5, 5, 5, 5);
+		// tableRow.setBackgroundColor(Color.parseColor("#ffffff"));
+		// TextView typeTv = createRateText();
+		// TextView rateTv = createRateText();
+		// TextView statusTv = createRateText();
+		//
+		// String[] status = getResources().getStringArray(
+		// R.array.terminal_status);
+		// typeTv.setText(rate.getType());
+		// rateTv.setText(rate.getBaseRate()
+		// + getString(R.string.notation_percent));
+		// statusTv.setText(status[rate.getStatus()]);
+		// tableRow.addView(typeTv);
+		// tableRow.addView(rateTv);
+		// tableRow.addView(statusTv);
+		// terminal_rates.addView(tableRow);
+		// }
 
-		if (null == category || null == rates || rates.size() <= 0) {
-			terminal_rates.setVisibility(View.GONE);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.terminal_rates);
+		if (null == category || null == rates || rates.size() <= 0)
 			return;
-		}
-
+		LinearLayout header = (LinearLayout) mInflater.inflate(
+				R.layout.terminal_rates_header, null);
+		layout.addView(header);
 		for (int i = 0; i < rates.size(); i++) {
+			LinearLayout column = (LinearLayout) mInflater.inflate(
+					R.layout.terminal_rates_column, null);
 
-			TerminalRate rate = rates.get(i);
-
-			TableRow tableRow = new TableRow(this);
-			LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT,
-					LayoutParams.WRAP_CONTENT);
-			if (i == rates.size() - 1)
-				lp.setMargins(1, 0, 1, 1);
-			lp.setMargins(1, 0, 1, 0);
-			tableRow.setLayoutParams(lp);
-			tableRow.setPadding(5, 5, 5, 5);
-			tableRow.setBackgroundColor(Color.parseColor("#ffffff"));
-			TextView typeTv = createRateText();
-			TextView rateTv = createRateText();
-			TextView statusTv = createRateText();
-
+			LinearLayout base = (LinearLayout) column
+					.findViewById(R.id.baseline);
+			TextView typeTv = (TextView) column
+					.findViewById(R.id.terminal_column_type);
+			TextView rateTv = (TextView) column
+					.findViewById(R.id.terminal_column_rate);
+			TextView statusTv = (TextView) column
+					.findViewById(R.id.terminal_column_status);
 			String[] status = getResources().getStringArray(
 					R.array.terminal_status);
-			typeTv.setText(rate.getType());
-			rateTv.setText(rate.getBaseRate()
-					+ getString(R.string.notation_percent));
-			statusTv.setText(status[rate.getStatus()]);
-			tableRow.addView(typeTv);
-			tableRow.addView(rateTv);
-			tableRow.addView(statusTv);
-			terminal_rates.addView(tableRow);
+			typeTv.setText(rates.get(i).getType());
+			if (rates.get(i).getTrade_type() == 1)
+				rateTv.setText(rates.get(i).getBaseRate()
+						+ rates.get(i).getServiceRate()
+						+ getString(R.string.qianfenhao));
+			if (rates.get(i).getTrade_type() == 2)
+				rateTv.setText(rates.get(i).getTerminalRate()
+						+ getString(R.string.qianfenhao));
+			// TODO:
+			if (rates.get(i).getStatus() == 0)
+				statusTv.setText(status[3]);
+			else
+				statusTv.setText(status[1]);
+			if (i != rates.size() - 1)
+				base.setVisibility(View.INVISIBLE);
+			layout.addView(column);
 		}
 	}
 
@@ -305,7 +353,7 @@ public class TerminalManagerDetailActivity extends Activity {
 
 			LinkedHashMap<String, String> pairs = new LinkedHashMap<String, String>();
 			pairs.put(getString(R.string.terminal_no_open_detail), "");
-			renderCategoryTemplate(R.string.terminal_category_open, pairs, true);
+			renderCategoryTemplate(pairs, true);
 			return;
 		}
 
@@ -324,22 +372,13 @@ public class TerminalManagerDetailActivity extends Activity {
 				imageUrls.add(openDetail.getValue());
 			}
 		}
-		LinearLayout category = renderCategoryTemplate(
-				R.string.terminal_category_open, pairs, true);
+		LinearLayout category = renderCategoryTemplate(pairs, true);
 
 		View.OnClickListener onViewPhotoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// TODO:
-				// int position = (Integer) view.getTag();
-				// Intent intent = new
-				// Intent(TerminalManagerDetailActivity.this,
-				// ShowWebImageActivity.class);
-				// intent.putExtra(IMAGE_NAMES, StringUtil.join(imageNames,
-				// ","));
-				// intent.putExtra(IMAGE_URLS, StringUtil.join(imageUrls, ","));
-				// intent.putExtra(POSITION, position);
-				// startActivity(intent);
+
+				// ShowWebImageActivity.class)
 			}
 		};
 
@@ -417,7 +456,7 @@ public class TerminalManagerDetailActivity extends Activity {
 		return tv;
 	}
 
-	private LinearLayout renderCategoryTemplate(int titleRes,
+	private LinearLayout renderCategoryTemplate(
 			LinkedHashMap<String, String> pairs, Boolean isOpen) {
 		// LinearLayout terminal_category = (LinearLayout)
 		// findViewById(R.id.terminal_category);
@@ -430,22 +469,19 @@ public class TerminalManagerDetailActivity extends Activity {
 		// title.setText(getString(titleRes));
 
 		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(
-				R.layout.after_sale_detail_category, null);
-		
+				R.layout.after_sale_detail_category_ter, null);
+
 		if (isOpen) {
 			mCategoryContainer.addView(terminalCategory);
 		} else {
 			mTerminalContainer.addView(terminalCategory);
 		}
 
-		TextView title = (TextView) terminalCategory
-				.findViewById(R.id.category_title);
 		LinearLayout keyContainer = (LinearLayout) terminalCategory
 				.findViewById(R.id.category_key_container);
 		LinearLayout valueContainer = (LinearLayout) terminalCategory
 				.findViewById(R.id.category_value_container);
 
-		title.setText(getString(titleRes));
 		for (Map.Entry<String, String> pair : pairs.entrySet()) {
 			TextView key = createCategoryText();
 			key.setText(pair.getKey());

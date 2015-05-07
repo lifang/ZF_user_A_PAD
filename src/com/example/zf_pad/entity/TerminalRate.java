@@ -1,5 +1,9 @@
 package com.example.zf_pad.entity;
 
+import java.text.DecimalFormat;
+
+import android.R.integer;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -7,67 +11,77 @@ import com.google.gson.annotations.SerializedName;
  */
 public class TerminalRate {
 
-    private int id;
+	private int id;
 
-    @SerializedName("trade_value")
-    private String type;
+	@SerializedName("trade_value")
+	private String type;
 
-    @SerializedName("terminal_rate")
-    private String terminalRate;
+	@SerializedName("terminal_rate")
+	private float terminalRate;
 
-    @SerializedName("service_rate")
-    private int serviceRate;
+	@SerializedName("service_rate")
+	private float serviceRate;
 
-    @SerializedName("base_rate")
-    private int baseRate;
+	@SerializedName("base_rate")
+	private float baseRate;
 
-    private int status;
+	private int status;
 
-    public int getId() {
-        return id;
-    }
+	private int trade_type;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getTrade_type() {
+		return trade_type;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setTrade_type(int trade_type) {
+		this.trade_type = trade_type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getTerminalRate() {
-        return terminalRate;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setTerminalRate(String terminalRate) {
-        this.terminalRate = terminalRate;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public int getServiceRate() {
-        return serviceRate;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setServiceRate(int serviceRate) {
-        this.serviceRate = serviceRate;
-    }
+	public float getTerminalRate() {
+		return terminalRate / 10.0f;
+	}
 
-    public int getBaseRate() {
-        return baseRate;
-    }
+	public void setTerminalRate(float terminalRate) {
+		this.terminalRate = terminalRate;
+	}
 
-    public void setBaseRate(int baseRate) {
-        this.baseRate = baseRate;
-    }
+	public float getServiceRate() {
+		return serviceRate / 10.0f;
+	}
 
-    public int getStatus() {
-        return status;
-    }
+	public void setServiceRate(float serviceRate) {
+		this.serviceRate = serviceRate;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public float getBaseRate() {
+		return baseRate / 10.0f;
+	}
+
+	public void setBaseRate(float baseRate) {
+		this.baseRate = baseRate;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

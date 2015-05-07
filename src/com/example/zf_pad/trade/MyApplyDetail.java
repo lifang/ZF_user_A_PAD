@@ -1109,8 +1109,6 @@ public class MyApplyDetail extends FragmentActivity {
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
 			mUploadUri = value;
-			// TODO:
-//			mUploadUri = "http://i2.sinaimg.cn/ty/nba/2015-04-10/U8567P6T12D7570488F44DT20150410181804.jpg";
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			ibView.setOnClickListener(new onWatchListener()
