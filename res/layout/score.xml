@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="#ffffff"
     android:orientation="vertical">
   <LinearLayout 
@@ -90,17 +90,11 @@
      />
     </LinearLayout>
 </LinearLayout>
-<TextView
-		android:id="@+id/apply_progress_tips"
-		style="@style/TextItem"
-		android:layout_gravity="center"
-		android:layout_marginTop="36dp"
-		android:text="@string/apply_progress_no_data"
-		android:visibility="gone"/>
+
 <com.example.zf_pad.util.XListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
        
 		android:divider="@color/F3F2F2"
 		android:dividerHeight="8dp"

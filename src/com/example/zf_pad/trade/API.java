@@ -1,8 +1,11 @@
 package com.example.zf_pad.trade;
 
-import android.R.integer;
-import android.content.Context;
-import android.util.Log;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 import java.io.File;
 import java.util.HashMap;
@@ -11,24 +14,16 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.example.zf_pad.fragment.Mine_Address;
+import android.content.Context;
+import android.util.Log;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.Posport;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.common.HttpRequest;
-import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
-
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 public class API {
 
@@ -381,16 +376,6 @@ public class API {
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
 
-	// public static void test(Context context, String customerId,
-	//
-	// HttpCallback callback) {
-	// Map<String, Object> params = new HashMap<String, Object>();
-	// params.put("codeNumber", customerId);
-	// new HttpRequest(context, callback)
-	// .post("http://114.215.149.242:18080user/sendPhoneVerificationCodeFind",
-	// params);
-	// }
-
 	public static void getChannelList(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(CHANNEL_LIST);
 	}
@@ -543,10 +528,13 @@ public class API {
 		new HttpRequest(context, callback).post(APPLY_PROGRESS, params);
 		/*
 		 * Context context, int customerId, String phone, HttpCallback callback)
-		 * { String url="http://114.215.149.242:18080terminal/openStatus" ;
-		 * Map<String, Object> params = new HashMap<String, Object>();
-		 * params.put("id", customerId); params.put("phone", phone); new
-		 * HttpRequest(context, callback).post(url, params);
+		 * <<<<<<< HEAD { String
+		 * url="http://114.215.149.242:18080terminal/openStatus" ; Map<String,
+		 * Object> params = new HashMap<String, Object>(); ======= { String
+		 * url="http://114.215.149.242:18080/api/terminal/openStatus" ;
+		 * Map<String, Object> params = new HashMap<String, Object>(); >>>>>>>
+		 * origin/master params.put("id", customerId); params.put("phone",
+		 * phone); new HttpRequest(context, callback).post(url, params);
 		 */
 	}
 
