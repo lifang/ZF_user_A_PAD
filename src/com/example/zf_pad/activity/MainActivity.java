@@ -113,22 +113,26 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public static final int REQUEST_CITY_WHEEL = 2;
 	private Province province;
 	private City city;
-	private View citySelect;	
+	private View citySelect;
+	private int flag = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Config.cityId=394;
-		Config.CITY="上海";
-		Config.isFRIST=false;
+		Config.cityId = 394;
+		Config.CITY = "上海";
+		Config.isFRIST = false;
 		Display display = getWindowManager().getDefaultDisplay();
-		Config.ScreenWidth=display.getWidth();
-		Config.ScreenHeight=display.getHeight();
-		/*	UserEntity ue=new UserEntity();
-		ue.setId(80);
-		MyApplication.NewUser=ue;*/
-		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
-		//if (f_sy == null)
+		Config.ScreenWidth = display.getWidth();
+		Config.ScreenHeight = display.getHeight();
+		/*
+		 * UserEntity ue=new UserEntity(); ue.setId(80);
+		 * MyApplication.NewUser=ue;
+		 */
+		Log.i("111", "width=" + Config.ScreenWidth + "height="
+				+ Config.ScreenHeight);
+		// if (f_sy == null)
 		f_sy = new M_MianFragment();
 
 		getSupportFragmentManager().beginTransaction()
@@ -136,7 +140,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		initView();
 
 	}
-
 
 	private void changTabBg() {
 		im_sy.setBackgroundResource(R.drawable.home2);
@@ -183,59 +186,77 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		switch (view.getId()) {
 
 		case R.id.main_rl_sy:
-			changTabBg();
-			im_sy.setBackgroundResource(R.drawable.home);
-			textsy.setTextColor(getResources().getColor(R.color.o));
-			//if (f_sy == null)
-			f_sy = new M_MianFragment();
 
+			if (flag != 0) {
+				
+				flag = 0;
+				changTabBg();
+				im_sy.setBackgroundResource(R.drawable.home);
+				textsy.setTextColor(getResources().getColor(R.color.o));
+				// if (f_sy == null)
+				f_sy = new M_MianFragment();
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.m_fragment, f_sy).commit();
 			MyApplication.hideSoftKeyboard(this);
+			}
 			break;
 		case R.id.main_rl_gwc:
-			if(Config.CheckIsLogin(MainActivity.this)){
-				changTabBg();
-				im_ghc.setBackgroundResource(R.drawable.shopping);
-				textghc.setTextColor(getResources().getColor(R.color.o));
-				if(f_gwc==null)
-					f_gwc = new M_shopcar();
-
-				getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, f_gwc).commit();
-				MyApplication.hideSoftKeyboard(this);
-			}
-
-			break;
-		case R.id.main_rl_pos1:
-			if(Config.CheckIsLogin(MainActivity.this)){
-				changTabBg();
-				im_mess.setBackgroundResource(R.drawable.message);
-				textmes.setTextColor(getResources().getColor(R.color.o));
-				if (f_wdxx == null)
-					f_wdxx = new M_wdxx();
-
+			if (flag != 1) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					changTabBg();
+					flag = 1;
+					im_ghc.setBackgroundResource(R.drawable.shopping);
+					textghc.setTextColor(getResources().getColor(R.color.o));
+					if (f_gwc == null)
+						f_gwc = new M_shopcar();
 				getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_wdxx).commit();
 				MyApplication.hideSoftKeyboard(this);
+				}
 			}
+			
+
+			break;
+		case R.id.main_rl_pos1:
+			if (flag != 2) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					changTabBg();
+					flag = 2;
+					im_mess.setBackgroundResource(R.drawable.message);
+					textmes.setTextColor(getResources().getColor(R.color.o));
+					if (f_wdxx == null)
+						f_wdxx = new M_wdxx();
+
+					getSupportFragmentManager().beginTransaction()
+							.replace(R.id.m_fragment, f_wdxx).commit();
+				}
+			}
+			
 			break;
 		case R.id.main_rl_my:
-			if(Config.CheckIsLogin(MainActivity.this)){
-				Config.MyTab=0;
-				changTabBg();
-				im_wd.setBackgroundResource(R.drawable.mine);
-				textwd.setTextColor(getResources().getColor(R.color.o));
-				if (M_my == null){
-					M_my = new M_my();
+			if (flag != 3) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					Config.MyTab = 0;
+					flag = 3;
+					changTabBg();
+					im_wd.setBackgroundResource(R.drawable.mine);
+					textwd.setTextColor(getResources().getColor(R.color.o));
+					if (M_my == null) {
+						M_my = new M_my();
+					}
+					getSupportFragmentManager().beginTransaction()
+
+					.replace(R.id.m_fragment, M_my).commit();
+
 				}
 				getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, M_my).commit();
 				MyApplication.hideSoftKeyboard(this);
 			}
-			//else{
-			//	Toast.makeText(getApplication(), "请先登陆", 1000).show();
-			//}
+			
+			// else{
+			// Toast.makeText(getApplication(), "请先登陆", 1000).show();
+			// }
 			break;
 		case R.id.set:
 			showSet();
@@ -273,14 +294,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		set.showAtLocation(findViewById(R.id.main), Gravity.CENTER
 				| Gravity.CENTER, 0, 0);
 	}
-	public void ToIndex(){
+
+	public void ToIndex() {
 		if (f_sy == null)
 			f_sy = new M_MianFragment();
-
 
 		getSupportFragmentManager().beginTransaction()
 		.replace(R.id.m_fragment, f_sy).commit();
 	}
+
 	@Override
 	protected void onRestart() {
 
@@ -299,7 +321,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
 			textwd.setTextColor(getResources().getColor(R.color.o));
-			if (M_my == null){
+			if (M_my == null) {
 				M_my = new M_my();
 			}
 			getSupportFragmentManager().beginTransaction()
@@ -307,12 +329,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			.replace(R.id.m_fragment, M_my).commit();
 		}
 
-		if(Config.isExit){
+		if (Config.isExit) {
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
-			//if(M_my!=null)
-			//getSupportFragmentManager().beginTransaction().remove(M_my);
-			//if(f_sy==null)
 			f_sy = new M_MianFragment();
 
 			getSupportFragmentManager().beginTransaction()
@@ -321,8 +340,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		}
 	}
+
 	@Override
 	protected void onResume() {
+
 		super.onResume();	
 		if (Config.shopcar) {
 			changTabBg();
@@ -358,6 +379,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			Config.isExit=false;
 
 		}
+
 	}
 
 	@Override

@@ -9,6 +9,13 @@ public class ChanelEntitiy {
 	private int service_rate; 
 	private String description;
 	private String name;
+	private int standard_rate;
+	public int getStandard_rate() {
+		return standard_rate;
+	}
+	public void setStandard_rate(int standard_rate) {
+		this.standard_rate = standard_rate;
+	}
 	public int getId() {
 		return id;
 	}

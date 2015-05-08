@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -370,15 +375,24 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	}
 
 	private void getdata() {
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("goodId", id);
 		params.put("city_id", MyApplication.getCITYID());
 
-		params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			
+		
+			return;
+		}
+		
 		MyApplication
 				.getInstance()
 				.getClient()
-				.post(Config.GOODDETAIL, params,
+				.post(getApplicationContext(),Config.GOODDETAIL, null,entity,"application/json",
 						new AsyncHttpResponseHandler() {
 							private Dialog loadingDialog;
 							@Override

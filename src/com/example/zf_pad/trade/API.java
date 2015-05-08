@@ -1,8 +1,11 @@
 package com.example.zf_pad.trade;
 
-import android.R.integer;
-import android.content.Context;
-import android.util.Log;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
+import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 import java.io.File;
 import java.util.HashMap;
@@ -11,215 +14,199 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.example.zf_pad.fragment.Mine_Address;
+import android.content.Context;
+import android.util.Log;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.Posport;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.HttpRequest;
 import com.google.gson.Gson;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.common.HttpRequest;
-import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
-
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.CHANGE;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.MAINTAIN;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 public class API {
 
 	static Gson gson = new Gson();
-	
+
 	public static final String SCHEMA = "http://";
 
-	public static final String HOST = "121.40.64.167:8080";
-	//public static final String HOST = "114.215.149.242:18080";
-	//public static final String HOST = "www.ebank007.com";
-	public static String GET_USERINFO = SCHEMA + HOST
-			+ "/api/customers/getOne/";
+	public static final String HOST = "121.40.64.167:8080/api/";
+	// public static final String HOST = "114.215.149.242:18080";
+
+	public static String GET_USERINFO = SCHEMA + HOST + "customers/getOne/";
 	// change userinfo
-	public static String CHANGE_USERINFO = SCHEMA + HOST
-			+ "/api/customers/update/";
+	public static String CHANGE_USERINFO = SCHEMA + HOST + "customers/update/";
 	public static String CHANGE_PAW = SCHEMA + HOST
-			+ "/api/customers/updatePassword";
+			+ "customers/updatePassword";
 	// get addresslist
 	public static String GET_ADRESS = SCHEMA + HOST
-			+ "/api/customers/getAddressList/";
+			+ "customers/getAddressList/";
 
 	// creat merchant
-	public static String CREAT_MERCHANT = SCHEMA + HOST
-			+ "/api/merchant/insert/";
+	public static String CREAT_MERCHANT = SCHEMA + HOST + "merchant/insert/";
 	// selection terminal list
 	public static final String TERMINAL_LIST = SCHEMA + HOST
-			+ "/api/trade/record/getTerminals/%d";
+			+ "trade/record/getTerminals/%d";
 	// trade record list
 	public static final String TRADE_RECORD_LIST = SCHEMA + HOST
-			+ "/api/trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
+			+ "trade/record/getTradeRecords/%d/%s/%s/%s/%d/%d";
 	// trade record statistic
 	public static final String TRADE_RECORD_STATISTIC = SCHEMA + HOST
-			+ "/api/trade/record/getTradeRecordTotal/%d/%s/%s/%s";
+			+ "trade/record/getTradeRecordTotal/%d/%s/%s/%s";
 	// trade record detail
 	public static final String TRADE_RECORD_DETAIL = SCHEMA + HOST
-			+ "/api/trade/record/getTradeRecord/%d/%d";
+			+ "trade/record/getTradeRecord/%d/%d";
 
 	// After sale record list
 	public static final String AFTER_SALE_MAINTAIN_LIST = SCHEMA + HOST
-			+ "/api/cs/repair/getAll";
+			+ "cs/repair/getAll";
 	public static final String AFTER_SALE_RETURN_LIST = SCHEMA + HOST
-			+ "/api/return/getAll";
+			+ "return/getAll";
 	public static final String AFTER_SALE_CANCEL_LIST = SCHEMA + HOST
-			+ "/api/cs/cancels/getAll";
+			+ "cs/cancels/getAll";
 	public static final String AFTER_SALE_CHANGE_LIST = SCHEMA + HOST
-			+ "/api/cs/change/getAll";
+			+ "cs/change/getAll";
 	public static final String AFTER_SALE_UPDATE_LIST = SCHEMA + HOST
-			+ "/api/update/info/getAll";
+			+ "update/info/getAll";
 	public static final String AFTER_SALE_LEASE_LIST = SCHEMA + HOST
-			+ "/api/cs/lease/returns/getAll";
+			+ "cs/lease/returns/getAll";
 
 	// After sale record detail
 	public static final String AFTER_SALE_MAINTAIN_DETAIL = SCHEMA + HOST
-			+ "/api/cs/repair/getRepairById";
+			+ "cs/repair/getRepairById";
 	public static final String AFTER_SALE_RETURN_DETAIL = SCHEMA + HOST
-			+ "/api/return/getReturnById";
+			+ "return/getReturnById";
 	public static final String AFTER_SALE_CANCEL_DETAIL = SCHEMA + HOST
-			+ "/api/cs/cancels/getCanCelById";
+			+ "cs/cancels/getCanCelById";
 	public static final String AFTER_SALE_CHANGE_DETAIL = SCHEMA + HOST
-			+ "/api/cs/change/getChangeById";
+			+ "cs/change/getChangeById";
 	public static final String AFTER_SALE_UPDATE_DETAIL = SCHEMA + HOST
-			+ "/api/update/info/getInfoById";
+			+ "update/info/getInfoById";
 	public static final String AFTER_SALE_LEASE_DETAIL = SCHEMA + HOST
-			+ "/api/cs/lease/returns/getById";
+			+ "cs/lease/returns/getById";
 
 	// After sale record cancel apply
 	public static final String AFTER_SALE_MAINTAIN_CANCEL = SCHEMA + HOST
-			+ "/api/cs/repair/cancelApply";
+			+ "cs/repair/cancelApply";
 	public static final String AFTER_SALE_RETURN_CANCEL = SCHEMA + HOST
-			+ "/api/return/cancelApply";
+			+ "return/cancelApply";
 	public static final String AFTER_SALE_CANCEL_CANCEL = SCHEMA + HOST
-			+ "/api/cs/cancels/cancelApply";
+			+ "cs/cancels/cancelApply";
 	public static final String AFTER_SALE_CHANGE_CANCEL = SCHEMA + HOST
-			+ "/api/cs/change/cancelApply";
+			+ "cs/change/cancelApply";
 	public static final String AFTER_SALE_UPDATE_CANCEL = SCHEMA + HOST
-			+ "/api/update/info/cancelApply";
+			+ "update/info/cancelApply";
 	public static final String AFTER_SALE_LEASE_CANCEL = SCHEMA + HOST
-			+ "/api/cs/lease/returns/cancelApply";
+			+ "cs/lease/returns/cancelApply";
 
 	// After sale resubmit cancel
 	public static final String AFTER_SALE_RESUBMIT_CANCEL = SCHEMA + HOST
-			+ "/api/cs/cancels/resubmitCancel";
+			+ "cs/cancels/resubmitCancel";
 
 	// After sale add mark
 	public static final String AFTER_SALE_MAINTAIN_ADD_MARK = SCHEMA + HOST
-			+ "/api/cs/repair/addMark";
+			+ "cs/repair/addMark";
 	public static final String AFTER_SALE_RETURN_ADD_MARK = SCHEMA + HOST
-			+ "/api/return/addMark";
+			+ "return/addMark";
 	public static final String AFTER_SALE_CHANGE_ADD_MARK = SCHEMA + HOST
-			+ "/api/cs/change/addMark";
+			+ "cs/change/addMark";
 	public static final String AFTER_SALE_LEASE_ADD_MARK = SCHEMA + HOST
-			+ "/api/cs/lease/returns/addMark";
+			+ "cs/lease/returns/addMark";
 
 	// Terminal list
 	public static final String TERMINAL_APPLY_LIST = SCHEMA + HOST
-			+ "/api/terminal/getApplyList";
+			+ "terminal/getApplyList";
 	// Channel list
 	public static final String CHANNEL_LIST = SCHEMA + HOST
-			+ "/api/terminal/getFactories";
+			+ "terminal/getFactories";
 	// Terminal Add
 	public static final String TERMINAL_ADD = SCHEMA + HOST
-			+ "/api/terminal/addTerminal";
+			+ "terminal/addTerminal";
 	// Terminal detail
 	public static final String TERMINAL_DETAIL = SCHEMA + HOST
-			+ "/api/terminal/getApplyDetails";
+			+ "terminal/getApplyDetails";
 
 	// synchronise terminal
 	public static final String TERMINAL_SYNC = SCHEMA + HOST
-			+ "/api/terminal/synchronous";
+			+ "terminal/synchronous";
 	// find pos password
 	public static final String TERMINAL_FIND_POS = SCHEMA + HOST
-			+ "/api/terminal/Encryption";
+			+ "terminal/Encryption";
 
 	// Apply List
 	public static final String APPLY_LIST = SCHEMA + HOST
-			+ "/api/apply/getApplyList";
+			+ "apply/getApplyList";
 	// Apply Detail
 	public static final String APPLY_DETAIL = SCHEMA + HOST
-			+ "/api/apply/getApplyDetails";
+			+ "apply/getApplyDetails";
 	// Get the Merchant Detail
 	public static final String APPLY_MERCHANT_DETAIL = SCHEMA + HOST
-			+ "/api/apply/getMerchant";
+			+ "apply/getMerchant";
 	// Get the Channel List
 	public static final String APPLY_CHANNEL_LIST = SCHEMA + HOST
-			+ "/api/apply/getChannels";
+			+ "apply/getChannels";
 	// Get the Bank List
 	public static final String APPLY_BANK_LIST = SCHEMA + HOST
-			+ "/api/apply/ChooseBank";
+			+ "terminal/ChooseBank";
 
 	// upload image url
 	public static final String UPLOAD_IMAGE = SCHEMA + HOST
-			+ "/api/comment/upload/tempImage";
+			+ "comment/upload/tempImage";
 
 	// upload open url
-	public static final String UPLOAD_OPEN = SCHEMA + HOST
-			+ "/api/apply/uploadFile";
-	
+	public static final String UPLOAD_OPEN = SCHEMA + HOST + "apply/uploadFile";
+
 	public static final String WNATBUY = SCHEMA + HOST
-			+ "/api/paychannel/intention/add";
+			+ "paychannel/intention/add";
 
 	// Apply Opening Progress Query
 	public static final String APPLY_PROGRESS = SCHEMA + HOST
-			+ "/api/terminal/openStatus";
+			+ "terminal/openStatus";
 	// Get merchant list
-	public static String GET_MERCHANTLIST = SCHEMA + HOST
-			+ "/api/merchant/getList/";
+	public static String GET_MERCHANTLIST = SCHEMA + HOST + "merchant/getList/";
 	// Add address
 	public static final String Add_ress = SCHEMA + HOST
-			+ "/api/customers/insertAddress/";
+			+ "customers/insertAddress/";
 	// update address
 	public static final String update_ress = SCHEMA + HOST
-			+ "/api/customers/updateAddress/";
+			+ "customers/updateAddress/";
 	// get totalscore
 	public static String total_score = SCHEMA + HOST
-			+ "/api/customers/getIntegralTotal/";
+			+ "customers/getIntegralTotal/";
 	// exchange score
 	public static String exchange_score = SCHEMA + HOST
-			+ "/api/customers/insertIntegralConvert";
+			+ "customers/insertIntegralConvert";
 
 	public static final String GETCODE4PHONE = SCHEMA + HOST
-			+ "/api/user/sendPhoneVerificationCodeReg";
-	public static final String ZHUCHE = SCHEMA + HOST
-			+ "/api/user/userRegistration";
+			+ "user/sendPhoneVerificationCodeReg";
+	public static final String ZHUCHE = SCHEMA + HOST + "user/userRegistration";
 	public static final String GETEMAILPASS = SCHEMA + HOST
-			+ "/api/user/sendEmailVerificationCode";
+			+ "user/sendEmailVerificationCode";
 	// Apply Submit
 	public static final String APPLY_SUBMIT = SCHEMA + HOST
-			+ "/api/apply/addOpeningApply";
+			+ "apply/addOpeningApply";
 	// delect merchant
 	public static String DELECT_MERCHANTLIST = SCHEMA + HOST
-			+ "/api/merchant/delete/";
+			+ "merchant/delete/";
 	// update merchant
-	public static String UPDATE_MERCHANT=SCHEMA + HOST
-			+"/api/merchant/update/";
+	public static String UPDATE_MERCHANT = SCHEMA + HOST + "merchant/update/";
 	// update file
-	 	public static String UPDATE_FILE=SCHEMA + HOST
-	 			+"/api/merchant/upload/file";
+	public static String UPDATE_FILE = SCHEMA + HOST + "merchant/upload/file";
 	// delect address
-	 	public static String DELECT_ADDRESS=SCHEMA + HOST
-	 			+"/api/customers/deleteAddress";
+	public static String DELECT_ADDRESS = SCHEMA + HOST
+			+ "customers/deleteAddress";
 
-	public static final String URL_GET_MYORDERBYID =SCHEMA + HOST
-			+"/api/order/getMyOrderById";
-	public static final String URL_REPAIRPAY =SCHEMA + HOST
-			+"/api/cs/repair/repairPay";
-	//get score list
-	public static final String GET_SCORE_LIST =SCHEMA + HOST
-			+"/api/customers/getIntegralList/";
+	public static final String URL_GET_MYORDERBYID = SCHEMA + HOST
+			+ "order/getMyOrderById";
+	public static final String URL_REPAIRPAY = SCHEMA + HOST
+			+ "cs/repair/repairPay";
+	// get score list
+	public static final String GET_SCORE_LIST = SCHEMA + HOST
+			+ "customers/getIntegralList/";
 	// get score
-	public static final String GET_SCORE =SCHEMA + HOST
-			+"/api/customers/getjifen";
+	public static final String GET_SCORE = SCHEMA + HOST + "customers/getjifen";
+
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -345,7 +332,7 @@ public class API {
 
 	public static void resubmitCancel(Context context, int recordId,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", recordId);
 		new HttpRequest(context, callback).post(AFTER_SALE_RESUBMIT_CANCEL,
@@ -388,16 +375,6 @@ public class API {
 		params.put("rows", rows);
 		new HttpRequest(context, callback).post(TERMINAL_APPLY_LIST, params);
 	}
-
-//	public static void test(Context context, String customerId,
-//
-//			HttpCallback callback) {
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		params.put("codeNumber", customerId);
-//		new HttpRequest(context, callback)
-//		.post("http://114.215.149.242:18080/api/user/sendPhoneVerificationCodeFind",
-//				params);
-//	}
 
 	public static void getChannelList(Context context, HttpCallback callback) {
 		new HttpRequest(context, callback).post(CHANNEL_LIST);
@@ -551,11 +528,13 @@ public class API {
 		new HttpRequest(context, callback).post(APPLY_PROGRESS, params);
 		/*
 		 * Context context, int customerId, String phone, HttpCallback callback)
-		 * { String
-		 * url="http://114.215.149.242:18080/api/terminal/openStatus"
-		 * ; Map<String, Object> params = new HashMap<String, Object>();
-		 * params.put("id", customerId); params.put("phone", phone); new
-		 * HttpRequest(context, callback).post(url, params);
+		 * <<<<<<< HEAD { String
+		 * url="http://114.215.149.242:18080terminal/openStatus" ; Map<String,
+		 * Object> params = new HashMap<String, Object>(); ======= { String
+		 * url="http://114.215.149.242:18080/api/terminal/openStatus" ;
+		 * Map<String, Object> params = new HashMap<String, Object>(); >>>>>>>
+		 * origin/master params.put("id", customerId); params.put("phone",
+		 * phone); new HttpRequest(context, callback).post(url, params);
 		 */
 	}
 
@@ -624,7 +603,7 @@ public class API {
 
 	public static void AddAdres1(Context context, String codeNumber,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -633,7 +612,7 @@ public class API {
 
 	public static void zhuche(Context context, String username,
 
-			String password, String code, int cityId, Boolean accountType,
+	String password, String code, int cityId, Boolean accountType,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("username", username);
@@ -657,7 +636,7 @@ public class API {
 
 	public static void getEmailPass(Context context, String codeNumber,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", codeNumber);
 
@@ -700,7 +679,7 @@ public class API {
 
 	public static void getUserinfo(Context context,
 
-			HttpCallback callback) {
+	HttpCallback callback) {
 		GET_USERINFO = GET_USERINFO + 80;
 		new HttpRequest(context, callback).post(GET_USERINFO);
 	}
@@ -789,16 +768,16 @@ public class API {
 		params.put("id", id);
 		new HttpRequest(context, callback).post(UPDATE_MERCHANT, params);
 	}
-	public static void updateFile(
-			Context context,
-			File fileImg,
-			HttpCallback callback){
+
+	public static void updateFile(Context context, File fileImg,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("fileImg", fileImg);
 		new HttpRequest(context, callback).post(UPDATE_FILE, params);
 	}
 
-	public static void getApplyBankList(Context context,int page, String keyword,int pageSize, String terminalId, 
+	public static void getApplyBankList(Context context, int page,
+			String keyword, int pageSize, String terminalId,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("page", page);
@@ -807,10 +786,9 @@ public class API {
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, callback).post(APPLY_BANK_LIST, params);
 	}
-	public static void delectaddress(
-			Context context,
-			int[] ids,
-			HttpCallback callback){
+
+	public static void delectaddress(Context context, int[] ids,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		try {
 			params.put("ids", new JSONArray(gson.toJson(ids)));
@@ -820,28 +798,32 @@ public class API {
 		}
 		new HttpRequest(context, callback).post(DELECT_ADDRESS, params);
 	}
-	//我的订单--订单详情
-	public static void getMyOrderById(
-			Context context,
-			int id,
+
+	// 我的订单--订单详情
+	public static void getMyOrderById(Context context, int id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id); 
+		params.put("id", id);
 		new HttpRequest(context, callback).post(URL_GET_MYORDERBYID, params);
 	}
-	public static void getRepairPay(
-			Context context,
-			int id,
+
+	public static void getRepairPay(Context context, int id,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id); 
+		params.put("id", id);
 		new HttpRequest(context, callback).post(URL_REPAIRPAY, params);
 	}
-	public static void noticeVideo(
- 			Context context,
- 			int terminalId) {
+
+	public static void noticeVideo(Context context, int terminalId) {
 		RequestParams params = new RequestParams();
- 		params.put("terminalId", terminalId);
- 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
- 	}
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
+	}
+
+	public static void synchronous(Context context, String terminalId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("terminalId", terminalId);
+		new HttpRequest(context, callback).post(TERMINAL_SYNC, params);
+	}
 }

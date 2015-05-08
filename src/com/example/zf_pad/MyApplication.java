@@ -131,6 +131,7 @@ public class MyApplication extends Application{
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
 		mInstance = this;
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();

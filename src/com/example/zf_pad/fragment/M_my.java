@@ -3,6 +3,7 @@ package com.example.zf_pad.fragment;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class M_my extends Fragment implements OnClickListener {
 
 		// view = inflater.inflate(R.layout.f_mine, container,false);
 		// initView();
-
+		
 		if (view != null) {
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
@@ -76,7 +77,7 @@ public class M_my extends Fragment implements OnClickListener {
 
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
+		
 		super.onStart();
 		switch (Config.MyTab) {
 		
@@ -266,12 +267,15 @@ public void onPause() {
 
 		super.onDestroyView();
 	}
-
+@Override
+public void onAttach(Activity activity) {
+	super.onAttach(activity);
+}
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
+		
 		super.onResume();
-
+		
 		if (Config.AderssManger) {
 			if (m_info == null)
 				m_info = new Mine_MyInfo();
