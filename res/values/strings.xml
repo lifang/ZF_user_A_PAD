@@ -27,6 +27,7 @@
     <string name="toast_end_date_error">结束时间不能小于开始时间</string>
     <string name="loading_data">加载数据...</string>
     <string name="parse_data_failed">解析数据失败</string>
+    <string name="no_more_data">已加载全部数据</string>
     <string name="load_data_failed">操作失败</string>
     <string name="network_info">无法连接到网络</string>
     <string name="notation_yuan">￥</string>
@@ -264,17 +265,18 @@
         <item>查看照片</item>
         <item>选择照片</item>
         <item>拍照上传</item>
-    </string-array>    <string name="apply_upload_photo">上传图片</string>
+    </string-array>
+
+    <string name="apply_upload_photo">上传图片</string>
     <string name="apply_uploading">上传中...</string>
     <string name="apply_upload_again">重新上传</string>
     <string name="apply_upload_success">上传成功</string>
     <string name="terminal_add_channel">指定支付通道</string>
     <string name="terminal_add_number">填入终端号</string>
     <string name="terminal_add_name">填入商户名称</string>
-
-	<string name="apply_bank_input">请输入银行名称</string>
-	<string name="apply_bank_result">搜索结果</string>
-	<string name="title_apply_choose_bank">选择银行</string>
+    <string name="apply_bank_input">请输入银行名称</string>
+    <string name="apply_bank_result">搜索结果</string>
+    <string name="title_apply_choose_bank">选择银行</string>
     <!-- ====================================================== -->
     <!-- 终端管理 -->
     <!-- ====================================================== -->
@@ -312,9 +314,9 @@
     <string name="terminal_status">开通状态</string>
     <string name="notation_percent">%</string>
     <string name="qianfenhao">‰</string>
-  <string name="button_cancel">取消</string> 
-  <string name="button_copy">复制</string> 
-  <string name="toast_copy_password">密码已复制到剪贴板</string> 
-    
-  <string name="endCall1">结束视频</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_copy">复制</string>
+    <string name="toast_copy_password">密码已复制到剪贴板</string>
+    <string name="endCall1">结束视频</string>
+
 </resources>

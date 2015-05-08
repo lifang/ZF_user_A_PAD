@@ -207,6 +207,10 @@ public class API {
 	// get score
 	public static final String GET_SCORE = SCHEMA + HOST + "customers/getjifen";
 
+	// terminal marchants
+	public static final String TERMINAL_MERCHANTS = SCHEMA + HOST
+			+ "terminal/getMerchants";
+
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
 		new HttpRequest(context, callback).post(String.format(TERMINAL_LIST,
@@ -825,5 +829,15 @@ public class API {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, callback).post(TERMINAL_SYNC, params);
+	}
+
+	public static void getMerchants(Context context, int terminalId, int page,
+			int rows, String title, HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("terminalId", terminalId);
+		params.put("page", page);
+		params.put("rows", rows);
+		params.put("title", title);
+		new HttpRequest(context, callback).post(TERMINAL_MERCHANTS, params);
 	}
 }
