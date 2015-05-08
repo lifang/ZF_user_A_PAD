@@ -55,7 +55,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	private List<Shopname> datasho;
 	private BaseAdapter shoaadapter;
 	private int page=1;
-	private int rows=3;
+	private int rows=6;
 	public static Handler myHandler;
 	private Button btn_creat;
 	private int[] id;
@@ -224,11 +224,11 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			}
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				if(isrefersh){
+				/*if(isrefersh){
 					page=a;
-					rows=3;
+					rows=6;
 					isrefersh=false;
-				}
+				}*/
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("responseMsg", responseMsg);
@@ -315,9 +315,9 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
 			return;
 		}
-		isrefersh=true;
+		/*isrefersh=true;
 		a=page;
-		rows=a*rows;
+		rows=a*rows;*/
 		page=1;
 		datasho.clear();
 		getData();

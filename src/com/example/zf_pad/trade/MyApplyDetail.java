@@ -127,20 +127,10 @@ public class MyApplyDetail extends FragmentActivity {
 	private LinearLayout mMaterialContainer_2_1;
 	private LinearLayout mMaterialContainer_2_2;
 
-	// private LinearLayout mMaterialContainer_1;
-	// private LinearLayout mMaterialContainer_2;
-	// private LinearLayout mMaterialContainer_3;
-	// private LinearLayout mMaterialContainer_4;
-	// private LinearLayout mMaterialContainer_5;
-	// private LinearLayout mMaterialContainer_6;
-	// private LinearLayout mMaterialContainer_7;
-	// private LinearLayout mMaterialContainer_8;
-	// private LinearLayout mMaterialContainer_9;
-
 	private Button mApplySubmit;
 
 	private int mMerchantId;
-	private int mMerchantGender = 3;
+	private int mMerchantGender = 1;
 	private String mMerchantBirthday;
 	private Province mMerchantProvince;
 	private City mMerchantCity;
@@ -943,7 +933,7 @@ public class MyApplyDetail extends FragmentActivity {
 						mBankKey = material.getName();
 						Intent intent = new Intent(MyApplyDetail.this,
 								ApplyBankActivity.class);
-						intent.putExtra(TERMINAL_NUMBER, mTerminalNumber);
+						intent.putExtra(TERMINAL_ID, mTerminalId);
 						intent.putExtra(SELECTED_BANK, mChosenBank);
 						startActivityForResult(intent, REQUEST_CHOOSE_BANK);
 					}
@@ -1119,8 +1109,6 @@ public class MyApplyDetail extends FragmentActivity {
 			ImageButton ibView = (ImageButton) item
 					.findViewById(R.id.apply_detail_view);
 			mUploadUri = value;
-			// TODO:
-//			mUploadUri = "http://i2.sinaimg.cn/ty/nba/2015-04-10/U8567P6T12D7570488F44DT20150410181804.jpg";
 			if (!TextUtils.isEmpty(key))
 				tvKey.setText(key);
 			ibView.setOnClickListener(new onWatchListener()

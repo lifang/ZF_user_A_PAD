@@ -1,6 +1,5 @@
 package com.example.zf_pad.activity;
 
-
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_ADD;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
@@ -46,11 +45,10 @@ import com.google.gson.reflect.TypeToken;
 public class TerminalManagerActivity extends Activity implements
 		XListView.IXListViewListener {
 
-
 	private LinearLayout titleback_linear_back;
 	private TextView titleback_text_title;
-	private ImageView titleback_image_back,addTerminal;
-	
+	private ImageView titleback_image_back, addTerminal;
+
 	private LayoutInflater mInflater;
 	private XListView mTerminalList;
 	private List<TerminalManagerEntity> mTerminalItems;
@@ -274,35 +272,53 @@ public class TerminalManagerActivity extends Activity implements
 	}
 
 	private void initBtnListeners() {
-		
+
 		titleback_linear_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TerminalManagerActivity.this.finish();
 			}
 		});
-		
+
 		titleback_image_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TerminalManagerActivity.this.finish();
 			}
 		});
-		
-		titleback_text_title.setText(getString(R.string.title_terminal_management));
-		
-		
+
+		titleback_text_title
+				.setText(getString(R.string.title_terminal_management));
+
 		addTerminal.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivityForResult(new Intent(TerminalManagerActivity.this, TerminalAddActivity.class), REQUEST_ADD);
+				startActivityForResult(new Intent(TerminalManagerActivity.this,
+						TerminalAddActivity.class), REQUEST_ADD);
 			}
 		});
 		mSyncListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				CommonUtil.toastShort(TerminalManagerActivity.this,
-						"synchronising...");
+
+				TerminalManagerEntity item = (TerminalManagerEntity) view
+						.getTag();
+				API.synchronous(TerminalManagerActivity.this, String
+						.valueOf(item.getId()), new HttpCallback(
+						TerminalManagerActivity.this) {
+
+					@Override
+					public void onSuccess(Object data) {
+						CommonUtil.toastShort(TerminalManagerActivity.this,
+								data.toString());
+					}
+
+					@Override
+					public TypeToken getTypeToken() {
+						return null;
+					}
+				});
+
 			}
 		};
 		mOpenListener = new View.OnClickListener() {
@@ -310,7 +326,8 @@ public class TerminalManagerActivity extends Activity implements
 			public void onClick(View view) {
 				TerminalManagerEntity item = (TerminalManagerEntity) view
 						.getTag();
-				Intent intent = new Intent(TerminalManagerActivity.this, MyApplyDetail.class);
+				Intent intent = new Intent(TerminalManagerActivity.this,
+						MyApplyDetail.class);
 				intent.putExtra(TERMINAL_ID, item.getId());
 				intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
 				intent.putExtra(TERMINAL_STATUS, item.getOpenState());
@@ -370,11 +387,12 @@ public class TerminalManagerActivity extends Activity implements
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//ÃÌº” ”∆µ…Û∫À
+				// ÃÌº” ”∆µ…Û∫À
 				TerminalManagerEntity item = (TerminalManagerEntity) view
 						.getTag();
-				
-				Intent intent = new Intent(TerminalManagerActivity.this, VideoActivity.class);
+
+				Intent intent = new Intent(TerminalManagerActivity.this,
+						VideoActivity.class);
 				intent.putExtra(TERMINAL_ID, item.getId());
 				startActivity(intent);
 			}
@@ -383,8 +401,8 @@ public class TerminalManagerActivity extends Activity implements
 
 	private void loadData() {
 
-		API.getTerminalApplyList(this, MyApplication.NewUser.getId(), page + 1, rows,
-				new HttpCallback<Page<TerminalManagerEntity>>(this) {
+		API.getTerminalApplyList(this, MyApplication.NewUser.getId(), page + 1,
+				rows, new HttpCallback<Page<TerminalManagerEntity>>(this) {
 					@Override
 					public void onSuccess(Page<TerminalManagerEntity> data) {
 						if (null != data.getList()) {

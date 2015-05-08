@@ -75,9 +75,9 @@
                         android:id="@+id/apply_detail_key"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"               
-                        android:paddingLeft="64dp"
-                        android:orientation="vertical" >
+                        android:gravity="right"
+                        android:orientation="vertical"
+                        android:paddingLeft="64dp" >
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="11dp"
                     android:layout_weight="1"
-                    android:gravity="bottom|left" 
+                    android:gravity="bottom|left"
                     android:orientation="horizontal"
                     android:paddingBottom="16dp" >
                 </LinearLayout>
@@ -172,10 +172,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="26dp"
                         android:layout_marginRight="11dp"
-                        android:layout_weight="1"                
-                        android:paddingLeft="64dp"
+                        android:layout_weight="1"
                         android:background="@color/white"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:paddingLeft="64dp" >
                     </LinearLayout>
 
                     <LinearLayout
@@ -184,10 +184,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="26dp"
                         android:layout_marginLeft="11dp"
-                        android:paddingRight="64dp"
                         android:layout_weight="1"
                         android:background="@color/white"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:paddingRight="64dp" >
                     </LinearLayout>
                 </LinearLayout>
 
@@ -210,9 +210,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="26dp"
                         android:layout_marginRight="11dp"
-                        android:layout_weight="1"                
-                        android:paddingLeft="64dp"
-                        android:orientation="vertical" >
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="64dp" >
                     </LinearLayout>
 
                     <LinearLayout
@@ -222,8 +222,8 @@
                         android:layout_marginBottom="26dp"
                         android:layout_marginLeft="11dp"
                         android:layout_weight="1"
-                        android:paddingRight="64dp"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:paddingRight="64dp" >
                     </LinearLayout>
                 </LinearLayout>
 
@@ -242,10 +242,10 @@
                     <LinearLayout
                         android:id="@+id/apply_detail_material_container_1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"                
-                        android:paddingLeft="64dp"
-                		android:paddingRight="64dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:paddingLeft="64dp"
+                        android:paddingRight="64dp"
                         android:paddingTop="30dp" >
 
                         <LinearLayout
@@ -260,8 +260,8 @@
                             android:id="@+id/apply_detail_material_container_1_2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal" >
                         </LinearLayout>
 
@@ -269,8 +269,8 @@
                             android:id="@+id/apply_detail_material_container_1_3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal" >
                         </LinearLayout>
                     </LinearLayout>
@@ -296,12 +296,40 @@
                             android:id="@+id/apply_detail_material_container_2_2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="25dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal" >
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+                <GidView
+                    android:id="@+id/gridview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:columnWidth="90dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="20dp"
+                    android:numColumns="3"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="30dp" >
+                </GidView>
+
+                <GidView
+                    android:id="@+id/gridview_"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:columnWidth="90dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="20dp"
+                    android:numColumns="2"
+                    android:paddingLeft="64dp"
+                    android:paddingRight="64dp"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="30dp" >
+                </GidView>
 
                 <Button
                     android:id="@+id/apply_submit"

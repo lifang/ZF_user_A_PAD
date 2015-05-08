@@ -56,7 +56,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private TextView tv_total;
 	private int totalscore=0;
 	private boolean isStop=false;
-	private TextView apply_progress_tips;
+	//private TextView apply_progress_tips;
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -92,11 +92,11 @@ public void onStart() {
 				tv_total.setText("×Ü»ý·Ö:"+totalscore);
 				if(datasco.size()!=0){
 					xxlistview.setVisibility(View.VISIBLE);
-					apply_progress_tips.setVisibility(View.GONE);
+					//apply_progress_tips.setVisibility(View.GONE);
 				xxlistview.setAdapter(scoreadapter);
 				}
 				else{
-					apply_progress_tips.setVisibility(View.VISIBLE);
+					//apply_progress_tips.setVisibility(View.VISIBLE);
 					xxlistview.setVisibility(View.GONE);
 				}
 				break;
@@ -215,7 +215,7 @@ private void getData() {
 	});
 }
 private void init() {
-	apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
+	//apply_progress_tips=(TextView) view.findViewById(R.id.apply_progress_tips);
 	tv_total=(TextView) view.findViewById(R.id.tv_total);
 	btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
 	moreList=new ArrayList<Score>();
