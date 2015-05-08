@@ -91,7 +91,7 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
     @SuppressLint("ResourceAsColor") public void updateTabs(int position) {
 
         for (TextView tv : mTabViews) {
-            tv.setBackgroundColor(getResources().getColor(R.color.background_tab));
+            tv.setBackgroundColor(getResources().getColor(R.color.background_flow_tab));
         	//tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_bg));
             tv.setTextColor(R.color.text292929);
         }
@@ -99,12 +99,12 @@ public class MyTabWidget extends TabWidget implements View.OnClickListener {
         TextView tv = mTabViews.get(position);
         tv.setTextColor(R.color.text292929);
         if (mTabViews.indexOf(tv) == 0) {
-            tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_bg));
+            tv.setBackgroundResource(R.drawable.tab_bg);
         } else if (mTabViews.indexOf(tv) == mTabViews.size() - 1) {
-            tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_bg));
+            tv.setBackgroundResource(R.drawable.tab_bg);
         } else {
             //tv.setBackgroundColor(mBaseColor);
-        	 tv.setBackgroundDrawable(resources.getDrawable(R.drawable.tab_bg));
+        	 tv.setBackgroundResource(R.drawable.tab_bg);
         }
     }
 

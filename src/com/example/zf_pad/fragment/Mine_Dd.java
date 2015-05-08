@@ -177,8 +177,14 @@ public void onDestroyView() {
 				if(myList.size()!=0){
 					Intent i = new Intent(getActivity(), OrderDetail.class);
 					i.putExtra("status", myList.get(position-1).getOrder_status());
-					i.putExtra("id", myList.get(position-1).getOrder_id());
-					i.putExtra("type", myList.get(position-1).getOrder_type());				
+					if(myList.get(position-1).getOrder_id()!=null){
+						i.putExtra("id", Integer.parseInt(myList.get(position-1).getOrder_id()));
+					}else{
+						i.putExtra("id", 0);
+					}
+					
+					i.putExtra("type", myList.get(position-1).getOrder_type());	
+					
 					startActivity(i);
 				}
 

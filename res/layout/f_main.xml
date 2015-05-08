@@ -16,7 +16,7 @@
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
-        android:background="@drawable/title"
+        android:background="@drawable/bgtm"
         android:orientation="horizontal" >
 
         <ImageView
@@ -146,7 +146,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="买POS机"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="@dimen/textbig" />
+                            android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -185,7 +185,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="开通认证"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig"/>
+                             android:textSize="@dimen/textbig2"/>
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -223,7 +223,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="终端管理"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig" />
+                             android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -259,7 +259,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="交易流水"
                             android:textColor="@color/text5a5a5a"
-                            android:textSize="@dimen/textbig"/>
+                            android:textSize="@dimen/textbig2"/>
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
@@ -308,7 +308,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="健康服务"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig" />
+                             android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
                 <View
@@ -346,7 +346,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="我要理财"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig" />
+                             android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -385,7 +385,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="系统公告"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig" />
+                             android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -424,7 +424,7 @@
                             android:layout_marginTop="@dimen/iconma"
                             android:text="联系我们"
                             android:textColor="@color/text5a5a5a"
-                             android:textSize="@dimen/textbig" />
+                             android:textSize="@dimen/textbig2" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

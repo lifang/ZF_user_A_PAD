@@ -242,9 +242,13 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 							: mRecordType == UPDATE ? R.array.update_status
 							: R.array.lease_status
 			);
-			if (!StringUtil.isNull(data.getStatus())) {
-				holder.tvStatus.setText(status[Integer.valueOf(data.getStatus())]);
+			try {
+				if (!StringUtil.isNull(data.getStatus())) {
+					holder.tvStatus.setText(status[Integer.valueOf(data.getStatus())]);
+				}
+			} catch (Exception e) {
 			}
+			
 
 			switch (mRecordType) {
 				case MAINTAIN:

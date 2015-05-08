@@ -1,23 +1,15 @@
 package com.example.zf_pad.fragment;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
-
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.ShopcarAdapter;
-import com.example.zf_pad.activity.ConfirmOrder;
-import com.example.zf_pad.entity.MyShopCar;
-import com.example.zf_pad.entity.MyShopCar.Good;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.util.Tools;
-import com.example.zf_pad.util.XListView;
-import com.example.zf_pad.util.XListView.IXListViewListener;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -32,12 +24,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ShopcarAdapter;
+import com.example.zf_pad.activity.ConfirmOrder;
+import com.example.zf_pad.entity.MyShopCar;
+import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.Tools;
+import com.example.zf_pad.util.XListView;
+import com.example.zf_pad.util.XListView.IXListViewListener;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class M_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
 	private View view;
@@ -170,12 +175,22 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		getData();
 	}
 	private void getData() {
-
-		RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
-		params.setUseJsonStreamer(true);
-
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", MyApplication.NewUser.getId()+"");
+		//RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			
+		
+			return;
+		}
+		
 		MyApplication.getInstance().getClient()
-				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
+				.post(getActivity(),Config.SHOPCARLIST, null,entity,"application/json", new AsyncHttpResponseHandler() {
 					
 
 					@Override

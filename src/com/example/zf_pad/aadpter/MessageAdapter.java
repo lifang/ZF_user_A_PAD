@@ -2,27 +2,21 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
-import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MessageEntity;
-import com.example.zf_pad.entity.TestEntitiy;
 
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MessageAdapter extends BaseAdapter {
+public class MessageAdapter extends BaseAdapter{
 	private Context context;
 	private List<MessageEntity> list;
 	private LayoutInflater inflater;
@@ -40,10 +34,9 @@ public class MessageAdapter extends BaseAdapter {
 		this.context = context;
 		this.list = list;
 		this.type=type;
-	
+		
 		
 	}
-
 	@Override
 	public int getCount() {
 		return list.size();
@@ -109,7 +102,7 @@ public class MessageAdapter extends BaseAdapter {
 	
 		}else{
 			holder.item_cb.setVisibility(View.GONE);
-		}	
+		}
 		return convertView;
 	}
 	public final class ViewHolder {

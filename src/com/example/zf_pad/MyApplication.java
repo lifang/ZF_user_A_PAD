@@ -21,10 +21,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
  
  
@@ -128,6 +131,7 @@ public class MyApplication extends Application{
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
 		mInstance = this;
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();
@@ -242,5 +246,12 @@ public class MyApplication extends Application{
 			e.printStackTrace();
 		}
 	}
-	
+	//Òþ²ØÈí¼üÅÌ
+	public static void hideSoftKeyboard(Activity activity){
+		View view = activity.getWindow().peekDecorView(); 
+		if (view != null) {
+			InputMethodManager inputmanger = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
+	}
 }

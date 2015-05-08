@@ -1,13 +1,15 @@
 package com.example.zf_pad.trade;
 
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -49,7 +51,9 @@ public class TradeStatisticActivity extends Activity {
                 new HttpCallback<TradeStatistic>(this) {
                     @Override
                     public void onSuccess(TradeStatistic data) {
-                        statisticAmount.setText("" + data.getAmountTotal());
+                     	DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+            			df.applyPattern("0.00");
+                        statisticAmount.setText(getString(R.string.notation_yuan) + df.format(data.getAmountTotal()*1.0f/100));
                         statisticCount.setText("" + data.getTradeTotal());
                         statisticTime.setText(mStartDate.replaceAll("-", "/") + " - " + mEndDate.replaceAll("-", "/"));
                         statisticClient.setText(data.getTerminalNumber());
