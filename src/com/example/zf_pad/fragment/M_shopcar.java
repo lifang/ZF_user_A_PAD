@@ -5,20 +5,6 @@ import java.util.List;
 
 import org.apache.http.Header;
 
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.ShopcarAdapter;
-import com.example.zf_pad.activity.ConfirmOrder;
-import com.example.zf_pad.entity.MyShopCar;
-import com.example.zf_pad.entity.MyShopCar.Good;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.util.Tools;
-import com.example.zf_pad.util.XListView;
-import com.example.zf_pad.util.XListView.IXListViewListener;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,12 +18,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ShopcarAdapter;
+import com.example.zf_pad.activity.ConfirmOrder;
+import com.example.zf_pad.entity.MyShopCar;
+import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.Tools;
+import com.example.zf_pad.util.XListView;
+import com.example.zf_pad.util.XListView.IXListViewListener;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class M_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
 	private View view;

@@ -55,8 +55,8 @@ public class TradeDetailActivity extends Activity {
                 Resources resources = getResources();
                 String[] tradeStatuses = resources.getStringArray(R.array.trade_status);
                 mTradeStatus.setText(tradeStatuses[data.getTradedStatus()]);
-                mTradeAmount.setText(getString(R.string.notation_yuan) + data.getAmount()*1.0f/100);
-                mTradePoundage.setText(getString(R.string.notation_yuan) + data.getPoundage()*1.0f/100);
+                mTradeAmount.setText(getString(R.string.notation_yuan) + df.format(data.getAmount()*1.0f/100));
+                mTradePoundage.setText(getString(R.string.notation_yuan) + df.format(data.getPoundage()*1.0f/100));
                 mTradeTime.setText(data.getTradedTimeStr());
 
                 String[] commercialKeys = resources.getStringArray(R.array.trade_item_commercial);

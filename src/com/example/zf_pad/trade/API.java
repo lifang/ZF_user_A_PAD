@@ -36,9 +36,9 @@ public class API {
 	
 	public static final String SCHEMA = "http://";
 
-	//public static final String HOST = "121.40.84.2:8080";
+	public static final String HOST = "121.40.64.167:8080";
 	//public static final String HOST = "114.215.149.242:18080";
-	public static final String HOST = "www.ebank007.com";
+	//public static final String HOST = "www.ebank007.com";
 	public static String GET_USERINFO = SCHEMA + HOST
 			+ "/api/customers/getOne/";
 	// change userinfo

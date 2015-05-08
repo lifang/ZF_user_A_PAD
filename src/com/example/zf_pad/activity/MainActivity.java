@@ -83,8 +83,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private LocationClient mLocationClient;
 	private TextView LocationResult;
 	private RelativeLayout main_rl_pos, main_rl_renzhen, main_rl_zdgl,
-			main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
-			main_rl_lxwm;
+	main_rl_jyls, main_rl_Forum, main_rl_wylc, main_rl_xtgg,
+	main_rl_lxwm;
 	private RelativeLayout re_shopcar;
 	private RelativeLayout re_myinfo;
 	private RelativeLayout re_mine;
@@ -98,12 +98,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private ImageView im_wd;
 	private M_shopcar f_gwc;
 	private M_wdxx f_wdxx;
-	
+
 	private TextView textsy;
 	private TextView textghc;
 	private TextView textmes;
 	private TextView textwd;
-	
+
 	private Button bt_close;
 	private PopupWindow popupWindow;
 	private String cityName;
@@ -124,15 +124,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth=display.getWidth();
 		Config.ScreenHeight=display.getHeight();
-	/*	UserEntity ue=new UserEntity();
+		/*	UserEntity ue=new UserEntity();
 		ue.setId(80);
 		MyApplication.NewUser=ue;*/
 		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
 		//if (f_sy == null)
-			f_sy = new M_MianFragment();
+		f_sy = new M_MianFragment();
 
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, f_sy).commit();
+		.replace(R.id.m_fragment, f_sy).commit();
 		initView();
 
 	}
@@ -173,25 +173,25 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		set = (LinearLayout) findViewById(R.id.set);
 		set.setOnClickListener(this);
 	}
-@Override
-protected void onPause() {
-	// TODO Auto-generated method stub
-	super.onPause();
-}
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
 	@Override
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-		
+
 		case R.id.main_rl_sy:
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
 			textsy.setTextColor(getResources().getColor(R.color.o));
 			//if (f_sy == null)
-				f_sy = new M_MianFragment();
+			f_sy = new M_MianFragment();
 
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_sy).commit();
+			.replace(R.id.m_fragment, f_sy).commit();
+			MyApplication.hideSoftKeyboard(this);
 			break;
 		case R.id.main_rl_gwc:
 			if(Config.CheckIsLogin(MainActivity.this)){
@@ -199,23 +199,25 @@ protected void onPause() {
 				im_ghc.setBackgroundResource(R.drawable.shopping);
 				textghc.setTextColor(getResources().getColor(R.color.o));
 				if(f_gwc==null)
-				f_gwc = new M_shopcar();
+					f_gwc = new M_shopcar();
 
 				getSupportFragmentManager().beginTransaction()
-						.replace(R.id.m_fragment, f_gwc).commit();
+				.replace(R.id.m_fragment, f_gwc).commit();
+				MyApplication.hideSoftKeyboard(this);
 			}
-			
+
 			break;
 		case R.id.main_rl_pos1:
 			if(Config.CheckIsLogin(MainActivity.this)){
-			changTabBg();
-			im_mess.setBackgroundResource(R.drawable.message);
-			textmes.setTextColor(getResources().getColor(R.color.o));
-			if (f_wdxx == null)
-				f_wdxx = new M_wdxx();
+				changTabBg();
+				im_mess.setBackgroundResource(R.drawable.message);
+				textmes.setTextColor(getResources().getColor(R.color.o));
+				if (f_wdxx == null)
+					f_wdxx = new M_wdxx();
 
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_wdxx).commit();
+				getSupportFragmentManager().beginTransaction()
+				.replace(R.id.m_fragment, f_wdxx).commit();
+				MyApplication.hideSoftKeyboard(this);
 			}
 			break;
 		case R.id.main_rl_my:
@@ -228,9 +230,8 @@ protected void onPause() {
 					M_my = new M_my();
 				}
 				getSupportFragmentManager().beginTransaction()
-
-						.replace(R.id.m_fragment, M_my).commit();
-
+				.replace(R.id.m_fragment, M_my).commit();
+				MyApplication.hideSoftKeyboard(this);
 			}
 			//else{
 			//	Toast.makeText(getApplication(), "请先登陆", 1000).show();
@@ -238,6 +239,7 @@ protected void onPause() {
 			break;
 		case R.id.set:
 			showSet();
+			MyApplication.hideSoftKeyboard(this);
 			break;
 
 		default:
@@ -255,7 +257,7 @@ protected void onPause() {
 		case REQUEST_CITY:
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
-		
+
 			cityTextView.setText(cityName);
 			break;
 		case REQUEST_CITY_WHEEL:
@@ -274,14 +276,14 @@ protected void onPause() {
 	public void ToIndex(){
 		if (f_sy == null)
 			f_sy = new M_MianFragment();
-		
-		
+
+
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, f_sy).commit();
+		.replace(R.id.m_fragment, f_sy).commit();
 	}
 	@Override
 	protected void onRestart() {
-	
+
 		super.onRestart();
 		Log.e("here", "here");
 		if (Config.shopcar) {
@@ -291,7 +293,7 @@ protected void onPause() {
 				f_gwc = new M_shopcar();
 
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_gwc).commit();
+			.replace(R.id.m_fragment, f_gwc).commit();
 		}
 		if (Config.AderssManger) {
 			changTabBg();
@@ -302,21 +304,21 @@ protected void onPause() {
 			}
 			getSupportFragmentManager().beginTransaction()
 
-					.replace(R.id.m_fragment, M_my).commit();
+			.replace(R.id.m_fragment, M_my).commit();
 		}
-		
+
 		if(Config.isExit){
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
 			//if(M_my!=null)
 			//getSupportFragmentManager().beginTransaction().remove(M_my);
 			//if(f_sy==null)
-				f_sy = new M_MianFragment();
-			
+			f_sy = new M_MianFragment();
+
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_sy).commit();
+			.replace(R.id.m_fragment, f_sy).commit();
 			Config.isExit=false;
-			
+
 		}
 	}
 	@Override
@@ -329,7 +331,7 @@ protected void onPause() {
 				f_gwc = new M_shopcar();
 
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_gwc).commit();
+			.replace(R.id.m_fragment, f_gwc).commit();
 		}
 		if (Config.AderssManger) {
 			changTabBg();
@@ -340,21 +342,21 @@ protected void onPause() {
 			}
 			getSupportFragmentManager().beginTransaction()
 
-					.replace(R.id.m_fragment, M_my).commit();
+			.replace(R.id.m_fragment, M_my).commit();
 		}
-		
+
 		if(Config.isExit){
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
 			//if(M_my!=null)
 			//getSupportFragmentManager().beginTransaction().remove(M_my);
 			//if(f_sy==null)
-				f_sy = new M_MianFragment();
-			
+			f_sy = new M_MianFragment();
+
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_sy).commit();
+			.replace(R.id.m_fragment, f_sy).commit();
 			Config.isExit=false;
-			
+
 		}
 	}
 
@@ -363,40 +365,43 @@ protected void onPause() {
 		super.onStop();
 		Config.shopcar = false;
 	}
-	 // 返回键  
-    private long exitTime = 0;  
-   @Override  
-    public boolean onKeyDown(int keyCode, KeyEvent event) {  
-	   if (Config.AderssMangerBACK) {
-			changTabBg();
-			im_ghc.setBackgroundResource(R.drawable.shopping);
-			textghc.setTextColor(getResources().getColor(R.color.o));
-		/*
+	// 返回键  
+	private long exitTime = 0;  
+	@Override  
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+
+			if (Config.AderssMangerBACK) {
+				changTabBg();
+				im_ghc.setBackgroundResource(R.drawable.shopping);
+				textghc.setTextColor(getResources().getColor(R.color.o));
+				/*
 			M_shopcar f_gwc = new M_shopcar();
 
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_gwc).commit();*/
-			startActivity(new Intent(MainActivity.this,ConfirmOrder.class));
-			Config.AderssMangerBACK=false;
-		}
-    	if(!f_sy.isVisible()){
-    		
+				startActivity(new Intent(MainActivity.this,ConfirmOrder.class));
+				Config.AderssMangerBACK=false;
+			}
+			if(!f_sy.isVisible()){
+
 				f_sy = new M_MianFragment();
-			
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_sy).commit();
-			changTabBg();
-			im_sy.setBackgroundResource(R.drawable.home);
-    	}else{
-    		  if ((System.currentTimeMillis() - exitTime) > 2000) {  
-                  Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();  
-                  exitTime = System.currentTimeMillis();  
-              } else {  
-                  finish();  
-                  System.exit(0);  
-              }  
-    	}
-        return true;  
-    }  
-	
+
+				getSupportFragmentManager().beginTransaction()
+				.replace(R.id.m_fragment, f_sy).commit();
+				changTabBg();
+				im_sy.setBackgroundResource(R.drawable.home);
+			}else{
+				if ((System.currentTimeMillis() - exitTime) > 2000) {  
+					Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();  
+					exitTime = System.currentTimeMillis();  
+				} else {  
+					finish();  
+					System.exit(0);  
+				}  
+			}
+		}  
+		return true;  
+	}
 }

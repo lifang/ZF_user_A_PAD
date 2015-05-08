@@ -58,6 +58,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
 	private View mTradeClient;
 	private TextView mTradeClientName;
+	
+	private TextView textView1,textView2,textView3,textView4,textView5,textView6;
 
 	private View mTradeStart;
 	private TextView mTradeStartDate;
@@ -134,6 +136,23 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 			mAdapter.notifyDataSetChanged();
 		}
 		toggleButtons();
+		
+		if (mTradeType == 1) {
+			textView2.setText("付款账号");
+			textView3.setText("收款账号");
+		}else if (mTradeType == 3) {
+			textView2.setText("结算时间");
+			textView3.setText("手续费");
+		}else if (mTradeType == 2) {
+			textView2.setText("付款账号");
+			textView3.setText("转入账号");
+		}else if (mTradeType == 4) {
+			textView2.setText("账户名");
+			textView3.setText("账户号码");
+		}else if (mTradeType == 5) {
+			textView2.setText("手机号码");
+			textView3.setVisibility(View.GONE);
+		}
 	}
 
 	private void initViews(View view) {
@@ -151,6 +170,13 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		mTradeStatistic = (Button) header.findViewById(R.id.trade_statistic);
 		mTradeSearchContent = (LinearLayout) header.findViewById(R.id.trade_search_content);
 
+		textView1 = (TextView) header.findViewById(R.id.textView1);
+		textView2 = (TextView) header.findViewById(R.id.textView2);
+		textView3 = (TextView) header.findViewById(R.id.textView3);
+		textView4 = (TextView) header.findViewById(R.id.textView4);
+		textView5 = (TextView) header.findViewById(R.id.textView5);
+		textView6 = (TextView) header.findViewById(R.id.textView6);
+		
 		mTradeClient.setOnClickListener(this);
 		mTradeStart.setOnClickListener(this);
 		mTradeEnd.setOnClickListener(this);

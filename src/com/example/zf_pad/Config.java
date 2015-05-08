@@ -24,13 +24,16 @@ public class Config {
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
-	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+	//public final static String PATHS = "http://121.40.84.2:8180/ZFMerchant/api/";
+	public final static String PATHS = "http://121.40.64.167:8080/api/";
 
 	//视频通话
-	public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	//public static final String VIDEO_SERVER_IP = "121.40.84.2";
+	public static final String VIDEO_SERVER_IP = "121.40.64.120";
 	public static final int VIDEO_SERVER_PORT = 8906;
 	
-	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
+	public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
+	//public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
 	/*
 	 * alipay
 	*/
@@ -43,14 +46,15 @@ public class Config {
 	//支付宝公钥
 	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
 	//异步通知接口  
-	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp"; 
+//	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp"; 
+	public static final String NOTIFT_URL = "http://121.40.64.167:8080/ZFMerchant/app_notify_url.jsp"; 
 	//维修异步通知接口  
-	public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp"; 
+	//public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp"; 
+	public static final String REPAIR_NOTIFT_URL = "http://121.40.64.167:8080/ZFMerchant/repair_app_notify_url.jsp"; 
 	//支付成功跳转页面
-	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
+	//public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
+	public static final String RETURN_URL = "http://121.40.64.167:8080/ZFMerchant/return_url.jsp"; 
 	
-	
-	//public final static String PATHS = "http://114.215.149.242:18080/ZFMerchant/api/";
 
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";

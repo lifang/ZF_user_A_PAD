@@ -18,8 +18,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -43,7 +46,7 @@ public class ShopcarAdapter extends BaseAdapter {
 	private int currentHowMoney;
 	private CheckBox selectAll_cb;
 	private AlertDialog ad;
-	
+
 	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
 		this.list = list;
@@ -58,7 +61,7 @@ public class ShopcarAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		return list.size();
-		
+
 	}
 
 	@Override
@@ -80,11 +83,11 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.del=(TextView)convertView.findViewById(R.id.del);
 			holder.del.setId(position);
 			holder.del.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(final View v) {
 					final int id=list.get(v.getId()).getId();
-					
+
 					ad = new AlertDialog(context);
 					ad.setTitle("提示");
 					ad.setMessage("确定要删除?");
@@ -95,7 +98,7 @@ public class ShopcarAdapter extends BaseAdapter {
 						}
 					});
 					ad.setNegativeButton("确定", new OnClickListener() {
-						
+
 						@Override
 						public void onClick(View arg0) {
 							ad.dismiss();
@@ -110,10 +113,10 @@ public class ShopcarAdapter extends BaseAdapter {
 			holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
 			holder.Model_number = (TextView) convertView
 					.findViewById(R.id.Model_number);
-			 holder.title = (TextView) convertView.findViewById(R.id.title);
-			 holder.evevt_img = (ImageView)
-			 convertView.findViewById(R.id.evevt_img);
-			
+			holder.title = (TextView) convertView.findViewById(R.id.title);
+			holder.evevt_img = (ImageView)
+					convertView.findViewById(R.id.evevt_img);
+
 			//holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
 			//holder.editBtn.setOnClickListener(onClick);
 			holder.ll_select = (LinearLayout) convertView
@@ -124,7 +127,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					.findViewById(R.id.buyCountEdit);
 			holder.showCountText = (TextView) convertView
 					.findViewById(R.id.showCountText);
-			
+
 			holder.add = convertView.findViewById(R.id.add);
 
 			holder.reduce.setTag(holder);
@@ -139,7 +142,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
+
 		holder.checkBox.setTag(position);
 		Good good = list.get(position);
 		holder.checkBox.setChecked(good.isChecked());
@@ -151,21 +154,40 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.retail_price.setText("￥ " + ((double)good.getRetail_price())/100);
 		holder.wayName.setText(good.getName());
 		holder.Model_number.setText(good.getModel_number());
-		 ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
+		ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
+
+		holder.buyCountEdit.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+			@Override
+			public void afterTextChanged(Editable s) {
+				String text = s.toString();
+				int len = s.toString().length(); 
+				if (len == 1 && text.equals("0")) { 
+					s.clear(); 
+				}
+			}
+		});
 		return convertView;
 	}
 
 	private OnClickListener onClick = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			ViewHolder hoder = (ViewHolder) v.getTag();
 			int position = hoder.position;
 			Good editGood = list.get(position);
-		  	int quantity = editGood.getQuantity();
-		 	//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
+			int quantity = editGood.getQuantity();
+			//int quantity = Integer.parseInt(holder.buyCountEdit.getText().toString());
 			switch (v.getId()) {
-	
+
 			case R.id.reduce:
 
 				if (quantity > 0) {
@@ -177,8 +199,8 @@ public class ShopcarAdapter extends BaseAdapter {
 						howMoney.setText("合计:" + ((double)currentHowMoney)/100);
 						//tv_gj.setText("共计"+editGood.getQuantity()+"件");
 					}
-					
-				    changeContent(position, quantity);
+
+					changeContent(position, quantity);
 				}
 				break;
 			case R.id.add:
@@ -190,7 +212,7 @@ public class ShopcarAdapter extends BaseAdapter {
 					howMoney.setText("合计:" + ((double)currentHowMoney)/100);
 					//tv_gj.setText("共计"+editGood.getQuantity()+"件");
 				}
-				 changeContent(position, quantity);
+				changeContent(position, quantity);
 				break;
 
 			}
@@ -200,32 +222,32 @@ public class ShopcarAdapter extends BaseAdapter {
 	};
 
 	public void del(int id,final int position) {
-			String url =  Config.SHOPDELETE;
-			RequestParams params = new RequestParams();
-			params.put("id", id);
-	
-			params.setUseJsonStreamer(true);
+		String url =  Config.SHOPDELETE;
+		RequestParams params = new RequestParams();
+		params.put("id", id);
 
-			MyApplication.getInstance().getClient()
-					.post(url, params, new AsyncHttpResponseHandler() {
+		params.setUseJsonStreamer(true);
 
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							list.remove(position);
-						 notifyDataSetChanged();
-						}
+		MyApplication.getInstance().getClient()
+		.post(url, params, new AsyncHttpResponseHandler() {
 
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				list.remove(position);
+				notifyDataSetChanged();
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
 	}
 	private int flag=0;
 	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
@@ -266,39 +288,39 @@ public class ShopcarAdapter extends BaseAdapter {
 	};
 	private TextView tv_gj;
 	public void changeContent(final int index,final int cont){
-		 
-			String url =  Config.Car_edit;
-			RequestParams params = new RequestParams();
-			params.put("id", list.get(index).getId());
-			params.put("quantity", cont);
-			params.setUseJsonStreamer(true);
 
-			MyApplication.getInstance().getClient()
-					.post(url, params, new AsyncHttpResponseHandler() {
+		String url =  Config.Car_edit;
+		RequestParams params = new RequestParams();
+		params.put("id", list.get(index).getId());
+		params.put("quantity", cont);
+		params.setUseJsonStreamer(true);
 
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								byte[] responseBody) {
-							String responseMsg = new String(responseBody)
-									.toString();
-							Log.e("print", responseMsg);
+		MyApplication.getInstance().getClient()
+		.post(url, params, new AsyncHttpResponseHandler() {
 
-						 list.get(index).setQuantity(cont);
-						 notifyDataSetChanged();
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
 
-						}
+				list.get(index).setQuantity(cont);
+				notifyDataSetChanged();
 
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								byte[] responseBody, Throwable error) {
-							// TODO Auto-generated method stub
-							System.out.println("-onFailure---");
-							Log.e("print", "-onFailure---" + error);
-						}
-					});
-	 
-		 
-		 
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				// TODO Auto-generated method stub
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
+
+
+
 	}
 	public final class ViewHolder {
 		private int position;

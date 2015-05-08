@@ -4,17 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.zf_pad.BaseActivity;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.entity.MessageEntity;
-import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
@@ -25,23 +36,9 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 
-
-public class SystemMessage extends BaseActivity implements  IXListViewListener{
+public class SystemMessage extends Activity implements  IXListViewListener{
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;
@@ -61,6 +58,9 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 				//	norecord_text_to.setText("您没有相关的商品");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
+				}else {
+					Xlistview.setVisibility(View.VISIBLE);
+					eva_nodata.setVisibility(View.GONE);
 				}
 				onRefresh_number = true; 
 			 	myAdapter.notifyDataSetChanged();
@@ -91,7 +91,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 
 		private void initView() {
 			new TitleMenuUtil(SystemMessage.this, "系统公告").show();
-			myAdapter=new MessageAdapter(SystemMessage.this, myList,1);
+	
 			eva_nodata=(LinearLayout) findViewById(R.id.eva_nodata);
 			Xlistview=(XListView) findViewById(R.id.x_listview);
 			// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
@@ -120,6 +120,7 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
  					
 				}
 			});
+			myAdapter=new MessageAdapter(SystemMessage.this, myList,1);
 			Xlistview.setAdapter(myAdapter);
 		}
 		@Override
@@ -168,8 +169,9 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 		private void getData() {
 			RequestParams params = new RequestParams();
 		  
-			//params.put("customer_id", MyApplication.NewUser.getId());
+			params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("page", page);
+			params.put("rows", rows);
 			params.setUseJsonStreamer(true);
 			MyApplication.getInstance().getClient()
 					.post(Config.SYSMSGLIST, params, new AsyncHttpResponseHandler() {
@@ -223,7 +225,6 @@ public class SystemMessage extends BaseActivity implements  IXListViewListener{
 
 									myList.addAll(moreList);
 									handler.sendEmptyMessage(0);
-									
 									
 								}else{
 									Toast.makeText(getApplicationContext(), jsonobject.getString("message"),

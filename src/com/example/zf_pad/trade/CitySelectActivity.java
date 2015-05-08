@@ -30,10 +30,12 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +45,7 @@ public class CitySelectActivity extends Activity {
 
     private String mCitySelected;
     private TextView mCityCurrent;
-
+private ImageView search;
     private TextView overlay;
     private ListView mListView;
     private LetterListView mLetterListView;
@@ -55,15 +57,26 @@ public class CitySelectActivity extends Activity {
     private List<City> mCities = new ArrayList<City>();
     private List<String> mLetters = new ArrayList<String>();
     private List<Object> mItems = new ArrayList<Object>();
-
+	public static Activity CitySelectActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_select);
-        
+        CitySelectActivity = this;
         mCitySelected = getIntent().getStringExtra(CITY_NAME);
         new TitleMenuUtil(this, getString(R.string.title_city_select)).show();
         initViews();
+        search = (ImageView) findViewById(R.id.search);
+        search.setVisibility(View.GONE);
+        search.setBackgroundResource(R.drawable.search_bg);
+        search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(CitySelectActivity.this,CitySearchActivity.class);
+				startActivity(intent);
+			}
+		});
     }
 
     private void initCities() {
