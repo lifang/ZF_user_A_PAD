@@ -35,10 +35,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
+        android:layout_marginLeft="6dp"
             android:text="全部"
             android:textColor="@color/text6c6c6c6"
-            android:textSize="@dimen/textmids" />
+            android:textSize="@dimen/textbig" />
         </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -70,7 +70,7 @@
                 android:text="全部"
                android:layout_marginLeft="7dp"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textbig" />
         </LinearLayout>
 
            <LinearLayout
@@ -95,7 +95,7 @@
                
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textbig" />
         </LinearLayout>
 
            <LinearLayout
@@ -120,7 +120,7 @@
        
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textbig" />
         </LinearLayout>
 
             <LinearLayout
@@ -145,7 +145,7 @@
                 android:text="全部"
                 android:layout_marginLeft="7dp"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textbig" />
         </LinearLayout>
     </LinearLayout>
 <RelativeLayout 
@@ -159,7 +159,7 @@
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
-          
+           android:textSize="@dimen/textmid"
             android:gravity="left|center_vertical"
             android:text="更多"
             android:textColor="@color/bgtitle" />

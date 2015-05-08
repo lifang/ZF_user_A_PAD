@@ -70,7 +70,6 @@ public class PosPortActivity extends Activity implements OnClickListener {
 	  private boolean isClick=true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_port1);
 		new TitleMenuUtil(this, "ɸѡ").show();
@@ -280,6 +279,7 @@ public class PosPortActivity extends Activity implements OnClickListener {
 		bt_confirm = (Button) findViewById(R.id.bt_confirm);
 		bt_confirm.setOnClickListener(this);
 		listView = (ExpandableListView) findViewById(R.id.list);
+		listView.setGroupIndicator(null);
 		myadapter = new PosPortAdapter(this, portlist, glist);
 		myadapter.setListView(listView);
 		listView.setAdapter(myadapter);

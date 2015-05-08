@@ -1,9 +1,15 @@
 package com.example.zf_pad.fragment;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
@@ -170,12 +176,22 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		getData();
 	}
 	private void getData() {
-
-		RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
-		params.setUseJsonStreamer(true);
-
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customerId", MyApplication.NewUser.getId()+"");
+		//RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			
+		
+			return;
+		}
+		
 		MyApplication.getInstance().getClient()
-				.post(Config.SHOPCARLIST, params, new AsyncHttpResponseHandler() {
+				.post(getActivity(),Config.SHOPCARLIST, null,entity,"application/json", new AsyncHttpResponseHandler() {
 					
 
 					@Override

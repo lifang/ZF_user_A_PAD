@@ -25,11 +25,10 @@ public class Config {
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
 	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
-
+	
 	// ”∆µÕ®ª∞
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
-	public static final int VIDEO_SERVER_PORT = 8906;
-	
+	public static final int VIDEO_SERVER_PORT = 8906;	
 	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:8180/zfmanager/notice/video";
 	/*
 	 * alipay

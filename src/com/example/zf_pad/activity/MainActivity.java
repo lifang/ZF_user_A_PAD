@@ -98,12 +98,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private ImageView im_wd;
 	private M_shopcar f_gwc;
 	private M_wdxx f_wdxx;
-	
+
 	private TextView textsy;
 	private TextView textghc;
 	private TextView textmes;
 	private TextView textwd;
-	
+
 	private Button bt_close;
 	private PopupWindow popupWindow;
 	private String cityName;
@@ -113,30 +113,33 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public static final int REQUEST_CITY_WHEEL = 2;
 	private Province province;
 	private City city;
-	private View citySelect;	
+	private View citySelect;
+	private int flag = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Config.cityId=394;
-		Config.CITY="上海";
-		Config.isFRIST=false;
+		Config.cityId = 394;
+		Config.CITY = "上海";
+		Config.isFRIST = false;
 		Display display = getWindowManager().getDefaultDisplay();
-		Config.ScreenWidth=display.getWidth();
-		Config.ScreenHeight=display.getHeight();
-	/*	UserEntity ue=new UserEntity();
-		ue.setId(80);
-		MyApplication.NewUser=ue;*/
-		Log.i("111", "width=" + Config.ScreenWidth + "height=" + Config.ScreenHeight);
-		//if (f_sy == null)
-			f_sy = new M_MianFragment();
+		Config.ScreenWidth = display.getWidth();
+		Config.ScreenHeight = display.getHeight();
+		/*
+		 * UserEntity ue=new UserEntity(); ue.setId(80);
+		 * MyApplication.NewUser=ue;
+		 */
+		Log.i("111", "width=" + Config.ScreenWidth + "height="
+				+ Config.ScreenHeight);
+		// if (f_sy == null)
+		f_sy = new M_MianFragment();
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
 		initView();
 
 	}
-
 
 	private void changTabBg() {
 		im_sy.setBackgroundResource(R.drawable.home2);
@@ -178,59 +181,77 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-		
+
 		case R.id.main_rl_sy:
-			changTabBg();
-			im_sy.setBackgroundResource(R.drawable.home);
-			textsy.setTextColor(getResources().getColor(R.color.o));
-			//if (f_sy == null)
+
+			if (flag != 0) {
+				
+				flag = 0;
+				changTabBg();
+				im_sy.setBackgroundResource(R.drawable.home);
+				textsy.setTextColor(getResources().getColor(R.color.o));
+				// if (f_sy == null)
 				f_sy = new M_MianFragment();
 
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_sy).commit();
-			break;
-		case R.id.main_rl_gwc:
-			if(Config.CheckIsLogin(MainActivity.this)){
-				changTabBg();
-				im_ghc.setBackgroundResource(R.drawable.shopping);
-				textghc.setTextColor(getResources().getColor(R.color.o));
-				if(f_gwc==null)
-				f_gwc = new M_shopcar();
-
 				getSupportFragmentManager().beginTransaction()
-						.replace(R.id.m_fragment, f_gwc).commit();
+						.replace(R.id.m_fragment, f_sy).commit();
 			}
 			
 			break;
-		case R.id.main_rl_pos1:
-			if(Config.CheckIsLogin(MainActivity.this)){
-			changTabBg();
-			im_mess.setBackgroundResource(R.drawable.message);
-			textmes.setTextColor(getResources().getColor(R.color.o));
-			if (f_wdxx == null)
-				f_wdxx = new M_wdxx();
+		case R.id.main_rl_gwc:
+			if (flag != 1) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					changTabBg();
+					flag = 1;
+					im_ghc.setBackgroundResource(R.drawable.shopping);
+					textghc.setTextColor(getResources().getColor(R.color.o));
+					if (f_gwc == null)
+						f_gwc = new M_shopcar();
 
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_wdxx).commit();
+					getSupportFragmentManager().beginTransaction()
+							.replace(R.id.m_fragment, f_gwc).commit();
+				}
 			}
+			
+
+			break;
+		case R.id.main_rl_pos1:
+			if (flag != 2) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					changTabBg();
+					flag = 2;
+					im_mess.setBackgroundResource(R.drawable.message);
+					textmes.setTextColor(getResources().getColor(R.color.o));
+					if (f_wdxx == null)
+						f_wdxx = new M_wdxx();
+
+					getSupportFragmentManager().beginTransaction()
+							.replace(R.id.m_fragment, f_wdxx).commit();
+				}
+			}
+			
 			break;
 		case R.id.main_rl_my:
-			if(Config.CheckIsLogin(MainActivity.this)){
-				Config.MyTab=0;
-				changTabBg();
-				im_wd.setBackgroundResource(R.drawable.mine);
-				textwd.setTextColor(getResources().getColor(R.color.o));
-				if (M_my == null){
-					M_my = new M_my();
+			if (flag != 3) {
+				if (Config.CheckIsLogin(MainActivity.this)) {
+					Config.MyTab = 0;
+					flag = 3;
+					changTabBg();
+					im_wd.setBackgroundResource(R.drawable.mine);
+					textwd.setTextColor(getResources().getColor(R.color.o));
+					if (M_my == null) {
+						M_my = new M_my();
+					}
+					getSupportFragmentManager().beginTransaction()
+
+					.replace(R.id.m_fragment, M_my).commit();
+
 				}
-				getSupportFragmentManager().beginTransaction()
-
-						.replace(R.id.m_fragment, M_my).commit();
-
 			}
-			//else{
-			//	Toast.makeText(getApplication(), "请先登陆", 1000).show();
-			//}
+			
+			// else{
+			// Toast.makeText(getApplication(), "请先登陆", 1000).show();
+			// }
 			break;
 		case R.id.set:
 			showSet();
@@ -251,7 +272,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case REQUEST_CITY:
 			cityId = data.getIntExtra(CITY_ID, 0);
 			cityName = data.getStringExtra(CITY_NAME);
-		
+
 			cityTextView.setText(cityName);
 			break;
 		case REQUEST_CITY_WHEEL:
@@ -267,17 +288,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		set.showAtLocation(findViewById(R.id.main), Gravity.CENTER
 				| Gravity.CENTER, 0, 0);
 	}
-	public void ToIndex(){
+
+	public void ToIndex() {
 		if (f_sy == null)
 			f_sy = new M_MianFragment();
-		
-		
+
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
 	}
+
 	@Override
 	protected void onRestart() {
-	
+
 		super.onRestart();
 		if (Config.shopcar) {
 			changTabBg();
@@ -292,31 +314,32 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
 			textwd.setTextColor(getResources().getColor(R.color.o));
-			if (M_my == null){
+			if (M_my == null) {
 				M_my = new M_my();
 			}
 			getSupportFragmentManager().beginTransaction()
 
-					.replace(R.id.m_fragment, M_my).commit();
+			.replace(R.id.m_fragment, M_my).commit();
 		}
-		
-		if(Config.isExit){
+
+		if (Config.isExit) {
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
-			//if(M_my!=null)
-			//getSupportFragmentManager().beginTransaction().remove(M_my);
-			//if(f_sy==null)
-				f_sy = new M_MianFragment();
-			
+			// if(M_my!=null)
+			// getSupportFragmentManager().beginTransaction().remove(M_my);
+			// if(f_sy==null)
+			f_sy = new M_MianFragment();
+
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_sy).commit();
-			Config.isExit=false;
-			
+			Config.isExit = false;
+
 		}
 	}
+
 	@Override
 	protected void onResume() {
-		super.onResume();		
+		super.onResume();
 	}
 
 	@Override
@@ -324,40 +347,45 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		super.onStop();
 		Config.shopcar = false;
 	}
-	 // 返回键  
-    private long exitTime = 0;  
-   @Override  
-    public boolean onKeyDown(int keyCode, KeyEvent event) {  
-	   if (Config.AderssMangerBACK) {
+
+	// 返回键
+	private long exitTime = 0;
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (Config.AderssMangerBACK) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
 			textghc.setTextColor(getResources().getColor(R.color.o));
-		/*
-			M_shopcar f_gwc = new M_shopcar();
-
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.m_fragment, f_gwc).commit();*/
-			startActivity(new Intent(MainActivity.this,ConfirmOrder.class));
-			Config.AderssMangerBACK=false;
+			/*
+			 * M_shopcar f_gwc = new M_shopcar();
+			 * 
+			 * getSupportFragmentManager().beginTransaction()
+			 * .replace(R.id.m_fragment, f_gwc).commit();
+			 */
+			startActivity(new Intent(MainActivity.this, ConfirmOrder.class));
+			Config.AderssMangerBACK = false;
 		}
-    	if(!f_sy.isVisible()){
-    		
-				f_sy = new M_MianFragment();
-			
+		if (!f_sy.isVisible()) {
+
+			f_sy = new M_MianFragment();
+
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, f_sy).commit();
 			changTabBg();
 			im_sy.setBackgroundResource(R.drawable.home);
-    	}else{
-    		  if ((System.currentTimeMillis() - exitTime) > 2000) {  
-                  Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();  
-                  exitTime = System.currentTimeMillis();  
-              } else {  
-                  finish();  
-                  System.exit(0);  
-              }  
-    	}
-        return true;  
-    }  
-	
+			flag=0;
+		} else {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(getApplicationContext(), "再按一次退出程序",
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return true;
+	}
+
 }

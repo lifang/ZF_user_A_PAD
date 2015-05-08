@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -104,6 +109,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		status = getIntent().getIntExtra("status", 0);
 		id = getIntent().getIntExtra("id", 0);
 		type =getIntent().getStringExtra("type");
+		//Toast.makeText(getApplicationContext(), id+"", 1000).show();
 		if(type.equals("2")){
 			new TitleMenuUtil(OrderDetail.this, "×âÁÞ¶©µ¥ÏêÇé").show();
 		}else{
@@ -114,14 +120,22 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void getData() {
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		System.out.println("id```" + id);
-		params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			
+		
+			return;
+		}
 		MyApplication
 				.getInstance()
 				.getClient()
-				.post(Config.ORDERDETAIL, params,
+				.post(getApplicationContext(),Config.ORDERDETAIL,null,entity,"application/json",
 						new AsyncHttpResponseHandler() {
 							@Override
 							public void onSuccess(int statusCode,
