@@ -36,12 +36,12 @@ public class Good_detail_trade extends Fragment implements OnClickListener{
 	private void initView() {
 		lv=(ListView) view.findViewById(R.id.lv);
 		
-		ChanelEntitiy ce=new ChanelEntitiy();
-		ce.setName("结算时间");
-		ce.setService_rate( 10000);
-		celist.clear();
-		celist.addAll(Config.celist2);
-		myAdapter =new  JiaoyiHuilvAdapter(getActivity(),celist);
+		//ChanelEntitiy ce=new ChanelEntitiy();
+		//ce.setName("结算时间");
+		//ce.setService_rate( 10000);
+		//celist.clear();
+		//celist.addAll(Config.celist2);
+		myAdapter =new  JiaoyiHuilvAdapter(getActivity(),Config.tDates);
 		lv.setAdapter(myAdapter);
 
 	}

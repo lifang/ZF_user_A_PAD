@@ -662,7 +662,7 @@ public class API {
 		try {
 			params.put("brands_id",
 					new JSONArray(gson.toJson(Posport.brands_id)));
-			params.put("category", new JSONArray(gson.toJson(Posport.category)));
+			//params.put("category", new JSONArray(gson.toJson(Posport.category)));
 			params.put("pay_channel_id",
 					new JSONArray(gson.toJson(Posport.pay_channel_id)));
 			params.put("pay_card_id",

@@ -134,7 +134,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				// TODO Auto-generated method stub
 				if (arg1) {
 					is_need_invoice = 1;
 					et_titel.setEnabled(true);
@@ -149,8 +148,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 				//showCountText.setText(arg0.toString());
+				if(buyCountEdit.getText().toString().equals("0"))
+					buyCountEdit.setText("");
 				tv_count.setText("¹²¼Æ:   " + arg0 + "¼þ");
 				if (buyCountEdit.getText().toString().equals("")) {
 					quantity = 0;
@@ -166,14 +166,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
-
 			}
 		});
 		Spinner sp = (Spinner) findViewById(R.id.spinner);
@@ -290,7 +286,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 			buyCountEdit.setText(quantity + "");
 			break;
 		case R.id.reduce:
-			if (quantity == 0) {
+			if (quantity <= 1) {
 				break;
 			}
 			quantity = Integer.parseInt(buyCountEdit.getText().toString()) - 1;

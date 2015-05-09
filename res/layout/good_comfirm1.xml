@@ -245,6 +245,7 @@
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:text="泰山TS900"
+                                        android:singleLine="true"
                                         android:textColor="@color/text292929"
                                         android:textSize="@dimen/textmid" />
 
@@ -361,7 +362,8 @@
                                         android:layout_height="fill_parent"
                                         android:layout_weight="1"
                                         android:background="@color/ffffff"
-                                        android:editable="false"
+                                        android:editable="true"
+                                        android:digits="0123456789"
                                         android:gravity="center"
                                         android:text="1" />
 
@@ -431,7 +433,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_weight="1"
                                 android:gravity="center|left"
-                                android:text="共计"
+                                android:text="共计: 1件"
                                 android:textColor="#292929"
                                 android:textSize="@dimen/textmids" />
 
@@ -441,7 +443,7 @@
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="运送费"
+                                android:text="运送费:￥0"
                                 android:textColor="#292929"
                                 android:textSize="@dimen/textmids" />
 

@@ -343,7 +343,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 					Intent i21 = new Intent(GoodDeatail.this, LeaseConfirm.class);
 					i21.putExtra("getTitle", gfe.getTitle());
-					i21.putExtra("price", gfe.getPrice()+opening_cost);
+					i21.putExtra("price", gfe.getLease_deposit()+opening_cost);
 					i21.putExtra("model", gfe.getModel_number());
 					i21.putExtra("chanel", chanel);
 					i21.putExtra("paychannelId", paychannelId);
@@ -357,7 +357,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 					Intent i2 = new Intent(GoodDeatail.this, GoodConfirm.class);
 					i2.putExtra("getTitle", gfe.getTitle());
-					i2.putExtra("price", gfe.getPrice()+opening_cost);
+					i2.putExtra("price", gfe.getRetail_price()+opening_cost);
 					i2.putExtra("model", gfe.getModel_number());
 					i2.putExtra("chanel", chanel);
 					i2.putExtra("paychannelId", paychannelId);
@@ -795,10 +795,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 										Config.tv_sqkt = jsonobject
 												.getString("opening_requirement");
-										// ImageCacheUtil.IMAGE_CACHE.get(
-										// factoryEntity.getLogo_file_path(),
-										// fac_img); 图片路径待定
-										//
+										 ImageCacheUtil.IMAGE_CACHE.get(
+										 factoryEntity.getLogo_file_path(),
+										 fac_img); 
+										
 										Config.celist = gson.fromJson(
 												jsonobject
 														.getString("standard_rates"),
