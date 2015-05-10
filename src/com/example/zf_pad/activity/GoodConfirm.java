@@ -302,7 +302,12 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private void confirmGood() {
 		et_comment = (EditText)findViewById(R.id.ed_comment);
 		comment=et_comment.getText().toString();
-		quantity = Integer.parseInt(buyCountEdit.getText().toString());
+		if(!buyCountEdit.getText().toString().trim().equals("")){
+			quantity = Integer.parseInt(buyCountEdit.getText().toString().trim());
+		}else{
+			quantity = 1;
+		}
+
 		// comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
 		params.put("customerId", MyApplication.NewUser.getId());
