@@ -130,6 +130,7 @@
                             android:layout_alignParentRight="true"
                             android:background="#FF6624"
                             android:text="地址管理"
+                            android:visibility="gone"
                             android:textSize="@dimen/textmid"
                             android:textColor="#ffffff" />
 
@@ -139,6 +140,7 @@
                             android:layout_height="@dimen/normai_button_height"
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="20dp"
+                             android:layout_alignParentRight="true"
                             android:layout_toLeftOf="@+id/bt_mange"
                             android:background="#FF6624"
                             android:text="新增地址"
@@ -242,7 +244,7 @@
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="运送费"
+                        android:text="配送费: ￥0.00"
                         android:textColor="#292929"
                          android:textSize="@dimen/textmids" />
 
@@ -398,7 +400,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="7dp"
-                                android:text="（ 含配送费：￥0）"
+                                android:text="（ 含配送费：￥0.00）"
                                 android:textColor="@color/text292929"
                                 android:textSize="@dimen/textsmall" />
                         </LinearLayout>

@@ -210,6 +210,8 @@ public class API {
 	// terminal marchants
 	public static final String TERMINAL_MERCHANTS = SCHEMA + HOST
 			+ "terminal/getMerchants";
+	public static final String GET_PHONECODE = SCHEMA + HOST + "index/getPhoneCode";
+	public static final String GET_UPDATEEMAILDENTCODE = SCHEMA + HOST + "customers/getUpdateEmailDentcode";
 
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
@@ -840,5 +842,23 @@ public class API {
 		params.put("rows", rows);
 		params.put("title", title);
 		new HttpRequest(context, callback).post(TERMINAL_MERCHANTS, params);
+	}
+	public static void getUpdateEmailDentcode(
+			Context context,
+			int  id,
+			String  email,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("email", email);
+		new HttpRequest(context, callback).post(GET_UPDATEEMAILDENTCODE, params);
+	}
+	public static void getPhoneCode(
+			Context context,
+			String  phone,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("phone", phone);
+		new HttpRequest(context, callback).post(GET_PHONECODE, params);
 	}
 }

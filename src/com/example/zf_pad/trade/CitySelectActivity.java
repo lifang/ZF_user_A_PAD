@@ -67,7 +67,7 @@ private ImageView search;
         new TitleMenuUtil(this, getString(R.string.title_city_select)).show();
         initViews();
         search = (ImageView) findViewById(R.id.search);
-        search.setVisibility(View.GONE);
+        search.setVisibility(View.VISIBLE);
         search.setBackgroundResource(R.drawable.search_bg);
         search.setOnClickListener(new OnClickListener() {
 			

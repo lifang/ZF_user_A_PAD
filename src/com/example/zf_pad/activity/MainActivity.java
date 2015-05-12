@@ -103,7 +103,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private TextView textghc;
 	private TextView textmes;
 	private TextView textwd;
-
+	
+	private TextView countShopCar;
+	
 	private Button bt_close;
 	private PopupWindow popupWindow;
 	private String cityName;
@@ -115,7 +117,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private City city;
 	private View citySelect;
 	private int flag = 0;
-
+	private SharedPreferences mySharedPreferences;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -126,6 +128,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth = display.getWidth();
 		Config.ScreenHeight = display.getHeight();
+		
+		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
+		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 		/*
 		 * UserEntity ue=new UserEntity(); ue.setId(80);
 		 * MyApplication.NewUser=ue;
@@ -154,6 +159,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	}
 
 	private void initView() {
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
+		
 		textsy = (TextView) findViewById(R.id.textsy);
 		textghc = (TextView) findViewById(R.id.textghc);
 		textmes = (TextView) findViewById(R.id.textmes);
@@ -188,16 +195,16 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.main_rl_sy:
 
 			if (flag != 0) {
-				
+
 				flag = 0;
 				changTabBg();
 				im_sy.setBackgroundResource(R.drawable.home);
 				textsy.setTextColor(getResources().getColor(R.color.o));
 				// if (f_sy == null)
 				f_sy = new M_MianFragment();
-			getSupportFragmentManager().beginTransaction()
-			.replace(R.id.m_fragment, f_sy).commit();
-			MyApplication.hideSoftKeyboard(this);
+				getSupportFragmentManager().beginTransaction()
+				.replace(R.id.m_fragment, f_sy).commit();
+				MyApplication.hideSoftKeyboard(this);
 			}
 			break;
 		case R.id.main_rl_gwc:
@@ -209,12 +216,21 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					textghc.setTextColor(getResources().getColor(R.color.o));
 					if (f_gwc == null)
 						f_gwc = new M_shopcar();
-				getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, f_gwc).commit();
-				MyApplication.hideSoftKeyboard(this);
+
+					getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, f_gwc).commit();
+					MyApplication.hideSoftKeyboard(this);
+					Config.countShopCar = 0;
+					countShopCar.setVisibility(View.GONE);
+					
+					mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
+					SharedPreferences.Editor editor = mySharedPreferences.edit(); 
+					editor.putInt("countShopCar", Config.countShopCar); 
+					editor.commit();
+
 				}
 			}
-			
+
 
 			break;
 		case R.id.main_rl_pos1:
@@ -228,10 +244,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 						f_wdxx = new M_wdxx();
 
 					getSupportFragmentManager().beginTransaction()
-							.replace(R.id.m_fragment, f_wdxx).commit();
+					.replace(R.id.m_fragment, f_wdxx).commit();
 				}
 			}
-			
+
 			break;
 		case R.id.main_rl_my:
 			if (flag != 3) {
@@ -250,10 +266,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					getSupportFragmentManager().beginTransaction()
 					.replace(R.id.m_fragment, M_my).commit();
 				}
+
 				
 				MyApplication.hideSoftKeyboard(this);
+
 			}
-			
+
 			// else{
 			// Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
 			// }
@@ -316,6 +334,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.m_fragment, f_gwc).commit();
+			Config.countShopCar = 0;
+			countShopCar.setVisibility(View.GONE);
+			
+			mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
+			SharedPreferences.Editor editor = mySharedPreferences.edit(); 
+			editor.putInt("countShopCar", Config.countShopCar); 
+			editor.commit();
 		}
 		if (Config.AderssManger) {
 			changTabBg();
@@ -343,8 +368,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-
 		super.onResume();	
+		
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
+		
 		if (Config.shopcar) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
@@ -353,6 +385,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			flag=1;
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.m_fragment, f_gwc).commit();
+			Config.countShopCar = 0;
+			countShopCar.setVisibility(View.GONE);
 		}
 		if (Config.AderssManger) {
 			changTabBg();
@@ -380,7 +414,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			Config.isExit=false;
 
 		}
-
+		mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
+		SharedPreferences.Editor editor = mySharedPreferences.edit(); 
+		editor.putInt("countShopCar", Config.countShopCar); 
+		editor.commit();
 	}
 
 	@Override

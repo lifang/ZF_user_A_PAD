@@ -14,35 +14,6 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.location.LocationClientOption.LocationMode;
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.MessageAdapter;
-import com.example.zf_pad.activity.ContactUs;
-import com.example.zf_pad.activity.LoginActivity;
-import com.example.zf_pad.activity.MainActivity;
-import com.example.zf_pad.activity.MyWebView;
-import com.example.zf_pad.activity.PosListActivity;
-import com.example.zf_pad.activity.SystemMessage;
-import com.example.zf_pad.activity.TerminalManagerActivity;
-import com.example.zf_pad.entity.PicEntity;
-import com.example.zf_pad.entity.TestEntitiy;
-import com.example.zf_pad.trade.ApplyListActivity;
-import com.example.zf_pad.trade.CitySelectActivity;
-import com.example.zf_pad.trade.MyApplyDetail;
-import com.example.zf_pad.trade.TradeFlowActivity;
-import com.example.zf_pad.trade.entity.City;
-import com.example.zf_pad.trade.entity.Province;
-import com.example.zf_pad.util.ImageCacheUtil;
-import com.example.zf_pad.util.XListView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,6 +33,28 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.activity.ContactUs;
+import com.example.zf_pad.activity.MyWebView;
+import com.example.zf_pad.activity.PosListActivity;
+import com.example.zf_pad.activity.SystemMessage;
+import com.example.zf_pad.activity.TerminalManagerActivity;
+import com.example.zf_pad.entity.PicEntity;
+import com.example.zf_pad.trade.ApplyListActivity;
+import com.example.zf_pad.trade.CitySelectActivity;
+import com.example.zf_pad.trade.TradeFlowActivity;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.ImageCacheUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class M_MianFragment extends Fragment implements OnClickListener {
 	private View view;
@@ -484,6 +477,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
 			Config.CITY = cityName;
+			Constants.CITY_ID_SEARCH = cityId;
+			Constants.CITY_NAME_SEARCH = cityName;
 			break;
 		case REQUEST_CITY_WHEEL:
 			province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
@@ -496,6 +491,13 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		if (Constants.CITY_ID_SEARCH != 0) {
+			cityId = Constants.CITY_ID_SEARCH;
+			cityName = Constants.CITY_NAME_SEARCH;
+			cityTextView.setText(cityName);
+		}
+		
 		timer = new Timer();
 		TimerTask task = new TimerTask()
 		{

@@ -31,11 +31,12 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.aadpter.ChooseAdressAdapter;
 import com.example.zf_pad.aadpter.ShopcarOrderAdapter;
 import com.example.zf_pad.entity.AdressEntity;
-import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.entity.MyShopCar.Good;
+import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.ScrollViewWithListView;
+import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,7 +54,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private int  is_need_invoice=1;//否需要发票（1要，0不要
 	private int invoice_type=0;//发票类型（0公司  1个人）
 	// private OrderDetail_PosAdapter posAdapter;
-	float hj=0;
+	int hj=0;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -181,12 +182,12 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		tv_totle = (TextView)findViewById(R.id.tv_totle);
 		for(Good good:comfirmList){
 			index=index+good.getQuantity();
-			hj=hj+good.getRetail_price();
+			hj=hj+((good.getRetail_price()+good.getOpening_cost())*good.getQuantity());
 		}
 		tv_count.setText("共计："+index+"件");
 		tv_hj = (TextView)findViewById(R.id.tv_hj);
-		tv_hj.setText("合计:￥"+hj/100);
-		tv_totle.setText("实付:￥"+hj/100);
+		tv_hj.setText("合计:￥"+StringUtil.getMoneyString(hj));
+		tv_totle.setText("实付:￥"+StringUtil.getMoneyString(hj));
 		shop_lsit = (ScrollViewWithListView)findViewById(R.id.shopcar_list);
 		shopadapter = new ShopcarOrderAdapter(getApplicationContext(), MyApplication.getComfirmList());
 		shop_lsit.setAdapter(shopadapter);
@@ -265,8 +266,8 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 					@Override
 					public void onSuccess(Object data) {
 						Intent i1 =new Intent (ConfirmOrder.this,PayFromCar.class);
-						i1.putExtra("orderId", data.toString());
-						i1.putExtra("type", "1");
+						i1.putExtra("orderId", Integer.valueOf(data.toString()));
+						i1.putExtra("type", 1);
 						startActivity(i1);
 						finish();
 					}

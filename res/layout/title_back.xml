@@ -53,7 +53,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="11dp"
-        android:src="@drawable/delete_sure"
+        android:background="@drawable/delete_sure"
          android:visibility="gone"
       />
 

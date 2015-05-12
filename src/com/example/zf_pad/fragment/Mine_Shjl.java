@@ -66,6 +66,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	private int page = 0;
 	private int total = 0;
 	private final int rows = 10;
+	private MTabWidget mTabWidget;
 	private LayoutInflater mInflater;
    // private LinearLayout ll_shjl;
 	// cancel apply button listener
@@ -120,12 +121,9 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	private void init() {
 		mInflater = LayoutInflater.from(getActivity());
 		mEntities = new ArrayList<AfterSaleRecord>();
-		mListView = (XListView)view.findViewById(R.id.after_sale_list);
 		mAdapter = new RecordListAdapter();
 		// init the XListView
-		mListView.initHeaderAndFooter();
-		mListView.setXListViewListener(this);
-		mListView.setPullLoadEnable(true);
+
 		mListView.setAdapter(mAdapter);
 		initButtonListeners();
 		loadData();
@@ -176,7 +174,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	}
 	private void initView() {
 		//ll_shjl=(LinearLayout) view.findViewById(R.id.ll_shjl);
-		MTabWidget mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
+		 mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
 		 // add tabs to the TabWidget
         String[] tabs = getResources().getStringArray(R.array.mine_shjl_tabs);
         for (int i = 0; i < tabs.length; i++) {
@@ -186,7 +184,10 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
         mTabWidget.setonTabLintener(this);
         tv1 = (TextView)view.findViewById(R.id.tv1);
         tv2 = (TextView)view.findViewById(R.id.tv2);
-        
+        mListView = (XListView)view.findViewById(R.id.after_sale_list);
+		mListView.initHeaderAndFooter();
+		mListView.setXListViewListener(this);
+		mListView.setPullLoadEnable(true);
 	}
 	class RecordListAdapter extends BaseAdapter {
 		RecordListAdapter() {

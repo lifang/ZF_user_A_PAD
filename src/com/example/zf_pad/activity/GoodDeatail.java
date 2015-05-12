@@ -631,7 +631,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 								Intent i = new Intent(getApplication(),
 										LoginActivity.class);
 								startActivity(i);
-							} else if (code == 1) {
+							} else if (code == 1) { 
+								Config.countShopCar = Config.countShopCar + 1;
 								Toast.makeText(getApplicationContext(),
 										"添加商品成功", Toast.LENGTH_SHORT).show();
 							} else {

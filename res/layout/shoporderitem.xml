@@ -82,6 +82,7 @@
                             android:textSize="@dimen/textmid" />
 
                         <TextView
+                                android:id="@+id/wayNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"

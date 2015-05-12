@@ -48,7 +48,6 @@ public class ScoreAdapter extends BaseAdapter{
 			holdel=new ViewHoldel();
 			holdel.number=(TextView) convertView.findViewById(R.id.number);
 			holdel.time=(TextView) convertView.findViewById(R.id.time);
-			holdel.money=(TextView) convertView.findViewById(R.id.money);
 			holdel.gotscore=(TextView) convertView.findViewById(R.id.gotscore);
 			holdel.scoretype=(TextView) convertView.findViewById(R.id.scoretype);
 			convertView.setTag(holdel);
@@ -58,15 +57,13 @@ public class ScoreAdapter extends BaseAdapter{
 		}
 		holdel.number.setText(datasco.get(position).getNumber());
 		holdel.time.setText(datasco.get(position).getTime());
-		holdel.money.setText(datasco.get(position).getMoney());
-		holdel.gotscore.setText(datasco.get(position).getGotscore());
+		holdel.gotscore.setText(datasco.get(position).getMoney());
 		holdel.scoretype.setText(datasco.get(position).getScoretype());
 		return convertView;
 	}
 	public static class ViewHoldel{
 		TextView number;
 		TextView time;
-		TextView money;
 		TextView gotscore;
 		TextView scoretype;
 	}
