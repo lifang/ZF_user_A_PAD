@@ -36,7 +36,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
@@ -107,6 +106,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private List<String> piclist;
 	private int opening_cost;
 	private int all_price;
+	private String tdname;
 	private Handler handler = new Handler() {
 		
 
@@ -292,32 +292,32 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		case R.id.tv_zd:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 3);
-			i.putExtra("commets", commentsCount);
+			i.putExtra("comments", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_ms:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 0);
-			i.putExtra("commets", commentsCount);
+			i.putExtra("comments", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_kt:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 1);
-			i.putExtra("commets", commentsCount);
+			i.putExtra("comments", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.tv_pl:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 2);
-			i.putExtra("commets", commentsCount);
+			i.putExtra("comments", commentsCount);
 			Config.goodId=id;
 			startActivity(i);
 			break;
 		case R.id.tv_jy:
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 4);
-			i.putExtra("commets", commentsCount);
+			i.putExtra("comments", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.titleback_linear_back:
@@ -349,6 +349,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					i21.putExtra("paychannelId", paychannelId);
 					i21.putExtra("commets", commentsCount);
 					i21.putExtra("goodId", gfe.getId());
+					i21.putExtra("brand", gfe.getGood_brand()+gfe.getModel_number());
 					if(piclist.size()!=0){
 						i21.putExtra("piclist",piclist.get(0));
 					}
@@ -362,6 +363,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					i2.putExtra("chanel", chanel);
 					i2.putExtra("paychannelId", paychannelId);
 					i2.putExtra("goodId", gfe.getId());
+					i2.putExtra("brand", gfe.getGood_brand()+gfe.getModel_number());
 					if(piclist.size()!=0){
 						i2.putExtra("piclist",piclist.get(0));
 					}
@@ -395,6 +397,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				.post(getApplicationContext(),Config.GOODDETAIL, null,entity,"application/json",
 						new AsyncHttpResponseHandler() {
 							private Dialog loadingDialog;
+							
 							@Override
 							public void onStart() {
 								
@@ -480,10 +483,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												jsonobject.getString("factory"),
 												new TypeToken<FactoryEntity>() {
 												}.getType());
-										ImageCacheUtil.IMAGE_CACHE.get(
-												factoryEntity
-														.getLogo_file_path(),
-												fac_img);
+									
 
 										commentsCount = jsonobject
 												.getInt("commentsCount");
@@ -492,6 +492,12 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 												.getString("paychannelinfo");
 										jsonobject = new JSONObject(res2);
 										paychannelId = jsonobject.getInt("id");
+										factoryEntity=gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
+										}.getType());
+										ImageCacheUtil.IMAGE_CACHE.get(
+												factoryEntity
+														.getLogo_file_path(),
+												fac_img);
 										Config.celist = gson.fromJson(
 												jsonobject
 														.getString("standard_rates"),
@@ -560,6 +566,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 											Config.suportcl = "不支持";
 										}
 										opening_cost = jsonobject.getInt("opening_cost");
+										tdname = jsonobject.getString("name");
+										
 										celist2 = gson.fromJson(
 												jsonobject.getString("tDates"),
 												new TypeToken<List<ChanelEntitiy>>() {
@@ -798,7 +806,15 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										 ImageCacheUtil.IMAGE_CACHE.get(
 										 factoryEntity.getLogo_file_path(),
 										 fac_img); 
-										
+											factoryEntity = gson.fromJson(jsonobject.getString("pcfactory"), new TypeToken<FactoryEntity>() {
+											}.getType());
+											if(factoryEntity.getLogo_file_path() != null){
+												ImageCacheUtil.IMAGE_CACHE.get(factoryEntity.getLogo_file_path(),
+														fac_img);
+											}
+											
+											tv_sjhttp.setText(factoryEntity.getWebsite_url() );
+											fac_detai.setText(factoryEntity.getDescription() );
 										Config.celist = gson.fromJson(
 												jsonobject
 														.getString("standard_rates"),
@@ -863,6 +879,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										} else {
 											Config.suportcl = "不支持";
 										}
+										opening_cost=jsonobject.getInt("opening_cost");
+										tdname = jsonobject.getString("name");
 										if (islea == false) {
 											//购买
 											all_price = gfe.getRetail_price()+opening_cost;

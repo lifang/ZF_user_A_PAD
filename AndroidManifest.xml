@@ -94,7 +94,7 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.PosPortActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
@@ -196,7 +196,7 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.GoodConfirm"
-            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
@@ -347,7 +347,13 @@
             android:exported="false"
             android:screenOrientation="behind" >
         </activity>
-        
+             <activity
+            android:name="com.example.zf_pad.activity.PostSonList"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
         <activity
             android:name="com.example.zf_pad.activity.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"

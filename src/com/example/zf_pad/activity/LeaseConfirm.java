@@ -74,6 +74,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private int comments;
 	private Button bt_add;
 	private ImageView event_img;
+	private TextView tv_brand;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +91,18 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
 		retail_price.setText("£¤" +df.format( pirce*1.0f/100));
-		tv_totle.setText("Êµ¸¶£º£¤ " + ((double) pirce) / 100);
+		tv_totle.setText("Êµ¸¶£º£¤ " + df.format( pirce*1.0f/100));
+		tv_pay.setText("Êµ¸¶£º£¤ " + df.format( pirce*1.0f/100));
 		System.out.println("=paychannelId==" + paychannelId);
-		getData1();
-		String img_url=getIntent().getStringExtra("evevt_img");
+		//getData1();
+		String img_url=getIntent().getStringExtra("piclist");
 		ImageCacheUtil.IMAGE_CACHE.get(img_url,
  				event_img);
+		tv_brand.setText(getIntent().getStringExtra("brand"));
 	}
 
 	private void initView() {
+		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
 		bt_add = (Button)findViewById(R.id.bt_add);
 		bt_add.setOnClickListener(this);
@@ -379,6 +383,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 						return null;
 					}
 				});
-
+	}
+	@Override
+	protected void onResume() {
+	
+		super.onResume();
+		myList.clear();
+		getData1();
 	}
 }

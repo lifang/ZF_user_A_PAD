@@ -210,7 +210,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					if (f_gwc == null)
 						f_gwc = new M_shopcar();
 				getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, f_wdxx).commit();
+				.replace(R.id.m_fragment, f_gwc).commit();
 				MyApplication.hideSoftKeyboard(this);
 				}
 			}
@@ -247,10 +247,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					getSupportFragmentManager().beginTransaction()
 
 					.replace(R.id.m_fragment, M_my).commit();
-
+					getSupportFragmentManager().beginTransaction()
+					.replace(R.id.m_fragment, M_my).commit();
 				}
-				getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, M_my).commit();
+				
 				MyApplication.hideSoftKeyboard(this);
 			}
 			
@@ -350,7 +350,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			im_ghc.setBackgroundResource(R.drawable.shopping);
 			if (f_gwc == null)
 				f_gwc = new M_shopcar();
-
+			flag=1;
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.m_fragment, f_gwc).commit();
 		}
@@ -361,6 +361,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			if (M_my == null){
 				M_my = new M_my();
 			}
+			flag=3;
 			getSupportFragmentManager().beginTransaction()
 
 			.replace(R.id.m_fragment, M_my).commit();

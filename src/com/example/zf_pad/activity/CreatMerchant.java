@@ -816,9 +816,7 @@ private void showchooseDialog(Button btn,final int tag) {
 		@Override
 		public void onClick(View v) {
 			if(isdown){
-				openimg(tag);
-				
-				
+				openimg(tag);		
 			}
 			else{
 				Intent intent = new Intent(Intent.ACTION_VIEW);    
@@ -1012,6 +1010,7 @@ private void sumbitMerchantInfo() {
 				public void onSuccess(Object data) {
 					//finish();
 					Toast.makeText(getApplicationContext(), "创建商户成功", 1000).show();
+					CreatMerchant.this.finish();
 				}
 
 				@Override

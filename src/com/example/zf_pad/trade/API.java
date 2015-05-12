@@ -655,8 +655,9 @@ public class API {
 		params.put("rows", rows);
 		params.put("page", page);
 		params.put("orderType", orderType);
-
 		params.put("has_purchase", Posport.has_purchase);
+		if(Config.lx!=-1)
+		params.put("category", Config.lx);
 		params.put("minPrice", Posport.minPrice);
 		params.put("maxPrice", Posport.maxPrice);
 		try {

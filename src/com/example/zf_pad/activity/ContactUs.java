@@ -116,7 +116,7 @@ public class ContactUs extends Activity {
 					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
 						Toast.makeText(ContactUs.this, "提交成功", 1000).show();
-						finish();
+						//ContactUs.this.finish();
 					}
 
 					@Override
