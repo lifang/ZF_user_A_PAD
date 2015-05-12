@@ -4,37 +4,35 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import android.app.Activity;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.util.AlertDialog;
 import com.example.zf_pad.util.ImageCacheUtil;
+import com.example.zf_pad.util.StringUtil;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import android.R.integer;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class ShopcarAdapter extends BaseAdapter {
 	private Context context;
@@ -42,10 +40,12 @@ public class ShopcarAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 	private TextView howMoney;
+	private TextView tv_gj;
 	private Activity activity;
 	private int currentHowMoney;
 	private CheckBox selectAll_cb;
 	private AlertDialog ad;
+	private boolean isSelectAll = false;
 
 	public ShopcarAdapter(Context context, List<Good> list) {
 		this.context = context;
@@ -54,8 +54,10 @@ public class ShopcarAdapter extends BaseAdapter {
 		currentHowMoney = 0;
 		howMoney = (TextView) activity.findViewById(R.id.howMoney);
 		tv_gj = (TextView)activity.findViewById(R.id.tv_gj);
+
 		selectAll_cb = (CheckBox) activity.findViewById(R.id.item_cb);
-		selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
+		selectAll_cb.setOnClickListener(onClickListenerAll);
+		//selectAll_cb.setOnCheckedChangeListener(onCheckedChangeListener);
 	}
 
 	@Override
@@ -74,92 +76,109 @@ public class ShopcarAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		inflater = LayoutInflater.from(context);
-		if (convertView == null) {
-			holder = new ViewHolder();
-			holder.position = position;
-			convertView = inflater.inflate(R.layout.sopping_caritem, null);
-			holder.del=(TextView)convertView.findViewById(R.id.del);
-			holder.del.setId(position);
-			holder.del.setOnClickListener(new OnClickListener() {
+		//	if (convertView == null) {
+		holder = new ViewHolder();
+		holder.position = position;
+		convertView = inflater.inflate(R.layout.sopping_caritem, null);
+		holder.del=(TextView)convertView.findViewById(R.id.del);
+		holder.del.setId(position);
+		holder.del.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(final View v) {
-					final int id=list.get(v.getId()).getId();
+			@Override
+			public void onClick(final View v) {
+				final int id=list.get(v.getId()).getId();
 
-					ad = new AlertDialog(context);
-					ad.setTitle("Ã· æ");
-					ad.setMessage("»∑∂®“™…æ≥˝?");
-					ad.setPositiveButton("»°œ˚", new OnClickListener() {				
-						@Override
-						public void onClick(View arg0) {
-							ad.dismiss();				
-						}
-					});
-					ad.setNegativeButton("»∑∂®", new OnClickListener() {
+				ad = new AlertDialog(context);
+				ad.setTitle("ÊèêÁ§∫");
+				ad.setMessage("Á°ÆÂÆöË¶ÅÂà†Èô§?");
+				ad.setPositiveButton("ÂèñÊ∂à", new OnClickListener() {				
+					@Override
+					public void onClick(View arg0) {
+						ad.dismiss();				
+					}
+				});
+				ad.setNegativeButton("Á°ÆÂÆö", new OnClickListener() {
 
-						@Override
-						public void onClick(View arg0) {
-							ad.dismiss();
-							del(id,v.getId());						
-						}
-					});					
-				}
-			});
-			holder.checkBox = (CheckBox) convertView.findViewById(R.id.item_cb);
-			holder.checkBox.setOnCheckedChangeListener(onCheckedChangeListener);
-			holder.title = (TextView) convertView.findViewById(R.id.title);
-			holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
-			holder.Model_number = (TextView) convertView
-					.findViewById(R.id.Model_number);
-			holder.title = (TextView) convertView.findViewById(R.id.title);
-			holder.evevt_img = (ImageView)
-					convertView.findViewById(R.id.evevt_img);
+					@Override
+					public void onClick(View arg0) {
+						ad.dismiss();
+						del(id,v.getId());						
+					}
+				});					
+			}
+		});
+		holder.checkBox = (CheckBox) convertView.findViewById(R.id.item_cb);
+		holder.checkBox.setOnCheckedChangeListener(onCheckedChangeListener);
+		holder.title = (TextView) convertView.findViewById(R.id.title);
+		holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
+		holder.Model_number = (TextView) convertView
+				.findViewById(R.id.Model_number);
+		holder.title = (TextView) convertView.findViewById(R.id.title);
+		holder.evevt_img = (ImageView)
+				convertView.findViewById(R.id.evevt_img);
 
-			//holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
-			//holder.editBtn.setOnClickListener(onClick);
-			holder.ll_select = (LinearLayout) convertView
-					.findViewById(R.id.ll_select);
-			//holder.editBtn.setTag(holder);
-			holder.reduce = convertView.findViewById(R.id.reduce);
-			holder.buyCountEdit = (EditText) convertView
-					.findViewById(R.id.buyCountEdit);
-			holder.showCountText = (TextView) convertView
-					.findViewById(R.id.showCountText);
+		//holder.editBtn = (TextView) convertView.findViewById(R.id.editView);
+		//holder.editBtn.setOnClickListener(onClick);
+		holder.ll_select = (LinearLayout) convertView
+				.findViewById(R.id.ll_select);
+		//holder.editBtn.setTag(holder);
+		holder.reduce = (TextView) convertView.findViewById(R.id.reduce);
+		holder.buyCountEdit = (EditText) convertView
+				.findViewById(R.id.buyCountEdit);
+		holder.showCountText = (TextView) convertView
+				.findViewById(R.id.showCountText);
+		holder.Model_numberTextView = (TextView) convertView
+				.findViewById(R.id.Model_numberTextView);
+		holder.wayNameTextView = (TextView) convertView
+				.findViewById(R.id.wayNameTextView);
+		holder.add = (TextView) convertView.findViewById(R.id.add);
 
-			holder.add = convertView.findViewById(R.id.add);
+		holder.reduce.setTag(holder);
+		holder.add.setTag(holder);
 
-			holder.reduce.setTag(holder);
-			holder.add.setTag(holder);
+		holder.reduce.setOnClickListener(onClick);
+		holder.add.setOnClickListener(onClick);
+		holder.retail_price = (TextView) convertView
+				.findViewById(R.id.retail_price);
+		//holder.delete = convertView.findViewById(R.id.delete);
+		//			convertView.setTag(holder);
+		//		} else {
+		//			holder = (ViewHolder) convertView.getTag();
+		//		}
 
-			holder.reduce.setOnClickListener(onClick);
-			holder.add.setOnClickListener(onClick);
-			holder.retail_price = (TextView) convertView
-					.findViewById(R.id.retail_price);
-			//holder.delete = convertView.findViewById(R.id.delete);
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+		Good good = list.get(position);
 
 		holder.checkBox.setTag(position);
-		Good good = list.get(position);
 		holder.checkBox.setChecked(good.isChecked());
-
 		holder.title.setText(good.getTitle());
 		holder.showCountText.setText("X  " + good.getQuantity());
 		holder.buyCountEdit.setText("" + good.getQuantity());
 		holder.buyCountEdit.getText();
-		holder.retail_price.setText("£§ " + ((double)good.getRetail_price())/100);
-		holder.wayName.setText(good.getName());
-		holder.Model_number.setText(good.getModel_number());
-		ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
+		holder.retail_price.setText("¬• " + StringUtil.getMoneyString(good.getRetail_price()+good.getOpening_cost()));
+		//holder.retail_price.setText("Ôø• " + ((double)good.getRetail_price())/100);
+		//holder.wayName.setText(good.getName());
+		//holder.Model_number.setText(good.getModel_number());
+		holder.wayNameTextView.setText(good.getName());
+		holder.Model_numberTextView.setText(good.getModel_number());
 
+		if (!StringUtil.isNull(good.getUrl_path())) {
+			ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);
+		}
+		for (int i = 0; i < list.size(); i++) {
+			Boolean aBoolean = list.get(i).isChecked();
+			if (aBoolean == false) {
+				selectAll_cb.setChecked(false);
+			}
+		}
 		holder.buyCountEdit.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+				if (!StringUtil.isNull(s.toString())) {
+					list.get(position).setQuantity(Integer.valueOf(s.toString()
+							.replaceAll("^(0+)", "")));
+				}
 			}
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -173,6 +192,17 @@ public class ShopcarAdapter extends BaseAdapter {
 				if (len == 1 && text.equals("0")) { 
 					s.clear(); 
 				}
+			}
+		});
+
+		holder.buyCountEdit.setOnEditorActionListener(new OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				//changeContent(position, Integer.valueOf(v.getText().toString()));
+				notifyDataSetChanged();
+				return false;
 			}
 		});
 		return convertView;
@@ -189,36 +219,25 @@ public class ShopcarAdapter extends BaseAdapter {
 			switch (v.getId()) {
 
 			case R.id.reduce:
-
-				if (quantity > 0) {
+				if (quantity > 1) {
 					editGood.setQuantity(--quantity);
 					hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 					hoder.showCountText.setText("X  " + editGood.getQuantity());
-					if (hoder.checkBox.isChecked()) {
-						currentHowMoney -= editGood.getRetail_price();
-						howMoney.setText("∫œº∆:" + ((double)currentHowMoney)/100);
-						//tv_gj.setText("π≤º∆"+editGood.getQuantity()+"º˛");
-					}
-
+					computeMoney();
+					System.out.println("ŒªÔøΩÔøΩ---"+position+quantity);
 					changeContent(position, quantity);
 				}
+
 				break;
 			case R.id.add:
 				editGood.setQuantity(++quantity);
 				hoder.buyCountEdit.setText(editGood.getQuantity() + "");
 				hoder.showCountText.setText("X  " + editGood.getQuantity());
-				if (hoder.checkBox.isChecked()) {
-					currentHowMoney += editGood.getRetail_price();
-					howMoney.setText("∫œº∆:" + ((double)currentHowMoney)/100);
-					//tv_gj.setText("π≤º∆"+editGood.getQuantity()+"º˛");
-				}
+				computeMoney();
 				changeContent(position, quantity);
 				break;
-
 			}
-
 		}
-
 	};
 
 	public void del(int id,final int position) {
@@ -249,44 +268,61 @@ public class ShopcarAdapter extends BaseAdapter {
 			}
 		});
 	}
+	private OnClickListener onClickListenerAll = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			if (isSelectAll == false) {
+				isSelectAll = true;
+				selectAll_cb.setChecked(true);
+			}else {
+				isSelectAll = false;
+				selectAll_cb.setChecked(false);
+			}
+			for (int index = 0; index < list.size(); index++) {
+				list.get(index).setChecked(isSelectAll);
+			}
+			computeMoney();
+			notifyDataSetChanged();
+		}
+	};
 	private int flag=0;
 	private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
 
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
-			// TODO Auto-generated method stub
-			if (selectAll_cb == buttonView) {
-				for (int index = 0; index < list.size(); index++) {
-					list.get(index).setChecked(isChecked);
-				}
-
-				notifyDataSetChanged();
-			} else {
-				if(isChecked){
-					flag++;
-				}else{
-					flag--;
-				}
-				if(flag==0){
-					selectAll_cb.setChecked(false);
-				}else if(flag==list.size()){
-					selectAll_cb.setChecked(true);
-				}
-				int position = (Integer) buttonView.getTag();
+			if(isChecked){
+				flag++;
+			}else{
+				flag--;
+			}
+			if(flag==0){
+				selectAll_cb.setChecked(false);
+			}else if(flag==list.size()){
+				selectAll_cb.setChecked(true);
+			}
+			int position = (Integer) buttonView.getTag();
+			if (list.size() != 0) {
 				Good good = list.get(position);
 				good.setChecked(isChecked);
-				currentHowMoney += (isChecked ? good.getRetail_price()
-						* good.getQuantity() : -good.getRetail_price()
-						* good.getQuantity());
-				howMoney.setText("∫œº∆:" + ((double)currentHowMoney)/100);
-				//tv_gj.setText("π≤º∆"+good.getQuantity()+"º˛");
-				Log.e("print", "currentHowMoney:"+currentHowMoney);
+				computeMoney();
+				int mflag = 0;
+				for (int i = 0; i < list.size(); i++) {
+					Boolean aBoolean = list.get(i).isChecked();
+					if (aBoolean == false) {
+						selectAll_cb.setChecked(false);
+					}else {
+						mflag++;
+					}
+				}
+				if (mflag == list.size()) {
+					selectAll_cb.setChecked(true);
+				}
 			}
-
 		}
 	};
-	private TextView tv_gj;
+
 	public void changeContent(final int index,final int cont){
 
 		String url =  Config.Car_edit;
@@ -332,10 +368,22 @@ public class ShopcarAdapter extends BaseAdapter {
 		private View delete;
 		private EditText buyCountEdit;
 		private TextView showCountText;
-		private View reduce;
-		private View add;
-		public TextView Model_number;
-		public TextView wayName,del;
+		private TextView reduce;
+		private TextView add;
+		public TextView Model_number,Model_numberTextView;
+		public TextView wayName,del,wayNameTextView;
 		public ImageView evevt_img;
+	}
+	private void computeMoney(){
+		currentHowMoney = 0;
+		int currentQuantity = 0;
+		for(Good good: list){
+			if(good.isChecked()){
+				currentHowMoney += (good.getRetail_price()+good.getOpening_cost())*good.getQuantity();
+				currentQuantity += good.getQuantity();
+			}
+		}
+		tv_gj.setText("ÂÖ±ËÆ° Ôºö " + currentQuantity + "‰ª∂ÂïÜÂìÅ");
+		howMoney.setText("ÂêàËÆ° Ôºö Ôø•" + StringUtil.getMoneyString(currentHowMoney) );
 	}
 }

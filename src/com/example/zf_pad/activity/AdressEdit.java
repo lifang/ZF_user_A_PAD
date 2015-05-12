@@ -88,9 +88,19 @@ public class AdressEdit extends BaseActivity{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		if (!StringUtil.isMobile(tel)) {
+			Toast.makeText(getApplicationContext(), "请输入正确的手机号", 
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		stringcode=StringUtil.replaceBlank(tv3.getText().toString());
 		if(stringcode.length()==0){
 			Toast.makeText(getApplicationContext(), "邮编不能为空",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if (!StringUtil.isZipNO(stringcode)) {
+			Toast.makeText(getApplicationContext(), "请输入正确的邮编",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -114,15 +124,13 @@ public class AdressEdit extends BaseActivity{
 
 					@Override
 					public void onSuccess(Object data) {
-						// TODO Auto-generated method stub
 						Log.e("data", String.valueOf(data));
-						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
-						//finish();
+						//Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
+						finish();
 					}
 
 					@Override
 					public TypeToken getTypeToken() {
-						// TODO Auto-generated method stub
 						return null;
 					}
                 });
@@ -232,9 +240,10 @@ public class AdressEdit extends BaseActivity{
 
 					@Override
 					public void onSuccess(Object data) {
-						Toast.makeText(AdressEdit.this, "修改地址成功", Toast.LENGTH_SHORT).show();
+						//Toast.makeText(AdressEdit.this, "修改地址成功", Toast.LENGTH_SHORT).show();
 						//mine_Address.dataadress
 						Log.e("da", String.valueOf(Mine_Address.dataadress));
+						finish();
 					}
 
 					@Override

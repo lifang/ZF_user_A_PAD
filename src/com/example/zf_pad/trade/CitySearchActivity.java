@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -77,6 +78,7 @@ public class CitySearchActivity extends Activity implements OnClickListener{
 					int position, long id) {
 				Constants.CITY_ID_SEARCH = searchCities.get(position).getId();
 				Constants.CITY_NAME_SEARCH = searchCities.get(position).getName();
+				Config.CITY = Constants.CITY_NAME_SEARCH;
 				finish();
 				if (CitySelectActivity.CitySelectActivity != null) {
 					CitySelectActivity.CitySelectActivity.finish();

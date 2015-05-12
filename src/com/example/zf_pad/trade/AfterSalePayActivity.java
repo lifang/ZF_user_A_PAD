@@ -151,10 +151,10 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	}
 	@Override
 	public void fail() {
-		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);
-		intent.putExtra(RECORD_TYPE, mRecordType);
-		intent.putExtra(RECORD_ID, Integer.valueOf(orderId));
-		startActivity(intent);
-		finish();
+//		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);
+//		intent.putExtra(RECORD_TYPE, mRecordType);
+//		intent.putExtra(RECORD_ID, Integer.valueOf(orderId));
+//		startActivity(intent);
+//		finish(); 
 	}
 }

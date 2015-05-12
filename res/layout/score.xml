@@ -3,100 +3,94 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
-  <LinearLayout 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="horizontal"
-     android:layout_marginTop="24dp"
-     android:layout_gravity="center_horizontal">
-    <TextView 
-        android:id="@+id/tv_total"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="总积分:9999999"
-        android:textSize="22sp"
-        />  
-    <Button 
-        android:id="@+id/btn_exchange"
-        android:layout_width="120dp"
-        android:layout_height="42dp"
-        android:text="积分兑换"
-        android:textColor="#FFE9C1"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:background="#FF5A10"
-        
-       
-        android:layout_marginLeft="350dp"/>
-    </LinearLayout>
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="40dp"
-    android:orientation="horizontal"
-    android:background="#E9E8E8"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="24dp">
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center_vertical">
-     <TextView 
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="订单编号"
-    android:textSize="18sp"
-    android:textColor="#848383"
-    android:gravity="center_vertical"/>
-    <TextView 
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="交易时间" 
-    android:textSize="18sp"
-    android:textColor="#848383"
-    android:gravity="center_vertical"
-     />
-    <TextView 
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="实付金额"
-    android:textSize="18sp"
-    android:textColor="#848383"
-    android:gravity="center_vertical"
-     />
-    <TextView 
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="获得积分" 
-    android:textSize="18sp"
-    android:textColor="#848383"
-    android:gravity="center_vertical"
-    />
-    <TextView 
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="积分类型" 
-    android:textSize="18sp"
-    android:textColor="#848383"
-    android:gravity="center_vertical"
-     />
-    </LinearLayout>
-</LinearLayout>
+    android:orientation="vertical" >
 
-<com.example.zf_pad.util.XListView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="总积分:9999999"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btn_exchange"
+            android:layout_width="120dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="350dp"
+            android:background="#FF5A10"
+            android:gravity="center"
+            android:text="积分兑换"
+            android:textColor="#FFE9C1"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:background="#E9E8E8"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="订单编号"
+                android:textColor="#848383"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="交易时间"
+                android:textColor="#848383"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="获得积分"
+                android:textColor="#848383"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="积分类型"
+                android:textColor="#848383"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.example.zf_pad.util.XListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       
-		android:divider="@color/F3F2F2"
-		android:dividerHeight="8dp"
-		android:scrollbars="none"/>
+        android:divider="@color/F3F2F2"
+        android:dividerHeight="8dp"
+        android:scrollbars="none" />
+
 </LinearLayout>

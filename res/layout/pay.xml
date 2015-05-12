@@ -29,7 +29,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="@dimen/margin_left2"
             android:layout_marginTop="14dp"
-            android:text="$ 999999"
+            android:text="￥  "
             android:textColor="@color/ffffff"
             android:textSize="46sp" />
     </LinearLayout>

@@ -59,14 +59,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 			switch (msg.what) {
 			case 0:
 				onLoad();
-				//
-				// if (myShopList.size() == 0) {
-				// // norecord_text_to.setText("��û����ص����?");
-				// Xlistview.setVisibility(View.GONE);
-				// eva_nodata.setVisibility(View.VISIBLE);
-				// }
-				// onRefresh_number = true;
-				// myAdapter.notifyDataSetChanged();
+				
 				break;
 			case 1:
 				Toast.makeText(getActivity(), (String) msg.obj,
@@ -113,8 +106,8 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	public void onStart() {
 		
 		super.onStart();
-		myShopList.clear();
-		getData();
+//		myShopList.clear();
+//		getData();
 	}
 	private void initView() {
 		tv_gj = (TextView)view.findViewById(R.id.tv_gj);
@@ -143,7 +136,8 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		eva_nodata = (LinearLayout)view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView)view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("�Ѿ�û��������");
-		Xlistview.setPullLoadEnable(true);
+		Xlistview.setPullLoadEnable(false);
+		Xlistview.setPullRefreshEnable(false);
 		Xlistview.setXListViewListener(this);
 		Xlistview.setDivider(null);
 		Xlistview.getmFooterView().setState2(0);
@@ -184,8 +178,6 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		try {
 			entity = new StringEntity(jsonParams.toString(), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			
-		
 			return;
 		}
 		
@@ -243,9 +235,9 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	}
 	@Override
 	public void onRefresh() {
-		page = 1;
-		myShopList.clear();
-		getData();
+//		page = 1;
+//		myShopList.clear();
+//		getData();
 		
 	}
 	@Override
@@ -256,6 +248,8 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 public void onResume() {
 	
 	super.onResume();
+	myShopList.clear();
+	getData();
 	cb.setChecked(false);
 }
 

@@ -94,6 +94,7 @@
                             android:textSize="@dimen/textbig" />
 
                         <TextView
+                            android:id="@+id/wayNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
@@ -125,7 +126,7 @@
                             android:textSize="@dimen/textbig" />
 
                         <TextView
-                            android:id="@+id/content2"
+                            android:id="@+id/Model_numberTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
@@ -154,39 +155,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-           
             android:orientation="vertical"
             android:paddingBottom="2dp" >
 
             <LinearLayout
                 android:id="@+id/ll_select"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_margin="2dp"
                 android:orientation="horizontal" >
 
-                <ImageView
+                <TextView
                     android:id="@+id/reduce"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/jian" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/tv_bg"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/buyCountEdit"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/tv_bg"
                     android:digits="1234567890"
-                    android:minWidth="60dp"
                     android:gravity="center"
-                    android:background="@drawable/shape"
-                    android:textSize="@dimen/textbig"
-                    android:text="1" />
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:minWidth="60dp"
+                    android:text="1"
+                    android:textSize="@dimen/textbig" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/add"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/jia" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/tv_bg"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/black" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -197,9 +205,9 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/normal_width5"
             android:gravity="center_vertical"
+            android:text="删除"
             android:textColor="#FC6907"
-            android:textSize="@dimen/textbig"
-            android:text="删除" />
+            android:textSize="@dimen/textbig" />
     </LinearLayout>
 
     <View

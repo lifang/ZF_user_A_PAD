@@ -50,7 +50,6 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pay);
-
 		orderId = getIntent().getIntExtra("orderId", 0);
 		type = getIntent().getIntExtra("type", 0);
 		new TitleMenuUtil(PayFromCar.this, "选择支付方式").show();
@@ -151,11 +150,11 @@ public class PayFromCar extends PayActivity implements OnClickListener{
 	}
 	@Override
 	public void fail() {
-		Intent intent = new Intent(PayFromCar.this,OrderDetail.class);
-		intent.putExtra("status",1);
-		intent.putExtra("id", orderId);
-		intent.putExtra("type", type+"");
-		startActivity(intent);
-		finish();
+//		Intent intent = new Intent(PayFromCar.this,OrderDetail.class);
+//		intent.putExtra("status",1);
+//		intent.putExtra("id", orderId);
+//		intent.putExtra("type", type+"");
+//		startActivity(intent);
+//		finish();
 	}
 }

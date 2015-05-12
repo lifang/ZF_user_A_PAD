@@ -32,7 +32,7 @@
     <string name="network_info">无法连接到网络</string>
     <string name="notation_yuan">￥</string>
     <string name="notation_day">天</string>
-
+ <string name="notation_month">个月</string>
     <string-array name="trade_flow_tabs">
         <item>转账</item>
         <item>消费</item>

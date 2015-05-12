@@ -40,6 +40,35 @@ public class MyShopCar {
 		private int quantity;
 		private int retail_price;
 		private String Model_number;
+		
+		private String good_brands;
+		private int opening_cost;
+		private String second_title;
+
+		
+		public String getGood_brands() {
+			return good_brands;
+		}
+
+		public void setGood_brands(String good_brands) {
+			this.good_brands = good_brands;
+		}
+
+		public int getOpening_cost() {
+			return opening_cost;
+		}
+
+		public void setOpening_cost(int opening_cost) {
+			this.opening_cost = opening_cost;
+		}
+
+		public String getSecond_title() {
+			return second_title;
+		}
+
+		public void setSecond_title(String second_title) {
+			this.second_title = second_title;
+		}
 
 		public int getId() {
 			return id;
