@@ -128,6 +128,8 @@ public class MyApplyDetail extends FragmentActivity {
 	private ApplyListAdapter1 adapter1;
 	private ApplyListAdapter2 adapter2;
 
+	private int supportRequirementType;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -310,10 +312,8 @@ public class MyApplyDetail extends FragmentActivity {
 		// mMaterialContainer_2_1.removeAllViews();
 		// mMaterialContainer_2_2.removeAllViews();
 
-		initMerchantDetailKeys();
-
-		API.getApplyDetail(this, MyApplication.NewUser.getId(), mTerminalId,
-				applyType, new HttpCallback<My_ApplyDetail>(this) {
+		API.getApplyDetail(this, MyApplication.NewUser.getId(), mTerminalId, 0,
+				new HttpCallback<My_ApplyDetail>(this) {
 					@Override
 					public void onSuccess(My_ApplyDetail data) {
 						MyApplyTerminalDetail terminalDetail = data
@@ -330,7 +330,20 @@ public class MyApplyDetail extends FragmentActivity {
 							mPosBrand.setText(terminalDetail.getBrandName());
 							mPosModel.setText(terminalDetail.getModelNumber());
 							mSerialNum.setText(terminalDetail.getSerialNumber());
+							supportRequirementType = terminalDetail
+									.getSupportRequirementType();
+							if (supportRequirementType == 1) {
+								toPrivate.setVisibility(View.GONE);
+							} else if (supportRequirementType == 2) {
+
+								mApplyType = APPLY_PRIVATE;
+								toPublic.setVisibility(View.GONE);
+								toPrivate.setBackgroundDrawable(getResources()
+										.getDrawable(R.drawable.tab_bg));
+							}
 						}
+
+						initMerchantDetailKeys();
 						// set the choosing merchant listener
 						// View merchantChoose = mMerchantContainer
 						// .findViewWithTag(mMerchantKeys[0]);
