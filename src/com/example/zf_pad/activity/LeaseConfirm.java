@@ -75,6 +75,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private Button bt_add;
 	private ImageView event_img;
 	private TextView tv_brand;
+	private TextView tv_chanel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +100,11 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		ImageCacheUtil.IMAGE_CACHE.get(img_url,
  				event_img);
 		tv_brand.setText(getIntent().getStringExtra("brand"));
+		tv_chanel.setText(getIntent().getStringExtra("chanel"));
 	}
 
 	private void initView() {
+		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
 		bt_add = (Button)findViewById(R.id.bt_add);
@@ -111,8 +114,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		tv_zc = (TextView) findViewById(R.id.tv_zc);
 		tv_zd = (TextView) findViewById(R.id.tv_zd);
 		if (Config.gfe != null) {
-			tv_zc.setText("最长租赁时间：" + Config.gfe.getLease_time() + "月");
-			tv_zd.setText("最短租赁时间：" + Config.gfe.getReturn_time() + "月");
+			tv_zc.setText("最长租赁时间：" +  Config.gfe.getReturn_time()+ "月");
+			tv_zd.setText("最短租赁时间：" + Config.gfe.getLease_time() + "月");
 		}
 		sclist = (ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		myAdapter = new ChooseAdressAdapter(this, myList);

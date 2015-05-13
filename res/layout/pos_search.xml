@@ -4,48 +4,88 @@
     android:layout_height="fill_parent"
     android:background="@color/F3F2F2"
     android:orientation="vertical" >
- <LinearLayout
-    
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+ <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleback_height"
         android:background="@color/bgtitle"
         android:gravity="center_vertical"
+        android:paddingLeft="@dimen/titilepad"
         android:orientation="horizontal" >
 
-         <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="@dimen/titleback_height"
-        android:layout_gravity="center_vertical"
-        android:background="@color/bgtitle"
-        android:orientation="horizontal" >
+   <LinearLayout
+                android:id="@+id/titleback_linear_back"
+                android:layout_width="@dimen/normai_button_height"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
-         
+                <ImageView
+                    android:id="@+id/titleback_image_back"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/d_7dp"
+                    android:background="@drawable/back" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/serch_edit" 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_weight="1"
-            android:imeOptions="actionDone"
-            android:hint="搜索商品"
-            android:drawableLeft="@drawable/search_bg" />
+        <RelativeLayout
+            android:layout_width="@dimen/normal_width1"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal" >
 
-         
- 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/serch_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@null"    
+                android:editable="false"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff" >
+            </EditText>
 
-         <TextView
+            <View
+                android:id="@+id/view_x"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignLeft="@+id/et_search"
+                android:layout_alignRight="@+id/et_search"
+                android:layout_below="@+id/et_search"
+                android:layout_marginTop="-10dp"
+                android:background="#ffffff" />
+
+            <View
+                android:id="@+id/view_y1"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_toLeftOf="@+id/view_x"
+                android:background="#ffffff" />
+
+            <View
+                android:id="@+id/view_y2"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_toRightOf="@+id/view_x"
+                android:background="#ffffff" />
+        </RelativeLayout>
+
+      <TextView
             android:id="@+id/delete"
             android:layout_width="48dp"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:text="取消"
+            android:layout_alignParentRight="true"
             android:textColor="@color/fffefe"
+            android:layout_marginRight="@dimen/titilepad"
             android:textSize="@dimen/s_17sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lv"

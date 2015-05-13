@@ -369,7 +369,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();	
-		
+		if(Config.ismer){
+			changTabBg();
+			im_wd.setBackgroundResource(R.drawable.mine);
+			textwd.setTextColor(getResources().getColor(R.color.o));
+			if (M_my == null){
+				M_my = new M_my();
+			}
+			flag=3;
+			getSupportFragmentManager().beginTransaction()
+
+			.replace(R.id.m_fragment, M_my).commit();
+		}
 		if (Config.countShopCar != 0) {
 			countShopCar.setVisibility(View.VISIBLE);
 			countShopCar.setText(Config.countShopCar+"");
@@ -408,7 +419,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			//getSupportFragmentManager().beginTransaction().remove(M_my);
 			//if(f_sy==null)
 			f_sy = new M_MianFragment();
-
+			flag=0;
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.m_fragment, f_sy).commit();
 			Config.isExit=false;
@@ -443,6 +454,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, f_gwc).commit();*/
 				startActivity(new Intent(MainActivity.this,ConfirmOrder.class));
 				Config.AderssMangerBACK=false;
+				flag=1;
 			}
 			if(!f_sy.isVisible()){
 
@@ -451,6 +463,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				getSupportFragmentManager().beginTransaction()
 				.replace(R.id.m_fragment, f_sy).commit();
 				changTabBg();
+				flag=0;
 				im_sy.setBackgroundResource(R.drawable.home);
 			}else{
 				if ((System.currentTimeMillis() - exitTime) > 2000) {  

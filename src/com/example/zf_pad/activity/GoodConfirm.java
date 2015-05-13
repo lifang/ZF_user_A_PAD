@@ -70,6 +70,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private Button bt_add;
 	private ImageView event_img;
 	private TextView tv_brand;
+	private TextView tv_chanel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
 		tv_pay.setText("Êµ¸¶£º£¤ " + ((double)pirce)/100);
 		tv_totle.setText("Êµ¸¶£º£¤ " + ((double)pirce)/100);
+		tv_chanel.setText(getIntent().getStringExtra("chanel"));
 		System.out.println("=paychannelId==" + paychannelId);
 		//getData1();
 		String img_url=getIntent().getStringExtra("piclist");
@@ -95,6 +97,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
+		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
 		bt_add = (Button)findViewById(R.id.bt_add);

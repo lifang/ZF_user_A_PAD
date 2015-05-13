@@ -76,7 +76,7 @@ public class PosAdapter extends BaseAdapter {
 		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
  				holder.im);
 		holder.title.setText(list.get(position).getTitle());
-		holder.tv_price.setText("гд" + df.format(((double)list.get(position*4 + 2).getRetail_price()) / 100)
+		holder.tv_price.setText("гд" + df.format(((double)list.get(position ).getRetail_price()) / 100)
 				+ "");
 		holder.content1.setText(list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());

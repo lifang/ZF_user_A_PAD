@@ -79,6 +79,7 @@ public class M_my extends Fragment implements OnClickListener {
 	public void onStart() {
 		
 		super.onStart();
+		
 		switch (Config.MyTab) {
 		
 		case 0:

@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/sy_bt_height"
+        android:layout_height="50dp"
         android:background="#E9E8E8" >
 
         <com.example.zf_pad.trade.widget.MyTabWidget
