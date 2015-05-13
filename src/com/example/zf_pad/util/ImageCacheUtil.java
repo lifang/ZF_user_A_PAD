@@ -48,12 +48,10 @@ public class ImageCacheUtil {
 					View view, boolean isInCache) {
 				if (view != null && loadedImage != null) {
 					ImageView imageView = (ImageView) view;
-				//	 imageView.setImageBitmap(loadedImage);
-					
-					    BitmapDrawable bd= new BitmapDrawable( loadedImage);                  
-				   imageView.setBackgroundDrawable(bd);
-					
-					
+					// imageView.setImageBitmap(loadedImage);
+					BitmapDrawable bd = new BitmapDrawable(loadedImage);
+					imageView.setBackgroundDrawable(bd);
+
 					// first time show with animation
 					if (!isInCache) {
 						imageView.startAnimation(getInAlphaAnimation(2000));
@@ -103,7 +101,7 @@ public class ImageCacheUtil {
 			@Override
 			public void onGetNotInCache(String imageUrl, View view) {
 				if (view != null && view instanceof ImageView) {
-					//((ImageView) view).setImageResource(R.drawable.moren);
+					// ((ImageView) view).setImageResource(R.drawable.moren);
 					((ImageView) view).setBackgroundResource(R.drawable.moren);
 				}
 			}

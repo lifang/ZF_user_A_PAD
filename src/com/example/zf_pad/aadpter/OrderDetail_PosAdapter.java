@@ -62,7 +62,7 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
   			holder.tv_x .setText("X "+list.get(position).getGood_num()+"");
 			holder.btn_ishow.setVisibility(state==3?View.GONE:View.GONE);
 			 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getGood_logo(), holder.im);
-		
+			 
 		return convertView;
 	}
 
