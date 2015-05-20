@@ -254,4 +254,37 @@ public class MyApplication extends Application{
 			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
 	}
+	
+	private boolean hasOrderPaid;
+
+	public boolean isHasOrderPaid() {
+		return hasOrderPaid;
+	}
+
+	public void setHasOrderPaid(boolean hasOrderPaid) {
+		this.hasOrderPaid = hasOrderPaid;
+	}
+	private ArrayList<Context> historyList = new ArrayList<Context>();
+
+	public ArrayList<Context> getHistoryList() {
+		return historyList;
+	}
+
+	public void setHistoryList(ArrayList<Context> historyList) {
+		this.historyList = historyList;
+	}
+	
+	public void clearHistoryForPay(){
+		try {
+			for (Context activity : historyList) {
+				if (activity != null)
+					((Activity)activity).finish();
+			}
+			historyList.clear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

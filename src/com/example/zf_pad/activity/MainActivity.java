@@ -249,9 +249,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, M_my).commit();
 
 				}
-				getSupportFragmentManager().beginTransaction()
-				.replace(R.id.m_fragment, M_my).commit();
-				MyApplication.hideSoftKeyboard(this);
+//				getSupportFragmentManager().beginTransaction()
+//				.replace(R.id.m_fragment, M_my).commit();
+//				MyApplication.hideSoftKeyboard(this);
 			}
 			
 			// else{

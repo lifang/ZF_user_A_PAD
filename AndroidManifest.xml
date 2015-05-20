@@ -358,6 +358,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.unionpay.uppayplugin.demo.APKActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
