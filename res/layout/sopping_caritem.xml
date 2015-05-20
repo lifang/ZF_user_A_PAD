@@ -52,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:singleLine="true"
                     android:text="泰山TS900"
                     android:textColor="@color/text292929"
                     android:textSize="@dimen/textbig" />

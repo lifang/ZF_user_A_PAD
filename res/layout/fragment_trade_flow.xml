@@ -35,7 +35,7 @@
 
                 <LinearLayout
                     android:id="@+id/trade_client"
-                    android:layout_width="@dimen/normal_height4"
+                    android:layout_width="@dimen/zc_rl_w"
                     android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:gravity="center_vertical"
@@ -47,6 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:singleLine="true"
                         android:paddingRight="@dimen/dlpad"
                         android:text="" />
                 </LinearLayout>
@@ -63,7 +64,7 @@
 
                 <RelativeLayout
                     android:id="@+id/trade_start"
-                    android:layout_width="@dimen/normal_height4"
+                    android:layout_width="@dimen/zc_rl_w"
                     android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
@@ -88,7 +89,7 @@
 
                 <RelativeLayout
                     android:id="@+id/trade_end"
-                    android:layout_width="@dimen/normal_height4"
+                    android:layout_width="@dimen/zc_rl_w"
                     android:layout_height="@dimen/sp_height"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
