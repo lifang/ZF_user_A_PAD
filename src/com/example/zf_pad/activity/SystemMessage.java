@@ -169,7 +169,7 @@ public class SystemMessage extends Activity implements  IXListViewListener{
 		private void getData() {
 			RequestParams params = new RequestParams();
 		  
-			params.put("customer_id", MyApplication.NewUser.getId());
+			//params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("page", page);
 			params.put("rows", rows);
 			params.setUseJsonStreamer(true);

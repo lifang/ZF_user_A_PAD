@@ -8,7 +8,6 @@
 <ScrollView 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-android:fillViewport="true"
 >
     <LinearLayout
         android:layout_width="fill_parent"
@@ -61,17 +60,10 @@ android:fillViewport="true"
                 android:src="@drawable/car22" />
         </LinearLayout>
 
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                
-                android:orientation="vertical" >
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
+           
                     android:orientation="horizontal" >
 
                     <LinearLayout
@@ -81,8 +73,8 @@ android:fillViewport="true"
 <RelativeLayout
                 android:id="@+id/rl_imgs"
                    android:layout_width="@dimen/goodimg"
-                android:layout_height="@dimen/goodimg"
-               
+                android:layout_height="0dp"
+               android:layout_weight="1"
                 android:background="@color/F3F3F3" >
 
                 <android.support.v4.view.ViewPager
@@ -134,7 +126,7 @@ android:fillViewport="true"
                             android:maxLines="1"
                             android:text=""
                             android:textColor="@color/text6c6c6c6"
-                            android:textSize="@dimen/textbig" />
+                            android:textSize="@dimen/textmid" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -221,7 +213,7 @@ android:fillViewport="true"
                                 android:maxLines="1"
                                 android:text=""
                                 android:textColor="@color/text292929"
-                                android:textSize="@dimen/textbig" />
+                                android:textSize="@dimen/textmid" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -252,7 +244,7 @@ android:fillViewport="true"
                                 android:maxLines="1"
                                 android:text=""
                                 android:textColor="@color/bgtitle"
-                                android:textSize="@dimen/textbig" />
+                                android:textSize="@dimen/textmid" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -321,8 +313,7 @@ android:fillViewport="true"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/margin_left2"
                                     android:layout_marginRight="@dimen/margin_left2"
-                                    android:orientation="horizontal"
-                                    android:layout_marginBottom="6dp" >
+                                    android:orientation="horizontal" >
 
                                     <ImageView
                                         android:id="@+id/fac_img"
@@ -341,7 +332,6 @@ android:fillViewport="true"
                                         android:maxLines="1"
                                         android:text=""
                                         android:textColor="@color/text6c6c6c6"
-                                        
                                         android:textSize="12sp" />
                                 </LinearLayout>
 
@@ -355,7 +345,6 @@ android:fillViewport="true"
                                     android:ellipsize="end"
                                     android:maxLines="2"
                                     android:text=""
-                                    android:lineSpacingExtra="4dp"
                                     android:textColor="@color/text6c6c6c6"
                                     android:textSize="12sp" />
                             </LinearLayout>
@@ -474,10 +463,7 @@ android:fillViewport="true"
                     </LinearLayout>
                 </LinearLayout>
                
-<RelativeLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_alignParentBottom="true"/>
+
                      <View 
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
@@ -487,7 +473,7 @@ android:fillViewport="true"
          android:id="@+id/ll_buttom"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/titilepad1"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|right"
                     android:orientation="horizontal"
                     android:paddingLeft="@dimen/titilepad"
                     android:layout_alignParentBottom="true"
@@ -562,14 +548,7 @@ android:fillViewport="true"
                         android:text="交易费率说明"
                         android:textColor="#292929"
                         android:textSize="@dimen/textmid" />
-                </LinearLayout>
-</RelativeLayout>
-               
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-</RelativeLayout>
+                </LinearLayout>             
     </LinearLayout>
 </ScrollView>
 </LinearLayout>

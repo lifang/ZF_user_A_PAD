@@ -22,6 +22,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -193,7 +194,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) rl_imgs
 				.getLayoutParams();
 		linearParams.width = Config.ScreenWidth / 2;
-		linearParams.height = Config.ScreenHeight - 340;
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		float density = dm.density;
+		linearParams.height = (int) (Config.ScreenHeight - density*180);
 		rl_imgs.setLayoutParams(linearParams);
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		inflater = LayoutInflater.from(this);
@@ -345,7 +349,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					i21.putExtra("getTitle", gfe.getTitle());
 					i21.putExtra("price", gfe.getLease_deposit()+opening_cost);
 					i21.putExtra("model", gfe.getModel_number());
-					i21.putExtra("chanel", chanel);
+					i21.putExtra("chanel", tdname);
 					i21.putExtra("paychannelId", paychannelId);
 					i21.putExtra("commets", commentsCount);
 					i21.putExtra("goodId", gfe.getId());
@@ -360,9 +364,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					i2.putExtra("getTitle", gfe.getTitle());
 					i2.putExtra("price", gfe.getRetail_price()+opening_cost);
 					i2.putExtra("model", gfe.getModel_number());
-					i2.putExtra("chanel", chanel);
+					i2.putExtra("chanel", tdname);
 					i2.putExtra("paychannelId", paychannelId);
 					i2.putExtra("goodId", gfe.getId());
+					
 					i2.putExtra("brand", gfe.getGood_brand()+gfe.getModel_number());
 					if(piclist.size()!=0){
 						i2.putExtra("piclist",piclist.get(0));

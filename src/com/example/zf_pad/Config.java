@@ -141,6 +141,7 @@ public class Config {
 	public static PortSon myson;
 	public static int portindex=-1;
 	public static int lx;
+	public static boolean ismer=false;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
 

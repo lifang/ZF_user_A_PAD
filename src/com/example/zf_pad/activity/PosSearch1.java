@@ -85,13 +85,22 @@ public class PosSearch1 extends Activity implements OnEditorActionListener {
 	private TextView clear;
 	private GridView gr_hot;
 	private SearchAdapter hotAdapter;
+	private LinearLayout ll_close;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pos_search1);
 		mySharedPreferences = getSharedPreferences("pos_search", MODE_PRIVATE);
+		ll_close = (LinearLayout)findViewById(R.id.titleback_linear_back);
+		ll_close.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+				
+			}
+		});
 		editor = mySharedPreferences.edit();
 		et = (EditText) findViewById(R.id.serch_edit);
 		et.setOnEditorActionListener(this);

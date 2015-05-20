@@ -11,20 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
-import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
@@ -184,19 +188,27 @@ public class ApplyListActivity extends Activity implements
 			holder.btnOpen.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					
-					Intent intent = new Intent(ApplyListActivity.this, MyApplyDetail.class);
-					intent.putExtra(TERMINAL_ID, item.getId());
-					intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
-					intent.putExtra(TERMINAL_STATUS, item.getOpenState());
-					startActivityForResult(intent, REQUEST_DETAIL);
+					if (item.getOpenState() == UNOPENED) {
+
+						openDialog(item);
+
+					} else {
+						Intent intent = new Intent(ApplyListActivity.this,
+								MyApplyDetail.class);
+						intent.putExtra(TERMINAL_ID, item.getId());
+						intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
+						intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+						startActivityForResult(intent, REQUEST_DETAIL);
+					}
 
 				}
+
 			});
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(ApplyListActivity.this, VideoActivity.class);
+					Intent intent = new Intent(ApplyListActivity.this,
+							VideoActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
 					startActivity(intent);
 				}
@@ -212,6 +224,67 @@ public class ApplyListActivity extends Activity implements
 		public TextView tvPayChannel;
 		public Button btnOpen;
 		public Button btnVideo;
+	}
+
+	private void openDialog(final TerminalManagerEntity item) {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				ApplyListActivity.this);
+
+		LayoutInflater factory = LayoutInflater.from(this);
+		View view = factory.inflate(R.layout.protocoldialog, null);
+		// builder.setTitle("自定义输入框");
+		// builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+		// {
+		// public void onClick(DialogInterface dialog, int whichButton) {
+		// }
+		// });
+		// builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+		// {
+		// public void onClick(DialogInterface dialog, int whichButton) {
+		// }
+		// });
+		builder.setView(view);
+
+		final AlertDialog dialog = builder.create();
+		dialog.show();
+		final CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+
+		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		btn_confirm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (!cb.isChecked()) {
+
+					CommonUtil.toastShort(ApplyListActivity.this,
+							"请仔细阅读开通协议，并接受协议");
+
+				} else {
+
+					dialog.dismiss();
+					Intent intent = new Intent(ApplyListActivity.this,
+							MyApplyDetail.class);
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
+					intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+					startActivityForResult(intent, REQUEST_DETAIL);
+				}
+
+			}
+		});
+//		dialog.show();
+
 	}
 
 	@Override

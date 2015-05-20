@@ -60,7 +60,7 @@ public class ApplyChooseActivity extends Activity {
 
 	private void loadData() {
 
-		API.getApplyMerchantDetail(ApplyChooseActivity.this, selectedId,
+		API.getApplyMerchantDetail(ApplyChooseActivity.this, mTerminalId,
 				new HttpCallback<PageMerchane<ApplyChooseItem>>(
 						ApplyChooseActivity.this) {
 
