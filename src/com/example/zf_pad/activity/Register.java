@@ -147,13 +147,11 @@ public class Register extends Activity implements OnClickListener {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -171,7 +169,6 @@ public class Register extends Activity implements OnClickListener {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 				if (s.length() > 0) {
 
 					login_linear_deletpass.setVisibility(View.VISIBLE);
@@ -183,13 +180,11 @@ public class Register extends Activity implements OnClickListener {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -243,7 +238,7 @@ public class Register extends Activity implements OnClickListener {
 			}
 		}
 		if (!ismail) {
-			if (!login_edit_code.getText().toString().endsWith(vcode)) {
+			if (!login_edit_code.getText().toString().equals(vcode)) {
 				Toast.makeText(getApplicationContext(), "验证码错误",
 						Toast.LENGTH_SHORT).show();
 				return false;
@@ -265,7 +260,16 @@ public class Register extends Activity implements OnClickListener {
 					.show();
 			return false;
 		}
-
+		if (pass.length()<6) {
+			Toast.makeText(getApplicationContext(), "密码不能小于六位",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if (pass.length()>20) {
+			Toast.makeText(getApplicationContext(), "密码不能小于六位",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		pass = StringUtil.Md5(pass);
 		System.out.println("pass" + pass);
 		return true;

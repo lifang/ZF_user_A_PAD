@@ -577,6 +577,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										} else {
 											Config.suportcl = "²»Ö§³Ö";
 										}
+										Config.apply=jsonobject.getString("opening_datum");
 										opening_cost = jsonobject.getInt("opening_cost");
 										tdname = jsonobject.getString("name");
 										

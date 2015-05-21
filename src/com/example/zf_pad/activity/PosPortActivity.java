@@ -87,13 +87,12 @@ public class PosPortActivity extends Activity implements OnClickListener {
 				.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {
 					@Override
 					public void onStart() {
-						// TODO Auto-generated method stub
+
 						super.onStart();
 						  loadingDialog.show();
 					}
 					@Override
 					public void onFinish() {
-						// TODO Auto-generated method stub
 						super.onFinish();
 						loadingDialog.dismiss();
 					}

@@ -5,6 +5,7 @@ import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.fragment.F_good_detail;
 import com.example.zf_pad.fragment.Good_detail_apply;
 import com.example.zf_pad.fragment.Good_detail_commet;
+import com.example.zf_pad.fragment.Good_detail_pic;
 import com.example.zf_pad.fragment.Good_detail_trade;
 import com.example.zf_pad.fragment.Good_detail_zd;
 import com.example.zf_pad.util.ScrollViewWithListView;
@@ -36,10 +37,12 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	private TextView tv_pl;
 	private TextView tv_zd;
 	private TextView tv_jy;
+	private Good_detail_pic pic;
 	private ImageView search2;
 	private LinearLayout ll_back;
 	private int comments;
 	private LinearLayout ll_isshow;
+	private TextView tv_pic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,6 +87,13 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 					.replace(R.id.f_good_detail, jy).commit();
 			tv_jy.setTextColor(getResources().getColor(R.color.o));
 			break;
+		case 5:
+			if (pic == null)
+				pic = new Good_detail_pic();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.f_good_detail, pic).commit();
+			tv_pic.setTextColor(getResources().getColor(R.color.bgtitle));
+			break;
 		default:
 			break;
 		}
@@ -91,6 +101,8 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 	}
 
 	private void initView() {
+		tv_pic = (TextView) findViewById(R.id.tv_pic);
+		tv_pic.setOnClickListener(this);
 		ll_isshow = (LinearLayout)findViewById(R.id.ll_isshow);
 		if(Config.iszd)
 			ll_isshow.setVisibility(View.GONE);

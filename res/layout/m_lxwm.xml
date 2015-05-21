@@ -207,6 +207,7 @@
                         android:background="@drawable/shape"
                         android:gravity="left|top"
                         android:hint="需要我们提供什么"
+                        android:maxLength="200"
                         android:padding="6dp" >
                     </EditText>
 
