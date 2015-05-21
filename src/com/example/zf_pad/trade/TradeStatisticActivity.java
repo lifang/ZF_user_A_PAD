@@ -11,13 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.TradeStatistic;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeStatisticActivity extends Activity {
+public class TradeStatisticActivity extends BaseActivity {
 
     public static final String TRADE_TYPE = "trade_type";
     public static final String START_DATE = "start_date";

@@ -8,12 +8,12 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
-        android:paddingLeft="@dimen/zc_margin_top2"
-        android:paddingRight="@dimen/zc_margin_top2"
         android:layout_height="fill_parent"
         android:background="#262729"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/zc_margin_top2"
+        android:paddingRight="@dimen/zc_margin_top2" >
 
         <RelativeLayout
             android:id="@+id/main_rl_sy"
@@ -52,12 +52,25 @@
 
         <RelativeLayout
             android:id="@+id/main_rl_gwc"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/sy_rl_margin" >
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/countShopCar"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_circle_red"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:duplicateParentState="true"
@@ -89,7 +102,7 @@
             android:id="@+id/main_rl_pos1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/sy_rl_margin"  >
+            android:layout_marginTop="@dimen/sy_rl_margin" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -124,7 +137,7 @@
             android:id="@+id/main_rl_my"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/sy_rl_margin"  >
+            android:layout_marginTop="@dimen/sy_rl_margin" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -160,9 +173,9 @@
             android:layout_height="fill_parent" >
 
             <LinearLayout
+                android:id="@+id/set"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/sy_bt_height"
-                android:id="@+id/set"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="@dimen/normai_height1"
@@ -170,19 +183,17 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/mine_g" />
-
             </LinearLayout>
-
         </RelativeLayout>
-
     </LinearLayout>
-<fragment 
-    android:id="@+id/m_fragment"
-     android:name="com.example.zf_pad.fragment.MianFragment"  
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"/>
+
+    <fragment
+        android:id="@+id/m_fragment"
+        android:name="com.example.zf_pad.fragment.MianFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
 </LinearLayout>

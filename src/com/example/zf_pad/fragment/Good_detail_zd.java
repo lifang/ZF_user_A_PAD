@@ -1,5 +1,7 @@
 package com.example.zf_pad.fragment;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class Good_detail_zd extends Fragment implements OnClickListener{
 	private View view;
 	public GoodinfoEntity gfe=new GoodinfoEntity();
 	private TextView tv1,tv2,tv3,tv4,tv5;
+	private DecimalFormat df;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -33,6 +36,9 @@ public class Good_detail_zd extends Fragment implements OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		 view = inflater.inflate(R.layout.act_leas_in, container, false);
+		 df = (DecimalFormat) NumberFormat
+					.getInstance();
+			df.applyPattern("0.00");
 		 initView();
 		return view;
 	}
@@ -47,9 +53,9 @@ public class Good_detail_zd extends Fragment implements OnClickListener{
 		
 		tv5.setText(gfe.getLease_agreement()+"");
 		tv4.setText(gfe.getDescription()+"");
-		tv3.setText(gfe.getLease_price()+"");
-		tv2.setText(gfe.getReturn_time()+"");
-		tv1.setText(gfe.getLease_time()+"");
+		tv3.setText("£¤" +df.format((double)gfe.getLease_price())+"");
+		tv2.setText(gfe.getReturn_time()+"ÔÂ");
+		tv1.setText(gfe.getLease_time()+"ÔÂ");
 
 	}
 

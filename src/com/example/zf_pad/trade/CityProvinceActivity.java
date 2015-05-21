@@ -5,6 +5,7 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE
 
 import java.util.List;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
@@ -25,7 +26,7 @@ import android.widget.TextView;
 /**
  * Created by Leo on 2015/2/11.
  */
-public class CityProvinceActivity extends Activity {
+public class CityProvinceActivity extends BaseActivity {
 
     private List<Province> mProvinces;
     private static final int OFFSET = 5;

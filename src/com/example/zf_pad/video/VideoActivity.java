@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bairuitech.anychat.AnyChatBaseEvent;
 import com.bairuitech.anychat.AnyChatCoreSDK;
 import com.bairuitech.anychat.AnyChatDefine;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -31,7 +32,7 @@ import com.example.zf_pad.trade.API;
 import com.example.zf_pad.video.config.ConfigEntity;
 import com.example.zf_pad.video.config.ConfigService;
 
-public class VideoActivity extends Activity implements AnyChatBaseEvent {
+public class VideoActivity extends BaseActivity implements AnyChatBaseEvent {
 	
 	private static final String TAG = VideoActivity.class.getName();
 

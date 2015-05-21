@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.ApplyChannel;
@@ -26,7 +27,7 @@ import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BILLING
 /**
  * Created by Leo on 2015/3/16.
  */
-public class ApplyChannelActivity extends Activity {
+public class ApplyChannelActivity extends BaseActivity {
 
 	private List<ApplyChannel> channels = new ArrayList<ApplyChannel>();
 	private List<ApplyChannel.Billing> billings = new ArrayList<ApplyChannel.Billing>();

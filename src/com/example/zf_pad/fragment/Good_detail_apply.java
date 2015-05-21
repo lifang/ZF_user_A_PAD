@@ -43,8 +43,8 @@ public class Good_detail_apply extends Fragment implements OnClickListener{
 		pubList=Config.pub;
 		singleList=Config.single;
 		System.out.println("`pubList.size()``"+pubList.size());
-		myAdapter=new AppleNeedAdapter(getActivity(), pubList);
-		myAdapter2=new AppleNeedAdapter(getActivity(), singleList);
+		myAdapter=new AppleNeedAdapter(getActivity(), singleList);
+		myAdapter2=new AppleNeedAdapter(getActivity(), pubList);
 		pos_lv1.setAdapter(myAdapter);
 		pos_lv2.setAdapter(myAdapter2);
 	}

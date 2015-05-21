@@ -21,7 +21,7 @@
             android:layout_height="60dp"
             android:gravity="right|center_vertical"
             android:text="POS品牌"
-            
+            android:textSize="@dimen/textbig"
             android:textColor="@color/text292929" />
 
         <CheckBox
@@ -66,7 +66,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
   
-              
+              android:singleLine="true"
                 android:text="全部"
                android:layout_marginLeft="7dp"
                 android:textColor="@color/text6c6c6c6"
@@ -92,7 +92,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                android:layout_marginLeft="7dp"
-               
+               android:singleLine="true"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textbig" />
@@ -117,7 +117,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
  android:layout_marginLeft="7dp"
-       
+       android:singleLine="true"
                 android:text="全部"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textbig" />
@@ -141,7 +141,7 @@
                 android:id="@+id/text4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-           
+           android:singleLine="true"
                 android:text="全部"
                 android:layout_marginLeft="7dp"
                 android:textColor="@color/text6c6c6c6"
@@ -159,7 +159,7 @@
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
-           android:textSize="@dimen/textmid"
+           android:textSize="@dimen/textbig"
             android:gravity="left|center_vertical"
             android:text="更多"
             android:textColor="@color/bgtitle" />

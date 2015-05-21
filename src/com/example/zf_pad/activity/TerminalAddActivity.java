@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalChannel;
@@ -31,7 +32,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Created by Leo on 2015/3/4.
  */
-public class TerminalAddActivity extends Activity implements
+public class TerminalAddActivity extends BaseActivity implements
 		View.OnClickListener {
 
 	private View mChooseChannel;

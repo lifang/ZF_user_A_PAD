@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -37,7 +38,7 @@ import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.StringUtil;
 import com.google.gson.reflect.TypeToken;
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends BaseActivity implements OnClickListener {
 	private String name,pass,url,deviceToken;
 	private ImageView loginImage;
 	private CheckBox isremeber_cb;

@@ -94,7 +94,7 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.PosPortActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
@@ -196,7 +196,7 @@
         </activity>
         <activity
             android:name="com.example.zf_pad.activity.GoodConfirm"
-            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
@@ -334,20 +334,38 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
+            <activity
+            android:name="com.example.zf_pad.activity.ChangePhone"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+               <activity
+            android:name="com.example.zf_pad.activity.ChangeEmail"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
         <!-- alipay -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" >
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" >
+            android:screenOrientation="landscape" >
         </activity>
-        
+             <activity
+            android:name="com.example.zf_pad.activity.PostSonList"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
         <activity
             android:name="com.example.zf_pad.activity.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -358,11 +376,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.unionpay.uppayplugin.demo.APKActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="landscape" >
         </activity>
+        
+        <!-- Caution! Do not change this app key. It is only for demo usage. -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="553df09767e58eda02000274" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="user_pad" >
+        </meta-data>
+        
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -38,7 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FindPass extends Activity implements OnClickListener{
+public class FindPass extends BaseActivity implements OnClickListener{
 	private TextView tv_code, tv_check;
 	private EditText login_edit_email, login_edit_code, login_edit_pass,
 			login_edit_pass2;
@@ -186,7 +188,7 @@ public class FindPass extends Activity implements OnClickListener{
 		login_linear_deletpass = (LinearLayout) findViewById(R.id.login_linear_deletpass);
 		login_linear_deletpass.setOnClickListener(this);
 		login_edit_pass = (EditText) findViewById(R.id.login_edit_pass);
-		login_edit_pass.addTextChangedListener(new TextWatcher() {
+		/*login_edit_pass.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -212,7 +214,7 @@ public class FindPass extends Activity implements OnClickListener{
 				// TODO Auto-generated method stub
 
 			}
-		});
+		});*/
 		login_linear_deletpass2 = (LinearLayout) findViewById(R.id.login_linear_deletpass2);
 		login_linear_deletpass2.setOnClickListener(this);
 		login_edit_pass2 = (EditText) findViewById(R.id.login_edit_pass2);
@@ -280,7 +282,10 @@ public class FindPass extends Activity implements OnClickListener{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
-
+		if(pass.length()<6){
+			Toast.makeText(getApplicationContext(), "密码不能小于六位!", 1000).show();
+			return false;
+		}
 		pass = StringUtil.Md5(pass);
 		System.out.println("pass" + pass);
 		return true;

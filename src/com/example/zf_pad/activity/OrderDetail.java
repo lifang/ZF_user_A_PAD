@@ -1,6 +1,8 @@
 package com.example.zf_pad.activity;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,12 +102,15 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	private String type="1";
 	private Button bt_pay;
 	private Button bt_cancel;
+	private DecimalFormat df;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_detail);
-	
+		df = (DecimalFormat) NumberFormat
+				.getInstance();
+		df.applyPattern("0.00");
 		status = getIntent().getIntExtra("status", 0);
 		id = getIntent().getIntExtra("id", 0);
 		type =getIntent().getStringExtra("type");

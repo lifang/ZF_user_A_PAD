@@ -24,7 +24,7 @@
         android:id="@+id/et_process"
         android:layout_width="302dp"
         android:layout_height="32dp"
-        android:background="@drawable/sc_edit"
+        android:background="@drawable/tv_bg"
          />
     <Button
         android:id="@+id/btn_serch"

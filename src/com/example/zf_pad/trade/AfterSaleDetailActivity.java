@@ -19,6 +19,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -28,6 +29,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -45,7 +47,7 @@ import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
 
-public class AfterSaleDetailActivity extends Activity {
+public class AfterSaleDetailActivity extends BaseActivity {
 
 	public static final String MATERIAL_URL = "material_url";
 
@@ -204,175 +206,175 @@ public class AfterSaleDetailActivity extends Activity {
 					}else {
 						terminalPairs.put(terminalKeys[7], "");
 					}
-					
+
 					//terminalPairs.put(terminalKeys[6], getString(R.string.notation_yuan) + lease.getLeasePrice());
 					//terminalPairs.put(terminalKeys[7], getString(R.string.notation_yuan) + lease.getLeaseDeposit());
-					terminalPairs.put(terminalKeys[8], lease.getLeaseLength() + getString(R.string.notation_day));
-					terminalPairs.put(terminalKeys[9], lease.getLeaseMaxTime() + getString(R.string.notation_day));
-					terminalPairs.put(terminalKeys[10], lease.getLeaseMinTime() + getString(R.string.notation_day));
+					terminalPairs.put(terminalKeys[8], lease.getLeaseLength() + getString(R.string.notation_month));
+					terminalPairs.put(terminalKeys[9], lease.getLeaseMaxTime() + getString(R.string.notation_month));
+					terminalPairs.put(terminalKeys[10], lease.getLeaseMinTime() + getString(R.string.notation_month));
 				}
 				renderCategoryTemplate(R.string.after_sale_terminal_title, terminalPairs);
 
 				mTime.setText(data.getApplyTime());
 				// render other categories
 				switch (mRecordType) {
-					case MAINTAIN:
-						String[] maintainStatus = getResources().getStringArray(R.array.maintain_status);
-						mStatus.setText(maintainStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton2.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
-							mButton2.setText(getString(R.string.button_pay_maintain));
+				case MAINTAIN:
+					String[] maintainStatus = getResources().getStringArray(R.array.maintain_status);
+					mStatus.setText(maintainStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton2.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
+						mButton2.setText(getString(R.string.button_pay_maintain));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-							mButton2.setOnClickListener(mPayMaintainListener);
-						} else if (data.getStatus() == 2) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_submit_flow));
+						mButton1.setOnClickListener(mCancelApplyListener);
+						mButton2.setOnClickListener(mPayMaintainListener);
+					} else if (data.getStatus() == 2) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_submit_flow));
 
-							mButton1.setOnClickListener(mSubmitMarkListener);
-						}
+						mButton1.setOnClickListener(mSubmitMarkListener);
+					}
 
-						// render maintain category
-						AfterSaleDetailMaintain maintainDetail = (AfterSaleDetailMaintain) data;
-						LinkedHashMap<String, String> maintainPairs = new LinkedHashMap<String, String>();
-						String[] maintainKeys = getResources().getStringArray(R.array.after_sale_maintian);
-						maintainPairs.put(maintainKeys[0], maintainDetail.getReceiverAddr());
-						if (!StringUtil.isNull(maintainDetail.getRepairPrice())) {
-							maintainPairs.put(maintainKeys[1], getString(R.string.notation_yuan) + 
-									String.format("%.2f",Integer.valueOf(maintainDetail.getRepairPrice())/100f));
-						}else {
-							maintainPairs.put(maintainKeys[1], "");
-						}
-						//maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
-						maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
-						renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
-						break;
-					case RETURN:
-						String[] returnStatus = getResources().getStringArray(R.array.return_status);
-						mStatus.setText(returnStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
+					// render maintain category
+					AfterSaleDetailMaintain maintainDetail = (AfterSaleDetailMaintain) data;
+					LinkedHashMap<String, String> maintainPairs = new LinkedHashMap<String, String>();
+					String[] maintainKeys = getResources().getStringArray(R.array.after_sale_maintian);
+					maintainPairs.put(maintainKeys[0], maintainDetail.getReceiverAddr());
+					if (!StringUtil.isNull(maintainDetail.getRepairPrice())) {
+						maintainPairs.put(maintainKeys[1], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(maintainDetail.getRepairPrice())/100f));
+					}else {
+						maintainPairs.put(maintainKeys[1], "");
+					}
+					//maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
+					maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
+					renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
+					break;
+				case RETURN:
+					String[] returnStatus = getResources().getStringArray(R.array.return_status);
+					mStatus.setText(returnStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-						} else if (data.getStatus() == 2) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_submit_flow));
+						mButton1.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 2) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_submit_flow));
 
-							mButton1.setOnClickListener(mSubmitMarkListener);
-						}
+						mButton1.setOnClickListener(mSubmitMarkListener);
+					}
 
-						// render return category
-						AfterSaleDetailReturn returnDetail = (AfterSaleDetailReturn) data;
-						LinkedHashMap<String, String> returnPairs = new LinkedHashMap<String, String>();
-						String[] returnKeys = getResources().getStringArray(R.array.after_sale_return);
-						if (!StringUtil.isNull(returnDetail.getReturnPrice()+"")) {
-							returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
-									String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
-						}else {
-							returnPairs.put(returnKeys[0], "");
-						}
-						//returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
-						returnPairs.put(returnKeys[1], returnDetail.getBankName());
-						returnPairs.put(returnKeys[2], returnDetail.getBankAccount());
-						returnPairs.put(returnKeys[3], returnDetail.getReason());
-						renderCategoryTemplate(R.string.after_sale_return_title, returnPairs);
+					// render return category
+					AfterSaleDetailReturn returnDetail = (AfterSaleDetailReturn) data;
+					LinkedHashMap<String, String> returnPairs = new LinkedHashMap<String, String>();
+					String[] returnKeys = getResources().getStringArray(R.array.after_sale_return);
+					if (!StringUtil.isNull(returnDetail.getReturnPrice()+"")) {
+						returnPairs.put(returnKeys[0], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(returnDetail.getReturnPrice())/100f));
+					}else {
+						returnPairs.put(returnKeys[0], "");
+					}
+					//returnPairs.put(returnKeys[0], returnDetail.getReturnPrice() + "");
+					returnPairs.put(returnKeys[1], returnDetail.getBankName());
+					returnPairs.put(returnKeys[2], returnDetail.getBankAccount());
+					returnPairs.put(returnKeys[3], returnDetail.getReason());
+					renderCategoryTemplate(R.string.after_sale_return_title, returnPairs);
 
-						// render return material category
-						renderMaterialTemplate(R.string.after_sale_return_material_title, data.getResourceInfos());
-						break;
-					case CANCEL:
-						String[] cancelStatus = getResources().getStringArray(R.array.cancel_status);
-						mStatus.setText(cancelStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
+					// render return material category
+					renderMaterialTemplate(R.string.after_sale_return_material_title, data.getResourceInfos());
+					break;
+				case CANCEL:
+					String[] cancelStatus = getResources().getStringArray(R.array.cancel_status);
+					mStatus.setText(cancelStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-						} else if (data.getStatus() == 5) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_submit_cancel));
+						mButton1.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 5) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_submit_cancel));
 
-							mButton1.setOnClickListener(mSubmitCancelListener);
-						}
+						mButton1.setOnClickListener(mSubmitCancelListener);
+					}
 
-						// render cancel material category
-						renderMaterialTemplate(R.string.after_sale_cancel_material_title, data.getResourceInfos());
-						break;
-					case CHANGE:
-						String[] changeStatus = getResources().getStringArray(R.array.change_status);
-						mStatus.setText(changeStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
+					// render cancel material category
+					renderMaterialTemplate(R.string.after_sale_cancel_material_title, data.getResourceInfos());
+					break;
+				case CHANGE:
+					String[] changeStatus = getResources().getStringArray(R.array.change_status);
+					mStatus.setText(changeStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-						} else if (data.getStatus() == 2) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_submit_flow));
+						mButton1.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 2) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_submit_flow));
 
-							mButton1.setOnClickListener(mSubmitMarkListener);
-						}
+						mButton1.setOnClickListener(mSubmitMarkListener);
+					}
 
-						// render change category
-						AfterSaleDetailChange changeDetail = (AfterSaleDetailChange) data;
-						LinkedHashMap<String, String> changePairs = new LinkedHashMap<String, String>();
-						String[] changeKeys = getResources().getStringArray(R.array.after_sale_change);
-						changePairs.put(changeKeys[0], changeDetail.getReceiverAddr());
-						changePairs.put(changeKeys[1], changeDetail.getChangeReason());
-						renderCategoryTemplate(R.string.after_sale_change_title, changePairs);
+					// render change category
+					AfterSaleDetailChange changeDetail = (AfterSaleDetailChange) data;
+					LinkedHashMap<String, String> changePairs = new LinkedHashMap<String, String>();
+					String[] changeKeys = getResources().getStringArray(R.array.after_sale_change);
+					changePairs.put(changeKeys[0], changeDetail.getReceiverAddr());
+					changePairs.put(changeKeys[1], changeDetail.getChangeReason());
+					renderCategoryTemplate(R.string.after_sale_change_title, changePairs);
 
-						// render change material category
-						renderMaterialTemplate(R.string.after_sale_change_material_title, data.getResourceInfos());
-						break;
-					case UPDATE:
-						String[] updateStatus = getResources().getStringArray(R.array.update_status);
-						mStatus.setText(updateStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
+					// render change material category
+					renderMaterialTemplate(R.string.after_sale_change_material_title, data.getResourceInfos());
+					break;
+				case UPDATE:
+					String[] updateStatus = getResources().getStringArray(R.array.update_status);
+					mStatus.setText(updateStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-						}
+						mButton1.setOnClickListener(mCancelApplyListener);
+					}
 
-						// render update material category
-						renderMaterialTemplate(R.string.after_sale_update_material_title, data.getResourceInfos());
-						break;
-					case LEASE:
-						String[] leaseStatus = getResources().getStringArray(R.array.lease_status);
-						mStatus.setText(leaseStatus[data.getStatus()]);
-						if (data.getStatus() == 1) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_cancel_apply));
+					// render update material category
+					renderMaterialTemplate(R.string.after_sale_update_material_title, data.getResourceInfos());
+					break;
+				case LEASE:
+					String[] leaseStatus = getResources().getStringArray(R.array.lease_status);
+					mStatus.setText(leaseStatus[data.getStatus()]);
+					if (data.getStatus() == 1) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_cancel_apply));
 
-							mButton1.setOnClickListener(mCancelApplyListener);
-						} else if (data.getStatus() == 2) {
-							mButton1.setVisibility(View.VISIBLE);
-							mButton1.setText(getString(R.string.button_submit_flow));
+						mButton1.setOnClickListener(mCancelApplyListener);
+					} else if (data.getStatus() == 2) {
+						mButton1.setVisibility(View.VISIBLE);
+						mButton1.setText(getString(R.string.button_submit_flow));
 
-							mButton1.setOnClickListener(mSubmitMarkListener);
-						}
+						mButton1.setOnClickListener(mSubmitMarkListener);
+					}
 
-						// render lease category
-						AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
-						LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
-						String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-						if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
-							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-									String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
-						}else {
-							leasePairs.put(leaseKeys[0], "");
-						}
+					// render lease category
+					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
+					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
+					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
+					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
+						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+					}else {
+						leasePairs.put(leaseKeys[0], "");
+					}
 					//	leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + leaseDetail.getLeasePrice());
-						leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
-						leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
-						renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);
+					leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
+					leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
+					renderCategoryTemplate(R.string.after_sale_lease_title, leasePairs);
 
-						// render lease material category
-						renderMaterialTemplate(R.string.after_sale_lease_material_title, data.getResourceInfos());
-						break;
+					// render lease material category
+					renderMaterialTemplate(R.string.after_sale_lease_material_title, data.getResourceInfos());
+					break;
 				}
 
 				List<Comment> comments = data.getComments().getContent();
@@ -393,26 +395,26 @@ public class AfterSaleDetailActivity extends Activity {
 			@Override
 			public TypeToken getTypeToken() {
 				switch (mRecordType) {
-					case MAINTAIN:
-						return new TypeToken<AfterSaleDetailMaintain>() {
-						};
-					case RETURN:
-						return new TypeToken<AfterSaleDetailReturn>() {
-						};
-					case CANCEL:
-						return new TypeToken<AfterSaleDetailCancel>() {
-						};
-					case CHANGE:
-						return new TypeToken<AfterSaleDetailChange>() {
-						};
-					case UPDATE:
-						return new TypeToken<AfterSaleDetailUpdate>() {
-						};
-					case LEASE:
-						return new TypeToken<AfterSaleDetailLease>() {
-						};
-					default:
-						throw new IllegalArgumentException();
+				case MAINTAIN:
+					return new TypeToken<AfterSaleDetailMaintain>() {
+					};
+				case RETURN:
+					return new TypeToken<AfterSaleDetailReturn>() {
+					};
+				case CANCEL:
+					return new TypeToken<AfterSaleDetailCancel>() {
+					};
+				case CHANGE:
+					return new TypeToken<AfterSaleDetailChange>() {
+					};
+				case UPDATE:
+					return new TypeToken<AfterSaleDetailUpdate>() {
+					};
+				case LEASE:
+					return new TypeToken<AfterSaleDetailLease>() {
+					};
+				default:
+					throw new IllegalArgumentException();
 				}
 			}
 		});
@@ -423,10 +425,10 @@ public class AfterSaleDetailActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
-				case REQUEST_MARK:
-					CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
-					getData();
-					break;
+			case REQUEST_MARK:
+				CommonUtil.toastShort(this, getString(R.string.toast_add_mark_success));
+				getData();
+				break;
 			}
 		}
 	}
@@ -480,11 +482,11 @@ public class AfterSaleDetailActivity extends Activity {
 		title.setText(getString(titleRes));
 		for (final ResourceInfo resourceInfo : resourceInfos) {
 			TextView key = createKeyText();
-			key.setText(getString(R.string.after_sale_material_name));
+			key.setText(resourceInfo.getTitle());
 			keyContainer.addView(key);
 
 			TextView value = createValueText();
-			if (null == resourceInfo.getPath()) {
+			if (null == resourceInfo.getUpload_path()) {
 				value.setText(getString(R.string.after_sale_material_unsubmit));
 			} else {
 				value.setTextColor(getResources().getColor(R.color.blank_button_selector));
@@ -493,10 +495,13 @@ public class AfterSaleDetailActivity extends Activity {
 				value.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
-						intent.putExtra(RECORD_TYPE, mRecordType);
-						intent.putExtra(MATERIAL_URL, resourceInfo.getPath());
-						startActivity(intent);
+						Uri uri = Uri.parse(resourceInfo.getUpload_path());  
+						Intent it = new Intent(Intent.ACTION_VIEW, uri);  
+						startActivity(it);
+						//						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
+						//						intent.putExtra(RECORD_TYPE, mRecordType);
+						//						intent.putExtra(MATERIAL_URL, resourceInfo.getUpload_path());
+						//						startActivity(intent);
 					}
 				});
 			}

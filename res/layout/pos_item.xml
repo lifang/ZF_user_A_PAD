@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textmid" 
+                android:textSize="@dimen/textbig" 
                 android:maxLines="2"
                 android:text="2015最新POS机器旗舰版  1.0" />
 
@@ -117,7 +117,7 @@
                 android:gravity="bottom"
                 android:text="品牌型号"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmid"  />
+                android:textSize="@dimen/textbig"  />
 			                  <TextView
                 android:id="@+id/content1"
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                 android:maxLines="1"
                 android:gravity="bottom"
                 android:text="contentcontentcontentcontent"
-                android:textSize="@dimen/textmid" />
+                android:textSize="@dimen/textbig" />
                 	</LinearLayout>
 			    
 			    <LinearLayout

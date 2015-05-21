@@ -16,6 +16,16 @@ public class MyApplyTerminalDetail {
 	private String serialNumber;
 
 	private String channelName;
+	
+	private int supportRequirementType;
+
+	public int getSupportRequirementType() {
+		return supportRequirementType;
+	}
+
+	public void setSupportRequirementType(int supportRequirementType) {
+		this.supportRequirementType = supportRequirementType;
+	}
 
 	public String getBrandName() {
 		return brandName;

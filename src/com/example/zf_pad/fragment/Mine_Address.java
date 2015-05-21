@@ -48,7 +48,7 @@ import android.widget.Toast;
 public class Mine_Address extends Fragment implements OnClickListener{
 	private View view;
 	public static List<AddressManager> dataadress;
-	
+
 	private BaseAdapter addressadapter;
 	private ListView list;
 	private Context context;
@@ -61,44 +61,44 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	public static int[] idd;
 	public static int type=0;
 	//private TextView info,safe,manageradress,score;
-@Override
-public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	if (view != null) {
-		ViewGroup parent = (ViewGroup) view.getParent();
-		if (parent != null)
-			 parent.removeView(view);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		if (view != null) {
+			ViewGroup parent = (ViewGroup) view.getParent();
+			if (parent != null)
+				parent.removeView(view);
+		}
+		try {
+			view = inflater.inflate(R.layout.manageradress, container, false);
+
+		} catch (InflateException e) {
+
+		}
+		return view;
 	}
-	try {
-		view = inflater.inflate(R.layout.manageradress, container, false);
-		
-	} catch (InflateException e) {
-	
-	}
-	return view;
-}
-@Override
-public void onStart() {
-	// TODO Auto-generated method stub
-	super.onStart();
-	init();
-	getData();
-	myHandler=new Handler(){
-		public void handleMessage(android.os.Message msg) {
-			if(msg.what==1){
-				isclickitem=true;
-				Intent intent=new Intent(getActivity(),AdressEdit.class);
-				intent.putExtra("position", AddressManagerAdapter.pp);
-				startActivity(intent);
-			}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		init();
+		getData();
+		myHandler=new Handler(){
+			public void handleMessage(android.os.Message msg) {
+				if(msg.what==1){
+					isclickitem=true;
+					Intent intent=new Intent(getActivity(),AdressEdit.class);
+					intent.putExtra("position", AddressManagerAdapter.pp);
+					startActivity(intent);
+				}
+			};
 		};
-	};
-}
-private void getData() {
-	if(!Tools.isConnect(getActivity())){
-		CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
-		return;
 	}
+	private void getData() {
+		if(!Tools.isConnect(getActivity())){
+			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+			return;
+		}
 		MyApplication.getInstance().getClient().post(API.GET_ADRESS+id, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
@@ -132,7 +132,7 @@ private void getData() {
 						for(int i=0;i<result.length();i++){
 							type=result.getJSONObject(i).getInt("isDefault");
 							Log.e("type", String.valueOf(type));
-			               /* if(result.getJSONObject(i).getInt("isDefault")==1){
+							/* if(result.getJSONObject(i).getInt("isDefault")==1){
 			                	Message msg=AddressManagerAdapter.myHandler.obtainMessage();
 			                	msg.what=1;
 			                	msg.sendToTarget();
@@ -162,62 +162,62 @@ private void getData() {
 									result.getJSONObject(i).getString("address"), 
 									result.getJSONObject(i).getString("zipCode"),
 									result.getJSONObject(i).getString("moblephone")));*/
-							
+
 						}
-					
+
 						list.setAdapter(addressadapter);
 					}
 					else{
-						
+
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					Toast.makeText(getActivity(), String.valueOf(j), Toast.LENGTH_SHORT).show();
 				}
-				
+
 			}
-			
+
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
-	}
-private void init() {
-	ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
-	dataadress=new ArrayList<AddressManager>();
-	addressadapter=new AddressManagerAdapter(dataadress, getActivity().getBaseContext());
-	list=(ListView) view.findViewById(R.id.list);
-	btn_add=(Button) view.findViewById(R.id.btn_add);
-	btn_add.setOnClickListener(this);
-	}
-@Override
-public void onClick(View v) {
-	switch (v.getId()) {
-	case R.id.btn_add:
-	Intent intent=new Intent(getActivity(),AdressEdit.class);	
-	startActivity(intent);
-		break;
 
-	default:
-		break;
 	}
-	
-}
-@Override
-public void onPause() {
-	super.onPause();
-}
-@Override
-public void onStop() {
-	super.onStop();
-}
-@Override
-public void onDestroyView() {
-	super.onDestroyView();
-}
+	private void init() {
+		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
+		dataadress=new ArrayList<AddressManager>();
+		addressadapter=new AddressManagerAdapter(dataadress, getActivity().getBaseContext());
+		list=(ListView) view.findViewById(R.id.list);
+		btn_add=(Button) view.findViewById(R.id.btn_add);
+		btn_add.setOnClickListener(this);
+	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btn_add:
+			Intent intent=new Intent(getActivity(),AdressEdit.class);	
+			startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+	}
+	@Override
+	public void onStop() {
+		super.onStop();
+	}
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+	}
 }

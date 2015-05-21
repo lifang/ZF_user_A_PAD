@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.fragment.Constants;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -33,7 +35,7 @@ import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.StringUtil;
 
-public class CitySearchActivity extends Activity implements OnClickListener{
+public class CitySearchActivity extends BaseActivity implements OnClickListener{
 
 	private LinearLayout titleback_linear_back;
 	private EditText searchEditText;
@@ -77,6 +79,7 @@ public class CitySearchActivity extends Activity implements OnClickListener{
 					int position, long id) {
 				Constants.CITY_ID_SEARCH = searchCities.get(position).getId();
 				Constants.CITY_NAME_SEARCH = searchCities.get(position).getName();
+				Config.CITY = Constants.CITY_NAME_SEARCH;
 				finish();
 				if (CitySelectActivity.CitySelectActivity != null) {
 					CitySelectActivity.CitySelectActivity.finish();

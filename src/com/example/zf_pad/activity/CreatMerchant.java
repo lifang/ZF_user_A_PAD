@@ -25,6 +25,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,6 +44,7 @@ import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.entity.OrderDetailEntity;
 import com.example.zf_pad.fragment.Mine_MyMerChant;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
@@ -85,6 +88,29 @@ public class CreatMerchant extends BaseActivity implements OnClickListener{
 					 ,orgCodeNoPicPath="",accountPicPath="";
 	 //private AlertDialog dialog;
 	 //private  AlertDialog.Builder builder;
+	 private Handler handler = new Handler() {
+			public void handleMessage(Message msg) {
+				switch (msg.what) {
+				case 0:
+			startActivity(new Intent(CreatMerchant.this,MainActivity.class));
+			Config.MyTab=3;
+					break;
+				case 1:
+					Toast.makeText(getApplicationContext(), (String) msg.obj,
+							Toast.LENGTH_SHORT).show();
+
+					break;
+				case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					Toast.makeText(getApplicationContext(),
+							"no 3g or wifi content", Toast.LENGTH_SHORT).show();
+					break;
+				case 3:
+					Toast.makeText(getApplicationContext(), " refresh too much",
+							Toast.LENGTH_SHORT).show();
+					break;
+				}
+			}
+		};
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
@@ -660,6 +686,7 @@ public void onClick(View v) {
 					return;
 				}
 			}*/
+			//handler.sendEmptyMessage(0);
 			sumbitMerchantInfo();
 		}
 		
@@ -816,9 +843,7 @@ private void showchooseDialog(Button btn,final int tag) {
 		@Override
 		public void onClick(View v) {
 			if(isdown){
-				openimg(tag);
-				
-				
+				openimg(tag);		
 			}
 			else{
 				Intent intent = new Intent(Intent.ACTION_VIEW);    
@@ -1012,6 +1037,7 @@ private void sumbitMerchantInfo() {
 				public void onSuccess(Object data) {
 					//finish();
 					Toast.makeText(getApplicationContext(), "´´½¨ÉÌ»§³É¹¦", 1000).show();
+					handler.sendEmptyMessage(0);
 				}
 
 				@Override

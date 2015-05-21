@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import com.example.zf_pad.R;
@@ -21,9 +23,12 @@ public class PosAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 	int type=0;
+	private DecimalFormat df;
 	public PosAdapter(Context context, List<PosEntity> list) {
 		this.context = context;
 		this.list = list;
+		df = (DecimalFormat) NumberFormat.getInstance();
+		df.applyPattern("0.00");
 	}
 
 	@Override
@@ -71,7 +76,7 @@ public class PosAdapter extends BaseAdapter {
 		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
  				holder.im);
 		holder.title.setText(list.get(position).getTitle());
-		holder.tv_price.setText("гд" + list.get(position).getRetail_price() / 100
+		holder.tv_price.setText("гд" + df.format(((double)list.get(position ).getRetail_price()) / 100)
 				+ "");
 		holder.content1.setText(list.get(position).getModel_number());
 		holder.tv_td.setText(list.get(position).getPay_channe());

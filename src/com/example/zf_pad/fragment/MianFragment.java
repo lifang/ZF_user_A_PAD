@@ -41,11 +41,11 @@ public class MianFragment extends Fragment implements OnClickListener{
 			
 		
 		
-		if (view != null) {
+	/*	if (view != null) {
 	        ViewGroup parent = (ViewGroup) view.getParent();
 	        if (parent != null)
 	            parent.removeView(view);
-	    }
+	    }*/
 	    try {
 	        view = inflater.inflate(R.layout.f_main1, container, false);
 	  

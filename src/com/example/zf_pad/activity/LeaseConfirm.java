@@ -74,6 +74,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private int comments;
 	private Button bt_add;
 	private ImageView event_img;
+	private TextView tv_brand;
+	private TextView tv_chanel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +92,20 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
 		retail_price.setText("￥" +df.format( pirce*1.0f/100));
-		tv_totle.setText("实付：￥ " + ((double) pirce) / 100);
+		tv_totle.setText("实付：￥ " + df.format( pirce*1.0f/100));
+		tv_pay.setText("实付：￥ " + df.format( pirce*1.0f/100));
 		System.out.println("=paychannelId==" + paychannelId);
-		getData1();
-		String img_url=getIntent().getStringExtra("evevt_img");
+		//getData1();
+		String img_url=getIntent().getStringExtra("piclist");
 		ImageCacheUtil.IMAGE_CACHE.get(img_url,
  				event_img);
+		tv_brand.setText(getIntent().getStringExtra("brand"));
+		tv_chanel.setText(getIntent().getStringExtra("chanel"));
 	}
 
 	private void initView() {
+		tv_chanel = (TextView)findViewById(R.id.wayName);
+		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
 		bt_add = (Button)findViewById(R.id.bt_add);
 		bt_add.setOnClickListener(this);
@@ -107,8 +114,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		tv_zc = (TextView) findViewById(R.id.tv_zc);
 		tv_zd = (TextView) findViewById(R.id.tv_zd);
 		if (Config.gfe != null) {
-			tv_zc.setText("最长租赁时间：" + Config.gfe.getLease_time() + "天");
-			tv_zd.setText("最短租赁时间：" + Config.gfe.getReturn_time() + "天");
+			tv_zc.setText("最长租赁时间：" +  Config.gfe.getReturn_time()+ "月");
+			tv_zd.setText("最短租赁时间：" + Config.gfe.getLease_time() + "月");
 		}
 		sclist = (ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		myAdapter = new ChooseAdressAdapter(this, myList);
@@ -163,6 +170,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
 				// showCountText.setText(arg0.toString());
+				if(buyCountEdit.getText().toString().equals("0"))
+					buyCountEdit.setText("");
 				tv_count.setText("共计:   " + arg0 + "件");
 				if (buyCountEdit.getText().toString().equals("")) {
 					quantity = 0;
@@ -308,7 +317,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 			buyCountEdit.setText(quantity + "");
 			break;
 		case R.id.reduce:
-			if (quantity == 0) {
+			if (quantity <= 1) {
 				break;
 			}
 			quantity = Integer.parseInt(buyCountEdit.getText().toString()) - 1;
@@ -331,8 +340,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		et_comment = (EditText) findViewById(R.id.ed_comment);
 		comment = et_comment.getText().toString();
 
-		// quantity addressId comment is_need_invoice et_titel
-		quantity = Integer.parseInt(buyCountEdit.getText().toString());
+		if(!buyCountEdit.getText().toString().trim().equals("")){
+			quantity = Integer.parseInt(buyCountEdit.getText().toString().trim());
+		}else{
+			quantity = 1;
+		}
+
 		// comment=comment_et.getText().toString();
 		RequestParams params = new RequestParams();
 		params.put("customerId", MyApplication.NewUser.getId());
@@ -373,6 +386,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 						return null;
 					}
 				});
-
+	}
+	@Override
+	protected void onResume() {
+	
+		super.onResume();
+		myList.clear();
+		getData1();
 	}
 }

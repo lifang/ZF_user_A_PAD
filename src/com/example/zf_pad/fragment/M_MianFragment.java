@@ -14,35 +14,6 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.location.LocationClientOption.LocationMode;
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.MessageAdapter;
-import com.example.zf_pad.activity.ContactUs;
-import com.example.zf_pad.activity.LoginActivity;
-import com.example.zf_pad.activity.MainActivity;
-import com.example.zf_pad.activity.MyWebView;
-import com.example.zf_pad.activity.PosListActivity;
-import com.example.zf_pad.activity.SystemMessage;
-import com.example.zf_pad.activity.TerminalManagerActivity;
-import com.example.zf_pad.entity.PicEntity;
-import com.example.zf_pad.entity.TestEntitiy;
-import com.example.zf_pad.trade.ApplyListActivity;
-import com.example.zf_pad.trade.CitySelectActivity;
-import com.example.zf_pad.trade.MyApplyDetail;
-import com.example.zf_pad.trade.TradeFlowActivity;
-import com.example.zf_pad.trade.entity.City;
-import com.example.zf_pad.trade.entity.Province;
-import com.example.zf_pad.util.ImageCacheUtil;
-import com.example.zf_pad.util.XListView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,6 +33,29 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.activity.ContactUs;
+import com.example.zf_pad.activity.MyWebView;
+import com.example.zf_pad.activity.PosListActivity;
+import com.example.zf_pad.activity.SystemMessage;
+import com.example.zf_pad.activity.TerminalManagerActivity;
+import com.example.zf_pad.entity.PicEntity;
+import com.example.zf_pad.trade.ApplyListActivity;
+import com.example.zf_pad.trade.CitySelectActivity;
+import com.example.zf_pad.trade.TradeFlowActivity;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.ImageCacheUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.umeng.analytics.MobclickAgent;
 
 public class M_MianFragment extends Fragment implements OnClickListener {
 	private View view;
@@ -119,9 +113,9 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			case 4:
 
 				index_ima++;
-				index_ima = index_ima>list.size()-1?0:index_ima;
+				index_ima = index_ima > list.size() - 1 ? 0 : index_ima;
 				view_pager.setCurrentItem(index_ima);
-				
+
 				break;
 			}
 		}
@@ -159,7 +153,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 				((MyApplication) getActivity().getApplication()).mLocationResult = LocationResult;
 				InitLocation();
 				mLocationClient.start();
-				
+
 				System.out.println("当前城市 ID----" + MyApplication.getCITYID());
 			}
 			getdata();
@@ -168,16 +162,18 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		}
 		return view;
 	}
+
 	@Override
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		
+
 	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-	
+
 		case R.id.titleback_linear_back:
 			Intent intent = new Intent(getActivity(), CitySelectActivity.class);
 			cityName = cityTextView.getText().toString();
@@ -192,11 +188,11 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		case R.id.main_rl_pos: // 购买pos机
 
 			startActivity(new Intent(getActivity(), PosListActivity.class));
-			
+
 			break;
 		case R.id.main_rl_renzhen: // 开通认证
 			if (Config.CheckIsLogin(getActivity())) {
-			startActivity(new Intent(getActivity(), ApplyListActivity.class));
+				startActivity(new Intent(getActivity(), ApplyListActivity.class));
 			}
 			break;
 		case R.id.main_rl_xtgg: // 系统公告
@@ -208,8 +204,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.main_rl_zdgl: // 终端详情
 			if (Config.CheckIsLogin(getActivity())) {
-			startActivity(new Intent(getActivity(),
-					TerminalManagerActivity.class));
+				startActivity(new Intent(getActivity(),
+						TerminalManagerActivity.class));
 			}
 			break;
 		default:
@@ -266,7 +262,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 	// getdata1();
 	private void getdata() {
-		
+
 		MyApplication.getInstance().getClient()
 				.post(Config.INDEXIMG, new AsyncHttpResponseHandler() {
 
@@ -484,6 +480,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			cityName = data.getStringExtra(CITY_NAME);
 			cityTextView.setText(cityName);
 			Config.CITY = cityName;
+			Constants.CITY_ID_SEARCH = cityId;
+			Constants.CITY_NAME_SEARCH = cityName;
 			break;
 		case REQUEST_CITY_WHEEL:
 			province = (Province) data.getSerializableExtra(SELECTED_PROVINCE);
@@ -496,21 +494,35 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
+		MobclickAgent.onPageStart(this.toString());
+		if (Constants.CITY_ID_SEARCH != 0) {
+			cityId = Constants.CITY_ID_SEARCH;
+			cityName = Constants.CITY_NAME_SEARCH;
+			cityTextView.setText(cityName);
+		}
+
 		timer = new Timer();
-		TimerTask task = new TimerTask()
-		{
-			public void run()
-			{
+		TimerTask task = new TimerTask() {
+			public void run() {
 				handler.sendEmptyMessage(4);
 			}
 		};
 		timer.schedule(task, 0, time);
 	}
+
 	@Override
 	public void onStop() {
-		
+
 		super.onStop();
 
 		timer.cancel();
 	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		MobclickAgent.onPageEnd(this.toString());
+	}
+
 }

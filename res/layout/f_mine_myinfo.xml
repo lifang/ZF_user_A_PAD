@@ -16,31 +16,29 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-             >
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
-           <com.example.zf_pad.trade.widget.MTabWidget
-            android:id="@+id/tab_widget"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="104dp"
-            android:layout_marginTop="12dp"
-            android:divider="#E9E8E8"
-            android:layout_gravity="center_horizontal"
-           />
-               
-            </RelativeLayout>
 
+                <com.example.zf_pad.trade.widget.MTabWidget
+                    android:id="@+id/tab_widget"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="104dp"
+                    android:layout_marginTop="12dp"
+                    android:divider="@null" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-<fragment 
-    android:id="@+id/fm"
-    android:name="com.example.zf_pad.fragment.Mine_baseinfo"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"/>
+
+    <fragment
+        android:id="@+id/fm"
+        android:name="com.example.zf_pad.fragment.Mine_baseinfo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>

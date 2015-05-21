@@ -5,100 +5,114 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/titleback_height"
         android:background="@color/bgtitle"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/titilepad" >
 
         <LinearLayout
             android:id="@+id/titleback_linear_back"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/titleback_height"
+            android:layout_width="@dimen/normai_button_height"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/d_7dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <ImageView
                 android:id="@+id/titleback_image_back"
-                android:layout_width="@dimen/zc_margin_top"
-                android:layout_height="@dimen/normal_height1"
-                android:layout_marginLeft="@dimen/titilepad"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/d_7dp"
                 android:background="@drawable/back" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="@dimen/normal_width1"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal" >
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@null"
+                android:drawableLeft="@drawable/search_bg"
+                android:editable="false"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="搜索商品"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff" >
+            </EditText>
+
+            <View
+                android:id="@+id/view_x"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignLeft="@+id/et_search"
+                android:layout_alignRight="@+id/et_search"
+                android:layout_below="@+id/et_search"
+                android:layout_marginTop="-10dp"
+                android:background="#ffffff" />
+
+            <View
+                android:id="@+id/view_y1"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_toLeftOf="@+id/view_x"
+                android:background="#ffffff" />
+
+            <View
+                android:id="@+id/view_y2"
+                android:layout_width="1dp"
+                android:layout_height="5dp"
+                android:layout_alignBottom="@+id/view_x"
+                android:layout_toRightOf="@+id/view_x"
+                android:background="#ffffff" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/pos_select"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/titilepad"
+            android:layout_toLeftOf="@+id/search2"
+            android:background="@drawable/car11" />
 
-            <RelativeLayout
-                android:layout_width="@dimen/normal_width1"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal" >
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/editText1"
-                    android:layout_centerVertical="true"
-              
-                    android:src="@drawable/search_bg" />
-
-                <EditText
-                    android:id="@+id/et_search"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="搜索商品"
-                    android:editable="false"
-                    android:textColor="#ffffff" >
-
-                </EditText>
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/pos_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/titilepad"
-                android:background="@drawable/car11" />
-
-            <ImageView
-                android:id="@+id/search2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/titilepad"
-                android:background="@drawable/car22" />
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/search2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/titilepad"
+            android:background="@drawable/car22" />
+    </RelativeLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#ADAEAF" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/order_image"
         android:background="@color/F6F9FA"
-        android:gravity="center" >
+        android:paddingLeft="@dimen/order_image" >
 
         <LinearLayout
             android:layout_width="@dimen/normal_width1"
             android:layout_height="@dimen/titleback_height"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -116,12 +130,14 @@
                     android:textColor="#575d5f"
                     android:textSize="@dimen/textmid" />
             </LinearLayout>
-<View
+
+            <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="@dimen/normal_width3"
                 android:layout_marginTop="@dimen/normal_width3"
                 android:background="#ADAEAF" />
+
             <LinearLayout
                 android:id="@+id/ll_xxyx"
                 android:layout_width="0dp"
@@ -162,18 +178,20 @@
                     android:textSize="@dimen/textmid" />
 
                 <ImageView
+                    android:id="@+id/img3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
-                    android:id="@+id/img3"
                     android:background="@drawable/ti_down" />
             </LinearLayout>
-<View
+
+            <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="@dimen/normal_width3"
                 android:layout_marginTop="@dimen/normal_width3"
                 android:background="#ADAEAF" />
+
             <LinearLayout
                 android:id="@+id/ll_pj"
                 android:layout_width="0dp"
@@ -182,7 +200,7 @@
                 android:gravity="center" >
 
                 <TextView
-                     android:id="@+id/tv_4"
+                    android:id="@+id/tv_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="评分最高"
@@ -191,56 +209,74 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/port_list1"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/titilepad"
-            android:background="@drawable/pos_px1" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/titilepad" >
 
-        <ImageView
-            android:id="@+id/port_list2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_width5"
-            android:background="@drawable/pos_pxf" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/port_list1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/titilepad"
+                android:background="@drawable/pos_px1" />
+
+            <ImageView
+                android:id="@+id/port_list2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/normal_width5"
+                android:background="@drawable/pos_pxf" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_listflag"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/normal_height2"
-        android:background="#E9E8E8" 
-        android:paddingRight="@dimen/titilepad1"
+        android:layout_marginBottom="@dimen/normal_width2"
+        android:layout_marginLeft="@dimen/dlimg"
+        android:layout_marginRight="@dimen/dlimg"
+        android:layout_marginTop="@dimen/normal_width2"
+        android:background="#E9E8E8"
         android:gravity="center_vertical"
-        android:visibility="gone"
-        android:paddingLeft="@dimen/alertwidth">
+        android:paddingLeft="@dimen/alertwidth"
+        android:paddingRight="@dimen/titilepad1"
+        android:visibility="gone" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:gravity="center_vertical"
-            android:textColor="#292929"
-            android:text="商品" />
+            android:text="商品"
+            android:textColor="#292929" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="@dimen/titilepad"
+            android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginRight="@dimen/titilepad"
-            android:layout_height="fill_parent"
-            android:textColor="#292929"
-            android:text="价格" />
+            android:text="价格"
+            android:textColor="#292929" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:gravity="center_vertical"
-            android:textColor="#292929"
-            android:text="历史销量" />
+            android:text="历史销量"
+            android:textColor="#292929" />
     </LinearLayout>
 
     <View
@@ -264,11 +300,11 @@
         android:id="@+id/x_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/dlimg"
         android:layout_marginRight="@dimen/dlimg"
         android:background="@color/white"
         android:fadingEdge="none"
-        android:layout_gravity="center_horizontal"
         android:scrollbars="none" />
 
 </LinearLayout>

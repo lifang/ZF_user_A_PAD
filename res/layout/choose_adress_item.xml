@@ -16,6 +16,7 @@
             android:layout_height="fill_parent"
             android:layout_marginLeft="7dp"
             android:gravity="center"
+            android:visibility="invisible"
             android:orientation="vertical" >
 
             <CheckBox
@@ -56,11 +57,11 @@
 
                 <TextView
                     android:id="@+id/adress_name"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="收件人: 张小小"
                     android:textColor="@color/text292929"
@@ -68,11 +69,11 @@
 
                 <TextView
                     android:id="@+id/tv_city"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="北京"
                     android:textColor="@color/text292929"
@@ -80,11 +81,11 @@
 
                 <TextView
                     android:id="@+id/tv_adress"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="收件地址: 上海市XXX路YY号11#101"
                     android:textColor="@color/text292929"
@@ -92,11 +93,11 @@
 
                 <TextView
                     android:id="@+id/tv_yb"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="13900010002"
                     android:textColor="@color/text292929"
@@ -104,11 +105,11 @@
 
                 <TextView
                     android:id="@+id/tv_tel"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="13900010002"
                     android:textColor="@color/text292929"

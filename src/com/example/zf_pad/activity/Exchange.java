@@ -174,7 +174,7 @@ protected void onStart() {
 		name=et_name.getText().toString();
 		phone=et_tel.getText().toString();
 		prices=t_y.getText().toString();
-		int price=Integer.parseInt(prices);
+		//int price=Integer.parseInt(prices);
 		RequestParams params = new RequestParams();
 		
 		if(StringUtil.replaceBlank(name).length()==0){
@@ -189,6 +189,11 @@ protected void onStart() {
 			Toast.makeText(getApplicationContext(), "请输入金额", 1000).show();
 			return;
 		}
+		if(Integer.parseInt(t_y.getText().toString())>sxfmoney){
+			CommonUtil.toastShort(Exchange.this, "超过最大可兑换积分数");
+			return;
+		}
+		
 		API.exchange(Exchange.this, customerId, name, phone, Integer.parseInt(prices), new HttpCallback(Exchange.this) {
 			@Override
 			public void onSuccess(Object data) {
@@ -212,17 +217,11 @@ protected void onStart() {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.next_sure:
-			if(Integer.parseInt(t_y.getText().toString())>sxfmoney){
-				CommonUtil.toastShort(Exchange.this, "超过最大可兑换积分数");
-				return;
-			}
+		
 			getData();
 			break;
 		case R.id.btn_exit:
-			if(Integer.parseInt(t_y.getText().toString())>sxfmoney){
-				CommonUtil.toastShort(Exchange.this, "超过最大可兑换积分数");
-				return;
-			}
+		
 			getData();
 			break;
 		default:

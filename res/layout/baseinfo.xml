@@ -2,121 +2,180 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sLV"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent">
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="vertical" >
-  <TableLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="32dp"
-    android:layout_marginLeft="26dp">
-   <TableRow 
-        >
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="姓    名"
-    android:textColor="#887C6B"
-    android:textSize="20sp"/>
-   <EditText 
-       android:id="@+id/et_name"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-   
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>    
-   </TableRow> 
-    <TableRow android:layout_marginTop="40dp">
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="手    机"
-    android:textColor="#887C6B"
-    android:layout_gravity="center_vertical"
-    android:textSize="20sp"/>
-   <EditText 
-       android:id="@+id/et_phone"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"
-    android:layout_gravity="center_vertical"/>    
-   </TableRow> 
-   <TableRow android:layout_marginTop="40dp">
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="邮    箱"
-    android:textColor="#887C6B"
-    android:layout_gravity="center_vertical"
-    android:textSize="20sp"/>
-   <EditText 
-       android:id="@+id/et_email"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-   
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"
-    android:layout_gravity="center_vertical"/>    
-   </TableRow> 
-   <TableRow android:layout_marginTop="40dp">
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="所 在 地"
-    android:textColor="#887C6B"
-    android:layout_gravity="center_vertical"
-    android:textSize="20sp"/>
-   <TextView
-       android:id="@+id/tv_city_select" 
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:text="上海市"
-    android:background="@drawable/ed_adress"
-    android:layout_marginLeft="10dp"
-    android:gravity="center_vertical|left"/>    
-   </TableRow> 
-   
-     <TableRow android:layout_marginTop="40dp">
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:textSize="20sp"/>
-   <Button
-       android:id="@+id/btn_save" 
-    android:layout_width="185dp"
-    android:layout_height="wrap_content"
-    android:text="保存"
-    android:layout_marginLeft="10dp"
-    android:textColor="#FFE9C1"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:background="#FF5A10"/>    
-   </TableRow>
-     <TableRow android:layout_marginTop="100dp"
-         android:layout_marginBottom="52dp">
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:textSize="20sp"/>
-   <Button
-       android:id="@+id/btn_exit" 
-    android:layout_width="185dp"
-    android:layout_height="wrap_content"
-    android:text="退出"
-    android:layout_marginLeft="10dp"
-    android:textColor="#FFE9C1"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:background="#FF5A10"/>    
-   </TableRow>
-</TableLayout> 
- 
-</LinearLayout>
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="32dp" >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="姓    名"
+                    android:textColor="@color/text292929"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/tv_bg"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/text6c6c6c6" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="手    机"
+                    android:textColor="@color/text292929"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/tv_bg"
+                    android:paddingLeft="5dp"
+                    android:enabled="false"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/text6c6c6c6" />
+
+                <TextView
+                    android:id="@+id/changephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="修改"
+                    android:textColor="#FF5A10"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="邮    箱"
+                    android:textColor="@color/text292929"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/tv_bg"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                      android:enabled="false"
+                    android:textColor="@color/text6c6c6c6" />
+
+                <TextView
+                    android:id="@+id/changeemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="修改"
+                       android:paddingRight="20dp"
+                          android:gravity="center_vertical"
+                    android:textColor="#FF5A10"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="所 在 地"
+                    android:textColor="@color/text292929"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_city_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ed_adress"
+                    android:gravity="center_vertical|left"
+                    android:paddingLeft="5dp"
+                    android:text="上海市"
+                    android:textColor="@color/text6c6c6c6" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FF5A10"
+                    android:gravity="center"
+                    android:text="保存"
+                    android:textColor="#FFE9C1"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="60dp"
+                android:background="@color/line_color" />
+
+            <TableRow
+                android:layout_marginBottom="52dp"
+                android:layout_marginTop="40dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_exit"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FF5A10"
+                    android:gravity="center"
+                    android:text="退出"
+                    android:textColor="#FFE9C1"
+                    android:textSize="20sp" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
 </ScrollView>

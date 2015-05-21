@@ -13,6 +13,7 @@ import com.example.zf_pad.entity.ApplyneedEntity;
 import com.example.zf_pad.entity.ChanelEntitiy;
 import com.example.zf_pad.entity.GoodinfoEntity;
 import com.example.zf_pad.entity.Goodlist;
+import com.example.zf_pad.entity.PortSon;
 import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.other_rate;
 import com.example.zf_pad.entity.tDates;
@@ -24,9 +25,8 @@ public class Config {
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
-	//public final static String PATHS = "http://121.40.84.2:8180/ZFMerchant/api/";
-//	public final static String PATHS = "http://121.40.64.167:8080/api/";
 	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+//	public final static String PATHS = "http://121.40.64.167:8080/api/";
 
 	//视频通话
 	//public static final String VIDEO_SERVER_IP = "121.40.84.2";
@@ -56,7 +56,7 @@ public class Config {
 	//public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
 	public static final String RETURN_URL = "http://121.40.64.167:8080/ZFMerchant/return_url.jsp"; 
 	
-
+	public static int countShopCar = 0;//新添加购物车的数量
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;
@@ -137,6 +137,11 @@ public class Config {
 	public static boolean isExit = false;
 	public static int cityId = 0;
 	public static int MyTab = 0;
+	public static List<PortSon> son=new ArrayList<PortSon>();
+	public static PortSon myson;
+	public static int portindex=-1;
+	public static int lx;
+	public static boolean ismer=false;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
 

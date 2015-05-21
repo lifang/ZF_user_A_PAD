@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<include 
-    layout="@layout/title_back"></include>
+
+    <include layout="@layout/title_back" >
+    </include>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -13,9 +15,10 @@
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-             android:gravity="center"
-             android:background="#E6E9ED"
-  >
+            android:background="#E6E9ED"
+            android:gravity="center"
+            android:paddingLeft="@dimen/titilepad"
+            android:paddingRight="@dimen/titilepad" >
         </ExpandableListView>
 
         <RelativeLayout
@@ -24,15 +27,14 @@
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/titilepad"
-            android:paddingRight="@dimen/titilepad"
-       >
+            android:paddingLeft="@dimen/dlpad"
+            android:paddingRight="@dimen/dlpad" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true" >
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical" >
 
                 <CheckBox
                     android:id="@+id/has_purchase"
@@ -74,11 +76,10 @@
                 <EditText
                     android:id="@+id/ed_min"
                     android:layout_width="150dp"
-              android:layout_height="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/shape_edittext"
                     android:gravity="center"
                     android:paddingLeft="8dp"
-                    
                     android:paddingRight="8dp" >
                 </EditText>
 

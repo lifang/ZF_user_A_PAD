@@ -30,8 +30,8 @@
             android:id="@+id/searchEditLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="36dp"
             android:layout_toLeftOf="@+id/next_cancel"
             android:layout_toRightOf="@+id/titleback_linear_back" >
 
@@ -43,9 +43,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="36dp"
                 android:background="@null"
+                android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:imeOptions="actionSearch"
                 android:textSize="20sp" >
 
                 <requestFocus />
@@ -64,7 +64,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/dengl_delete" />
+                    android:background="@drawable/dengl_delete_s" />
             </LinearLayout>
         </RelativeLayout>
 

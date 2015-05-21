@@ -216,6 +216,7 @@
                         android:layout_marginRight="@dimen/zc_margin"
                         android:background="@drawable/shape_edittext"
                         android:hint="请输入密码"
+                        android:inputType="textPassword"
                         android:paddingLeft="@dimen/zc_margin" >
                     </EditText>
 
@@ -259,6 +260,7 @@
                     android:layout_marginRight="@dimen/sy_rl_margin"
                     android:text="确  认 密 码"
                     android:textColor="#292929"
+                    
                     android:textSize="22sp" />
 
                    <RelativeLayout
@@ -273,6 +275,7 @@
                         android:layout_marginRight="@dimen/zc_margin"
                         android:background="@drawable/shape_edittext"
                         android:hint="请确认密码"
+                         android:inputType="textPassword"
                         android:paddingLeft="@dimen/zc_margin" >
                     </EditText>
 
