@@ -114,7 +114,9 @@ public class Config {
 	public static final String POSTHOT = PATHS + "index/pos_list";
 
 	public static final String MERCHANTINFO = PATHS + "merchant/getOne/";
-
+	//°æ±¾¸üÐÂ
+	public static final String URL_GET_VERSION = PATHS+"index/getVersion";
+	
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
