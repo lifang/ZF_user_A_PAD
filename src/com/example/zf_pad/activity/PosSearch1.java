@@ -143,9 +143,9 @@ public class PosSearch1 extends BaseActivity implements OnEditorActionListener {
 				
 			}
 		});
+	
 		getData();
 	}
-
 	private void init() {
 		if (poiStr == "" || poiStr == null) {	
 
@@ -155,12 +155,9 @@ public class PosSearch1 extends BaseActivity implements OnEditorActionListener {
 			if (poiStr.contains(",")) {
 				String[] serach = poiStr.split(",");
 				for (int i = (serach.length - 1); i >= 0; i--) {
-
 					data.add(serach[i]);
 					a++;
-				}
-				
-
+				}				
 			} else {
 				data.add(poiStr);
 		

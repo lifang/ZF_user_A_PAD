@@ -51,23 +51,26 @@ public class OrderDetail_PosAdapter extends BaseAdapter{
  		holder.btn_ishow = (Button) convertView.findViewById(R.id.btn_ishow);		 
  		holder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
  		holder.tv_x = (TextView) convertView.findViewById(R.id.tv_x);
+ 		holder.tv_brand=(TextView)convertView.findViewById(R.id.content2);
+ 		holder.tv_td=(TextView)convertView.findViewById(R.id.tv_td);
  		holder.im=(ImageView)convertView.findViewById(R.id.evevt_img);
 			convertView.setTag(holder);
  		}else{
  		holder = (ViewHolder)convertView.getTag();
  	}
- 
+ 			holder.tv_brand.setText(list.get(position).getGood_brand());
+ 			holder.tv_td.setText(list.get(position).getGood_channel());
   		 	holder.content.setText(list.get(position).getGood_name());
   		 	holder.tv_price .setText("гд "+((double)Integer.valueOf(list.get(position).getGood_actualprice()))/100);
   			holder.tv_x .setText("X "+list.get(position).getGood_num()+"");
 			holder.btn_ishow.setVisibility(state==3?View.GONE:View.GONE);
 			 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getGood_logo(), holder.im);
-		
+			 
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView content,tv_price,tv_x;
+		public TextView content,tv_price,tv_x,tv_brand,tv_td;
 		public Button btn_ishow;
 		public ImageView im;
 	}
