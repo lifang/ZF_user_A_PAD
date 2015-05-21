@@ -106,11 +106,11 @@ public class SystemMessage extends Activity implements  IXListViewListener{
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					try {
+					/*try {
 						myList.get(position).getId();
 					} catch (Exception e) {
 						flag = false;
-					}
+					}*/
 					if (flag) {
 						Intent i = new Intent(SystemMessage.this, MymsgDetail.class);
 	 					i.putExtra("id", myList.get(position - 1).getId());

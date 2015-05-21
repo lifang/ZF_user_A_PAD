@@ -1,13 +1,14 @@
 package com.example.zf_pad;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.entity.ApplyneedEntity;
 import com.example.zf_pad.entity.ChanelEntitiy;
@@ -17,6 +18,8 @@ import com.example.zf_pad.entity.PortSon;
 import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.other_rate;
 import com.example.zf_pad.entity.tDates;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.common.HttpRequest;
 import com.example.zf_pad.trade.entity.City;
 
 public class Config {
@@ -25,8 +28,8 @@ public class Config {
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
-	//public final static String PATHS = "http://121.40.84.2:8180/ZFMerchant/api/";
-	public final static String PATHS = "http://121.40.64.167:8080/api/";
+	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+	//public final static String PATHS = "http://121.40.64.167:8080/api/";
 
 	//视频通话
 	//public static final String VIDEO_SERVER_IP = "121.40.84.2";
@@ -55,7 +58,7 @@ public class Config {
 	//支付成功跳转页面
 	//public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
 	public static final String RETURN_URL = "http://121.40.64.167:8080/ZFMerchant/return_url.jsp"; 
-	
+	public static final String GOODPICLIST = PATHS + "/good/getGoodImgUrl";
 	public static int countShopCar = 0;//新添加购物车的数量
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
@@ -132,6 +135,7 @@ public class Config {
 	public static String suportcl;
 	public static String tv_sqkt;
 	public static int goodId;
+	public static int gid;
 	public static String commentsCount;
 	public static String CITY = "上海";
 	public static boolean iszl = false;
@@ -143,6 +147,7 @@ public class Config {
 	public static PortSon myson;
 	public static int portindex=-1;
 	public static int lx;
+	public static String  apply;
 	public static boolean ismer=false;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
@@ -165,5 +170,12 @@ public class Config {
 		}
 
 	}
-
+	public static void GOODPICLIST(Context context, int goodId,
+			HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("goodId", goodId);
+		System.out.println("参数--" + params.toString());
+		// new HttpRequest(context, callback).post(Config.SHOPORDER, params);
+		new HttpRequest(context, callback).post(Config.GOODPICLIST, params);
+	}
 }

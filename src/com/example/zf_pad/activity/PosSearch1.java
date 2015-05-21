@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -142,9 +141,9 @@ public class PosSearch1 extends Activity implements OnEditorActionListener {
 				
 			}
 		});
+	
 		getData();
 	}
-
 	private void init() {
 		if (poiStr == "" || poiStr == null) {	
 
@@ -154,12 +153,9 @@ public class PosSearch1 extends Activity implements OnEditorActionListener {
 			if (poiStr.contains(",")) {
 				String[] serach = poiStr.split(",");
 				for (int i = (serach.length - 1); i >= 0; i--) {
-
 					data.add(serach[i]);
 					a++;
-				}
-				
-
+				}				
 			} else {
 				data.add(poiStr);
 		

@@ -166,6 +166,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private Intent i;
 	private LinearLayout ll_Factory;
 	private TextView tv_pl;
+	private LinearLayout ll_sc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +181,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	}
 
 	private void innitView() {
-
+	
 		setting_btn_clear = (Button) findViewById(R.id.setting_btn_clear);
 		setting_btn_clear.setOnClickListener(this);
 		setting_btn_clear1 = (Button) findViewById(R.id.setting_btn_clear1);
@@ -198,7 +199,13 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		float density = dm.density;
 		linearParams.height = (int) (Config.ScreenHeight - density*180);
+		
 		rl_imgs.setLayoutParams(linearParams);
+/*	ll_sc = (LinearLayout)findViewById(R.id.ll_sc);
+		LinearLayout.LayoutParams linearParams1 = (LinearLayout.LayoutParams) ll_sc
+				.getLayoutParams();
+		linearParams1.height = (int) (Config.ScreenHeight - density*50);
+		ll_sc.setLayoutParams(linearParams1);*/
 		view_pager = (ViewPager) findViewById(R.id.view_pager);
 		inflater = LayoutInflater.from(this);
 		adapter = new MyAdapter(list);
@@ -570,6 +577,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 										} else {
 											Config.suportcl = "²»Ö§³Ö";
 										}
+										Config.apply=jsonobject.getString("opening_datum");
 										opening_cost = jsonobject.getInt("opening_cost");
 										tdname = jsonobject.getString("name");
 										

@@ -81,7 +81,7 @@
                                 android:ellipsize="end"
                                 android:gravity="bottom"
                                 android:maxLines="1"
-                                android:text="支付宝"
+                             	android:id="@+id/tv_td"
                                 android:textColor="@color/text292929"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -124,7 +124,7 @@
                                 android:ellipsize="end"
                                 android:gravity="bottom"
                                 android:maxLines="1"
-                                android:text="泰山TS900"
+                                
                                 android:textColor="@color/text292929"
                                 android:textSize="18sp" />
                         </LinearLayout>

@@ -5,14 +5,11 @@
     android:background="#F8F8F8"
     android:id="@+id/main"
     android:orientation="vertical" >
-<ScrollView 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-android:fillViewport="true"
->
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -60,11 +57,16 @@ android:fillViewport="true"
                 android:paddingRight="7dp"
                 android:src="@drawable/car22" />
         </LinearLayout>
-
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+android:fillViewport="true"
+android:scrollbars="none"
+>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 
                 android:orientation="vertical" >
 
@@ -106,8 +108,9 @@ android:fillViewport="true"
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_sc"
                         android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
@@ -120,6 +123,7 @@ android:fillViewport="true"
                             android:layout_marginTop="18dp"
                             android:ellipsize="end"
                             android:text=""
+                             android:textStyle="bold"
                             android:textColor="#292929"
                             android:textSize="@dimen/textbig" />
 
@@ -286,10 +290,10 @@ android:fillViewport="true"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginLeft="7dp"
-                                    android:layout_marginRight="@dimen/margin_left2"
+                                    android:layout_marginRight="@dimen/ddrl_width"
                                     
                                     android:horizontalSpacing="10dip"
-                                    android:numColumns="3"
+                                    android:numColumns="2"
                                     android:stretchMode="columnWidth"
                                     android:verticalSpacing="5dip" >
                                 </com.example.zf_pad.util.ScrollViewWithGView>
@@ -481,9 +485,23 @@ android:fillViewport="true"
                      <View 
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                   android:layout_alignTop="@+id/ll_buttom"
+                  
                     android:background="#E3E2E2"/>
-     <LinearLayout
+     
+</RelativeLayout>
+               </ScrollView>
+            
+    </LinearLayout>
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"  />
+      <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                  
+                    android:background="#E3E2E2"/>
+<LinearLayout
          android:id="@+id/ll_buttom"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/titilepad1"
@@ -563,13 +581,5 @@ android:fillViewport="true"
                         android:textColor="#292929"
                         android:textSize="@dimen/textmid" />
                 </LinearLayout>
-</RelativeLayout>
-               
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-</RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+                 
 </LinearLayout>

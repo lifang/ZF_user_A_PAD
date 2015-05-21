@@ -137,6 +137,22 @@
             android:text="交易费率说明"
             android:textColor="#292929"
             android:textSize="18sp" />
+                    <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#DAD8D8" />
+
+            <TextView
+                android:id="@+id/tv_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="商品图片"
+                android:textColor="#292929"
+                android:textSize="18sp" />
     </LinearLayout>
 
     <View
