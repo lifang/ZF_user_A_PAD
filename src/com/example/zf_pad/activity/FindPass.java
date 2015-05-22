@@ -7,6 +7,8 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -38,7 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FindPass extends Activity implements OnClickListener{
+public class FindPass extends BaseActivity implements OnClickListener{
 	private TextView tv_code, tv_check;
 	private EditText login_edit_email, login_edit_code, login_edit_pass,
 			login_edit_pass2;

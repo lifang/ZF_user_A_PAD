@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.TradeDetail;
@@ -23,7 +24,7 @@ import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeDetailActivity extends Activity {
+public class TradeDetailActivity extends BaseActivity {
 
     private LinearLayout mCommercialKeyContainer;
     private LinearLayout mCommercialValueContainer;
@@ -75,7 +76,7 @@ public class TradeDetailActivity extends Activity {
                             : "");
                     mCommercialValueContainer.addView(value);
                 }
-                if (typeId == 2 || typeId == 3){ // ×ªÕË ¡£»¹¿î 
+                if (typeId == 2 || typeId == 3){ // è½¬é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹· 
 					bankKeys = resources.getStringArray(R.array.trade_item_bank_transfer);
 					for (int i = 0; i < bankKeys.length; i++) {
 						TextView value = new TextView(TradeDetailActivity.this);
@@ -83,20 +84,20 @@ public class TradeDetailActivity extends Activity {
 						value.setPadding(0, 5, 0, 5);
 						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
 						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-						value.setText(i == 0 ? data.getTerminalNumber()//ÖÕ ¶Ë ºÅ
-								: i == 1 ? StringUtil.replaceNum(data.getPayFromAccount())//¸¶¿îÕËºÅ
-								: i == 2 ? StringUtil.replaceNum(data.getPayIntoAccount())//×ªÈëÕËºÅ||ÊÕ¿îÕËºÅ£¿
-								: i == 3 ? data.getPayChannelName()//Ö§¸¶Í¨µÀ
-								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//½»Ò×½ð¶î
-								: i == 5 ? data.getTradedTimeStr()//½»Ò×Ê±¼ä
-								: i == 6 ? tradeStatuses[data.getTradedStatus()]//½»Ò××´Ì¬
-								: i == 7 ? data.getBatchNumber()//½»Ò×Åú´ÎºÅ
-								: i == 8 ? data.getTradeNumber()//½»Ò×Á÷Ë®ºÅ
+						value.setText(i == 0 ? data.getTerminalNumber()//é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·
+								: i == 1 ? StringUtil.replaceNum(data.getPayFromAccount())//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå‰¿çŒ´æ‹·
+								: i == 2 ? StringUtil.replaceNum(data.getPayIntoAccount())//è½¬é”Ÿæ–¤æ‹·é”Ÿå‰¿çŒ´æ‹·||é”Ÿç§¸åŒ¡æ‹·é”Ÿå‰¿å·ï½æ‹·
+								: i == 3 ? data.getPayChannelName()//æ”¯é”Ÿæ–¤æ‹·é€šé”Ÿæ–¤æ‹·
+								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//é”Ÿæ–¤æ‹·é”Ÿé˜¶æ–¤æ‹·é”Ÿï¿½
+								: i == 5 ? data.getTradedTimeStr()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·
+								: i == 6 ? tradeStatuses[data.getTradedStatus()]//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·çŠ¶æ€
+								: i == 7 ? data.getBatchNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ´æ‹·
+								: i == 8 ? data.getTradeNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ°´é”Ÿæ–¤æ‹·
 								: "");
 						mBankValueContainer.addView(value);
 					}
 
-				}else if (typeId == 1) {//Ïû·Ñ
+				}else if (typeId == 1) {//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 					bankKeys = resources.getStringArray(R.array.trade_item_bank_consume);
 					for (int i = 0; i < bankKeys.length; i++) {
 						TextView value = new TextView(TradeDetailActivity.this);
@@ -104,18 +105,18 @@ public class TradeDetailActivity extends Activity {
 						value.setPadding(0, 5, 0, 5);
 						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
 						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-						value.setText(i == 0 ? data.getTerminalNumber()//ÖÕ ¶Ë ºÅ
-								: i == 1 ? getString(R.string.notation_yuan) + df.format(data.getPoundage()*1.0f/100)//ÊÖÐø·Ñ
-								: i == 2 ? data.getPayChannelName()//Ö§¸¶Í¨µÀ
-								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//½»Ò×½ð¶î
-								: i == 4 ? data.getTradedTimeStr()//½»Ò×Ê±¼ä
-								: i == 5 ? tradeStatuses[data.getTradedStatus()]//½»Ò××´Ì¬
-								: i == 6 ? data.getBatchNumber()//½»Ò×Åú´ÎºÅ
-								: i == 7 ? data.getTradeNumber()//½»Ò×Á÷Ë®ºÅ
+						value.setText(i == 0 ? data.getTerminalNumber()//é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·
+								: i == 1 ? getString(R.string.notation_yuan) + df.format(data.getPoundage()*1.0f/100)//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+								: i == 2 ? data.getPayChannelName()//æ”¯é”Ÿæ–¤æ‹·é€šé”Ÿæ–¤æ‹·
+								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//é”Ÿæ–¤æ‹·é”Ÿé˜¶æ–¤æ‹·é”Ÿï¿½
+								: i == 4 ? data.getTradedTimeStr()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·
+								: i == 5 ? tradeStatuses[data.getTradedStatus()]//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·çŠ¶æ€
+								: i == 6 ? data.getBatchNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ´æ‹·
+								: i == 7 ? data.getTradeNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ°´é”Ÿæ–¤æ‹·
 								: "");
 						mBankValueContainer.addView(value);
 					}
-				}else if (typeId == 5) {//Éú»î³äÖµ
+				}else if (typeId == 5) {//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—ï¿½
 					bankKeys = resources.getStringArray(R.array.trade_item_bank_life_pay);
 					for (int i = 0; i < bankKeys.length; i++) {
 						TextView value = new TextView(TradeDetailActivity.this);
@@ -123,19 +124,19 @@ public class TradeDetailActivity extends Activity {
 						value.setPadding(0, 5, 0, 5);
 						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
 						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-						value.setText(i == 0 ? data.getTerminalNumber()//ÖÕ ¶Ë ºÅ
-								: i == 1 ? StringUtil.replaceName(data.getAccount_name())//ÕË»§Ãû
-								: i == 2 ? StringUtil.replaceNum(data.getAccount_number())//ÕË»§ºÅÂë
-								: i == 3 ? data.getPayChannelName()//Ö§¸¶Í¨µÀ
-								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//½»Ò×½ð¶î
-								: i == 5 ? data.getTradedTimeStr()//½»Ò×Ê±¼ä
-								: i == 6 ? tradeStatuses[data.getTradedStatus()]//½»Ò××´Ì¬
-								: i == 7 ? data.getBatchNumber()//½»Ò×Åú´ÎºÅ
-								: i == 8 ? data.getTradeNumber()//½»Ò×Á÷Ë®ºÅ
+						value.setText(i == 0 ? data.getTerminalNumber()//é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·
+								: i == 1 ? StringUtil.replaceName(data.getAccount_name())//é”Ÿå‰¿ä¼™æ‹·é”Ÿæ–¤æ‹·
+								: i == 2 ? StringUtil.replaceNum(data.getAccount_number())//é”Ÿå‰¿ä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+								: i == 3 ? data.getPayChannelName()//æ”¯é”Ÿæ–¤æ‹·é€šé”Ÿæ–¤æ‹·
+								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//é”Ÿæ–¤æ‹·é”Ÿé˜¶æ–¤æ‹·é”Ÿï¿½
+								: i == 5 ? data.getTradedTimeStr()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·
+								: i == 6 ? tradeStatuses[data.getTradedStatus()]//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·çŠ¶æ€
+								: i == 7 ? data.getBatchNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ´æ‹·
+								: i == 8 ? data.getTradeNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ°´é”Ÿæ–¤æ‹·
 								: "");
 						mBankValueContainer.addView(value);
 					}
-				}else if (typeId == 4) {//»°·Ñ³äÖµ
+				}else if (typeId == 4) {//é”Ÿæ–¤æ‹·é”Ÿçª–ç­¹æ‹·å€¼
 					bankKeys = resources.getStringArray(R.array.trade_item_bank_phone_pay);
 					for (int i = 0; i < bankKeys.length; i++) {
 						TextView value = new TextView(TradeDetailActivity.this);
@@ -143,14 +144,14 @@ public class TradeDetailActivity extends Activity {
 						value.setPadding(0, 5, 0, 5);
 						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
 						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-						value.setText(i == 0 ? data.getTerminalNumber()//ÖÕ ¶Ë ºÅ
-								: i == 1 ? StringUtil.replaceNum(data.getPhone())//ÊÖ»úºÅÂë
-								: i == 2 ? data.getPayChannelName()//Ö§¸¶Í¨µÀ
-								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//½»Ò×½ð¶î
-								: i == 4 ? data.getTradedTimeStr()//½»Ò×Ê±¼ä
-								: i == 5 ? tradeStatuses[data.getTradedStatus()]//½»Ò××´Ì¬
-								: i == 6 ? data.getBatchNumber()//½»Ò×Åú´ÎºÅ
-								: i == 7 ? data.getTradeNumber()//½»Ò×Á÷Ë®ºÅ
+						value.setText(i == 0 ? data.getTerminalNumber()//é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·
+								: i == 1 ? StringUtil.replaceNum(data.getPhone())//é”Ÿè¡—ä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+								: i == 2 ? data.getPayChannelName()//æ”¯é”Ÿæ–¤æ‹·é€šé”Ÿæ–¤æ‹·
+								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//é”Ÿæ–¤æ‹·é”Ÿé˜¶æ–¤æ‹·é”Ÿï¿½
+								: i == 4 ? data.getTradedTimeStr()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·
+								: i == 5 ? tradeStatuses[data.getTradedStatus()]//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·çŠ¶æ€
+								: i == 6 ? data.getBatchNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ´æ‹·
+								: i == 7 ? data.getTradeNumber()//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ°´é”Ÿæ–¤æ‹·
 								: "");
 						mBankValueContainer.addView(value);
 					}
@@ -209,13 +210,13 @@ public class TradeDetailActivity extends Activity {
             mCommercialKeyContainer.addView(key);
         }
 
-    	if (typeId == 2 || typeId == 3){ // ×ªÕË ¡£»¹¿î 
+    	if (typeId == 2 || typeId == 3){  // è½¬è´¦ ã€‚è¿˜æ¬¾ 
 			bankKeys = resources.getStringArray(R.array.trade_item_bank_transfer);
-		}else if (typeId == 1) {//Ïû·Ñ
+		}else if (typeId == 1) {//æ¶ˆè´¹
 			bankKeys = resources.getStringArray(R.array.trade_item_bank_consume);
-		}else if (typeId == 5) {//Éú»î³äÖµ
+		}else if (typeId == 5) {//ç”Ÿæ´»å……å€¼
 			bankKeys = resources.getStringArray(R.array.trade_item_bank_life_pay);
-		}else if (typeId == 4) {//»°·Ñ³äÖµ
+		}else if (typeId == 4) {//è¯è´¹å……å€¼
 			bankKeys = resources.getStringArray(R.array.trade_item_bank_phone_pay);
 		}
 		for (int i = 0; i < bankKeys.length; i++) {

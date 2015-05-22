@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -38,7 +39,7 @@ import com.loopj.android.http.RequestParams;
 
 
 
-public class SystemMessage extends Activity implements  IXListViewListener{
+public class SystemMessage extends BaseActivity implements  IXListViewListener{
 	private XListView Xlistview;
 	private int page=1;
 	private int rows=Config.ROWS;

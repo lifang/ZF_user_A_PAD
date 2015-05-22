@@ -1,6 +1,5 @@
 package com.example.zf_pad.video;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +21,7 @@ import android.widget.Toast;
 import com.bairuitech.anychat.AnyChatBaseEvent;
 import com.bairuitech.anychat.AnyChatCoreSDK;
 import com.bairuitech.anychat.AnyChatDefine;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -30,7 +30,7 @@ import com.example.zf_pad.trade.API;
 import com.example.zf_pad.video.config.ConfigEntity;
 import com.example.zf_pad.video.config.ConfigService;
 
-public class VideoActivity extends Activity implements AnyChatBaseEvent {
+public class VideoActivity extends BaseActivity implements AnyChatBaseEvent {
 
 	private static final String TAG = VideoActivity.class.getName();
 
@@ -78,7 +78,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 		mSPort = Config.VIDEO_SERVER_PORT;
 		InitSDK();
 		InitLayout();
-
+		
 		// 初始化登陆配置数据
 		ApplyVideoConfig();
 		// 注册广播

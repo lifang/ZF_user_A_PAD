@@ -29,6 +29,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalApply;
@@ -45,7 +46,7 @@ import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
 @SuppressLint("NewApi")
-public class TerminalManagerDetailActivity extends Activity {
+public class TerminalManagerDetailActivity extends BaseActivity {
 
 	private int mTerminalStatus;
 	private String mTerminalNumber;

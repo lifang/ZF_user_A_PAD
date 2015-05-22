@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -20,7 +21,7 @@ import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
 
-public class AfterSaleMarkActivity extends Activity {
+public class AfterSaleMarkActivity extends BaseActivity {
 
 	private int mRecordType;
 	private int mRecordId;

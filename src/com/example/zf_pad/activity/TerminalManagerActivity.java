@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
@@ -42,7 +43,7 @@ import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
-public class TerminalManagerActivity extends Activity implements
+public class TerminalManagerActivity extends BaseActivity implements
 		XListView.IXListViewListener {
 
 	private LinearLayout titleback_linear_back;

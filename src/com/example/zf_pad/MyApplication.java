@@ -44,7 +44,7 @@ public class MyApplication extends Application{
 	public Boolean isLogin=false;
 	//private ArrayList<Order> orderList = new ArrayList<Order>();
 	/**
-	 * ÑéÖ¤ĞÅÏ¢token
+	 * éªŒè¯ä¿¡æ¯token
 	 */
 	private static  String versionCode="";
 	private static int notifyId=0;
@@ -90,7 +90,7 @@ public class MyApplication extends Application{
 	
 	public AsyncHttpClient getClient() {
 		//client.setTimeout(6000);
-		client.setTimeout(10000);// ÉèÖÃ³¬Ê±Ê±¼ä
+		client.setTimeout(10000);// è®¾ç½®è¶…æ—¶æ—¶é—´
     	client.setMaxConnections(10);
 		return client;
 	}
@@ -106,16 +106,16 @@ public class MyApplication extends Application{
 	
 
 	/**
-	 * ´æ´¢µ±Ç°ÓÃ»§¶ÔÏóĞÅÏ¢,ĞèÔÚwelcome³õÊ¼»¯ÓÃ»§ĞÅÏ¢
+	 * å­˜å‚¨å½“å‰ç”¨æˆ·å¯¹è±¡ä¿¡æ¯,éœ€åœ¨welcomeåˆå§‹åŒ–ç”¨æˆ·ä¿¡æ¯
 	 */
 
-	//ÔËÓÃlistÀ´±£´æÃÇÃ¿Ò»¸öactivityÊÇ¹Ø¼ü   
+	//è¿ç”¨listæ¥ä¿å­˜ä»¬æ¯ä¸€ä¸ªactivityæ˜¯å…³é”®  
     private List<Activity> mList = new LinkedList<Activity>();   
  // add Activity     
     public void addActivity(Activity activity) {    
         mList.add(activity);    
     }    
-    //¹Ø±ÕÃ¿Ò»¸ölistÄÚµÄactivity   
+  //å…³é—­æ¯ä¸€ä¸ªlistå†…çš„activity    
     public void exit() {    
         try {    
             for (Activity activity:mList) {    
@@ -152,7 +152,7 @@ public class MyApplication extends Application{
 //		initImageLoader(getApplicationContext());
 //		SDKInitializer.initialize(this);
 //		  PackageManager packageManager = getPackageManager();
-//          // getPackageName()ÊÇÄãµ±Ç°ÀàµÄ°üÃû£¬0´ú±íÊÇ»ñÈ¡°æ±¾ĞÅÏ¢
+//          // getPackageName()é”Ÿæ–¤æ‹·é”Ÿå§å½“å‰é”Ÿæ–¤æ‹·é™Œé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½0é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ä¼™æ‹·å–é”ŸèŠ¥æœ¬é”Ÿæ–¤æ‹·æ¯
 //          PackageInfo packInfo;
 //		try {
 //			packInfo = packageManager.getPackageInfo(getPackageName(),0);
@@ -207,7 +207,7 @@ public class MyApplication extends Application{
 //			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
 //				sb.append("\naddr : ");
 //				sb.append(location.getAddrStr());
-//				//ÔËÓªÉÌĞÅÏ¢
+//				//é”Ÿæ–¤æ‹·è¥é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ¯
 //				sb.append("\noperationers : ");
 //				sb.append(location.getOperators());
 //			}
@@ -225,7 +225,7 @@ public class MyApplication extends Application{
 			 for(City cc:mCities ){
 				 if(location.getCity()!=null&&!location.getCity().equals("")){
 					 if(cc.getName().endsWith(location.getCity())){
-						 System.out.println("µ±Ç°³ÇÊĞ ID----"+cc.getId());
+						 System.out.println("å½“å‰åŸå¸‚ ID----"+cc.getId());
 						 setCITYID(cc.getId());
 						 
 					 }
@@ -237,7 +237,7 @@ public class MyApplication extends Application{
 	}
 	}
 	/**
-	 * ÏÔÊ¾ÇëÇó×Ö·û´®
+	 * æ˜¾ç¤ºè¯·æ±‚å­—ç¬¦ä¸²
 	 * @param str
 	 */
 	public void logMsg(String str) {
@@ -249,7 +249,7 @@ public class MyApplication extends Application{
 			e.printStackTrace();
 		}
 	}
-	//Òş²ØÈí¼üÅÌ
+	//éšè—è½¯é”®ç›˜
 	public static void hideSoftKeyboard(Activity activity){
 		View view = activity.getWindow().peekDecorView(); 
 		if (view != null) {
@@ -257,4 +257,37 @@ public class MyApplication extends Application{
 			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
 	}
+	
+	private boolean hasOrderPaid;
+
+	public boolean isHasOrderPaid() {
+		return hasOrderPaid;
+	}
+
+	public void setHasOrderPaid(boolean hasOrderPaid) {
+		this.hasOrderPaid = hasOrderPaid;
+	}
+	private ArrayList<Context> historyList = new ArrayList<Context>();
+
+	public ArrayList<Context> getHistoryList() {
+		return historyList;
+	}
+
+	public void setHistoryList(ArrayList<Context> historyList) {
+		this.historyList = historyList;
+	}
+	
+	public void clearHistoryForPay(){
+		try {
+			for (Context activity : historyList) {
+				if (activity != null)
+					((Activity)activity).finish();
+			}
+			historyList.clear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

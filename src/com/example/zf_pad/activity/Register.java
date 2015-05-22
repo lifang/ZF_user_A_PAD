@@ -1,4 +1,5 @@
 package com.example.zf_pad.activity;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.API;
@@ -27,7 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Register extends Activity implements OnClickListener {
+public class Register extends BaseActivity implements OnClickListener {
 	private TextView tv_code, tv_check, tv_jy_type;
 	private EditText login_edit_email, login_edit_code, login_edit_pass,
 			login_edit_pass2;

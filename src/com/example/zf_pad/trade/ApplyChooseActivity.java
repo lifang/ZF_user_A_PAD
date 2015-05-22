@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -29,7 +30,7 @@ import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
-public class ApplyChooseActivity extends Activity {
+public class ApplyChooseActivity extends BaseActivity {
 
 	private int page = 0;
 	private int total = 0;

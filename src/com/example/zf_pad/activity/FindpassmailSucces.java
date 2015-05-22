@@ -1,5 +1,6 @@
 package com.example.zf_pad.activity;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 
 import android.app.Activity;
@@ -10,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class FindpassmailSucces extends Activity {
+public class FindpassmailSucces extends BaseActivity {
 	private String type="";
 	private String value="";
 	private LinearLayout ll_mail;

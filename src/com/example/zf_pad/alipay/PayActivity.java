@@ -12,9 +12,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 
-public abstract class PayActivity extends Activity {
+public abstract class PayActivity extends BaseActivity {
 
 	private static final int SDK_PAY_FLAG = 1;
 

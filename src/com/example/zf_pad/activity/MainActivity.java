@@ -4,6 +4,53 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
 import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.aadpter.ShopcarAdapter;
+import com.example.zf_pad.entity.PicEntity;
+import com.example.zf_pad.entity.PostPortEntity;
+import com.example.zf_pad.entity.UserEntity;
+import com.example.zf_pad.fragment.M_MianFragment;
+import com.example.zf_pad.fragment.M_my;
+import com.example.zf_pad.fragment.M_shopcar;
+import com.example.zf_pad.fragment.M_wdxx;
+import com.example.zf_pad.popwindow.SetPopWindow;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.AfterSaleDetailActivity;
+import com.example.zf_pad.trade.ApplyListActivity;
+import com.example.zf_pad.trade.CitySelectActivity;
+import com.example.zf_pad.trade.MyApplyDetail;
+import com.example.zf_pad.trade.TradeFlowActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.ImageCacheUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.umeng.analytics.MobclickAgent;
+
+import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -89,7 +136,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		
 		if (Config.isFirstCreateMain == true) {
 			Config.isFirstCreateMain = false;
-			//°Ù¶ÈÍÆËÍ
+			//ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½
 			PushManager.startWork(getApplicationContext(),
 					PushConstants.LOGIN_TYPE_API_KEY,
 					Utils.getMetaValue(MainActivity.this, "api_key"));
@@ -148,10 +195,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		set = (LinearLayout) findViewById(R.id.set);
 		set.setOnClickListener(this);
-	}
-	@Override
-	protected void onPause() {
-		super.onPause();
 	}
 	@Override
 	public void onClick(View view) {
@@ -239,7 +282,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			}
 
 			// else{
-			// Toast.makeText(getApplication(), "ÇëÏÈµÇÂ½", 1000).show();
+			// Toast.makeText(getApplication(), "ï¿½ï¿½ï¿½Èµï¿½Â½", 1000).show();
 			// }
 			break;
 		case R.id.set:
@@ -335,6 +378,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();	
+		MobclickAgent.onResume(this);
 		if(Config.ismer){
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
@@ -402,7 +446,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		super.onStop();
 		Config.shopcar = false;
 	}
-	// ·µ»Ø¼ü  
+	// ï¿½ï¿½ï¿½Ø¼ï¿½  
 	private long exitTime = 0;  
 	@Override  
 	public boolean onKeyDown(int keyCode, KeyEvent event) {  
@@ -443,4 +487,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}  
 		return true;  
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+    
 }

@@ -8,6 +8,7 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.LEASE;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
@@ -25,7 +26,7 @@ import android.webkit.WebViewClient;
 /**
  * Created by Leo on 2015/3/2.
  */
-public class AfterSaleMaterialActivity extends Activity {
+public class AfterSaleMaterialActivity extends BaseActivity {
 
 	private int mRecordType;
 	private String mUrl;

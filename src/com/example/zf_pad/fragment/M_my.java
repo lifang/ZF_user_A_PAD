@@ -2,6 +2,7 @@ package com.example.zf_pad.fragment;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,14 +38,15 @@ public class M_my extends Fragment implements OnClickListener {
 	private Mine_chgpaw m_chgpaw;
 	private Mine_Address m_address;
 	private Mine_score m_score;
-	private ImageView im1,im2,im3,im4,im5;
+	private ImageView im1, im2, im3, im4, im5;
 	private TextView tvdd;
 	private TextView tvshjv;
 	private TextView tvwdxx;
 	private TextView tvwdsh;
 	private TextView tvsq;
-    private Message msg;
-    public static boolean isHidden=false;
+	private Message msg;
+	public static boolean isHidden = false;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -57,7 +59,7 @@ public class M_my extends Fragment implements OnClickListener {
 
 		// view = inflater.inflate(R.layout.f_mine, container,false);
 		// initView();
-		
+
 		if (view != null) {
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
@@ -66,7 +68,7 @@ public class M_my extends Fragment implements OnClickListener {
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine, container, false);
-			
+
 			initView();
 		} catch (InflateException e) {
 
@@ -77,17 +79,17 @@ public class M_my extends Fragment implements OnClickListener {
 
 	@Override
 	public void onStart() {
-		
+
 		super.onStart();
-		
+
 		switch (Config.MyTab) {
-		
+
 		case 0:
 			setback();
 			im1.setVisibility(View.VISIBLE);
 			tvdd.setTextColor(getResources().getColor(R.color.o));
-			if(m_dd==null)
-			m_dd = new Mine_Dd();
+			if (m_dd == null)
+				m_dd = new Mine_Dd();
 
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_dd).commit();
@@ -115,17 +117,13 @@ public class M_my extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
-		
+
 	}
-@Override
-public void onPause() {
-	// TODO Auto-generated method stub
-	super.onPause();
-}
+
 	private void initView() {
-		if(Mine_Dd.myHandler!=null){
-		msg=Mine_Dd.myHandler.obtainMessage();
-		msg.what=1023;
+		if (Mine_Dd.myHandler != null) {
+			msg = Mine_Dd.myHandler.obtainMessage();
+			msg.what = 1023;
 		}
 		ll_dd = (RelativeLayout) view.findViewById(R.id.ll_dd);
 		ll_shjl = (RelativeLayout) view.findViewById(R.id.ll_shjl);
@@ -180,7 +178,7 @@ public void onPause() {
 			setback();
 			im1.setVisibility(View.VISIBLE);
 			tvdd.setTextColor(getResources().getColor(R.color.o));
-			Config.MyTab=0;
+			Config.MyTab = 0;
 			break;
 		case R.id.ll_shjl:
 			// if (m_shjl == null)
@@ -191,13 +189,13 @@ public void onPause() {
 			setback();
 			im2.setVisibility(View.VISIBLE);
 			tvshjv.setTextColor(getResources().getColor(R.color.o));
-			if(!isHidden)
+			if (!isHidden)
 				msg.sendToTarget();
-			Config.MyTab=1;
+			Config.MyTab = 1;
 			break;
-			
+
 		case R.id.ll_myinfo:
-			if(Mine_MyInfo.mRecordType!=0){
+			if (Mine_MyInfo.mRecordType != 0) {
 				return;
 			}
 			if (m_info == null)
@@ -207,10 +205,10 @@ public void onPause() {
 			setback();
 			im3.setVisibility(View.VISIBLE);
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));
-			if(!isHidden){
-				msg.sendToTarget();	
+			if (!isHidden) {
+				msg.sendToTarget();
 			}
-			Config.MyTab=2;
+			Config.MyTab = 2;
 			break;
 		case R.id.ll_mysh:
 			// if (m_sh == null)
@@ -221,9 +219,9 @@ public void onPause() {
 			setback();
 			im4.setVisibility(View.VISIBLE);
 			tvwdsh.setTextColor(getResources().getColor(R.color.o));
-			if(!isHidden)
-			msg.sendToTarget();
-			Config.MyTab=3;
+			if (!isHidden)
+				msg.sendToTarget();
+			Config.MyTab = 3;
 			break;
 		case R.id.ll_plan:
 			// if (m_plan == null)
@@ -235,9 +233,9 @@ public void onPause() {
 			setback();
 			im5.setVisibility(View.VISIBLE);
 			tvsq.setTextColor(getResources().getColor(R.color.o));
-			if(!isHidden)
-			msg.sendToTarget();
-			Config.MyTab=4;
+			if (!isHidden)
+				msg.sendToTarget();
+			Config.MyTab = 4;
 			break;
 		default:
 			break;
@@ -268,15 +266,17 @@ public void onPause() {
 
 		super.onDestroyView();
 	}
-@Override
-public void onAttach(Activity activity) {
-	super.onAttach(activity);
-}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+	}
+
 	@Override
 	public void onResume() {
-		
+
 		super.onResume();
-		
+
 		if (Config.AderssManger) {
 			if (m_info == null)
 				m_info = new Mine_MyInfo();
@@ -287,7 +287,14 @@ public void onAttach(Activity activity) {
 			im3.setVisibility(View.VISIBLE);
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));
 		}
+		MobclickAgent.onPageStart(this.toString());
+	}
 
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		MobclickAgent.onPageEnd(this.toString());
 	}
 
 }

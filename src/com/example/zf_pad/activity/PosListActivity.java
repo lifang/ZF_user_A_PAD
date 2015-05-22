@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -52,7 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class PosListActivity extends Activity implements OnClickListener,IXListViewListener{
+public class PosListActivity extends BaseActivity implements OnClickListener,IXListViewListener{
 	private ImageView pos_select,search2,img3;	
 	private Parcelable listState;
 	private XListView Xlistview;

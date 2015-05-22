@@ -432,4 +432,3 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		public TextView tvAmount;
 	}
 }
-

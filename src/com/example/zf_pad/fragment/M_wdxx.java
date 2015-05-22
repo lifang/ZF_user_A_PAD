@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -67,7 +68,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 	private List<MessageEntity> selList = new ArrayList<MessageEntity>();
 	private String ids[] = new String[] {};
 	private boolean isFrist;
-	
+
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -105,7 +106,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		isFrist=true;
+		isFrist = true;
 		loadingDialog = DialogUtil.getLoadingDialg(getActivity());
 	}
 
@@ -157,7 +158,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 
 			}
 		});
-		myAdapter = new MessageAdapter(mActivity, myList,ckall);
+		myAdapter = new MessageAdapter(mActivity, myList, ckall);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("已经没有数据了");
@@ -180,7 +181,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 		bt_bj.setOnClickListener(this);
 		bt_del = (Button) view.findViewById(R.id.bt_del);
 		bt_del.setOnClickListener(this);
-		
+
 	}
 
 	@Override
@@ -293,7 +294,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (type == 2) {
+		} else if (type == 2) {
 			Url = Config.MSGREAD;
 			try {
 				params.put("ids", new JSONArray(gson.toJson(ids)));
@@ -308,13 +309,15 @@ public class M_wdxx extends Fragment implements OnClickListener,
 					@Override
 					public void onStart() {
 						loadingDialog.show();
-						super.onStart();	
+						super.onStart();
 					}
+
 					@Override
 					public void onFinish() {
 						loadingDialog.dismiss();
 						super.onFinish();
 					}
+
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
@@ -334,7 +337,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 
 							} else if (code == 1) {
 								if (type == 0) {
-									
+
 									System.out.println("`res``" + res);
 									jsonobject = new JSONObject(res);
 									moreList.clear();
@@ -343,7 +346,8 @@ public class M_wdxx extends Fragment implements OnClickListener,
 											new TypeToken<List<MessageEntity>>() {
 											}.getType());
 
-									if (moreList.size() == 0&&myList.size()!=0) {
+									if (moreList.size() == 0
+											&& myList.size() != 0) {
 										Toast.makeText(mActivity, "没有更多数据",
 												Toast.LENGTH_SHORT).show();
 										Xlistview.getmFooterView().setState2(2);
@@ -353,24 +357,24 @@ public class M_wdxx extends Fragment implements OnClickListener,
 									myList.addAll(moreList);
 									handler.sendEmptyMessage(0);
 
-								}else if(type==1){
+								} else if (type == 1) {
 									myList.clear();
 									page = 1;
 									getData(0);
 									Toast.makeText(getActivity(),
 											jsonobject.getString("message"),
 											Toast.LENGTH_SHORT).show();
-								}else if(type==2){
+								} else if (type == 2) {
 									page = 1;
 									myList.clear();
 									getData(0);
 									Toast.makeText(getActivity(),
 											jsonobject.getString("message"),
 											Toast.LENGTH_SHORT).show();
-									
+
 								}
 							} else {
-								
+
 								Toast.makeText(getActivity(),
 										jsonobject.getString("message"),
 										Toast.LENGTH_SHORT).show();
@@ -392,18 +396,26 @@ public class M_wdxx extends Fragment implements OnClickListener,
 
 				});
 	}
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if(!isFrist){
+		if (!isFrist) {
 			page = 1;
 			myList.clear();
 			getData(0);
 			myAdapter.notifyDataSetChanged();
 		}
-		isFrist=false;
-
-
+		isFrist = false;
+		MobclickAgent.onPageStart( this.toString() );	
 	}
+	
+	@Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( this.toString() );
+  		}
+    
 }

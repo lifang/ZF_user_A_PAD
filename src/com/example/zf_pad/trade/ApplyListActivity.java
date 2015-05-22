@@ -26,6 +26,7 @@ import android.widget.Checkable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
@@ -37,7 +38,7 @@ import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
 
-public class ApplyListActivity extends Activity implements
+public class ApplyListActivity extends BaseActivity implements
 		XListView.IXListViewListener {
 
 	private LayoutInflater mInflater;

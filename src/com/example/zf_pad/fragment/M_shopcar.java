@@ -44,8 +44,10 @@ import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.umeng.analytics.MobclickAgent;
 
-public class M_shopcar extends Fragment  implements IXListViewListener,OnClickListener{
+public class M_shopcar extends Fragment implements IXListViewListener,
+		OnClickListener {
 	private View view;
 	private XListView Xlistview;
 	private int page = 1;
@@ -53,23 +55,23 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	private LinearLayout eva_nodata;
 	private boolean onRefresh_number = true;
 	private ShopcarAdapter myAdapter;
-	private List<Good> myShopList=new ArrayList<Good>();
+	private List<Good> myShopList = new ArrayList<Good>();
 	private Dialog loadingDialog;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
 				onLoad();
-				
+
 				break;
 			case 1:
 				Toast.makeText(getActivity(), (String) msg.obj,
 						Toast.LENGTH_SHORT).show();
 
 				break;
-			case 2: 
-				Toast.makeText(getActivity(),
-						"no 3g or wifi content", Toast.LENGTH_SHORT).show();
+			case 2:
+				Toast.makeText(getActivity(), "no 3g or wifi content",
+						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
 				Toast.makeText(getActivity(), " refresh too much",
@@ -84,25 +86,26 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-			//view = inflater.inflate(R.layout.f_main,container,false);
-		/*if (view != null) {
-	        ViewGroup parent = (ViewGroup) view.getParent();
-	        if (parent != null)
-	            parent.removeView(view);
-	    }*/
-	    try {
-	        view = inflater.inflate(R.layout.f_shopcar, container, false);
-	        initView();
-	       
-	    } catch (InflateException e) {
-	        
-	    }
-	    return view;
+
+		// view = inflater.inflate(R.layout.f_main,container,false);
+		/*
+		 * if (view != null) { ViewGroup parent = (ViewGroup) view.getParent();
+		 * if (parent != null) parent.removeView(view); }
+		 */
+		try {
+			view = inflater.inflate(R.layout.f_shopcar, container, false);
+			initView();
+
+		} catch (InflateException e) {
+
+		}
+		return view;
 	}
+
 	@Override
 	public void onStart() {
 		
@@ -110,33 +113,37 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 //		myShopList.clear();
 //		getData();
 	}
+
 	private void initView() {
 		howMoney = (TextView) view.findViewById(R.id.howMoney);
-		tv_gj = (TextView)view.findViewById(R.id.tv_gj);
-		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
+		tv_gj = (TextView) view.findViewById(R.id.tv_gj);
+		view.findViewById(R.id.confirm).setOnClickListener(
+				new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				MyApplication.getComfirmList().clear();
-				for(Good good:myShopList){
-					if(good.isChecked()){
-						MyApplication.getComfirmList().add(good);
+					@Override
+					public void onClick(View v) {
+						MyApplication.getComfirmList().clear();
+						for (Good good : myShopList) {
+							if (good.isChecked()) {
+								MyApplication.getComfirmList().add(good);
+							}
+						}
+						// MyApplication.setComfirmList(myShopList);
+						if (MyApplication.getComfirmList().size() != 0) {
+							Intent i = new Intent(getActivity(),
+									ConfirmOrder.class);
+							startActivity(i);
+						} else {
+							Toast.makeText(getActivity(), "请选择要结算商品", 1000)
+									.show();
+						}
+
 					}
-				}
-			//MyApplication.setComfirmList(myShopList);
-				if(MyApplication.getComfirmList().size()!=0){
-					Intent i = new Intent(getActivity(), ConfirmOrder.class);
-					startActivity(i);
-				}else{
-					Toast.makeText(getActivity(), "请选择要结算商品", 1000).show();
-				}
-				
-			}
-		});
-		cb = (CheckBox)view.findViewById(R.id.item_cb);
-		//myAdapter = new ShopcarAdapter(getActivity(), myShopList);
-		eva_nodata = (LinearLayout)view.findViewById(R.id.eva_nodata);
-		Xlistview = (XListView)view.findViewById(R.id.x_listview);
+				});
+		cb = (CheckBox) view.findViewById(R.id.item_cb);
+		// myAdapter = new ShopcarAdapter(getActivity(), myShopList);
+		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
+		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 		// refund_listview.getmFooterView().getmHintView().setText("锟窖撅拷没锟斤拷锟斤拷锟斤拷锟斤拷");
 		Xlistview.setPullLoadEnable(false);
 		Xlistview.setPullRefreshEnable(false);
@@ -157,8 +164,9 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 
 	@Override
 	public void onClick(View arg0) {
-		
+
 	}
+
 	private void onLoad() {
 		Xlistview.stopRefresh();
 		Xlistview.stopLoadMore();
@@ -170,11 +178,13 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		myShopList.clear();
 		getData();
 	}
+
 	private void getData() {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("customerId", MyApplication.NewUser.getId()+"");
-		//RequestParams params = new RequestParams("customerId", MyApplication.NewUser.getId()+"");
-		//params.setUseJsonStreamer(true);
+		params.put("customerId", MyApplication.NewUser.getId() + "");
+		// RequestParams params = new RequestParams("customerId",
+		// MyApplication.NewUser.getId()+"");
+		// params.setUseJsonStreamer(true);
 		JSONObject jsonParams = new JSONObject(params);
 		HttpEntity entity;
 		try {
@@ -182,79 +192,96 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		} catch (UnsupportedEncodingException e) {
 			return;
 		}
-		
-		MyApplication.getInstance().getClient()
-				.post(getActivity(),Config.SHOPCARLIST, null,entity,"application/json", new AsyncHttpResponseHandler() {
-					
 
-					@Override
-					public void onStart() {
-						super.onStart();
-						loadingDialog = DialogUtil
-								.getLoadingDialg(getActivity());
-						loadingDialog.show();
-					}
+		MyApplication
+				.getInstance()
+				.getClient()
+				.post(getActivity(), Config.SHOPCARLIST, null, entity,
+						"application/json", new AsyncHttpResponseHandler() {
 
-					@Override
-					public void onFinish() {
-						super.onFinish();
-						loadingDialog.dismiss();
-					}
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-
-						MyShopCar myShopCar = MyShopCar.getShopCar(responseMsg);
-						if (myShopCar != null) {
-							myShopList = myShopCar.getResult();
-							if (myShopCar.getResult() != null
-									&& myShopCar.getResult().size() != 0) {
-								
-								onRefresh_number = true;
-								myAdapter = new ShopcarAdapter(getActivity(), myShopList);
-								Xlistview.setAdapter(myAdapter);
-								myAdapter.notifyDataSetChanged();
+							@Override
+							public void onStart() {
+								super.onStart();
+								loadingDialog = DialogUtil
+										.getLoadingDialg(getActivity());
+								loadingDialog.show();
 							}
-						} else {
-							Xlistview.setVisibility(View.GONE);
-							eva_nodata.setVisibility(View.VISIBLE);
-						}
-						
-					}
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
-					}
-				});
- 
+							@Override
+							public void onFinish() {
+								super.onFinish();
+								loadingDialog.dismiss();
+							}
+
+							@Override
+							public void onSuccess(int statusCode,
+									Header[] headers, byte[] responseBody) {
+								String responseMsg = new String(responseBody)
+										.toString();
+								Log.e("print", responseMsg);
+
+								MyShopCar myShopCar = MyShopCar
+										.getShopCar(responseMsg);
+								if (myShopCar != null) {
+									myShopList = myShopCar.getResult();
+									if (myShopCar.getResult() != null
+											&& myShopCar.getResult().size() != 0) {
+
+										onRefresh_number = true;
+										myAdapter = new ShopcarAdapter(
+												getActivity(), myShopList);
+										Xlistview.setAdapter(myAdapter);
+										myAdapter.notifyDataSetChanged();
+									}
+								} else {
+									Xlistview.setVisibility(View.GONE);
+									eva_nodata.setVisibility(View.VISIBLE);
+								}
+
+							}
+
+							@Override
+							public void onFailure(int statusCode,
+									Header[] headers, byte[] responseBody,
+									Throwable error) {
+								System.out.println("-onFailure---");
+								Log.e("print", "-onFailure---" + error);
+							}
+						});
+
 		handler.sendEmptyMessage(0);
 	}
+
 	@Override
 	public void onRefresh() {
-//		page = 1;
-//		myShopList.clear();
-//		getData();
-		
+		// page = 1;
+		// myShopList.clear();
+		// getData();
+
 	}
+
 	@Override
 	public void onLoadMore() {
-		
-	}
-@Override
-public void onResume() {
-	
-	super.onResume();
-	myShopList.clear();
-	tv_gj.setText("共计 ： ");
-	howMoney.setText("合计：￥0.00");
-	getData();
-	cb.setChecked(false);
-}
 
+	}
+
+	@Override
+	public void onResume() {
+
+		super.onResume();
+		tv_gj.setText("共计：");
+		howMoney.setText("合计：￥0.00");
+		myShopList.clear();
+		getData();
+		cb.setChecked(false);
+		MobclickAgent.onPageStart( this.toString() );	
+	}
+
+	@Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( this.toString() );
+  		}
+    
 }
