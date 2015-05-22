@@ -141,10 +141,20 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				if (islea == false) {
 					all_price = gfe.getRetail_price()+opening_cost;
 					tv_price.setText("�� "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
+					
 				}else {
 					//����
 					all_price = gfe.getLease_deposit()+opening_cost;
 					tv_price.setText("�� "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
+					tv_zd.setVisibility(View.GONE);
+					
+					
+				}
+				if(gfe.isHas_lease()){
+					Config.canzl=false;
+				}else{
+					tv_zd.setVisibility(View.GONE);
+					Config.canzl=true;
 				}
 				break;
 			case 1:
@@ -167,6 +177,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private LinearLayout ll_Factory;
 	private TextView tv_pl;
 	private LinearLayout ll_sc;
+	private TextView tv_zd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -238,12 +249,14 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		tv_kt.setOnClickListener(this);
 		tv_pl = (TextView) findViewById(R.id.tv_pl);
 		tv_pl.setOnClickListener(this);
-		TextView tv_zd = (TextView) findViewById(R.id.tv_zd);
+		tv_zd = (TextView) findViewById(R.id.tv_zd);
 		tv_zd.setOnClickListener(this);
 		TextView tv_jy = (TextView) findViewById(R.id.tv_jy);
 		tv_jy.setOnClickListener(this);
 		setting_btn_clear1 = (Button) findViewById(R.id.setting_btn_clear1);
 		setting_btn_clear1.setOnClickListener(this);
+		TextView tv_pic = (TextView) findViewById(R.id.tv_pic);
+		tv_pic.setOnClickListener(this);
 	}
 
 	@Override
@@ -329,6 +342,12 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 4);
 			i.putExtra("comments", commentsCount);
+			startActivity(i);
+			break;
+		case R.id.tv_pic:
+			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
+			i.putExtra("type", 5);
+			i.putExtra("commets", commentsCount);
 			startActivity(i);
 			break;
 		case R.id.titleback_linear_back:
@@ -763,13 +782,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					
-					//
-					// Intent i=new Intent(AroundDetail.this,VPImage.class);
-					//
-					// i.putExtra("index", index_ima);
-					// i.putExtra("mal", mal);
-					// startActivityForResult(i, 9);
+					Intent intent = new Intent(GoodDeatail.this,GoodDetailImgs.class);
+					intent.putStringArrayListExtra("ma", (ArrayList<String>) ma);
+					intent.putExtra("position_detail", position);
+					startActivity(intent);
 				}
 			});
 
@@ -947,14 +963,12 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		@Override
 		public void onPageSelected(int position) {
 
-			// 改变�?有导航的背景图片为：未�?�中
 			for (int i = 0; i < indicator_imgs.length; i++) {
 
 				indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
 
 			}
 
-			// 改变当前背景图片为：选中
 			index_ima = position;
 			indicator_imgs[position]
 					.setBackgroundResource(R.drawable.indicator_focused);

@@ -1,5 +1,6 @@
 package com.example.zf_pad.trade;
 
+import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.CLIENT_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.END_DATE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
@@ -11,16 +12,6 @@ import static com.example.zf_pad.fragment.Constants.TradeType.LIFE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.PHONE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.REPAYMENT;
 import static com.example.zf_pad.fragment.Constants.TradeType.TRANSFER;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -29,6 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +34,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_pad.R;
+import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
 import com.example.zf_pad.trade.entity.TradeRecord;
 import com.example.zf_pad.util.StringUtil;
 import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
+
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 
 public class TradeFlowFragment extends Fragment implements View.OnClickListener {
@@ -55,7 +61,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
 	private View mTradeClient;
 	private TextView mTradeClientName;
-
+	
 	private TextView textView1,textView2,textView3,textView4,textView5,textView6;
 
 	private View mTradeStart;
@@ -76,7 +82,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	private TradeRecordListAdapter mAdapter;
 	private List<TradeRecord> mRecords;
 	private boolean hasSearched = false;
-
+	private String mPageName;
 	private DecimalFormat df;
 
 	public static TradeFlowFragment newInstance(int tradeType) {
@@ -88,7 +94,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	}
 
 	public TradeFlowFragment() {
-
+		
 	}
 
 	@Override
@@ -101,6 +107,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
 			mTradeType = getArguments().getInt(TRADE_TYPE);
+            mPageName = String.format("tradeflow %d", mTradeType);
 		}
 		df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
@@ -108,7 +115,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	                         Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_trade_flow_list, container, false);
 	}
 
@@ -133,7 +140,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 			mAdapter.notifyDataSetChanged();
 		}
 		toggleButtons();
-
+		
 		switch (mTradeType) {
 		case TRANSFER:
 			textView2.setText("ÊÖÐø·Ñ");
@@ -182,7 +189,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		textView4 = (TextView) header.findViewById(R.id.textView4);
 		textView5 = (TextView) header.findViewById(R.id.textView5);
 		textView6 = (TextView) header.findViewById(R.id.textView6);
-
+		
 		mTradeClient.setOnClickListener(this);
 		mTradeStart.setOnClickListener(this);
 		mTradeEnd.setOnClickListener(this);
@@ -195,7 +202,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 
 		mRecordList = (ListView) view.findViewById(R.id.trade_record_list);
 		mAdapter = new TradeRecordListAdapter();
-		mRecordList.addHeaderView(header);
+        mRecordList.addHeaderView(header);
 		mRecordList.setAdapter(mAdapter);
 
 		mRecordList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -204,15 +211,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				TradeRecord record = (TradeRecord) view.getTag(R.id.trade_status);
 				Intent intent = new Intent(getActivity(), TradeDetailActivity.class);
 				intent.putExtra(TRADE_RECORD_ID, record.getId());
-				intent.putExtra(TRADE_TYPE, mTradeType);
+				 intent.putExtra(TRADE_TYPE, mTradeType);
 				startActivity(intent);
 			}
 		});
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -225,59 +227,59 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode != Activity.RESULT_OK) return;
 		switch (requestCode) {
-		case REQUEST_TRADE_CLIENT:
-			String clientName = data.getStringExtra(CLIENT_NUMBER);
-			mTradeClientName.setText(clientName);
-			tradeClientName = clientName;
-			toggleButtons();
-			break;
+			case REQUEST_TRADE_CLIENT:
+				String clientName = data.getStringExtra(CLIENT_NUMBER);
+				mTradeClientName.setText(clientName);
+				tradeClientName = clientName;
+				toggleButtons();
+				break;
 		}
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.trade_client:
-			Intent i = new Intent(getActivity(), TradeClientActivity.class);
-			i.putExtra(CLIENT_NUMBER, tradeClientName);
-			startActivityForResult(i, REQUEST_TRADE_CLIENT);
-			break;
-		case R.id.trade_start:
-			showDatePicker(tradeStartDate, true);
-			break;
-		case R.id.trade_end:
-			showDatePicker(tradeEndDate, false);
-			break;
-		case R.id.trade_search:
-			hasSearched = true;
-			mTradeSearchContent.setVisibility(View.VISIBLE);
-			API.getTradeRecordList(getActivity(),
-					mTradeType, tradeClientName, tradeStartDate, tradeEndDate, 1, 100,
-					new HttpCallback<Page<TradeRecord>>(getActivity()) {
+			case R.id.trade_client:
+				Intent i = new Intent(getActivity(), TradeClientActivity.class);
+				i.putExtra(CLIENT_NUMBER, tradeClientName);
+				startActivityForResult(i, REQUEST_TRADE_CLIENT);
+				break;
+			case R.id.trade_start:
+				showDatePicker(tradeStartDate, true);
+				break;
+			case R.id.trade_end:
+				showDatePicker(tradeEndDate, false);
+				break;
+			case R.id.trade_search:
+				hasSearched = true;
+				mTradeSearchContent.setVisibility(View.VISIBLE);
+				API.getTradeRecordList(getActivity(),
+						mTradeType, tradeClientName, tradeStartDate, tradeEndDate, 1, 100,
+						new HttpCallback<Page<TradeRecord>>(getActivity()) {
 
-				@Override
-				public void onSuccess(Page<TradeRecord> data) {
-					mRecords.clear();
-					mRecords.addAll(data.getList());
-					mAdapter.notifyDataSetChanged();
-				}
+							@Override
+							public void onSuccess(Page<TradeRecord> data) {
+						        mRecords.clear();
+                                mRecords.addAll(data.getList());
+                                mAdapter.notifyDataSetChanged();
+							}
 
 
-				@Override
-				public TypeToken<Page<TradeRecord>> getTypeToken() {
-					return new TypeToken<Page<TradeRecord>>() {
-					};
-				}
-			});
-			break;
-		case R.id.trade_statistic:
-			Intent intent = new Intent(getActivity(), TradeStatisticActivity.class);
-			intent.putExtra(TRADE_TYPE, mTradeType);
-			intent.putExtra(CLIENT_NUMBER, tradeClientName);
-			intent.putExtra(START_DATE, tradeStartDate);
-			intent.putExtra(END_DATE, tradeEndDate);
-			startActivity(intent);
-			break;
+                            @Override
+                            public TypeToken<Page<TradeRecord>> getTypeToken() {
+                                return new TypeToken<Page<TradeRecord>>() {
+                                };
+                            }
+						});
+				break;
+			case R.id.trade_statistic:
+				Intent intent = new Intent(getActivity(), TradeStatisticActivity.class);
+				intent.putExtra(TRADE_TYPE, mTradeType);
+				intent.putExtra(CLIENT_NUMBER, tradeClientName);
+				intent.putExtra(START_DATE, tradeStartDate);
+				intent.putExtra(END_DATE, tradeEndDate);
+				startActivity(intent);
+				break;
 		}
 	}
 
@@ -288,7 +290,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	 * @return
 	 */
 	private void toggleButtons() {
-
+	
 		boolean shouldEnable = !TextUtils.isEmpty(tradeClientName)
 				&& !TextUtils.isEmpty(tradeStartDate)
 				&& !TextUtils.isEmpty(tradeEndDate);
@@ -325,27 +327,27 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				int day = c.get(Calendar.DAY_OF_MONTH);
 				return new DatePickerDialog(getActivity(),
 						new DatePickerDialog.OnDateSetListener() {
-					@Override
-					public void onDateSet(DatePicker datePicker,
-							int year, int month, int day) {
-						month = month + 1;
-						String dateStr = year + "-"
-								+ (month < 10 ? "0" + month : month) + "-"
-								+ (day < 10 ? "0" + day : day);
-						if (isStartDate) {
-							mTradeStartDate.setText(dateStr);
-							tradeStartDate = dateStr;
-						} else {
-							if (!TextUtils.isEmpty(tradeStartDate) && dateStr.compareTo(tradeStartDate) < 0) {
-								Toast.makeText(getActivity(), getString(R.string.toast_end_date_error), Toast.LENGTH_SHORT).show();
-								return;
+							@Override
+							public void onDateSet(DatePicker datePicker,
+							                      int year, int month, int day) {
+								month = month + 1;
+								String dateStr = year + "-"
+										+ (month < 10 ? "0" + month : month) + "-"
+										+ (day < 10 ? "0" + day : day);
+								if (isStartDate) {
+									mTradeStartDate.setText(dateStr);
+									tradeStartDate = dateStr;
+								} else {
+									if (!TextUtils.isEmpty(tradeStartDate) && dateStr.compareTo(tradeStartDate) < 0) {
+										Toast.makeText(getActivity(), getString(R.string.toast_end_date_error), Toast.LENGTH_SHORT).show();
+										return;
+									}
+									mTradeEndDate.setText(dateStr);
+									tradeEndDate = dateStr;
+								}
+								toggleButtons();
 							}
-							mTradeEndDate.setText(dateStr);
-							tradeEndDate = dateStr;
-						}
-						toggleButtons();
-					}
-				}, year, month, day);
+						}, year, month, day);
 			}
 		}.show(getActivity().getSupportFragmentManager(), "DatePicker");
 	}
@@ -390,8 +392,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 			}
 			final TradeRecord record = getItem(i);
 			convertView.setTag(R.id.trade_status, record);
-			switch (mTradeType) {
-
+			switch (mTradeType) {	
 			case TRANSFER:
 				holder.tvAccount.setText(getString(R.string.notation_yuan) + df.format(record.getPoundage()*1.0f/100));
 				holder.tvReceiveAccount.setVisibility(View.GONE);
@@ -409,8 +410,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				holder.tvAccount.setVisibility(View.GONE);
 				holder.tvReceiveAccount.setText(StringUtil.replaceNum(record.getPhone()));
 				break;
-
-			}
+				}
 
 			holder.tvStatus.setText(getResources().getStringArray(R.array.trade_status)[record.getTradedStatus()]);
 			holder.tvTime.setText(record.getTradedTimeStr());
@@ -431,4 +431,20 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		public TextView tvClientNumber;
 		public TextView tvAmount;
 	}
+	
+	
+	@Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( mPageName );
+  		}
+    
+    @Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		MobclickAgent.onPageStart( mPageName );	
+	}
 }
+

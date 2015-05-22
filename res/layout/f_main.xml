@@ -59,14 +59,14 @@
 
             <TextView
                 android:id="@+id/tv_city"
-                android:layout_width="@dimen/dlpad"
+                android:layout_width="@dimen/titilepad"
                 android:layout_height="fill_parent"
                 android:layout_marginRight="@dimen/d_7dp"
-                android:gravity="center"
+                android:gravity="right|center_vertical"
                 android:text=""
                 android:singleLine="true"
                 android:textColor="@color/text535252"
-                android:textSize="@dimen/s_17sp" />
+                android:textSize="@dimen/textbig" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -306,7 +306,7 @@
                             android:layout_below="@id/Forum"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="@dimen/iconma"
-                            android:text="健康服务"
+                            android:text="我要贷款"
                             android:textColor="@color/text5a5a5a"
                              android:textSize="@dimen/textbig2" />
                     </LinearLayout>

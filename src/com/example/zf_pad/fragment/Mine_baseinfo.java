@@ -323,8 +323,8 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		case R.id.btn_exit:
 			mySharedPreferences = mActivity.getSharedPreferences(Config.SHARED,mActivity. MODE_PRIVATE);
 			Config.isExit=true;
-
-			startActivity(new Intent(mActivity,MainActivity.class));
+			MyApplication.NewUser=null;
+			startActivity(new Intent(getActivity(),MainActivity.class));
 			Editor editor=mySharedPreferences.edit();
 			editor.putBoolean("islogin", false);
 			editor.putString("name", null);

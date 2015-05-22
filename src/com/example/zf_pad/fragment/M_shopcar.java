@@ -82,6 +82,7 @@ public class M_shopcar extends Fragment implements IXListViewListener,
 	};
 	private CheckBox cb;
 	private TextView tv_gj,howMoney;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -108,10 +109,10 @@ public class M_shopcar extends Fragment implements IXListViewListener,
 
 	@Override
 	public void onStart() {
-		
+
 		super.onStart();
-//		myShopList.clear();
-//		getData();
+		// myShopList.clear();
+		// getData();
 	}
 
 	private void initView() {

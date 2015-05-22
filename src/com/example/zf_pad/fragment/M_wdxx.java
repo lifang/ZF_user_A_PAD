@@ -1,3 +1,4 @@
+
 package com.example.zf_pad.fragment;
 
 import java.util.ArrayList;
@@ -227,7 +228,11 @@ public class M_wdxx extends Fragment implements OnClickListener,
 		for (int i = 0; i < ids.length; i++) {
 			ids[i] = selList.get(i).getId();
 		}
-		getData(1);
+		if(ids.length==0){
+			Toast.makeText(getActivity(), "请选择消息后进行操作！", 1000).show();
+		}else{
+			getData(1);
+		}
 	}
 
 	private void read_bj() {
@@ -242,7 +247,11 @@ public class M_wdxx extends Fragment implements OnClickListener,
 		for (int i = 0; i < ids.length; i++) {
 			ids[i] = selList.get(i).getId();
 		}
-		getData(2);
+		if(ids.length==0){
+			Toast.makeText(getActivity(), "请选择消息后进行操作！", 1000).show();
+		}else{
+			getData(2);
+		}
 	}
 
 	@Override
@@ -407,10 +416,9 @@ public class M_wdxx extends Fragment implements OnClickListener,
 			getData(0);
 			myAdapter.notifyDataSetChanged();
 		}
-		isFrist = false;
-		MobclickAgent.onPageStart( this.toString() );	
+		isFrist=false;
+		MobclickAgent.onPageStart( this.toString() );
 	}
-	
 	@Override
 	public void onPause() {
   			// TODO Auto-generated method stub
@@ -419,3 +427,4 @@ public class M_wdxx extends Fragment implements OnClickListener,
   		}
     
 }
+

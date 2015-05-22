@@ -1,3 +1,4 @@
+
 package com.example.zf_pad;
 
  
@@ -18,6 +19,11 @@ import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import android.app.Activity;
 import android.app.Application;
@@ -136,6 +142,7 @@ public class MyApplication extends Application{
 		FrontiaApplication.initFrontiaApplication(getApplicationContext()); 
 		
 		mInstance = this;
+		initImageLoader(mInstance);
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();
 		mLocationClient.registerLocationListener(mMyLocationListener);
@@ -257,7 +264,27 @@ public class MyApplication extends Application{
 			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
 	}
-	
+	@SuppressWarnings("deprecation")
+	public static DisplayImageOptions getDisplayOption() {
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showStubImage(R.drawable.moren) // ����ͼƬ�����ڼ���ʾ��ͼƬ
+				.showImageForEmptyUri(R.drawable.moren) // ����ͼƬUriΪ�ջ��Ǵ����ʱ����ʾ��ͼƬ
+				.showImageOnFail(R.drawable.moren) // ����ͼƬ���ػ��������з���������ʾ��ͼƬ
+				.cacheInMemory(true) // �������ص�ͼƬ�Ƿ񻺴����ڴ���
+				.cacheOnDisc(true) // �������ص�ͼƬ�Ƿ񻺴���SD����
+				.build(); // �������ù���DisplayImageOption����
+		return options;
+	}
+	public static void initImageLoader(Context context) {
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				context).threadPriority(Thread.NORM_PRIORITY - 2)
+				.denyCacheImageMultipleSizesInMemory()
+				.discCacheFileNameGenerator(new Md5FileNameGenerator())
+				.tasksProcessingOrder(QueueProcessingType.LIFO)
+				.writeDebugLogs() // Remove for release app
+				.build();
+		ImageLoader.getInstance().init(config);
+	}
 	private boolean hasOrderPaid;
 
 	public boolean isHasOrderPaid() {
@@ -288,6 +315,5 @@ public class MyApplication extends Application{
 			e.printStackTrace();
 		}
 	}
-	
-	
 }
+

@@ -137,9 +137,9 @@
                                 android:id="@+id/bt_add"
                                 android:layout_width="@dimen/normai_button_width"
                                 android:layout_height="@dimen/normai_button_height"
+                                android:layout_alignParentRight="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginRight="@dimen/textbig"
-                               android:layout_alignParentRight="true"
                                 android:background="#FF6624"
                                 android:text="新增地址"
                                 android:textColor="#ffffff"
@@ -244,8 +244,8 @@
                                         android:layout_height="wrap_content"
                                         android:ellipsize="end"
                                         android:maxLines="1"
-                                        android:text="泰山TS900"
                                         android:singleLine="true"
+                                        android:text="泰山TS900"
                                         android:textColor="@color/text292929"
                                         android:textSize="@dimen/textmid" />
 
@@ -362,8 +362,8 @@
                                         android:layout_height="fill_parent"
                                         android:layout_weight="1"
                                         android:background="@color/ffffff"
-                                        android:editable="true"
                                         android:digits="0123456789"
+                                        android:editable="true"
                                         android:gravity="center"
                                         android:text="1" />
 
@@ -521,10 +521,13 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_fp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/titilepad1"
-                        android:gravity="center_vertical" >
+                        android:gravity="center_vertical"
+                        android:visibility="gone"
+                       >
 
                         <TextView
                             android:id="@+id/textView2"
@@ -569,15 +572,7 @@
                         android:layout_marginBottom="34dp"
                         android:background="#EEEDED" />
                 </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
-
-            <LinearLayout
+                <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/normai_button_width"
                 android:background="#ffffff"
@@ -621,7 +616,10 @@
                     android:textColor="@color/ffffff"
                     android:textSize="@dimen/textmid" />
             </LinearLayout>
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
     </RelativeLayout>
 
 </LinearLayout>

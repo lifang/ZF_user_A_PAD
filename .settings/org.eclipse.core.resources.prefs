@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
 encoding//assets/city.json=UTF-8
 encoding//src/com/example/zf_pad/MyApplication.java=UTF-8
@@ -13,3 +14,17 @@ encoding//src/com/example/zf_pad/activity/SystemMessage.java=UTF-8
 encoding//src/com/example/zf_pad/fragment/Good_detail_commet.java=UTF-8
 encoding//src/com/example/zf_pad/trade/TradeDetailActivity.java=UTF-8
 encoding/<project>=GBK
+=======
+eclipse.preferences.version=1
+encoding//assets/city.json=UTF-8
+encoding//src/com/example/zf_pad/aadpter/ShopcarAdapter.java=UTF-8
+encoding//src/com/example/zf_pad/aadpter/ShopcarOrderAdapter.java=UTF-8
+encoding//src/com/example/zf_pad/activity/FindPass.java=UTF-8
+encoding//src/com/example/zf_pad/activity/LoginActivity.java=UTF-8
+encoding//src/com/example/zf_pad/activity/PosListActivity.java=UTF-8
+encoding//src/com/example/zf_pad/activity/PosSearch.java=UTF-8
+encoding//src/com/example/zf_pad/activity/PosSearch1.java=UTF-8
+encoding//src/com/example/zf_pad/activity/Register.java=UTF-8
+encoding//src/com/example/zf_pad/activity/SystemMessage.java=UTF-8
+encoding//src/com/example/zf_pad/fragment/Good_detail_commet.java=UTF-8
+>>>>>>> origin/master

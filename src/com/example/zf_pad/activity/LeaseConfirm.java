@@ -76,13 +76,14 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private ImageView event_img;
 	private TextView tv_brand;
 	private TextView tv_chanel;
-
+	private LinearLayout ll_fp;
+	private DecimalFormat df;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm1);
 		new TitleMenuUtil(LeaseConfirm.this, "租赁订单确认").show();
-		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+		df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
 		initView();
 		comments = getIntent().getIntExtra("comments", 0);
@@ -104,6 +105,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
+		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
@@ -180,8 +182,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 							.toString());
 				}
 
-				tv_totle.setText("实付：￥ " + ((double) pirce) / 100 * quantity);
-				tv_pay.setText("实付：￥ " + ((double) pirce) / 100 * quantity);
+				tv_totle.setText("实付：￥ " + df.format(((double) pirce) / 100 * quantity));
+				tv_pay.setText("实付：￥ " + df.format(((double) pirce) / 100 * quantity));
 			}
 
 			@Override

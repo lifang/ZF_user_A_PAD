@@ -31,7 +31,6 @@ import com.example.zf_pad.video.config.ConfigEntity;
 import com.example.zf_pad.video.config.ConfigService;
 
 public class VideoActivity extends BaseActivity implements AnyChatBaseEvent {
-
 	private static final String TAG = VideoActivity.class.getName();
 
 	private final int UPDATEVIDEOBITDELAYMILLIS = 200; //监听音频视频的码率的间隔刷新时间（毫秒）

@@ -329,6 +329,12 @@
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
         <activity
+            android:name="com.example.zf_pad.activity.GoodDetailImgs"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>        
+        <activity
             android:name="com.example.zf_pad.video.VideoActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -461,7 +467,6 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="landscape" >
         </activity>
-
         <!-- Caution! Do not change this app key. It is only for demo usage. -->
         <meta-data
             android:name="UMENG_APPKEY"
