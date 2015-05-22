@@ -17,6 +17,11 @@ import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.loopj.android.http.AsyncHttpClient;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import android.app.Activity;
 import android.app.Application;
@@ -133,6 +138,7 @@ public class MyApplication extends Application{
 		super.onCreate();
 		
 		mInstance = this;
+		initImageLoader(mInstance);
 		mLocationClient = new LocationClient(this.getApplicationContext());
 		mMyLocationListener = new MyLocationListener();
 		mLocationClient.registerLocationListener(mMyLocationListener);
@@ -253,5 +259,26 @@ public class MyApplication extends Application{
 			InputMethodManager inputmanger = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
+	}
+	@SuppressWarnings("deprecation")
+	public static DisplayImageOptions getDisplayOption() {
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showStubImage(R.drawable.moren) // 设置图片下载期间显示的图片
+				.showImageForEmptyUri(R.drawable.moren) // 设置图片Uri为空或是错误的时候显示的图片
+				.showImageOnFail(R.drawable.moren) // 设置图片加载或解码过程中发生错误显示的图片
+				.cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+				.cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+				.build(); // 创建配置过得DisplayImageOption对象
+		return options;
+	}
+	public static void initImageLoader(Context context) {
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				context).threadPriority(Thread.NORM_PRIORITY - 2)
+				.denyCacheImageMultipleSizesInMemory()
+				.discCacheFileNameGenerator(new Md5FileNameGenerator())
+				.tasksProcessingOrder(QueueProcessingType.LIFO)
+				.writeDebugLogs() // Remove for release app
+				.build();
+		ImageLoader.getInstance().init(config);
 	}
 }

@@ -71,7 +71,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private ImageView event_img;
 	private TextView tv_brand;
 	private TextView tv_chanel;
-
+	private LinearLayout ll_fp;
+	private DecimalFormat df;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,6 +80,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		new TitleMenuUtil(GoodConfirm.this, "∂©µ•»∑»œ").show();
 		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
+		
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
@@ -97,6 +99,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
+		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
 		event_img = (ImageView)findViewById(R.id.evevt_img);
@@ -143,9 +146,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 				if (arg1) {
 					is_need_invoice = 1;
 					et_titel.setEnabled(true);
+					ll_fp.setVisibility(View.VISIBLE);
 				} else {
 					is_need_invoice = 0;
 					et_titel.setEnabled(false);
+					ll_fp.setVisibility(View.GONE);
 				}
 			}
 		});
