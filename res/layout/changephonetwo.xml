@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="修改邮箱号将向您的原邮箱发送激活码"
+        android:text="修改手机号将向您的新手机发送验证码"
         android:textSize="14sp" />
 
     <View
@@ -43,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="40dp"
                 android:background="@color/white"
-                android:hint="请输入邮箱号"
+                android:hint="请输入手机号"
                 android:maxWidth="20dp"
                 android:singleLine="true"
                 android:textColor="@color/text292929"
@@ -183,7 +183,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="40dp"
                 android:background="@color/white"
-                android:hint="新邮箱号"
+                android:hint="新手机号"
                 android:maxWidth="20dp"
                 android:singleLine="true"
                 android:textColor="@color/text292929"

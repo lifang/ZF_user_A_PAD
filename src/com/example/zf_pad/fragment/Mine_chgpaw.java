@@ -152,7 +152,7 @@ public class Mine_chgpaw extends Fragment{
 			MyToast.showToast(getActivity(),"请确认您的新密码");
 			return false;
 		}
-		if (et_newpaw.getText().toString().trim().equals(et_confirmpaw.getText().toString().trim())) {
+		if (!et_newpaw.getText().toString().trim().equals(et_confirmpaw.getText().toString().trim())) {
 			MyToast.showToast(getActivity(),"两次输入的密码不一致");
 			return false;
 		}

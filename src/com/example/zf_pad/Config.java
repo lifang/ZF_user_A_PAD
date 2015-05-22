@@ -161,6 +161,8 @@ public class Config {
 	public static String notificationTitle = "";//，绑定百度推送的title
 	public static String notificationMsgID = "";//，绑定百度推送的title
 	public static boolean isFirstCreateMain = true;//，绑定百度推送只执行一次startWork
+	public static String changePhoneNum = "";//，修改手机号
+	public static String changeemail = "";//，修改邮箱号
 	
 	public static boolean CheckIsLogin(Context c) {
 		mySharedPreferences = c.getSharedPreferences(Config.SHARED,

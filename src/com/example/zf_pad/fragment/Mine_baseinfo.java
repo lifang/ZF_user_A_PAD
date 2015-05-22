@@ -1,35 +1,11 @@
 package com.example.zf_pad.fragment;
 
-import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
-import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.activity.ChangeEmail;
-import com.example.zf_pad.activity.ChangePhone;
-import com.example.zf_pad.activity.FindPass;
-import com.example.zf_pad.activity.LoginActivity;
-import com.example.zf_pad.activity.MainActivity;
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.CityProvinceActivity;
-import com.example.zf_pad.trade.CitySelectActivity;
-import com.example.zf_pad.trade.common.CommonUtil;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.entity.City;
-import com.example.zf_pad.trade.entity.Province;
-import com.example.zf_pad.util.Tools;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -50,6 +26,25 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.activity.ChangeEmail;
+import com.example.zf_pad.activity.ChangePhone;
+import com.example.zf_pad.activity.LoginActivity;
+import com.example.zf_pad.activity.MainActivity;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.CityProvinceActivity;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.StringUtil;
+import com.example.zf_pad.util.Tools;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private View view;
@@ -87,6 +82,19 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		}
 
 		return view;
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		if (!StringUtil.isNull(Config.changePhoneNum)) {
+			et_phone.setText(Config.changePhoneNum);
+			Config.changePhoneNum = "";
+		}
+		if (!StringUtil.isNull(Config.changeemail)) {
+			et_email.setText(Config.changeemail);
+			Config.changeemail = "";
+		}
 	}
 	@Override
 	public void onStart() {

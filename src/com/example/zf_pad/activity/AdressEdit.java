@@ -125,7 +125,7 @@ public class AdressEdit extends BaseActivity{
 					@Override
 					public void onSuccess(Object data) {
 						Log.e("data", String.valueOf(data));
-						Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
+						//Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
 
 						finish();
 					}

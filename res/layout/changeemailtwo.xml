@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="修改邮箱号将向您的原邮箱发送激活码"
+        android:text="修改邮箱号将向您的新邮箱发送激活码"
         android:textSize="14sp" />
 
     <View

@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -60,6 +61,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	private int id=MyApplication.NewUser.getId();
 	public static int[] idd;
 	public static int type=0;
+	private Activity mActivity;
 	//private TextView info,safe,manageradress,score;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,16 +89,21 @@ public class Mine_Address extends Fragment implements OnClickListener{
 			public void handleMessage(android.os.Message msg) {
 				if(msg.what==1){
 					isclickitem=true;
-					Intent intent=new Intent(getActivity(),AdressEdit.class);
+					Intent intent=new Intent(mActivity,AdressEdit.class);
 					intent.putExtra("position", AddressManagerAdapter.pp);
 					startActivity(intent);
 				}
 			};
 		};
 	}
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mActivity = activity;
+	}
 	private void getData() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "Õ¯¬Á“Ï≥£");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "Õ¯¬Á“Ï≥£");
 			return;
 		}
 		MyApplication.getInstance().getClient().post(API.GET_ADRESS+id, new AsyncHttpResponseHandler() {
@@ -105,7 +112,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 			@Override
 			public void onStart() {	
 				super.onStart();
-				loadingDialog = DialogUtil.getLoadingDialg(getActivity());
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
 				loadingDialog.show();
 			}
 			@Override
@@ -173,7 +180,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					Toast.makeText(getActivity(), String.valueOf(j), Toast.LENGTH_SHORT).show();
+					Toast.makeText(mActivity, String.valueOf(j), Toast.LENGTH_SHORT).show();
 				}
 
 			}
@@ -190,7 +197,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	private void init() {
 		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 		dataadress=new ArrayList<AddressManager>();
-		addressadapter=new AddressManagerAdapter(dataadress, getActivity().getBaseContext());
+		addressadapter=new AddressManagerAdapter(dataadress, mActivity.getBaseContext());
 		list=(ListView) view.findViewById(R.id.list);
 		btn_add=(Button) view.findViewById(R.id.btn_add);
 		btn_add.setOnClickListener(this);
@@ -199,7 +206,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_add:
-			Intent intent=new Intent(getActivity(),AdressEdit.class);	
+			Intent intent=new Intent(mActivity,AdressEdit.class);	
 			startActivity(intent);
 			break;
 

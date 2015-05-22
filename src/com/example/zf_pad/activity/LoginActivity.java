@@ -239,6 +239,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onSuccess(Object data) {
+				//startActivity(new Intent(LoginActivity.this,MainActivity.class));
 				finish();
 			}
 
