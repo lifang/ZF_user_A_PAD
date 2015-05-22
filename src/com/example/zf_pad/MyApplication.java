@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.baidu.frontia.FrontiaApplication;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
@@ -131,6 +132,8 @@ public class MyApplication extends Application{
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
+		FrontiaApplication.initFrontiaApplication(getApplicationContext()); 
 		
 		mInstance = this;
 		mLocationClient = new LocationClient(this.getApplicationContext());

@@ -5,21 +5,21 @@ import static com.example.zf_pad.fragment.Constants.TradeType.LIFE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.PHONE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.REPAYMENT;
 import static com.example.zf_pad.fragment.Constants.TradeType.TRANSFER;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.widget.MyTabWidget;
 import com.example.zf_pad.trade.widget.MyViewPager;
 import com.example.zf_pad.util.TitleMenuUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
@@ -47,20 +47,32 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
 
         String[] tabs = getResources().getStringArray(R.array.trade_flow_tabs);
         for (int i = 0; i < tabs.length; i++) {
-            TradeFlowFragment fragment = TradeFlowFragment.newInstance(i + 1);
-            //mFragments.add(fragment);
+    		TradeFlowFragment fragment = null;
+			if (i == 0) {
+				fragment = TradeFlowFragment.newInstance(TRANSFER);
+			}else if (i == 1) {
+				fragment = TradeFlowFragment.newInstance(CONSUME);
+			}else if (i == 2) {
+				fragment = TradeFlowFragment.newInstance(REPAYMENT);
+			}else if (i == 3) {
+				fragment = TradeFlowFragment.newInstance(LIFE_PAY);
+			}else if (i == 4) {
+				fragment = TradeFlowFragment.newInstance(PHONE_PAY);
+			}
+          //  TradeFlowFragment fragment = TradeFlowFragment.newInstance(i + 1);
+            mFragments.add(fragment);
             mTabWidget.addTab(tabs[i]);
         }
-        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(TRANSFER);
-        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(CONSUME);
-        TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(REPAYMENT);
-        TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(LIFE_PAY);
-        TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(PHONE_PAY);
-        mFragments.add(transferFragment);
-        mFragments.add(consumeFragment);
-        mFragments.add(repaymentFragment);
-        mFragments.add(lifePayFragment);
-        mFragments.add(phonePayFragment);
+//        TradeFlowFragment transferFragment = TradeFlowFragment.newInstance(TRANSFER);
+//        TradeFlowFragment consumeFragment = TradeFlowFragment.newInstance(CONSUME);
+//        TradeFlowFragment repaymentFragment = TradeFlowFragment.newInstance(REPAYMENT);
+//        TradeFlowFragment lifePayFragment = TradeFlowFragment.newInstance(LIFE_PAY);
+//        TradeFlowFragment phonePayFragment = TradeFlowFragment.newInstance(PHONE_PAY);
+//        mFragments.add(transferFragment);
+//        mFragments.add(consumeFragment);
+//        mFragments.add(repaymentFragment);
+//        mFragments.add(lifePayFragment);
+//        mFragments.add(phonePayFragment);
 
         mTabWidget.setViewPager(mViewPager);
         mViewPager.setAdapter(new TradeFlowPagerAdapter(getSupportFragmentManager()));

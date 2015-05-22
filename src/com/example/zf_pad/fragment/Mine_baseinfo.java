@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -66,7 +67,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private int id=MyApplication.NewUser.getId();
 	private ScrollView sLV;
 	private SharedPreferences mySharedPreferences;
-
+	private Activity mActivity;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -109,7 +110,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-						Toast.makeText(getActivity(), "注册信息不完全", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mActivity, "注册信息不完全", Toast.LENGTH_SHORT).show();
 					}
 
 					break;
@@ -126,10 +127,15 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			};
 		};
 	}
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mActivity = activity;
+	}
 	protected String findcity(int id) {
 		// TODO Auto-generated method stub
 		String a="苏州";
-		List<Province> provinces = CommonUtil.readProvincesAndCities(getActivity());
+		List<Province> provinces = CommonUtil.readProvincesAndCities(mActivity);
 		for (Province province : provinces) {
 			List<City> cities = province.getCities();
 
@@ -144,8 +150,8 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		return a;
 	}
 	private void getUserInfo() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		MyApplication.getInstance().getClient().post(API.GET_USERINFO+id, new AsyncHttpResponseHandler() {
@@ -154,7 +160,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			@Override
 			public void onStart() {	
 				super.onStart();
-				loadingDialog = DialogUtil.getLoadingDialg(getActivity());
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
 				loadingDialog.show();
 			}
 			@Override
@@ -180,7 +186,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 					}
 					else{
 						code = jsonobject.getString("message");
-						Toast.makeText(getActivity(), code, 1000).show();
+						Toast.makeText(mActivity, code, 1000).show();
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -196,11 +202,11 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 
 			}
 		});
-		/*API.getUserinfo(getActivity(),  new HttpCallback(getActivity()) {
+		/*API.getUserinfo(mActivity,  new HttpCallback(mActivity) {
 
 		@Override
 		public void onSuccess(Object data) {
-			//Toast.makeText(getActivity(), "修改密码成功", 1000).show();
+			//Toast.makeText(mActivity, "修改密码成功", 1000).show();
 			JsonObject result=new JsonObject();
 		}
 
@@ -213,7 +219,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 
 	}
 	private void init() {
-		provinces = CommonUtil.readProvincesAndCities(getActivity());
+		provinces = CommonUtil.readProvincesAndCities(mActivity);
 		sLV=(ScrollView) view.findViewById(R.id.sLV);
 		btn_exit=(Button) view.findViewById(R.id.btn_exit);
 		btn_save=(Button) view.findViewById(R.id.btn_save);
@@ -266,17 +272,17 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		}
 	}
 	private void changeUserinfo() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
-		API.changeuserinfo(getActivity(), id, et_name.getText().toString(), 
+		API.changeuserinfo(mActivity, id, et_name.getText().toString(), 
 				et_phone.getText().toString(), et_email.getText().toString(), cityId, 
-				new HttpCallback(getActivity()) {
+				new HttpCallback(mActivity) {
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(getActivity(), "保存信息成功", 
+				Toast.makeText(mActivity, "保存信息成功", 
 						Toast.LENGTH_SHORT).show();
 
 			}
@@ -293,7 +299,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_city_select:
-			Intent intent = new Intent(getActivity(),
+			Intent intent = new Intent(mActivity,
 					CityProvinceActivity.class);
 			//intent.putExtra(CITY_NAME, cityName);
 			//startActivityForResult(intent, REQUEST_CITY);
@@ -303,28 +309,28 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			changeUserinfo();
 			break;
 		case R.id.changephone:
-			Intent intent2 = new Intent(getActivity(),ChangePhone.class);
+			Intent intent2 = new Intent(mActivity,ChangePhone.class);
 			intent2.putExtra("key", 2);
 			intent2.putExtra("name", et_phone.getText().toString());
 			startActivityForResult(intent2, 2);
 			break;
 		case R.id.changeemail:
-			Intent intent3 = new Intent(getActivity(),ChangeEmail.class);
+			Intent intent3 = new Intent(mActivity,ChangeEmail.class);
 			intent3.putExtra("key",3);
 			intent3.putExtra("name", et_email.getText().toString());
 			startActivityForResult(intent3, 3);
 			break;
 		case R.id.btn_exit:
-			mySharedPreferences = getActivity().getSharedPreferences(Config.SHARED,getActivity(). MODE_PRIVATE);
+			mySharedPreferences = mActivity.getSharedPreferences(Config.SHARED,mActivity. MODE_PRIVATE);
 			Config.isExit=true;
 
-			startActivity(new Intent(getActivity(),MainActivity.class));
+			startActivity(new Intent(mActivity,MainActivity.class));
 			Editor editor=mySharedPreferences.edit();
 			editor.putBoolean("islogin", false);
 			editor.putString("name", null);
 			editor.putInt("id", -1);
 			editor.commit();
-			Intent i = new Intent(getActivity(), LoginActivity.class);
+			Intent i = new Intent(mActivity, LoginActivity.class);
 			startActivity(i);
 			break;
 		default:

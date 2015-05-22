@@ -866,4 +866,12 @@ public class API {
 		params.put("types", types);
 		new HttpRequest(context, callback).post(Config.URL_GET_VERSION,params);
 	}
+	public static void registerBaidu(Context context, int customerId,
+			String deviceCode, HttpCallback callback) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customerId);
+		params.put("deviceCode", deviceCode);
+		new HttpRequest(context, callback).post(Config.URL_REGISTERBAIDU,
+				params);
+	}
 }

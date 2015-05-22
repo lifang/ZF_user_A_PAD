@@ -2,8 +2,8 @@ package com.example.zf_pad.trade;
 
 
 
-import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_RECORD_ID;
+import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -11,16 +11,15 @@ import java.text.NumberFormat;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.TradeDetail;
+import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,16 +35,18 @@ public class TradeDetailActivity extends Activity {
     private TextView mTradeAmount;
     private TextView mTradePoundage;
     private TextView mTradeTime;
-
+    private int typeId;
+    private String[] bankKeys;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_item);
         new TitleMenuUtil(this, getString(R.string.title_trade_detail)).show();
-        initialViews();
 
-        int typeId = getIntent().getIntExtra(TRADE_TYPE, 0);
+         typeId = getIntent().getIntExtra(TRADE_TYPE, 0);
         int recordId = getIntent().getIntExtra(TRADE_RECORD_ID, 0);
+        
+        initialViews();
         API.getTradeRecordDetail(this, typeId, recordId, new HttpCallback<TradeDetail>(this) {
         
             @Override
@@ -60,7 +61,7 @@ public class TradeDetailActivity extends Activity {
                 mTradeTime.setText(data.getTradedTimeStr());
 
                 String[] commercialKeys = resources.getStringArray(R.array.trade_item_commercial);
-                String[] bankKeys = resources.getStringArray(R.array.trade_item_bank);
+               // String[] bankKeys = resources.getStringArray(R.array.trade_item_bank);
 
                 for (int i = 0; i < commercialKeys.length; i++) {
                     TextView value = new TextView(TradeDetailActivity.this);
@@ -69,31 +70,110 @@ public class TradeDetailActivity extends Activity {
                     value.setTextColor(getResources().getColor(R.color.text292929));
                     value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
                     value.setText(i == 0 ? data.getMerchantNumber()
-                            : i == 1 ? data.getAgentId() + ""
+                            : i == 1 ? data.getAgentName() + ""
                             : i == 2 ? data.getMerchantName()
                             : "");
                     mCommercialValueContainer.addView(value);
                 }
+                if (typeId == 2 || typeId == 3){ // 转账 。还款 
+					bankKeys = resources.getStringArray(R.array.trade_item_bank_transfer);
+					for (int i = 0; i < bankKeys.length; i++) {
+						TextView value = new TextView(TradeDetailActivity.this);
+						value.setGravity(Gravity.LEFT);
+						value.setPadding(0, 5, 0, 5);
+						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
+						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+						value.setText(i == 0 ? data.getTerminalNumber()//终 端 号
+								: i == 1 ? StringUtil.replaceNum(data.getPayFromAccount())//付款账号
+								: i == 2 ? StringUtil.replaceNum(data.getPayIntoAccount())//转入账号||收款账号？
+								: i == 3 ? data.getPayChannelName()//支付通道
+								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//交易金额
+								: i == 5 ? data.getTradedTimeStr()//交易时间
+								: i == 6 ? tradeStatuses[data.getTradedStatus()]//交易状态
+								: i == 7 ? data.getBatchNumber()//交易批次号
+								: i == 8 ? data.getTradeNumber()//交易流水号
+								: "");
+						mBankValueContainer.addView(value);
+					}
 
-                for (int i = 0; i < bankKeys.length; i++) {
-                    TextView value = new TextView(TradeDetailActivity.this);
-                    value.setGravity(Gravity.LEFT);
-                    value.setPadding(0, 5, 0, 5);
-                    value.setTextColor(resources.getColor(R.color.text292929));
-                    value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-                    value.setText(i == 0 ? data.getTerminalNumber()
-                            : i == 1 ? data.getPayFromAccount()
-                            : i == 2 ? data.getPayIntoAccount()
-                            : i == 3 ? data.getPayChannelName()
-                            : i == 4 ? getString(R.string.notation_yuan)+df.format(data.getProfitPrice()*1.0f/100)
-                            : i == 5 ?getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)
-                            : i == 6 ? data.getTradedTimeStr()
-                            : i == 7 ? tradeStatuses[data.getTradedStatus()]
-                            : i == 8 ? data.getBatchNumber()
-                            : i == 9 ? data.getTradeNumber()
-                            : "");
-                    mBankValueContainer.addView(value);
-                }
+				}else if (typeId == 1) {//消费
+					bankKeys = resources.getStringArray(R.array.trade_item_bank_consume);
+					for (int i = 0; i < bankKeys.length; i++) {
+						TextView value = new TextView(TradeDetailActivity.this);
+						value.setGravity(Gravity.LEFT);
+						value.setPadding(0, 5, 0, 5);
+						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
+						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+						value.setText(i == 0 ? data.getTerminalNumber()//终 端 号
+								: i == 1 ? getString(R.string.notation_yuan) + df.format(data.getPoundage()*1.0f/100)//手续费
+								: i == 2 ? data.getPayChannelName()//支付通道
+								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//交易金额
+								: i == 4 ? data.getTradedTimeStr()//交易时间
+								: i == 5 ? tradeStatuses[data.getTradedStatus()]//交易状态
+								: i == 6 ? data.getBatchNumber()//交易批次号
+								: i == 7 ? data.getTradeNumber()//交易流水号
+								: "");
+						mBankValueContainer.addView(value);
+					}
+				}else if (typeId == 5) {//生活充值
+					bankKeys = resources.getStringArray(R.array.trade_item_bank_life_pay);
+					for (int i = 0; i < bankKeys.length; i++) {
+						TextView value = new TextView(TradeDetailActivity.this);
+						value.setGravity(Gravity.LEFT);
+						value.setPadding(0, 5, 0, 5);
+						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
+						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+						value.setText(i == 0 ? data.getTerminalNumber()//终 端 号
+								: i == 1 ? StringUtil.replaceName(data.getAccount_name())//账户名
+								: i == 2 ? StringUtil.replaceNum(data.getAccount_number())//账户号码
+								: i == 3 ? data.getPayChannelName()//支付通道
+								: i == 4 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//交易金额
+								: i == 5 ? data.getTradedTimeStr()//交易时间
+								: i == 6 ? tradeStatuses[data.getTradedStatus()]//交易状态
+								: i == 7 ? data.getBatchNumber()//交易批次号
+								: i == 8 ? data.getTradeNumber()//交易流水号
+								: "");
+						mBankValueContainer.addView(value);
+					}
+				}else if (typeId == 4) {//话费充值
+					bankKeys = resources.getStringArray(R.array.trade_item_bank_phone_pay);
+					for (int i = 0; i < bankKeys.length; i++) {
+						TextView value = new TextView(TradeDetailActivity.this);
+						value.setGravity(Gravity.LEFT);
+						value.setPadding(0, 5, 0, 5);
+						value.setTextColor(resources.getColor(R.color.text6c6c6c6));
+						value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+						value.setText(i == 0 ? data.getTerminalNumber()//终 端 号
+								: i == 1 ? StringUtil.replaceNum(data.getPhone())//手机号码
+								: i == 2 ? data.getPayChannelName()//支付通道
+								: i == 3 ? getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)//交易金额
+								: i == 4 ? data.getTradedTimeStr()//交易时间
+								: i == 5 ? tradeStatuses[data.getTradedStatus()]//交易状态
+								: i == 6 ? data.getBatchNumber()//交易批次号
+								: i == 7 ? data.getTradeNumber()//交易流水号
+								: "");
+						mBankValueContainer.addView(value);
+					}
+				}
+//                for (int i = 0; i < bankKeys.length; i++) {
+//                    TextView value = new TextView(TradeDetailActivity.this);
+//                    value.setGravity(Gravity.LEFT);
+//                    value.setPadding(0, 5, 0, 5);
+//                    value.setTextColor(resources.getColor(R.color.text292929));
+//                    value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+//                    value.setText(i == 0 ? data.getTerminalNumber()
+//                            : i == 1 ? data.getPayFromAccount()
+//                            : i == 2 ? data.getPayIntoAccount()
+//                            : i == 3 ? data.getPayChannelName()
+//                            : i == 4 ? getString(R.string.notation_yuan)+df.format(data.getProfitPrice()*1.0f/100)
+//                            : i == 5 ?getString(R.string.notation_yuan)+df.format(data.getAmount()*1.0f/100)
+//                            : i == 6 ? data.getTradedTimeStr()
+//                            : i == 7 ? tradeStatuses[data.getTradedStatus()]
+//                            : i == 8 ? data.getBatchNumber()
+//                            : i == 9 ? data.getTradeNumber()
+//                            : "");
+//                    mBankValueContainer.addView(value);
+//                }
             }
 
             @Override
@@ -117,7 +197,7 @@ public class TradeDetailActivity extends Activity {
 
         Resources resources = getResources();
         String[] commercialKeys = resources.getStringArray(R.array.trade_item_commercial);
-        String[] bankKeys = resources.getStringArray(R.array.trade_item_bank);
+       // String[] bankKeys = resources.getStringArray(R.array.trade_item_bank);
 
         for (int i = 0; i < commercialKeys.length; i++) {
             TextView key = new TextView(this);
@@ -129,15 +209,25 @@ public class TradeDetailActivity extends Activity {
             mCommercialKeyContainer.addView(key);
         }
 
-        for (int i = 0; i < bankKeys.length; i++) {
-            TextView key = new TextView(this);
-            key.setGravity(Gravity.RIGHT);
-            key.setPadding(0, 5, 0, 5);
-            key.setTextColor(resources.getColor(R.color.text292929));
-            key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-            key.setText(bankKeys[i]);
-            mBankKeyContainer.addView(key);
-        }
+    	if (typeId == 2 || typeId == 3){ // 转账 。还款 
+			bankKeys = resources.getStringArray(R.array.trade_item_bank_transfer);
+		}else if (typeId == 1) {//消费
+			bankKeys = resources.getStringArray(R.array.trade_item_bank_consume);
+		}else if (typeId == 5) {//生活充值
+			bankKeys = resources.getStringArray(R.array.trade_item_bank_life_pay);
+		}else if (typeId == 4) {//话费充值
+			bankKeys = resources.getStringArray(R.array.trade_item_bank_phone_pay);
+		}
+		for (int i = 0; i < bankKeys.length; i++) {
+			TextView key = new TextView(this);
+			key.setGravity(Gravity.RIGHT);
+			key.setPadding(0, 5, 0, 5);
+			key.setTextColor(resources.getColor(R.color.text6c6c6c6));
+			key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+			key.setText(bankKeys[i]);
+			mBankKeyContainer.addView(key);
+		}
+        
         
     }
 }

@@ -34,10 +34,10 @@ public class Constants {
 	 */
 	public static class TradeType {
 		public static final int TRANSFER = 1;
-		public static final int CONSUME = 3;
-		public static final int REPAYMENT = 2;
-		public static final int LIFE_PAY = 4;
-		public static final int PHONE_PAY = 5;
+		public static final int CONSUME = 2;
+		public static final int REPAYMENT = 3;
+		public static final int LIFE_PAY = 5;
+		public static final int PHONE_PAY = 4;
 	}
 
 	/**

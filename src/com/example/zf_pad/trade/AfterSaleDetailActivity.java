@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -109,26 +111,47 @@ public class AfterSaleDetailActivity extends Activity {
 		mCancelApplyListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
-					@Override
-					public void onSuccess(Object data) {
-						mRecordStatus = 5;
-						String status = getResources().getStringArray(R.array.maintain_status)[5];
-						mStatus.setText(status);
-						if (mRecordType == CANCEL) {
-							mButton1.setText(getString(R.string.button_submit_cancel));
-							mButton1.setOnClickListener(mSubmitCancelListener);
-						} else {
-							mButton1.setVisibility(View.GONE);
-						}
-						CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
-					}
+				final AlertDialog.Builder builder = new AlertDialog.Builder(
+						AfterSaleDetailActivity.this);
+				final AlertDialog dialog = builder.create();
+				builder.setTitle("提示");
+				builder.setMessage("确定要取消吗？");
+				builder.setPositiveButton("确认",
+						new DialogInterface.OnClickListener() {
 
 					@Override
-					public TypeToken getTypeToken() {
-						return null;
+					public void onClick(DialogInterface arg0, int arg1) {
+						API.cancelAfterSaleApply(AfterSaleDetailActivity.this, mRecordType, mRecordId, new HttpCallback(AfterSaleDetailActivity.this) {
+							@Override
+							public void onSuccess(Object data) {
+								mRecordStatus = 5;
+								String status = getResources().getStringArray(R.array.maintain_status)[5];
+								mStatus.setText(status);
+								if (mRecordType == CANCEL) {
+									mButton1.setText(getString(R.string.button_submit_cancel));
+									mButton1.setOnClickListener(mSubmitCancelListener);
+								} else {
+									mButton1.setVisibility(View.GONE);
+								}
+								CommonUtil.toastShort(AfterSaleDetailActivity.this, getString(R.string.toast_cancel_apply_success));
+							}
+
+							@Override
+							public TypeToken getTypeToken() {
+								return null;
+							}
+						});
 					}
 				});
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						dialog.dismiss();
+					}
+				});
+				builder.create().show();
 			}
 		};
 
@@ -247,7 +270,7 @@ public class AfterSaleDetailActivity extends Activity {
 						maintainPairs.put(maintainKeys[1], "");
 					}
 					//maintainPairs.put(maintainKeys[1], maintainDetail.getRepairPrice() + "");
-					maintainPairs.put(maintainKeys[2], maintainDetail.getDescription());
+					maintainPairs.put(maintainKeys[2], maintainDetail.getChange_reason());
 					renderCategoryTemplate(R.string.after_sale_maintain_title, maintainPairs);
 					break;
 				case RETURN:
@@ -377,6 +400,7 @@ public class AfterSaleDetailActivity extends Activity {
 				}
 
 				List<Comment> comments = data.getComments().getContent();
+				
 				if (null != comments && comments.size() > 0) {
 					for (Comment comment : comments) {
 						LinearLayout commentLayout = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_comment, null);

@@ -34,11 +34,11 @@
     <string name="notation_day">天</string>
  <string name="notation_month">个月</string>
     <string-array name="trade_flow_tabs">
+     <item>消费</item>
         <item>转账</item>
-        <item>消费</item>
         <item>还款</item>
-        <item>生活充值</item>
         <item>话费充值</item>
+        <item>生活充值</item>
     </string-array>
     <string-array name="mine_shjl_tabs">
         <item>维修</item>
@@ -73,9 +73,9 @@
     <string name="trade_item_commercial_info">商户信息</string>
 
     <string-array name="trade_item_commercial">
-        <item>编    号</item>
-        <item>代理商ID</item>
-        <item>商 户 ID</item>
+       <item>商户编号</item>
+        <item>所属代理商</item>
+        <item>商户名称</item>
     </string-array>
 
     <string name="trade_item_bank_info">交易信息</string>
@@ -92,7 +92,52 @@
         <item>交易批次号</item>
         <item>交易流水号</item>
     </string-array>
-
+    <!-- 转账 。还款 -->
+    <string-array name="trade_item_bank_transfer">
+        <item>终 端 号</item>
+        <item>付款账号</item>
+        <item>转入账号</item>
+        <item>支付通道</item>
+        <item>交易金额</item>
+        <item>交易时间</item>
+        <item>交易状态</item>
+        <item>交易批次号</item>
+        <item>交易流水号</item>
+    </string-array>
+    <!-- 消费 -->
+    <string-array name="trade_item_bank_consume">
+        <item>终 端 号</item>
+        <item>手续费</item>
+        <item>支付通道</item>
+        <item>交易金额</item>
+        <item>交易时间</item>
+        <item>交易状态</item>
+        <item>交易批次号</item>
+        <item>交易流水号</item>
+    </string-array>
+    <!-- 话费充值 -->
+    <string-array name="trade_item_bank_phone_pay">
+        <item>终 端 号</item>
+        <item>手机号码</item>
+        <item>支付通道</item>
+        <item>交易金额</item>
+        <item>交易时间</item>
+        <item>交易状态</item>
+        <item>交易批次号</item>
+        <item>交易流水号</item>
+    </string-array>
+    <!-- 生活充值 -->
+    <string-array name="trade_item_bank_life_pay">
+        <item>终 端 号</item>
+        <item>账户名</item>
+        <item>账户号码</item>
+        <item>支付通道</item>
+        <item>交易金额</item>
+        <item>交易时间</item>
+        <item>交易状态</item>
+        <item>交易批次号</item>
+        <item>交易流水号</item>
+    </string-array>
     <string name="city_current">当前</string>
 
     <!-- 售后记录 -->

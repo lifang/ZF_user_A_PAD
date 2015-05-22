@@ -38,6 +38,7 @@ import com.example.zf_pad.activity.ConfirmOrder;
 import com.example.zf_pad.entity.MyShopCar;
 import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
@@ -78,7 +79,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 		}
 	};
 	private CheckBox cb;
-	private TextView tv_gj;
+	private TextView tv_gj,howMoney;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,6 +111,7 @@ public class M_shopcar extends Fragment  implements IXListViewListener,OnClickLi
 //		getData();
 	}
 	private void initView() {
+		howMoney = (TextView) view.findViewById(R.id.howMoney);
 		tv_gj = (TextView)view.findViewById(R.id.tv_gj);
 		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
 
@@ -249,6 +251,8 @@ public void onResume() {
 	
 	super.onResume();
 	myShopList.clear();
+	tv_gj.setText("共计 ： ");
+	howMoney.setText("合计：￥0.00");
 	getData();
 	cb.setChecked(false);
 }

@@ -4,21 +4,6 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.zf_pad.BaseActivity;
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.entity.MessageEntity;
-import com.example.zf_pad.util.DialogUtil;
-import com.example.zf_pad.util.DialogUtil.CallBackChange;
-import com.example.zf_pad.util.TitleMenuUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import android.R.integer;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +12,20 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.entity.MessageEntity;
+import com.example.zf_pad.util.DialogUtil;
+import com.example.zf_pad.util.DialogUtil.CallBackChange;
+import com.example.zf_pad.util.StringUtil;
+import com.example.zf_pad.util.TitleMenuUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class MymsgDetail extends BaseActivity {
 	private TextView tv_titel, tv_time, tv_content;
@@ -47,6 +46,11 @@ public class MymsgDetail extends BaseActivity {
 			type=getIntent().getStringExtra("type");
 		if(type!=null){
 			new TitleMenuUtil(MymsgDetail.this, "消息详情").show();
+			if(!StringUtil.isNull(Config.notificationMsgID)){
+				if (id == Integer.valueOf(Config.notificationMsgID)) {
+					Config.notificationMsgID = "";
+				}
+			}
 		}else{
 			new TitleMenuUtil(MymsgDetail.this, "系统公告").show();
 		}

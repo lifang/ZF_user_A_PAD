@@ -150,7 +150,7 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 				String url = data.getDown_url();
 				Integer nowVersion = Tools.getVerCode(context);
 				Message msg = null;
-				if(Double.parseDouble(version) > nowVersion){
+				if(Integer.parseInt(version) > nowVersion){
 					msg = handler.obtainMessage(VersionHandler.HAS_NEW_VERSION);
 					Bundle bundle = new Bundle();
 					bundle.putString("url", url);
@@ -287,6 +287,7 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 			pd.dismiss();
 			Intent intent = new Intent();
 			intent.setAction(Intent.ACTION_VIEW);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 			intent.setDataAndType(Uri.fromFile(dest),
 					"application/vnd.android.package-archive");
 			sa.startActivity(intent);

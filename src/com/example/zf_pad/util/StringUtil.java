@@ -268,4 +268,24 @@ public class StringUtil {
 		return str;
 
 	}
+	public static String replaceNum(String num){
+		if(num==null||"".equals(num)||num.length()<8){
+			return num;
+		}
+		int length=num.length();
+		String start=num.substring(0,length-8);
+		String end=num.substring(length-4, length);
+		
+		return start+"****"+end;
+	}
+	public static String replaceName(String num){
+		if(num==null||"".equals(num)||num.length()<2){
+			return num;
+		}
+		int length=num.length();
+		String start=num.substring(0,length-2);
+		String end=num.substring(length-1, length);
+		
+		return start+"*"+end;
+	}
 }

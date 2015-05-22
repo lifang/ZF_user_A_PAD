@@ -23,31 +23,43 @@ public final class R {
         public static final int xiaoshidialog=0x7f04000b;
     }
     public static final class array {
-        public static final int after_sale_change=0x7f090013;
-        public static final int after_sale_lease=0x7f090014;
-        public static final int after_sale_maintian=0x7f090011;
-        public static final int after_sale_number=0x7f09000f;
-        public static final int after_sale_return=0x7f090012;
-        public static final int after_sale_terminal=0x7f090010;
-        public static final int apply_detail_gender=0x7f090016;
-        public static final int apply_detail_merchant_keys=0x7f090015;
-        public static final int apply_detail_upload=0x7f090019;
-        public static final int apply_detail_view=0x7f09001a;
+        public static final int after_sale_change=0x7f090017;
+        public static final int after_sale_lease=0x7f090018;
+        public static final int after_sale_maintian=0x7f090015;
+        public static final int after_sale_number=0x7f090013;
+        public static final int after_sale_return=0x7f090016;
+        public static final int after_sale_terminal=0x7f090014;
+        public static final int apply_detail_gender=0x7f09001a;
+        public static final int apply_detail_merchant_keys=0x7f090019;
+        public static final int apply_detail_upload=0x7f09001d;
+        public static final int apply_detail_view=0x7f09001e;
         public static final int cancel_status=0x7f090003;
         public static final int change_status=0x7f090004;
         public static final int lease_status=0x7f090006;
         public static final int maintain_status=0x7f090001;
         public static final int mine_myinfo=0x7f09000a;
         public static final int mine_shjl_tabs=0x7f090009;
-        public static final int my_apply_detail_bank_keys=0x7f090018;
-        public static final int my_apply_detail_merchant_keys=0x7f090017;
+        public static final int my_apply_detail_bank_keys=0x7f09001c;
+        public static final int my_apply_detail_merchant_keys=0x7f09001b;
         public static final int return_status=0x7f090002;
-        public static final int terminal_apply_keys=0x7f09001b;
+        public static final int terminal_apply_keys=0x7f09001f;
         public static final int terminal_status=0x7f090007;
-        public static final int title_after_sale_detail=0x7f09000e;
-        public static final int title_after_sale_list=0x7f09000d;
+        public static final int title_after_sale_detail=0x7f090012;
+        public static final int title_after_sale_list=0x7f090011;
         public static final int trade_flow_tabs=0x7f090008;
         public static final int trade_item_bank=0x7f09000c;
+        /**  消费 
+         */
+        public static final int trade_item_bank_consume=0x7f09000e;
+        /**  生活充值 
+         */
+        public static final int trade_item_bank_life_pay=0x7f090010;
+        /**  话费充值 
+         */
+        public static final int trade_item_bank_phone_pay=0x7f09000f;
+        /**  转账 。还款 
+         */
+        public static final int trade_item_bank_transfer=0x7f09000d;
         public static final int trade_item_commercial=0x7f09000b;
         public static final int trade_status=0x7f090000;
         public static final int update_status=0x7f090005;
@@ -544,7 +556,7 @@ containing a value of this type.
         public static final int ImgSwichVideo=0x7f0b0238;
         public static final int Model_number=0x7f0b0167;
         public static final int Model_numberTextView=0x7f0b0215;
-        public static final int action_settings=0x7f0b0249;
+        public static final int action_settings=0x7f0b024a;
         public static final int add=0x7f0b0070;
         public static final int adress_name=0x7f0b009e;
         public static final int adresslist=0x7f0b0087;
@@ -732,7 +744,7 @@ containing a value of this type.
         public static final int image=0x7f0b018b;
         public static final int imageView1=0x7f0b018e;
         public static final int imageView2=0x7f0b018f;
-        public static final int img=0x7f0b023e;
+        public static final int img=0x7f0b023f;
         public static final int img3=0x7f0b01f8;
         public static final int img_check=0x7f0b014a;
         public static final int img_check_n=0x7f0b014b;
@@ -884,7 +896,7 @@ containing a value of this type.
         public static final int rl_imgs=0x7f0b00da;
         public static final int sLV=0x7f0b009f;
         public static final int scoretype=0x7f0b021a;
-        public static final int scroll_dot=0x7f0b023f;
+        public static final int scroll_dot=0x7f0b0240;
         public static final int search=0x7f0b0108;
         public static final int search2=0x7f0b00d9;
         public static final int searchEditLayout=0x7f0b003e;
@@ -1103,20 +1115,21 @@ containing a value of this type.
         public static final int view_x2=0x7f0b00b1;
         public static final int view_y1=0x7f0b0043;
         public static final int view_y2=0x7f0b0044;
+        public static final int wait_TextView=0x7f0b023d;
         public static final int wayName=0x7f0b0165;
         public static final int wayNameTextView=0x7f0b0210;
-        public static final int webview=0x7f0b023d;
+        public static final int webview=0x7f0b023e;
         public static final int wkxx=0x7f0b0178;
         public static final int x_listview=0x7f0b0131;
-        public static final int xlistview_footer_content=0x7f0b0240;
-        public static final int xlistview_footer_hint_textview=0x7f0b0242;
-        public static final int xlistview_footer_progressbar=0x7f0b0241;
-        public static final int xlistview_header_arrow=0x7f0b0247;
-        public static final int xlistview_header_content=0x7f0b0243;
-        public static final int xlistview_header_hint_textview=0x7f0b0245;
-        public static final int xlistview_header_progressbar=0x7f0b0248;
-        public static final int xlistview_header_text=0x7f0b0244;
-        public static final int xlistview_header_time=0x7f0b0246;
+        public static final int xlistview_footer_content=0x7f0b0241;
+        public static final int xlistview_footer_hint_textview=0x7f0b0243;
+        public static final int xlistview_footer_progressbar=0x7f0b0242;
+        public static final int xlistview_header_arrow=0x7f0b0248;
+        public static final int xlistview_header_content=0x7f0b0244;
+        public static final int xlistview_header_hint_textview=0x7f0b0246;
+        public static final int xlistview_header_progressbar=0x7f0b0249;
+        public static final int xlistview_header_text=0x7f0b0245;
+        public static final int xlistview_header_time=0x7f0b0247;
         public static final int ys=0x7f0b0183;
         public static final int ys2=0x7f0b01d1;
         public static final int ys3=0x7f0b01d7;

@@ -1,71 +1,18 @@
 package com.example.zf_pad.activity;
 
-import static com.example.zf_pad.fragment.Constants.AfterSaleType.CANCEL;
+import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
 import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.location.LocationClientOption.LocationMode;
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
-import com.example.zf_pad.aadpter.ShopcarAdapter;
-import com.example.zf_pad.entity.PicEntity;
-import com.example.zf_pad.entity.PostPortEntity;
-import com.example.zf_pad.entity.UserEntity;
-import com.example.zf_pad.fragment.M_MianFragment;
-import com.example.zf_pad.fragment.M_my;
-import com.example.zf_pad.fragment.M_shopcar;
-import com.example.zf_pad.fragment.M_wdxx;
-import com.example.zf_pad.popwindow.SetPopWindow;
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.AfterSaleDetailActivity;
-import com.example.zf_pad.trade.ApplyListActivity;
-import com.example.zf_pad.trade.CitySelectActivity;
-import com.example.zf_pad.trade.MyApplyDetail;
-import com.example.zf_pad.trade.TradeFlowActivity;
-import com.example.zf_pad.trade.common.CommonUtil;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.entity.City;
-import com.example.zf_pad.trade.entity.Province;
-import com.example.zf_pad.util.ImageCacheUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import android.app.Activity;
-import android.app.ActionBar.LayoutParams;
-import android.content.Context;
+import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,10 +21,21 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
-import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
-import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
-import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
+
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.baidu.location.LocationClient;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.R;
+import com.example.zf_pad.Utils;
+import com.example.zf_pad.fragment.M_MianFragment;
+import com.example.zf_pad.fragment.M_my;
+import com.example.zf_pad.fragment.M_shopcar;
+import com.example.zf_pad.fragment.M_wdxx;
+import com.example.zf_pad.popwindow.SetPopWindow;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 	private LocationClient mLocationClient;
@@ -128,6 +86,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth = display.getWidth();
 		Config.ScreenHeight = display.getHeight();
+		
+		if (Config.isFirstCreateMain == true) {
+			Config.isFirstCreateMain = false;
+			//∞Ÿ∂»Õ∆ÀÕ
+			PushManager.startWork(getApplicationContext(),
+					PushConstants.LOGIN_TYPE_API_KEY,
+					Utils.getMetaValue(MainActivity.this, "api_key"));
+		}
 		
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);

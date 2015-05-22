@@ -47,8 +47,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:singleLine="true"
                         android:paddingRight="@dimen/dlpad"
+                        android:singleLine="true"
                         android:text="" />
                 </LinearLayout>
 
@@ -64,7 +64,7 @@
 
                 <RelativeLayout
                     android:id="@+id/trade_start"
-           android:layout_width="@dimen/normal_height4"
+                    android:layout_width="@dimen/normal_height4"
                     android:layout_height="@dimen/titilepad"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
@@ -89,7 +89,7 @@
 
                 <RelativeLayout
                     android:id="@+id/trade_end"
-                     android:layout_width="@dimen/normal_height4"
+                    android:layout_width="@dimen/normal_height4"
                     android:layout_height="@dimen/titilepad"
                     android:background="@drawable/ed_adress"
                     android:paddingLeft="6dp" >
@@ -127,7 +127,8 @@
                     android:background="@drawable/normal_button_selector"
                     android:enabled="false"
                     android:text="开始统计"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

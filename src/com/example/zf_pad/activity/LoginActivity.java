@@ -1,17 +1,8 @@
 package com.example.zf_pad.activity;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.http.Header;
-import org.apache.http.entity.StringEntity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,9 +11,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -224,7 +214,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 			 				System.out.println(mySharedPreferences.getBoolean("islogin", false)+"---");
 			 				MyApplication.NewUser=data;
 			 					
-								finish();	
+			 				
+							// 百度推送
+							registerBaidu();
+								//finish();	
 							
 						}
 
@@ -236,6 +229,25 @@ public class LoginActivity extends Activity implements OnClickListener {
 						}
 	                });
 
+	}
+	
+	protected void registerBaidu() {
+
+		API.registerBaidu(LoginActivity.this,MyApplication.NewUser.getId(),"2"+Config.channelId,
+				new HttpCallback(LoginActivity.this) {
+
+			@Override
+			public void onSuccess(Object data) {
+				finish();
+			}
+
+			@Override
+			public TypeToken getTypeToken() {
+				return null;
+			}
+		});
+
+	
 	}
 	private boolean check() {
 		// TODO Auto-generated method stub

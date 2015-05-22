@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -115,7 +116,6 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.wayName = (TextView) convertView.findViewById(R.id.wayName);
 		holder.Model_number = (TextView) convertView
 				.findViewById(R.id.Model_number);
-		holder.title = (TextView) convertView.findViewById(R.id.title);
 		holder.evevt_img = (ImageView)
 				convertView.findViewById(R.id.evevt_img);
 
@@ -138,6 +138,17 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.reduce.setTag(holder);
 		holder.add.setTag(holder);
 
+		int h = context.getResources().getDisplayMetrics().heightPixels;
+		int w = context.getResources().getDisplayMetrics().widthPixels;
+		
+		LayoutParams lptitle = holder.title.getLayoutParams();
+		lptitle.width=w/2;
+		holder.title.setLayoutParams(lptitle);
+		
+		LayoutParams lpModel_number = holder.Model_numberTextView.getLayoutParams();
+		lpModel_number.width=w/3;
+		holder.Model_numberTextView.setLayoutParams(lpModel_number);
+		
 		holder.reduce.setOnClickListener(onClick);
 		holder.add.setOnClickListener(onClick);
 		holder.retail_price = (TextView) convertView
@@ -175,10 +186,10 @@ public class ShopcarAdapter extends BaseAdapter {
 		holder.buyCountEdit.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if (!StringUtil.isNull(s.toString())) {
-					list.get(position).setQuantity(Integer.valueOf(s.toString()
-							.replaceAll("^(0+)", "")));
-				}
+//				if (!StringUtil.isNull(s.toString())) {
+//					list.get(position).setQuantity(Integer.valueOf(s.toString()
+//							.replaceAll("^(0+)", "")));
+//				}
 			}
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -200,8 +211,10 @@ public class ShopcarAdapter extends BaseAdapter {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				//changeContent(position, Integer.valueOf(v.getText().toString()));
-				notifyDataSetChanged();
+				if (!StringUtil.isNull(v.getText().toString())) {
+					changeContent(position, Integer.valueOf(v.getText().toString()));
+					notifyDataSetChanged();
+				}
 				return false;
 			}
 		});
@@ -349,7 +362,6 @@ public class ShopcarAdapter extends BaseAdapter {
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
 				System.out.println("-onFailure---");
 				Log.e("print", "-onFailure---" + error);
 			}
@@ -385,5 +397,9 @@ public class ShopcarAdapter extends BaseAdapter {
 		}
 		tv_gj.setText("共计 ： " + currentQuantity + "件商品");
 		howMoney.setText("合计 ： ￥" + StringUtil.getMoneyString(currentHowMoney) );
+	}
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
 	}
 }

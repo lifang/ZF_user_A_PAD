@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:text="合计：￥0"
+                android:text="合计：￥0.00"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textmid" />
             <TextView
