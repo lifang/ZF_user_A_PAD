@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -55,7 +57,7 @@ import android.widget.Toast;
  * 
  *         comdo
  */
-public class PosSearch1 extends Activity implements OnEditorActionListener {
+public class PosSearch1 extends BaseActivity implements OnEditorActionListener {
 	private String lat, lng, CName;
 	private EditText et;
 

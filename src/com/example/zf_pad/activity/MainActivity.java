@@ -44,6 +44,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
@@ -182,10 +183,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		set = (LinearLayout) findViewById(R.id.set);
 		set.setOnClickListener(this);
-	}
-	@Override
-	protected void onPause() {
-		super.onPause();
 	}
 	@Override
 	public void onClick(View view) {
@@ -369,6 +366,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();	
+		MobclickAgent.onResume(this);
 		if(Config.ismer){
 			changTabBg();
 			im_wd.setBackgroundResource(R.drawable.mine);
@@ -477,4 +475,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}  
 		return true;  
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+    
 }

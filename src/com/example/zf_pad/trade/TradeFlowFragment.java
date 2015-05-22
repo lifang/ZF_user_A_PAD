@@ -38,6 +38,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;
 import com.example.zf_pad.trade.entity.TradeRecord;
 import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
 
 import org.w3c.dom.Text;
 
@@ -79,7 +80,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	private TradeRecordListAdapter mAdapter;
 	private List<TradeRecord> mRecords;
 	private boolean hasSearched = false;
-
+	private String mPageName;
 	private DecimalFormat df;
 
 	public static TradeFlowFragment newInstance(int tradeType) {
@@ -104,6 +105,7 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		super.onCreate(savedInstanceState);
 		if (getArguments() != null) {
 			mTradeType = getArguments().getInt(TRADE_TYPE);
+            mPageName = String.format("tradeflow %d", mTradeType);
 		}
 		df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
@@ -202,11 +204,6 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				startActivity(intent);
 			}
 		});
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -433,6 +430,21 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		public TextView tvReceiveAccount;
 		public TextView tvClientNumber;
 		public TextView tvAmount;
+	}
+	
+	
+	@Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( mPageName );
+  		}
+    
+    @Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		MobclickAgent.onPageStart( mPageName );	
 	}
 }
 

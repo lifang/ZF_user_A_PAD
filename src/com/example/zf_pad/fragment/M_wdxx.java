@@ -1,3 +1,4 @@
+
 package com.example.zf_pad.fragment;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -411,7 +413,14 @@ public class M_wdxx extends Fragment implements OnClickListener,
 			myAdapter.notifyDataSetChanged();
 		}
 		isFrist=false;
-
-
+		MobclickAgent.onPageStart( this.toString() );
 	}
+	@Override
+	public void onPause() {
+  			// TODO Auto-generated method stub
+  			super.onPause();
+  			MobclickAgent.onPageEnd( this.toString() );
+  		}
+    
 }
+

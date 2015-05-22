@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
@@ -38,7 +39,7 @@ import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-public class PosPortActivity extends Activity implements OnClickListener {
+public class PosPortActivity extends BaseActivity implements OnClickListener {
 	public ExpandableListView listView;
 	private List<PostPortEntity> portlist = new ArrayList<PostPortEntity>();
 	private List<PostPortEntity> glist = new ArrayList<PostPortEntity>();

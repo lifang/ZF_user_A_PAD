@@ -17,6 +17,7 @@ import com.example.zf_pad.R;
 import com.example.zf_pad.trade.widget.MyTabWidget;
 import com.example.zf_pad.trade.widget.MyViewPager;
 import com.example.zf_pad.util.TitleMenuUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,4 +103,17 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
         }
     }
 
+    
+    @Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+    
+    @Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+    
 }

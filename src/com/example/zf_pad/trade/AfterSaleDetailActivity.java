@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -46,7 +47,7 @@ import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
 
-public class AfterSaleDetailActivity extends Activity {
+public class AfterSaleDetailActivity extends BaseActivity {
 
 	public static final String MATERIAL_URL = "material_url";
 

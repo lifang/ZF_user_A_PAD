@@ -1,4 +1,5 @@
 package com.example.zf_pad.activity;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -20,7 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ContactUs extends Activity {
+public class ContactUs extends BaseActivity {
 	private EditText login_edit_name1, login_edit_name, et_contetn;
 	private Button btn_exit;
 	private String name, phone, content;

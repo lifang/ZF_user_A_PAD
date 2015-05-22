@@ -2,6 +2,7 @@ package com.example.zf_pad.activity;
 
 import java.util.ArrayList;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 
 import android.app.Activity;
@@ -20,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class WelcomeActivity extends Activity implements OnPageChangeListener,
+public class WelcomeActivity extends BaseActivity implements OnPageChangeListener,
 		OnClickListener {
 
 	private ImageView img;

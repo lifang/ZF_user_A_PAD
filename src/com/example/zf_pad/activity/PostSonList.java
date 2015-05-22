@@ -1,4 +1,5 @@
 package com.example.zf_pad.activity;
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.R;
 
@@ -17,7 +18,7 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
-public class PostSonList extends Activity {
+public class PostSonList extends BaseActivity {
 	private ListView list;
 	private MyAdapter adapter;
 	private Button bt_close;

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.entity.ChangeEmailEntity;
@@ -22,7 +23,7 @@ import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.google.gson.reflect.TypeToken;
 
-public class ChangeEmail extends Activity implements OnClickListener{
+public class ChangeEmail extends BaseActivity implements OnClickListener{
 
 	private EditText login_edit_name,login_edit_name1,login_edit_name2;
 	private Button btn_exit;

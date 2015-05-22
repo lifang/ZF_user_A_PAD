@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.R;
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -46,7 +48,7 @@ import android.widget.Toast;
  *
  * comdo
  */
-public class PosSearch extends Activity implements OnEditorActionListener {
+public class PosSearch extends BaseActivity implements OnEditorActionListener {
 	private String lat, lng, CName;
 	private EditText et;
 	private ListView lv;
