@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.TextWatcherAdapter;
 import com.example.zf_pad.util.TitleMenuUtil;

@@ -3,7 +3,7 @@ package com.example.zf_pad.fragment;
 import java.util.List;
 
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.GridviewAdapter;
 import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.activity.GoodDeatail;

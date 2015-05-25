@@ -39,7 +39,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.ContactUs;
 import com.example.zf_pad.activity.MyWebView;
 import com.example.zf_pad.activity.PosListActivity;

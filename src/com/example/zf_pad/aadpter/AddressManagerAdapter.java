@@ -2,7 +2,7 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.AdressEdit;
 import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.fragment.Mine_Address;

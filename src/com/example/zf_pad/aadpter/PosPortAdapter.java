@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.PostSonList;
 import com.example.zf_pad.entity.PortSon;
 import com.example.zf_pad.entity.PosItem;

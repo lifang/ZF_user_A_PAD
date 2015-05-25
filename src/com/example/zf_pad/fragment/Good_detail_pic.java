@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.JiaoyiHuilvAdapter;
 import com.example.zf_pad.entity.GoodPic;
 import com.example.zf_pad.trade.common.HttpCallback;

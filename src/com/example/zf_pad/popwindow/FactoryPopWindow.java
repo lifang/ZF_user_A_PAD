@@ -1,6 +1,6 @@
 package com.example.zf_pad.popwindow;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.util.ImageCacheUtil;
 
 import android.app.Activity;

@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.TerminalApply;
 import com.example.zf_pad.entity.TerminalComment;
 import com.example.zf_pad.entity.TerminalDetail;

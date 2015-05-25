@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.trade.common.DialogUtil;

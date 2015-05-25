@@ -1,7 +1,7 @@
 package com.example.zf_pad.aadpter;
 
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

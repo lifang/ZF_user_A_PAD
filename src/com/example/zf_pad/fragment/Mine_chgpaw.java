@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.CommonUtil;

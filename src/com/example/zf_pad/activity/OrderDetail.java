@@ -29,7 +29,7 @@ import android.widget.Toast;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.OrderDetail_PosAdapter;
 import com.example.zf_pad.aadpter.RecordAdapter;
 import com.example.zf_pad.entity.Goodlist;

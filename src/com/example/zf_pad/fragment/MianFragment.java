@@ -3,7 +3,7 @@ package com.example.zf_pad.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.activity.LoginActivity;
 import com.example.zf_pad.entity.PicEntity;

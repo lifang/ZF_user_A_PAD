@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 public class MyTabWidget extends TabWidget implements View.OnClickListener {
     protected ViewPager mViewPager;

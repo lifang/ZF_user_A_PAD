@@ -4,7 +4,7 @@ package com.example.zf_pad.util;
 
 
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 import android.app.Activity;
  

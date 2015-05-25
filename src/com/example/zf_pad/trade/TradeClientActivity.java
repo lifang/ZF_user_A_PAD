@@ -10,7 +10,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.TradeClient;
 import com.example.zf_pad.util.TitleMenuUtil;
