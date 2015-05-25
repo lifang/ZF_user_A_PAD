@@ -836,8 +836,10 @@ public class MyApplyDetail extends FragmentActivity {
 		setItemValue(mBankKeys[0], merchant.getAccountBankName());
 		setItemValue(mBankKeys[1], merchant.getAccountBankNum());
 		setItemValue(mBankKeys[2], merchant.getBankOpenAccount());
-		setItemValue(mBankKeys[3], merchant.getTaxRegisteredNo());
-		setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
+		if (mApplyType == APPLY_PUBLIC) {
+			setItemValue(mBankKeys[3], merchant.getTaxRegisteredNo());
+			setItemValue(mBankKeys[4], merchant.getOrganizationCodeNo());
+		}
 	}
 
 	/**
