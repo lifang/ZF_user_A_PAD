@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.PosEntity;
 
 public class GridviewAdapter extends BaseAdapter {

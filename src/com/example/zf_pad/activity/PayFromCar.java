@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.alipay.PayActivity;
 import com.example.zf_pad.entity.Goodlist;
 import com.example.zf_pad.entity.OrderDetailEntity;

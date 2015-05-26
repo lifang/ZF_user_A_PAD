@@ -1,3 +1,4 @@
+
 package com.example.zf_pad.fragment;
 
 import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_ID;
@@ -37,13 +38,12 @@ import android.widget.Toast;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
 import com.example.zf_pad.activity.ContactUs;
 import com.example.zf_pad.activity.FianceActivity;
 import com.example.zf_pad.activity.LoanActivity;
-import com.example.zf_pad.activity.MyWebView;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
 import com.example.zf_pad.activity.TerminalManagerActivity;

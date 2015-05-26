@@ -1,6 +1,6 @@
 package com.example.zf_pad.activity;
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.fragment.F_good_detail;
 import com.example.zf_pad.fragment.Good_detail_apply;

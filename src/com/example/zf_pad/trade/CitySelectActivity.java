@@ -11,7 +11,7 @@ import java.util.List;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;

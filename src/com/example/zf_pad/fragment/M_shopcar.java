@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.ShopcarAdapter;
 import com.example.zf_pad.activity.ConfirmOrder;
 import com.example.zf_pad.entity.MyShopCar;

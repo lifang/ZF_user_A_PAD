@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 
 public class MTabWidget extends TabWidget implements View.OnClickListener {

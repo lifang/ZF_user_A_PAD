@@ -9,7 +9,7 @@ import java.util.Map;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 import org.apache.http.Header;
 import org.json.JSONException;

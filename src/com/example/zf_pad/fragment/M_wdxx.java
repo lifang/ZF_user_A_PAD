@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.MessageAdapter;
 import com.example.zf_pad.activity.MainActivity;
 import com.example.zf_pad.activity.MymsgDetail;

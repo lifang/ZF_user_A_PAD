@@ -2,7 +2,7 @@ package com.example.zf_pad.util;
 
 import java.io.File;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;

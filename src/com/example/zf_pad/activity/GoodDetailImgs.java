@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

@@ -26,13 +26,14 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.VersionEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.NetworkUtil;
+import com.example.zf_pad.util.DataCleanManager;
 import com.example.zf_pad.util.DownloadUtils;
+import com.example.zf_pad.util.MyToast;
 import com.example.zf_pad.util.Tools;
 import com.google.gson.reflect.TypeToken;
 
@@ -75,7 +76,7 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 		// 设置SelectPicPopupWindow弹出窗体动画效果
 		// this.setAnimationStyle(R.style.AnimationPreview);
 		initView();
-
+		handler = new VersionHandler(context);
 	}
 
 	private void initView() {
@@ -97,6 +98,13 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 		ll_clean.setOnClickListener(this);
 
 		tv_clean = (TextView) conentView.findViewById(R.id.tv_clean);
+		
+		String dataSize = "";
+		try {
+			dataSize = DataCleanManager.getTotalCacheSize(context);
+		} catch (Exception e) {
+		}
+		tv_clean.setText(dataSize);
 	}
 
 	@Override
@@ -110,10 +118,15 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 			// 检测更新
 			checkVersion();
 			break;
-		case R.id.tv_clean:
+		case R.id.ll_clean:
 
-			tv_clean.setText("");
-
+			DataCleanManager.clearAllCache(context);
+			String dataSize = "";
+			try {
+				dataSize = DataCleanManager.getTotalCacheSize(context);
+			} catch (Exception e) {
+			}
+			tv_clean.setText(dataSize);
 			break;
 		case R.id.img_on_off:
 
@@ -123,7 +136,7 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 				img_on_off.setBackgroundResource(R.drawable.pos_off);
 				editor.putBoolean("isOpen_mineset", false);
 				editor.commit();
-
+				MyToast.showToast(context, "您已成功关闭推送消息，在应用进入后台时您将不会收到推送消息！");
 			} else {
 				isOpen_mineset = true;
 				img_on_off.setBackgroundResource(R.drawable.pos_on);

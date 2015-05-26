@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.ApplySearch;
 import com.example.zf_pad.entity.ApplySerch;
 import com.example.zf_pad.trade.API;

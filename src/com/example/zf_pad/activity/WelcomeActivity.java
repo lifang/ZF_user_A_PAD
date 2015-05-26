@@ -3,7 +3,7 @@ package com.example.zf_pad.activity;
 import java.util.ArrayList;
 
 import com.example.zf_pad.BaseActivity;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 
 import android.app.Activity;
 import android.content.Intent;
