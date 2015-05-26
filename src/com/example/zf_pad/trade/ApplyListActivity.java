@@ -1,8 +1,8 @@
 package com.example.zf_pad.trade;
 
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.PART_OPENED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.UNOPENED;
@@ -10,9 +10,7 @@ import static com.example.zf_pad.fragment.Constants.TerminalStatus.UNOPENED;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,13 +20,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
+import com.example.zf_pad.activity.TerminalManagerDetailActivity;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -47,7 +45,6 @@ public class ApplyListActivity extends BaseActivity implements
 	private ApplyListAdapter mAdapter;
 
 	private int page = 0;
-	private int total = 0;
 	private final int rows = 10;
 	private boolean noMoreData = false;
 
@@ -179,7 +176,13 @@ public class ApplyListActivity extends BaseActivity implements
 
 			if (item.getOpenState() == UNOPENED) {
 				holder.btnOpen.setEnabled(true);
-				holder.btnOpen.setText(getString(R.string.apply_button_open));
+				if (!"".equals(item.getAppid())) {
+					holder.btnOpen
+							.setText(getString(R.string.apply_button_reopen));
+				} else {
+					holder.btnOpen
+							.setText(getString(R.string.apply_button_open));
+				}
 			} else if (item.getOpenState() == PART_OPENED) {
 				holder.btnOpen.setEnabled(true);
 				holder.btnOpen.setText(getString(R.string.apply_button_reopen));
@@ -189,7 +192,8 @@ public class ApplyListActivity extends BaseActivity implements
 			holder.btnOpen.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					if (item.getOpenState() == UNOPENED) {
+					if (item.getOpenState() == UNOPENED
+							&& "".equals(item.getAppid())) {
 
 						openDialog(item);
 
@@ -197,20 +201,34 @@ public class ApplyListActivity extends BaseActivity implements
 						Intent intent = new Intent(ApplyListActivity.this,
 								MyApplyDetail.class);
 						intent.putExtra(TERMINAL_ID, item.getId());
-						intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
-						intent.putExtra(TERMINAL_STATUS, item.getOpenState());
 						startActivityForResult(intent, REQUEST_DETAIL);
 					}
 
 				}
 
 			});
+			holder.btnVideo.setVisibility(View.VISIBLE);
+			Boolean videoBoolean = 1 == item.getHasVideoVerify();
+			if (!videoBoolean) {
+				holder.btnVideo.setVisibility(View.GONE);
+			}
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(ApplyListActivity.this,
 							VideoActivity.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
+					startActivity(intent);
+				}
+			});
+			convertView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(ApplyListActivity.this,
+							TerminalManagerDetailActivity.class);
+					intent.putExtra(HAVE_VIDEO, item.getHasVideoVerify());
+					intent.putExtra(TERMINAL_ID, item.getId());
+					intent.putExtra(TERMINAL_STATUS, item.getOpenState());
 					startActivity(intent);
 				}
 			});
@@ -233,17 +251,7 @@ public class ApplyListActivity extends BaseActivity implements
 
 		LayoutInflater factory = LayoutInflater.from(this);
 		View view = factory.inflate(R.layout.protocoldialog, null);
-		// builder.setTitle("自定义输入框");
-		// builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
-		// {
-		// public void onClick(DialogInterface dialog, int whichButton) {
-		// }
-		// });
-		// builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
-		// {
-		// public void onClick(DialogInterface dialog, int whichButton) {
-		// }
-		// });
+
 		builder.setView(view);
 
 		final AlertDialog dialog = builder.create();
@@ -253,6 +261,10 @@ public class ApplyListActivity extends BaseActivity implements
 		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
 
 		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		TextView tv_protocol = (TextView) view.findViewById(R.id.tv_protocol);
+
+		tv_protocol.setText(item.getOpeningProtocol());
 
 		btn_cancel.setOnClickListener(new OnClickListener() {
 
@@ -277,14 +289,12 @@ public class ApplyListActivity extends BaseActivity implements
 					Intent intent = new Intent(ApplyListActivity.this,
 							MyApplyDetail.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
-					intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
-					intent.putExtra(TERMINAL_STATUS, item.getOpenState());
 					startActivityForResult(intent, REQUEST_DETAIL);
 				}
 
 			}
 		});
-//		dialog.show();
+		// dialog.show();
 
 	}
 
@@ -292,14 +302,17 @@ public class ApplyListActivity extends BaseActivity implements
 	public void onRefresh() {
 		page = 0;
 		mTerminalItems.clear();
+		mApplyList.setPullLoadEnable(true);
 		loadData();
 	}
 
 	@Override
 	public void onLoadMore() {
 		if (noMoreData) {
+			mApplyList.setPullLoadEnable(false);
 			mApplyList.stopLoadMore();
-			CommonUtil.toastShort(this, "no more data");
+			CommonUtil.toastShort(this,
+					getResources().getString(R.string.no_more_data));
 		} else {
 			loadData();
 		}

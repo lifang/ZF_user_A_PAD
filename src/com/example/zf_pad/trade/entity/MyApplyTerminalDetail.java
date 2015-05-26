@@ -16,8 +16,18 @@ public class MyApplyTerminalDetail {
 	private String serialNumber;
 
 	private String channelName;
-	
+
 	private int supportRequirementType;
+
+	private int channelId;
+
+	public int getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(int channelId) {
+		this.channelId = channelId;
+	}
 
 	public int getSupportRequirementType() {
 		return supportRequirementType;
