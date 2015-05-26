@@ -16,7 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.widget.MyTabWidget;
 import com.example.zf_pad.trade.widget.MyViewPager;
 import com.example.zf_pad.util.TitleMenuUtil;

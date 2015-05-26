@@ -40,7 +40,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.ButtonGridviewAdapter;
 import com.example.zf_pad.aadpter.HuilvAdapter;
 import com.example.zf_pad.entity.ApplyneedEntity;

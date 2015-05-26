@@ -24,7 +24,7 @@ import com.bairuitech.anychat.AnyChatDefine;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.fragment.Constants.TerminalIntent;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.video.config.ConfigEntity;

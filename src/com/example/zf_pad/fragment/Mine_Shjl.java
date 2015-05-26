@@ -35,7 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.AfterSaleDetailActivity;
 import com.example.zf_pad.trade.AfterSaleMarkActivity;

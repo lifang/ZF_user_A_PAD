@@ -12,6 +12,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.User;
 import com.example.zf_pad.entity.UserEntity;
 import com.example.zf_pad.entity.MyShopCar.Good;

@@ -2,7 +2,7 @@ package com.example.zf_pad.fragment;
 
 
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.widget.MTabWidget;
 import com.example.zf_pad.trade.widget.MTabWidget.OnTabOnclik;
 

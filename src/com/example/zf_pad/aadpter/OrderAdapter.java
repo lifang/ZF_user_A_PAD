@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.OrderDetail;
 import com.example.zf_pad.activity.PayFromCar;
 import com.example.zf_pad.entity.OrderEntity;

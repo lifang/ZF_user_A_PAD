@@ -20,7 +20,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.fragment.Mine_Address;
 import com.example.zf_pad.trade.API;

@@ -23,9 +23,9 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
 import com.example.zf_pad.activity.TerminalManagerDetailActivity;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.trade.common.CommonUtil;

@@ -11,9 +11,9 @@ import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_UPLOAD_I
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BANK;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BILLING;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_CHANNEL;
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_TITLE;
-import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
@@ -58,8 +58,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
 import com.example.zf_pad.entity.BankEntity.Bank;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -83,7 +83,6 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.umeng.analytics.MobclickAgent;
 
 public class MyApplyDetail extends FragmentActivity {
 
@@ -1316,17 +1315,4 @@ public class MyApplyDetail extends FragmentActivity {
 
 	};
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		MobclickAgent.onPageStart(this.toString());
-		MobclickAgent.onResume(this);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		MobclickAgent.onPageStart(this.toString());
-		MobclickAgent.onResume(this);
-	}
 }
