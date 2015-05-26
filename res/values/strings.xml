@@ -266,7 +266,7 @@
     <string name="apply_private">对私</string>
     <string name="apply_detail_brand">POS品牌</string>
     <string name="apply_detail_model">POS型号</string>
-    <string name="apply_detail_serial">终 端 号</string>
+    <string name="apply_detail_serial">终  端  号</string>
     <string name="apply_detail_channel">支付通道</string>
     <string name="toast_no_sdcard">SD卡未挂载</string>
 

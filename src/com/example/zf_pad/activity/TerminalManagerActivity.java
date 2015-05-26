@@ -29,6 +29,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
@@ -348,6 +349,8 @@ public class TerminalManagerActivity extends BaseActivity implements
 				public void onClick(View view) {
 					if ("2".equals(item.getType())) {
 						// 通过添加其他终端 进来的终端，是没有详情，也没有操作按钮
+						Toast.makeText(TerminalManagerActivity.this,
+								"自主开通终端无详情", Toast.LENGTH_SHORT).show();
 						return;
 					} else {
 						Intent intent = new Intent(
