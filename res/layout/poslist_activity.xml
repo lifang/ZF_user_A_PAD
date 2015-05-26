@@ -155,8 +155,8 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/normal_width3"
-                android:layout_marginTop="@dimen/normal_width3"
+                android:layout_marginBottom="@dimen/textmid"
+                android:layout_marginTop="@dimen/textmid"
                 android:background="#ADAEAF" />
 
             <LinearLayout
@@ -178,8 +178,8 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/normal_width3"
-                android:layout_marginTop="@dimen/normal_width3"
+                android:layout_marginBottom="@dimen/textmid"
+                android:layout_marginTop="@dimen/textmid"
                 android:background="#ADAEAF" />
 
             <LinearLayout
@@ -211,8 +211,8 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/normal_width3"
-                android:layout_marginTop="@dimen/normal_width3"
+                android:layout_marginBottom="@dimen/textmid"
+                android:layout_marginTop="@dimen/textmid"
                 android:background="#ADAEAF" />
 
             <LinearLayout
@@ -250,7 +250,7 @@
                 android:id="@+id/port_list2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/normal_width5"
+                android:layout_marginLeft="@dimen/titilepad"
                 android:background="@drawable/pos_pxf" />
         </LinearLayout>
     </RelativeLayout>
