@@ -8,7 +8,6 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.epalmpay.userPad.R;
@@ -18,6 +17,7 @@ import com.example.zf_pad.activity.MymsgDetail;
 import com.example.zf_pad.entity.MessageEntity;
 import com.example.zf_pad.entity.TestEntitiy;
 import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.AlertDialog;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
 import com.example.zf_pad.util.XListView.IXListViewListener;
@@ -231,7 +231,22 @@ public class M_wdxx extends Fragment implements OnClickListener,
 		if(ids.length==0){
 			Toast.makeText(getActivity(), "请选择消息后进行操作！", 1000).show();
 		}else{
-			getData(1);
+			final AlertDialog ad = new AlertDialog(getActivity());
+			ad.setTitle("提示");
+			ad.setMessage("确认删除?");
+			ad.setPositiveButton("取消", new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					ad.dismiss();
+				}
+			});
+			ad.setNegativeButton("确定", new OnClickListener() {
+				@Override
+				public void onClick(final View arg0) {
+					getData(1);
+					ad.dismiss();
+				}	
+			});
 		}
 	}
 

@@ -333,7 +333,7 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
-        </activity>        
+        </activity>
         <activity
             android:name="com.example.zf_pad.video.VideoActivity"
             android:label="@string/app_name"
@@ -346,7 +346,7 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
-          <activity
+        <activity
             android:name="com.example.zf_pad.activity.ChangePhoneTwo"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -358,7 +358,7 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
-          <activity
+        <activity
             android:name="com.example.zf_pad.activity.ChangeEmailTwo"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -384,6 +384,20 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|stateUnchanged" >
         </activity>
+        <activity
+            android:name="com.example.zf_pad.activity.LoanActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+         <activity
+            android:name="com.example.zf_pad.activity.FianceActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>    
         <activity
             android:name="com.example.zf_pad.activity.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"

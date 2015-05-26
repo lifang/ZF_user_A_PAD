@@ -122,6 +122,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				indicator_imgs = new ImageView[ma.size()];
 				initIndicator();
 				adapter.notifyDataSetChanged();
+				if(gfe.getTitle()!=null)
 				tv_title.setText(gfe.getTitle());
 				content1.setText(gfe.getSecond_title());
 				tv_pp.setText(gfe.getGood_brand());
@@ -148,8 +149,6 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 					all_price = gfe.getLease_deposit()+opening_cost;
 					tv_price.setText("£¤ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
 					tv_zd.setVisibility(View.GONE);
-
-
 				}
 				if(gfe.isHas_lease()){
 					Config.canzl=false;
@@ -179,10 +178,8 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private TextView tv_pl;
 	private LinearLayout ll_sc;
 	private TextView tv_zd;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
 
@@ -274,26 +271,25 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 		case R.id.tv_bug:
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("£¤ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
-			islea = false;
-			if (Config.CheckIsLogin(GoodDeatail.this)) {
+			islea = false;			
 				setting_btn_clear1.setClickable(true);
 				setting_btn_clear.setText("Á¢¼´¹ºÂò");
 				setting_btn_clear1.setBackgroundDrawable(getResources()
 						.getDrawable(R.drawable.bg_shape));
 				setting_btn_clear1.setTextColor(getResources().getColor(
 						R.color.bgtitle));
-				tv_bug.setTextColor(getResources().getColor(R.color.bgtitle));
+				tv_bug.setTextColor(getResources().getColor(R.color.white));
 				tv_lea.setTextColor(getResources().getColor(R.color.text292929));
 				tv_lea.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.send_out_goods_shape));
-				tv_bug.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.bg_shape));
-			}
+				//tv_bug.setBackgroundDrawable(getResources().getDrawable(
+				//		R.drawable.bg_shape));	
+				tv_bug.setBackgroundColor(getResources().getColor(R.color.bgtitle));
 			break;
 		case R.id.tv_lea:
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("£¤ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
-			if (Config.CheckIsLogin(GoodDeatail.this)) {
+			
 				islea = true;
 				setting_btn_clear1.setClickable(false);
 				setting_btn_clear.setText("Á¢¼´×âÁÞ");
@@ -302,12 +298,13 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				setting_btn_clear1.setBackgroundDrawable(getResources()
 						.getDrawable(R.drawable.bg0e_shape));
 				tv_bug.setTextColor(getResources().getColor(R.color.text292929));
-				tv_lea.setTextColor(getResources().getColor(R.color.bgtitle));
-				tv_lea.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.bg_shape));
+				tv_lea.setTextColor(getResources().getColor(R.color.white));
+				//tv_lea.setBackgroundDrawable(getResources().getDrawable(
+				//		R.drawable.bg_shape));
+				tv_lea.setBackgroundColor(getResources().getColor(R.color.bgtitle));
 				tv_bug.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.send_out_goods_shape));
-			}
+			
 			break;
 		case R.id.setting_btn_clear1:
 			if (Config.CheckIsLogin(GoodDeatail.this)) {

@@ -1,14 +1,12 @@
 package com.example.zf_pad.fragment;
 
-
-
 public class Constants {
 
 	/**
 	 * TODO: This just a TEST constant
 	 */
 	public static int TEST_CUSTOMER = 80;
-	
+
 	public static int CITY_ID_SEARCH = 0;
 	public static String CITY_NAME_SEARCH = "";
 
@@ -101,6 +99,7 @@ public class Constants {
 		public static final String TERMINAL_STATUS = "terminal_status";
 		public static final String CHANNEL_ID = "channel_id";
 		public static final String CHANNEL_NAME = "channel_name";
+		public static final String HAVE_VIDEO = "have_video";
 	}
 
 	/**
@@ -119,6 +118,7 @@ public class Constants {
 		public static final String SELECTED_ID = "selected_id";
 		public static final String SELECTED_TITLE = "selected_title";
 
+		public static final String SELECTED_CHANNEL_ID = "selected_channel_id";
 		public static final String SELECTED_CHANNEL = "selected_channel";
 		public static final String SELECTED_BILLING = "selected_billing";
 

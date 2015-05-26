@@ -195,6 +195,8 @@ public class API {
 	public static String UPDATE_MERCHANT = SCHEMA + HOST + "merchant/update/";
 	// update file
 	public static String UPDATE_FILE = SCHEMA + HOST + "merchant/upload/file";
+	// apply update file
+	public static String APPLY_UPDATE_FILE = SCHEMA + HOST + "terminal/upload/tempImage/";
 	// delect address
 	public static String DELECT_ADDRESS = SCHEMA + HOST
 			+ "customers/deleteAddress";

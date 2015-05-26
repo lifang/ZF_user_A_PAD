@@ -24,6 +24,8 @@ import com.google.gson.reflect.TypeToken;
 
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_CHANNEL;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_BILLING;
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_CHANNEL_ID;
+
 /**
  * Created by Leo on 2015/3/16.
  */
@@ -37,6 +39,7 @@ public class ApplyChannelActivity extends BaseActivity {
 	private BillingListAdapter billingAdapter;
 	private ApplyChannel chosenChannel;
 	private ApplyChannel.Billing chosenBilling;
+	private int mPayChannelID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,13 @@ public class ApplyChannelActivity extends BaseActivity {
 		chosenBilling = (ApplyChannel.Billing) getIntent()
 				.getSerializableExtra(SELECTED_BILLING);
 
+		mPayChannelID = getIntent().getIntExtra(SELECTED_CHANNEL_ID, 0);
 		channelList = (ListView) findViewById(R.id.apply_channel_list);
 		channelList.addFooterView(new View(this));
 		channelAdapter = new ChannelListAdapter();
 		channelList.setAdapter(channelAdapter);
 
+		channelList.setSelection(0);
 		billingList = (ListView) findViewById(R.id.apply_billing_list);
 		billingList.addFooterView(new View(this));
 		billingAdapter = new BillingListAdapter();
@@ -74,10 +79,20 @@ public class ApplyChannelActivity extends BaseActivity {
 									billings.add(billing);
 								}
 							}
+						} else {
+							Intent intent = new Intent();
+							intent.putExtra(SELECTED_CHANNEL, chosenChannel);
+							intent.putExtra(SELECTED_BILLING, chosenBilling);
+							setResult(RESULT_OK, intent);
+							finish();
 						}
 
 						channelAdapter.notifyDataSetChanged();
 						billingAdapter.notifyDataSetChanged();
+						
+						if (chosenBilling != null && chosenBilling.id > 0) {
+							billingList.setSelection(chosenBilling.id);
+						}
 					}
 				});
 		billingList

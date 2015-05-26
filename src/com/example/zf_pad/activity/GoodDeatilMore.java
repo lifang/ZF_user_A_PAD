@@ -132,6 +132,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 		tv_pl.setTextColor(getResources().getColor(R.color.text292929));
 		tv_zd.setTextColor(getResources().getColor(R.color.text292929));
 		tv_jy.setTextColor(getResources().getColor(R.color.text292929));
+		tv_pic.setTextColor(getResources().getColor(R.color.text292929));
 	}
 	@Override
 	public void onClick(View v) {
@@ -187,7 +188,7 @@ public class GoodDeatilMore extends FragmentActivity implements OnClickListener{
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_good_detail, jy).commit();
 			changColor();
-			tv_pl.setTextColor(getResources().getColor(R.color.o));
+			tv_jy.setTextColor(getResources().getColor(R.color.o));
 			break;
 		case R.id.tv_pic:
 			// Config.goodId = gfe.getId();

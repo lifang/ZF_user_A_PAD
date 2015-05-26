@@ -128,7 +128,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Config.cityId = 394;
-		Config.CITY = "…œ∫£";
+		Config.CITY = "";
 		Config.isFRIST = false;
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth = display.getWidth();

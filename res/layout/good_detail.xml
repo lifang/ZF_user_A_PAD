@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#F8F8F8"
+    android:id="@+id/main"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/titleback_height"
+            android:layout_gravity="center_vertical"
             android:background="@color/bgtitle"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/titilepad"
@@ -47,43 +48,43 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/textbig" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <ImageView
-                    android:id="@+id/search2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="7dp"
-                    android:src="@drawable/car22" />
-
-                <TextView
-                    android:id="@+id/countShopCar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                     android:gravity="center"
-                    android:layout_alignRight="@+id/search2"
-                    android:background="@drawable/bg_circle_red"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="fill_parent"
+         <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:fillViewport="true"
-            android:scrollbars="none" >
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:id="@+id/search2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:src="@drawable/car22" />
+
+            <TextView
+                android:id="@+id/countShopCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_circle_red"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+        </LinearLayout>
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+android:fillViewport="true"
+android:scrollbars="none"
+>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -96,28 +97,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
+<RelativeLayout
+                android:id="@+id/rl_imgs"
+                   android:layout_width="@dimen/goodimg"
+                android:layout_height="@dimen/goodimg"
+               
+                android:background="@color/F3F3F3" >
 
-                        <RelativeLayout
-                            android:id="@+id/rl_imgs"
-                            android:layout_width="@dimen/goodimg"
-                            android:layout_height="@dimen/goodimg"
-                            android:background="@color/F3F3F3" >
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="fill_parent"
+                     
+                    android:layout_height="fill_parent" >
+                </android.support.v4.view.ViewPager>
 
-                            <android.support.v4.view.ViewPager
-                                android:id="@+id/view_pager"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent" >
-                            </android.support.v4.view.ViewPager>
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:id="@+id/indicator"
-                            android:layout_width="fill_parent"
-                            android:layout_height="60dp"
-                            android:layout_alignParentBottom="true"
-                            android:gravity="center"
-                            android:orientation="horizontal" >
-                        </LinearLayout>
+                
+            </RelativeLayout>
+            <LinearLayout
+                    android:id="@+id/indicator"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+                </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -136,9 +140,9 @@
                             android:layout_marginTop="18dp"
                             android:ellipsize="end"
                             android:text=""
+                             android:textStyle="bold"
                             android:textColor="#292929"
-                            android:textSize="@dimen/textbig"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/textbig" />
 
                         <TextView
                             android:id="@+id/content1"
@@ -184,14 +188,14 @@
                                 android:textSize="@dimen/textbig" />
 
                             <LinearLayout
-                                android:id="@+id/mer_detail"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_marginLeft="@dimen/margin_left2"
                                 android:layout_marginRight="@dimen/margin_left2"
                                 android:gravity="center"
-                                android:orientation="horizontal"
-                                android:visibility="gone" >
+                                android:id="@+id/mer_detail"
+                                android:visibility="gone"
+                                android:orientation="horizontal" >
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -299,12 +303,13 @@
                                 android:orientation="horizontal" >
 
                                 <com.example.zf_pad.util.ScrollViewWithGView
-                                    android:id="@+id/gv1"
+                                     android:id="@+id/gv1"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginLeft="7dp"
                                     android:layout_marginRight="@dimen/ddrl_width"
+                                    
                                     android:horizontalSpacing="10dip"
                                     android:numColumns="2"
                                     android:stretchMode="columnWidth"
@@ -317,8 +322,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
-                            android:orientation="horizontal"
-                            android:visibility="gone" >
+                            android:visibility="gone"
+                            android:orientation="horizontal" >
 
                             <TextView
                                 android:id="@+id/textView6"
@@ -337,16 +342,17 @@
                                 <LinearLayout
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="6dp"
                                     android:layout_marginLeft="@dimen/margin_left2"
                                     android:layout_marginRight="@dimen/margin_left2"
-                                    android:orientation="horizontal" >
+                                    android:orientation="horizontal"
+                                    android:layout_marginBottom="6dp" >
 
                                     <ImageView
                                         android:id="@+id/fac_img"
                                         android:layout_width="80dp"
                                         android:layout_height="30dp"
-                                        android:background="@drawable/sj_sjtest" />
+                                        android:background="@drawable/sj_sjtest"
+                                         />
 
                                     <TextView
                                         android:id="@+id/tv_sjhttp"
@@ -358,6 +364,7 @@
                                         android:maxLines="1"
                                         android:text=""
                                         android:textColor="@color/text6c6c6c6"
+                                        
                                         android:textSize="12sp" />
                                 </LinearLayout>
 
@@ -369,9 +376,9 @@
                                     android:layout_marginLeft="@dimen/margin_left2"
                                     android:layout_marginRight="@dimen/margin_left2"
                                     android:ellipsize="end"
-                                    android:lineSpacingExtra="4dp"
                                     android:maxLines="2"
                                     android:text=""
+                                    android:lineSpacingExtra="4dp"
                                     android:textColor="@color/text6c6c6c6"
                                     android:textSize="12sp" />
                             </LinearLayout>
@@ -412,10 +419,10 @@
                                         android:layout_height="30dp"
                                         android:layout_marginRight="20dp"
                                         android:layout_weight="1"
-                                        android:background="@drawable/bg_shape"
+                                        android:background="@color/bgtitle"
                                         android:gravity="center"
                                         android:text="购买"
-                                        android:textColor="@color/bgtitle" />
+                                        android:textColor="@color/white" />
 
                                     <TextView
                                         android:id="@+id/tv_lea"
@@ -444,8 +451,8 @@
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/zc_margin_top"
                             android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/zc_margin_top"
                             android:paddingLeft="@dimen/zc_margin_top"
                             android:paddingRight="@dimen/zc_margin_top" >
 
@@ -464,8 +471,8 @@
                                     android:layout_marginRight="@dimen/zc_margin_top"
                                     android:background="#FCA103"
                                     android:text="加入购物车"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/textbig" />
+                                    android:textSize="@dimen/textbig"
+                                    android:textColor="#ffffff" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -483,130 +490,129 @@
                                     android:layout_marginRight="15dp"
                                     android:background="#FF6624"
                                     android:text="立即购买"
-                                    android:textColor="@color/fffefe"
-                                    android:textSize="@dimen/textbig" />
+                                      android:textSize="@dimen/textbig"
+                                    android:textColor="@color/fffefe" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_alignParentBottom="true" />
-
-                <View
+               
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentBottom="true"/>
+                     <View 
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#E3E2E2" />
-            </RelativeLayout>
-        </ScrollView>
+                  
+                    android:background="#E3E2E2"/>
+     
+</RelativeLayout>
+               </ScrollView>
+            
     </LinearLayout>
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"  />
+      <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                  
+                    android:background="#E3E2E2"/>
+<LinearLayout
+         android:id="@+id/ll_buttom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/titilepad1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/titilepad"
+                    android:layout_alignParentBottom="true"
+                    android:paddingRight="@dimen/titilepad" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+                    <TextView
+                        android:id="@+id/tv_ms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="商品描述"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#E3E2E2" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/zc_margin_top1"
+                        android:background="#DAD8D8" />
 
-    <LinearLayout
-        android:id="@+id/ll_buttom"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/titilepad1"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/titilepad"
-        android:paddingRight="@dimen/titilepad" >
+                    <TextView
+                        android:id="@+id/tv_kt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="开通所需资料"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
 
-        <TextView
-            android:id="@+id/tv_ms"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="商品描述"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/zc_margin_top1"
+                        android:background="#DAD8D8" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="@dimen/zc_margin_top1"
-            android:background="#DAD8D8" />
+                    <TextView
+                        android:id="@+id/tv_pl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="评论"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
 
-        <TextView
-            android:id="@+id/tv_kt"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="开通所需资料"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/zc_margin_top1"
+                        android:background="#DAD8D8" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="@dimen/zc_margin_top1"
-            android:background="#DAD8D8" />
+                    <TextView
+                        android:id="@+id/tv_zd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="租赁协议"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
 
-        <TextView
-            android:id="@+id/tv_pl"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="评论"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/zc_margin_top1"
+                        android:background="#DAD8D8" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="@dimen/zc_margin_top1"
-            android:background="#DAD8D8" />
+                    <TextView
+                        android:id="@+id/tv_jy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="交易费率说明"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
+                                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/zc_margin_top1"
+                        android:background="#DAD8D8" />
 
-        <TextView
-            android:id="@+id/tv_zd"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="租赁说明"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="@dimen/zc_margin_top1"
-            android:background="#DAD8D8" />
-
-        <TextView
-            android:id="@+id/tv_jy"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="交易费率说明"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="@dimen/zc_margin_top1"
-            android:background="#DAD8D8" />
-
-        <TextView
-            android:id="@+id/tv_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="商品图片"
-            android:textColor="#292929"
-            android:textSize="@dimen/textmid" />
-    </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/tv_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="商品图片"
+                        android:textColor="#292929"
+                        android:textSize="@dimen/textmid" />
+                </LinearLayout>
+                 
 </LinearLayout>

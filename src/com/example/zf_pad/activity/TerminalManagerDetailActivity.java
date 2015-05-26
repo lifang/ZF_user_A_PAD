@@ -1,7 +1,7 @@
 package com.example.zf_pad.activity;
 
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
-import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.CANCELED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.OPENED;
@@ -16,16 +16,16 @@ import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,21 +35,22 @@ import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.TerminalApply;
 import com.example.zf_pad.entity.TerminalComment;
 import com.example.zf_pad.entity.TerminalDetail;
-import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.MyApplyDetail;
+import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.video.VideoActivity;
 import com.google.gson.reflect.TypeToken;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint("NewApi")
 public class TerminalManagerDetailActivity extends BaseActivity {
 
 	private int mTerminalStatus;
-	private String mTerminalNumber;
 	private int mTerminalId;
 
 	private LayoutInflater mInflater;
@@ -67,13 +68,17 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 	private View.OnClickListener mPosListener;
 	private View.OnClickListener mVideoListener;
 
+	private int isVideo, status;
+	private Boolean appidBoolean, videoBoolean;
+	DisplayImageOptions options = MyApplication.getDisplayOption();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
+		isVideo = getIntent().getIntExtra(HAVE_VIDEO, 0);
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
-		mTerminalNumber = getIntent().getStringExtra(TERMINAL_NUMBER);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
 
 		setContentView(R.layout.activity_terminal_detail);
@@ -119,13 +124,9 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		mOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				TerminalManagerEntity item = (TerminalManagerEntity) view
-						.getTag();
 				Intent intent = new Intent(TerminalManagerDetailActivity.this,
 						MyApplyDetail.class);
-				intent.putExtra(TERMINAL_ID, item.getId());
-				intent.putExtra(TERMINAL_NUMBER, item.getPosPortID());
-				intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+				intent.putExtra(TERMINAL_ID, mTerminalId);
 				startActivity(intent);
 			}
 		};
@@ -150,10 +151,18 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		mVideoListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(TerminalManagerDetailActivity.this,
-						VideoActivity.class);
-				intent.putExtra(TERMINAL_ID, mTerminalId);
-				startActivity(intent);
+				if (status == UNOPENED && !appidBoolean) {
+
+					CommonUtil.toastShort(TerminalManagerDetailActivity.this,
+							"«Îœ»…Í«Îø™Õ®");
+
+				} else {
+					Intent intent = new Intent(
+							TerminalManagerDetailActivity.this,
+							VideoActivity.class);
+					intent.putExtra(TERMINAL_ID, mTerminalId);
+					startActivity(intent);
+				}
 			}
 		};
 	}
@@ -196,55 +205,175 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 	}
 
 	private void setStatusAndButtons(TerminalApply apply) {
-		int status = null == apply ? mTerminalStatus : apply.getStatus();
+		status = null == apply ? mTerminalStatus : apply.getStatus();
 		String[] terminalStatus = getResources().getStringArray(
 				R.array.terminal_status);
 		mStatus.setText(terminalStatus[status]);
+
+		appidBoolean = !"".equals(apply.getAppId()) && apply.getAppId() != 0;
+		videoBoolean = 1 == isVideo;
+
 		switch (status) {
 		case OPENED:
-			mBtnRightTop.setVisibility(View.VISIBLE);
 			mBtnRightBottom.setVisibility(View.VISIBLE);
-
-			mBtnRightTop.setText(getString(R.string.terminal_button_video));
-			mBtnRightTop.setOnClickListener(mVideoListener);
 			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
 			mBtnRightBottom.setOnClickListener(mPosListener);
+			if (appidBoolean) {
+				if (videoBoolean) {
+
+					mBtnLeftTop.setVisibility(View.INVISIBLE);
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftBottom.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+				}
+
+			} else {
+				if (videoBoolean) {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+
+				}
+			}
 			break;
 		case PART_OPENED:
-			mBtnLeftTop.setVisibility(View.VISIBLE);
-			mBtnLeftBottom.setVisibility(View.VISIBLE);
-			mBtnRightTop.setVisibility(View.VISIBLE);
-			mBtnRightBottom.setVisibility(View.VISIBLE);
+			if (appidBoolean) {
 
-			mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
-			mBtnLeftTop.setOnClickListener(mSyncListener);
-			mBtnLeftBottom.setText(getString(R.string.terminal_button_reopen));
-			mBtnLeftBottom.setOnClickListener(mOpenListener);
-			mBtnRightTop.setText(getString(R.string.terminal_button_video));
-			mBtnRightTop.setOnClickListener(mVideoListener);
+				mBtnLeftTop.setVisibility(View.VISIBLE);
+				mBtnLeftTop.setText(getString(R.string.terminal_button_sync));
+				mBtnLeftTop.setOnClickListener(mSyncListener);
+				if (videoBoolean) {
+
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnLeftBottom.setOnClickListener(mVideoListener);
+				}
+
+				mBtnLeftBottom.setVisibility(View.INVISIBLE);
+			} else {
+				if (videoBoolean) {
+					mBtnLeftTop.setVisibility(View.VISIBLE);
+					mBtnLeftTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnLeftTop.setOnClickListener(mVideoListener);
+
+					mBtnLeftBottom.setVisibility(View.INVISIBLE);
+				}
+			}
+			mBtnRightTop.setVisibility(View.VISIBLE);
+			mBtnRightTop.setText(getString(R.string.terminal_button_reopen));
+			mBtnRightTop.setOnClickListener(mOpenListener);
+			mBtnRightBottom.setVisibility(View.VISIBLE);
 			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
 			mBtnRightBottom.setOnClickListener(mPosListener);
 			break;
 		case UNOPENED:
-			mBtnLeftBottom.setVisibility(View.VISIBLE);
-			// mBtnLeftBottom.setVisibility(View.INVISIBLE);
-			mBtnRightTop.setVisibility(View.VISIBLE);
-			mBtnRightBottom.setVisibility(View.VISIBLE);
+			if (appidBoolean) {
+				if (videoBoolean) {
 
-			mBtnLeftBottom.setText(getString(R.string.terminal_button_sync));
-			mBtnLeftBottom.setOnClickListener(mSyncListener);
-			mBtnRightTop.setText(getString(R.string.terminal_button_open));
-			mBtnRightTop.setOnClickListener(mOpenListener);
-			mBtnRightBottom.setText(getString(R.string.terminal_button_video));
-			mBtnRightBottom.setOnClickListener(mVideoListener);
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftBottom.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			} else {
+
+				if (videoBoolean) {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_open));
+					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_open));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			}
+
 			break;
 		case CANCELED:
+			if (appidBoolean) {
+				if (videoBoolean) {
+					mBtnLeftBottom.setVisibility(View.VISIBLE);
+					mBtnLeftBottom
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnLeftBottom.setOnClickListener(mSyncListener);
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightTop.setOnClickListener(mVideoListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				} else {
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_sync));
+					mBtnRightTop.setOnClickListener(mSyncListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			} else {
+				if (videoBoolean) {
+
+					mBtnRightTop.setVisibility(View.VISIBLE);
+					mBtnRightTop
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_video));
+					mBtnRightBottom.setOnClickListener(mVideoListener);
+				} else {
+
+					mBtnRightBottom.setVisibility(View.VISIBLE);
+					mBtnRightBottom
+							.setText(getString(R.string.terminal_button_reopen));
+					mBtnRightBottom.setOnClickListener(mOpenListener);
+				}
+			}
 			break;
 		case STOPPED:
-			mBtnRightBottom.setVisibility(View.VISIBLE);
 
-			mBtnRightBottom.setText(getString(R.string.terminal_button_sync));
-			mBtnRightBottom.setOnClickListener(mSyncListener);
 			break;
 		}
 	}
@@ -271,43 +400,6 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 	}
 
 	private void addRatesTable(LinearLayout category, List<TerminalRate> rates) {
-
-		// TableLayout terminal_rates = (TableLayout)
-		// findViewById(R.id.terminal_rates);
-		//
-		// if (null == category || null == rates || rates.size() <= 0) {
-		// terminal_rates.setVisibility(View.GONE);
-		// return;
-		// }
-		//
-		// for (int i = 0; i < rates.size(); i++) {
-		//
-		// TerminalRate rate = rates.get(i);
-		//
-		// TableRow tableRow = new TableRow(this);
-		// LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT,
-		// LayoutParams.WRAP_CONTENT);
-		// if (i == rates.size() - 1)
-		// lp.setMargins(1, 0, 1, 1);
-		// lp.setMargins(1, 0, 1, 0);
-		// tableRow.setLayoutParams(lp);
-		// tableRow.setPadding(5, 5, 5, 5);
-		// tableRow.setBackgroundColor(Color.parseColor("#ffffff"));
-		// TextView typeTv = createRateText();
-		// TextView rateTv = createRateText();
-		// TextView statusTv = createRateText();
-		//
-		// String[] status = getResources().getStringArray(
-		// R.array.terminal_status);
-		// typeTv.setText(rate.getType());
-		// rateTv.setText(rate.getBaseRate()
-		// + getString(R.string.notation_percent));
-		// statusTv.setText(status[rate.getStatus()]);
-		// tableRow.addView(typeTv);
-		// tableRow.addView(rateTv);
-		// tableRow.addView(statusTv);
-		// terminal_rates.addView(tableRow);
-		// }
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.terminal_rates);
 		if (null == category || null == rates || rates.size() <= 0)
@@ -377,9 +469,21 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 
 		View.OnClickListener onViewPhotoListener = new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
+			public void onClick(View v) {
 
-				// ShowWebImageActivity.class)
+				AlertDialog.Builder build = new AlertDialog.Builder(
+						TerminalManagerDetailActivity.this);
+				LayoutInflater factory = LayoutInflater
+						.from(TerminalManagerDetailActivity.this);
+				final View textEntryView = factory.inflate(R.layout.show_view,
+						null);
+				build.setView(textEntryView);
+				final ImageView view = (ImageView) textEntryView
+						.findViewById(R.id.imag);
+				// ImageCacheUtil.IMAGE_CACHE.get((String) v.getTag(), view);
+				ImageLoader.getInstance().displayImage((String) v.getTag(),
+						view, options);
+				build.create().show();
 			}
 		};
 
@@ -393,9 +497,10 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 						.findViewById(R.id.terminal_open_key_left);
 				ImageButton icon = (ImageButton) column
 						.findViewById(R.id.terminal_open_icon_left);
-				icon.setTag(i);
+				icon.setTag(imageUrls.get(i));
 				icon.setOnClickListener(onViewPhotoListener);
 				key.setText(photoOpen.getKey());
+				key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 				if (i == photoOpens.size() - 1) {
 					category.addView(column);
 					column.findViewById(R.id.terminal_open_right)
@@ -406,9 +511,10 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 						.findViewById(R.id.terminal_open_key_right);
 				ImageButton icon = (ImageButton) column
 						.findViewById(R.id.terminal_open_icon_right);
-				icon.setTag(i);
+				icon.setTag(imageUrls.get(i));
 				icon.setOnClickListener(onViewPhotoListener);
 				key.setText(photoOpen.getKey());
+				key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 				category.addView(column);
 			}
 		}
@@ -446,28 +552,8 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		return tv;
 	}
 
-	private TextView createRateText() {
-		LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT, 1);
-		TextView tv = new TextView(this);
-		tv.setLayoutParams(lp);
-		tv.setGravity(Gravity.CENTER);
-		tv.setTextColor(Color.parseColor("#292929"));
-		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-		return tv;
-	}
-
 	private LinearLayout renderCategoryTemplate(
 			LinkedHashMap<String, String> pairs, Boolean isOpen) {
-		// LinearLayout terminal_category = (LinearLayout)
-		// findViewById(R.id.terminal_category);
-		// TextView title = (TextView) findViewById(R.id.category_title);
-		// LinearLayout keyContainer = (LinearLayout)
-		// findViewById(R.id.category_key_container);
-		// LinearLayout valueContainer = (LinearLayout)
-		// findViewById(R.id.category_value_container);
-		//
-		// title.setText(getString(titleRes));
 
 		LinearLayout terminalCategory = (LinearLayout) mInflater.inflate(
 				R.layout.after_sale_detail_category_ter, null);
@@ -486,10 +572,12 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		for (Map.Entry<String, String> pair : pairs.entrySet()) {
 			TextView key = createCategoryText();
 			key.setText(pair.getKey());
+			key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 			keyContainer.addView(key);
 
 			TextView value = createCategoryText();
 			value.setText(pair.getValue());
+			value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 			valueContainer.addView(value);
 		}
 		return terminalCategory;

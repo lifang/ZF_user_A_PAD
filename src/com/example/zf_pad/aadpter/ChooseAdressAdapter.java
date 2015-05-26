@@ -2,22 +2,16 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.entity.AdressEntity;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.entity.AdressEntity;
 
 public class ChooseAdressAdapter extends BaseAdapter {
 	private Context context;
@@ -69,14 +63,14 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		holder.tv_city.setText(list.get(position).getCity());
 		if(list.get(position).getIsDefault().equals("1")){
 			holder.ll_isshow .setVisibility(View.VISIBLE);	
-			holder.tv_default.setVisibility(View.VISIBLE);
+			holder.tv_default.setVisibility(View.GONE);
 		}else{
 			holder.ll_isshow .setVisibility(View.INVISIBLE);
 			if(list.get(position).getIscheck()){
 				holder.ll_isshow .setVisibility(View.VISIBLE);			 
 			}else{
 				holder.ll_isshow .setVisibility(View.INVISIBLE);
-				holder.tv_default.setVisibility(View.INVISIBLE);
+				holder.tv_default.setVisibility(View.GONE);
 			}
 		}
 	

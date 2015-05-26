@@ -298,7 +298,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		xxlistview.setXListViewListener(this);
 		xxlistview.setDivider(null);
 		datasho=new ArrayList<Shopname>();
-		shoaadapter=new ShopAdapter(datasho, getActivity().getBaseContext());
+		shoaadapter=new ShopAdapter(datasho, getActivity().getBaseContext(),getActivity());
 		btn_creat.setOnClickListener(new OnClickListener() {
 			
 			@Override

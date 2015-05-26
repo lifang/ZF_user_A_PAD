@@ -10,6 +10,12 @@
         android:background="@drawable/bg_item"
         android:orientation="horizontal" >
 
+        <View
+            android:id="@+id/isshow"
+            android:visibility="gone"
+            android:layout_width="@dimen/titilepad"
+            android:layout_height="match_parent" />
+
         <CheckBox
             android:id="@+id/item_cb"
             style="@style/MyCheckBox"
@@ -33,7 +39,6 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:paddingRight="300dp"
                 android:singleLine="true"
                 android:text="选择POS品牌"

@@ -188,6 +188,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+               
                 android:orientation="horizontal" >
 
                 <TextView
@@ -202,7 +203,8 @@
                     android:id="@+id/img3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="6dp"
+                    
                     android:background="@drawable/ti_down" />
             </LinearLayout>
 
@@ -256,7 +258,7 @@
     <LinearLayout
         android:id="@+id/ll_listflag"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/normal_height2"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/normal_width2"
         android:layout_marginLeft="@dimen/dlimg"
         android:layout_marginRight="@dimen/dlimg"
@@ -265,7 +267,8 @@
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/alertwidth"
         android:paddingRight="@dimen/titilepad1"
-        android:visibility="gone" >
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/textView1"
@@ -275,6 +278,7 @@
             android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:text="商品"
+            android:textSize="@dimen/textmid"
             android:textColor="#292929" />
 
         <TextView
@@ -285,6 +289,7 @@
             android:layout_marginRight="@dimen/titilepad"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+             android:textSize="@dimen/textmid"
             android:gravity="center"
             android:text="价格"
             android:textColor="#292929" />
@@ -295,6 +300,7 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
+             android:textSize="@dimen/textmid"
             android:gravity="center_vertical"
             android:text="历史销量"
             android:textColor="#292929" />

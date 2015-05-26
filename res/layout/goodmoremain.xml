@@ -117,7 +117,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="租赁说明"
+            android:text="租赁协议"
             android:textColor="#292929"
             android:textSize="18sp" />
 

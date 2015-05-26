@@ -34,7 +34,9 @@
 
                 <LinearLayout
                     android:layout_width="240dp"
-                    android:layout_height="fill_parent" >
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center" >
 
                     <TextView
                         android:id="@+id/toPublic"
@@ -99,6 +101,13 @@
                             android:text="@string/apply_detail_serial"
                             android:textColor="#292929"
                             android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/apply_detail_channel"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -124,6 +133,13 @@
 
                         <TextView
                             android:id="@+id/apply_detail_serial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#292929"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/apply_detail_channel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#292929"
@@ -238,6 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
+                    android:horizontalSpacing="5dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="3"
                     android:paddingLeft="64dp"
@@ -251,6 +268,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:horizontalSpacing="5dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="2"
                     android:paddingLeft="64dp"

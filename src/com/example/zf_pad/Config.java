@@ -156,7 +156,6 @@ public class Config {
 	public static boolean ismer=false;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
-
 	public static String channelId = "";//，绑定百度推送的channelId
 	public static String notificationTitle = "";//，绑定百度推送的title
 	public static String notificationMsgID = "";//，绑定百度推送的title

@@ -26,10 +26,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.OrderDetail_PosAdapter;
 import com.example.zf_pad.aadpter.RecordAdapter;
 import com.example.zf_pad.entity.Goodlist;
@@ -62,18 +62,31 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			switch (msg.what) {
 			case 0:
 				OrderDetailEntity entity = ode.get(0);
-				tv_sjps.setText("实际配送金额(含配送费) ：￥ "
-						+check(entity.getOrder_totalprice())/100 );
-				tv_psf.setText("含配送费 ：￥ " + entity.getOrder_psf());
-				tv_reperson.setText("收   件   人  ：   " + entity.getOrder_receiver());
+				tv_sjps.setText("实付金额(含配送费) ：￥ "
+						+df.format(check(entity.getOrder_totalprice())/100) );
+				tv_psf.setText("含配送费   ：￥ " + df.format(check(entity.getOrder_psf())));
+				tv_reperson.setText("收   件  人  ：   " + entity.getOrder_receiver());
 				tv_tel.setText(entity.getOrder_receiver_phone());
-				tv_adress.setText("收货地址  ：   " + entity.getOrder_address());
+				if(entity.getOrder_address()==null){
+					tv_adress.setText("收货地址   ：   " );
+				}else{
+					tv_adress.setText("收货地址   ：   " + entity.getOrder_address());
+				}
+				
 				tv_ly.setText("留         言  ：   " + entity.getOrder_comment());
-				tv_fplx.setText(entity.getOrder_invoce_type().equals("1") ? "发票类型 : 个人"
-						: "发票类型 : 公司");
-				fptt.setText("发票抬头  ：   " + entity.getOrder_invoce_info());
+				tv_fplx.setText(entity.getOrder_invoce_type().equals("1") ? "发票类型  ： 个人"
+						: "发票类型   ： 公司");
+				fptt.setText("发票抬头   ：   " + entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号  ：   " + entity.getOrder_number());
-				tv_pay.setText("支付方式  ：   " + entity.getOrder_payment_type());
+				if (entity.getOrder_payment_type().equals("1")) {
+					tv_pay.setText("支付方式  ：   支付宝");
+				} else if (entity.getOrder_payment_type().equals("2")) {
+					tv_pay.setText("支付方式  ：   银联");
+				} else if (entity.getOrder_payment_type().equals("3")) {
+					tv_pay.setText("支付方式  ：   现金");
+				} else {
+					tv_pay.setText("支付方式  ：   ");
+				}
 				tv_time.setText("实付金额  ：   ￥" + check(entity.getOrder_totalprice())/100);
 				tv_money.setText("订单日期  ：   " + entity.getOrder_createTime());
 				tv_gj.setText("共计  ：   " + entity.getOrder_totalNum() + "件商品");
@@ -252,29 +265,29 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		}
 		switch (status) {
 		case 1:
-			tv_status.setText("未付款");
+			tv_status.setText("订单状态   : 未付款");
 			
 			break;
 		case 2:
-			tv_status.setText("已付款");
+			tv_status.setText("订单状态   : 已付款");
 			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 3:
-			tv_status.setText("已发货");
+			tv_status.setText("订单状态   : 已发货");
 			btn_ishow.setVisibility(View.VISIBLE);
 			bt_pj.setVisibility(View.VISIBLE);
 			break;
 		case 4:
-			tv_status.setText("已评价");
+			tv_status.setText("订单状态   : 已评价");
 			btn_ishow.setVisibility(View.VISIBLE);
 			break;
 		case 5:
-			tv_status.setText("已取消");
+			tv_status.setText("订单状态   : 已取消");
 
 			break;
 		case 6:
 
-			tv_status.setText("交易关闭");
+			tv_status.setText("订单状态  : 交易关闭");
 			break;
 		default:
 			break;
