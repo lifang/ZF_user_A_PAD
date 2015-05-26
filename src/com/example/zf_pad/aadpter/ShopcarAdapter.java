@@ -27,7 +27,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.MyShopCar.Good;
 import com.example.zf_pad.util.AlertDialog;
 import com.example.zf_pad.util.ImageCacheUtil;

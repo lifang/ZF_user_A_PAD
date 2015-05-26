@@ -26,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.VersionEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.HttpCallback;

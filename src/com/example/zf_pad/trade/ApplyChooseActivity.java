@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.PageMerchane;

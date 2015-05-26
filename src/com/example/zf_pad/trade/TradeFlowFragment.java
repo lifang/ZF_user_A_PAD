@@ -33,7 +33,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.common.DialogUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.Page;

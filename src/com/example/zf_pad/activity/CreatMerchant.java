@@ -43,7 +43,7 @@ import android.widget.Toast;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.OrderDetailEntity;
 import com.example.zf_pad.fragment.Mine_MyMerChant;
 import com.example.zf_pad.trade.API;

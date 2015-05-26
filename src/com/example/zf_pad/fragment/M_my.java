@@ -1,7 +1,7 @@
 package com.example.zf_pad.fragment;
 
 import com.example.zf_pad.Config;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;

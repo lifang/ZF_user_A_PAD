@@ -1,7 +1,7 @@
 package com.example.zf_pad.activity;
 
 import com.example.zf_pad.BaseActivity;
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.util.TitleMenuUtil;
 
 import android.app.Activity;

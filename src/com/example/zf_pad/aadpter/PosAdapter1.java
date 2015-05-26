@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-import com.example.zf_pad.R;
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.GoodDeatail;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.entity.PosEntity;
