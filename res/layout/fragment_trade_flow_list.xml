@@ -3,8 +3,8 @@
     android:id="@+id/trade_record_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="48dp"
+    android:layout_marginRight="48dp"
     android:divider="@color/F3F2F2"
     android:dividerHeight="1px"
-    android:layout_marginLeft="@dimen/zc_rl_h"
-    android:layout_marginRight="@dimen/zc_rl_h"
     android:scrollbars="none" />

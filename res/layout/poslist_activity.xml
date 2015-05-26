@@ -84,17 +84,38 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/titilepad"
-            android:layout_toLeftOf="@+id/search2"
+            android:layout_toLeftOf="@+id/search2_Layout"
             android:background="@drawable/car11" />
 
-        <ImageView
-            android:id="@+id/search2"
+        <RelativeLayout
+            android:id="@+id/search2_Layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/titilepad"
-            android:background="@drawable/car22" />
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/search2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/titilepad"
+                android:background="@drawable/car22"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp" />
+
+            <TextView
+                android:id="@+id/countShopCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/search2"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:background="@drawable/bg_circle_red"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <View

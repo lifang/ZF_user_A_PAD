@@ -69,22 +69,35 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/list"
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="120dp"
-        android:layout_height="42dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:background="#FF5A10"
-        android:gravity="center"
-        android:text="新增地址"
-        android:textColor="#FFE9C1"
-        android:textSize="18sp" />
+        <com.example.zf_pad.util.ScrollViewWithListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="120dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/list"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:background="#FF5A10"
+            android:gravity="center"
+            android:text="新增地址"
+            android:textColor="#FFE9C1"
+            android:textSize="18sp" />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_below="@+id/btn_add"
+            android:layout_height="15dp"/>
+    </RelativeLayout>
+</ScrollView>
 </LinearLayout>

@@ -26,11 +26,14 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	private Mine_Address address;
 	private Mine_baseinfo info;
 	private Mine_chgpaw chgpaw;
-	 public static int mRecordType=0;
+	public static int mRecordType=0;
 	//private LinearLayout ll_myinfo;
 	private MTabWidget mTabWidget;
-	 private Message msg;
-	    public static boolean isHiddenn=false;
+	private Message msg;
+	public static boolean isHiddenn=false;
+	public Mine_MyInfo mine_MyInfo;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -39,7 +42,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		mine_MyInfo = this;
 		// view = inflater.inflate(R.layout.f_mine, container,false);
 		// initView();
 
@@ -49,10 +52,11 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				parent.removeView(view);
 		}
 		try {
+			
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
 			init();
 		} catch (InflateException e) {
-
+			System.out.println(e);
 		}
 
 		return view;
@@ -63,8 +67,8 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 		super.onStart();
 		mTabWidget.updateTabs(mRecordType);
 		Log.e("viewS", String.valueOf(view));
-		
-		
+
+
 	}
 	@Override
 	public void onResume() {
@@ -73,7 +77,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 		Log.e("viewR", String.valueOf(view));
 		//ll_myinfo.setVisibility(View.VISIBLE);
 		if(Config.AderssManger){
-			 mTabWidget.updateTabs(2);
+			mTabWidget.updateTabs(2);
 			if(address==null)
 				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -89,18 +93,18 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	}
 	private void init() {
 		msg=Mine_baseinfo.myHandler.obtainMessage();
-		
+
 		//ll_myinfo=(LinearLayout) view.findViewById(R.id.ll_myinfo);
 		Log.e("viewR", String.valueOf(view));
 		mTabWidget = (MTabWidget)view.findViewById(R.id.tab_widget);
-		 // add tabs to the TabWidget
-       String[] tabs = getResources().getStringArray(R.array.mine_myinfo);
-       for (int i = 0; i < tabs.length; i++) {
-           mTabWidget.addTab(tabs[i]);
-       }
-       mTabWidget.updateTabs(0);
-       mTabWidget.setonTabLintener(this);
-		
+		// add tabs to the TabWidget
+		String[] tabs = getResources().getStringArray(R.array.mine_myinfo);
+		for (int i = 0; i < tabs.length; i++) {
+			mTabWidget.addTab(tabs[i]);
+		}
+		mTabWidget.updateTabs(0);
+		mTabWidget.setonTabLintener(this);
+
 	}
 	@Override
 	public void onDestroyView() {
@@ -108,15 +112,15 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 			mRecordType=0;
 			FragmentTransaction transaction = getActivity()
 					.getSupportFragmentManager().beginTransaction();
-		if (address != null)
-			transaction.remove(address);
-		if (score != null)
-			transaction.remove(score);
-		if (info != null)
-			transaction.remove(info);
-		if(chgpaw!=null)
-			transaction.remove(chgpaw);
-		transaction.commit();
+			if (address != null)
+				transaction.remove(address);
+			if (score != null)
+				transaction.remove(score);
+			if (info != null)
+				transaction.remove(info);
+			if(chgpaw!=null)
+				transaction.remove(chgpaw);
+			transaction.commit();
 		} catch (Exception e) {
 		}
 		super.onDestroyView();
@@ -131,7 +135,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				info=new Mine_baseinfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, info).commit();
-			
+
 			break;
 		case 1:
 			if(chgpaw==null)
@@ -147,7 +151,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fm, address).commit();
-		/*	msg.what=1024;
+			/*	msg.what=1024;
 			if(!isHiddenn)
 				msg.sendToTarget();*/
 			break;
@@ -155,7 +159,7 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 			if (score == null)
 				score = new Mine_score();
 			getActivity().getSupportFragmentManager().beginTransaction()
-					.replace(R.id.fm, score).commit();
+			.replace(R.id.fm, score).commit();
 			/*msg.what=1024;
 			if(!isHiddenn)
 				msg.sendToTarget();*/
@@ -164,5 +168,5 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 			break;
 		}
 	}
-	
+
 }

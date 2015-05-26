@@ -9,12 +9,15 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -27,9 +30,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.ChangeEmail;
 import com.example.zf_pad.activity.ChangePhone;
 import com.example.zf_pad.activity.LoginActivity;
@@ -63,6 +66,12 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private ScrollView sLV;
 	private SharedPreferences mySharedPreferences;
 	private Activity mActivity;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -96,6 +105,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			Config.changeemail = "";
 		}
 	}
+
 	@Override
 	public void onStart() {
 		// TODO Auto-generated method stub
@@ -333,6 +343,12 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			Config.isExit=true;
 			MyApplication.NewUser=null;
 			startActivity(new Intent(getActivity(),MainActivity.class));
+//			FragmentTransaction transaction = getActivity()
+//					.getSupportFragmentManager().beginTransaction();
+//			if (Mine_MyInfo.mine_MyInfo != null)
+//				transaction.remove(Mine_MyInfo.mine_MyInfo);
+//			transaction.commit();
+			
 			Editor editor=mySharedPreferences.edit();
 			editor.putBoolean("islogin", false);
 			editor.putString("name", null);
@@ -346,4 +362,10 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		}
 
 	}
+	@Override
+	public void onPause() {
+		super.onPause();
+	
+	}
+
 }

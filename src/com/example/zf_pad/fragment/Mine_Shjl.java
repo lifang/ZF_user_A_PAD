@@ -264,7 +264,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 						holder.btnLeft.setTag(data);
 						holder.btnLeft.setOnClickListener(mCancelApplyListener);
 
-						holder.btnRight.setText(getString(R.string.button_pay));
+						holder.btnRight.setText(getString(R.string.button_pay_maintain));
 						holder.btnRight.setTag(data);
 						holder.btnRight.setOnClickListener(mPayMaintainListener);
 					} else if (data.getStatus().equals("2")) {

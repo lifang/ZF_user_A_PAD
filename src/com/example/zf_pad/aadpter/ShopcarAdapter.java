@@ -172,7 +172,7 @@ public class ShopcarAdapter extends BaseAdapter {
 		//holder.wayName.setText(good.getName());
 		//holder.Model_number.setText(good.getModel_number());
 		holder.wayNameTextView.setText(good.getName());
-		holder.Model_numberTextView.setText(good.getModel_number());
+		holder.Model_numberTextView.setText(good.getGood_brands()+good.getModel_number());
 
 		if (!StringUtil.isNull(good.getUrl_path())) {
 			ImageCacheUtil.IMAGE_CACHE.get(good.getUrl_path(), holder.evevt_img);

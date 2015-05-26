@@ -1,6 +1,5 @@
 package com.example.zf_pad.trade;
 
-import static com.example.zf_pad.fragment.Constants.TradeIntent.TRADE_TYPE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.CLIENT_NUMBER;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.END_DATE;
 import static com.example.zf_pad.fragment.Constants.TradeIntent.REQUEST_TRADE_CLIENT;
@@ -12,37 +11,6 @@ import static com.example.zf_pad.fragment.Constants.TradeType.LIFE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.PHONE_PAY;
 import static com.example.zf_pad.fragment.Constants.TradeType.REPAYMENT;
 import static com.example.zf_pad.fragment.Constants.TradeType.TRANSFER;
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.example.zf_pad.trade.common.Page;
-import com.example.zf_pad.trade.entity.TradeRecord;
-import com.example.zf_pad.util.StringUtil;
-import com.google.gson.reflect.TypeToken;
-import com.umeng.analytics.MobclickAgent;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -50,9 +18,45 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager.LayoutParams;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.PopupWindow.OnDismissListener;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.aadpter.SelectStateAdapter;
+import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.common.Page;
+import com.example.zf_pad.trade.entity.TradeClient;
+import com.example.zf_pad.trade.entity.TradeRecord;
+import com.example.zf_pad.util.StringUtil;
+import com.google.gson.reflect.TypeToken;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class TradeFlowFragment extends Fragment implements View.OnClickListener {
@@ -85,6 +89,12 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	private String mPageName;
 	private DecimalFormat df;
 
+	//设置popupWindow弹出后背景的阴影
+	private WindowManager.LayoutParams lp;
+	private PopupWindow popuSelState;
+	private SelectStateAdapter<TradeClient> selStateAdapter;
+	private List<TradeClient> dataTradeClient = new ArrayList<TradeClient>();
+	
 	public static TradeFlowFragment newInstance(int tradeType) {
 		TradeFlowFragment fragment = new TradeFlowFragment();
 		Bundle args = new Bundle();
@@ -124,7 +134,8 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 		super.onViewCreated(view, savedInstanceState);
 
 		initViews(view);
-
+		getTerminalList();
+		lp = getActivity().getWindow().getAttributes(); // 设置popupWindow弹出后背景的阴影
 		// restore the saved state
 		if (!TextUtils.isEmpty(tradeClientName)) {
 			mTradeClientName.setText(tradeClientName);
@@ -240,9 +251,10 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.trade_client:
-				Intent i = new Intent(getActivity(), TradeClientActivity.class);
-				i.putExtra(CLIENT_NUMBER, tradeClientName);
-				startActivityForResult(i, REQUEST_TRADE_CLIENT);
+				popSelectTradeClient();
+//				Intent i = new Intent(getActivity(), TradeClientActivity.class);
+//				i.putExtra(CLIENT_NUMBER, tradeClientName);
+//				startActivityForResult(i, REQUEST_TRADE_CLIENT);
 				break;
 			case R.id.trade_start:
 				showDatePicker(tradeStartDate, true);
@@ -282,7 +294,63 @@ public class TradeFlowFragment extends Fragment implements View.OnClickListener 
 				break;
 		}
 	}
+	private void popSelectTradeClient() {
+		View selectView = LayoutInflater.from(getActivity()).inflate(
+				R.layout.pop_tradeflow_serial, null);
+		ListView listViewState = (ListView) selectView.findViewById(R.id.list_one);
+		selStateAdapter = new SelectStateAdapter<TradeClient>(getActivity(), dataTradeClient);
+		listViewState.setAdapter(selStateAdapter);
+		listViewState.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				mTradeClientName.setText(dataTradeClient.get(position).getSerialNum());
+				tradeClientName = dataTradeClient.get(position).getSerialNum();
+				toggleButtons();
+				popuSelState.dismiss();
+			}
+		});
+
+		popuSelState = new PopupWindow(selectView);
+		popuSelState.setWidth(mTradeClient.getWidth());
+		popuSelState.setHeight(LayoutParams.WRAP_CONTENT);
+		popuSelState.setOutsideTouchable(true);
+		popuSelState.setFocusable(true);
+		lp.alpha = 0.4f;
+		getActivity().getWindow().setAttributes(lp);
+		popuSelState.setOnDismissListener(new OnDismissListener() {
+
+			@Override
+			public void onDismiss() {
+				lp.alpha = 1.0f;
+				getActivity().getWindow().setAttributes(lp);
+			}
+		});
+		popuSelState.setBackgroundDrawable(new ColorDrawable());
+		popuSelState.showAsDropDown(mTradeClient);
+	
+	}
+	private void getTerminalList() {
+	    API.getTerminalList(getActivity(), MyApplication.NewUser.getId(),
+	    		new HttpCallback<List<TradeClient>>(getActivity()) {
+
+				@Override
+				public void onSuccess(List<TradeClient> data) {
+					if (null != data) {
+						dataTradeClient = data;
+					}
+					
+				}
+
+				@Override
+				public TypeToken<List<TradeClient>> getTypeToken() {
+					return new TypeToken<List<TradeClient>>() {
+					};
+				}
+			});
+	}
 	/**
 	 * enable or disable the buttons
 	 *

@@ -115,6 +115,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 				public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 					String responseMsg = new String(responseBody)
 					.toString();
+					dataser.clear();
 			        Log.e("print", responseMsg); 
 			        Gson gson = new Gson();						
 			        JSONObject jsonobject = null;

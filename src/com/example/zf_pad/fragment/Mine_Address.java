@@ -8,28 +8,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.zf_pad.Config;
-import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.aadpter.AddressManagerAdapter;
-import com.example.zf_pad.activity.AdressEdit;
-import com.example.zf_pad.entity.AddressManager;
-import com.example.zf_pad.entity.OrderEntity;
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.common.CommonUtil;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.util.Tools;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
@@ -37,21 +21,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.Config;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.aadpter.AddressManagerAdapter;
+import com.example.zf_pad.activity.AdressEdit;
+import com.example.zf_pad.entity.AddressManager;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.example.zf_pad.util.ScrollViewWithListView;
+import com.example.zf_pad.util.Tools;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class Mine_Address extends Fragment implements OnClickListener{
 	private View view;
 	public static List<AddressManager> dataadress;
 
 	private BaseAdapter addressadapter;
-	private ListView list;
+	private ScrollViewWithListView list;
 	private Context context;
 	private Button btn_add;
 	public static boolean isclickitem=false;
@@ -198,7 +192,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 		dataadress=new ArrayList<AddressManager>();
 		addressadapter=new AddressManagerAdapter(dataadress, mActivity.getBaseContext());
-		list=(ListView) view.findViewById(R.id.list);
+		list=(ScrollViewWithListView) view.findViewById(R.id.list);
 		btn_add=(Button) view.findViewById(R.id.btn_add);
 		btn_add.setOnClickListener(this);
 	}

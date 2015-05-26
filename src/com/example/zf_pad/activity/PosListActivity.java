@@ -65,6 +65,7 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 	private PosAdapter myAdapter;
 	private String keys=null;
 	private TextView next_sure,tv_mr,tv_2,tv_3,tv_4;
+	private TextView countShopCar;
 	private Boolean isDown=true;
 	private int orderType=0;
 	private EditText et_search;
@@ -126,6 +127,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 		Search();
 	}
 	private void initView() {
+		
+		countShopCar = (TextView) findViewById(R.id.countShopCar);
 		ll_back = (LinearLayout)findViewById(R.id.titleback_linear_back);
 		ll_back.setOnClickListener(this);
 		ll_listflag = (LinearLayout)findViewById(R.id.ll_listflag);
@@ -175,6 +178,17 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 		});
 		Xlistview.setAdapter(myAdapter1);
 		changList();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Config.countShopCar != 0) {
+			countShopCar.setVisibility(View.VISIBLE);
+			countShopCar.setText(Config.countShopCar+"");
+		}else {
+			countShopCar.setVisibility(View.GONE);
+		}
 	}
 	private void changList() {
 		port1 = (ImageView)findViewById(R.id.port_list1);

@@ -59,9 +59,9 @@ public class TradeFlowActivity extends FragmentActivity implements ViewPager.OnP
 			}else if (i == 2) {
 				fragment = TradeFlowFragment.newInstance(REPAYMENT);
 			}else if (i == 3) {
-				fragment = TradeFlowFragment.newInstance(LIFE_PAY);
-			}else if (i == 4) {
 				fragment = TradeFlowFragment.newInstance(PHONE_PAY);
+			}else if (i == 4) {
+				fragment = TradeFlowFragment.newInstance(LIFE_PAY);
 			}
           //  TradeFlowFragment fragment = TradeFlowFragment.newInstance(i + 1);
             mFragments.add(fragment);
