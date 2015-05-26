@@ -66,8 +66,8 @@ public class ButtonGridviewAdapter extends BaseAdapter {
 		holder.button_gri_tv.setTextColor(context.getResources().getColor(R.color.text292929));
 		holder.button_gri_tv.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.send_out_goods_shape));
 		if(position==index){
-			holder.button_gri_tv.setTextColor(context.getResources().getColor(R.color.bgtitle));
-			holder.button_gri_tv.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_shape));
+			holder.button_gri_tv.setTextColor(context.getResources().getColor(R.color.white));
+			holder.button_gri_tv.setBackgroundColor(context.getResources().getColor(R.color.bgtitle));
 		}
 		holder.button_gri_tv.setText(list.get(position).getName());
 	 

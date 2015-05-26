@@ -39,8 +39,8 @@ public final class R {
 		public static final int drop_down_list_header_second_text = 0x7f0b00fd;
 	}
 	public static final class layout {
-		public static final int drop_down_list_footer = 0x7f030031;
-		public static final int drop_down_list_header = 0x7f030032;
+		public static final int drop_down_list_footer = 0x7f030032;
+		public static final int drop_down_list_header = 0x7f030033;
 	}
 	public static final class string {
 		public static final int drop_down_list_footer_default_text = 0x7f070004;

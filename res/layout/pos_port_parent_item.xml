@@ -17,7 +17,7 @@
             
         <TextView
             android:id="@+id/title"
-            android:layout_width="@dimen/ddrl_width"
+            android:layout_width="@dimen/ddheight1"
             android:layout_height="60dp"
             android:gravity="right|center_vertical"
             android:text="POS品牌"

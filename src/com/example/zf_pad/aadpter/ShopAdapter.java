@@ -2,6 +2,7 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
@@ -20,16 +21,19 @@ import com.example.zf_pad.aadpter.ApplySearch.ViewHoldel;
 import com.example.zf_pad.activity.CreatMerchant;
 import com.example.zf_pad.entity.Shopname;
 import com.example.zf_pad.fragment.Mine_MyMerChant;
+import com.example.zf_pad.util.AlertDialog;
 
 public class ShopAdapter extends BaseAdapter{
 	private List<Shopname> datasho;
 	private Context context;
 	private LayoutInflater mInflater;
+	private Activity a;
 	public static int pp=0;
-	public ShopAdapter(List<Shopname> datasho,Context context){
+	public ShopAdapter(List<Shopname> datasho,Context context,Activity a){
 		super();
 		this.datasho=datasho;
 		this.context=context;
+		this.a=a;
 	}
 	@Override
 	public int getCount() {
@@ -68,10 +72,26 @@ public class ShopAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				pp=position;
-				Message msg=Mine_MyMerChant.myHandler.obtainMessage();
-				msg.what=1;
-				msg.sendToTarget();
+				final AlertDialog ad = new AlertDialog(a);
+				ad.setTitle("提示");
+				ad.setMessage("确认删除?");
+				ad.setPositiveButton("取消", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						ad.dismiss();
+					}
+				});
+				ad.setNegativeButton("确定", new OnClickListener() {
+					@Override
+					public void onClick(final View arg0) {
+						pp=position;
+						Message msg=Mine_MyMerChant.myHandler.obtainMessage();
+						msg.what=1;
+						msg.sendToTarget();
+						ad.dismiss();
+					}	
+				});
+			
 			}
 		});
 		convertView.setOnClickListener(new OnClickListener() {

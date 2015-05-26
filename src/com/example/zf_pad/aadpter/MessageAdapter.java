@@ -75,6 +75,9 @@ public class MessageAdapter extends BaseAdapter{
 			if(list.get(position).getStatus()){
 				holder.tv_title.setTextColor(context.getResources().getColor(R.color.NoRead));
 				holder.tv_time.setTextColor(context.getResources().getColor(R.color.NoRead));
+			}else{
+				holder.tv_title.setTextColor(context.getResources().getColor(R.color.text292929));
+				holder.tv_time.setTextColor(context.getResources().getColor(R.color.text292929));	
 			}
 			//list.get(position).setIscheck(holder.item_cb.isChecked());
 			if(list.get(position).getIscheck()){
@@ -101,6 +104,8 @@ public class MessageAdapter extends BaseAdapter{
 			});
 	
 		}else{
+			View v=(View)convertView.findViewById(R.id.isshow);
+			v.setVisibility(View.VISIBLE);
 			holder.item_cb.setVisibility(View.GONE);
 		}
 		return convertView;

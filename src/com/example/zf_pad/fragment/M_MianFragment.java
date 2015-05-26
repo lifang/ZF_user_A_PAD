@@ -41,6 +41,8 @@ import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.R;
 import com.example.zf_pad.activity.ContactUs;
+import com.example.zf_pad.activity.FianceActivity;
+import com.example.zf_pad.activity.LoanActivity;
 import com.example.zf_pad.activity.MyWebView;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
@@ -208,6 +210,15 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 						TerminalManagerActivity.class));
 			}
 			break;
+		case R.id.main_rl_Forum:  
+		startActivity(new Intent(getActivity(),LoanActivity.class));
+			
+			break;
+		case R.id.main_rl_wylc:  
+			
+			startActivity(new Intent(getActivity(),FianceActivity.class));
+			break;
+			
 		default:
 			break;
 		}
@@ -402,10 +413,10 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 				@Override
 				public void onClick(View arg0) {
-					Intent i = new Intent(getActivity(), MyWebView.class);
-					i.putExtra("title", "ÏêÇé");
-					i.putExtra("url", myList.get(position).getWebsite_url());
-					startActivity(i);
+					//Intent i = new Intent(getActivity(), MyWebView.class);
+					//i.putExtra("title", "ÏêÇé");
+					//i.putExtra("url", myList.get(position).getWebsite_url());
+					//startActivity(i);
 
 				}
 			});

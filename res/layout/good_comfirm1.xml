@@ -78,7 +78,7 @@
                                 android:id="@+id/textView1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
-                                android:layout_weight="1"
+                                android:layout_weight="0.7"
                                 android:gravity="center"
                                 android:text="详细地址"
                                 android:textColor="#292929"
@@ -247,7 +247,7 @@
                                         android:singleLine="true"
                                         android:text="泰山TS900"
                                         android:textColor="@color/text292929"
-                                        android:textSize="@dimen/textmid" />
+                                        android:textSize="@dimen/textbig" />
 
                                     <RelativeLayout
                                         android:layout_width="fill_parent"
@@ -498,7 +498,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="14dp"
                                 android:checked="false" />
 
                             <TextView
@@ -506,7 +505,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="7dp"
                                 android:text="我同意"
-                                android:textColor="@color/text6c6c6c6"
+                                android:textColor="@color/text292929"
                                 android:textSize="@dimen/textbig" />
 
                             <TextView
@@ -594,7 +593,7 @@
                         android:layout_marginLeft="7dp"
                         android:text=""
                         android:textColor="@color/text292929"
-                        android:textSize="@dimen/textmids" />
+                        android:textSize="@dimen/textbig" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -602,7 +601,7 @@
                         android:layout_marginLeft="7dp"
                         android:text="（ 含配送费：￥0.00）"
                         android:textColor="@color/text292929"
-                        android:textSize="@dimen/textsmall" />
+                        android:textSize="@dimen/textmid" />
                 </LinearLayout>
 
                 <Button

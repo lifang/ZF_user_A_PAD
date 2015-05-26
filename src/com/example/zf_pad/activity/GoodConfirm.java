@@ -87,7 +87,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		retail_price.setText("￥" +df.format( pirce*1.0f/100));
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("实付：￥ " + ((double)pirce)/100);
+		tv_pay.setText("合计：￥ " + ((double)pirce)/100);
 		tv_totle.setText("实付：￥ " + ((double)pirce)/100);
 		tv_chanel.setText(getIntent().getStringExtra("chanel"));
 		System.out.println("=paychannelId==" + paychannelId);
@@ -251,7 +251,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		 										
 		 									}
 		 								}
-
+										if(addressId==-1&&myList.size()!=0){
+											myList.get(0).setIsDefault("1");
+											addressId = myList.get(0).getId();
+										}
 										 myList.addAll(moreList);
 										
 										myAdapter.notifyDataSetChanged();

@@ -350,6 +350,7 @@
                 android:paddingLeft="@dimen/titilepad"
                 android:paddingRight="@dimen/titilepad"
                 android:text="追踪记录"
+                android:visibility="gone"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmid" />
 
@@ -361,6 +362,7 @@
                 android:layout_marginRight="@dimen/margin_right2"
                 android:background="#e5e4e4"
                 android:divider="@null"
+                android:visibility="gone"
                 android:paddingLeft="@dimen/titilepad"
                 android:paddingRight="@dimen/titilepad" >
             </com.example.zf_pad.util.ScrollViewWithListView>

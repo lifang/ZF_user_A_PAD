@@ -39,6 +39,7 @@
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" 
                 android:maxLines="2"
+                android:textStyle="bold"
                 android:text="2015最新POS机器旗舰版  1.0" />
 
             <LinearLayout

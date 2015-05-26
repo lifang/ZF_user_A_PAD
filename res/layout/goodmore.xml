@@ -300,11 +300,13 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal" >
 
-                        <ImageView
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/indicator" />
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/textbig"
+                            android:textColor="#949393"
+                            android:gravity="center"
+                            android:text="■ " />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -322,8 +324,12 @@
                         android:layout_width="fill_parent"
                         android:layout_height="25dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/ca_vg"
                         android:orientation="horizontal" >
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -331,6 +337,11 @@
                             android:layout_weight="1"
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
 
                             <TextView
                                 android:layout_width="fill_parent"
@@ -352,6 +363,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -372,6 +388,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -379,7 +400,16 @@
                                 android:text="说明"
                                 android:textColor="@color/text292929" />
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2" />
                     </LinearLayout>
+<View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Viewc2" />
 
                     <com.example.zf_pad.util.ScrollViewWithListView
                         android:id="@+id/pos_lv1"
@@ -402,11 +432,13 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal" >
 
-                        <ImageView
+                             <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/indicator" />
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/textbig"
+                            android:textColor="#949393"
+                            android:gravity="center"
+                            android:text="■ " />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -424,8 +456,12 @@
                         android:layout_width="fill_parent"
                         android:layout_height="25dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/ca_vg"
                         android:orientation="horizontal" >
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -433,6 +469,11 @@
                             android:layout_weight="1"
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
 
                             <TextView
                                 android:layout_width="fill_parent"
@@ -454,6 +495,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -474,6 +520,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -481,7 +532,16 @@
                                 android:text="说明"
                                 android:textColor="@color/text292929" />
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2" />
                     </LinearLayout>
+<View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Viewc2" />
 
                     <com.example.zf_pad.util.ScrollViewWithListView
                         android:id="@+id/pos_lv2"
@@ -511,11 +571,13 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal" >
 
-                        <ImageView
+                           <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/indicator" />
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/textbig"
+                            android:textColor="#949393"
+                            android:gravity="center"
+                            android:text="■ " />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -533,8 +595,13 @@
                         android:layout_width="fill_parent"
                         android:layout_height="25dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/ca_vg"
                         android:orientation="horizontal" >
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2"
+                            android:paddingBottom="1dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -542,6 +609,11 @@
                             android:layout_weight="1"
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
 
                             <TextView
                                 android:layout_width="fill_parent"
@@ -563,6 +635,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -583,6 +660,11 @@
                             android:background="@color/F3F3F3"
                             android:orientation="vertical" >
 
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/Viewc2" />
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="20dp"
@@ -590,7 +672,16 @@
                                 android:text="说明"
                                 android:textColor="@color/text292929" />
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/Viewc2" />
                     </LinearLayout>
+<View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Viewc2" />
 
                     <com.example.zf_pad.util.ScrollViewWithListView
                         android:id="@+id/pos_lv3"
@@ -662,6 +753,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="商品详细说明"
+                    android:visibility="gone"
                     android:textColor="@color/text292929"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -673,6 +765,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="3dp"
+                android:visibility="gone"
                 android:background="@color/bgtitle" />
 
             <TextView
@@ -682,6 +775,7 @@
                 android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="@dimen/margin_left2"
                 android:ellipsize="end"
+                android:visibility="gone"
                 android:textColor="@color/text292929"
                 android:textSize="18sp" />
 
@@ -689,6 +783,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:orientation="horizontal" >
 
                 <View

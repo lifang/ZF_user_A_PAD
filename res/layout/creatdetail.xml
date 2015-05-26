@@ -2,380 +2,415 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-  	android:orientation="vertical"
-  	android:background="@color/F3F2F2" >
-<include layout="@layout/title_back" />
-<ScrollView  
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <LinearLayout  
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:orientation="vertical">
-    <TableLayout  
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent">
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="54dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="店铺名称"
-    android:textColor="#737372"
-    android:textSize="18sp"/>
-   <EditText 
-       android:id="@+id/et_shopname"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:layout_weight="1"
-    android:background="@drawable/shape1"
-    android:layout_marginLeft="10dp"/>
-   
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="商户法人姓名"
-   android:textColor="#737372"
-    android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
-    
-   <EditText 
-       android:id="@+id/et_name"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-   android:layout_weight="1"
-    android:background="@drawable/shape1"
-    android:layout_marginLeft="10dp"/> 
-    
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"/>
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:text="例：上海好乐迪KTV"
-    android:layout_marginLeft="10dp"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"/>
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:layout_marginLeft="10dp"/> 
-    </TableRow>
-     <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="法人身份证号"
-    android:textColor="#737372"
-    android:textSize="18sp"/>
-   
-   <EditText 
-       android:id="@+id/et_id_number"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
-  
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="营业执照登记号"
-   android:textColor="#737372"
-    android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
-     
-   <EditText 
-       android:id="@+id/et_license_code"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/shape1"
-    android:layout_marginLeft="10dp"/> 
-      
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="54dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="税务证号"
-    android:textColor="#737372"
-    android:textSize="18sp"/>
-    
-   <EditText 
-       android:id="@+id/et_tax_id_number"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
-   
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="组织机构代码证号"
-   android:textColor="#737372"
-    android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
-          
-   <EditText 
-       android:id="@+id/et_certificate_no"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/shape1"
-    android:layout_marginLeft="10dp"/>
-   
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="54dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="商户所在地"
-    android:textColor="#737372"
-    android:textSize="18sp"/>
-   <TextView 
-       android:id="@+id/tv_adress"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:background="@drawable/ed_adress"
-    android:layout_marginLeft="10dp"
-    android:gravity="center_vertical|left"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"/>
-   <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"/> 
-    </TableRow>
-    
-    </TableLayout>
-    <View 
+    android:background="@color/F3F2F2"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="40dp"
-            android:background="#F7E0C1"/>
-    <TableLayout 
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content">
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp">
-    <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="开户银行"
-    android:textColor="#737372"
-    android:textSize="18sp"/>
-   
-   <EditText 
-       android:id="@+id/et_bank"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="45dp"/>
-  
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="银行开户许可证号"
-   android:textColor="#737372"
-    android:textSize="18sp"
-    android:layout_marginLeft="10dp"/>
-      
-   <EditText 
-       android:id="@+id/et_licencenum_bank"
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    
-    android:background="@drawable/sc_edit"
-    android:layout_marginLeft="10dp"/>
-   
-    </TableRow>    
-    </TableLayout>
-    <View 
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="40dp"
-            android:background="#F7E0C1"/>
-    <TableLayout 
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp">
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="商户法人身份证正面照片"
-    android:textColor="#554E42"
-    android:textSize="18sp"
-     android:gravity="center_vertical"/>
-   <Button 
-       android:id="@+id/btn_legal_photo"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="36dp"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="营业执照照片"
-   android:textColor="#554E42"
-    android:textSize="18sp"
-    android:layout_marginLeft="162dp"
-    android:gravity="center_vertical"
-    />
-   <Button 
-       android:id="@+id/btn_license_photos"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="54dp"/> 
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp">
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="商户法人身份证背面照片"
-    android:textColor="#554E42"
-    android:textSize="18sp"
-     android:gravity="center_vertical"/>
-   <Button 
-       android:id="@+id/btn_legal_back_photos"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="36dp"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="税务登记证照片"
-   android:textColor="#554E42"
-    android:textSize="18sp"
-    android:layout_marginLeft="162dp"
-    android:gravity="center_vertical"
-    />
-   <Button 
-       android:id="@+id/btn_tax_regist"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="54dp"/> 
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp">
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="商户法人上半身照片"
-    android:textColor="#554E42"
-    android:textSize="18sp"
-     android:gravity="center_vertical"/>
-   <Button 
-       android:id="@+id/btn_person_photograph"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="36dp"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="组织机构代码证照片"
-   android:textColor="#554E42"
-    android:textSize="18sp"
-    android:layout_marginLeft="162dp"
-    android:gravity="center_vertical"
-    />
-   <Button 
-       android:id="@+id/btn_organization_code_photos"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="54dp"/> 
-    </TableRow>
-    <TableRow 
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp">
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="开户银行许可证照片"
-    android:textColor="#554E42"
-    android:textSize="18sp"
-     android:gravity="center_vertical"/>
-   <Button 
-       android:id="@+id/btn_bank_license_photos"
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:text="上传图片"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_marginLeft="36dp"/>
-        <TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="162dp"
-    />
-   <TextView 
-    android:layout_width="118dp"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="54dp"/> 
-    </TableRow>
-    </TableLayout>
-    <View 
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="40dp"
-            android:background="#F7E0C1"/>
-    <Button 
-       android:id="@+id/btn_creat"
-    android:layout_width="258dp"
-    android:layout_height="wrap_content"
-    android:text="创建"
-    android:background="#FF5A10"
-    android:textColor="#FFDDB3"
-    android:gravity="center"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="60dp"
-    android:layout_marginTop="54dp"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="54dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="店铺名称"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_shopname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:text="商户法人姓名"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="例：上海好乐迪KTV" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="法人身份证号"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_id_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/sc_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:text="营业执照登记号"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_license_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shape1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="54dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="税务证号"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_tax_id_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/sc_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:text="组织机构代码证号"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_certificate_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shape1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="54dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="商户所在地"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_adress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/ed_adress"
+                        android:gravity="center_vertical|left" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+                </TableRow>
+            </TableLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:background="#F7E0C1" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="开户银行"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="45dp"
+                        android:background="@drawable/sc_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:text="银行开户许可证号"
+                        android:textColor="#737372"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_licencenum_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/sc_edit" />
+                </TableRow>
+            </TableLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:background="#F7E0C1" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="商户法人身份证正面照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_legal_photo"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="162dp"
+                        android:gravity="center_vertical"
+                        android:text="营业执照照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_license_photos"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="54dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="商户法人身份证背面照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_legal_back_photos"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="162dp"
+                        android:gravity="center_vertical"
+                        android:text="税务登记证照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_tax_regist"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="54dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="商户法人上半身照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_person_photograph"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="162dp"
+                        android:gravity="center_vertical"
+                        android:text="组织机构代码证照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_organization_code_photos"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="54dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="开户银行许可证照片"
+                        android:textColor="#554E42"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_bank_license_photos"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36dp"
+                        android:background="#FF5A10"
+                        android:gravity="center"
+                        android:text="上传图片"
+                        android:textColor="#FFDDB3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="162dp" />
+
+                    <TextView
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="54dp" />
+                </TableRow>
+            </TableLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:background="#F7E0C1" />
+
+            <Button
+                android:id="@+id/btn_creat"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="54dp"
+                android:background="#FF5A10"
+                android:gravity="center"
+                android:text="创建"
+                android:textColor="#FFDDB3" />
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

@@ -175,7 +175,7 @@ public void onDestroyView() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				if(myList.size()!=0){
-					Intent i = new Intent(getActivity(), OrderDetail.class);
+					Intent i = new Intent(mactivity, OrderDetail.class);
 					i.putExtra("status", myList.get(position-1).getOrder_status());
 					if(myList.get(position-1).getOrder_id()!=null){
 						i.putExtra("id", Integer.parseInt(myList.get(position-1).getOrder_id()));

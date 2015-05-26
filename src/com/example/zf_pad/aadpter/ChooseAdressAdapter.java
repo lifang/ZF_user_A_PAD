@@ -69,14 +69,14 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		holder.tv_city.setText(list.get(position).getCity());
 		if(list.get(position).getIsDefault().equals("1")){
 			holder.ll_isshow .setVisibility(View.VISIBLE);	
-			holder.tv_default.setVisibility(View.VISIBLE);
+			holder.tv_default.setVisibility(View.GONE);
 		}else{
 			holder.ll_isshow .setVisibility(View.INVISIBLE);
 			if(list.get(position).getIscheck()){
 				holder.ll_isshow .setVisibility(View.VISIBLE);			 
 			}else{
 				holder.ll_isshow .setVisibility(View.INVISIBLE);
-				holder.tv_default.setVisibility(View.INVISIBLE);
+				holder.tv_default.setVisibility(View.GONE);
 			}
 		}
 	
