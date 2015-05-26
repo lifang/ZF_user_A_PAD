@@ -60,7 +60,7 @@ import android.widget.TextView;
 
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.MyApplication;
-import com.example.zf_pad.entity.BankEntity.Bank;
+import com.example.zf_pad.entity.Bank;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.common.TextWatcherAdapter;
