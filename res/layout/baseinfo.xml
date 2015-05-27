@@ -101,7 +101,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:paddingRight="20dp"
-                    android:text="去验证"
+                    android:text="修改"
                     android:textColor="#FF5A10"
                     android:textSize="20sp" />
             </TableRow>

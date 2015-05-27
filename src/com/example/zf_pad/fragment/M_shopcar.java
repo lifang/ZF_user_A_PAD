@@ -270,7 +270,7 @@ public class M_shopcar extends Fragment implements IXListViewListener,
 	public void onResume() {
 
 		super.onResume();
-		tv_gj.setText("共计：");
+		tv_gj.setText("共计：0件商品");
 		howMoney.setText("合计：￥0.00");
 		myShopList.clear();
 		getData();

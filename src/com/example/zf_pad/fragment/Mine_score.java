@@ -285,7 +285,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 		btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
 		moreList=new ArrayList<Score>();
 		datasco=new ArrayList<Score>();
-		xxlistview=(XListView) view.findViewById(R.id.list);
+		xxlistview=(XListView) view.findViewById(R.id.xlist);
 		xxlistview.setPullLoadEnable(true);
 		xxlistview.setXListViewListener(this);
 		xxlistview.setDivider(null);

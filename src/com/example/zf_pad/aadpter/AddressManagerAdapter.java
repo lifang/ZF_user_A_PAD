@@ -6,6 +6,7 @@ import com.epalmpay.userPad.R;
 import com.example.zf_pad.activity.AdressEdit;
 import com.example.zf_pad.entity.AddressManager;
 import com.example.zf_pad.fragment.Mine_Address;
+import com.example.zf_pad.fragment.Mine_MyInfo_nofrag;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -87,8 +88,8 @@ public class AddressManagerAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				pp=position;
-				Message msg=Mine_Address.myHandler.obtainMessage();
-				msg.what=1;
+				Message msg=Mine_MyInfo_nofrag.myHandler.obtainMessage();
+				msg.what=2;
 				msg.sendToTarget();
 				
 			}

@@ -104,7 +104,7 @@ public class Mine_chgpaw extends Fragment{
 		et_oldpaw=(EditText) view.findViewById(R.id.et_oldpaw);
 		et_newpaw=(EditText) view.findViewById(R.id.et_newpaw);
 		et_confirmpaw=(EditText) view.findViewById(R.id.et_confirmpaw);
-		btn_save=(Button) view.findViewById(R.id.btn_save);
+		btn_save=(Button) view.findViewById(R.id.btn_save_chgpaw);
 
 	}
 	public static String MD5(String str) {
