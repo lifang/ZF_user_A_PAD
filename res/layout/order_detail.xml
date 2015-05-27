@@ -35,7 +35,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                       
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
 
@@ -44,7 +43,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                       
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
 
@@ -52,7 +50,6 @@
                         android:id="@+id/tv_psf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-        
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -136,7 +133,6 @@
                         android:id="@+id/tv_reperson"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
 
@@ -144,7 +140,6 @@
                         android:id="@+id/tv_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-              
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -154,7 +149,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                
                     android:textColor="@color/text292929"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -189,7 +183,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                           
                                 android:textColor="@color/text292929"
                                 android:textSize="19sp" />
 
@@ -198,7 +191,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                             
                                 android:textColor="@color/text292929"
                                 android:textSize="19sp" />
 
@@ -207,7 +199,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                          
                                 android:textSize="19sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -225,7 +216,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                      
                         android:textColor="@color/text292929"
                         android:textSize="18sp" />
 
@@ -305,10 +295,10 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
                 android:paddingLeft="@dimen/titilepad"
                 android:paddingRight="@dimen/titilepad" >
 
@@ -319,6 +309,17 @@
                     android:layout_marginRight="24dp"
                     android:background="@drawable/shape_o"
                     android:text="查看终端号"
+                    android:textColor="@color/bgtitle"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btn_ishow_wl"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/shape_o"
+                    android:text="查看物流"
                     android:textColor="@color/bgtitle"
                     android:textSize="18sp"
                     android:visibility="gone" />
@@ -350,9 +351,9 @@
                 android:paddingLeft="@dimen/titilepad"
                 android:paddingRight="@dimen/titilepad"
                 android:text="追踪记录"
-                android:visibility="gone"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmid" />
+                android:textSize="@dimen/textmid"
+                android:visibility="gone" />
 
             <com.example.zf_pad.util.ScrollViewWithListView
                 android:id="@+id/his_lv"
@@ -362,9 +363,9 @@
                 android:layout_marginRight="@dimen/margin_right2"
                 android:background="#e5e4e4"
                 android:divider="@null"
-                android:visibility="gone"
                 android:paddingLeft="@dimen/titilepad"
-                android:paddingRight="@dimen/titilepad" >
+                android:paddingRight="@dimen/titilepad"
+                android:visibility="gone" >
             </com.example.zf_pad.util.ScrollViewWithListView>
         </LinearLayout>
     </ScrollView>

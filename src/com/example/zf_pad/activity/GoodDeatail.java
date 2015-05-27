@@ -125,7 +125,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				if(gfe.getTitle()!=null)
 				tv_title.setText(gfe.getTitle());
 				content1.setText(gfe.getSecond_title());
-				tv_pp.setText(gfe.getGood_brand());
+				tv_pp.setText(gfe.getGood_brand()+gfe.getModel_number());
 				// tv_xh.setText(gfe.getModel_number());
 				// tv_ys.setText("å·²å”®"+gfe.getVolume_number());
 				//tv_price.setText("£¤" + ((double)gfe.getPrice())/100);

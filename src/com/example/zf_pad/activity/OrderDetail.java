@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
@@ -116,6 +115,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	private Button bt_pay;
 	private Button bt_cancel;
 	private DecimalFormat df;
+	private Button btn_ishow_wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -229,6 +229,8 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 						});
 	}
 	private void initView() {
+		btn_ishow_wl = (Button)findViewById(R.id.btn_ishow_wl);
+		btn_ishow_wl.setOnClickListener(this);
 		bt_pay = (Button)findViewById(R.id.bt_pay);
 		bt_pay.setOnClickListener(this);
 		bt_cancel = (Button)findViewById(R.id.bt_cancel);
@@ -276,6 +278,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			tv_status.setText("订单状态   : 已发货");
 			btn_ishow.setVisibility(View.VISIBLE);
 			bt_pj.setVisibility(View.VISIBLE);
+			btn_ishow_wl.setVisibility(View.VISIBLE);
 			break;
 		case 4:
 			tv_status.setText("订单状态   : 已评价");
@@ -297,6 +300,19 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
+		case R.id.btn_ishow_wl:
+			amd = new AlertMessDialog(OrderDetail.this);
+			amd.setTitle("物流公司: "+ode.get(0).getLogistics_name());
+			amd.setMessage("物流单号: "+ode.get(0).getLogistics_number());
+			amd.setNegativeButton("确认", new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					amd.dismiss();
+
+				}
+			});
+			break;
 		case R.id.btn_pj:
 			Config.list = ode.get(0).getOrder_goodsList();
 			if (Config.list.size() != 0) {
