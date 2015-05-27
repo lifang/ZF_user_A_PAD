@@ -5,7 +5,8 @@
     android:background="#E9E8E8"
     android:clickable="true"
     android:orientation="vertical"
-    android:paddingRight="@dimen/zc_land_w" >
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -52,8 +53,9 @@
             android:textSize="15sp" />
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="match_parent" >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
         </LinearLayout>
     </LinearLayout>
 
