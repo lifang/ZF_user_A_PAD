@@ -15,6 +15,7 @@ import com.epalmpay.userPad.R;
 import com.example.zf_pad.aadpter.ShopAdapter;
 import com.example.zf_pad.activity.CreatMerchant;
 import com.example.zf_pad.activity.EditMerchant;
+import com.example.zf_pad.entity.PosEntity;
 import com.example.zf_pad.entity.Shopname;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.common.CommonUtil;
@@ -53,6 +54,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	private View view;
 	private XListView xxlistview;
 	private List<Shopname> datasho;
+	private List<Shopname> moreList;
 	private BaseAdapter shoaadapter;
 	private int page=1;
 	private int rows=6;
@@ -70,6 +72,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,17 +98,20 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
 		if(datasho.size()!=0){
 			datasho.clear();
 		}
-		
+		page=1;
 		getData();
+		xxlistview.setPullLoadEnable(true);
 		myHandler=new Handler(){
 			public void handleMessage(android.os.Message msg) {
 				switch (msg.what) {
 				case 0:
 					onLoad( );
-					xxlistview.setAdapter(shoaadapter);
+					shoaadapter.notifyDataSetChanged();
+					
 					break;
 				case 1:
 					delect();
@@ -113,7 +119,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 				case 2:
 					isFromItem=true;
 					Intent intent=new Intent(getActivity(),EditMerchant.class);
-					intent.putExtra("position", id[ShopAdapter.pp]);
+					intent.putExtra("position",  (int)datasho.get(ShopAdapter.pp).getId());
 					startActivity(intent);
 					break;
 				default:
@@ -140,14 +146,15 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "网络异常");
 			return;
 		}
+		
 		int[] ids=new int[1];
-		ids[0]=id[ShopAdapter.pp];
+		Toast.makeText(getActivity(), ShopAdapter.pp+"", 1000).show();
+		ids[0]=(int)datasho.get(ShopAdapter.pp).getId();
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
 		try {
 			params.put("ids", new JSONArray(gson.toJson(ids)));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		params.setUseJsonStreamer(true);
@@ -175,8 +182,11 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 					jsonobject = new JSONObject(responseMsg);
 					code = jsonobject.getInt("code");
 					if(code==1){
-						datasho.remove(ShopAdapter.pp);
-						shoaadapter.notifyDataSetChanged();
+						
+						//datasho.remove(ShopAdapter.pp);
+						page=1;
+						datasho.clear();
+						getData();
 						Log.e("size", datasho.size()+"");
 					}
 					else{
@@ -184,7 +194,6 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 								Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -192,7 +201,6 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					byte[] responseBody, Throwable error) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -241,19 +249,19 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 					code = jsonobject.getString("code");
 					int a =jsonobject.getInt("code");
 					if(a==Config.CODE){  
-						JSONArray list=jsonobject.getJSONObject("result").getJSONArray("list");
-						if(list.length()==0){
-							myHandler.sendEmptyMessage(0);
-							isStop=true;
+						//JSONArray list=jsonobject.getJSONObject("result").getJSONArray("list");
+						String res =jsonobject.getString("result");
+						jsonobject = new JSONObject(res);	
+						moreList= gson.fromJson(jsonobject.getString("list"), new TypeToken<List<Shopname>>() {
+	 					}.getType());
+						if(moreList.size()==0&&datasho.size()!=0){
+							xxlistview.setPullLoadEnable(false);
+							Toast.makeText(getActivity(), "没有更多数据！", 1000).show();
 						/*	Toast.makeText(getActivity(), ss, 
 									Toast.LENGTH_SHORT).show();*/
 							return;
 						}
-						if(list.length()==0&&isLoadMore){
-							CommonUtil.toastShort(getActivity(), "没有更多数据");
-							isLoadMore=false;
-						}
-						id=new int[list.length()];
+						/*id=new int[list.length()];
 						for(int i=0;i<list.length();i++){
 							id[i]=list.getJSONObject(i).getInt("id");
 							if(list.getJSONObject(i).getString("legal_person_name").equals("")){
@@ -262,17 +270,14 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 							else{
 								datasho.add(new Shopname(i, list.getJSONObject(i).getString("legal_person_name")));
 							}
-						}
-						if(datasho.size()!=0){
-							myHandler.sendEmptyMessage(0);
-							
-						}
-		 					  
-	 				 
+						}*/
+						
+						datasho.addAll(moreList);	  
+						myHandler.sendEmptyMessage(0);
 	 			 
 					}else{
 						code = jsonobject.getString("message");
-						Toast.makeText(getActivity(), code, 1000).show();
+						//Toast.makeText(getActivity(), code, 1000).show();
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -299,10 +304,12 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		xxlistview.setDivider(null);
 		datasho=new ArrayList<Shopname>();
 		shoaadapter=new ShopAdapter(datasho, getActivity().getBaseContext(),getActivity());
+		xxlistview.setAdapter(shoaadapter);
 		btn_creat.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
+				EditMerchant.isEdit=false;
 				Intent intent=new Intent(getActivity(),CreatMerchant.class);
 				
 				startActivity(intent);
@@ -315,6 +322,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "网络异常");
 			return;
 		}
+		xxlistview.setPullLoadEnable(true);
 		/*isrefersh=true;
 		a=page;
 		rows=a*rows;*/
@@ -329,13 +337,9 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 			CommonUtil.toastShort(getActivity(), "网络异常");
 			return;
 		}
-		if(isStop){
-			CommonUtil.toastShort(getActivity(), "无更多数据");
-			onLoad();
-			return;
-		}
 		isLoadMore=true;
 		page+=1;
+	
 		getData();
 		
 		

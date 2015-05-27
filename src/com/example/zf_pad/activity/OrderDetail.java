@@ -300,6 +300,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		case R.id.btn_pj:
 			Config.list = ode.get(0).getOrder_goodsList();
 			if (Config.list.size() != 0) {
+				Config.GoodComment=id;
 				startActivity(new Intent(OrderDetail.this, Comment.class));
 			}
 			break;
@@ -396,5 +397,10 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 			
 			return 0;// 如果抛出异常，返回False
 		}
+	}
+	@Override
+	protected void onResume() {		
+		super.onResume();
+		getData();
 	}
 }

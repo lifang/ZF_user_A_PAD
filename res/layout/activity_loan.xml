@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:text="敬请期待"
-        android:textSize="@dimen/textbigs" />
+        android:textSize="@dimen/textbig1" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -56,13 +56,14 @@ public class ShopAdapter extends BaseAdapter{
 			convertView=mInflater.inflate(R.layout.merchant_item, null);
 			holdel=new ViewHoldel();
 			holdel.tv_shopname=(TextView) convertView.findViewById(R.id.tv_shopname);
+			
 			holdel.btn_delect=(Button) convertView.findViewById(R.id.btn_delect);
 			convertView.setTag(holdel);
 		}
 		else{
 			holdel=(ViewHoldel) convertView.getTag();
 		}
-		holdel.tv_shopname.setText(datasho.get(position).getShopname());
+		holdel.tv_shopname.setText(datasho.get(position).getTitle());
 		holdel.btn_delect.setOnClickListener(new OnClickListener() {
 			
 			@Override
