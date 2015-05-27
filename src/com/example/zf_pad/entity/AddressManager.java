@@ -8,10 +8,14 @@ private String detailadress;
 private String zipcode;
 private String phone;
 private String isdefau;
-public AddressManager(long id,String consignee,String area,String detailadress,
+private String cityId;
+private String city_parent_id;
+public AddressManager(long id,String cityId,String city_parent_id,String consignee,String area,String detailadress,
 		String zipcode,String phone,String isdefau){
 	super();
 	this.id=id;
+	this.cityId=cityId;
+	this.city_parent_id=city_parent_id;
 	this.consignee=consignee;
 	this.area=area;
 	this.detailadress=detailadress;
@@ -19,6 +23,28 @@ public AddressManager(long id,String consignee,String area,String detailadress,
 	this.phone=phone;
 	this.isdefau=isdefau;
 }
+
+
+public String getCityId() {
+	return cityId;
+}
+
+
+public void setCityId(String cityId) {
+	this.cityId = cityId;
+}
+
+
+public String getCity_parent_id() {
+	return city_parent_id;
+}
+
+
+public void setCity_parent_id(String city_parent_id) {
+	this.city_parent_id = city_parent_id;
+}
+
+
 public long getId() {
 	return id;
 }
@@ -61,11 +87,14 @@ public String getIsdefau() {
 public void setIsdefau(String isdefau) {
 	this.isdefau = isdefau;
 }
+
+
 @Override
 public String toString() {
 	return "AddressManager [id=" + id + ", consignee=" + consignee + ", area="
 			+ area + ", detailadress=" + detailadress + ", zipcode=" + zipcode
-			+ ", phone=" + phone + ", isdefau=" + isdefau + "]";
+			+ ", phone=" + phone + ", isdefau=" + isdefau + ", cityId="
+			+ cityId + ", city_parent_id=" + city_parent_id + "]";
 }
 
 }

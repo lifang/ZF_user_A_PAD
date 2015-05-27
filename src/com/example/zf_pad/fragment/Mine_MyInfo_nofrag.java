@@ -183,7 +183,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		//mTabWidget.updateTabs(mRecordType);
 		if (isAddress == true) {
 			isAddress = false;
-			getAddressData();
+			Mine_Address();
 		}
 		if(Config.AderssManger){
 			mTabWidget.updateTabs(2);
@@ -243,7 +243,6 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			Mine_chgpaw();
 			break;
 		case 2:
-			isAddress = true;
 			baseinfo_Layout.setVisibility(View.GONE);
 			changepaw_Layout.setVisibility(View.GONE);
 			manageradress_Layout.setVisibility(View.VISIBLE);
@@ -544,6 +543,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 */
 	private void Mine_Address() {
 		id=MyApplication.NewUser.getId();
+		isAddress = true;
 		
 		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 		dataadress=new ArrayList<AddressManager>();
@@ -575,7 +575,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			}
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				Mine_Address.isclickitem=false;
+				Mine_MyInfo_nofrag.isclickitem=false;
 				String responseMsg = new String(responseBody)
 				.toString();
 				Log.e("print", responseMsg); 
@@ -595,6 +595,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							idd[i]=result.getJSONObject(i).getInt("id");
 							if(result.getJSONObject(i).getInt("isDefault")==1){
 								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("cityId"),
+										result.getJSONObject(i).getString("city_parent_id"),
 										result.getJSONObject(i).getString("receiver"),
 										result.getJSONObject(i).getString("city"),
 										result.getJSONObject(i).getString("address"),
@@ -604,6 +606,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							}
 							else{
 								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("cityId"),
+										result.getJSONObject(i).getString("city_parent_id"),
 										result.getJSONObject(i).getString("receiver"),
 										result.getJSONObject(i).getString("city"),
 										result.getJSONObject(i).getString("address"),
@@ -613,6 +617,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							}
 						}
 						list.setAdapter(addressadapter);
+						addressadapter.notifyDataSetChanged();
 					}
 					else{
 					}

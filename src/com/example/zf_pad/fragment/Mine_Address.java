@@ -142,6 +142,8 @@ public class Mine_Address extends Fragment implements OnClickListener{
 							idd[i]=result.getJSONObject(i).getInt("id");
 							if(result.getJSONObject(i).getInt("isDefault")==1){
 								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("cityId"),
+										result.getJSONObject(i).getString("city_parent_id"),
 										result.getJSONObject(i).getString("receiver"),
 										result.getJSONObject(i).getString("city"),
 										result.getJSONObject(i).getString("address"),
@@ -151,6 +153,8 @@ public class Mine_Address extends Fragment implements OnClickListener{
 							}
 							else{
 								dataadress.add(new AddressManager(i, 
+										result.getJSONObject(i).getString("cityId"),
+										result.getJSONObject(i).getString("city_parent_id"),
 										result.getJSONObject(i).getString("receiver"),
 										result.getJSONObject(i).getString("city"),
 										result.getJSONObject(i).getString("address"),

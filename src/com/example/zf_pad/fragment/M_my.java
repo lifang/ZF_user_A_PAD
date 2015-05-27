@@ -1,12 +1,6 @@
 package com.example.zf_pad.fragment;
 
-import com.example.zf_pad.Config;
-import com.epalmpay.userPad.R;
-import com.umeng.analytics.MobclickAgent;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -18,10 +12,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.Config;
+import com.umeng.analytics.MobclickAgent;
 
 public class M_my extends Fragment implements OnClickListener {
 	private View view;

@@ -68,7 +68,7 @@ public class TradeDetailActivity extends BaseActivity {
                     TextView value = new TextView(TradeDetailActivity.this);
                     value.setGravity(Gravity.LEFT);
                     value.setPadding(0, 5, 0, 5);
-                    value.setTextColor(getResources().getColor(R.color.text292929));
+                    value.setTextColor(getResources().getColor(R.color.text6c6c6c6));
                     value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
                     value.setText(i == 0 ? data.getMerchantNumber()
                             : i == 1 ? data.getAgentName() + ""
@@ -204,7 +204,7 @@ public class TradeDetailActivity extends BaseActivity {
             TextView key = new TextView(this);
             key.setGravity(Gravity.RIGHT);
             key.setPadding(0, 5, 0, 5);
-            key.setTextColor(resources.getColor(R.color.text292929));
+            key.setTextColor(resources.getColor(R.color.text6c6c6c6));
             key.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
             key.setText(commercialKeys[i]);
             mCommercialKeyContainer.addView(key);

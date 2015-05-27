@@ -2,15 +2,7 @@ package com.example.zf_pad.aadpter;
 
 import java.util.List;
 
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.activity.AdressEdit;
-import com.example.zf_pad.entity.AddressManager;
-import com.example.zf_pad.fragment.Mine_Address;
-import com.example.zf_pad.fragment.Mine_MyInfo_nofrag;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -20,6 +12,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.entity.AddressManager;
+import com.example.zf_pad.fragment.Mine_MyInfo_nofrag;
 
 public class AddressManagerAdapter extends BaseAdapter{
 	private List<AddressManager> dataadress;
@@ -75,7 +71,7 @@ public class AddressManagerAdapter extends BaseAdapter{
 		holdel.zipcode.setText(dataadress.get(position).getZipcode());
 		holdel.phone.setText(dataadress.get(position).getPhone());
 		holdel.defau.setText(dataadress.get(position).getIsdefau());
-		Log.e("holdel.defau", String.valueOf(Mine_Address.type));
+		Log.e("holdel.defau", String.valueOf(Mine_MyInfo_nofrag.type));
 		/*myHandler=new Handler(){
 			public void handleMessage(Message msg) {
 				if(msg.what==1){
@@ -104,5 +100,9 @@ public class AddressManagerAdapter extends BaseAdapter{
 		TextView phone;
 		TextView defau;
 		TextView change;
+	}
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
 	}
 }
