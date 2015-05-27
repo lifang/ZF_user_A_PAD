@@ -372,7 +372,8 @@ public class MyApplyDetail extends FragmentActivity {
 										startChooseItemActivity(
 												REQUEST_CHOOSE_MERCHANT,
 												getString(R.string.title_apply_choose_merchant),
-												mMerchantId, mTerminalId);
+												mMerchantId,
+												(ArrayList<ApplyChooseItem>) merchants);
 									}
 								});
 
@@ -502,7 +503,7 @@ public class MyApplyDetail extends FragmentActivity {
 			mChosenBilling = (ApplyChannel.Billing) data
 					.getSerializableExtra(SELECTED_BILLING);
 			setItemValue(getString(R.string.apply_detail_channel),
-					mChosenChannel.getName());
+					mChosenChannel.getName() + mChosenBilling.name);
 			break;
 		}
 
@@ -898,13 +899,13 @@ public class MyApplyDetail extends FragmentActivity {
 	 * @param items
 	 *            the items to choose
 	 */
-	private void startChooseItemActivity(final int requestCode,
-			final String title, final int selectedId, int mTerminalId) {
+	private void startChooseItemActivity(int requestCode, String title,
+			int selectedId, ArrayList<ApplyChooseItem> items) {
 		Intent intent = new Intent(MyApplyDetail.this,
 				ApplyChooseActivity.class);
 		intent.putExtra(CHOOSE_TITLE, title);
 		intent.putExtra(SELECTED_ID, selectedId);
-		intent.putExtra(CHOOSE_ITEMS, mTerminalId);
+		intent.putExtra(CHOOSE_ITEMS, items);
 		startActivityForResult(intent, requestCode);
 	}
 

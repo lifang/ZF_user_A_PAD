@@ -52,9 +52,9 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/tv_bg"
-                    android:paddingLeft="5dp"
+                    android:background="@null"
                     android:enabled="false"
+                    android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/text6c6c6c6" />
 
@@ -64,8 +64,8 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:paddingRight="20dp"
                     android:gravity="center_vertical"
+                    android:paddingRight="20dp"
                     android:text="修改"
                     android:textColor="#FF5A10"
                     android:textSize="20sp" />
@@ -87,10 +87,10 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/tv_bg"
+                    android:background="@null"
+                    android:enabled="false"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                      android:enabled="false"
                     android:textColor="@color/text6c6c6c6" />
 
                 <TextView
@@ -99,9 +99,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:text="修改"
-                       android:paddingRight="20dp"
-                          android:gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:paddingRight="20dp"
+                    android:text="去验证"
                     android:textColor="#FF5A10"
                     android:textSize="20sp" />
             </TableRow>

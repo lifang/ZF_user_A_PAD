@@ -103,7 +103,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.order_comfirm);
 		comfirmList=MyApplication.getComfirmList();
 		initView();
-		getData();
+	//	getData();
 	}
 
 	private void getData() {

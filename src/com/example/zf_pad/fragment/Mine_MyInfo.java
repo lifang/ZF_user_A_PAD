@@ -32,8 +32,8 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	private Message msg;
 	public static boolean isHiddenn=false;
 	public Mine_MyInfo mine_MyInfo;
-	
-	
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -52,6 +52,17 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				parent.removeView(view);
 		}
 		try {
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
+			if (address != null)
+				transaction.remove(address);
+			if (score != null)
+				transaction.remove(score);
+			if (info != null)
+				transaction.remove(info);
+			if(chgpaw!=null)
+				transaction.remove(chgpaw);
+			transaction.commit();
 			
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
 			init();
@@ -129,8 +140,15 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 	@Override
 	public void chang(int index) {
 		mRecordType=index;
+		FragmentTransaction transaction;
 		switch (mRecordType) {
 		case 0:
+			 transaction = getActivity()
+			.getSupportFragmentManager().beginTransaction();
+			if (info != null)
+				transaction.remove(info);
+			transaction.commit();
+
 			if(info==null)
 				info=new Mine_baseinfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -138,6 +156,13 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 
 			break;
 		case 1:
+			 transaction = getActivity()
+			.getSupportFragmentManager().beginTransaction();
+			if (chgpaw != null)
+				transaction.remove(chgpaw);
+			transaction.commit();
+			
+			
 			if(chgpaw==null)
 				chgpaw=new Mine_chgpaw();
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -147,6 +172,12 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				msg.sendToTarget();*/
 			break;
 		case 2:
+			 transaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
+				if (address != null)
+					transaction.remove(address);
+				transaction.commit();
+			
 			if(address==null)
 				address=new Mine_Address();
 			getActivity().getSupportFragmentManager().beginTransaction()
@@ -156,6 +187,12 @@ public class Mine_MyInfo extends Fragment implements OnTabOnclik{
 				msg.sendToTarget();*/
 			break;
 		case 3:
+			 transaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
+				if (score != null)
+					transaction.remove(score);
+				transaction.commit();
+			
 			if (score == null)
 				score = new Mine_score();
 			getActivity().getSupportFragmentManager().beginTransaction()

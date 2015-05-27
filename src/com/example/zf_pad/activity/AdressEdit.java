@@ -104,6 +104,11 @@ public class AdressEdit extends BaseActivity{
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		if (StringUtil.replaceBlank(tv4.getText().toString()).length()==0) {
+			Toast.makeText(getApplicationContext(), "请选择省/市",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		address=StringUtil.replaceBlank(tv5.getText().toString());
 		if(address.length()==0){
 			Toast.makeText(getApplicationContext(), "请输入详细地址",

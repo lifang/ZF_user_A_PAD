@@ -28,7 +28,6 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 	private TextView tv_msg;
 	String phoneOld,phoneCode,phone2,getPhoneCode;
 	private LinearLayout login_Layout_name2;
-	private View view_x1,view_x2;	
 
 	private int Countmun=120;
 	private Boolean isRun=true;
@@ -66,8 +65,6 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		new TitleMenuUtil(ChangePhone.this, "修改手机号").show();
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
 		login_Layout_name2 = (LinearLayout) findViewById(R.id.login_Layout_name2);
-		view_x1 = findViewById(R.id.view_x1);
-		view_x2 = findViewById(R.id.view_x2);
 
 		login_edit_name1=(EditText) findViewById(R.id.login_edit_name1);
 		login_edit_name2=(EditText) findViewById(R.id.login_edit_name2);
@@ -80,15 +77,11 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 			login_edit_name.setVisibility(View.VISIBLE);
 			login_edit_name.setEnabled(true);
 			login_Layout_name2.setVisibility(View.GONE);
-			view_x1.setVisibility(View.GONE);
-			view_x2.setVisibility(View.GONE);
 			btn_exit.setText("提交");
 		}else {
 			login_edit_name.setVisibility(View.VISIBLE);
 			login_edit_name.setEnabled(false);
 			login_Layout_name2.setVisibility(View.GONE);
-			view_x1.setVisibility(View.GONE);
-			view_x2.setVisibility(View.GONE);
 			btn_exit.setText("下一步");
 		}
 		

@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -17,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -62,7 +60,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	private List<City> mCities = new ArrayList<City>();
 	private Button btn_save,btn_exit;
 	public static String pawwword="";
-	private int id=MyApplication.NewUser.getId();
+	private int id;
 	private ScrollView sLV;
 	private SharedPreferences mySharedPreferences;
 	private Activity mActivity;
@@ -84,6 +82,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 		}
 		try {
 			view = inflater.inflate(R.layout.baseinfo, container, false);
+			id=MyApplication.NewUser.getId();
 			init();
 			getUserInfo();
 		} catch (InflateException e) {
@@ -95,7 +94,7 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		if (!StringUtil.isNull(Config.changePhoneNum)) {
 			et_phone.setText(Config.changePhoneNum);
 			Config.changePhoneNum = "";
@@ -342,13 +341,17 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			mySharedPreferences = mActivity.getSharedPreferences(Config.SHARED,mActivity. MODE_PRIVATE);
 			Config.isExit=true;
 			MyApplication.NewUser=null;
+			/*
+			 * Çå³ý±¾fragment
+			 */
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
+			if (this != null)
+				transaction.remove(this);
+			transaction.commit();
+
 			startActivity(new Intent(getActivity(),MainActivity.class));
-//			FragmentTransaction transaction = getActivity()
-//					.getSupportFragmentManager().beginTransaction();
-//			if (Mine_MyInfo.mine_MyInfo != null)
-//				transaction.remove(Mine_MyInfo.mine_MyInfo);
-//			transaction.commit();
-			
+
 			Editor editor=mySharedPreferences.edit();
 			editor.putBoolean("islogin", false);
 			editor.putString("name", null);
@@ -356,16 +359,11 @@ public class Mine_baseinfo extends Fragment implements OnClickListener{
 			editor.commit();
 			Intent i = new Intent(mActivity, LoginActivity.class);
 			startActivity(i);
+			//mActivity.finish();
 			break;
 		default:
 			break;
 		}
 
 	}
-	@Override
-	public void onPause() {
-		super.onPause();
-	
-	}
-
 }

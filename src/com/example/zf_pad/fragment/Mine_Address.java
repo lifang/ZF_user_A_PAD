@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 	public static LinearLayout ll_address;
 	public static Handler myHandler;
 	private int j=0;
-	private int id=MyApplication.NewUser.getId();
+	private int id;
 	public static int[] idd;
 	public static int type=0;
 	private Activity mActivity;
@@ -67,7 +68,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 		}
 		try {
 			view = inflater.inflate(R.layout.manageradress, container, false);
-
+			id=MyApplication.NewUser.getId();
 		} catch (InflateException e) {
 
 		}
@@ -210,15 +211,7 @@ public class Mine_Address extends Fragment implements OnClickListener{
 
 	}
 	@Override
-	public void onPause() {
-		super.onPause();
-	}
-	@Override
 	public void onStop() {
 		super.onStop();
-	}
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
 	}
 }

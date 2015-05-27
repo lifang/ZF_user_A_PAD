@@ -22,6 +22,7 @@ import com.loopj.android.http.RequestParams;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -37,7 +38,7 @@ public class Mine_chgpaw extends Fragment{
 	private String password;
 	private EditText et_oldpaw,et_newpaw,et_confirmpaw;
 	private Button btn_save;
-	private int id=MyApplication.NewUser.getId();
+	private int id;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class Mine_chgpaw extends Fragment{
 		}
 		try {
 			view = inflater.inflate(R.layout.changepaw, container, false);
-
+			id=MyApplication.NewUser.getId();
 		} catch (InflateException e) {
 
 		}
@@ -98,11 +99,6 @@ public class Mine_chgpaw extends Fragment{
 			}
 		});
 
-	}
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
 	}
 	private void init() {
 		et_oldpaw=(EditText) view.findViewById(R.id.et_oldpaw);

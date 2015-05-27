@@ -8,7 +8,9 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="134dp" >
+        android:layout_height="134dp"
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp" >
 
         <TextView
             android:id="@+id/apply_terminal_number"
@@ -51,45 +53,36 @@
             android:textSize="15sp" />
 
         <LinearLayout
-            android:layout_width="260dp"
-            android:layout_height="match_parent" >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
 
             <LinearLayout
-                android:id="@+id/terminal_button_container"
+                android:id="@+id/terminal_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 android:clickable="true"
                 android:gravity="center"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:id="@+id/terminal_buttons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/apply_button_open"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
                     android:layout_marginBottom="12dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:gravity="right"
-                    android:orientation="vertical"
-                    android:paddingRight="64dp" >
+                    android:background="@drawable/normal_button_selector"
+                    android:text="申请开通"
+                    android:textColor="@color/white" />
 
-                    <Button
-                        android:id="@+id/apply_button_open"
-                        android:layout_width="118dp"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/normal_button_selector"
-                        android:text="申请开通"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/apply_button_video"
-                        android:layout_width="118dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/normal_button_selector"
-                        android:text="视频认证"
-                        android:textColor="@color/white" />
-                </LinearLayout>
+                <Button
+                    android:id="@+id/apply_button_video"
+                    android:layout_width="118dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/normal_button_selector"
+                    android:text="视频认证"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
