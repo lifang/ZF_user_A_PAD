@@ -36,8 +36,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape1" />
+                        
+                       android:background="@drawable/sc_edit" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -52,8 +52,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape1" />
+                      
+                        android:background="@drawable/sc_edit" />
                 </TableRow>
 
                 <TableRow
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/sc_edit" />
+                       android:background="@drawable/sc_edit" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/shape1" />
+                        android:background="@drawable/sc_edit" />
                 </TableRow>
 
                 <TableRow
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/shape1" />
+                        android:background="@drawable/sc_edit" />
                 </TableRow>
 
                 <TableRow

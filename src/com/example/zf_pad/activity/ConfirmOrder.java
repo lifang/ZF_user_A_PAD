@@ -19,7 +19,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,6 +94,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private EditText et_comment;
 	private Button bt_add;
 	private Button bt_mange;
+	private LinearLayout order_isshow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +178,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 
 
 	private void initView() {
+		order_isshow = (LinearLayout)findViewById(R.id.order_isshow);
 		bt_add = (Button)findViewById(R.id.bt_add);
 		bt_add.setOnClickListener(this);
 		bt_mange = (Button)findViewById(R.id.bt_mange);
@@ -205,8 +210,25 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 				myAdapter.notifyDataSetChanged();
 			}
 		});
+	
 		new TitleMenuUtil(this, "∂©µ•»∑»œ").show();
 		ck = (CheckBox)findViewById(R.id.item_cb);
+		ck.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if (arg1) {
+					is_need_invoice = 1;
+			
+					order_isshow.setVisibility(View.VISIBLE);
+				} else {
+					is_need_invoice = 0;
+					
+					order_isshow.setVisibility(View.GONE);
+				}
+				
+			}
+		});
 		pos_lv = (ScrollViewWithListView) findViewById(R.id.pos_lv1);
 		// posAdapter=new OrderDetail_PosAdapter(ConfirmOrder.this, poslist);
 		// pos_lv.setAdapter(posAdapter);
@@ -251,8 +273,10 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		}
 		if(ck.isChecked()){
 			is_need_invoice=1;
+			
 		}else{
 			is_need_invoice=0;
+			
 		}
 		
 		//comment=et_comment.getText().toString();

@@ -192,6 +192,7 @@
             android:text="最多填写200个汉字"
             android:layout_marginRight="@dimen/zc_margin_top1"
             android:textColor="@color/text292929"
+            android:id="@+id/tip"
             android:textSize="@dimen/textsmall" />
     </RelativeLayout>
     </LinearLayout>
