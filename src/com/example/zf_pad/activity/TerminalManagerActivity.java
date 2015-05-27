@@ -31,9 +31,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.MyApplyDetail;
@@ -173,6 +173,9 @@ public class TerminalManagerActivity extends BaseActivity implements
 
 				Boolean appidBoolean = !"".equals(item.getAppid());
 				Boolean videoBoolean = 1 == item.getHasVideoVerify();
+				if (item.getPosPortID().equals("110000000000")) {
+					System.out.println("");
+				}
 				switch (item.getOpenState()) {
 				case OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
@@ -473,13 +476,12 @@ public class TerminalManagerActivity extends BaseActivity implements
 					openDialog(item);
 
 				} else {
-					if (item.getOpenstatus() != null) {
-						if (!"".equals(item.getAppid())
-								&& Integer.parseInt(item.getOpenstatus()) == 6) {
-							CommonUtil.toastShort(TerminalManagerActivity.this,
-									"正在第三方审核,请耐心等待...");
+					if (item.getOpenstatus() != null
+							&& !"".equals(item.getAppid())
+							&& Integer.parseInt(item.getOpenstatus()) == 6) {
+						CommonUtil.toastShort(TerminalManagerActivity.this,
+								"正在第三方审核,请耐心等待...");
 
-						}
 					} else {
 						Intent intent = new Intent(
 								TerminalManagerActivity.this,
