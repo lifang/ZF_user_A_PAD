@@ -148,7 +148,7 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		}
 		
 		int[] ids=new int[1];
-		Toast.makeText(getActivity(), ShopAdapter.pp+"", 1000).show();
+		
 		ids[0]=(int)datasho.get(ShopAdapter.pp).getId();
 		Gson gson = new Gson();
 		RequestParams params = new RequestParams();
