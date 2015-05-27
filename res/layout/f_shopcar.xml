@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:text="共计："
+                android:text="共计：0件商品"
                 android:textColor="@color/text6c6c6c6"
                 android:textSize="@dimen/textmid" />
         </LinearLayout>

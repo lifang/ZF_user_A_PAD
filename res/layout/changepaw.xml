@@ -16,7 +16,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="原始密码"
+                android:text="原密码"
+                   android:layout_gravity="right"
+                android:gravity="center_vertical"
                 android:textColor="@color/text292929"
                 android:textSize="20sp" />
 
@@ -37,8 +39,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
                 android:text="新密码"
+                android:layout_gravity="right"
+                android:gravity="center_vertical"
                 android:textColor="@color/text292929"
                 android:textSize="20sp" />
 
@@ -60,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:text="确认密码"
                 android:textColor="@color/text292929"
                 android:textSize="20sp" />

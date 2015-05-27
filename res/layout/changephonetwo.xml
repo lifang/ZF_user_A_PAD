@@ -15,26 +15,28 @@
         android:text="修改手机号将向您的新手机发送验证码"
         android:textSize="14sp" />
 
-    <View
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="44dp"
         android:layout_marginTop="10dp"
-        android:background="@color/Viewc2" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:paddingLeft="@dimen/margin_left2" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/EditTextLayout"
+            android:text="新手机"
+            android:textSize="17sp" />
 
+        <RelativeLayout
+            android:id="@+id/EditTextLayout"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="44dp"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/margin_left2" >
 
             <EditText
                 android:id="@+id/login_edit_name"
@@ -72,6 +74,8 @@
             android:id="@+id/login_linear_in"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/EditTextLayout"
             android:layout_marginBottom="3dp"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
@@ -91,37 +95,36 @@
                 android:textColor="@color/fffefe"
                 android:textSize="16sp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
-    <View
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/Viewc2" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="44dp"
         android:layout_marginTop="20dp"
-        android:background="@color/Viewc2" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/Edit1TextLayout"
+            android:text="验证码"
+            android:textSize="17sp" />
+
         <RelativeLayout
-            android:layout_width="0dp"
+             android:id="@+id/Edit1TextLayout"
+            android:layout_width="300dp"
             android:layout_height="44dp"
-            android:layout_weight="1"
-            android:background="#FFFFFF" >
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/tv_bg"
+            android:paddingLeft="@dimen/margin_left2" >
 
             <EditText
                 android:id="@+id/login_edit_name1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_left2"
                 android:layout_marginRight="40dp"
                 android:background="@color/white"
                 android:hint="输入验证码"
@@ -148,24 +151,38 @@
                     android:background="@drawable/login_delete" />
             </LinearLayout>
         </RelativeLayout>
-    </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="7dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7dp"
+            android:layout_toRightOf="@+id/Edit1TextLayout"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bg_blue_shape"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:visibility="invisible" >
 
-    <View
-        android:id="@+id/view_x1"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/Viewc2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="发送验证码"
+                android:textColor="@color/fffefe"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/login_Layout_name2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -207,12 +224,6 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
-    <View
-        android:id="@+id/view_x2"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/Viewc2" />
 
     <Button
         android:id="@+id/btn_exit"

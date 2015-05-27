@@ -556,6 +556,8 @@ containing a value of this type.
         public static final int xlistview_arrow=0x7f0200a1;
     }
     public static final class id {
+        public static final int Edit1TextLayout=0x7f0b00ae;
+        public static final int EditTextLayout=0x7f0b00aa;
         public static final int Forum=0x7f0b0116;
         public static final int Forum1=0x7f0b011d;
         public static final int ImgSwichVideo=0x7f0b023f;
@@ -817,12 +819,12 @@ containing a value of this type.
         public static final int ll_tel=0x7f0b01bd;
         public static final int ll_updown=0x7f0b01fc;
         public static final int ll_xxyx=0x7f0b01fa;
-        public static final int login_Layout_name2=0x7f0b00b0;
+        public static final int login_Layout_name2=0x7f0b00b1;
         public static final int login_edit_code=0x7f0b014a;
         public static final int login_edit_email=0x7f0b0145;
-        public static final int login_edit_name=0x7f0b00aa;
-        public static final int login_edit_name1=0x7f0b00ad;
-        public static final int login_edit_name2=0x7f0b00b1;
+        public static final int login_edit_name=0x7f0b00ab;
+        public static final int login_edit_name1=0x7f0b00af;
+        public static final int login_edit_name2=0x7f0b00b2;
         public static final int login_edit_pass=0x7f0b0150;
         public static final int login_edit_pass2=0x7f0b0151;
         public static final int login_img_pass=0x7f0b005f;
@@ -831,13 +833,13 @@ containing a value of this type.
         public static final int login_info=0x7f0b005e;
         public static final int login_linear_deletemali=0x7f0b0146;
         public static final int login_linear_deletename=0x7f0b0061;
-        public static final int login_linear_deletename1=0x7f0b00ae;
-        public static final int login_linear_deletename2=0x7f0b00b2;
+        public static final int login_linear_deletename1=0x7f0b00b0;
+        public static final int login_linear_deletename2=0x7f0b00b3;
         public static final int login_linear_deletepass=0x7f0b0064;
         public static final int login_linear_deletepass2=0x7f0b0067;
         public static final int login_linear_deletpass=0x7f0b014b;
         public static final int login_linear_deletpass2=0x7f0b0152;
-        public static final int login_linear_in=0x7f0b00ab;
+        public static final int login_linear_in=0x7f0b00ac;
         public static final int login_linear_login=0x7f0b01c7;
         public static final int login_linear_no=0x7f0b00f3;
         public static final int login_linear_signin=0x7f0b0153;
@@ -1067,7 +1069,7 @@ containing a value of this type.
         public static final int tv_money=0x7f0b01af;
         public static final int tv_mr=0x7f0b01f9;
         public static final int tv_ms=0x7f0b00ee;
-        public static final int tv_msg=0x7f0b00ac;
+        public static final int tv_msg=0x7f0b00ad;
         public static final int tv_name=0x7f0b000e;
         public static final int tv_openstate=0x7f0b0228;
         public static final int tv_pay=0x7f0b0172;
@@ -1123,8 +1125,6 @@ containing a value of this type.
         public static final int video_session=0x7f0b0240;
         public static final int view_pager=0x7f0b0049;
         public static final int view_x=0x7f0b0044;
-        public static final int view_x1=0x7f0b00af;
-        public static final int view_x2=0x7f0b00b3;
         public static final int view_y1=0x7f0b0045;
         public static final int view_y2=0x7f0b0046;
         public static final int wait_TextView=0x7f0b0244;

@@ -198,10 +198,18 @@ public class M_my extends Fragment implements OnClickListener {
 			if (Mine_MyInfo.mRecordType != 0) {
 				return;
 			}
+			
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
+			if(m_info!=null)
+				transaction.remove(m_info);
+			transaction.commit();
+			
 			if (m_info == null)
 				m_info = new Mine_MyInfo();
 			getActivity().getSupportFragmentManager().beginTransaction()
 					.replace(R.id.f_mine, m_info).commit();
+			
 			setback();
 			im3.setVisibility(View.VISIBLE);
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));
@@ -278,6 +286,12 @@ public class M_my extends Fragment implements OnClickListener {
 		super.onResume();
 
 		if (Config.AderssManger) {
+			FragmentTransaction transaction = getActivity()
+					.getSupportFragmentManager().beginTransaction();
+			if(m_info!=null)
+				transaction.remove(m_info);
+			transaction.commit();
+			
 			if (m_info == null)
 				m_info = new Mine_MyInfo();
 

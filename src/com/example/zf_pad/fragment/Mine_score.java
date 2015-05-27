@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -47,7 +48,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 	private List<Score> moreList;
 	private XListView xxlistview;
 	private BaseAdapter scoreadapter;
-	private int customerId=MyApplication.NewUser.getId();
+	private int customerId;
 	private int page=1;
 	private int rows=10;
 	private Handler myHandler;
@@ -71,6 +72,7 @@ public class Mine_score extends Fragment implements IXListViewListener{
 		}
 		try {
 			view = inflater.inflate(R.layout.score, container, false);
+			customerId=MyApplication.NewUser.getId();
 			init();
 			getData();
 			getscore();
