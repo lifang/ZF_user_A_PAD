@@ -18,6 +18,7 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.activity.OrderDetail;
 
@@ -48,14 +49,6 @@ public abstract class BaseActivity extends Activity implements Callback,
 	public static final int PLUGIN_NOT_INSTALLED = -1;
 	public static final int PLUGIN_NEED_UPGRADE = 2;
 
-	/*****************************************************************
-	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
-	 *****************************************************************/
-	private final String mMode = "01";
-	// private static final String TN_URL_01 =
-	// "http://202.101.25.178:8080/sim/gettn";
-	private static final String TN_URL_01 = "http://121.40.64.167:8080/unionpay.do";
-	private static final String TN_URL_02 = "http://121.40.64.167:8080/api/pay/alipayback";
 	protected String outTradeNo;
 	protected String price;
 	protected int orderId;
@@ -89,7 +82,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 
 	@Override
 	public boolean handleMessage(Message msg) {
-		Log.e(LOG_TAG, "==tn==" + msg.obj);
+		
 		if (mLoadingDialog.isShowing()) {
 			mLoadingDialog.dismiss();
 		}
@@ -139,6 +132,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 			builder.create().show();
 			
 		} else {
+			Log.e(LOG_TAG, "==tn==" + msg.obj);
 			String tn = "";
 			if (msg.obj == null || ((String) msg.obj).length() == 0) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -159,7 +153,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 				/*************************************************
 				 * 步骤2：通过银联工具类启动支付插件
 				 ************************************************/
-				doStartUnionPayPlugin(this, tn, mMode);
+				doStartUnionPayPlugin(this, tn, Config.UNION_MEDE);
 			}
 		}
 		return false;
@@ -196,7 +190,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 					Map<String, String> param = new HashMap<String, String>();
 					param.put("ordernumber", outTradeNo);
 					param.put("payType", "2");
-					String result = postRequest(TN_URL_02, param);
+					String result = postRequest(Config.UNION_SUCESS_URL, param);
 					Message msg = mHandler.obtainMessage();
 					msg.what = 1;
 					msg.obj = result;
@@ -230,7 +224,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 		param.put("payType", "2");
 		param.put("android", "android");
 
-		String tn = postRequest(TN_URL_01, param);
+		String tn = postRequest(Config.UNION_TN_URL, param);
 
 		Message msg = mHandler.obtainMessage();
 		msg.what = 2;
