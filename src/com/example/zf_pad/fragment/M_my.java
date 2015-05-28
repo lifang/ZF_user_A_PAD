@@ -1,12 +1,6 @@
 package com.example.zf_pad.fragment;
 
-import com.example.zf_pad.Config;
-import com.epalmpay.userPad.R;
-import com.umeng.analytics.MobclickAgent;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -18,10 +12,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.Config;
+import com.umeng.analytics.MobclickAgent;
 
 public class M_my extends Fragment implements OnClickListener {
 	private View view;
@@ -32,7 +28,8 @@ public class M_my extends Fragment implements OnClickListener {
 	private RelativeLayout ll_plan;
 	private Mine_Dd m_dd;
 	private Mine_Shjl m_shjl;
-	private Mine_MyInfo m_info;
+	//private Mine_MyInfo m_info;
+	private Mine_MyInfo_nofrag m_info_nofrag;
 	private Mine_MyMerChant m_sh;
 	private Mine_Plan m_plan;
 	private Mine_chgpaw m_chgpaw;
@@ -195,20 +192,22 @@ public class M_my extends Fragment implements OnClickListener {
 			break;
 
 		case R.id.ll_myinfo:
-			if (Mine_MyInfo.mRecordType != 0) {
-				return;
-			}
+//			if (Mine_MyInfo.mRecordType != 0) {
+//				return;
+//			}
 			
-			FragmentTransaction transaction = getActivity()
-					.getSupportFragmentManager().beginTransaction();
-			if(m_info!=null)
-				transaction.remove(m_info);
-			transaction.commit();
-			
-			if (m_info == null)
-				m_info = new Mine_MyInfo();
+//			if (m_info == null)
+//				m_info = new Mine_MyInfo();
+//			getActivity().getSupportFragmentManager().beginTransaction()
+//					.replace(R.id.f_mine, m_info).commit();
+//			if (Mine_MyInfo_nofrag.mRecordType != 0) {
+//				return;
+//			}
+			if (m_info_nofrag == null)
+				m_info_nofrag = new Mine_MyInfo_nofrag();
 			getActivity().getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_mine, m_info).commit();
+					.replace(R.id.f_mine, m_info_nofrag).commit();
+			
 			
 			setback();
 			im3.setVisibility(View.VISIBLE);
@@ -262,8 +261,10 @@ public class M_my extends Fragment implements OnClickListener {
 				transaction.remove(m_dd);
 			if (m_shjl != null)
 				transaction.remove(m_shjl);
-			if (m_info != null)
-				transaction.remove(m_info);
+//			if (m_info != null)
+//				transaction.remove(m_info);
+			if (m_info_nofrag != null)
+				transaction.remove(m_info_nofrag);
 			if (m_sh != null)
 				transaction.remove(m_sh);
 			if (m_plan != null)
@@ -286,17 +287,15 @@ public class M_my extends Fragment implements OnClickListener {
 		super.onResume();
 
 		if (Config.AderssManger) {
-			FragmentTransaction transaction = getActivity()
-					.getSupportFragmentManager().beginTransaction();
-			if(m_info!=null)
-				transaction.remove(m_info);
-			transaction.commit();
 			
-			if (m_info == null)
-				m_info = new Mine_MyInfo();
-
+//			if (m_info == null)
+//				m_info = new Mine_MyInfo();
+//			getActivity().getSupportFragmentManager().beginTransaction()
+//					.replace(R.id.f_mine, m_info).commit();
+			if (m_info_nofrag == null)
+				m_info_nofrag = new Mine_MyInfo_nofrag();
 			getActivity().getSupportFragmentManager().beginTransaction()
-					.replace(R.id.f_mine, m_info).commit();
+					.replace(R.id.f_mine, m_info_nofrag).commit();
 			setback();
 			im3.setVisibility(View.VISIBLE);
 			tvwdxx.setTextColor(getResources().getColor(R.color.o));

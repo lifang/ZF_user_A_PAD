@@ -35,10 +35,41 @@
         </LinearLayout>
     </LinearLayout>
 
-    <fragment
-        android:id="@+id/fm"
-        android:name="com.example.zf_pad.fragment.Mine_baseinfo"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <LinearLayout
+        android:id="@+id/baseinfo_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" >
+
+        <include layout="@layout/baseinfo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/changepaw_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <include layout="@layout/changepaw" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/manageradress_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <include layout="@layout/manageradress" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/score_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <include layout="@layout/score" />
+    </LinearLayout>
 
 </LinearLayout>

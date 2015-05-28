@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="50dp"
-    android:paddingRight="60dp"
     android:background="#ffffff"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="60dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,47 +14,51 @@
         android:paddingTop="@dimen/zc_margin_top1" >
 
         <TextView
-             android:id="@+id/titleback_text_title"
+            android:id="@+id/titleback_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="购物车"
             android:textColor="#6C6C6C"
             android:textSize="@dimen/textbig" />
     </LinearLayout>
-<View 
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#DBDBDC"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#DBDBDC" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginBottom="18dp"
-        android:orientation="vertical" >
-            <LinearLayout
-        android:id="@+id/eva_nodata"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:background="@color/ffffff"
-        android:orientation="horizontal"
-        android:visibility="gone" >
-
-        <include layout="@layout/include_norecord" />
-    </LinearLayout>
-        <com.example.zf_pad.util.XListView
-        android:id="@+id/x_listview"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/white"
-        android:fadingEdge="none"
-        android:scrollbars="none" />
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/eva_nodata"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@color/ffffff"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <include layout="@layout/include_norecord" />
+        </LinearLayout>
+
+        <com.example.zf_pad.util.XListView
+            android:id="@+id/x_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:fadingEdge="none"
+            android:scrollbars="none" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/normai_height3"
+        android:layout_height="40dp"
         android:background="#E1E0E0"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -83,6 +87,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:orientation="vertical" >
+
             <TextView
                 android:id="@+id/tv_gj"
                 android:layout_width="wrap_content"
@@ -93,17 +98,20 @@
                 android:textSize="@dimen/textmid" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/alertll"
-        android:layout_marginBottom="@dimen/normai_height1" >
+        android:layout_height="@dimen/normai_button_height"
+        android:layout_marginBottom="@dimen/normai_height1"
+        android:layout_marginTop="@dimen/alertll" >
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="right|center_vertical"
             android:orientation="vertical" >
+
             <TextView
                 android:id="@+id/howMoney"
                 android:layout_width="wrap_content"
@@ -112,6 +120,7 @@
                 android:text="合计：￥0.00"
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textmid" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,6 +129,7 @@
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textsmall" />
         </LinearLayout>
+
         <Button
             android:id="@+id/confirm"
             android:layout_width="@dimen/normai_button_width"
@@ -128,8 +138,8 @@
             android:layout_marginRight="7dp"
             android:background="@drawable/normal_button_selector"
             android:text="结算"
-            android:textSize="@dimen/textmid"
-            android:textColor="@color/ffffff" />
+            android:textColor="@color/ffffff"
+            android:textSize="@dimen/textbig" />
     </LinearLayout>
 
 </LinearLayout>

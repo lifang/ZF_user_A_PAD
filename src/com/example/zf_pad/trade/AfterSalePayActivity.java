@@ -39,6 +39,8 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	
 	private int mRecordType;
 	
+	public static boolean isPay = false;
+	
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -135,6 +137,7 @@ public class AfterSalePayActivity extends RepairPayActivity implements OnClickLi
 	
 	@Override
 	public void success() {
+		isPay = true;
 		Intent intent = new Intent(AfterSalePayActivity.this,AfterSaleDetailActivity.class);
 		intent.putExtra(RECORD_TYPE, mRecordType);
 		intent.putExtra(RECORD_ID, Integer.valueOf(orderId));

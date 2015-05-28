@@ -185,7 +185,7 @@ public void onDestroyView() {
 					
 					i.putExtra("type", myList.get(position-1).getOrder_type());	
 					
-					startActivity(i);
+					mactivity.startActivity(i);
 				}
 
 			}
@@ -195,6 +195,7 @@ public void onDestroyView() {
 
 	@Override
 	public void onRefresh() {
+		Xlistview.setPullLoadEnable(true);
 		page = 1;
 		myList.clear();
 		getData();
@@ -328,7 +329,8 @@ public void onDestroyView() {
 		switch (v.getId()) {
 		case R.id.tv_gm:
 			Config.iszl=false;
-			
+
+			Xlistview.setPullLoadEnable(true);
 			type = "1";
 			tv_gm.setTextColor(getResources().getColor(R.color.text292929));
 			tv_zl.setTextColor(getResources().getColor(R.color.text292929));
@@ -342,6 +344,8 @@ public void onDestroyView() {
 		case R.id.tv_zl:
 			Config.iszl=true;
 			type = "2";
+
+			Xlistview.setPullLoadEnable(true);
 			tv_gm.setTextColor(getResources().getColor(R.color.text292929));
 			tv_zl.setTextColor(getResources().getColor(R.color.text292929));
 			tv_zl.setTextColor(getResources().getColor(R.color.o));

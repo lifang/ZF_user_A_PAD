@@ -315,7 +315,7 @@
                             android:layout_marginLeft="5dp"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="刷卡交易标准："
+                            android:text="刷卡交易标准:"
                             android:textColor="@color/text292929"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -447,7 +447,7 @@
                             android:layout_marginLeft="5dp"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="资金服务费"
+                            android:text="资金服务费:"
                             android:textColor="@color/text292929"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -586,7 +586,7 @@
                             android:layout_marginLeft="5dp"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="其他交易费率"
+                            android:text="其他交易费率:"
                             android:textColor="@color/text292929"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -818,6 +818,7 @@
                 android:layout_marginTop="10dp"
                 android:horizontalSpacing="20dip"
                 android:numColumns="4"
+                android:visibility="gone"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dip" >
             </com.example.zf_pad.util.ScrollViewWithGView>

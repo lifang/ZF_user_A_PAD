@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.Goodlist;
+import com.example.zf_pad.util.StringUtil;
 
 import android.content.Context;
 import android.text.Editable;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CommentAdapter extends BaseAdapter {
 	private Context context;
@@ -60,8 +62,10 @@ public class CommentAdapter extends BaseAdapter {
 					.findViewById(R.id.content2);
 			holder.content1 = (TextView) convertView
 					.findViewById(R.id.content1);
-			 
+			holder.tip = (TextView) convertView
+					.findViewById(R.id.tip);
 		 	holder.item_et = (EditText) convertView.findViewById(R.id.item_et);
+		 	holder.item_et.setTag(holder.tip);
 			holder.rb = (RatingBar) convertView.findViewById(R.id.si_rt_msxf);
 			holder.rb.setTag(position);
 			 
@@ -93,12 +97,12 @@ public class CommentAdapter extends BaseAdapter {
 
 			}
 		});
+		
 		holder.item_et.addTextChangedListener(new TextWatcher() {
 			
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-		
-				
+			public void onTextChanged(CharSequence s, int arg1, int arg2, int arg3) {
+				CommentAdapter.this.notifyDataSetChanged();
 			}
 			
 			@Override
@@ -115,12 +119,21 @@ public class CommentAdapter extends BaseAdapter {
 				list.get(position).setContent(arg0.toString());
 			}
 		});
-
+		holder.item_et.requestFocus();
+		if (!StringUtil.isNull(list.get(position).getContent())) {
+			if (list.get(position).getContent().length() > 0) {
+				holder.tip.setText("还可填写"+(200-list.get(position).getContent().length())+"个汉字");
+			}else if (list.get(position).getContent().length() == 0) {
+				holder.tip.setText("最多填写200个汉字");
+			}else if (list.get(position).getContent().length() > 200) {
+				holder.tip.setText("已超出允许最多字数");
+			}
+		}
 		return convertView;
 	}
 
 	public final class ViewHolder {
-		public TextView content, content1, content2;
+		public TextView content, content1, content2,tip;
 		public EditText item_et;
 		public RatingBar rb;
 	}

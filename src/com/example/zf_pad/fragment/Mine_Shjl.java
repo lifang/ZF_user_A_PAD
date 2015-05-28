@@ -79,6 +79,7 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	private View.OnClickListener mSubmitCancelListener;
 	private TextView tv1;
 	private TextView tv2;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -528,11 +529,14 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 		}
 		
 	}
-/*	@Override
+	@Override
 	public void onResume() {
 		super.onResume();
-		page = 0;
-		mEntities.clear();
-		loadData();
-	}*/
+		if (AfterSalePayActivity.isPay == true) {
+			AfterSalePayActivity.isPay = false;
+			page = 0;
+			mEntities.clear();
+			loadData();
+		}
+	}
 }

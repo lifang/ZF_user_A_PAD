@@ -140,7 +140,7 @@
         <item>交易流水号</item>
     </string-array>
 
-    <string name="city_current">当前</string>
+    <string name="city_current">当前城市</string>
 
     <!-- 售后记录 -->
     <string name="title_after_sale">售后记录</string>

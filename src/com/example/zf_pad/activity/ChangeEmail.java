@@ -27,6 +27,7 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 	private EditText login_edit_name,login_edit_name1,login_edit_name2;
 	private Button btn_exit;
 	private TextView tv_msg;
+	private TextView desTextView,tv_TextView;
 	String phoneOld,phoneCode,phone2,getPhoneCode;
 	private LinearLayout login_Layout_name2;
 
@@ -63,26 +64,34 @@ public class ChangeEmail extends BaseActivity implements OnClickListener{
 		index=getIntent().getIntExtra("key", 1);
 		name =getIntent().getStringExtra("name");
 
-		new TitleMenuUtil(ChangeEmail.this, "修改邮箱号").show();
+	
 		login_edit_name=(EditText) findViewById(R.id.login_edit_name);
 		login_Layout_name2 = (LinearLayout) findViewById(R.id.login_Layout_name2);
 
 		login_edit_name1=(EditText) findViewById(R.id.login_edit_name1);
 		login_edit_name2=(EditText) findViewById(R.id.login_edit_name2);
+		desTextView = (TextView) findViewById(R.id.desTextView);
+		tv_TextView = (TextView) findViewById(R.id.tv_TextView);
 		tv_msg = (TextView) findViewById(R.id.tv_msg);
 		btn_exit=(Button) findViewById(R.id.btn_exit);
 		btn_exit.setOnClickListener(this);
 		tv_msg.setOnClickListener(this);
 
 		if (StringUtil.isNull(name)) {
+			new TitleMenuUtil(ChangeEmail.this, "添加邮箱号").show();
 			login_edit_name.setVisibility(View.VISIBLE);
 			login_edit_name.setEnabled(true);
 			login_Layout_name2.setVisibility(View.GONE);
+			desTextView.setText("添加邮箱号将向您的邮箱发送激活码");
+			tv_TextView.setText("邮箱号");
 			btn_exit.setText("提交");
 		}else {
+			new TitleMenuUtil(ChangeEmail.this, "修改邮箱号").show();
 			login_edit_name.setVisibility(View.VISIBLE);
 			login_edit_name.setEnabled(false);
 			login_Layout_name2.setVisibility(View.GONE);
+			desTextView.setText("修改邮箱号将向您的原邮箱发送激活码");
+			tv_TextView.setText("原邮箱");
 			btn_exit.setText("下一步");
 		}
 

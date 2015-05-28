@@ -30,8 +30,10 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
@@ -67,6 +69,13 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 		}
 		try {
 			view = inflater.inflate(R.layout.f_mine_plan, container, false);
+			//解决Fragment内点击穿透问题
+			view.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					return true;
+				}
+			});
 			init();
 		} catch (InflateException e) {
 		

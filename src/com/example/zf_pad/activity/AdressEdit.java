@@ -7,27 +7,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
+import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.entity.AddressManager;
-import com.example.zf_pad.fragment.Mine_Address;
+import com.example.zf_pad.fragment.Mine_MyInfo_nofrag;
 import com.example.zf_pad.trade.API;
 import com.example.zf_pad.trade.CityProvinceActivity;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.StringUtil;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
@@ -46,7 +45,7 @@ public class AdressEdit extends BaseActivity{
 	//private int id=MyApplication.NewUser.getId();
 	private int Cityid=MyApplication.NewUser.getCityId();
 	private String name,tel,stringcode ,address;
-	private int isDefault=1;
+	private int isDefault=2;
 	private TextView tv4;
 	private CheckBox item_cb;
 	private LinearLayout mi_r4;
@@ -60,7 +59,7 @@ public class AdressEdit extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adress_edit);
 		initView();
-		if(Mine_Address.isclickitem){
+		if(Mine_MyInfo_nofrag.isclickitem){
 			new TitleMenuUtil(AdressEdit.this, "修改地址").show();
 		}
 		else{
@@ -72,7 +71,7 @@ public class AdressEdit extends BaseActivity{
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		Mine_Address.isclickitem=false;
+		Mine_MyInfo_nofrag.isclickitem=false;
 	}
 	private Boolean check() {
 		// TODO Auto-generated method stub
@@ -152,24 +151,26 @@ public class AdressEdit extends BaseActivity{
 		tv4=(TextView) findViewById(R.id.tv4);
 		
 		//tv4.setText(MyApplication.getCITYNAME());
-		if(Mine_Address.isclickitem){
+		if(Mine_MyInfo_nofrag.isclickitem){
 			search.setVisibility(View.VISIBLE);
 			Bundle bundle=this.getIntent().getExtras();
 			pp=bundle.getInt("position");
-			tv1.setText(Mine_Address.dataadress.get(pp).getConsignee());
-			tv2.setText(Mine_Address.dataadress.get(pp).getPhone());
-			tv3.setText(Mine_Address.dataadress.get(pp).getZipcode());
-			tv4.setText(Mine_Address.dataadress.get(pp).getArea());
-			tv5.setText(Mine_Address.dataadress.get(pp).getDetailadress());
-			if(Mine_Address.dataadress.get(pp).getIsdefau().equals("默认")){
+			tv1.setText(Mine_MyInfo_nofrag.dataadress.get(pp).getConsignee());
+			tv2.setText(Mine_MyInfo_nofrag.dataadress.get(pp).getPhone());
+			tv3.setText(Mine_MyInfo_nofrag.dataadress.get(pp).getZipcode());
+			tv4.setText(Mine_MyInfo_nofrag.dataadress.get(pp).getArea());
+			tv5.setText(Mine_MyInfo_nofrag.dataadress.get(pp).getDetailadress());
+			if(Mine_MyInfo_nofrag.dataadress.get(pp).getIsdefau().equals("默认")){
 				//item_cb.setBackgroundResource(R.drawable.cb_y);
 				item_cb.setChecked(true);
+				isDefault=1;
 			}
 			else{
 				//item_cb.setBackgroundResource(R.drawable.cb_n1);
 				item_cb.setChecked(false);
+				isDefault=2;
 			}
-			
+			Cityid = Integer.valueOf(Mine_MyInfo_nofrag.dataadress.get(pp).getCityId());
 		}
 		adresslist=(Button) findViewById(R.id.adresslist);
 		adresslist.setOnClickListener(new OnClickListener() {
@@ -178,7 +179,7 @@ public class AdressEdit extends BaseActivity{
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				if(check()){
-					if(Mine_Address.isclickitem){
+					if(Mine_MyInfo_nofrag.isclickitem){
 						changeData();
 					}
 					else{
@@ -192,7 +193,7 @@ public class AdressEdit extends BaseActivity{
 			
 			@Override
 			public void onClick(View arg0) {
-				ids[0]=Mine_Address.idd[pp];
+				ids[0]=Mine_MyInfo_nofrag.idd[pp];
 				API.delectaddress(AdressEdit.this, ids, new HttpCallback(AdressEdit.this) {
 
 					@Override
@@ -241,14 +242,14 @@ public class AdressEdit extends BaseActivity{
 			CommonUtil.toastShort(getApplicationContext(), "网络异常");
 			return;
 		}
-		API.changeAdres(AdressEdit.this, Mine_Address.idd[pp], Cityid+"", name, tel, 
+		API.changeAdres(AdressEdit.this, Mine_MyInfo_nofrag.idd[pp], Cityid+"", name, tel, 
 				stringcode, address, isDefault, new HttpCallback(AdressEdit.this) {
 
 					@Override
 					public void onSuccess(Object data) {
 						//Toast.makeText(AdressEdit.this, "修改地址成功", Toast.LENGTH_SHORT).show();
 						//mine_Address.dataadress
-						Log.e("da", String.valueOf(Mine_Address.dataadress));
+						Log.e("da", String.valueOf(Mine_MyInfo_nofrag.dataadress));
 						finish();
 					}
 

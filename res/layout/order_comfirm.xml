@@ -227,8 +227,10 @@
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
-                            android:gravity="center"
+                             android:gravity="right|center_vertical"
+                            android:paddingRight="@dimen/titilepad"
                             android:text="购买数量"
+                           
                             android:textColor="#292929"
                             android:textSize="@dimen/textmids" />
                     </LinearLayout>
@@ -321,23 +323,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="14dp"
-                            android:checked="true" />
+
+                            android:checked="false" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
                             android:text="我要发票"
-                            android:textColor="@color/text6c6c6c6"
+                            android:textColor="@color/text292929"
                             android:textSize="@dimen/textbig" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/order_isshow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="80dp"
                         android:layout_marginTop="34dp"
+                        android:visibility="gone"
                         android:gravity="center_vertical" >
 
                         <TextView
@@ -372,7 +376,7 @@
                         <EditText
                             android:id="@+id/et_titel"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/edheight"
+                            android:layout_height="40dp"
                             android:background="@drawable/shape_edittext" >
                         </EditText>
                     </LinearLayout>
@@ -383,10 +387,7 @@
                         android:layout_marginBottom="34dp"
                         android:background="#EEEDED" />
                 </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true" >
@@ -413,7 +414,7 @@
                         android:layout_marginLeft="7dp"
                         android:text="实付：￥29999"
                         android:textColor="@color/text292929"
-                        android:textSize="@dimen/textmids" />
+                        android:textSize="@dimen/textbig" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -421,7 +422,7 @@
                         android:layout_marginLeft="7dp"
                         android:text="（ 含配送费：￥0.00）"
                         android:textColor="@color/text292929"
-                        android:textSize="@dimen/textsmall" />
+                        android:textSize="@dimen/textmid" />
                 </LinearLayout>
 
                 <Button
@@ -435,6 +436,8 @@
                     android:textColor="@color/ffffff" />
             </LinearLayout>
         </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </LinearLayout>

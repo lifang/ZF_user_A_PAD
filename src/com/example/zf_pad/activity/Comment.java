@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +45,8 @@ public class Comment extends BaseActivity{
 	List<Answer>  as = new ArrayList<Answer>();
 	private CommentAdapter posAdapter;
 	List<Goodlist>  goodlist = new ArrayList<Goodlist>();
+	private int id;
+	private Button bt_close;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,9 +56,15 @@ public class Comment extends BaseActivity{
 		goodlist=Config.list;
 		posAdapter=new CommentAdapter(Comment.this,goodlist);
 		lv.setAdapter(posAdapter);
-		//new TitleMenuUtil(Comment.this, "ÆÀ¼Û").show();
-	
-	
+		id = Config.GoodComment;
+		bt_close = (Button)findViewById(R.id.close);
+		bt_close.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Comment.this.finish();
+			}
+		});
 		btn_pay=(Button) findViewById(R.id.btn_pay);
 		btn_pay.setOnClickListener(new OnClickListener() {
 			
@@ -72,20 +85,33 @@ public class Comment extends BaseActivity{
  			as.add(aaa);
 			System.out.println(goodlist.get(i).getScore()+"---submit---"+goodlist.get(i).getContent()+"id-"+goodlist.get(i).getGood_id());
 		}
-		String url = Config.Comment;
-		RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
+
 		Gson gson = new Gson();
 		try {
 			params.put("json", new JSONArray(gson.toJson(as)));
+			params.put("id", id);
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	  
-		params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+
+
+			return;
+		}
+		String url = Config.Comment;
+		//RequestParams params = new RequestParams();
+	
+		//params.setUseJsonStreamer(true);
 		System.out.println("---"+params.toString());
 		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+				.post(getApplicationContext(),url, null,entity,"application/json", new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
