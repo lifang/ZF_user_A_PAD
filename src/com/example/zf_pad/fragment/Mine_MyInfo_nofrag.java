@@ -94,6 +94,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	private int id;
 	private ScrollView sLV;
 	private SharedPreferences mySharedPreferences;
+	private Activity mActivity;
 	//安全
 	private String password;
 	private EditText et_oldpaw,et_newpaw,et_confirmpaw;
@@ -110,6 +111,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	public static int[] idd;
 	public static int type=0;
 	private boolean isAddress = false;
+	private boolean isBaseinfo = false;
+	private boolean isChangepaw = false;
 	//积分
 	private List<Score> datasco;
 	private List<Score> moreList;
@@ -137,6 +140,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		try {
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
 			init();
+			id=MyApplication.NewUser.getId();
+			customerId=MyApplication.NewUser.getId();
 			Mine_baseinfo();
 		} catch (InflateException e) {
 			System.out.println(e);
@@ -166,7 +171,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 					break;
 				case 2:
 					isclickitem=true;
-					Intent intent=new Intent(getActivity(),AdressEdit.class);
+					Intent intent=new Intent(mActivity,AdressEdit.class);
 					intent.putExtra("position", AddressManagerAdapter.pp);
 					startActivity(intent);
 
@@ -185,6 +190,14 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			isAddress = false;
 			Mine_Address();
 		}
+		if (isBaseinfo == true) {
+			isAddress = false;
+			Mine_baseinfo();	
+		}
+		if (isChangepaw == true) {
+			isChangepaw = false;
+			Mine_chgpaw();
+		}
 		if(Config.AderssManger){
 			mTabWidget.updateTabs(2);
 			Config.AderssMangerBACK=true;
@@ -197,6 +210,11 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			et_email.setText(Config.changeemail);
 			Config.changeemail = "";
 		}
+	}
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mActivity = activity;
 	}
 	@Override
 	public void onPause() {
@@ -265,7 +283,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 
 		switch (v.getId()) {
 		case R.id.tv_city_select:
-			Intent intent = new Intent(getActivity(),
+			Intent intent = new Intent(mActivity,
 					CityProvinceActivity.class);
 			startActivityForResult(intent, com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_CITY);
 			break;
@@ -273,29 +291,29 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			changeUserinfo();
 			break;
 		case R.id.changephone:
-			Intent intent2 = new Intent(getActivity(),ChangePhone.class);
+			Intent intent2 = new Intent(mActivity,ChangePhone.class);
 			intent2.putExtra("key", 2);
 			intent2.putExtra("name", et_phone.getText().toString());
 			startActivityForResult(intent2, 2);
 			break;
 		case R.id.changeemail:
-			Intent intent3 = new Intent(getActivity(),ChangeEmail.class);
+			Intent intent3 = new Intent(mActivity,ChangeEmail.class);
 			intent3.putExtra("key",3);
 			intent3.putExtra("name", et_email.getText().toString());
 			startActivityForResult(intent3, 3);
 			break;
 		case R.id.btn_exit:
-			mySharedPreferences = getActivity().getSharedPreferences(Config.SHARED,getActivity(). MODE_PRIVATE);
+			mySharedPreferences = mActivity.getSharedPreferences(Config.SHARED,mActivity. MODE_PRIVATE);
 			Config.isExit=true;
 			MyApplication.NewUser=null;
-			startActivity(new Intent(getActivity(),MainActivity.class));
+			startActivity(new Intent(mActivity,MainActivity.class));
 
 			Editor editor=mySharedPreferences.edit();
 			editor.putBoolean("islogin", false);
 			editor.putString("name", null);
 			editor.putInt("id", -1);
 			editor.commit();
-			Intent i = new Intent(getActivity(), LoginActivity.class);
+			Intent i = new Intent(mActivity, LoginActivity.class);
 			startActivity(i);
 			break;
 		case R.id.btn_save_chgpaw:
@@ -304,7 +322,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			}
 			break;
 		case R.id.btn_add:
-			Intent intent4=new Intent(getActivity(),AdressEdit.class);	
+			Intent intent4=new Intent(mActivity,AdressEdit.class);	
 			startActivity(intent4);
 			break;
 		default:
@@ -318,9 +336,10 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 * 基础信息
 	 */
 	private void Mine_baseinfo() {
-		id=MyApplication.NewUser.getId();
-
-		provinces = CommonUtil.readProvincesAndCities(getActivity());
+	
+		isBaseinfo = true;
+		
+		provinces = CommonUtil.readProvincesAndCities(mActivity);
 		sLV=(ScrollView) view.findViewById(R.id.sLV);
 		btn_exit=(Button) view.findViewById(R.id.btn_exit);
 		btn_save=(Button) view.findViewById(R.id.btn_save);
@@ -340,8 +359,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		getUserInfo();
 	}
 	private void getUserInfo() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		MyApplication.getInstance().getClient().post(API.GET_USERINFO+id, new AsyncHttpResponseHandler() {
@@ -350,7 +369,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			@Override
 			public void onStart() {	
 				super.onStart();
-				loadingDialog = DialogUtil.getLoadingDialg(getActivity());
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
 				loadingDialog.show();
 			}
 			@Override
@@ -392,13 +411,13 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-							Toast.makeText(getActivity(), "注册信息不完全", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mActivity, "注册信息不完全", Toast.LENGTH_SHORT).show();
 						}
 
 					}
 					else{
 						code = jsonobject.getString("message");
-						Toast.makeText(getActivity(), code, 1000).show();
+						Toast.makeText(mActivity, code, 1000).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -416,7 +435,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	protected String findcity(int id) {
 		// TODO Auto-generated method stub
 		String a="苏州";
-		List<Province> provinces = CommonUtil.readProvincesAndCities(getActivity());
+		List<Province> provinces = CommonUtil.readProvincesAndCities(mActivity);
 		for (Province province : provinces) {
 			List<City> cities = province.getCities();
 
@@ -431,17 +450,17 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		return a;
 	}
 	private void changeUserinfo() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
-		API.changeuserinfo(getActivity(), id, et_name.getText().toString(), 
+		API.changeuserinfo(mActivity, id, et_name.getText().toString(), 
 				et_phone.getText().toString(), et_email.getText().toString(), cityId, 
-				new HttpCallback(getActivity()) {
+				new HttpCallback(mActivity) {
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(getActivity(), "保存信息成功", 
+				Toast.makeText(mActivity, "保存信息成功", 
 						Toast.LENGTH_SHORT).show();
 
 			}
@@ -458,6 +477,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 * 安全
 	 */
 	private void Mine_chgpaw() {
+		isChangepaw = true;
+		
 		et_oldpaw=(EditText) view.findViewById(R.id.et_oldpaw);
 		et_newpaw=(EditText) view.findViewById(R.id.et_newpaw);
 		et_confirmpaw=(EditText) view.findViewById(R.id.et_confirmpaw);
@@ -465,17 +486,17 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		btn_save_chgpaw.setOnClickListener(this);
 	}
 	protected void changepaw() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
-		API.changepaw(getActivity(), id, StringUtil.Md5(et_oldpaw.getText().toString()), 
+		API.changepaw(mActivity, id, StringUtil.Md5(et_oldpaw.getText().toString()), 
 				StringUtil.Md5(et_newpaw.getText().toString()), 
-				new HttpCallback(getActivity()) {
+				new HttpCallback(mActivity) {
 
 			@Override
 			public void onSuccess(Object data) {
-				Toast.makeText(getActivity(), "修改密码成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, "修改密码成功", Toast.LENGTH_SHORT).show();
 
 			}
 
@@ -515,24 +536,24 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	}
 	private boolean check () {
 		if (StringUtil.isNull(et_oldpaw.getText().toString().trim())) {
-			MyToast.showToast(getActivity(),"请输入您的原始密码");
+			MyToast.showToast(mActivity,"请输入您的原始密码");
 			return false;
 		}
 
 		if (StringUtil.isNull(et_newpaw.getText().toString().trim())) {
-			MyToast.showToast(getActivity(),"请输入您的新密码");
+			MyToast.showToast(mActivity,"请输入您的新密码");
 			return false;
 		}
 		if (StringUtil.isNull(et_confirmpaw.getText().toString().trim())) {
-			MyToast.showToast(getActivity(),"请确认您的新密码");
+			MyToast.showToast(mActivity,"请确认您的新密码");
 			return false;
 		}
 		if (!et_newpaw.getText().toString().trim().equals(et_confirmpaw.getText().toString().trim())) {
-			MyToast.showToast(getActivity(),"两次输入的密码不一致");
+			MyToast.showToast(mActivity,"两次输入的密码不一致");
 			return false;
 		}
 		if (et_newpaw.getText().toString().length() < 6) {
-			Toast.makeText(getActivity(), "密码长度不能少于6位",
+			Toast.makeText(mActivity, "密码长度不能少于6位",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -542,12 +563,11 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 * 地址管理
 	 */
 	private void Mine_Address() {
-		id=MyApplication.NewUser.getId();
 		isAddress = true;
 		
 		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 		dataadress=new ArrayList<AddressManager>();
-		addressadapter=new AddressManagerAdapter(dataadress, getActivity().getBaseContext());
+		addressadapter=new AddressManagerAdapter(dataadress, mActivity.getBaseContext());
 		list=(ScrollViewWithListView) view.findViewById(R.id.list);
 		btn_add=(Button) view.findViewById(R.id.btn_add);
 		btn_add.setOnClickListener(this);
@@ -555,8 +575,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		getAddressData();
 	}
 	private void getAddressData() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		MyApplication.getInstance().getClient().post(API.GET_ADRESS+id, new AsyncHttpResponseHandler() {
@@ -565,7 +585,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			@Override
 			public void onStart() {	
 				super.onStart();
-				loadingDialog = DialogUtil.getLoadingDialg(getActivity());
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
 				loadingDialog.show();
 			}
 			@Override
@@ -623,7 +643,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
-					Toast.makeText(getActivity(), String.valueOf(j), Toast.LENGTH_SHORT).show();
+					Toast.makeText(mActivity, String.valueOf(j), Toast.LENGTH_SHORT).show();
 				}
 			}
 			@Override
@@ -637,7 +657,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 * 积分
 	 */
 	private void Mine_score() {
-		customerId=MyApplication.NewUser.getId();
+		
 		
 		tv_total=(TextView) view.findViewById(R.id.tv_total);
 		btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
@@ -647,7 +667,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		xxlistview.setPullLoadEnable(true);
 		xxlistview.setXListViewListener(this);
 		xxlistview.setDivider(null);
-		scoreadapter=new ScoreAdapter(datasco, getActivity().getBaseContext());
+		scoreadapter=new ScoreAdapter(datasco, mActivity.getBaseContext());
 		btn_exchange.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -656,7 +676,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 				for(int i=0;i<datasco.size();i++){
 					total=total+Integer.parseInt(datasco.get(i).getGotscore());
 				}
-				Intent intent=new Intent(getActivity(),Exchange.class);
+				Intent intent=new Intent(mActivity,Exchange.class);
 				intent.putExtra("price", total);
 				startActivity(intent);
 
@@ -666,8 +686,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		getscore();
 	}
 	private void getData() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		MyApplication.getInstance().getClient()
@@ -709,12 +729,12 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 						if(list.length()==0){
 							myHandler.sendEmptyMessage(0);
 							isStop=true;
-							/*	Toast.makeText(getActivity(), ss, 
+							/*	Toast.makeText(mActivity, ss, 
 								Toast.LENGTH_SHORT).show();*/
 							return;
 						}
 						if(list.length()==0&&isLoadMore){
-							CommonUtil.toastShort(getActivity(), "没有更多数据");
+							CommonUtil.toastShort(mActivity, "没有更多数据");
 							isLoadMore=false;
 						}
 						for(int i=0;i<list.length();i++){
@@ -742,7 +762,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 
 					}else{
 						code = jsonobject.getString("message");
-						Toast.makeText(getActivity(), code, 1000).show();
+						Toast.makeText(mActivity, code, 1000).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -759,8 +779,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 		});
 	}
 	private void getscore() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		RequestParams params = new RequestParams();
@@ -775,7 +795,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			@Override
 			public void onStart() {	
 				super.onStart();
-				loadingDialog = DialogUtil.getLoadingDialg(getActivity());
+				loadingDialog = DialogUtil.getLoadingDialg(mActivity);
 				loadingDialog.show();
 			}
 			@Override
@@ -810,7 +830,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 						tv_total.setText("总积分:"+price1);
 					}else{
 						code = jsonobject.getString("message");
-						Toast.makeText(getActivity(), code, 1000).show();
+						Toast.makeText(mActivity, code, 1000).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -863,8 +883,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	}
 	@Override
 	public void onRefresh() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		isrefersh=true;
@@ -874,12 +894,12 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	}
 	@Override
 	public void onLoadMore() {
-		if(!Tools.isConnect(getActivity())){
-			CommonUtil.toastShort(getActivity(), "网络异常");
+		if(!Tools.isConnect(mActivity)){
+			CommonUtil.toastShort(mActivity, "网络异常");
 			return;
 		}
 		if(isStop){
-			CommonUtil.toastShort(getActivity(), "无更多数据");
+			CommonUtil.toastShort(mActivity, "无更多数据");
 			onLoad();
 			return;
 		}
