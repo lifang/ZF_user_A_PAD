@@ -207,53 +207,6 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 					
 				}
 			});
-			/*API.queryApplyProgress(getActivity(), Constants.TEST_CUSTOMER, 
-					et_process.getText().toString() , new HttpCallback(getActivity()) {});*/
-			/*API.queryApplyProgress(getActivity(), Constants.TEST_CUSTOMER, et_process.getText().toString(), 
-					new HttpCallback<List<ApplySerch>>(getActivity()) {
-
-						@Override
-						public void onSuccess(List<ApplySerch> data) {
-							Log.e("data", String.valueOf(data));
-							
-						}
-
-						@Override
-						public TypeToken<List<ApplySerch>> getTypeToken() {
-							// TODO Auto-generated method stub
-							return new TypeToken<List<ApplySerch>>() {
-							};
-						}
-					});*/
-
-						
-
-					
-						/*
-
-						@Override
-						public void onSuccess(List<ApplySerch> data) {
-							if(data.size()!=0){
-								Log.e("dataser", String.valueOf(data));
-							}
-							dataser.clear();
-							if(data.size()!=0){
-								dataser.addAll(data);
-								Log.e("dataser", String.valueOf(dataser));
-								applyadapter.notifyDataSetChanged();
-								lv_result.setAdapter(applyadapter);
-							}
-							else{
-								
-							}
-							
-						}
-
-						@Override
-						public TypeToken<List<ApplySerch>> getTypeToken() {
-							return new TypeToken<List<ApplySerch>>() {
-							};
-						}*/
 			break;
 
 		default:

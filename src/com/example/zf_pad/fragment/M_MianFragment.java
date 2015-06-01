@@ -43,6 +43,7 @@ import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.activity.ContactUs;
 import com.example.zf_pad.activity.FianceActivity;
+import com.example.zf_pad.activity.GoodDeatail;
 import com.example.zf_pad.activity.LoanActivity;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
@@ -413,11 +414,9 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 				@Override
 				public void onClick(View arg0) {
-					//Intent i = new Intent(getActivity(), MyWebView.class);
-					//i.putExtra("title", "ฯ๊ว้");
-					//i.putExtra("url", myList.get(position).getWebsite_url());
-					//startActivity(i);
-
+					Intent i =new Intent (getActivity(),GoodDeatail.class);
+					i.putExtra("id", Integer.valueOf(myList.get(position).getGoodid()));
+					startActivity(i);
 				}
 			});
 			container.removeView(mList.get(position));

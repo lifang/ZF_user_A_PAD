@@ -313,8 +313,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			editor.putString("name", null);
 			editor.putInt("id", -1);
 			editor.commit();
-			Intent i = new Intent(mActivity, LoginActivity.class);
-			startActivity(i);
+			//Intent i = new Intent(mActivity, LoginActivity.class);
+			//startActivity(i);
 			break;
 		case R.id.btn_save_chgpaw:
 			if (check ()) {

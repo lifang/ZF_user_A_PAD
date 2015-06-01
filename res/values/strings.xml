@@ -193,13 +193,13 @@
     <string name="after_sale_terminal_title">终端信息</string>
 
     <string-array name="after_sale_terminal">
-        <item>终 端 号</item>
+        <item>终&#160;&#160;端&#160;&#160;号</item>
         <item>POS品牌</item>
         <item>POS型号</item>
         <item>支付平台</item>
-        <item>商 户 名</item>
+        <item>商&#160;&#160;户&#160;&#160;名</item>
         <item>商户电话</item>
-        <item>租    金</item>
+        <item>租&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;金</item>
         <item>租赁押金</item>
         <item>租赁时长</item>
         <item>最长租赁日期</item>

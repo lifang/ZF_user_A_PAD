@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="购物车"
-            android:textColor="#6C6C6C"
-            android:textSize="@dimen/textbig" />
+            android:textColor="@color/text292929"
+            android:textSize="@dimen/textbig1" />
     </LinearLayout>
 
     <View
@@ -95,7 +95,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="共计：0件商品"
                 android:textColor="@color/text6c6c6c6"
-                android:textSize="@dimen/textmid" />
+                android:textSize="@dimen/textbig" />
         </LinearLayout>
     </LinearLayout>
 
@@ -119,7 +119,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="合计：￥0.00"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textmid" />
+                android:textSize="@dimen/textmids" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="（不含配送费）"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textsmall" />
+                android:textSize="@dimen/textmids" />
         </LinearLayout>
 
         <Button
