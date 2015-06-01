@@ -252,6 +252,7 @@
                     android:id="@+id/gridview"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:horizontalSpacing="5dp"
@@ -267,6 +268,8 @@
                     android:id="@+id/gridview_"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:horizontalSpacing="5dp"
                     android:listSelector="@android:color/transparent"
@@ -281,8 +284,8 @@
                     android:id="@+id/apply_submit"
                     style="@style/ButtonNormal"
                     android:layout_width="240dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
                     android:enabled="false"
                     android:text="@string/button_submit" />
             </LinearLayout>

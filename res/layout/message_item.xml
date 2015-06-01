@@ -30,7 +30,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="14dp"
+            android:layout_marginLeft="27dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical" >
@@ -42,6 +42,7 @@
                 android:paddingRight="300dp"
                 android:singleLine="true"
                 android:text="选择POS品牌"
+                android:textStyle=""
                 android:textColor="@color/text292929"
                 android:textSize="@dimen/textbig" />
 
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/tv_title"
-                android:layout_marginRight="@dimen/titilepad"
+                android:layout_marginRight="@dimen/titilepad1"
                 android:gravity="right"
                 android:singleLine="true"
                 android:text="2014-1-1 12:00"

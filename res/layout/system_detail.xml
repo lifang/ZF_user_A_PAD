@@ -47,7 +47,7 @@
 	    android:layout_height="0.5dp"
 	    android:layout_width="fill_parent"
 	    android:layout_marginTop="10dp"
-	    android:background="@color/bgtitle"/>
+	    android:background="#F7D0B4"/>
 	<TextView android:id="@+id/msg_conten"
 	    android:layout_height="wrap_content"
 	    android:layout_width="fill_parent"

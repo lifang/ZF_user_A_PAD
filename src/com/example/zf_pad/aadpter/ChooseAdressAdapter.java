@@ -81,8 +81,7 @@ public class ChooseAdressAdapter extends BaseAdapter {
 		for(AdressEntity ae:list){
 			ae.setIsDefault("0");
 			ae.setIscheck(false);
-		}
-		
+		}		
 	}
 	public final class ViewHolder {
 		public TextView tv_title, tv_time,tv_tel,tv_adress,tv_yb,tv_city,tv_default;

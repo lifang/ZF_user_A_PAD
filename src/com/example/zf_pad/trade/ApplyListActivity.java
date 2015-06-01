@@ -198,10 +198,18 @@ public class ApplyListActivity extends BaseActivity implements
 						openDialog(item);
 
 					} else {
-						Intent intent = new Intent(ApplyListActivity.this,
-								MyApplyDetail.class);
-						intent.putExtra(TERMINAL_ID, item.getId());
-						startActivityForResult(intent, REQUEST_DETAIL);
+						if (item.getOpenstatus() != null
+								&& !"".equals(item.getAppid())
+								&& Integer.parseInt(item.getOpenstatus()) == 6) {
+							CommonUtil.toastShort(ApplyListActivity.this,
+									"正在第三方审核,请耐心等待...");
+
+						} else {
+							Intent intent = new Intent(ApplyListActivity.this,
+									MyApplyDetail.class);
+							intent.putExtra(TERMINAL_ID, item.getId());
+							startActivityForResult(intent, REQUEST_DETAIL);
+						}
 					}
 
 				}
@@ -215,10 +223,18 @@ public class ApplyListActivity extends BaseActivity implements
 			holder.btnVideo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(ApplyListActivity.this,
-							VideoActivity.class);
-					intent.putExtra(TERMINAL_ID, item.getId());
-					startActivity(intent);
+
+					if (item.getOpenState() == UNOPENED
+							&& "".equals(item.getAppid())) {
+
+						CommonUtil.toastShort(ApplyListActivity.this, "请先申请开通");
+
+					} else {
+						Intent intent = new Intent(ApplyListActivity.this,
+								VideoActivity.class);
+						intent.putExtra(TERMINAL_ID, item.getId());
+						startActivity(intent);
+					}
 				}
 			});
 			convertView.setOnClickListener(new View.OnClickListener() {

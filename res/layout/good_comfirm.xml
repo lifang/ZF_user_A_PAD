@@ -52,6 +52,7 @@
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/normai_height"
+                            android:paddingLeft="@dimen/titilepad1"
                             android:background="#E9E8E8" >
 
                             <TextView
@@ -61,6 +62,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="收货人"
+                              
                                 android:textColor="#292929"
                                 android:textSize="@dimen/textmids" />
 
