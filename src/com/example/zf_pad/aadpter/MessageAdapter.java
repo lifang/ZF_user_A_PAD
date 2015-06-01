@@ -68,8 +68,7 @@ public class MessageAdapter extends BaseAdapter{
 		}
 		holder.tv_title.setText(list.get(position).getTitle());
 		holder.tv_time.setText(list.get(position).getCreate_at());
-		
-		
+	
 		if(type!=1){
 		
 			if(list.get(position).getStatus()){

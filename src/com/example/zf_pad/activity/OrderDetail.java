@@ -89,6 +89,37 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 				tv_time.setText("实付金额  ：   ￥" + check(entity.getOrder_totalprice())/100);
 				tv_money.setText("订单日期  ：   " + entity.getOrder_createTime());
 				tv_gj.setText("共计  ：   " + entity.getOrder_totalNum() + "件商品");
+				switch (entity.getOrder_status()) {
+				case 1:
+					tv_status.setText("订单状态   : 未付款");
+					
+					break;
+				case 2:
+					tv_status.setText("订单状态   : 已付款");
+					btn_ishow.setVisibility(View.VISIBLE);
+					break;
+				case 3:
+					tv_status.setText("订单状态   : 已发货");
+					btn_ishow.setVisibility(View.VISIBLE);
+					bt_pj.setVisibility(View.VISIBLE);
+					btn_ishow_wl.setVisibility(View.VISIBLE);
+					break;
+				case 4:
+					tv_status.setText("订单状态   : 已评价");
+					btn_ishow.setVisibility(View.VISIBLE);
+					bt_pj.setVisibility(View.GONE);
+					break;
+				case 5:
+					tv_status.setText("订单状态   : 已取消");
+
+					break;
+				case 6:
+
+					tv_status.setText("订单状态  : 交易关闭");
+					break;
+				default:
+					break;
+				}
 				break;
 			case 1:
 				Toast.makeText(getApplicationContext(), (String) msg.obj,

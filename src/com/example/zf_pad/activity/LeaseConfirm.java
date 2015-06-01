@@ -264,11 +264,12 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 
 											}
 										}
+										myList.addAll(moreList);
 										if(addressId==-1&&myList.size()!=0){
 											myList.get(0).setIsDefault("1");
 											addressId = myList.get(0).getId();
 										}
-										myList.addAll(moreList);
+										
 
 										myAdapter.notifyDataSetChanged();
 									} else {

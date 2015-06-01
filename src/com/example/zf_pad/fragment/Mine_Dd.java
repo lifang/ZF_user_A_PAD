@@ -64,10 +64,10 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 				if (myList.size() == 0) {
 					// norecord_text_to.setText("锟斤拷没锟斤拷锟斤拷氐锟斤拷锟狡?);
 					Xlistview.setVisibility(View.GONE);
-					//eva_nodata.setVisibility(View.VISIBLE);
+					// eva_nodata.setVisibility(View.VISIBLE);
 				}
 				onRefresh_number = true;
-				
+
 				myAdapter.notifyDataSetChanged();
 				break;
 			case 1:
@@ -97,7 +97,6 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 
 	}
 
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -113,55 +112,60 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 		try {
 			view = inflater.inflate(R.layout.f_mine_myorder, container, false);
 			initView();
-			
+
 		} catch (InflateException e) {
 
 		}
 
 		return view;
 	}
-@Override
-public void onStart() {
 
-	super.onStart();
-	myHandler=new Handler(){
-		public void handleMessage(Message msg) {
-			if(msg.what==1023){
-				ll_DD.setVisibility(View.GONE);
-				M_my.isHidden=true;
-			}
+	@Override
+	public void onStart() {
+
+		super.onStart();
+		myHandler = new Handler() {
+			public void handleMessage(Message msg) {
+				if (msg.what == 1023) {
+					ll_DD.setVisibility(View.GONE);
+					M_my.isHidden = true;
+				}
+			};
 		};
-	};
-	//ll_DD.setVisibility(View.VISIBLE);
-	if(myList.size()!=0){
-		myList.clear();
+		// ll_DD.setVisibility(View.VISIBLE);
+		if (myList.size() != 0) {
+			myList.clear();
+		}
+		page = 1;
+		getData();
 	}
-	page = 1;
-	getData();
-}
-@Override
-public void onPause() {
 
-	super.onPause();
-	Log.e("onPause", "onPause");
-	//ll_DD.setVisibility(View.GONE);
-}
-@Override
-public void onStop() {
-	super.onStop();
-	Log.e("onStop", "onStop");
-}
-@Override
-public void onDestroyView() {
-	super.onDestroyView();
-}
+	@Override
+	public void onPause() {
+
+		super.onPause();
+		Log.e("onPause", "onPause");
+		// ll_DD.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		Log.e("onStop", "onStop");
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+	}
+
 	private void initView() {
-		ll_DD=(LinearLayout) view.findViewById(R.id.ll_DD);
+		ll_DD = (LinearLayout) view.findViewById(R.id.ll_DD);
 		tv_gm = (TextView) view.findViewById(R.id.tv_gm);
 		tv_zl = (TextView) view.findViewById(R.id.tv_zl);
 		tv_gm.setOnClickListener(this);
 		tv_zl.setOnClickListener(this);
-		myAdapter = new OrderAdapter(getActivity(), myList,this);
+		myAdapter = new OrderAdapter(getActivity(), myList, this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 
@@ -174,17 +178,19 @@ public void onDestroyView() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if(myList.size()!=0){
+				if (myList.size() != 0) {
 					Intent i = new Intent(mactivity, OrderDetail.class);
-					i.putExtra("status", myList.get(position-1).getOrder_status());
-					if(myList.get(position-1).getOrder_id()!=null){
-						i.putExtra("id", Integer.parseInt(myList.get(position-1).getOrder_id()));
-					}else{
+					i.putExtra("status", myList.get(position - 1)
+							.getOrder_status());
+					if (myList.get(position - 1).getOrder_id() != null) {
+						i.putExtra("id", Integer.parseInt(myList.get(
+								position - 1).getOrder_id()));
+					} else {
 						i.putExtra("id", 0);
 					}
-					
-					i.putExtra("type", myList.get(position-1).getOrder_type());	
-					
+
+					i.putExtra("type", myList.get(position - 1).getOrder_type());
+
 					mactivity.startActivity(i);
 				}
 
@@ -231,12 +237,14 @@ public void onDestroyView() {
 		myList.clear();
 		getData();
 	}
-	public  void DataChange(){
+
+	public void DataChange() {
 		page = 1;
 		myList.clear();
 		getData();
-		
+
 	}
+
 	private void getData() {
 
 		RequestParams params = new RequestParams();
@@ -256,8 +264,7 @@ public void onDestroyView() {
 					@Override
 					public void onStart() {
 						super.onStart();
-						loadingDialog = DialogUtil
-								.getLoadingDialg(mactivity);
+						loadingDialog = DialogUtil.getLoadingDialg(mactivity);
 						loadingDialog.show();
 					}
 
@@ -295,12 +302,13 @@ public void onDestroyView() {
 								System.out
 										.println("-sendEmptyMessage String()--");
 								myAdapter.notifyDataSetChanged();
-								if(myList.size()!=0&&moreList.size()==0){
-									Toast.makeText(getActivity(), "没有更多数据!", 1000).show();
+								if (myList.size() != 0 && moreList.size() == 0) {
+									Toast.makeText(getActivity(), "没有更多数据!",
+											1000).show();
 									Xlistview.getmFooterView().setState2(2);
 									Xlistview.setPullLoadEnable(false);
 								}
-									
+
 								myList.addAll(moreList);
 								handler.sendEmptyMessage(0);
 							} else {
@@ -328,7 +336,7 @@ public void onDestroyView() {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_gm:
-			Config.iszl=false;
+			Config.iszl = false;
 
 			Xlistview.setPullLoadEnable(true);
 			type = "1";
@@ -338,11 +346,11 @@ public void onDestroyView() {
 			page = 1;
 			myList.clear();
 			getData();
-			myAdapter = new OrderAdapter(getActivity(), myList,this);
+			myAdapter = new OrderAdapter(getActivity(), myList, this);
 			Xlistview.setAdapter(myAdapter);
 			break;
 		case R.id.tv_zl:
-			Config.iszl=true;
+			Config.iszl = true;
 			type = "2";
 
 			Xlistview.setPullLoadEnable(true);
@@ -352,7 +360,7 @@ public void onDestroyView() {
 			page = 1;
 			myList.clear();
 			getData();
-			myAdapter = new OrderAdapter(getActivity(), myList,this);
+			myAdapter = new OrderAdapter(getActivity(), myList, this);
 			Xlistview.setAdapter(myAdapter);
 			break;
 		default:
@@ -360,23 +368,26 @@ public void onDestroyView() {
 		}
 
 	}
+
 	@Override
 	public void onDestroy() {
-		
+
 		super.onDestroy();
-		Log.e("onDestroy","onDestroy");
+		Log.e("onDestroy", "onDestroy");
 	}
+
 	@Override
 	public void onResume() {
-		
+
 		super.onResume();
-	
+
 	}
+
 	@Override
 	public void onAttach(Activity activity) {
-		
+
 		super.onAttach(activity);
 		mactivity = activity;
 	}
-	
+
 }

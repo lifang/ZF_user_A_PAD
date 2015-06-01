@@ -53,7 +53,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private Button btn_pay;
 	private List<Good> comfirmList=new ArrayList<Good>();
 	private String howMoney,comment,invoice_info;
-	private int addressId;
+	private int addressId=-1;
 	private int  is_need_invoice=1;//否需要发票（1要，0不要
 	private int invoice_type=0;//发票类型（0公司  1个人）
 	// private OrderDetail_PosAdapter posAdapter;
@@ -148,7 +148,12 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		 									}
 		 								}
 
-										 myList.addAll(moreList);
+										myList.addAll(moreList);
+										if(addressId==-1&&myList.size()!=0){
+											myList.get(0).setIsDefault("1");
+											addressId = myList.get(0).getId();
+										}
+										
 										
 										myAdapter.notifyDataSetChanged();
 									} else {

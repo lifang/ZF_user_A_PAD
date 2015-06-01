@@ -49,7 +49,6 @@ public class Comment extends BaseActivity{
 	private Button bt_close;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ordercomment);
 		lv=(ScrollViewWithListView) findViewById(R.id.pos_lv1);

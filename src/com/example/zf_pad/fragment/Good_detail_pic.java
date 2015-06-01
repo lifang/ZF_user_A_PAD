@@ -35,6 +35,7 @@ public class Good_detail_pic extends Fragment implements OnClickListener{
 		getdata();
 	}
 	private void getdata() {
+		
 	Config.GOODPICLIST(getActivity(),GoodId,new HttpCallback<List<GoodPic>>(getActivity()){
 
 		@Override

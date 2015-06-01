@@ -182,8 +182,9 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_detail);
-
 		id = getIntent().getIntExtra("id", 0);
+		Config.goodId=id;
+		Config.gid=id;
 		innitView();
 		getdata();
 		System.out.println("-Xlistview--" + id);
@@ -335,7 +336,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 2);
 			i.putExtra("comments", commentsCount);
-			Config.goodId=id;
+			
 			startActivity(i);
 			break;
 		case R.id.tv_jy:
