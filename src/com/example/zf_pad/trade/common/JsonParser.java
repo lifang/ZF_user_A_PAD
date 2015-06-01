@@ -18,10 +18,14 @@ public class JsonParser {
 
 		int code = jo.get("code").getAsInt();
 		JsonElement messageElement = jo.get("message");
-		String message = messageElement.isJsonNull() ? null : messageElement.getAsString();
+		String message = messageElement.isJsonNull() ? null : messageElement
+				.getAsString();
 		JsonElement resultElement = jo.get("result");
-		String result = resultElement.isJsonNull() ? null : resultElement.getAsString();
-
+		String result = null;
+		if (code != -1) {
+			result = resultElement.isJsonNull() ? null : resultElement
+					.getAsString();
+		}
 		return new Response(code, message, result);
 	}
 
@@ -31,10 +35,13 @@ public class JsonParser {
 
 		int code = jo.get("code").getAsInt();
 		JsonElement messageElement = jo.get("message");
-		String message = messageElement.isJsonNull() ? null : messageElement.getAsString();
+		String message = messageElement.isJsonNull() ? null : messageElement
+				.getAsString();
 		JsonElement resultElement = jo.get("result");
-		T result = gson.fromJson(resultElement, typeToken.getType());
-
+		T result = null;
+		if (code != -1) {
+			result = gson.fromJson(resultElement, typeToken.getType());
+		}
 		return new Response(code, message, result);
 	}
 }
