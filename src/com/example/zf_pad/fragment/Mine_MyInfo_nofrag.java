@@ -128,7 +128,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	private int totalscore=0;
 	private boolean isStop=false;
 	private int price1,sxfmoney;
-	 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -136,7 +136,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+
 		try {
 			view = inflater.inflate(R.layout.f_mine_myinfo, container, false);
 			init();
@@ -191,8 +191,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			Mine_Address();
 		}
 		if (isBaseinfo == true) {
-			isAddress = false;
-			Mine_baseinfo();	
+			isBaseinfo = false;
+			//Mine_baseinfo();	
 		}
 		if (isChangepaw == true) {
 			isChangepaw = false;
@@ -203,10 +203,14 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			Config.AderssMangerBACK=true;
 		}
 		if (!StringUtil.isNull(Config.changePhoneNum)) {
+			et_phone.setVisibility(View.VISIBLE);
+			changephone.setText("修改");
 			et_phone.setText(Config.changePhoneNum);
 			Config.changePhoneNum = "";
 		}
 		if (!StringUtil.isNull(Config.changeemail)) {
+			et_email.setVisibility(View.VISIBLE);
+			changeemail.setText("修改");
 			et_email.setText(Config.changeemail);
 			Config.changeemail = "";
 		}
@@ -329,16 +333,16 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			break;
 		}
 
-	
+
 	}
-	
+
 	/*
 	 * 基础信息
 	 */
 	private void Mine_baseinfo() {
-	
+
 		isBaseinfo = true;
-		
+
 		provinces = CommonUtil.readProvincesAndCities(mActivity);
 		sLV=(ScrollView) view.findViewById(R.id.sLV);
 		btn_exit=(Button) view.findViewById(R.id.btn_exit);
@@ -399,7 +403,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							Log.e("2", tv_city_select.getText().toString());
 							et_name.setText(result.getString("name"));
 							et_email.setText(result.getString("email"));
-							
+
 							if (StringUtil.isNull(result.getString("phone"))) {
 								et_phone.setVisibility(View.GONE);
 								changephone.setText("去添加");
@@ -478,7 +482,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 */
 	private void Mine_chgpaw() {
 		isChangepaw = true;
-		
+
 		et_oldpaw=(EditText) view.findViewById(R.id.et_oldpaw);
 		et_newpaw=(EditText) view.findViewById(R.id.et_newpaw);
 		et_confirmpaw=(EditText) view.findViewById(R.id.et_confirmpaw);
@@ -564,14 +568,14 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 */
 	private void Mine_Address() {
 		isAddress = true;
-		
+
 		ll_address=(LinearLayout) view.findViewById(R.id.ll_address);
 		dataadress=new ArrayList<AddressManager>();
 		addressadapter=new AddressManagerAdapter(dataadress, mActivity.getBaseContext());
 		list=(ScrollViewWithListView) view.findViewById(R.id.list);
 		btn_add=(Button) view.findViewById(R.id.btn_add);
 		btn_add.setOnClickListener(this);
-		
+
 		getAddressData();
 	}
 	private void getAddressData() {
@@ -657,8 +661,8 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 	 * 积分
 	 */
 	private void Mine_score() {
-		
-		
+
+
 		tv_total=(TextView) view.findViewById(R.id.tv_total);
 		btn_exchange=(Button) view.findViewById(R.id.btn_exchange);
 		moreList=new ArrayList<Score>();
@@ -821,12 +825,12 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 						jsonobject = new JSONObject(res);
 						price1=jsonobject.getInt("quantityTotal");
 						sxfmoney=jsonobject.getInt("dh_total");
-						
+
 						if (StringUtil.isNull(jsonobject.getInt("quantityTotal")+"")) 
 							price1= 0;
 						else 
 							price1= jsonobject.getInt("quantityTotal");
-						
+
 						tv_total.setText("总积分:"+price1);
 					}else{
 						code = jsonobject.getString("message");
@@ -868,13 +872,16 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			if(data!=null){
 				String  a =data.getStringExtra("text");
 				et_phone.setText(a);
+				et_phone.setVisibility(View.VISIBLE);
+				changephone.setText("修改");
 			}
 			break;
 		case 3:
-
 			if(data!=null){
 				String  a =data.getStringExtra("text");
 				et_email.setText(a);
+				et_email.setVisibility(View.VISIBLE);
+				changeemail.setText("修改");
 			}
 			break;
 		default:

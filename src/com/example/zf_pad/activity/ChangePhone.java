@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.trade.API;
@@ -121,6 +122,7 @@ public class ChangePhone extends BaseActivity implements OnClickListener{
 		case R.id.btn_exit:
 			if(check()){
 				if (StringUtil.isNull(name)) {
+				//	Config.changePhoneNum = phoneOld;
 					Intent intent2 = new Intent();
 					intent2.putExtra("text", phoneOld);
 					setResult(index, intent2);
