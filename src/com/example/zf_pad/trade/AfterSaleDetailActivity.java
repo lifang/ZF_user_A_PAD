@@ -384,12 +384,34 @@ public class AfterSaleDetailActivity extends BaseActivity {
 					AfterSaleDetailLease leaseDetail = (AfterSaleDetailLease) data;
 					LinkedHashMap<String, String> leasePairs = new LinkedHashMap<String, String>();
 					String[] leaseKeys = getResources().getStringArray(R.array.after_sale_lease);
-					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
-						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
-								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+
+					if (!StringUtil.isNull(leaseDetail.getCrf_retrun_price())) {
+						if (Integer.valueOf(leaseDetail.getCrf_retrun_price()) > 0) {
+							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+									String.format("%.2f",Integer.valueOf(leaseDetail.getCrf_retrun_price())/100f));
+						}else {
+							if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
+								leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+										String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+							}else {
+								leasePairs.put(leaseKeys[0], "");
+							}
+						}
 					}else {
-						leasePairs.put(leaseKeys[0], "");
+						if (!StringUtil.isNull(leaseDetail.getReturn_price()+"")) {
+							leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+									String.format("%.2f",Integer.valueOf(leaseDetail.getReturn_price())/100f));
+						}else {
+							leasePairs.put(leaseKeys[0], "");
+						}
 					}
+
+					//					if (!StringUtil.isNull(leaseDetail.getLeasePrice()+"")) {
+					//						leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + 
+					//								String.format("%.2f",Integer.valueOf(leaseDetail.getLeasePrice())/100f));
+					//					}else {
+					//						leasePairs.put(leaseKeys[0], "");
+					//					}
 					//	leasePairs.put(leaseKeys[0], getString(R.string.notation_yuan) + leaseDetail.getLeasePrice());
 					leasePairs.put(leaseKeys[1], leaseDetail.getReceiverName());
 					leasePairs.put(leaseKeys[2], leaseDetail.getReceiverPhone());
@@ -401,7 +423,7 @@ public class AfterSaleDetailActivity extends BaseActivity {
 				}
 
 				List<Comment> comments = data.getComments().getContent();
-				
+
 				if (null != comments && comments.size() > 0) {
 					for (Comment comment : comments) {
 						LinearLayout commentLayout = (LinearLayout) mInflater.inflate(R.layout.after_sale_detail_comment, null);

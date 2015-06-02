@@ -25,6 +25,28 @@ public class AfterSaleDetailLease extends AfterSaleDetail {
 
 	@SerializedName("receiver_phone")
 	private String receiverPhone;
+	
+	@SerializedName("return_price")
+	private int return_price;
+	
+	private String crf_retrun_price;
+	
+	
+	public int getReturn_price() {
+		return return_price;
+	}
+
+	public void setReturn_price(int return_price) {
+		this.return_price = return_price;
+	}
+
+	public String getCrf_retrun_price() {
+		return crf_retrun_price;
+	}
+
+	public void setCrf_retrun_price(String crf_retrun_price) {
+		this.crf_retrun_price = crf_retrun_price;
+	}
 
 	public int getLeasePrice() {
 		return leasePrice;

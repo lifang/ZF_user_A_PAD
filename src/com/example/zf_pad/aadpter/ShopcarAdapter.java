@@ -141,14 +141,6 @@ public class ShopcarAdapter extends BaseAdapter {
 		int h = context.getResources().getDisplayMetrics().heightPixels;
 		int w = context.getResources().getDisplayMetrics().widthPixels;
 		
-		LayoutParams lptitle = holder.title.getLayoutParams();
-		lptitle.width=w/2;
-		holder.title.setLayoutParams(lptitle);
-		
-		LayoutParams lpModel_number = holder.Model_numberTextView.getLayoutParams();
-		lpModel_number.width=w/3;
-		holder.Model_numberTextView.setLayoutParams(lpModel_number);
-		
 		holder.reduce.setOnClickListener(onClick);
 		holder.add.setOnClickListener(onClick);
 		holder.retail_price = (TextView) convertView

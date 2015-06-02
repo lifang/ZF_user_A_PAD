@@ -15,7 +15,7 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/order_image"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="6dp"
@@ -52,10 +52,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
-                    android:singleLine="true"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:text="泰山TS900"
+                    android:text="泰山TS900泰山TS900泰山TS900泰山TS900泰山TS900"
                     android:textColor="@color/text292929"
                     android:textSize="@dimen/textmids" />
 
