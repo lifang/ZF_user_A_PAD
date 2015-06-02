@@ -247,8 +247,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 										for(int i =0;i<moreList.size();i++){
 		 									if(moreList.get(i).getIsDefault().equals("1")) {
 		 										//tv_name,tv_tel,tv_adresss;
-		 										addressId=moreList.get(i).getId();
-		 										
+		 										addressId=moreList.get(i).getId();		 										
 		 									}
 		 								}
 										 myList.addAll(moreList);

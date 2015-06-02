@@ -70,7 +70,6 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 	//private LinearLayout ll_merchant;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 	}
