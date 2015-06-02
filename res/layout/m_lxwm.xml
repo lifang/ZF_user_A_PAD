@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="400-880-9988"
+                    android:text="400-009-0876"
                     android:textColor="#292929"
                     android:textSize="@dimen/textbig1" />
             </LinearLayout>

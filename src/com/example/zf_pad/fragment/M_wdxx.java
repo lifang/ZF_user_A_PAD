@@ -94,7 +94,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 						Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(mActivity, " refresh too much",
+				Toast.makeText(mActivity, "没有更多数据",
 						Toast.LENGTH_SHORT).show();
 				break;
 			}
@@ -372,8 +372,6 @@ public class M_wdxx extends Fragment implements OnClickListener,
 
 									if (moreList.size() == 0
 											&& myList.size() != 0) {
-										Toast.makeText(mActivity, "没有更多数据",
-												Toast.LENGTH_SHORT).show();
 										Xlistview.getmFooterView().setState2(2);
 										Xlistview.setPullLoadEnable(false);
 									}
