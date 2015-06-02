@@ -561,6 +561,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		return tv;
 	}
 
+	@SuppressLint("ResourceAsColor")
 	private LinearLayout renderCategoryTemplate(
 			LinkedHashMap<String, String> pairs, Boolean isOpen) {
 
@@ -587,9 +588,9 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 			TextView value = createCategoryText();
 			value.setText(pair.getValue());
 			value.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+			value.setTextColor(R.color.text6c6c6c6);
 			valueContainer.addView(value);
 		}
 		return terminalCategory;
 	}
-
 }

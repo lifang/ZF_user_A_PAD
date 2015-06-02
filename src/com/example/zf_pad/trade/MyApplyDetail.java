@@ -357,15 +357,15 @@ public class MyApplyDetail extends FragmentActivity {
 							}
 						}
 
-						mMerchantContainer_0.removeAllViews();
+//						mMerchantContainer_0.removeAllViews();
 						mMerchantContainer_1.removeAllViews();
 						mMerchantContainer_2.removeAllViews();
 						mCustomerContainer_1.removeAllViews();
 						mCustomerContainer_2.removeAllViews();
 						initMerchantDetailKeys();
-						View merchantChoose_1 = mMerchantContainer_0
-								.findViewWithTag(mMerchantKeys[0]);
-						merchantChoose_1
+//						View merchantChoose_1 = mMerchantContainer_0
+//								.findViewWithTag(mMerchantKeys[0]);
+						mMerchantContainer_0
 								.setOnClickListener(new View.OnClickListener() {
 									@Override
 									public void onClick(View v) {
@@ -698,7 +698,7 @@ public class MyApplyDetail extends FragmentActivity {
 		LinearLayout item = (LinearLayout) mContainer.findViewWithTag(key);
 
 		if (item == null) {
-			item = (LinearLayout) mMerchantContainer_0.findViewWithTag(key);
+			item = mMerchantContainer_0;
 		}
 		if (item == null) {
 			item = (LinearLayout) mMerchantContainer_1.findViewWithTag(key);
@@ -720,7 +720,7 @@ public class MyApplyDetail extends FragmentActivity {
 	private String getItemValue(String key) {
 		LinearLayout item = (LinearLayout) mContainer.findViewWithTag(key);
 		if (item == null) {
-			item = (LinearLayout) mMerchantContainer_0.findViewWithTag(key);
+			item = mMerchantContainer_0;
 		}
 		if (item == null) {
 			item = (LinearLayout) mMerchantContainer_1.findViewWithTag(key);
@@ -742,9 +742,9 @@ public class MyApplyDetail extends FragmentActivity {
 		// the first category
 		mMerchantKeys = getResources().getStringArray(
 				R.array.my_apply_detail_merchant_keys);
-
-		mMerchantContainer_0.addView(getDetailItem(ITEM_CHOOSE,
-				mMerchantKeys[0], null));
+		mMerchantContainer_0.setTag(mMerchantKeys[0]);
+		// mMerchantContainer_0.addView(getDetailItem(ITEM_CHOOSE,
+		// mMerchantKeys[0], null));
 		mMerchantContainer_1.addView(getDetailItem(ITEM_EDIT, mMerchantKeys[1],
 				null));
 		isShopName = true;

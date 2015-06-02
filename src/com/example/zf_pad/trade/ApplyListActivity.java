@@ -63,17 +63,17 @@ public class ApplyListActivity extends BaseActivity implements
 		mTerminalItems = new ArrayList<TerminalManagerEntity>();
 		mAdapter = new ApplyListAdapter();
 
-		LinearLayout listHeader = (LinearLayout) mInflater.inflate(
-				R.layout.apply_list_header, null);
-
-		mApplyList.addHeaderView(listHeader);
+		// LinearLayout listHeader = (LinearLayout) mInflater.inflate(
+		// R.layout.apply_list_header, null);
+		//
+		// mApplyList.addHeaderView(listHeader);
 		// View header = new View(this);
 		// mApplyList.addHeaderView(header);
 		// init the XListView
 		mApplyList.initHeaderAndFooter();
 		mApplyList.setXListViewListener(this);
 		mApplyList.setPullLoadEnable(true);
-
+		mApplyList.setDivider(null);
 		mApplyList.setAdapter(mAdapter);
 	}
 

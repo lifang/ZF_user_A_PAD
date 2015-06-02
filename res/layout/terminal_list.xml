@@ -4,105 +4,117 @@
     android:layout_height="92dp"
     android:background="@drawable/item_white_pressed"
     android:clickable="true"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:singleLine="true"
-        android:layout_weight="1"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5" >
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:singleLine="true" >
 
-            <TextView
-                android:id="@+id/tv_terminal_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:text="123456789098761200000000000000000000000000000000000"
-                android:textColor="#292929"
-                android:textSize="15sp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5" >
+
+                <TextView
+                    android:id="@+id/tv_terminal_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="123456789098761200000000000000000000000000000000000"
+                    android:textColor="#292929"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/tv_postype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="泰山TS900"
+                    android:textColor="#292929"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/tv_paychannel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="快钱宝"
+                    android:textColor="#292929"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/tv_openstate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="部分开通"
+                    android:textColor="#292929"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/terminal_button_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:singleLine="true"
+            android:visibility="invisible" >
 
-            <TextView
-                android:id="@+id/tv_postype"
+            <LinearLayout
+                android:id="@+id/terminal_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:text="泰山TS900"
-                android:textColor="#292929"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/tv_paychannel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:text="快钱宝"
-                android:textColor="#292929"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/tv_openstate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:text="部分开通"
-                android:textColor="#292929"
-                android:textSize="15sp" />
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/terminal_button_container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:singleLine="true"
-        android:orientation="horizontal"
-        android:visibility="invisible" >
-        <LinearLayout
-				android:id="@+id/terminal_buttons"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="12dp"
-				android:layout_marginBottom="12dp"
-				android:gravity="right|center_vertical"
-				android:orientation="horizontal"
-				android:clickable="true">
-		</LinearLayout>
-    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#DAD8D9" />
 
 </LinearLayout>
