@@ -56,7 +56,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	List<OrderEntity> moreList = new ArrayList<OrderEntity>();
 	private LinearLayout ll_DD;
 	public static Handler myHandler;
-	private Handler handler = new Handler(Looper.getMainLooper()) {
+	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
@@ -301,7 +301,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 										}.getType());
 								System.out
 										.println("-sendEmptyMessage String()--");
-								myAdapter.notifyDataSetChanged();
+								//myAdapter.notifyDataSetChanged();
 								if (myList.size() != 0 && moreList.size() == 0) {
 									Toast.makeText(getActivity(), "没有更多数据!",
 											1000).show();

@@ -185,7 +185,8 @@
                     android:paddingLeft="6dp"
                     android:paddingTop="8dp"
                     android:singleLine="true"
-                    android:textSize="@dimen/textbig" />
+                    android:textColor="@color/text6c6c6c6"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
