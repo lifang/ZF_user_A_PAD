@@ -146,6 +146,7 @@ public class Config {
 	public static boolean iszl = false;
 	public static boolean isFRIST = false;
 	public static boolean isExit = false;
+	public static boolean isNew = false;
 	public static int cityId = 0;
 	public static int MyTab = 0;
 	public static List<PortSon> son=new ArrayList<PortSon>();

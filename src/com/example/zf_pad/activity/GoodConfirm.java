@@ -80,7 +80,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		new TitleMenuUtil(GoodConfirm.this, "∂©µ•»∑»œ").show();
 		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
-		
+		Config.isNew=false;
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
@@ -258,7 +258,13 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 											myList.get(0).setIsDefault("1");
 											addressId = myList.get(0).getId();
 										}
-										
+										if(myList.size()!=0&&Config.isNew==true){
+											for(int i =0;i<myList.size();i++){
+			 									myList.get(i).setIsDefault("0");
+			 								}
+											myList.get(myList.size()-1).setIsDefault("1");
+											addressId = myList.get(0).getId();
+										}
 										
 										myAdapter.notifyDataSetChanged();
 									} else {
@@ -269,11 +275,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 								} catch (JSONException e) {
 									
 									e.printStackTrace();
-
 								}
-
 							}
-
 							@Override
 							public void onFailure(int statusCode,
 									Header[] headers, byte[] responseBody,
@@ -288,6 +291,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.bt_add:
+			
 			startActivity(new Intent(GoodConfirm.this,AdressEdit.class));			
 			break;
 		case R.id.btn_pay:
@@ -384,5 +388,11 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		super.onResume();
 		myList.clear();
 		getData1();
+	}
+	@Override
+	protected void onDestroy() {
+	
+		super.onDestroy();
+		Config.isNew=false;
 	}
 }

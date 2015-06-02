@@ -2,42 +2,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/F3F2F2"
-    android:orientation="vertical"
-     android:focusable="true"  
-        android:focusableInTouchMode="true" >
+    android:background="#9000"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical" >
 
-    <include layout="@layout/title_back" />
+    <RelativeLayout
+        android:layout_width="460dp"
+        android:layout_height="48dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="@dimen/dlimg"
+            android:layout_height="@dimen/dlimg"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/zc_margin_top"
+            android:background="@drawable/lgclose" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="新增地址"
+            android:textColor="#292929"
+            android:textSize="@dimen/dltext" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="460dp"
+        android:layout_height="1dp"
+        android:background="#484849" />
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="460dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/Viewc" />
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/zc_land_h"
+            android:paddingRight="@dimen/zc_land_h" >
 
             <LinearLayout
                 android:id="@+id/mi_r1"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_item" >
+               
+                android:background="@drawable/bg_item"
+                android:paddingBottom="14dp"
+                android:paddingTop="14dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="收件人姓名"
+                    android:text="收  件  人"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
 
@@ -45,43 +73,34 @@
                     android:id="@+id/tv1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@color/ffffff"
-                    android:gravity="right"
+                    android:background="@drawable/shape_edittext"
+                    android:gravity="left"
+                    android:maxWidth="@dimen/zc_margin_top"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
                     android:singleLine="true"
-           
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/post_right"
-                    android:visibility="invisible" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/Viewc" />
 
             <LinearLayout
                 android:id="@+id/mi_r2"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_item" >
+     
+                android:background="@drawable/bg_item"
+                android:paddingBottom="14dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="手机"
+                    android:text="联系电话"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
 
@@ -89,45 +108,34 @@
                     android:id="@+id/tv2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@color/ffffff"
-            
-                    android:gravity="right"
+                    android:background="@drawable/shape_edittext"
+                    android:gravity="left"
+                    android:maxWidth="@dimen/zc_margin_top"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
                     android:singleLine="true"
-                   android:numeric="integer"
                     android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/post_right"
-                    android:visibility="invisible" />
+                    android:textSize="13sp" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/Viewc" />
 
             <LinearLayout
                 android:id="@+id/mi_r3"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_item" >
+          
+                android:background="@drawable/bg_item"
+                android:paddingBottom="14dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="邮编"
+                    android:text="邮政编码"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
 
@@ -135,84 +143,63 @@
                     android:id="@+id/tv3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@color/ffffff"
-                    android:gravity="right"
+                    android:background="@drawable/shape_edittext"
+                    android:gravity="left"
+                    android:maxWidth="@dimen/zc_margin_top"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
                     android:singleLine="true"
-                     android:maxLength="6"
-                    android:numeric="integer"
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/post_right"
-                    android:visibility="invisible" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/Viewc" />
 
             <LinearLayout
                 android:id="@+id/mi_r4"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_item" >
+             
+                android:background="@drawable/bg_item"
+                android:paddingBottom="14dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="选择省/市"
+                    android:text="所  在  地"
                     android:textColor="@color/text292929"
                     android:textSize="17sp" />
-
-                <TextView
+               <TextView
                     android:id="@+id/tv4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:maxLength="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ed_adress"               
+                    android:maxWidth="@dimen/zc_margin_top"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
                     android:singleLine="true"
-                
-                    android:textColor="@color/text6c6c6c6"
-                    android:textSize="13sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/post_right" />
+                    android:textSize="@dimen/textbig" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/Viewc" />
 
             <LinearLayout
                 android:id="@+id/mi_r5"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_item" >
+           
+                android:background="@drawable/bg_item"
+                android:paddingBottom="14dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="@dimen/margin_left2"
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="详细地址"
@@ -223,33 +210,25 @@
                     android:id="@+id/tv5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@color/ffffff"
-                    android:gravity="right"
+                    android:background="@drawable/shape_edittext"
+                    android:gravity="left"
+                    android:maxWidth="@dimen/zc_margin_top"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="8dp"
                     android:singleLine="true"
-                   
                     android:textColor="@color/text6c6c6c6"
                     android:textSize="13sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/post_right"
-                    android:visibility="invisible" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/Viewc" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:layout_gravity="center_vertical" >
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="34dp"
+                android:layout_marginTop="16dp" >
 
                 <CheckBox
                     android:id="@+id/item_cb"
@@ -268,6 +247,18 @@
                     android:singleLine="true"
                     android:text="设置为默认地址"
                     android:textColor="@color/text292929"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="7dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="删除地址"
+                    android:textColor="@color/bgtitle"
                     android:textSize="13sp" />
             </LinearLayout>
 

@@ -53,6 +53,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="@dimen/normai_height"
                             android:paddingLeft="@dimen/titilepad1"
+                             android:paddingRight="@dimen/normai_height1"
                             android:background="#E9E8E8" >
 
                             <TextView

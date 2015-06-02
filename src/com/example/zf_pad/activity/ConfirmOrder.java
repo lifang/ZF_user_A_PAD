@@ -100,6 +100,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		Config.isNew=false;
 		setContentView(R.layout.order_comfirm);
 		comfirmList=MyApplication.getComfirmList();
 		initView();
@@ -153,7 +154,13 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 											myList.get(0).setIsDefault("1");
 											addressId = myList.get(0).getId();
 										}
-										
+										if(myList.size()!=0&&Config.isNew==true){
+											for(int i =0;i<myList.size();i++){
+			 									myList.get(i).setIsDefault("0");
+			 								}
+											myList.get(myList.size()-1).setIsDefault("1");
+											addressId = myList.get(0).getId();
+										}
 										
 										myAdapter.notifyDataSetChanged();
 									} else {
@@ -327,12 +334,7 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
-	@Override
-	protected void onDestroy() {
-		
-		super.onDestroy();
-		
-	}
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		
@@ -344,5 +346,11 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 		super.onResume();
 		myList.clear();
 		getData();
+	}
+	@Override
+	protected void onDestroy() {
+	
+		super.onDestroy();
+		Config.isNew=false;
 	}
 }
