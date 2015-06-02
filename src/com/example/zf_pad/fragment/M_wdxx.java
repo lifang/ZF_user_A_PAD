@@ -272,6 +272,7 @@ public class M_wdxx extends Fragment implements OnClickListener,
 	@Override
 	public void onRefresh() {
 		page = 1;
+		Xlistview.setPullLoadEnable(true);
 		System.out.println("onRefresh1");
 		myList.clear();
 		System.out.println("onRefresh2");
