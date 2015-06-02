@@ -85,6 +85,7 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		new TitleMenuUtil(LeaseConfirm.this, "×âÁÞ¶©µ¥È·ÈÏ").show();
 		df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
+		Config.isNew=false;
 		initView();
 		comments = getIntent().getIntExtra("comments", 0);
 		title2.setText(getIntent().getStringExtra("getTitle"));
@@ -270,7 +271,13 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 											addressId = myList.get(0).getId();
 										}
 										
-
+										if(myList.size()!=0&&Config.isNew==true){
+											for(int i =0;i<myList.size();i++){
+			 									myList.get(i).setIsDefault("0");
+			 								}
+											myList.get(myList.size()-1).setIsDefault("1");
+											addressId = myList.get(0).getId();
+										}
 										myAdapter.notifyDataSetChanged();
 									} else {
 										code = jsonobject.getString("message");
@@ -399,5 +406,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		super.onResume();
 		myList.clear();
 		getData1();
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Config.isNew=false;
 	}
 }

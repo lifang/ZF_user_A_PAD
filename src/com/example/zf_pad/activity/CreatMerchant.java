@@ -905,7 +905,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 			@Override
 			public void onClick(View arg0) {
 				iscamera = true;
-				choosecamera.setBackgroundColor(Color.BLUE);
+				choosecamera.setBackgroundColor(Color.GRAY);
 				choosealbum.setBackgroundColor(Color.WHITE);
 				// dialog.dismiss();
 			}

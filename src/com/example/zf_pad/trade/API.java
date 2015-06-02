@@ -31,10 +31,11 @@ public class API {
 
 	public static final String SCHEMA = "http://";
 
-//	public static final String HOST = "121.40.64.167:8080/api/";
-//	public static final String HOST = "114.215.149.242:18080";
-	//public static final String HOST = "121.40.64.167:8080/api/";
-	 public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	// public static final String HOST = "121.40.64.167:8080/api/";
+	// public static final String HOST = "114.215.149.242:18080";
+	// public static final String HOST = "121.40.64.167:8080/api/";192.168.0.133
+	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	// public static final String HOST = "192.168.0.133:8080/ZFMerchant/api/";
 
 	public static String GET_USERINFO = SCHEMA + HOST + "customers/getOne/";
 	// change userinfo
@@ -196,7 +197,8 @@ public class API {
 	// update file
 	public static String UPDATE_FILE = SCHEMA + HOST + "merchant/upload/file";
 	// apply update file
-	public static String APPLY_UPDATE_FILE = SCHEMA + HOST + "terminal/upload/tempImage/";
+	public static String APPLY_UPDATE_FILE = SCHEMA + HOST
+			+ "terminal/upload/tempImage/";
 	// delect address
 	public static String DELECT_ADDRESS = SCHEMA + HOST
 			+ "customers/deleteAddress";
@@ -214,8 +216,10 @@ public class API {
 	// terminal marchants
 	public static final String TERMINAL_MERCHANTS = SCHEMA + HOST
 			+ "terminal/getMerchants";
-	public static final String GET_PHONECODE = SCHEMA + HOST + "index/getPhoneCode";
-	public static final String GET_UPDATEEMAILDENTCODE = SCHEMA + HOST + "customers/getUpdateEmailDentcode";
+	public static final String GET_PHONECODE = SCHEMA + HOST
+			+ "index/getPhoneCode";
+	public static final String GET_UPDATEEMAILDENTCODE = SCHEMA + HOST
+			+ "customers/getUpdateEmailDentcode";
 
 	public static void getTerminalList(Context context, int customerId,
 			HttpCallback callback) {
@@ -662,14 +666,15 @@ public class API {
 		params.put("page", page);
 		params.put("orderType", orderType);
 		params.put("has_purchase", Posport.has_purchase);
-		if(Config.lx!=-1)
-		params.put("category", Config.lx);
+		if (Config.lx != -1)
+			params.put("category", Config.lx);
 		params.put("minPrice", Posport.minPrice);
 		params.put("maxPrice", Posport.maxPrice);
 		try {
 			params.put("brands_id",
 					new JSONArray(gson.toJson(Posport.brands_id)));
-			//params.put("category", new JSONArray(gson.toJson(Posport.category)));
+			// params.put("category", new
+			// JSONArray(gson.toJson(Posport.category)));
 			params.put("pay_channel_id",
 					new JSONArray(gson.toJson(Posport.pay_channel_id)));
 			params.put("pay_card_id",
@@ -847,29 +852,30 @@ public class API {
 		params.put("title", title);
 		new HttpRequest(context, callback).post(TERMINAL_MERCHANTS, params);
 	}
-	public static void getUpdateEmailDentcode(
-			Context context,
-			int  id,
-			String  email,
-			HttpCallback callback) {
+
+	public static void getUpdateEmailDentcode(Context context, int id,
+			String email, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("email", email);
-		new HttpRequest(context, callback).post(GET_UPDATEEMAILDENTCODE, params);
+		new HttpRequest(context, callback)
+				.post(GET_UPDATEEMAILDENTCODE, params);
 	}
-	public static void getPhoneCode(
-			Context context,
-			String  phone,
+
+	public static void getPhoneCode(Context context, String phone,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("phone", phone);
 		new HttpRequest(context, callback).post(GET_PHONECODE, params);
 	}
-	public static void getVersion(Context context, int types, HttpCallback callback) {
+
+	public static void getVersion(Context context, int types,
+			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("types", types);
-		new HttpRequest(context, callback).post(Config.URL_GET_VERSION,params);
+		new HttpRequest(context, callback).post(Config.URL_GET_VERSION, params);
 	}
+
 	public static void registerBaidu(Context context, int customerId,
 			String deviceCode, HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();

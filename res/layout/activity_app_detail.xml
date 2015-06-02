@@ -46,7 +46,7 @@
                         android:gravity="center"
                         android:text="对公"
                         android:textColor="#292929"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/toPrivate"
@@ -55,7 +55,7 @@
                         android:gravity="center"
                         android:text="对私"
                         android:textColor="#292929"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -65,7 +65,7 @@
                 android:paddingTop="30dp" >
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="11dp"
                     android:layout_weight="1"
@@ -74,7 +74,6 @@
                     android:paddingTop="10dp" >
 
                     <LinearLayout
-                        android:id="@+id/apply_detail_key"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -86,32 +85,31 @@
                             android:layout_height="wrap_content"
                             android:text="@string/apply_detail_brand"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/apply_detail_model"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/apply_detail_serial"
+                            android:text="终  端  号"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/apply_detail_channel"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/apply_detail_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -122,42 +120,76 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/apply_detail_model"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/apply_detail_serial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/apply_detail_channel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#292929"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/mMerchantContainer_0"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="26dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="bottom|left"
+                    android:gravity="bottom"
                     android:orientation="horizontal"
-                    android:paddingBottom="16dp" >
+                    android:paddingBottom="30dp"
+                    android:paddingRight="64dp" >
+
+                    <TextView
+                        android:id="@+id/apply_detail_key"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.1"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="可选择的常用商户"
+                        android:textColor="#292929"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/mMerchantContainer_0"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/apply_detail_value"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:paddingLeft="2dp"
+                            android:textColor="@color/text6c6c6c6"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/edadressbg" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

@@ -25,43 +25,48 @@ import com.example.zf_pad.trade.entity.City;
 
 public class Config {
 
-
 	// public final static String PATHS =
 	// "http://114.215.149.242:18080/ZFMerchant/api/";
 	// http://121.40.84.2:28080/ZFAgent/api
+	// public final static String PATHS =
+	// "http://192.168.0.133:8080/ZFMerchant/api/";
 	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
-	//public final static String PATHS = "http://121.40.64.167:8080/api/";
+	// public final static String PATHS = "http://121.40.64.167:8080/api/";
 
-	//视频通话
+	// 视频通话
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
-	//public static final String VIDEO_SERVER_IP = "121.40.64.120";
+	// public static final String VIDEO_SERVER_IP = "121.40.64.120";
 	public static final int VIDEO_SERVER_PORT = 8906;
-	
+
 	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:38080/ZFManager/notice/video";
-	//public static final String URL_NOTICE_VIDEO = "http://admin.ebank007.com/notice/video";
+	// public static final String URL_NOTICE_VIDEO =
+	// "http://admin.ebank007.com/notice/video";
 	/*
 	 * alipay
-	*/
-	//商户PID
+	 */
+	// 商户PID
 	public static final String PARTNER = "2088811347108355";
-	//商户收款账号
+	// 商户收款账号
 	public static final String SELLER = "ebank007@epalmpay.cn";
-	//商户私钥，pkcs8格式
+	// 商户私钥，pkcs8格式
 	public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALjI06X8hEw9LiLqTsqmjZAqwSq/VIGJKNQgIeCCr/oReR4OePe5i2u+89PpcFe6kF2v6gWulb4WNdHYw3Iiux56sm7jUQPC1hVYXG8tiaVEb3YhX2y0YGQUS18drBBGzHnlOQlrrmlBh9ugQFzLio2NwUWo0yfcXlLoKYyteDBVAgMBAAECgYBpjW441rHLyvbbwvQXFmSvAX0uKfTfubW01lYDpSNYuTpyTNoUx8w4U+98EVC3DD8DBUWs0TmAR7eeky+xtt0jZ1O8bpHUzRi02NOw2p1ZyAHN28rvUpultfInBpbqgJDvMoWIX4AeqWQcs4gbAbPyEaWvgYM53uW7eo9CtcFMgQJBAOHGVL8Xe9agkiGwYT8e9068+xjXiloAKgQjps8fxLfMCd34sI1tEjyz0jIZ+AK4pGvU1JJdtx7s70INnubqoY0CQQDRhbFcxqaz2c+S2WUQNduFah5EZt/vdWxo4+6EHrXNdAjT7nVyA8CzreRXcPEKQZ+RhuXyXGqSLDJGKYPGQIPpAkBSmqfjCoqKqlEM9mV+HKxLKKWOHz5FU44L2adsXKkyvfpWNmkSNXfYscoT/qBZDolJ0qK7soIPVIztU+JxhiL5AkAC037U9YkCHAoEvRHz6gYQAqJt4cVbgYX41Do/Zfqlzs7frPPAmfRbeBkAZPGbZc81M1CeuEhnuFjlQWIZpn0hAkEAu1Q+fNm01qqVJ0YCMeyUoLqin/rmRAsY93cDNk82ZxY+gc3YDlcvF5qqQqcqiSSHBZkAtQqFTzx3taybP2MKjw==";
-	//支付宝公钥
+	// 支付宝公钥
 	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
-	//异步通知接口  
-	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp"; 
-	//public static final String NOTIFT_URL = "http://121.40.64.167:8080/ZFMerchant/app_notify_url.jsp"; 
-	//维修异步通知接口  
-	public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp"; 
-	//public static final String REPAIR_NOTIFT_URL = "http://121.40.64.167:8080/ZFMerchant/repair_app_notify_url.jsp"; 
-	//支付成功跳转页面
-	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
-	//public static final String RETURN_URL = "http://121.40.64.167:8080/ZFMerchant/return_url.jsp"; 
-	
+	// 异步通知接口
+	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp";
+	// public static final String NOTIFT_URL =
+	// "http://121.40.64.167:8080/ZFMerchant/app_notify_url.jsp";
+	// 维修异步通知接口
+	public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp";
+	// public static final String REPAIR_NOTIFT_URL =
+	// "http://121.40.64.167:8080/ZFMerchant/repair_app_notify_url.jsp";
+	// 支付成功跳转页面
+	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp";
+	// public static final String RETURN_URL =
+	// "http://121.40.64.167:8080/ZFMerchant/return_url.jsp";
+
 	public static final String GOODPICLIST = PATHS + "good/getGoodImgUrlForPad";
-	public static int countShopCar = 0;//新添加购物车的数量
+	public static int countShopCar = 0;// 新添加购物车的数量
 	public final static String IMAGE_PATH = "";
 	public static String checkVersion = PATHS + "";
 	public static int ROWS = 10;
@@ -119,11 +124,12 @@ public class Config {
 	public static final String POSTHOT = PATHS + "index/pos_list";
 
 	public static final String MERCHANTINFO = PATHS + "merchant/getOne/";
-	//版本更新
-	public static final String URL_GET_VERSION = PATHS+"index/getVersion";
-	
-	public static final String URL_REGISTERBAIDU =PATHS+"customers/sendDeviceCode";
-	
+	// 版本更新
+	public static final String URL_GET_VERSION = PATHS + "index/getVersion";
+
+	public static final String URL_REGISTERBAIDU = PATHS
+			+ "customers/sendDeviceCode";
+
 	public static GoodinfoEntity gfe = null;
 	public static ArrayList<ChanelEntitiy> celist = new ArrayList<ChanelEntitiy>();
 	public static ArrayList<ChanelEntitiy> celist2 = new ArrayList<ChanelEntitiy>();
@@ -140,30 +146,31 @@ public class Config {
 	public static String tv_sqkt;
 	public static int goodId;
 	public static int gid;
-	public static int GoodComment=0;
+	public static int GoodComment = 0;
 	public static String commentsCount;
 	public static String CITY = "上海";
 	public static boolean iszl = false;
 	public static boolean isFRIST = false;
 	public static boolean isExit = false;
+	public static boolean isNew = false;
 	public static int cityId = 0;
 	public static int MyTab = 0;
-	public static List<PortSon> son=new ArrayList<PortSon>();
+	public static List<PortSon> son = new ArrayList<PortSon>();
 	public static PortSon myson;
-	public static int portindex=-1;
+	public static int portindex = -1;
 	public static int lx;
-	public static boolean  canzl=false;
-	public static String  apply;
-	public static boolean ismer=false;
+	public static boolean canzl = false;
+	public static String apply;
+	public static boolean ismer = false;
 	public static List<City> mCities = new ArrayList<City>();
 	private static SharedPreferences mySharedPreferences;
-	public static String channelId = "";//，绑定百度推送的channelId
-	public static String notificationTitle = "";//，绑定百度推送的title
-	public static String notificationMsgID = "";//，绑定百度推送的title
-	public static boolean isFirstCreateMain = true;//，绑定百度推送只执行一次startWork
-	public static String changePhoneNum = "";//，修改手机号
-	public static String changeemail = "";//，修改邮箱号
-	
+	public static String channelId = "";// ，绑定百度推送的channelId
+	public static String notificationTitle = "";// ，绑定百度推送的title
+	public static String notificationMsgID = "";// ，绑定百度推送的title
+	public static boolean isFirstCreateMain = true;// ，绑定百度推送只执行一次startWork
+	public static String changePhoneNum = "";// ，修改手机号
+	public static String changeemail = "";// ，修改邮箱号
+
 	public static boolean CheckIsLogin(Context c) {
 		mySharedPreferences = c.getSharedPreferences(Config.SHARED,
 				c.MODE_PRIVATE);
@@ -173,7 +180,7 @@ public class Config {
 		 * } else { Intent i = new Intent(c, LoginActivity.class);
 		 * c.startActivity(i); return false; }
 		 */
-		if (MyApplication.NewUser!=null) {
+		if (MyApplication.NewUser != null) {
 			return true;
 		} else {
 			Intent i = new Intent(c, LoginActivity.class);
@@ -182,6 +189,7 @@ public class Config {
 		}
 
 	}
+
 	public static void GOODPICLIST(Context context, int goodId,
 			HttpCallback callback) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -190,19 +198,23 @@ public class Config {
 		// new HttpRequest(context, callback).post(Config.SHOPORDER, params);
 		new HttpRequest(context, callback).post(Config.GOODPICLIST, params);
 	}
-	
-	//获取银联交易流水号
-//		public static final String UNION_TN_URL = "http://www.ebank007.com/unionpay.do";
-//		public static final String UNION_TN_URL = "http://121.40.224.25:8080/unionpay.do";
-		public static final String UNION_TN_URL = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
-		//支付成功回调修改订单状态	
-//		public static final String UNION_SUCESS_URL = "http://www.ebank007.com/api/pay/alipayback";
-//		public static final String UNION_SUCESS_URL = "http://121.40.224.25:8080/api/pay/alipayback";
-		public static final String UNION_SUCESS_URL = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
 
-		/*****************************************************************
-		 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
-		 *****************************************************************/
-		public static final String UNION_MEDE = "01";
-//		public static final String UNION_MEDE = "00";
+	// 获取银联交易流水号
+	// public static final String UNION_TN_URL =
+	// "http://www.ebank007.com/unionpay.do";
+	// public static final String UNION_TN_URL =
+	// "http://121.40.224.25:8080/unionpay.do";
+	public static final String UNION_TN_URL = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
+	// 支付成功回调修改订单状态
+	// public static final String UNION_SUCESS_URL =
+	// "http://www.ebank007.com/api/pay/alipayback";
+	// public static final String UNION_SUCESS_URL =
+	// "http://121.40.224.25:8080/api/pay/alipayback";
+	public static final String UNION_SUCESS_URL = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
+
+	/*****************************************************************
+	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+	 *****************************************************************/
+	public static final String UNION_MEDE = "01";
+	// public static final String UNION_MEDE = "00";
 }

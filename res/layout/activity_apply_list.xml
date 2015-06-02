@@ -7,11 +7,72 @@
 
     <include layout="@layout/title_back" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_height2"
+        android:layout_marginTop="@dimen/normal_height1"
+        android:background="#E9E8E8"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:id="@+id/apply_terminal_number"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/terminal_id"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/apply_pos_number"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/postype"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/apply_pay_channel"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/paychannel"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/apply_terminal_status"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/openstate"
+                android:textColor="#292929"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
     <com.example.zf_pad.util.XListView
         android:id="@+id/apply_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/normal_height1"
         android:headerDividersEnabled="true"
         android:scrollbars="none" />
 

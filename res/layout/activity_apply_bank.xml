@@ -67,6 +67,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="@string/apply_bank_input"
+            android:singleLine="true"
             android:textColor="@color/text6c6c6c6"
             android:textColorHint="@color/Viewc2"
             android:textSize="19sp" />

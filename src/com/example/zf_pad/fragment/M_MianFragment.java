@@ -58,6 +58,8 @@ import com.example.zf_pad.util.ImageCacheUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 
 public class M_MianFragment extends Fragment implements OnClickListener {
@@ -358,7 +360,7 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 		private List<View> mList;
 		private int index;
-
+		DisplayImageOptions options = MyApplication.getDisplayOption();
 		public MyAdapter(List<View> list) {
 			mList = list;
 
@@ -408,8 +410,8 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 
 			View view = mList.get(position);
 			image = ((ImageView) view.findViewById(R.id.image));
-
-			ImageCacheUtil.IMAGE_CACHE.get(ma.get(position), image);
+			ImageLoader.getInstance().displayImage(ma.get(position), image, options);
+			//ImageCacheUtil.IMAGE_CACHE.get(ma.get(position), image);
 			image.setOnClickListener(new OnClickListener() {
 
 				@Override

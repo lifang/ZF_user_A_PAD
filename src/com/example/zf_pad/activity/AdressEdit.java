@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
+import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
 import com.example.zf_pad.fragment.Mine_MyInfo_nofrag;
 import com.example.zf_pad.trade.API;
@@ -51,8 +52,9 @@ public class AdressEdit extends BaseActivity{
 	private LinearLayout mi_r4;
 	private int id=MyApplication.NewUser.getId();
 	private int pp;
-	private ImageView search;
+	private TextView search;
 	private int[] ids=new int[1];
+	private TextView tv_title;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -60,10 +62,10 @@ public class AdressEdit extends BaseActivity{
 		setContentView(R.layout.adress_edit);
 		initView();
 		if(Mine_MyInfo_nofrag.isclickitem){
-			new TitleMenuUtil(AdressEdit.this, "修改地址").show();
+			tv_title.setText("修改地址");
 		}
 		else{
-			new TitleMenuUtil(AdressEdit.this, "新增地址").show();
+			tv_title.setText("新增地址");
 		}
 		
 	}
@@ -130,8 +132,9 @@ public class AdressEdit extends BaseActivity{
 					public void onSuccess(Object data) {
 						Log.e("data", String.valueOf(data));
 						//Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
-
+						Config.isNew=true;
 						finish();
+						
 					}
 
 					@Override
@@ -141,8 +144,8 @@ public class AdressEdit extends BaseActivity{
                 });
 	}
 	private void initView() {
-		// TODO Auto-generated method stub
-		search=(ImageView) findViewById(R.id.search);
+		tv_title = (TextView)findViewById(R.id.tv_title);
+		search=(TextView) findViewById(R.id.search);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
 		tv1=(EditText) findViewById(R.id.tv1);
 		tv2=(EditText) findViewById(R.id.tv2);

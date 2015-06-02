@@ -152,6 +152,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_detail);
+
 		df = (DecimalFormat) NumberFormat
 				.getInstance();
 		df.applyPattern("0.00");
@@ -450,4 +451,5 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 		super.onResume();
 		getData();
 	}
+
 }

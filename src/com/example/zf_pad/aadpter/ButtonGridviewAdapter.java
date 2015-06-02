@@ -71,11 +71,7 @@ public class ButtonGridviewAdapter extends BaseAdapter {
 			holder.button_gri_tv.setBackgroundColor(context.getResources().getColor(R.color.bgtitle));
 		}
 		holder.button_gri_tv.setText(list.get(position).getName());
-	 
-		
-	 
-		
-	 
+
 		return convertView;
 	}
 

@@ -87,16 +87,16 @@ public class TerminalManagerActivity extends BaseActivity implements
 		mTerminalItems = new ArrayList<TerminalManagerEntity>();
 		mAdapter = new TerminalListAdapter();
 
-		LinearLayout listHeader = (LinearLayout) mInflater.inflate(
-				R.layout.terminal_list_header, null);
-
-		mTerminalList.addHeaderView(listHeader);
+		// LinearLayout listHeader = (LinearLayout) mInflater.inflate(
+		// R.layout.terminal_list_header, null);
+		//
+		// mTerminalList.addHeaderView(listHeader);
 
 		// init the XListView
 		mTerminalList.initHeaderAndFooter();
 		mTerminalList.setXListViewListener(this);
 		mTerminalList.setPullLoadEnable(true);
-
+		mTerminalList.setDivider(null);
 		mTerminalList.setAdapter(mAdapter);
 	}
 
