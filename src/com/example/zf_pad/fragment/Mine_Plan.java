@@ -150,9 +150,12 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 								for(int j=0;j<statu.length();j++){
 									sss[j]=statu.getJSONObject(j).getInt("status");
 									if(sss[j]==1){
-										ddd[j]="审核中";
+										ddd[j]="未开通";
 									}
 									else if(sss[j]==2){
+										ddd[j]="审核中";
+									}
+									else if(sss[j]==3){
 										ddd[j]="已开通";
 									}
 									aaa[j]=statu.getJSONObject(j).getString("trade_value");

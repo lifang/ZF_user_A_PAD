@@ -55,6 +55,7 @@ public class AdressEdit extends BaseActivity{
 	private TextView search;
 	private int[] ids=new int[1];
 	private TextView tv_title;
+	private Button close;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -123,20 +124,15 @@ public class AdressEdit extends BaseActivity{
 			CommonUtil.toastShort(getApplicationContext(), "网络异常");
 			return;
 		}
-        API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,id,
-        		
-                new HttpCallback(AdressEdit.this) {
-           
-
+        API.AddAdres(AdressEdit.this, Cityid+"" ,name,tel,stringcode , address ,isDefault,id,       		
+                new HttpCallback(AdressEdit.this) {           
 					@Override
 					public void onSuccess(Object data) {
 						Log.e("data", String.valueOf(data));
 						//Toast.makeText(AdressEdit.this, "添加地址成功", 1000).show(); 
 						Config.isNew=true;
-						finish();
-						
+						finish();						
 					}
-
 					@Override
 					public TypeToken getTypeToken() {
 						return null;
@@ -144,6 +140,14 @@ public class AdressEdit extends BaseActivity{
                 });
 	}
 	private void initView() {
+		close = (Button)findViewById(R.id.close);
+		close.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				AdressEdit.this.finish();				
+			}
+		});
 		tv_title = (TextView)findViewById(R.id.tv_title);
 		search=(TextView) findViewById(R.id.search);
 		item_cb=(CheckBox) findViewById(R.id.item_cb);
