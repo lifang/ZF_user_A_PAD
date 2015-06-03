@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.epalmpay.userPad.R;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -115,9 +116,14 @@ public class HttpRequest {
 
 	public void post(String url, Map<String, Object> params) {
 		JSONObject jsonParams = new JSONObject(params);
+		Gson gson = new Gson();
+		String gsonString = gson.toJson(params);
+		Log.e("url---------------", url);
+		Log.e("params---------------", jsonParams.toString());
+		Log.e("gsonparams---------------", gsonString);
 		HttpEntity entity;
 		try {
-			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			entity = new StringEntity(gsonString, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			if(callback == null){
 				return;
