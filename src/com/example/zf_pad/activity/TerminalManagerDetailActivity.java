@@ -129,7 +129,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 				Intent intent = new Intent(TerminalManagerDetailActivity.this,
 						MyApplyDetail.class);
 				intent.putExtra(TERMINAL_ID, mTerminalId);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_DETAIL);
 			}
 		};
 		mPosListener = new View.OnClickListener() {
