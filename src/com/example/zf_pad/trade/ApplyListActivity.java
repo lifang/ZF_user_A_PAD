@@ -214,7 +214,6 @@ public class ApplyListActivity extends BaseActivity implements
 									MyApplyDetail.class);
 							intent.putExtra(TERMINAL_ID, item.getId());
 							startActivityForResult(intent, REQUEST_DETAIL);
-							finish();
 						}
 					}
 
