@@ -14,12 +14,11 @@
         <TextView
             android:id="@+id/tv_shopname"
             android:layout_width="200dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="400dp"
             android:layout_marginTop="15dp"
-            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textSize="@dimen/textbig2" />
 
@@ -33,6 +32,7 @@
             android:background="@drawable/shape_o"
             android:gravity="center_horizontal"
             android:text="删除"
+            android:layout_gravity="center_vertical"
             android:textColor="#FF9443"
             android:textSize="18sp" />
     </LinearLayout>

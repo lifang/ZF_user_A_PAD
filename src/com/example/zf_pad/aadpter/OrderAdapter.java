@@ -1,5 +1,7 @@
 package com.example.zf_pad.aadpter;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -40,7 +42,11 @@ public class OrderAdapter extends BaseAdapter{
 	private LayoutInflater inflater;
 	private ViewHolder holder = null;
 	private Mine_Dd dd;
+	private DecimalFormat df;
 	public OrderAdapter(Context context, List<OrderEntity> list,Mine_Dd dd) {
+		df = (DecimalFormat) NumberFormat
+				.getInstance();
+		df.applyPattern("0.00");
 		this.context = context;
 		this.list = list;
 		this.dd=dd;
@@ -106,7 +112,7 @@ public class OrderAdapter extends BaseAdapter{
  		
  		 ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getOrder_goodsList().get(0).getGood_logo(), holder.im);
  		holder.tv_price.setText(list.get(position).getOrder_goodsList().get(0).getGood_price().equals("")
- 				?"":"гд"+check(list.get(position).getOrder_goodsList().get(0).getGood_price())/100);
+ 				?"":"гд"+df.format(check(list.get(position).getOrder_goodsList().get(0).getGood_price())/100));
  		holder.content2.setText(list.get(position).getOrder_goodsList().get(0).getGood_brand());
  		holder.tv_gtd.setText(list.get(position).getOrder_goodsList().get(0).getGood_channel());
  		holder.content_pp.setText(list.get(position).getOrder_goodsList().get(0).getGood_name()); 		 
