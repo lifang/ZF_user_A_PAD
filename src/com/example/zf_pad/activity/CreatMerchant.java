@@ -81,7 +81,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 	private List<City> mCities = new ArrayList<City>();
 	private int id;
 	private String[] imgLocalPath = new String[7];
-	public static boolean isdown = false;
+	public static boolean isdown = true;
 	private RelativeLayout rl, rldown;
 	private String title = "", legal_person_name = "",
 			legal_person_card_id = "", business_license_no = "",
@@ -146,7 +146,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Mine_MyMerChant.isFromItem = false;
-		isdown = false;
+		isdown = true;
 		Log.e("isdown", String.valueOf(isdown));
 	}
 
@@ -877,8 +877,10 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				if (isdown) {
+					
 					openimg(tag);
 				} else {
+				
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setDataAndType(
 							Uri.parse("file://" + imgLocalPath[tag - 1]),

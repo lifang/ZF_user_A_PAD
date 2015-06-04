@@ -73,6 +73,9 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private TextView tv_chanel;
 	private LinearLayout ll_fp;
 	private DecimalFormat df;
+	private TextView hpsf;
+	private TextView hktf;
+	private TextView ktf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,9 +99,15 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		ImageCacheUtil.IMAGE_CACHE.get(img_url,
  				event_img);
 		tv_brand.setText(getIntent().getStringExtra("brand"));
+		hpsf.setText("(含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100)+")");
+		ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
+		hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
 	}
 
 	private void initView() {
+		ktf = (TextView)findViewById(R.id.ktf);
+		hktf = (TextView)findViewById(R.id.hktf);
+		hpsf = (TextView)findViewById(R.id.hpsf);
 		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
@@ -169,7 +178,8 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 					quantity = Integer.parseInt(buyCountEdit.getText()
 							.toString());
 				}
-
+				ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
+				hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
 				tv_totle.setText("实付：￥ " + ((double)pirce)/100 * quantity);
 				tv_pay.setText("实付：￥ " + ((double)pirce)/100 * quantity);
 			}

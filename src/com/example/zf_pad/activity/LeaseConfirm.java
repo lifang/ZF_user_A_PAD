@@ -78,6 +78,9 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 	private TextView tv_chanel;
 	private LinearLayout ll_fp;
 	private DecimalFormat df;
+	private TextView hpsf;
+	private TextView ktf;
+	private TextView hktf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,9 +106,15 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
  				event_img);
 		tv_brand.setText(getIntent().getStringExtra("brand"));
 		tv_chanel.setText(getIntent().getStringExtra("chanel"));
+		hpsf.setText("(含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100)+")");
+		ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
+		hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
 	}
 
 	private void initView() {
+		ktf = (TextView)findViewById(R.id.ktf);
+		hktf = (TextView)findViewById(R.id.hktf);
+		hpsf = (TextView)findViewById(R.id.hpsf);
 		ll_fp = (LinearLayout)findViewById(R.id.ll_fp);
 		tv_chanel = (TextView)findViewById(R.id.wayName);
 		tv_brand = (TextView)findViewById(R.id.content2);
@@ -182,9 +191,10 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 					quantity = Integer.parseInt(buyCountEdit.getText()
 							.toString());
 				}
-
-				tv_totle.setText("实付：￥ " + df.format(((double) pirce) / 100 * quantity));
-				tv_pay.setText("实付：￥ " + df.format(((double) pirce) / 100 * quantity));
+				ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
+				hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
+				tv_totle.setText("实付：￥ " + df.format(((double) (pirce+getIntent().getIntExtra("hpsf", 0))) / 100 * quantity));
+				tv_pay.setText("实付：￥ " + df.format(((double) (pirce+getIntent().getIntExtra("hpsf", 0))) / 100 * quantity));
 			}
 
 			@Override

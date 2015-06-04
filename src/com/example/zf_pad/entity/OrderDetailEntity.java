@@ -12,6 +12,15 @@ public class OrderDetailEntity {
 	private String terminals;
 	private String logistics_name;
 	private String logistics_number;
+	private int bd_cost;
+	public int getBd_cost() {
+		return bd_cost;
+	}
+
+	public void setBd_cost(int bd_cost) {
+		this.bd_cost = bd_cost;
+	}
+
 	public String getLogistics_name() {
 		return logistics_name;
 	}

@@ -30,7 +30,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/normal_width1"
+            android:layout_width="@dimen/goodimg"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal" >
@@ -83,6 +83,7 @@
         <RelativeLayout
             android:id="@+id/search2_Layout"
             android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_height="match_parent" >
  <ImageView
             android:id="@+id/pos_select"
