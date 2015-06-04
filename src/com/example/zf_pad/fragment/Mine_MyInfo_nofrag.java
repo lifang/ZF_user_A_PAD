@@ -413,7 +413,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 								changeemail.setText("È¥Ìí¼Ó");
 							}
 							if (!StringUtil.isNull(result.getString("city_id"))) {
-								tv_city_select.setText(findcity(result.getInt("city_id")));
+								tv_city_select.setText(findcity(Integer.valueOf(result.getString("city_id"))));
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
