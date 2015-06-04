@@ -1,5 +1,8 @@
 package com.example.zf_pad.trade;
 
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_MERCHANT;
+import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
+import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.HAVE_VIDEO;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
@@ -30,6 +33,8 @@ import com.example.zf_pad.activity.TerminalManagerDetailActivity;
 import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
+import com.example.zf_pad.trade.entity.City;
+import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.example.zf_pad.util.XListView;
@@ -209,6 +214,7 @@ public class ApplyListActivity extends BaseActivity implements
 									MyApplyDetail.class);
 							intent.putExtra(TERMINAL_ID, item.getId());
 							startActivityForResult(intent, REQUEST_DETAIL);
+							finish();
 						}
 					}
 
@@ -312,6 +318,19 @@ public class ApplyListActivity extends BaseActivity implements
 		});
 		// dialog.show();
 
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode != RESULT_OK)
+			return;
+		switch (requestCode) {
+		case REQUEST_DETAIL: {
+			onRefresh();
+			break;
+		}
+		}
 	}
 
 	@Override
