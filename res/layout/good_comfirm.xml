@@ -240,7 +240,8 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_marginLeft="@dimen/textmid"
-                                    android:orientation="vertical" >
+                                    android:orientation="vertical" 
+                                    android:layout_weight="1">
 
                                     <TextView
                                         android:id="@+id/title2"
@@ -258,18 +259,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="3" >
 
-                                        <TextView
-                                            android:id="@+id/retail_price"
-                                            android:layout_width="fill_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_marginLeft="@dimen/titilepad"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:text="$ 1999"
-                                            android:textColor="#292929"
-                                            android:textSize="@dimen/textbig" />
+                                        
 
                                         <LinearLayout
                                             android:id="@+id/zftd"
@@ -335,6 +325,41 @@
                                         </LinearLayout>
                                     </RelativeLayout>
                                 </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center|left"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical" >
+
+                                        <TextView
+                                            android:id="@+id/retail_price"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="6dp"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:text="$999.00"
+                                            android:textColor="#292929"
+                                            android:textSize="@dimen/textbig" />
+
+                                        <TextView
+                                            android:id="@+id/hpsf"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="6dp"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:textColor="@color/text292929"
+                                            android:textSize="@dimen/textmid" />
+                                    </LinearLayout>
+                                </LinearLayout>
                             </LinearLayout>
 
                             <RelativeLayout
@@ -399,7 +424,7 @@
                             android:textSize="@dimen/textmids" />
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/ktf"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
@@ -551,6 +576,7 @@
                         android:textSize="@dimen/textbig" />
 
                     <TextView
+                        android:id="@+id/hktf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"

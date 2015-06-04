@@ -13,7 +13,13 @@ public class Goodlist {
 //    "good_id": "21"
 	private String score;
 	private String content;
-	
+	private int good_opening_cost;
+	public int getGood_opening_cost() {
+		return good_opening_cost;
+	}
+	public void setGood_opening_cost(int good_opening_cost) {
+		this.good_opening_cost = good_opening_cost;
+	}
 	public String getScore() {
 		return score;
 	}

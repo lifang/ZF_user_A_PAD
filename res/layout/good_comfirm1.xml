@@ -192,7 +192,7 @@
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="押金"
+                            android:text="租金"
                             android:textColor="#292929"
                             android:textSize="@dimen/textmids" />
 
@@ -236,6 +236,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_marginLeft="@dimen/textmid"
+                                    android:layout_weight="1"
                                     android:orientation="vertical" >
 
                                     <TextView
@@ -253,19 +254,6 @@
                                         android:layout_width="fill_parent"
                                         android:layout_height="0dp"
                                         android:layout_weight="3" >
-
-                                        <TextView
-                                            android:id="@+id/retail_price"
-                                            android:layout_width="fill_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_marginLeft="@dimen/titilepad"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:text="$ 1999"
-                                            android:textColor="#292929"
-                                            android:textSize="@dimen/textbig" />
 
                                         <LinearLayout
                                             android:id="@+id/zftd"
@@ -330,6 +318,43 @@
                                                 android:textSize="@dimen/textmid" />
                                         </LinearLayout>
                                     </RelativeLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center|left"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical" >
+
+                                        <TextView
+                                            android:id="@+id/retail_price"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="6dp"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:text="$999.00"
+                                            android:textColor="#292929"
+                                            android:textSize="@dimen/textbig" />
+
+                                        <TextView
+                                            android:id="@+id/hpsf"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="6dp"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:visibility="gone"
+                                            android:textColor="@color/text292929"
+                                            android:textSize="@dimen/textmid" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -438,7 +463,7 @@
                                 android:textSize="@dimen/textmids" />
 
                             <TextView
-                                android:id="@+id/textView1"
+                                android:id="@+id/ktf"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
                                 android:layout_weight="1"
@@ -525,8 +550,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/titilepad1"
                         android:gravity="center_vertical"
-                        android:visibility="gone"
-                       >
+                        android:visibility="gone" >
 
                         <TextView
                             android:id="@+id/textView2"
@@ -571,54 +595,54 @@
                         android:layout_marginBottom="34dp"
                         android:background="#EEEDED" />
                 </LinearLayout>
-                <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/normai_button_width"
-                android:background="#ffffff"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingRight="@dimen/titilepad1" >
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:orientation="vertical" >
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/normai_button_width"
+                    android:background="#ffffff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/titilepad1" >
 
-                    <TextView
-                        android:id="@+id/tv_pay"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text=""
-                        android:textColor="@color/text292929"
-                        android:textSize="@dimen/textbig" />
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="vertical" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="（ 含配送费：￥0.00）"
-                        android:textColor="@color/text292929"
+                        <TextView
+                            android:id="@+id/tv_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:text=""
+                            android:textColor="@color/text292929"
+                            android:textSize="@dimen/textbig" />
+
+                        <TextView
+                            android:id="@+id/hktf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:text="（ 含配送费：￥0.00）"
+                            android:textColor="@color/text292929"
+                            android:textSize="@dimen/textmid" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_pay"
+                        android:layout_width="@dimen/normai_button_width"
+                        android:layout_height="@dimen/normai_button_height"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="7dp"
+                        android:background="@drawable/normal_button_selector"
+                        android:text="结算"
+                        android:textColor="@color/ffffff"
                         android:textSize="@dimen/textmid" />
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_pay"
-                    android:layout_width="@dimen/normai_button_width"
-                    android:layout_height="@dimen/normai_button_height"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="7dp"
-                    android:background="@drawable/normal_button_selector"
-                    android:text="结算"
-                    android:textColor="@color/ffffff"
-                    android:textSize="@dimen/textmid" />
-            </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
-
     </RelativeLayout>
 
 </LinearLayout>

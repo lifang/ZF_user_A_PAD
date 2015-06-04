@@ -207,7 +207,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
-                            android:layout_marginLeft="70dp"
+                           
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="商品"
@@ -266,7 +266,7 @@
                             android:textSize="@dimen/textmids" />
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/ktf"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
@@ -417,6 +417,7 @@
                         android:textSize="@dimen/textbig" />
 
                     <TextView
+                        android:id="@+id/hktf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"

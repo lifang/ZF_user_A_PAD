@@ -722,7 +722,7 @@ public class API {
 
 	public static void submitApply(Context context, Map<String, Object> params,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
+		new HttpRequest(context, callback).post(APPLY_SUBMIT, params, true);
 	}
 
 	public static void insertmerchant(Context context, String title,

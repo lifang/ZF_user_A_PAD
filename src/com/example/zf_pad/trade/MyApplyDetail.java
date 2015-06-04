@@ -16,6 +16,7 @@ import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_TITLE;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 
 import java.io.File;
@@ -303,12 +304,16 @@ public class MyApplyDetail extends FragmentActivity {
 
 				Map<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("paramMap", totalParams);
+
 				API.submitApply(MyApplyDetail.this, paramMap, new HttpCallback(
 						MyApplyDetail.this) {
 					@Override
 					public void onSuccess(Object data) {
 						CommonUtil.toastShort(MyApplyDetail.this,
 								data.toString());
+						Intent intent =  new Intent();
+						intent.putExtra(TERMINAL_ID, mTerminalId);
+						setResult(RESULT_OK);
 						finish();
 					}
 
@@ -357,14 +362,14 @@ public class MyApplyDetail extends FragmentActivity {
 							}
 						}
 
-//						mMerchantContainer_0.removeAllViews();
+						// mMerchantContainer_0.removeAllViews();
 						mMerchantContainer_1.removeAllViews();
 						mMerchantContainer_2.removeAllViews();
 						mCustomerContainer_1.removeAllViews();
 						mCustomerContainer_2.removeAllViews();
 						initMerchantDetailKeys();
-//						View merchantChoose_1 = mMerchantContainer_0
-//								.findViewWithTag(mMerchantKeys[0]);
+						// View merchantChoose_1 = mMerchantContainer_0
+						// .findViewWithTag(mMerchantKeys[0]);
 						mMerchantContainer_0
 								.setOnClickListener(new View.OnClickListener() {
 									@Override
@@ -502,8 +507,8 @@ public class MyApplyDetail extends FragmentActivity {
 					.getSerializableExtra(SELECTED_CHANNEL);
 			mChosenBilling = (ApplyChannel.Billing) data
 					.getSerializableExtra(SELECTED_BILLING);
-			setItemValue(getString(R.string.apply_detail_channel),
-					mChosenChannel.getName() + mChosenBilling.name);
+			setItemValue(mBankKeys[5], mChosenChannel.getName()
+					+ mChosenBilling.name);
 			break;
 		}
 

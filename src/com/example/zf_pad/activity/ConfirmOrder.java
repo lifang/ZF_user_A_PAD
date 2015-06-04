@@ -1,5 +1,7 @@
 package com.example.zf_pad.activity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,12 +97,17 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 	private Button bt_add;
 	private Button bt_mange;
 	private LinearLayout order_isshow;
+	private TextView ktf;
+	private TextView hktf;
+	private DecimalFormat df;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Config.isNew=false;
+		df = (DecimalFormat)NumberFormat.getInstance();
+		df.applyPattern("0.00");
 		setContentView(R.layout.order_comfirm);
 		comfirmList=MyApplication.getComfirmList();
 		initView();
@@ -190,6 +197,14 @@ public class ConfirmOrder extends BaseActivity implements OnClickListener {
 
 
 	private void initView() {
+		ktf = (TextView)findViewById(R.id.ktf);
+		hktf = (TextView)findViewById(R.id.hktf);
+		int price=0;
+		for(Good good:comfirmList){
+			price=price+good.getOpening_cost()*good.getQuantity();
+		}
+		ktf.setText("含开通费￥"+df.format(price*1.0f/100));
+		hktf.setText("含开通费￥"+df.format(price*1.0f/100));
 		order_isshow = (LinearLayout)findViewById(R.id.order_isshow);
 		bt_add = (Button)findViewById(R.id.bt_add);
 		bt_add.setOnClickListener(this);

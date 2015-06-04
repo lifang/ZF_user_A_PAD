@@ -30,8 +30,9 @@ public class Config {
 	// http://121.40.84.2:28080/ZFAgent/api
 	// public final static String PATHS =
 	// "http://192.168.0.133:8080/ZFMerchant/api/";
-	public final static String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
-	// public final static String PATHS = "http://121.40.64.167:8080/api/";
+	 public final static String PATHS =
+	 "http://121.40.84.2:8080/ZFMerchant/api/";
+//	public final static String PATHS = "http://192.168.0.133:8080/ZFMerchant/api/";
 
 	//  ”∆µÕ®ª∞
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";

@@ -9,6 +9,7 @@ import static com.example.zf_pad.fragment.Constants.TerminalStatus.OPENED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.PART_OPENED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.STOPPED;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.UNOPENED;
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -487,7 +488,7 @@ public class TerminalManagerActivity extends BaseActivity implements
 								TerminalManagerActivity.this,
 								MyApplyDetail.class);
 						intent.putExtra(TERMINAL_ID, item.getId());
-						startActivity(intent);
+						startActivityForResult(intent, REQUEST_DETAIL);
 					}
 				}
 
@@ -577,20 +578,6 @@ public class TerminalManagerActivity extends BaseActivity implements
 						total = data.getTotal();
 						page++;
 						mAdapter.notifyDataSetChanged();
-					}
-
-					@Override
-					public void onFailure(String message) {
-
-						super.onFailure(message);
-					}
-
-					@Override
-					public void preLoad() {
-					}
-
-					@Override
-					public void postLoad() {
 						loadFinished();
 					}
 
@@ -645,7 +632,7 @@ public class TerminalManagerActivity extends BaseActivity implements
 					Intent intent = new Intent(TerminalManagerActivity.this,
 							MyApplyDetail.class);
 					intent.putExtra(TERMINAL_ID, item.getId());
-					startActivity(intent);
+					startActivityForResult(intent, REQUEST_DETAIL);
 				}
 
 			}
@@ -656,6 +643,19 @@ public class TerminalManagerActivity extends BaseActivity implements
 		mTerminalList.stopRefresh();
 		mTerminalList.stopLoadMore();
 		mTerminalList.setRefreshTime(Tools.getHourAndMin());
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode != RESULT_OK)
+			return;
+		switch (requestCode) {
+		case REQUEST_DETAIL: {
+			onRefresh();
+			break;
+		}
+		}
 	}
 
 	@Override

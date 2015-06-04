@@ -1,6 +1,8 @@
 package com.example.zf_pad.activity;
 
+import static com.example.zf_pad.fragment.Constants.ApplyIntent.SELECTED_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.HAVE_VIDEO;
+import static com.example.zf_pad.fragment.Constants.TerminalIntent.REQUEST_DETAIL;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_ID;
 import static com.example.zf_pad.fragment.Constants.TerminalIntent.TERMINAL_STATUS;
 import static com.example.zf_pad.fragment.Constants.TerminalStatus.CANCELED;
@@ -202,6 +204,20 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 						};
 					}
 				});
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode != RESULT_OK)
+			return;
+		switch (requestCode) {
+		case REQUEST_DETAIL: {
+			mTerminalId = data.getIntExtra(TERMINAL_ID, 0);
+			loadData();
+			break;
+		}
+		}
 	}
 
 	private void setStatusAndButtons(TerminalApply apply) {

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.epalmpay.userPad.R;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -33,26 +34,29 @@ public class HttpRequest {
 		this.callback = callback;
 		this.responseHandler = new TextHttpResponseHandler() {
 			@Override
-			public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-				if(callback == null){
+			public void onFailure(int statusCode, Header[] headers,
+					String responseString, Throwable throwable) {
+				if (callback == null) {
 					return;
 				}
 				callback.onFailure(context.getString(R.string.load_data_failed));
 			}
 
 			@Override
-			public void onSuccess(int statusCode, Header[] headers, String responseString) {
+			public void onSuccess(int statusCode, Header[] headers,
+					String responseString) {
 				Log.e("", responseString);
-				if(callback == null){
+				if (callback == null) {
 					return;
 				}
 				Response data;
 				try {
-					data = null == callback.getTypeToken() ?
-							JsonParser.fromJson(responseString) :
-							JsonParser.fromJson(responseString, callback.getTypeToken());
+					data = null == callback.getTypeToken() ? JsonParser
+							.fromJson(responseString) : JsonParser.fromJson(
+							responseString, callback.getTypeToken());
 				} catch (Exception e) {
-					callback.onFailure(context.getString(R.string.parse_data_failed));
+					callback.onFailure(context
+							.getString(R.string.parse_data_failed));
 					return;
 				}
 				if (data.getCode() == 1) {
@@ -64,7 +68,7 @@ public class HttpRequest {
 
 			@Override
 			public void onFinish() {
-				if(callback == null){
+				if (callback == null) {
 					return;
 				}
 				callback.postLoad();
@@ -72,7 +76,7 @@ public class HttpRequest {
 
 			@Override
 			public void onStart() {
-				if(callback == null){
+				if (callback == null) {
 					return;
 				}
 				callback.preLoad();
@@ -82,7 +86,7 @@ public class HttpRequest {
 
 	public void get(String url) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
-			if(callback == null){
+			if (callback == null) {
 				return;
 			}
 			callback.onFailure(context.getString(R.string.network_info));
@@ -93,7 +97,7 @@ public class HttpRequest {
 
 	public void post(String url, RequestParams requestParams) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
-			if(callback == null){
+			if (callback == null) {
 				return;
 			}
 			callback.onFailure(context.getString(R.string.network_info));
@@ -104,24 +108,42 @@ public class HttpRequest {
 
 	public void post(String url, HttpEntity entity) {
 		if (!NetworkUtil.isNetworkAvailable(context)) {
-			if(callback == null){
+			if (callback == null) {
 				return;
 			}
 			callback.onFailure(context.getString(R.string.network_info));
 			return;
 		}
-		client.post(context, url, null, entity, "application/json", responseHandler);
+		client.post(context, url, null, entity, "application/json",
+				responseHandler);
 	}
 
 	public void post(String url, Map<String, Object> params) {
 		JSONObject jsonParams = new JSONObject(params);
+		Log.e("url---------------", url);
+		Log.e("params---------------", jsonParams.toString());
 		HttpEntity entity;
 		try {
 			entity = new StringEntity(jsonParams.toString(), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			if(callback == null){
+			if (callback == null) {
 				return;
 			}
+			callback.onFailure(context.getString(R.string.load_data_failed));
+			return;
+		}
+		post(url, entity);
+	}
+
+	public void post(String url, Map<String, Object> params, Boolean is) {
+		Gson gson = new Gson();
+		String gsonString = gson.toJson(params);
+		Log.e("url---------------", url);
+		Log.e("gsonparams---------------", gsonString);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(gsonString, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
 			callback.onFailure(context.getString(R.string.load_data_failed));
 			return;
 		}
