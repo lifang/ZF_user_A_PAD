@@ -281,6 +281,7 @@
                             android:layout_marginBottom="12dp"
                             android:layout_marginLeft="@dimen/margin_left2"
                             android:layout_marginRight="@dimen/margin_left2"
+                            android:visibility="gone"
                             android:orientation="horizontal" >
 
                             <TextView

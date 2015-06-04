@@ -79,8 +79,8 @@ public class OrderDetail_PosAdapter extends BaseAdapter {
 		holder.tv_td.setText(list.get(position).getGood_channel());
 		holder.content.setText(list.get(position).getGood_name());
 		holder.tv_price.setText("гд "
-				+ ((double) Integer.valueOf(list.get(position)
-						.getGood_actualprice())) / 100);
+				+ df.format(((double) Integer.valueOf(list.get(position)
+						.getGood_actualprice())) / 100));
 		holder.tv_x.setText("X " + list.get(position).getGood_num() + "");
 		holder.btn_ishow.setVisibility(state == 3 ? View.GONE : View.GONE);
 		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getGood_logo(),

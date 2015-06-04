@@ -86,7 +86,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 				} else {
 					tv_pay.setText("支付方式  ：   ");
 				}
-				tv_time.setText("实付金额  ：   ￥" + check(entity.getOrder_totalprice())/100);
+				tv_time.setText("实付金额  ：   ￥" + df.format(check(entity.getOrder_totalprice())/100));
 				tv_money.setText("订单日期  ：   " + entity.getOrder_createTime());
 				tv_gj.setText("共计  ：   " + entity.getOrder_totalNum() + "件商品");
 				switch (entity.getOrder_status()) {
