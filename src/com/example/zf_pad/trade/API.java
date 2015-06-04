@@ -34,8 +34,8 @@ public class API {
 	// public static final String HOST = "121.40.64.167:8080/api/";
 	// public static final String HOST = "114.215.149.242:18080";
 	// public static final String HOST = "121.40.64.167:8080/api/";192.168.0.133
-	 public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
-//	public static final String HOST = "192.168.0.133:8080/ZFMerchant/api/";
+	public static final String HOST = "121.40.84.2:8080/ZFMerchant/api/";
+	// public static final String HOST = "192.168.0.133:8080/ZFMerchant/api/";
 
 	public static String GET_USERINFO = SCHEMA + HOST + "customers/getOne/";
 	// change userinfo
@@ -722,7 +722,7 @@ public class API {
 
 	public static void submitApply(Context context, Map<String, Object> params,
 			HttpCallback callback) {
-		new HttpRequest(context, callback).post(APPLY_SUBMIT, params);
+		new HttpRequest(context, callback).post(APPLY_SUBMIT, params, true);
 	}
 
 	public static void insertmerchant(Context context, String title,
