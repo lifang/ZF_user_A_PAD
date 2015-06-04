@@ -303,6 +303,15 @@ public class MyApplyDetail extends FragmentActivity {
 
 				Map<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("paramMap", totalParams);
+				
+//				AlertDialog.Builder build = new AlertDialog.Builder(
+//						MyApplyDetail.this);
+//				LayoutInflater factory = LayoutInflater
+//						.from(MyApplyDetail.this);
+//				 build.setTitle(totalParams);
+//				
+//				build.create().show();
+				
 				API.submitApply(MyApplyDetail.this, paramMap, new HttpCallback(
 						MyApplyDetail.this) {
 					@Override
@@ -502,7 +511,7 @@ public class MyApplyDetail extends FragmentActivity {
 					.getSerializableExtra(SELECTED_CHANNEL);
 			mChosenBilling = (ApplyChannel.Billing) data
 					.getSerializableExtra(SELECTED_BILLING);
-			setItemValue(getString(R.string.apply_detail_channel),
+			setItemValue(mBankKeys[5],
 					mChosenChannel.getName() + mChosenBilling.name);
 			break;
 		}
