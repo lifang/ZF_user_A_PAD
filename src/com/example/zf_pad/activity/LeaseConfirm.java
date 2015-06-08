@@ -97,8 +97,8 @@ public class LeaseConfirm extends BaseActivity implements OnClickListener {
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
 		retail_price.setText("￥" +df.format( pirce*1.0f/100));
-		tv_totle.setText("合计：￥ " + df.format( pirce*1.0f/100));
-		tv_pay.setText("实付：￥ " + df.format( pirce*1.0f/100));
+		tv_totle.setText("合计：￥ " + df.format(  (pirce+getIntent().getIntExtra("hpsf", 0))*1.0f/100));
+		tv_pay.setText("实付：￥ " + df.format(  (pirce+getIntent().getIntExtra("hpsf", 0))*1.0f/100));
 		System.out.println("=paychannelId==" + paychannelId);
 		//getData1();
 		String img_url=getIntent().getStringExtra("piclist");

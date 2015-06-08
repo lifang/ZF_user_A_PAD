@@ -54,6 +54,7 @@ import com.example.zf_pad.trade.common.HttpCallback;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
 import com.example.zf_pad.util.ImageCacheUtil;
+import com.example.zf_pad.util.RegText;
 import com.example.zf_pad.util.TitleMenuUtil;
 import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
@@ -1052,6 +1053,10 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 		}
 		if (accountPicPath == null) {
 			CommonUtil.toastShort(getApplicationContext(), "请上传开户银行许可证照片");
+			return;
+		}
+		if(!RegText.isIdentityCard(legalPersonCardId)){
+			CommonUtil.toastShort(getApplicationContext(), "请输入有效的身份证号！");
 			return;
 		}
 		int customerId = MyApplication.NewUser.getId();
