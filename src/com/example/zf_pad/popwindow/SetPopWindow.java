@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.baidu.android.pushservice.PushManager;
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.VersionEntity;
 import com.example.zf_pad.trade.API;
@@ -137,11 +138,15 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 				editor.putBoolean("isOpen_mineset", false);
 				editor.commit();
 				MyToast.showToast(context, "您已成功关闭推送消息，在应用进入后台时您将不会收到推送消息！");
+				//关闭百度推送
+				PushManager.stopWork(context.getApplicationContext());
 			} else {
 				isOpen_mineset = true;
 				img_on_off.setBackgroundResource(R.drawable.pos_on);
 				editor.putBoolean("isOpen_mineset", true);
 				editor.commit();
+				//重新启动百度推送
+				PushManager.resumeWork(context.getApplicationContext());
 			}
 
 			break;
