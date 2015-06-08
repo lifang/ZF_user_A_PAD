@@ -76,22 +76,24 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 	private TextView hpsf;
 	private TextView hktf;
 	private TextView ktf;
+	private double ktfstr;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.good_comfirm);
 		new TitleMenuUtil(GoodConfirm.this, "订单确认").show();
-		DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+		df = (DecimalFormat)NumberFormat.getInstance();
 		df.applyPattern("0.00");
 		Config.isNew=false;
+		ktfstr = (double)getIntent().getIntExtra("hpsf", 0);
 		initView();
 		title2.setText(getIntent().getStringExtra("getTitle"));
 		pirce = getIntent().getIntExtra("price", 0);
 		retail_price.setText("￥" +df.format( pirce*1.0f/100));
 		goodId = getIntent().getIntExtra("goodId", 1);
 		paychannelId = getIntent().getIntExtra("paychannelId", 1);
-		tv_pay.setText("合计：￥ " + ((double)pirce)/100);
-		tv_totle.setText("实付：￥ " + ((double)pirce)/100);
+		tv_pay.setText("合计：￥ " + df.format(((double)pirce)/100));
+		tv_totle.setText("实付：￥ " + df.format(((double)pirce)/100));
 		tv_chanel.setText(getIntent().getStringExtra("chanel"));
 		System.out.println("=paychannelId==" + paychannelId);
 		//getData1();
@@ -99,6 +101,7 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 		ImageCacheUtil.IMAGE_CACHE.get(img_url,
  				event_img);
 		tv_brand.setText(getIntent().getStringExtra("brand"));
+		
 		hpsf.setText("(含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100)+")");
 		ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
 		hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*1.0f/100));
@@ -164,7 +167,6 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 			}
 		});
 		buyCountEdit.addTextChangedListener(new TextWatcher() {
-
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
@@ -178,10 +180,10 @@ public class GoodConfirm extends BaseActivity implements OnClickListener {
 					quantity = Integer.parseInt(buyCountEdit.getText()
 							.toString());
 				}
-				ktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
-				hktf.setText("含开通费￥"+df.format(getIntent().getIntExtra("hpsf", 0)*quantity*1.0f/100));
-				tv_totle.setText("实付：￥ " + ((double)pirce)/100 * quantity);
-				tv_pay.setText("实付：￥ " + ((double)pirce)/100 * quantity);
+				ktf.setText("含开通费￥"+df.format(ktfstr*quantity*1.0f/100));
+				hktf.setText("含开通费￥"+df.format(ktfstr*quantity*1.0f/100));
+				tv_totle.setText("实付：￥ " + df.format(((double)pirce)/100 * quantity));
+				tv_pay.setText("实付：￥ " + df.format(((double)pirce)/100 * quantity));
 			}
 
 			@Override

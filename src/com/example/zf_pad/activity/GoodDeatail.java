@@ -610,8 +610,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 						// ButtonGridviewAdapter(GoodDeatail.this,
 						// User_button,0);
 						// gview1.setAdapter(buttonAdapter);
-						if (jsonobject
-								.getBoolean("support_type")) {
+						
 							arelist = gson.fromJson(
 									jsonobject
 									.getString("supportArea"),
@@ -623,10 +622,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							}
 
 							Config.suportare = a;
-						} else {
-							Config.suportare = "不支持";
-
-						}
+						
 						if (jsonobject
 								.getBoolean("support_cancel_flag")) {
 							Config.suportcl = "支持";
@@ -636,8 +632,9 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 						}
 						Config.apply=jsonobject.getString("opening_datum");
 						opening_cost = jsonobject.getInt("opening_cost");
+						Config.support_type=jsonobject.getBoolean("support_type");
 						tdname = jsonobject.getString("name");
-
+						
 						celist2 = gson.fromJson(
 								jsonobject.getString("tDates"),
 								new TypeToken<List<ChanelEntitiy>>() {
@@ -931,8 +928,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 						// ButtonGridviewAdapter(GoodDeatail.this,
 						// User_button,0);
 						// gview1.setAdapter(buttonAdapter);
-						if (jsonobject
-								.getBoolean("support_type")) {
+						
 							arelist = gson.fromJson(
 									jsonobject
 									.getString("supportArea"),
@@ -944,10 +940,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							}
 
 							Config.suportare = a;
-						} else {
-							Config.suportare = "不支持";
-
-						}
+						
 						if (jsonobject
 								.getBoolean("support_cancel_flag")) {
 							Config.suportcl = "支持";
@@ -956,6 +949,7 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 							Config.suportcl = "不支持";
 						}
 						opening_cost=jsonobject.getInt("opening_cost");
+						Config.support_type=jsonobject.getBoolean("support_type");
 						ktfy.setText("￥ "+StringUtil.getMoneyString(opening_cost));
 						tdname = jsonobject.getString("name");
 						if (islea == false) {

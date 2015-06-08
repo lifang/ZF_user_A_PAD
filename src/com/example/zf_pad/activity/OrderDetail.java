@@ -73,8 +73,12 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 				}
 				
 				tv_ly.setText("留         言  ：   " + entity.getOrder_comment());
-				tv_fplx.setText(entity.getOrder_invoce_type().equals("1") ? "发票类型  ： 个人"
-						: "发票类型   ： 公司");
+				if(entity.getNeed_invoice()==0){
+					tv_fplx.setText("发票类型  ：");
+				}else{
+					tv_fplx.setText("发票类型  ："+entity.getOrder_invoce_type());
+				}
+				
 				fptt.setText("发票抬头   ：   " + entity.getOrder_invoce_info());
 				tv_ddbh.setText("订单编号  ：   " + entity.getOrder_number());
 				if (entity.getOrder_payment_type().equals("1")) {
@@ -412,6 +416,7 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 										if(a==Config.CODE){  
 											Toast.makeText(OrderDetail.this, jsonobject.getString("message"), 1000).show();
 											ll_ishow.setVisibility(View.INVISIBLE);
+											tv_status.setText("订单状态   : 已取消");
 										}else{
 											code = jsonobject.getString("message");
 											Toast.makeText(OrderDetail.this, code, 1000).show();

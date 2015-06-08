@@ -233,6 +233,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:id="@+id/is_zc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -337,7 +338,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                            android:background="#F8F8F8"
                             android:orientation="vertical" >
 
                             <View
@@ -362,7 +363,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                            android:background="#F8F8F8"
                             android:orientation="vertical" >
 
                             <View
@@ -387,7 +388,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                            android:background="#F8F8F8"
                             android:orientation="vertical" >
 
                             <View
@@ -469,7 +470,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                           
                             android:orientation="vertical" >
 
                             <View
@@ -494,7 +495,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                           
                             android:orientation="vertical" >
 
                             <View
@@ -519,7 +520,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/F3F3F3"
+                            
                             android:orientation="vertical" >
 
                             <View

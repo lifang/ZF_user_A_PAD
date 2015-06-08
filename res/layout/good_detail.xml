@@ -334,11 +334,11 @@
 
                                 <com.example.zf_pad.util.ScrollViewWithGView
                                     android:id="@+id/gv1"
-                                    android:layout_width="fill_parent"
+                                    android:layout_width="274dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginLeft="13dp"
-                                    android:layout_marginRight="@dimen/ddrl_width"
+                                
                                     android:horizontalSpacing="10dip"
                                     android:numColumns="2"
                                     android:stretchMode="columnWidth"

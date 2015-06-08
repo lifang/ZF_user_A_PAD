@@ -34,6 +34,7 @@ public class F_good_detail extends Fragment implements OnClickListener{
 	private TextView tv_sqkt;
 	private ScrollViewWithGView gview;
 	private GridviewAdapter gadapter;
+	private TextView is_zc;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +47,12 @@ public class F_good_detail extends Fragment implements OnClickListener{
 		return view;
 	}
 	private void initView() {
+		is_zc = (TextView)view.findViewById(R.id.is_zc);
+		if(Config.support_type){
+			is_zc.setText("支 持 支 付 区 域");
+		}else{
+			is_zc.setText("不支持支付区域");
+		}
 		gview=(ScrollViewWithGView)view.findViewById(R.id.gview);
 		tv_sqkt = (TextView)view.findViewById(R.id.tv_sqkt);
 		tv_spxx = (TextView)view.findViewById(R.id.tv_spxx);
