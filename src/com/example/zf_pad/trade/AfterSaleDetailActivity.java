@@ -541,13 +541,17 @@ public class AfterSaleDetailActivity extends BaseActivity {
 				value.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Uri uri = Uri.parse(resourceInfo.getUpload_path());  
-						Intent it = new Intent(Intent.ACTION_VIEW, uri);  
-						startActivity(it);
+						//						Uri uri = Uri.parse(resourceInfo.getUpload_path());  
+						//						Intent it = new Intent(Intent.ACTION_VIEW, uri);  
+						//						startActivity(it);
 						//						Intent intent = new Intent(AfterSaleDetailActivity.this, AfterSaleMaterialActivity.class);
 						//						intent.putExtra(RECORD_TYPE, mRecordType);
 						//						intent.putExtra(MATERIAL_URL, resourceInfo.getUpload_path());
 						//						startActivity(intent);
+						Intent intent = new Intent(AfterSaleDetailActivity.this, ADownloadManagerActivity.class);
+						intent.putExtra(RECORD_TYPE, mRecordType);
+						intent.putExtra(MATERIAL_URL, resourceInfo.getUpload_path());
+						startActivity(intent);
 					}
 				});
 			}

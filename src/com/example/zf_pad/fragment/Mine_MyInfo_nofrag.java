@@ -191,7 +191,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			Mine_Address();
 		}
 		if (isBaseinfo == true) {
-			isBaseinfo = false;
+			//isBaseinfo = false;
 			//Mine_baseinfo();	
 		}
 		if (isChangepaw == true) {
@@ -399,7 +399,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							pawwword=result.getString("password");
 
 							et_phone.setText(result.getString("phone"));
-							tv_city_select.setText(findcity(result.getInt("city_id")));
+						
 							Log.e("2", tv_city_select.getText().toString());
 							et_name.setText(result.getString("name"));
 							et_email.setText(result.getString("email"));
@@ -411,6 +411,9 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 							if (StringUtil.isNull(result.getString("email"))) {
 								et_email.setVisibility(View.GONE);
 								changeemail.setText("È¥Ìí¼Ó");
+							}
+							if (!StringUtil.isNull(result.getString("city_id"))) {
+								tv_city_select.setText(findcity(Integer.valueOf(result.getString("city_id"))));
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
@@ -868,6 +871,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			cityName = data.getStringExtra(CITY_NAME);
 			tv_city_select.setText(cityName);*/
 			}
+			break;
 		case 2:
 			if(data!=null){
 				String  a =data.getStringExtra("text");
