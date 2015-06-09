@@ -14,6 +14,7 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -72,7 +73,7 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-public class GoodDeatail extends FragmentActivity implements OnClickListener {
+@SuppressLint("ResourceAsColor") public class GoodDeatail extends FragmentActivity implements OnClickListener {
 	private Button setting_btn_clear1, setting_btn_clear;
 	private int id;
 	private TextView tvc_zx, tvc_qy, eventsFinshTime, tv_detail, name,
@@ -167,6 +168,13 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 				}else{
 					tv_zd.setVisibility(View.GONE);
 					Config.canzl=true;
+				}
+				if(gfe.getQuantity()<=0){
+					setting_btn_clear.setText("缺货");
+					setting_btn_clear1.setVisibility(View.GONE);
+					setting_btn_clear.setBackgroundColor(R.color.qhgray);
+					View view=(View)findViewById(R.id.is_show);
+					view.setVisibility(View.VISIBLE);
 				}
 				break;
 			case 1:
@@ -396,6 +404,10 @@ public class GoodDeatail extends FragmentActivity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.setting_btn_clear: // tv_comment
+			if(gfe.getQuantity()<=0){
+				Toast.makeText(getApplicationContext(), "很抱歉，该商品正在加紧补货中", 1000).show();
+				return;
+			}
 			if (Config.CheckIsLogin(GoodDeatail.this)) {
 				if (islea) {
 

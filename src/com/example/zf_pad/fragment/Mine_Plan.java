@@ -2,27 +2,12 @@ package com.example.zf_pad.fragment;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.zf_pad.MyApplication;
-import com.epalmpay.userPad.R;
-import com.example.zf_pad.aadpter.ApplySearch;
-import com.example.zf_pad.entity.ApplySerch;
-import com.example.zf_pad.trade.API;
-import com.example.zf_pad.trade.common.CommonUtil;
-import com.example.zf_pad.trade.common.DialogUtil;
-import com.example.zf_pad.trade.common.HttpCallback;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -35,12 +20,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.epalmpay.userPad.R;
+import com.example.zf_pad.MyApplication;
+import com.example.zf_pad.aadpter.ApplySearch;
+import com.example.zf_pad.entity.ApplySerch;
+import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.common.CommonUtil;
+import com.example.zf_pad.trade.common.DialogUtil;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class Mine_Plan extends Fragment implements OnClickListener{
 	private View view;
