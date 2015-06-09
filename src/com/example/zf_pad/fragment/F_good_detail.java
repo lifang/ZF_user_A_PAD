@@ -63,15 +63,7 @@ public class F_good_detail extends Fragment implements OnClickListener{
 		TextView dcxx=(TextView) view.findViewById(R.id.dcxx);
 		tv_qgd = (TextView)view. findViewById(R.id.tv_qgd);
 		tv_jm = (TextView) view.findViewById(R.id.tv_jm);
-		pos_lv1=(ScrollViewWithListView) view.findViewById(R.id.pos_lv1);
-		pos_lv2=(ScrollViewWithListView) view.findViewById(R.id.pos_lv2);
-		pos_lv3=(ScrollViewWithListView) view.findViewById(R.id.pos_lv3);
-		lvAdapter1 = new HuilvAdapter(getActivity(),Config.celist);
-		lvAdapter2 = new HuilvAdapter(getActivity(),Config.tDates,0);
-		lvAdapter3 = new HuilvAdapter(getActivity(),Config.other_rate,1,"1");
-		pos_lv1.setAdapter(lvAdapter1);
-		pos_lv2.setAdapter(lvAdapter2);
-		pos_lv3.setAdapter(lvAdapter3);
+		
 		ppxx.setText(Config.gfe.getModel_number() );
 		wkxx.setText(Config.gfe.getShell_material() );
 		dcxx.setText(Config.gfe.getBattery_info());
