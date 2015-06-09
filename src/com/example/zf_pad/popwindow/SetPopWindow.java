@@ -45,7 +45,7 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 	private SharedPreferences mySharedPreferences;
 	private Editor editor;
 	private LinearLayout ll_new, ll_clean;
-	private TextView tv_clean;
+	private TextView tv_clean,tv_type;
 	private Activity context;
 
 	private Dialog versionCheckingDialog;
@@ -99,6 +99,8 @@ public class SetPopWindow extends PopupWindow implements OnClickListener {
 		ll_clean.setOnClickListener(this);
 
 		tv_clean = (TextView) conentView.findViewById(R.id.tv_clean);
+		tv_type = (TextView) conentView.findViewById(R.id.tv_type);
+		tv_type.setText("v"+Tools.getVerName(context));
 		
 		String dataSize = "";
 		try {
