@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/itemheight1"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_marginTop="@dimen/normal_height1"
         android:orientation="horizontal" >

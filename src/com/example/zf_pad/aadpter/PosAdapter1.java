@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 import java.util.List;
 
 import com.epalmpay.userPad.R;
+import com.example.zf_pad.Config;
 import com.example.zf_pad.activity.GoodDeatail;
 import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.entity.PosEntity;
@@ -89,6 +90,26 @@ public class PosAdapter1 extends BaseAdapter {
 			holder.im2=(ImageView)convertView.findViewById(R.id.evevt_img2);
 			holder.im3=(ImageView)convertView.findViewById(R.id.evevt_img3);
 			holder.im4=(ImageView)convertView.findViewById(R.id.evevt_img4);
+			LinearLayout.LayoutParams linearParams1 = (LinearLayout.LayoutParams) holder.im1
+					.getLayoutParams();
+			linearParams1.width = Config.ScreenWidth / 5;
+			linearParams1.height = Config.ScreenWidth / 5;
+			holder.im1.setLayoutParams(linearParams1);
+			LinearLayout.LayoutParams linearParams2 = (LinearLayout.LayoutParams) holder.im2
+					.getLayoutParams();
+			linearParams2.width = Config.ScreenWidth / 5;
+			linearParams2.height = Config.ScreenWidth / 5;
+			holder.im2.setLayoutParams(linearParams2);
+			LinearLayout.LayoutParams linearParams3 = (LinearLayout.LayoutParams) holder.im3
+					.getLayoutParams();
+			linearParams3.width = Config.ScreenWidth / 5;
+			linearParams3.height = Config.ScreenWidth / 5;
+			holder.im3.setLayoutParams(linearParams3);
+			LinearLayout.LayoutParams linearParams4 = (LinearLayout.LayoutParams) holder.im4
+					.getLayoutParams();
+			linearParams4.width = Config.ScreenWidth / 5;
+			linearParams4.height = Config.ScreenWidth / 5;
+			holder.im4.setLayoutParams(linearParams4);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
