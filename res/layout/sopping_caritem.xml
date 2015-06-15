@@ -54,9 +54,9 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:text="泰山TS900泰山TS900泰山TS900泰山TS900泰山TS900"
+                    android:text=""
                     android:textColor="@color/text292929"
-                    android:textSize="@dimen/textmids" />
+                    android:textSize="@dimen/textsmall" />
 
                 <RelativeLayout
                     android:layout_width="fill_parent"

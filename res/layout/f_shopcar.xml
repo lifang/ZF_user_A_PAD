@@ -119,7 +119,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="合计：￥0.00"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textsmall" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                 android:layout_marginLeft="7dp"
                 android:text="（不含配送费）"
                 android:textColor="@color/text292929"
-                android:textSize="@dimen/textmids" />
+                android:textSize="@dimen/textsmall" />
         </LinearLayout>
 
         <Button
