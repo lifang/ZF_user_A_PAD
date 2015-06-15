@@ -250,6 +250,7 @@ public class ApplyListActivity extends BaseActivity implements
 					intent.putExtra(HAVE_VIDEO, item.getHasVideoVerify());
 					intent.putExtra(TERMINAL_ID, item.getId());
 					intent.putExtra(TERMINAL_STATUS, item.getOpenState());
+					intent.putExtra("xieyi", item.getOpeningProtocol());
 					startActivity(intent);
 				}
 			});

@@ -291,7 +291,14 @@ public class PosSearch1 extends BaseActivity implements OnEditorActionListener {
 	}
 
 	private void getData(String name) {
+		name = et.getText().toString();
+		System.out.println(" content" + name);
+		addData(name);
 
+		Intent intent2 = new Intent();
+		intent2.putExtra("text", name);
+		PosSearch1.this.setResult(2, intent2);
+		finish();
 	}
 
 	@Override

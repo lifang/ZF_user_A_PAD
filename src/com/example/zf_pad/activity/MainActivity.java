@@ -108,9 +108,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private TextView textghc;
 	private TextView textmes;
 	private TextView textwd;
-	
+
 	private TextView countShopCar;
-	
+
 	private Button bt_close;
 	private PopupWindow popupWindow;
 	private String cityName;
@@ -133,15 +133,22 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Display display = getWindowManager().getDefaultDisplay();
 		Config.ScreenWidth = display.getWidth();
 		Config.ScreenHeight = display.getHeight();
-		
+
 		if (Config.isFirstCreateMain == true) {
 			Config.isFirstCreateMain = false;
 			//ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½
 			PushManager.startWork(getApplicationContext(),
 					PushConstants.LOGIN_TYPE_API_KEY,
 					Utils.getMetaValue(MainActivity.this, "api_key"));
+			
+			SharedPreferences mySharedPreferences = getSharedPreferences(Config.SHARED, MODE_PRIVATE);
+			Boolean isOpen_mineset = mySharedPreferences.getBoolean("isOpen_mineset", true);
+			if (isOpen_mineset == false) {
+				//¹Ø±Õ°Ù¶ÈÍÆËÍ
+				PushManager.stopWork(getApplicationContext());
+			}
 		}
-		
+
 		mySharedPreferences = getSharedPreferences("CountShopCar", MODE_PRIVATE);
 		Config.countShopCar = mySharedPreferences.getInt("countShopCar", 0);
 		/*
@@ -173,7 +180,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	private void initView() {
 		countShopCar = (TextView) findViewById(R.id.countShopCar);
-		
+
 		textsy = (TextView) findViewById(R.id.textsy);
 		textghc = (TextView) findViewById(R.id.textghc);
 		textmes = (TextView) findViewById(R.id.textmes);
@@ -231,7 +238,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					MyApplication.hideSoftKeyboard(this);
 					Config.countShopCar = 0;
 					countShopCar.setVisibility(View.GONE);
-					
+
 					mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
 					SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 					editor.putInt("countShopCar", Config.countShopCar); 
@@ -276,7 +283,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 					.replace(R.id.m_fragment, M_my).commit();
 				}
 
-				
+
 				MyApplication.hideSoftKeyboard(this);
 
 			}
@@ -345,7 +352,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			.replace(R.id.m_fragment, f_gwc).commit();
 			Config.countShopCar = 0;
 			countShopCar.setVisibility(View.GONE);
-			
+
 			mySharedPreferences = getSharedPreferences("CountShopCar",MODE_PRIVATE); 
 			SharedPreferences.Editor editor = mySharedPreferences.edit(); 
 			editor.putInt("countShopCar", Config.countShopCar); 
@@ -397,7 +404,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}else {
 			countShopCar.setVisibility(View.GONE);
 		}
-		
+
 		if (Config.shopcar) {
 			changTabBg();
 			im_ghc.setBackgroundResource(R.drawable.shopping);
@@ -487,11 +494,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}  
 		return true;  
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
 	}
-    
+
 }

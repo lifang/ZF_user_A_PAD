@@ -8,6 +8,15 @@ public class OrderDetailEntity {
 	// "order_receiver_phone": "18352445051",\
 	private String order_receiver_phone;
 	// "order_payment_type": "",
+	private int need_invoice;
+	public int getNeed_invoice() {
+		return need_invoice;
+	}
+
+	public void setNeed_invoice(int need_invoice) {
+		this.need_invoice = need_invoice;
+	}
+	
 	private String order_payment_type;// 支付方式
 	private String terminals;
 	private String logistics_name;

@@ -25,7 +25,9 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,9 +39,11 @@ import com.epalmpay.userPad.R;
 import com.example.zf_pad.entity.TerminalApply;
 import com.example.zf_pad.entity.TerminalComment;
 import com.example.zf_pad.entity.TerminalDetail;
+import com.example.zf_pad.entity.TerminalManagerEntity;
 import com.example.zf_pad.entity.TerminalOpen;
 import com.example.zf_pad.entity.TerminalRate;
 import com.example.zf_pad.trade.API;
+import com.example.zf_pad.trade.ApplyListActivity;
 import com.example.zf_pad.trade.MyApplyDetail;
 import com.example.zf_pad.trade.common.CommonUtil;
 import com.example.zf_pad.trade.common.HttpCallback;
@@ -67,11 +71,14 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 
 	private View.OnClickListener mSyncListener;
 	private View.OnClickListener mOpenListener;
+	private View.OnClickListener mReOpenListener;
 	private View.OnClickListener mPosListener;
 	private View.OnClickListener mVideoListener;
 
 	private int isVideo, status;
 	private Boolean appidBoolean, videoBoolean;
+	private String xieyiString;
+	
 	DisplayImageOptions options = MyApplication.getDisplayOption();
 
 	@Override
@@ -82,7 +89,8 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		isVideo = getIntent().getIntExtra(HAVE_VIDEO, 0);
 		mTerminalId = getIntent().getIntExtra(TERMINAL_ID, 0);
 		mTerminalStatus = getIntent().getIntExtra(TERMINAL_STATUS, 0);
-
+		xieyiString = getIntent().getStringExtra("xieyi");
+		
 		setContentView(R.layout.activity_terminal_detail);
 		new TitleMenuUtil(this,
 				getString(R.string.title_terminal_detail_management)).show();
@@ -126,12 +134,20 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 		mOpenListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				openDialog();
+			
+			}
+		};
+		mReOpenListener  = new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
 				Intent intent = new Intent(TerminalManagerDetailActivity.this,
 						MyApplyDetail.class);
 				intent.putExtra(TERMINAL_ID, mTerminalId);
 				startActivityForResult(intent, REQUEST_DETAIL);
 			}
 		};
+		
 		mPosListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -168,7 +184,58 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 			}
 		};
 	}
+	private void openDialog() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				TerminalManagerDetailActivity.this);
 
+		LayoutInflater factory = LayoutInflater.from(this);
+		View view = factory.inflate(R.layout.protocoldialog, null);
+
+		builder.setView(view);
+
+		final AlertDialog dialog = builder.create();
+		dialog.show();
+		final CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+
+		Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+		Button btn_confirm = (Button) view.findViewById(R.id.btn_confirm);
+
+		TextView tv_protocol = (TextView) view.findViewById(R.id.tv_protocol);
+
+		tv_protocol.setText(xieyiString);
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		btn_confirm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (!cb.isChecked()) {
+
+					CommonUtil.toastShort(TerminalManagerDetailActivity.this,
+							"请仔细阅读开通协议，并接受协议");
+
+				} else {
+
+					dialog.dismiss();
+					Intent intent = new Intent(TerminalManagerDetailActivity.this,
+							MyApplyDetail.class);
+					intent.putExtra(TERMINAL_ID, mTerminalId);
+					startActivityForResult(intent, REQUEST_DETAIL);
+				}
+
+			}
+		});
+		// dialog.show();
+
+	}
 	private void loadData() {
 		API.getTerminalDetail(this, mTerminalId, MyApplication.NewUser.getId(),
 				new HttpCallback<TerminalDetail>(this) {
@@ -300,7 +367,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 			}
 			mBtnRightTop.setVisibility(View.VISIBLE);
 			mBtnRightTop.setText(getString(R.string.terminal_button_reopen));
-			mBtnRightTop.setOnClickListener(mOpenListener);
+			mBtnRightTop.setOnClickListener(mReOpenListener);
 			mBtnRightBottom.setVisibility(View.VISIBLE);
 			mBtnRightBottom.setText(getString(R.string.terminal_button_pos));
 			mBtnRightBottom.setOnClickListener(mPosListener);
@@ -316,7 +383,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightTop.setOnClickListener(mReOpenListener);
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_video));
@@ -329,7 +396,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				}
 			} else {
 
@@ -366,7 +433,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				} else {
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
@@ -375,7 +442,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				}
 			} else {
 				if (videoBoolean) {
@@ -383,7 +450,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightTop.setVisibility(View.VISIBLE);
 					mBtnRightTop
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightTop.setOnClickListener(mOpenListener);
+					mBtnRightTop.setOnClickListener(mReOpenListener);
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_video));
@@ -393,7 +460,7 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 					mBtnRightBottom.setVisibility(View.VISIBLE);
 					mBtnRightBottom
 							.setText(getString(R.string.terminal_button_reopen));
-					mBtnRightBottom.setOnClickListener(mOpenListener);
+					mBtnRightBottom.setOnClickListener(mReOpenListener);
 				}
 			}
 			break;

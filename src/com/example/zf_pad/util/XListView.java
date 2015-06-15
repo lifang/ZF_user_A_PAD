@@ -52,6 +52,7 @@ public class XListView extends ListView implements OnScrollListener {
 	 * 防止多个手指刷新，造成数据重复
 	 */
 	boolean oneRefresh = true;
+	boolean oneLoadMore = true;
 
 	public void initHeaderAndFooter() {
 		// init header view
@@ -354,7 +355,16 @@ public class XListView extends ListView implements OnScrollListener {
 				// invoke load more.
 				if (mEnablePullLoad
 						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-					startLoadMore();
+					//startLoadMore();
+					if (oneLoadMore == true) {//防止多个手指上啦，造成数据重复
+						startLoadMore();
+						oneLoadMore = false;
+						new Handler().postDelayed(new Runnable(){    
+							public void run() {   
+								oneLoadMore = true;
+							}    
+						}, 1500); 
+					}
 				}
 				resetFooterHeight();
 			}

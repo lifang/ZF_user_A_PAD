@@ -334,11 +334,11 @@
 
                                 <com.example.zf_pad.util.ScrollViewWithGView
                                     android:id="@+id/gv1"
-                                    android:layout_width="fill_parent"
+                                    android:layout_width="274dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginLeft="13dp"
-                                    android:layout_marginRight="@dimen/ddrl_width"
+                                
                                     android:horizontalSpacing="10dip"
                                     android:numColumns="2"
                                     android:stretchMode="columnWidth"
@@ -544,13 +544,17 @@
                             android:orientation="horizontal"
                             android:paddingLeft="@dimen/zc_margin_top"
                             android:paddingRight="@dimen/zc_margin_top" >
-
+							<View 
+							    android:id="@+id/is_show"
+							    android:layout_width="100dp"
+							    android:layout_height="1dp"
+							    android:visibility="gone"/>
                             <RelativeLayout
                                 android:id="@+id/setting_rl_exit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical" >
-
+								
                                 <Button
                                     android:id="@+id/setting_btn_clear1"
                                     android:layout_width="184dp"

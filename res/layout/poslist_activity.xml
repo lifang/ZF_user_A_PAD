@@ -30,7 +30,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/goodimg"
+            android:layout_width="@dimen/dlwidth"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal" >
@@ -133,7 +133,7 @@
         android:paddingLeft="@dimen/order_image" >
 
         <LinearLayout
-            android:layout_width="@dimen/normal_width1"
+            android:layout_width="@dimen/normal_width4"
             android:layout_height="@dimen/titleback_height"
             android:layout_centerInParent="true"
             android:layout_gravity="center"

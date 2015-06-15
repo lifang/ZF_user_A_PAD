@@ -191,7 +191,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			Mine_Address();
 		}
 		if (isBaseinfo == true) {
-			isBaseinfo = false;
+			//isBaseinfo = false;
 			//Mine_baseinfo();	
 		}
 		if (isChangepaw == true) {
@@ -871,6 +871,7 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			cityName = data.getStringExtra(CITY_NAME);
 			tv_city_select.setText(cityName);*/
 			}
+			break;
 		case 2:
 			if(data!=null){
 				String  a =data.getStringExtra("text");

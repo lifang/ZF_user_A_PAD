@@ -119,7 +119,7 @@ public class OrderAdapter extends BaseAdapter{
  		holder.tv_goodnum.setText(list.get(position).getOrder_goodsList().get(0).getGood_num().equals("")?
  				"":"X   "+list.get(position).getOrder_goodsList().get(0).getGood_num());
  		}
- 		holder.tv_pay.setText(" µ∏∂£∫£§"+list.get(position).getOrder_totalPrice()/100);
+ 		holder.tv_pay.setText(" µ∏∂£∫£§"+df.format(list.get(position).getOrder_totalPrice()/100));
  		holder.tv_psf.setText("≈‰ÀÕ∑—£∫£§"+list.get(position).getOrder_psf()	);
  		holder.tv_ddbh.setText("∂©µ•±‡∫≈: "+list.get(position).getOrder_number()	);
  		holder.tv_time.setText(list.get(position).getOrder_createTime()	);
