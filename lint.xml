@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="DuplicateIds" severity="warning" />
+    <issue id="MissingTranslation" severity="warning" />
     <issue id="NewApi">
         <ignore path="src/com/example/zf_pad/trade/common/CommonUtil.java" />
     </issue>
