@@ -174,13 +174,12 @@ public class TerminalManagerActivity extends BaseActivity implements
 
 				Boolean appidBoolean = !"".equals(item.getAppid());
 				Boolean videoBoolean = 1 == item.getHasVideoVerify();
-				if (item.getPosPortID().equals("110000000000")) {
-					System.out.println("");
-				}
+
 				switch (item.getOpenState()) {
 				case OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
 
+					addButton(holder.llButtons);
 					addButton(holder.llButtons);
 					if (appidBoolean) {
 						if (videoBoolean) {
@@ -212,11 +211,13 @@ public class TerminalManagerActivity extends BaseActivity implements
 						}
 					}
 
-					addButton(holder.llButtons, R.string.terminal_button_pos,
-							item, mPosListener);
+					// addButton(holder.llButtons, R.string.terminal_button_pos,
+					// item, mPosListener);
 					break;
 				case PART_OPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
+					
+					addButton(holder.llButtons);
 					if (appidBoolean) {
 						if (videoBoolean) {
 							addButton(holder.llButtons,
@@ -249,8 +250,8 @@ public class TerminalManagerActivity extends BaseActivity implements
 							R.string.terminal_button_reopen, item,
 							mOpenListener);
 
-					addButton(holder.llButtons, R.string.terminal_button_pos,
-							item, mPosListener);
+					// addButton(holder.llButtons, R.string.terminal_button_pos,
+					// item, mPosListener);
 					break;
 				case UNOPENED:
 					holder.llButtonContainer.setVisibility(View.VISIBLE);
