@@ -14,7 +14,7 @@ public class MyApplyMaterial {
 
 	private String name;
 
-	private int openingRequirementId;
+	private int opening_requirement_id;
 
 	private String value;
 
@@ -43,11 +43,11 @@ public class MyApplyMaterial {
 	}
 
 	public int getOpeningRequirementId() {
-		return openingRequirementId;
+		return opening_requirement_id;
 	}
 
 	public void setOpeningRequirementId(int openingRequirementId) {
-		this.openingRequirementId = openingRequirementId;
+		this.opening_requirement_id = openingRequirementId;
 	}
 
 	public String getValue() {

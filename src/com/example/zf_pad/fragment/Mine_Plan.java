@@ -179,7 +179,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 								}
 								else{
 									dataser.add(new ApplySerch(i, result.getJSONObject(i).getString("serial_num"),
-											"", "", 
+											"当前进度", result.getJSONObject(i).getString("error"), 
 											"", "", 
 											"", ""));
 								}
