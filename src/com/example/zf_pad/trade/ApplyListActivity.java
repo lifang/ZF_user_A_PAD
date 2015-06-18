@@ -93,16 +93,9 @@ public class ApplyListActivity extends BaseActivity implements
 						mTerminalItems.addAll(data);
 						page++;
 						mAdapter.notifyDataSetChanged();
-					}
-
-					@Override
-					public void preLoad() {
-					}
-
-					@Override
-					public void postLoad() {
 						loadFinished();
 					}
+
 
 					@Override
 					public TypeToken<List<TerminalManagerEntity>> getTypeToken() {
