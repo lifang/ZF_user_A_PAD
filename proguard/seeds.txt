@@ -13125,8 +13125,6 @@ com.example.zf_pad.trade.ApplyListActivity: ApplyListActivity()
 com.example.zf_pad.trade.ApplyListActivity: void onRefresh()
 com.example.zf_pad.trade.ApplyListActivity: void onLoadMore()
 com.example.zf_pad.trade.ApplyListActivity$1: void onSuccess(java.util.List)
-com.example.zf_pad.trade.ApplyListActivity$1: void preLoad()
-com.example.zf_pad.trade.ApplyListActivity$1: void postLoad()
 com.example.zf_pad.trade.ApplyListActivity$1: com.google.gson.reflect.TypeToken getTypeToken()
 com.example.zf_pad.trade.ApplyListActivity$1: void onSuccess(java.lang.Object)
 com.example.zf_pad.trade.ApplyListActivity$2: void onClick(android.view.View)
@@ -13742,7 +13740,7 @@ com.example.zf_pad.trade.entity.MyApplyMaterial
 com.example.zf_pad.trade.entity.MyApplyMaterial: int id
 com.example.zf_pad.trade.entity.MyApplyMaterial: int types
 com.example.zf_pad.trade.entity.MyApplyMaterial: java.lang.String name
-com.example.zf_pad.trade.entity.MyApplyMaterial: int openingRequirementId
+com.example.zf_pad.trade.entity.MyApplyMaterial: int opening_requirements_id
 com.example.zf_pad.trade.entity.MyApplyMaterial: java.lang.String value
 com.example.zf_pad.trade.entity.MyApplyMaterial: MyApplyMaterial()
 com.example.zf_pad.trade.entity.MyApplyMaterial: int getId()

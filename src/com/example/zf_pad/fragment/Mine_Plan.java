@@ -135,7 +135,7 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 							String[] status=new String[6];
 							for(int i=0;i<result.length();i++){
 								
-								num[i]=result.getJSONObject(i).getString("serial_num");
+							//	num[i]=result.getJSONObject(i).getString("serial_num");
 								JSONArray statu=result.getJSONObject(i).getJSONArray("openStatus");
 								Log.e("statu", String.valueOf(statu));
 								

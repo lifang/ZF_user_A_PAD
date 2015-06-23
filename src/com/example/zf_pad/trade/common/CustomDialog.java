@@ -50,7 +50,7 @@ public class CustomDialog extends Dialog {
 		window.setWindowAnimations(R.style.Dialog);
 		WindowManager.LayoutParams lp = window.getAttributes();
 		int screenW = DialogUtil.getScreenWidth(context);
-		lp.width = (int) (0.7 * screenW);
+		lp.width = (int) (0.5 * screenW);
 		
 	}
 

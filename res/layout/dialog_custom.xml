@@ -13,7 +13,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:gravity="center"
         android:text="sdfadf" />
 
@@ -31,10 +31,10 @@
         <Button
             android:id="@+id/custom_dialog_left"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="@null"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:text="确定"
             android:textColor="@color/bgtitle" >
         </Button>
@@ -47,10 +47,10 @@
         <Button
             android:id="@+id/custom_dialog_right"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="@null"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:text="取消"
             android:textColor="@color/bgtitle" >
         </Button>

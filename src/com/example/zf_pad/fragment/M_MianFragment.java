@@ -354,10 +354,10 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 			@Override
 			public void onSuccess(int statusCode,
 					Header[] headers, byte[] responseBody) {
-				System.out.println("-onSuccess---");
 				
 				String responseString = new String(responseBody)
 				.toString();
+//				Log.e("--version--", "--"+responseString);
 				Response data;
 				try {
 					data = JsonParser.fromJson(responseString,new TypeToken<VersionEntity>() {

@@ -13610,13 +13610,12 @@ com.example.zf_pad.activity.TerminalManagerActivity -> com.example.zf_pad.activi
     android.view.View$OnClickListener access$2(com.example.zf_pad.activity.TerminalManagerActivity) -> c
     android.view.View$OnClickListener access$3(com.example.zf_pad.activity.TerminalManagerActivity) -> d
     android.view.View$OnClickListener access$4(com.example.zf_pad.activity.TerminalManagerActivity) -> e
-    android.view.View$OnClickListener access$5(com.example.zf_pad.activity.TerminalManagerActivity) -> f
-    void access$6(com.example.zf_pad.activity.TerminalManagerActivity,com.example.zf_pad.entity.TerminalManagerEntity) -> a
-    void access$7(com.example.zf_pad.activity.TerminalManagerActivity,int) -> a
-    int access$8(com.example.zf_pad.activity.TerminalManagerActivity) -> g
-    void access$9(com.example.zf_pad.activity.TerminalManagerActivity,int) -> b
-    com.example.zf_pad.activity.TerminalManagerActivity$TerminalListAdapter access$10(com.example.zf_pad.activity.TerminalManagerActivity) -> h
-    void access$11(com.example.zf_pad.activity.TerminalManagerActivity) -> i
+    void access$5(com.example.zf_pad.activity.TerminalManagerActivity,com.example.zf_pad.entity.TerminalManagerEntity) -> a
+    void access$6(com.example.zf_pad.activity.TerminalManagerActivity,int) -> a
+    int access$7(com.example.zf_pad.activity.TerminalManagerActivity) -> f
+    void access$8(com.example.zf_pad.activity.TerminalManagerActivity,int) -> b
+    com.example.zf_pad.activity.TerminalManagerActivity$TerminalListAdapter access$9(com.example.zf_pad.activity.TerminalManagerActivity) -> g
+    void access$10(com.example.zf_pad.activity.TerminalManagerActivity) -> h
 com.example.zf_pad.activity.TerminalManagerActivity$1 -> com.example.zf_pad.activity.fm:
     com.example.zf_pad.activity.TerminalManagerActivity this$0 -> a
     void onClick(android.view.View) -> onClick
@@ -16217,8 +16216,6 @@ com.example.zf_pad.trade.ApplyListActivity -> com.example.zf_pad.trade.ApplyList
 com.example.zf_pad.trade.ApplyListActivity$1 -> com.example.zf_pad.trade.ax:
     com.example.zf_pad.trade.ApplyListActivity this$0 -> a
     void onSuccess(java.util.List) -> onSuccess
-    void preLoad() -> preLoad
-    void postLoad() -> postLoad
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
 com.example.zf_pad.trade.ApplyListActivity$1$1 -> com.example.zf_pad.trade.ay:
@@ -17232,7 +17229,7 @@ com.example.zf_pad.trade.entity.MyApplyMaterial -> com.example.zf_pad.trade.enti
     int id -> id
     int types -> types
     java.lang.String name -> name
-    int openingRequirementId -> openingRequirementId
+    int opening_requirements_id -> opening_requirements_id
     java.lang.String value -> value
     int getId() -> getId
     void setId(int) -> setId
