@@ -70,9 +70,7 @@ public class PosAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		// volume_number":123,"id":2,"good_brand":"Ʒ��1","total_score":1,
-		// "retail_price":72464,"pay_channe":"ͨ��2",
-		// "Title":"̩ɽPos�콢��2","Model_number":"�ͺ�10"}
+		
 		ImageCacheUtil.IMAGE_CACHE.get(list.get(position).getUrl_path(),
  				holder.im);
 		holder.title.setText(list.get(position).getTitle());

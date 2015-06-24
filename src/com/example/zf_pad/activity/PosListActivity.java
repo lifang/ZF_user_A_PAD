@@ -83,7 +83,6 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 				onLoad( );
 				
 				if(myList.size()==0){
-				//	norecord_text_to.setText("��û����ص���Ʒ");
 					Xlistview.setVisibility(View.GONE);
 					eva_nodata.setVisibility(View.VISIBLE);
 				}else{
