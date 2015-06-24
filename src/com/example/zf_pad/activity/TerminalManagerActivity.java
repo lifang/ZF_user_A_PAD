@@ -276,7 +276,7 @@ public class TerminalManagerActivity extends BaseActivity implements
 									R.string.terminal_button_sync, item,
 									mSyncListener);
 							addButton(holder.llButtons,
-									R.string.terminal_button_open, item,
+									R.string.terminal_button_reopen, item,
 									mOpenListener);
 						}
 					} else {

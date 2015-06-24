@@ -768,7 +768,7 @@ public class MyApplyDetail extends FragmentActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						setItemValue(mMerchantKeys[3], items[which]);
-						mMerchantGender = which == 1 ? 0 : 1;
+						mMerchantGender = which;
 						updateUIWithValidation();
 					}
 				});
