@@ -53,7 +53,10 @@ import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Display;
@@ -123,6 +126,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private View citySelect;
 	private int flag = 0;
 	private SharedPreferences mySharedPreferences;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -162,6 +167,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		getSupportFragmentManager().beginTransaction()
 		.replace(R.id.m_fragment, f_sy).commit();
+		
 		initView();
 
 	}
