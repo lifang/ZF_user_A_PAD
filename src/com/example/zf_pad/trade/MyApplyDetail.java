@@ -313,7 +313,7 @@ public class MyApplyDetail extends FragmentActivity {
 								data.toString());
 						Intent intent =  new Intent();
 						intent.putExtra(TERMINAL_ID, mTerminalId);
-						setResult(RESULT_OK);
+						setResult(RESULT_OK,intent);
 						finish();
 					}
 

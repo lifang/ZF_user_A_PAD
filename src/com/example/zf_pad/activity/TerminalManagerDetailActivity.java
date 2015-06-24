@@ -283,8 +283,10 @@ public class TerminalManagerDetailActivity extends BaseActivity {
 			return;
 		switch (requestCode) {
 		case REQUEST_DETAIL: {
-			mTerminalId = data.getIntExtra(TERMINAL_ID, 0);
-			loadData();
+			if (null != data) {
+				mTerminalId = data.getIntExtra(TERMINAL_ID, 0);
+				loadData();
+			}
 			break;
 		}
 		}
