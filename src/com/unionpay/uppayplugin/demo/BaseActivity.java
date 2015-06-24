@@ -54,6 +54,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 	protected int orderId;
 	String str = null;
 	String pay_result = null;
+	String type = null;
 	
 	public abstract void doStartUnionPayPlugin(Activity activity, String tn,
 			String mode);
@@ -66,6 +67,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 		outTradeNo = this.getIntent().getStringExtra("outTradeNo");
 		price = this.getIntent().getStringExtra("price");
 		orderId = this.getIntent().getIntExtra("orderId",-1);
+		type = this.getIntent().getStringExtra("type");
 		Log.e("==orderId==", ""+orderId);
 		mLoadingDialog = ProgressDialog.show(mContext, // context
 				"", // title
@@ -105,6 +107,7 @@ public abstract class BaseActivity extends Activity implements Callback,
 								OrderDetail.class);
 						intent.putExtra("status", 2);
 						intent.putExtra("id", orderId);
+						intent.putExtra("type", type);
 						startActivity(intent);
 						finish();
 

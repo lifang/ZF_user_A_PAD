@@ -6,16 +6,24 @@ import static com.example.zf_pad.fragment.Constants.CityIntent.CITY_NAME;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -49,12 +57,18 @@ import com.example.zf_pad.activity.PosListActivity;
 import com.example.zf_pad.activity.SystemMessage;
 import com.example.zf_pad.activity.TerminalManagerActivity;
 import com.example.zf_pad.entity.PicEntity;
+import com.example.zf_pad.entity.VersionEntity;
 import com.example.zf_pad.trade.ApplyListActivity;
 import com.example.zf_pad.trade.CitySelectActivity;
 import com.example.zf_pad.trade.TradeFlowActivity;
+import com.example.zf_pad.trade.common.CustomDialog;
+import com.example.zf_pad.trade.common.JsonParser;
+import com.example.zf_pad.trade.common.Response;
 import com.example.zf_pad.trade.entity.City;
 import com.example.zf_pad.trade.entity.Province;
+import com.example.zf_pad.util.DownloadUtils;
 import com.example.zf_pad.util.ImageCacheUtil;
+import com.example.zf_pad.util.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -319,6 +333,63 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 						error.printStackTrace();
 					}
 				});
+		
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("types", 7);
+		JSONObject jsonParams = new JSONObject(params);
+		StringEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			entity.setContentType("application/json;charset=UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		MyApplication
+		.getInstance()
+		.getClient()
+		.post(getActivity(), Config.URL_GET_VERSION,entity,null,
+				new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(int statusCode,
+					Header[] headers, byte[] responseBody) {
+				
+				String responseString = new String(responseBody)
+				.toString();
+//				Log.e("--version--", "--"+responseString);
+				Response data;
+				try {
+					data = JsonParser.fromJson(responseString,new TypeToken<VersionEntity>() {
+					}) ;
+				} catch (Exception e) {
+					Toast.makeText(getActivity(),
+							getActivity().getString(R.string.parse_data_failed), 1000).show();
+					return;
+				}
+				if (data.getCode() == 1) {
+					VersionEntity result = (VersionEntity) data.getResult();
+					String version = result.getVersions();
+					String url = result.getDown_url();
+					Integer nowVersion = Tools.getVerCode(getActivity());
+					if(Integer.parseInt(version) > nowVersion){
+						
+						showCustomDialog(url);
+						
+					}
+					
+				} 
+				
+			}
+
+			@Override
+			public void onFailure(int statusCode,
+					Header[] headers, byte[] responseBody,
+					Throwable error) {
+				error.printStackTrace();
+			}
+		});
+
 
 	}
 
@@ -537,4 +608,93 @@ public class M_MianFragment extends Fragment implements OnClickListener {
 		MobclickAgent.onPageEnd(this.toString());
 	}
 
+	private void showCustomDialog(final String url) {
+		final CustomDialog dialog = new CustomDialog(getActivity());
+		dialog.setSoftKeyValue("取消", "确认");
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		dialog.setContent("检测到新版本立即更新？");
+		dialog.setLeftListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+
+		});
+		dialog.setRightListener(new android.view.View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				upgrading(url);
+			}
+		});
+		dialog.show();
+	}
+	
+	private void upgrading(String apkUrl) {
+		final ProgressDialog pd = new ProgressDialog(getActivity());
+		pd.setCancelable(false);
+		pd.setCanceledOnTouchOutside(false);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pd.setMessage(getResources().getString(R.string.updata_check));
+		fileDownLoad(pd, apkUrl);
+		pd.show();
+	}
+
+	private void fileDownLoad(ProgressDialog dialog, final String url) {
+		try {
+			final DownloadListener listener = new DownloadListener(getActivity(), dialog);
+			final File file = new File(DownloadUtils.getFilePath(url));
+			new Thread() {
+				@Override
+				public void run() {
+					super.run();
+					try {
+						DownloadUtils.download(url,
+								file, false, listener);
+					} catch (Exception e) {
+						Log.e("userPhone", "", e);
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+			dialog.dismiss();
+		}
+	}
+
+	private static class DownloadListener implements
+	DownloadUtils.DownloadListener {
+		private Context context;
+		private ProgressDialog pd;
+
+		public DownloadListener(Context context, ProgressDialog pd) {
+			super();
+			this.context = context;
+			pd.setMax(100);
+			pd.setProgress(0);
+			this.pd = pd;
+		}
+
+		@Override
+		public void downloading(int progress) {
+			pd.setProgress(progress);
+		}
+
+		@Override
+		public void downloaded(File dest) {
+			pd.dismiss();
+			Intent intent = new Intent();
+			intent.setAction(Intent.ACTION_VIEW);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+			intent.setDataAndType(Uri.fromFile(dest),
+					"application/vnd.android.package-archive");
+			context.startActivity(intent);
+		}
+
+		@Override
+		public void exception(Exception e) {
+		}
+	}
 }

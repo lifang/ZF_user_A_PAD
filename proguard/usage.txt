@@ -465,17 +465,20 @@ com.epalmpay.userPad.R$style
 com.epalmpay.userPad.R$styleable
 com.example.zf_pad.CancleUpdate
 com.example.zf_pad.Config:
-    public static final java.lang.String PATHS
     public static final java.lang.String VIDEO_SERVER_IP
     public static final int VIDEO_SERVER_PORT
     public static final java.lang.String URL_NOTICE_VIDEO
+    public static final java.lang.String PATHS
+    public static final java.lang.String NOTIFT_URL
+    public static final java.lang.String REPAIR_NOTIFT_URL
+    public static final java.lang.String RETURN_URL
+    public static final java.lang.String UNION_TN_URL
+    public static final java.lang.String UNION_SUCESS_URL
+    public static final java.lang.String UNION_MEDE
     public static final java.lang.String PARTNER
     public static final java.lang.String SELLER
     public static final java.lang.String RSA_PRIVATE
     public static final java.lang.String RSA_PUBLIC
-    public static final java.lang.String NOTIFT_URL
-    public static final java.lang.String REPAIR_NOTIFT_URL
-    public static final java.lang.String RETURN_URL
     public static final java.lang.String GOODPICLIST
     public static final java.lang.String IMAGE_PATH
     public static final java.lang.String LOGIN
@@ -512,9 +515,6 @@ com.example.zf_pad.Config:
     public static final java.lang.String URL_GET_VERSION
     public static final java.lang.String URL_REGISTERBAIDU
     public static java.lang.String commentsCount
-    public static final java.lang.String UNION_TN_URL
-    public static final java.lang.String UNION_SUCESS_URL
-    public static final java.lang.String UNION_MEDE
     26:26:public Config()
 com.example.zf_pad.MyApplication:
     public android.widget.TextView logMsg

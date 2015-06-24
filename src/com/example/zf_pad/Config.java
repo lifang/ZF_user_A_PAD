@@ -25,14 +25,6 @@ import com.example.zf_pad.trade.entity.City;
 
 public class Config {
 
-	// public final static String PATHS =
-	// "http://114.215.149.242:18080/ZFMerchant/api/";
-	// http://121.40.84.2:28080/ZFAgent/api
-	// public final static String PATHS =
-	// "http://192.168.0.133:8080/ZFMerchant/api/";
-	 public final static String PATHS =
-	 "http://121.40.84.2:8080/ZFMerchant/api/";
-//	public final static String PATHS = "http://192.168.0.133:8080/ZFMerchant/api/";
 
 	// 视频通话
 	public static final String VIDEO_SERVER_IP = "121.40.84.2";
@@ -42,6 +34,67 @@ public class Config {
 	public static final String URL_NOTICE_VIDEO = "http://121.40.84.2:38080/ZFManager/notice/video";
 	// public static final String URL_NOTICE_VIDEO =
 	// "http://admin.ebank007.com/notice/video";
+	
+
+	/**
+	 * product
+	 */
+	//	public static final String PATHS = "http://www.ebank007.com/api/";
+	//	//异步通知接口  
+	//	public static final String NOTIFT_URL = "http://www.ebank007.com/app_notify_url.jsp";
+	//	//维修异步通知接口  
+	//	public static final String REPAIR_NOTIFT_URL = "http://www.ebank007.com/repair_app_notify_url.jsp";
+	//	//支付成功跳转页面
+	//	public static final String RETURN_URL = "http://www.ebank007.com/return_url.jsp"; 
+	//	//获取银联交易流水号
+	//	public static final String UNION_TN_URL = "http://www.ebank007.com/unionpay.do";
+	//	//支付成功回调修改订单状态
+	//	public static final String UNION_SUCESS_URL = "http://www.ebank007.com/api/pay/alipayback";
+	//	/*****************************************************************
+	//	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+	//	 *****************************************************************/
+	//	public static final String UNION_MEDE = "00";
+
+	/**
+	 * pre -- product
+	 */
+	//	public static final String PATHS = "http://121.40.224.25:8080/api/";
+	//	//异步通知接口  
+	//	public static final String NOTIFT_URL = "http://121.40.224.25:8080/app_notify_url.jsp";
+	//	//维修异步通知接口  
+	//	public static final String REPAIR_NOTIFT_URL = "http://121.40.224.25:8080/repair_app_notify_url.jsp";
+	//	//支付成功跳转页面
+	//	public static final String RETURN_URL = "http://121.40.224.25:8080/return_url.jsp"; 
+	//	//获取银联交易流水号
+	//	public static final String UNION_TN_URL = "http://121.40.224.25:8080/unionpay.do";
+	//	//支付成功回调修改订单状态
+	//	public static final String UNION_SUCESS_URL = "http://121.40.224.25:8080/api/pay/alipayback";
+	//	/*****************************************************************
+	//	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+	//	 *****************************************************************/
+	//	public static final String UNION_MEDE = "00";
+
+
+	/**
+	 * sit
+	 */
+	public static final String PATHS = "http://121.40.84.2:8080/ZFMerchant/api/";
+	//异步通知接口  
+	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp";
+	//维修异步通知接口  
+	public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp";
+	//支付成功跳转页面
+	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp"; 
+	//获取银联交易流水号
+	public static final String UNION_TN_URL = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
+	//支付成功回调修改订单状态
+	public static final String UNION_SUCESS_URL = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
+	/*****************************************************************
+	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+	 *****************************************************************/
+	public static final String UNION_MEDE = "01";
+
+	
 	/*
 	 * alipay
 	 */
@@ -53,18 +106,6 @@ public class Config {
 	public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALjI06X8hEw9LiLqTsqmjZAqwSq/VIGJKNQgIeCCr/oReR4OePe5i2u+89PpcFe6kF2v6gWulb4WNdHYw3Iiux56sm7jUQPC1hVYXG8tiaVEb3YhX2y0YGQUS18drBBGzHnlOQlrrmlBh9ugQFzLio2NwUWo0yfcXlLoKYyteDBVAgMBAAECgYBpjW441rHLyvbbwvQXFmSvAX0uKfTfubW01lYDpSNYuTpyTNoUx8w4U+98EVC3DD8DBUWs0TmAR7eeky+xtt0jZ1O8bpHUzRi02NOw2p1ZyAHN28rvUpultfInBpbqgJDvMoWIX4AeqWQcs4gbAbPyEaWvgYM53uW7eo9CtcFMgQJBAOHGVL8Xe9agkiGwYT8e9068+xjXiloAKgQjps8fxLfMCd34sI1tEjyz0jIZ+AK4pGvU1JJdtx7s70INnubqoY0CQQDRhbFcxqaz2c+S2WUQNduFah5EZt/vdWxo4+6EHrXNdAjT7nVyA8CzreRXcPEKQZ+RhuXyXGqSLDJGKYPGQIPpAkBSmqfjCoqKqlEM9mV+HKxLKKWOHz5FU44L2adsXKkyvfpWNmkSNXfYscoT/qBZDolJ0qK7soIPVIztU+JxhiL5AkAC037U9YkCHAoEvRHz6gYQAqJt4cVbgYX41Do/Zfqlzs7frPPAmfRbeBkAZPGbZc81M1CeuEhnuFjlQWIZpn0hAkEAu1Q+fNm01qqVJ0YCMeyUoLqin/rmRAsY93cDNk82ZxY+gc3YDlcvF5qqQqcqiSSHBZkAtQqFTzx3taybP2MKjw==";
 	// 支付宝公钥
 	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
-	// 异步通知接口
-	public static final String NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/app_notify_url.jsp";
-	// public static final String NOTIFT_URL =
-	// "http://121.40.64.167:8080/ZFMerchant/app_notify_url.jsp";
-	// 维修异步通知接口
-	public static final String REPAIR_NOTIFT_URL = "http://121.40.84.2:8080/ZFMerchant/repair_app_notify_url.jsp";
-	// public static final String REPAIR_NOTIFT_URL =
-	// "http://121.40.64.167:8080/ZFMerchant/repair_app_notify_url.jsp";
-	// 支付成功跳转页面
-	public static final String RETURN_URL = "http://121.40.84.2:8080/ZFMerchant/return_url.jsp";
-	// public static final String RETURN_URL =
-	// "http://121.40.64.167:8080/ZFMerchant/return_url.jsp";
 
 	public static final String GOODPICLIST = PATHS + "good/getGoodImgUrlForPad";
 	public static int countShopCar = 0;// 新添加购物车的数量
@@ -201,22 +242,4 @@ public class Config {
 		new HttpRequest(context, callback).post(Config.GOODPICLIST, params);
 	}
 
-	// 获取银联交易流水号
-	// public static final String UNION_TN_URL =
-	// "http://www.ebank007.com/unionpay.do";
-	// public static final String UNION_TN_URL =
-	// "http://121.40.224.25:8080/unionpay.do";
-	public static final String UNION_TN_URL = "http://121.40.84.2:8080/ZFMerchant/unionpay.do";
-	// 支付成功回调修改订单状态
-	// public static final String UNION_SUCESS_URL =
-	// "http://www.ebank007.com/api/pay/alipayback";
-	// public static final String UNION_SUCESS_URL =
-	// "http://121.40.224.25:8080/api/pay/alipayback";
-	public static final String UNION_SUCESS_URL = "http://121.40.84.2:8080/ZFMerchant/api/pay/alipayback";
-
-	/*****************************************************************
-	 * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
-	 *****************************************************************/
-	public static final String UNION_MEDE = "01";
-	// public static final String UNION_MEDE = "00";
 }
