@@ -619,9 +619,9 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 			throws Exception {
 		File file = new File(path);
 		if (file.exists() && file.length() > 0) {
-			File fileImg = new File(localSelectPath);
+			//File fileImg = new File(localSelectPath);
 			RequestParams params = new RequestParams();
-			params.put("fileImg", fileImg);
+			params.put("fileImg", file);
 			MyApplication
 					.getInstance()
 					.getClient()
@@ -676,7 +676,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 													.getString("message");
 											Toast.makeText(
 													getApplicationContext(),
-													code, 1000).show();
+													"Í¼Æ¬ÉÏ´«Ê§°Ü", 1000).show();
 										}
 									} catch (Exception e) {
 										// TODO Auto-generated catch block

@@ -362,8 +362,8 @@ containing a value of this type.
         public static final int sy_bt_height=0x7f060034;
         public static final int sy_rl_margin=0x7f060033;
         public static final int textbig=0x7f060044;
-        public static final int textbig1=0x7f060043;
-        public static final int textbig2=0x7f060042;
+        public static final int textbig1=0x7f060042;
+        public static final int textbig2=0x7f060043;
         /**  文字大小 
  文字大小 
  文字大小 
