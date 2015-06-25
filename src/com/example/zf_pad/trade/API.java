@@ -824,7 +824,8 @@ public class API {
 	}
 
 	public static void noticeVideo(Context context, int terminalId) {
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("terminalId", terminalId);
 		new HttpRequest(context, null).post(Config.URL_NOTICE_VIDEO, params);
 	}
