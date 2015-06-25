@@ -43,6 +43,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
@@ -683,14 +684,23 @@ import com.loopj.android.http.RequestParams;
 
 	private void addGood() {
 
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customerId", MyApplication.NewUser.getId());
 		params.put("goodId", gfe.getId());
 		// paychannelId
 		params.put("paychannelId", paychannelId);
-		params.setUseJsonStreamer(true);
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		MyApplication.getInstance().getClient()
-		.post(Config.goodadd, params, new AsyncHttpResponseHandler() {
+		.post(getApplicationContext(),Config.goodadd, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(Config.goodadd, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -851,16 +861,24 @@ import com.loopj.android.http.RequestParams;
 
 	private void getdataByChanel(int pcid) {
 
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("pcid", pcid);
 		System.out.println("---Ö§¸¶Í¨µÀID--" + pcid);
-
-		params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		//params.setUseJsonStreamer(true);
 		MyApplication
 		.getInstance()
 		.getClient()
-		.post(Config.paychannel_info, params,
-				new AsyncHttpResponseHandler() {
+		.post(getApplicationContext(),Config.paychannel_info, null,entity,"application/json", new AsyncHttpResponseHandler(){
+//		.post(Config.paychannel_info, params,
+//				new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode,

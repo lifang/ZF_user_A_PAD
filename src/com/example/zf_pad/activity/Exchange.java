@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
 import com.example.zf_pad.MyApplication;
@@ -78,16 +84,23 @@ protected void onStart() {
 			CommonUtil.toastShort(getApplicationContext(), "Õ¯¬Á“Ï≥£");
 			return;
 		}
-	  RequestParams params = new RequestParams();
+	 // RequestParams params = new RequestParams();
+	 Map<String, Object> params = new HashMap<String, Object>();
 		Gson gson = new Gson();
 	
 			params.put("customer_id", customerId);
-		
-	  
-		params.setUseJsonStreamer(true);
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		System.out.println("---"+params.toString());
 	 MyApplication.getInstance().getClient()
-		.post(API.GET_SCORE, params,new AsyncHttpResponseHandler() {
+	 .post(getApplicationContext(),API.GET_SCORE, null,entity,"application/json", new AsyncHttpResponseHandler(){
+	//	.post(API.GET_SCORE, params,new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override

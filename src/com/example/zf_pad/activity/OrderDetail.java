@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.epalmpay.userPad.R;
 import com.example.zf_pad.BaseActivity;
 import com.example.zf_pad.Config;
@@ -391,14 +392,22 @@ public class OrderDetail extends BaseActivity implements OnClickListener {
 				@Override
 				public void onClick(final View arg0) {
 					ad.dismiss();
-					RequestParams params = new RequestParams();
+					//RequestParams params = new RequestParams();
+					Map<String, Object> params = new HashMap<String, Object>();
 					params.put("id", id);
 					 System.out.println("`getTag``"+id);
 					 
-					params.setUseJsonStreamer(true);
-
+					//params.setUseJsonStreamer(true);
+						JSONObject jsonParams = new JSONObject(params);
+						HttpEntity entity;
+						try {
+							entity = new StringEntity(jsonParams.toString(), "UTF-8");
+						} catch (UnsupportedEncodingException e) {
+							return;
+						}
 					MyApplication.getInstance().getClient()
-							.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
+					.post(getApplicationContext(),Config.ORDERCANL, null,entity,"application/json", new AsyncHttpResponseHandler(){
+						//	.post(Config.ORDERCANL, params, new AsyncHttpResponseHandler() {
 
 								@Override
 								public void onSuccess(int statusCode, Header[] headers,

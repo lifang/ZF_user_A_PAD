@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -82,10 +87,20 @@ public class PosPortActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void getData() {
-		RequestParams params = new RequestParams("city_id", MyApplication.getCITYID());
-		params.setUseJsonStreamer(true);
+		//RequestParams params = new RequestParams("city_id", MyApplication.getCITYID());
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("city_id", MyApplication.getCITYID());
+	//	params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		MyApplication.getInstance().getClient()
-				.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {
+		.post(getApplicationContext(),Config.POSPORT, null,entity,"application/json", new AsyncHttpResponseHandler(){
+				//.post(Config.POSPORT, params, new AsyncHttpResponseHandler() {
 					@Override
 					public void onStart() {
 

@@ -1,8 +1,14 @@
 package com.example.zf_pad.aadpter;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -247,13 +253,21 @@ public class ShopcarAdapter extends BaseAdapter {
 
 	public void del(int id,final int position) {
 		String url =  Config.SHOPDELETE;
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 
-		params.setUseJsonStreamer(true);
-
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		MyApplication.getInstance().getClient()
-		.post(url, params, new AsyncHttpResponseHandler() {
+		.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(url, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -331,13 +345,21 @@ public class ShopcarAdapter extends BaseAdapter {
 	public void changeContent(final int index,final int cont){
 
 		String url =  Config.Car_edit;
-		RequestParams params = new RequestParams();
+	//	RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", list.get(index).getId());
 		params.put("quantity", cont);
-		params.setUseJsonStreamer(true);
-
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		MyApplication.getInstance().getClient()
-		.post(url, params, new AsyncHttpResponseHandler() {
+		.post(context,url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(url, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,

@@ -1,6 +1,12 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,20 +66,31 @@ public class MymsgDetail extends BaseActivity {
 	}
 
 	private void getData() {
+		Map<String, Object> params;
 		if(type==null){
-			params = new RequestParams();
+		//	params = new RequestParams();
+			params = new HashMap<String, Object>();
 			params.put("customer_id", MyApplication.NewUser.getId());
 			params.put("id", id);
-			params.setUseJsonStreamer(true);
+			//params.setUseJsonStreamer(true);
 			url=Config.getMSGById;
 		}else{
-			params = new RequestParams();
+//			params = new RequestParams();
+			params = new HashMap<String, Object>();
 			params.put("id", id);
-			params.setUseJsonStreamer(true);
+			//params.setUseJsonStreamer(true);
 			url=Config.SYSMSGDT;	
 		}
-
-		MyApplication.getInstance().getClient().post(url, params, new AsyncHttpResponseHandler() {
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(url, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -129,11 +146,21 @@ public class MymsgDetail extends BaseActivity {
 	}
 
 	private void delOne() {
-		params = new RequestParams();
+		//params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("customer_id", MyApplication.NewUser.getId());
 		params.put("id", id);
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(Config.MSGEDLONE, params, new AsyncHttpResponseHandler() {
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		MyApplication.getInstance().getClient()
+		.post(getApplicationContext(),Config.MSGEDLONE, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(Config.MSGEDLONE, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,

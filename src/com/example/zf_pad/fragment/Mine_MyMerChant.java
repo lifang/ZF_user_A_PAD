@@ -1,10 +1,15 @@
 package com.example.zf_pad.fragment;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -150,14 +155,24 @@ public class Mine_MyMerChant extends Fragment implements IXListViewListener{
 		
 		ids[0]=(int)datasho.get(ShopAdapter.pp).getId();
 		Gson gson = new Gson();
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		try {
 			params.put("ids", new JSONArray(gson.toJson(ids)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		params.setUseJsonStreamer(true);
-		MyApplication.getInstance().getClient().post(API.DELECT_MERCHANTLIST, params, new AsyncHttpResponseHandler() {
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
+		MyApplication.getInstance().getClient()
+		.post(getActivity(),API.DELECT_MERCHANTLIST, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(API.DELECT_MERCHANTLIST, params, new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override

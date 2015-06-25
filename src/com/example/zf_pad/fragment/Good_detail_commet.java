@@ -1,9 +1,14 @@
 package com.example.zf_pad.fragment;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -165,15 +170,23 @@ public class Good_detail_commet extends Fragment implements  IXListViewListener{
  
 	private void getData() {
 		String url = Config.goodcomment;
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("goodId", Config.goodId);
 		params.put("page", page);
 	 	params.put("rows", rows);
 	 	System.out.println("---"+page);
-		params.setUseJsonStreamer(true);
-
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		MyApplication.getInstance().getClient()
-				.post(url, params, new AsyncHttpResponseHandler() {
+		.post(getActivity(),url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+				//.post(url, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

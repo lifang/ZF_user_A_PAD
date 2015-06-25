@@ -4,7 +4,13 @@ import static com.example.zf_pad.fragment.Constants.ApplyIntent.REQUEST_CHOOSE_C
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_CITY;
 import static com.example.zf_pad.fragment.Constants.CityIntent.SELECTED_PROVINCE;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -298,12 +304,20 @@ public class FindPass extends BaseActivity implements OnClickListener{
 			AsyncHttpClient aaa= new AsyncHttpClient();
 		// TODO Auto-generated method stub
 		String url = Config.FINDPASSGETCODE;
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("codeNumber", email);
-		params.setUseJsonStreamer(true);
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		System.out.println("-codeNumber---"+email);
-		
-		aaa.post(url, params, new AsyncHttpResponseHandler() {
+		aaa.post(getApplicationContext(),url, null,entity,"application/json", new AsyncHttpResponseHandler(){
+	//	aaa.post(url, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

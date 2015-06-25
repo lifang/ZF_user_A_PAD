@@ -1,11 +1,16 @@
 package com.example.zf_pad.fragment;
 
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -790,13 +795,22 @@ public class Mine_MyInfo_nofrag extends Fragment implements OnTabOnclik,OnClickL
 			CommonUtil.toastShort(mActivity, "Õ¯¬Á“Ï≥£");
 			return;
 		}
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		Gson gson = new Gson();
 		params.put("customer_id", customerId);
-		params.setUseJsonStreamer(true);
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		System.out.println("---"+params.toString());
 		MyApplication.getInstance().getClient()
-		.post(API.GET_SCORE, params,new AsyncHttpResponseHandler() {
+		.post(getActivity(),API.GET_SCORE, null,entity,"application/json", new AsyncHttpResponseHandler(){
+		//.post(API.GET_SCORE, params,new AsyncHttpResponseHandler() {
 			private Dialog loadingDialog;
 
 			@Override

@@ -1,10 +1,15 @@
 package com.example.zf_pad.fragment;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,12 +101,22 @@ public class Mine_Plan extends Fragment implements OnClickListener{
 				CommonUtil.toastShort(getActivity(), "手机号码不可为空");
 				return;
 			}
-			RequestParams params = new RequestParams();
+			//RequestParams params = new RequestParams();
+			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("id", id);
 			params.put("phone", et_process.getText().toString());
-			params.setUseJsonStreamer(true);
+			//params.setUseJsonStreamer(true);
+			JSONObject jsonParams = new JSONObject(params);
+			HttpEntity entity;
+			try {
+				entity = new StringEntity(jsonParams.toString(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				return;
+			}
 		
-			MyApplication.getInstance().getClient().post(API.APPLY_PROGRESS, params, new AsyncHttpResponseHandler() {
+			MyApplication.getInstance().getClient()
+			.post(getActivity(),API.APPLY_PROGRESS, null,entity,"application/json", new AsyncHttpResponseHandler(){
+			//.post(API.APPLY_PROGRESS, params, new AsyncHttpResponseHandler() {
 				private Dialog loadingDialog;
 
 				@Override

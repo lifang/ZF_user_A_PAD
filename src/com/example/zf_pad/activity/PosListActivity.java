@@ -1,9 +1,14 @@
 package com.example.zf_pad.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -359,7 +364,8 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 	 
 	private void getData() {
 		Gson gson = new Gson();
-		RequestParams params = new RequestParams();
+		//RequestParams params = new RequestParams();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("city_id",MyApplication.getCITYID());
 		
 		params.put("orderType", orderType);
@@ -387,10 +393,17 @@ public class PosListActivity extends BaseActivity implements OnClickListener,IXL
 			e1.printStackTrace();
 		}
 		System.out.println("keys```"+keys+orderType);
-		params.setUseJsonStreamer(true);
-
+		//params.setUseJsonStreamer(true);
+		JSONObject jsonParams = new JSONObject(params);
+		HttpEntity entity;
+		try {
+			entity = new StringEntity(jsonParams.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return;
+		}
 		new AsyncHttpClient()
-				.post(Config.POSLIST, params, new AsyncHttpResponseHandler() {
+		.post(getApplicationContext(),Config.POSLIST, null,entity,"application/json", new AsyncHttpResponseHandler(){
+			//	.post(Config.POSLIST, params, new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,

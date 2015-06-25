@@ -8,6 +8,7 @@ import static com.example.zf_pad.fragment.Constants.AfterSaleType.RETURN;
 import static com.example.zf_pad.fragment.Constants.AfterSaleType.UPDATE;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -780,8 +781,13 @@ public class API {
 
 	public static void updateFile(Context context, File fileImg,
 			HttpCallback callback) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("fileImg", fileImg);
+		RequestParams params = new RequestParams();
+	//	Map<String, Object> params = new HashMap<String, Object>();
+		try {
+			params.put("fileImg", fileImg);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		new HttpRequest(context, callback).post(UPDATE_FILE, params);
 	}
 
