@@ -692,7 +692,7 @@ public class CreatMerchant extends BaseActivity implements OnClickListener {
 									System.out.println("-onFailure---");
 									Log.e("print", "-onFailure---" + error);
 									Toast.makeText(CreatMerchant.this,
-											String.valueOf(error), 1000).show();
+											"Í¼Æ¬ÉÏ´«Ê§°Ü", 1000).show();
 
 								}
 
