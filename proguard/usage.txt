@@ -529,7 +529,6 @@ com.example.zf_pad.MyApplication:
     108:108:public static java.lang.String getToken()
     111:112:public static void setToken(java.lang.String)
     128:136:public void exit()
-    292:292:public boolean isHasOrderPaid()
     305:306:public void setHistoryList(java.util.ArrayList)
 com.example.zf_pad.Posport:
     3:3:public Posport()
@@ -695,7 +694,7 @@ com.example.zf_pad.activity.MainActivity:
 com.example.zf_pad.activity.MyWebViewClient
 com.example.zf_pad.activity.PosListActivity:
     private android.widget.TextView next_sure
-    362:434:private void getData()
+    361:433:private void getData()
 com.example.zf_pad.activity.PosListActivity$5
 com.example.zf_pad.activity.PosListActivity$5$1
 com.example.zf_pad.activity.PosPortActivity:
@@ -822,7 +821,7 @@ com.example.zf_pad.fragment.M_MianFragment:
     public static final int REQUEST_CITY_WHEEL
     private static final int time
 com.example.zf_pad.fragment.M_MianFragment$MyAdapter:
-    370:370:public int getIndex()
+    441:441:public int getIndex()
 com.example.zf_pad.fragment.M_my:
     private com.example.zf_pad.fragment.Mine_chgpaw m_chgpaw
     private com.example.zf_pad.fragment.Mine_Address m_address
@@ -902,7 +901,7 @@ com.example.zf_pad.util.DownloadUtils:
     private static final int CONNECT_TIMEOUT
     private static final int DATA_TIMEOUT
     private static final int DATA_BUFFER
-    20:20:public DownloadUtils()
+    22:22:public DownloadUtils()
 com.example.zf_pad.util.ImageCacheUtil:
     public static final java.lang.String TAG_CACHE
     22:22:public ImageCacheUtil()
