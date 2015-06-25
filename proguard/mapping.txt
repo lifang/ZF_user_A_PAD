@@ -11206,7 +11206,8 @@ com.example.zf_pad.MyApplication -> com.example.zf_pad.MyApplication:
     void logMsg(java.lang.String) -> a
     void hideSoftKeyboard(android.app.Activity) -> b
     com.nostra13.universalimageloader.core.DisplayImageOptions getDisplayOption() -> e
-    void setHasOrderPaid$1385ff() -> f
+    boolean isHasOrderPaid() -> f
+    void setHasOrderPaid(boolean) -> a
     java.util.ArrayList getHistoryList() -> g
     void clearHistoryForPay() -> h
     java.util.List access$0(com.example.zf_pad.MyApplication) -> a
@@ -14071,7 +14072,7 @@ com.example.zf_pad.entity.GoodinfoEntity -> com.example.zf_pad.entity.GoodinfoEn
     java.lang.String lease_agreement -> lease_agreement
     int purchase_price -> purchase_price
     java.lang.String encrypt_card_way -> encrypt_card_way
-    int total_score -> total_score
+    java.lang.String total_score -> total_score
     java.lang.String sign_order_way -> sign_order_way
     int retail_price -> retail_price
     java.lang.String battery_info -> battery_info
@@ -14099,8 +14100,8 @@ com.example.zf_pad.entity.GoodinfoEntity -> com.example.zf_pad.entity.GoodinfoEn
     void setLease_agreement(java.lang.String) -> setLease_agreement
     java.lang.String getEncrypt_card_way() -> getEncrypt_card_way
     void setEncrypt_card_way(java.lang.String) -> setEncrypt_card_way
-    int getTotal_score() -> getTotal_score
-    void setTotal_score(int) -> setTotal_score
+    java.lang.String getTotal_score() -> getTotal_score
+    void setTotal_score(java.lang.String) -> setTotal_score
     java.lang.String getSign_order_way() -> getSign_order_way
     void setSign_order_way(java.lang.String) -> setSign_order_way
     int getRetail_price() -> getRetail_price
@@ -14401,7 +14402,7 @@ com.example.zf_pad.entity.PosEntity -> com.example.zf_pad.entity.PosEntity:
     int volume_number -> volume_number
     int id -> id
     java.lang.String good_brand -> good_brand
-    int total_score -> total_score
+    java.lang.String total_score -> total_score
     int retail_price -> retail_price
     java.lang.String pay_channe -> pay_channe
     java.lang.String Title -> Title
@@ -14417,8 +14418,8 @@ com.example.zf_pad.entity.PosEntity -> com.example.zf_pad.entity.PosEntity:
     void setId(int) -> setId
     java.lang.String getGood_brand() -> getGood_brand
     void setGood_brand(java.lang.String) -> setGood_brand
-    int getTotal_score() -> getTotal_score
-    void setTotal_score(int) -> setTotal_score
+    java.lang.String getTotal_score() -> getTotal_score
+    void setTotal_score(java.lang.String) -> setTotal_score
     int getRetail_price() -> getRetail_price
     void setRetail_price(int) -> setRetail_price
     java.lang.String getPay_channe() -> getPay_channe
@@ -14960,6 +14961,8 @@ com.example.zf_pad.fragment.M_MianFragment -> com.example.zf_pad.fragment.M_Mian
     android.widget.ImageView[] access$13(com.example.zf_pad.fragment.M_MianFragment) -> j
     void access$14(com.example.zf_pad.fragment.M_MianFragment,java.util.ArrayList) -> a
     android.os.Handler access$15(com.example.zf_pad.fragment.M_MianFragment) -> k
+    void access$16(com.example.zf_pad.fragment.M_MianFragment,java.lang.String) -> a
+    void access$17(com.example.zf_pad.fragment.M_MianFragment,java.lang.String) -> b
 com.example.zf_pad.fragment.M_MianFragment$1 -> com.example.zf_pad.fragment.j:
     com.example.zf_pad.fragment.M_MianFragment this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -14971,8 +14974,34 @@ com.example.zf_pad.fragment.M_MianFragment$2$1 -> com.example.zf_pad.fragment.l:
     com.example.zf_pad.fragment.M_MianFragment$2 this$1 -> a
 com.example.zf_pad.fragment.M_MianFragment$3 -> com.example.zf_pad.fragment.m:
     com.example.zf_pad.fragment.M_MianFragment this$0 -> a
+    void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
+    void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
+com.example.zf_pad.fragment.M_MianFragment$3$1 -> com.example.zf_pad.fragment.n:
+    com.example.zf_pad.fragment.M_MianFragment$3 this$1 -> a
+com.example.zf_pad.fragment.M_MianFragment$4 -> com.example.zf_pad.fragment.o:
+    com.example.zf_pad.fragment.M_MianFragment this$0 -> a
     void run() -> run
-com.example.zf_pad.fragment.M_MianFragment$MyAdapter -> com.example.zf_pad.fragment.n:
+com.example.zf_pad.fragment.M_MianFragment$5 -> com.example.zf_pad.fragment.p:
+    com.example.zf_pad.fragment.M_MianFragment this$0 -> a
+    com.example.zf_pad.trade.common.CustomDialog val$dialog -> b
+    void onClick(android.view.View) -> onClick
+com.example.zf_pad.fragment.M_MianFragment$6 -> com.example.zf_pad.fragment.q:
+    com.example.zf_pad.fragment.M_MianFragment this$0 -> a
+    com.example.zf_pad.trade.common.CustomDialog val$dialog -> b
+    java.lang.String val$url -> c
+    void onClick(android.view.View) -> onClick
+com.example.zf_pad.fragment.M_MianFragment$7 -> com.example.zf_pad.fragment.r:
+    com.example.zf_pad.fragment.M_MianFragment this$0 -> a
+    java.lang.String val$url -> b
+    java.io.File val$file -> c
+    com.example.zf_pad.fragment.M_MianFragment$DownloadListener val$listener -> d
+    void run() -> run
+com.example.zf_pad.fragment.M_MianFragment$DownloadListener -> com.example.zf_pad.fragment.s:
+    android.content.Context context -> a
+    android.app.ProgressDialog pd -> b
+    void downloading(int) -> a
+    void downloaded(java.io.File) -> a
+com.example.zf_pad.fragment.M_MianFragment$MyAdapter -> com.example.zf_pad.fragment.t:
     java.util.List mList -> c
     int index -> d
     com.nostra13.universalimageloader.core.DisplayImageOptions options -> a
@@ -14982,11 +15011,11 @@ com.example.zf_pad.fragment.M_MianFragment$MyAdapter -> com.example.zf_pad.fragm
     boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
     java.lang.Object instantiateItem(android.view.ViewGroup,int) -> instantiateItem
     com.example.zf_pad.fragment.M_MianFragment access$0(com.example.zf_pad.fragment.M_MianFragment$MyAdapter) -> a
-com.example.zf_pad.fragment.M_MianFragment$MyAdapter$1 -> com.example.zf_pad.fragment.o:
+com.example.zf_pad.fragment.M_MianFragment$MyAdapter$1 -> com.example.zf_pad.fragment.u:
     com.example.zf_pad.fragment.M_MianFragment$MyAdapter this$1 -> a
     int val$position -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.M_MianFragment$MyListener -> com.example.zf_pad.fragment.p:
+com.example.zf_pad.fragment.M_MianFragment$MyListener -> com.example.zf_pad.fragment.v:
     com.example.zf_pad.fragment.M_MianFragment this$0 -> a
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
     void onPageScrolled(int,float,int) -> onPageScrolled
@@ -15056,16 +15085,16 @@ com.example.zf_pad.fragment.M_shopcar -> com.example.zf_pad.fragment.M_shopcar:
     com.example.zf_pad.util.XListView access$7(com.example.zf_pad.fragment.M_shopcar) -> e
     com.example.zf_pad.aadpter.ShopcarAdapter access$8(com.example.zf_pad.fragment.M_shopcar) -> f
     android.widget.LinearLayout access$9(com.example.zf_pad.fragment.M_shopcar) -> g
-com.example.zf_pad.fragment.M_shopcar$1 -> com.example.zf_pad.fragment.q:
+com.example.zf_pad.fragment.M_shopcar$1 -> com.example.zf_pad.fragment.w:
     com.example.zf_pad.fragment.M_shopcar this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.M_shopcar$2 -> com.example.zf_pad.fragment.r:
+com.example.zf_pad.fragment.M_shopcar$2 -> com.example.zf_pad.fragment.x:
     com.example.zf_pad.fragment.M_shopcar this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.M_shopcar$3 -> com.example.zf_pad.fragment.s:
+com.example.zf_pad.fragment.M_shopcar$3 -> com.example.zf_pad.fragment.y:
     com.example.zf_pad.fragment.M_shopcar this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_pad.fragment.M_shopcar$4 -> com.example.zf_pad.fragment.t:
+com.example.zf_pad.fragment.M_shopcar$4 -> com.example.zf_pad.fragment.z:
     com.example.zf_pad.fragment.M_shopcar this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
@@ -15113,31 +15142,31 @@ com.example.zf_pad.fragment.M_wdxx -> com.example.zf_pad.fragment.M_wdxx:
     void access$10(com.example.zf_pad.fragment.M_wdxx,java.util.List) -> a
     android.os.Handler access$11(com.example.zf_pad.fragment.M_wdxx) -> j
     void access$12$637557c1(com.example.zf_pad.fragment.M_wdxx) -> k
-com.example.zf_pad.fragment.M_wdxx$1 -> com.example.zf_pad.fragment.u:
+com.example.zf_pad.fragment.M_wdxx$1 -> com.example.zf_pad.fragment.aa:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.M_wdxx$2 -> com.example.zf_pad.fragment.v:
+com.example.zf_pad.fragment.M_wdxx$2 -> com.example.zf_pad.fragment.ab:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.example.zf_pad.fragment.M_wdxx$3 -> com.example.zf_pad.fragment.w:
+com.example.zf_pad.fragment.M_wdxx$3 -> com.example.zf_pad.fragment.ac:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_pad.fragment.M_wdxx$4 -> com.example.zf_pad.fragment.x:
+com.example.zf_pad.fragment.M_wdxx$4 -> com.example.zf_pad.fragment.ad:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     com.example.zf_pad.util.AlertDialog val$ad -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.M_wdxx$5 -> com.example.zf_pad.fragment.y:
+com.example.zf_pad.fragment.M_wdxx$5 -> com.example.zf_pad.fragment.ae:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     com.example.zf_pad.util.AlertDialog val$ad -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.M_wdxx$6 -> com.example.zf_pad.fragment.z:
+com.example.zf_pad.fragment.M_wdxx$6 -> com.example.zf_pad.fragment.af:
     com.example.zf_pad.fragment.M_wdxx this$0 -> a
     int val$type -> b
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.M_wdxx$6$1 -> com.example.zf_pad.fragment.aa:
+com.example.zf_pad.fragment.M_wdxx$6$1 -> com.example.zf_pad.fragment.ag:
     com.example.zf_pad.fragment.M_wdxx$6 this$1 -> a
 com.example.zf_pad.fragment.MianFragment -> com.example.zf_pad.fragment.MianFragment:
     android.view.View view -> a
@@ -15168,10 +15197,10 @@ com.example.zf_pad.fragment.Mine_Address -> com.example.zf_pad.fragment.Mine_Add
     com.example.zf_pad.util.ScrollViewWithListView access$1(com.example.zf_pad.fragment.Mine_Address) -> b
     android.widget.BaseAdapter access$2(com.example.zf_pad.fragment.Mine_Address) -> c
     int access$3(com.example.zf_pad.fragment.Mine_Address) -> d
-com.example.zf_pad.fragment.Mine_Address$1 -> com.example.zf_pad.fragment.ab:
+com.example.zf_pad.fragment.Mine_Address$1 -> com.example.zf_pad.fragment.ah:
     com.example.zf_pad.fragment.Mine_Address this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_Address$2 -> com.example.zf_pad.fragment.ac:
+com.example.zf_pad.fragment.Mine_Address$2 -> com.example.zf_pad.fragment.ai:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_Address this$0 -> a
     void onStart() -> onStart
@@ -15216,23 +15245,23 @@ com.example.zf_pad.fragment.Mine_Dd -> com.example.zf_pad.fragment.Mine_Dd:
     android.widget.LinearLayout access$4(com.example.zf_pad.fragment.Mine_Dd) -> e
     android.app.Activity access$5(com.example.zf_pad.fragment.Mine_Dd) -> f
     android.os.Handler access$6(com.example.zf_pad.fragment.Mine_Dd) -> g
-com.example.zf_pad.fragment.Mine_Dd$1 -> com.example.zf_pad.fragment.ad:
+com.example.zf_pad.fragment.Mine_Dd$1 -> com.example.zf_pad.fragment.aj:
     com.example.zf_pad.fragment.Mine_Dd this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_Dd$2 -> com.example.zf_pad.fragment.ae:
+com.example.zf_pad.fragment.Mine_Dd$2 -> com.example.zf_pad.fragment.ak:
     com.example.zf_pad.fragment.Mine_Dd this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_Dd$3 -> com.example.zf_pad.fragment.af:
+com.example.zf_pad.fragment.Mine_Dd$3 -> com.example.zf_pad.fragment.al:
     com.example.zf_pad.fragment.Mine_Dd this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.zf_pad.fragment.Mine_Dd$4 -> com.example.zf_pad.fragment.ag:
+com.example.zf_pad.fragment.Mine_Dd$4 -> com.example.zf_pad.fragment.am:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_Dd this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_Dd$4$1 -> com.example.zf_pad.fragment.ah:
+com.example.zf_pad.fragment.Mine_Dd$4$1 -> com.example.zf_pad.fragment.an:
     com.example.zf_pad.fragment.Mine_Dd$4 this$1 -> a
 com.example.zf_pad.fragment.Mine_MyInfo_nofrag -> com.example.zf_pad.fragment.Mine_MyInfo_nofrag:
     android.view.View view -> j
@@ -15337,39 +15366,39 @@ com.example.zf_pad.fragment.Mine_MyInfo_nofrag -> com.example.zf_pad.fragment.Mi
     void access$24(com.example.zf_pad.fragment.Mine_MyInfo_nofrag,int) -> c
     android.widget.TextView access$25(com.example.zf_pad.fragment.Mine_MyInfo_nofrag) -> v
     int access$26(com.example.zf_pad.fragment.Mine_MyInfo_nofrag) -> w
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$1 -> com.example.zf_pad.fragment.ai:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$1 -> com.example.zf_pad.fragment.ao:
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$2 -> com.example.zf_pad.fragment.aj:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$2 -> com.example.zf_pad.fragment.ap:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$3 -> com.example.zf_pad.fragment.ak:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$3 -> com.example.zf_pad.fragment.aq:
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$4 -> com.example.zf_pad.fragment.al:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$4 -> com.example.zf_pad.fragment.ar:
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$5 -> com.example.zf_pad.fragment.am:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$5 -> com.example.zf_pad.fragment.as:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$6 -> com.example.zf_pad.fragment.an:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$6 -> com.example.zf_pad.fragment.at:
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$7 -> com.example.zf_pad.fragment.ao:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$7 -> com.example.zf_pad.fragment.au:
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_MyInfo_nofrag$8 -> com.example.zf_pad.fragment.ap:
+com.example.zf_pad.fragment.Mine_MyInfo_nofrag$8 -> com.example.zf_pad.fragment.av:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_MyInfo_nofrag this$0 -> a
     void onStart() -> onStart
@@ -15411,26 +15440,26 @@ com.example.zf_pad.fragment.Mine_MyMerChant -> com.example.zf_pad.fragment.Mine_
     com.example.zf_pad.util.XListView access$6(com.example.zf_pad.fragment.Mine_MyMerChant) -> f
     int access$7(com.example.zf_pad.fragment.Mine_MyMerChant) -> g
     int access$8(com.example.zf_pad.fragment.Mine_MyMerChant) -> h
-com.example.zf_pad.fragment.Mine_MyMerChant$1 -> com.example.zf_pad.fragment.aq:
+com.example.zf_pad.fragment.Mine_MyMerChant$1 -> com.example.zf_pad.fragment.aw:
     com.example.zf_pad.fragment.Mine_MyMerChant this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_MyMerChant$2 -> com.example.zf_pad.fragment.ar:
+com.example.zf_pad.fragment.Mine_MyMerChant$2 -> com.example.zf_pad.fragment.ax:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_MyMerChant this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_MyMerChant$3 -> com.example.zf_pad.fragment.as:
+com.example.zf_pad.fragment.Mine_MyMerChant$3 -> com.example.zf_pad.fragment.ay:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_MyMerChant this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_MyMerChant$3$1 -> com.example.zf_pad.fragment.at:
+com.example.zf_pad.fragment.Mine_MyMerChant$3$1 -> com.example.zf_pad.fragment.az:
     com.example.zf_pad.fragment.Mine_MyMerChant$3 this$1 -> a
-com.example.zf_pad.fragment.Mine_MyMerChant$4 -> com.example.zf_pad.fragment.au:
+com.example.zf_pad.fragment.Mine_MyMerChant$4 -> com.example.zf_pad.fragment.ba:
     com.example.zf_pad.fragment.Mine_MyMerChant this$0 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_pad.fragment.Mine_Plan -> com.example.zf_pad.fragment.Mine_Plan:
@@ -15449,10 +15478,10 @@ com.example.zf_pad.fragment.Mine_Plan -> com.example.zf_pad.fragment.Mine_Plan:
     android.widget.TextView access$1(com.example.zf_pad.fragment.Mine_Plan) -> b
     android.widget.ListView access$2(com.example.zf_pad.fragment.Mine_Plan) -> c
     android.widget.BaseAdapter access$3(com.example.zf_pad.fragment.Mine_Plan) -> d
-com.example.zf_pad.fragment.Mine_Plan$1 -> com.example.zf_pad.fragment.av:
+com.example.zf_pad.fragment.Mine_Plan$1 -> com.example.zf_pad.fragment.bb:
     com.example.zf_pad.fragment.Mine_Plan this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.example.zf_pad.fragment.Mine_Plan$2 -> com.example.zf_pad.fragment.aw:
+com.example.zf_pad.fragment.Mine_Plan$2 -> com.example.zf_pad.fragment.bc:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_Plan this$0 -> a
     void onStart() -> onStart
@@ -15502,40 +15531,40 @@ com.example.zf_pad.fragment.Mine_Shjl -> com.example.zf_pad.fragment.Mine_Shjl:
     void access$8(com.example.zf_pad.fragment.Mine_Shjl,int) -> b
     com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter access$9(com.example.zf_pad.fragment.Mine_Shjl) -> h
     void access$10(com.example.zf_pad.fragment.Mine_Shjl) -> i
-com.example.zf_pad.fragment.Mine_Shjl$1 -> com.example.zf_pad.fragment.ax:
+com.example.zf_pad.fragment.Mine_Shjl$1 -> com.example.zf_pad.fragment.bd:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     void preLoad() -> preLoad
     void postLoad() -> postLoad
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
     void onSuccess(java.lang.Object) -> onSuccess
-com.example.zf_pad.fragment.Mine_Shjl$1$1 -> com.example.zf_pad.fragment.ay:
+com.example.zf_pad.fragment.Mine_Shjl$1$1 -> com.example.zf_pad.fragment.be:
     com.example.zf_pad.fragment.Mine_Shjl$1 this$1 -> a
-com.example.zf_pad.fragment.Mine_Shjl$2 -> com.example.zf_pad.fragment.az:
+com.example.zf_pad.fragment.Mine_Shjl$2 -> com.example.zf_pad.fragment.bf:
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_pad.fragment.Mine_Shjl access$0(com.example.zf_pad.fragment.Mine_Shjl$2) -> a
-com.example.zf_pad.fragment.Mine_Shjl$2$1 -> com.example.zf_pad.fragment.ba:
+com.example.zf_pad.fragment.Mine_Shjl$2$1 -> com.example.zf_pad.fragment.bg:
     com.example.zf_pad.fragment.Mine_Shjl$2 this$1 -> a
     com.example.zf_pad.trade.entity.AfterSaleRecord val$record -> b
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_pad.fragment.Mine_Shjl$3 -> com.example.zf_pad.fragment.bb:
+com.example.zf_pad.fragment.Mine_Shjl$3 -> com.example.zf_pad.fragment.bh:
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.Mine_Shjl$4 -> com.example.zf_pad.fragment.bc:
+com.example.zf_pad.fragment.Mine_Shjl$4 -> com.example.zf_pad.fragment.bi:
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.Mine_Shjl$5 -> com.example.zf_pad.fragment.bd:
+com.example.zf_pad.fragment.Mine_Shjl$5 -> com.example.zf_pad.fragment.bj:
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     void onClick(android.view.View) -> onClick
     com.example.zf_pad.fragment.Mine_Shjl access$0(com.example.zf_pad.fragment.Mine_Shjl$5) -> a
-com.example.zf_pad.fragment.Mine_Shjl$5$1 -> com.example.zf_pad.fragment.be:
+com.example.zf_pad.fragment.Mine_Shjl$5$1 -> com.example.zf_pad.fragment.bk:
     com.example.zf_pad.fragment.Mine_Shjl$5 this$1 -> a
     com.example.zf_pad.trade.entity.AfterSaleRecord val$record -> b
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
-com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter -> com.example.zf_pad.fragment.bf:
+com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter -> com.example.zf_pad.fragment.bl:
     com.example.zf_pad.fragment.Mine_Shjl this$0 -> a
     int getCount() -> getCount
     com.example.zf_pad.trade.entity.AfterSaleRecord getItem(int) -> a
@@ -15543,11 +15572,11 @@ com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter -> com.example.zf_pad.fr
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     java.lang.Object getItem(int) -> getItem
     com.example.zf_pad.fragment.Mine_Shjl access$1(com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter) -> a
-com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter$1 -> com.example.zf_pad.fragment.bg:
+com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter$1 -> com.example.zf_pad.fragment.bm:
     com.example.zf_pad.fragment.Mine_Shjl$RecordListAdapter this$1 -> a
     com.example.zf_pad.trade.entity.AfterSaleRecord val$data -> b
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.Mine_Shjl$ViewHolder -> com.example.zf_pad.fragment.bh:
+com.example.zf_pad.fragment.Mine_Shjl$ViewHolder -> com.example.zf_pad.fragment.bn:
     android.widget.TextView tvNumber -> a
     android.widget.TextView tvTime -> b
     android.widget.TextView tvTerminal -> c
@@ -15592,17 +15621,17 @@ com.example.zf_pad.fragment.Mine_baseinfo -> com.example.zf_pad.fragment.Mine_ba
     android.widget.EditText access$4(com.example.zf_pad.fragment.Mine_baseinfo) -> e
     android.app.Activity access$5(com.example.zf_pad.fragment.Mine_baseinfo) -> f
     void access$6(com.example.zf_pad.fragment.Mine_baseinfo,org.json.JSONObject) -> a
-com.example.zf_pad.fragment.Mine_baseinfo$1 -> com.example.zf_pad.fragment.bi:
+com.example.zf_pad.fragment.Mine_baseinfo$1 -> com.example.zf_pad.fragment.bo:
     com.example.zf_pad.fragment.Mine_baseinfo this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_baseinfo$2 -> com.example.zf_pad.fragment.bj:
+com.example.zf_pad.fragment.Mine_baseinfo$2 -> com.example.zf_pad.fragment.bp:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_baseinfo this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_baseinfo$3 -> com.example.zf_pad.fragment.bk:
+com.example.zf_pad.fragment.Mine_baseinfo$3 -> com.example.zf_pad.fragment.bq:
     com.example.zf_pad.fragment.Mine_baseinfo this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -15617,10 +15646,10 @@ com.example.zf_pad.fragment.Mine_chgpaw -> com.example.zf_pad.fragment.Mine_chgp
     void onStart() -> onStart
     void changepaw() -> a
     boolean access$0(com.example.zf_pad.fragment.Mine_chgpaw) -> a
-com.example.zf_pad.fragment.Mine_chgpaw$1 -> com.example.zf_pad.fragment.bl:
+com.example.zf_pad.fragment.Mine_chgpaw$1 -> com.example.zf_pad.fragment.br:
     com.example.zf_pad.fragment.Mine_chgpaw this$0 -> a
     void onClick(android.view.View) -> onClick
-com.example.zf_pad.fragment.Mine_chgpaw$2 -> com.example.zf_pad.fragment.bm:
+com.example.zf_pad.fragment.Mine_chgpaw$2 -> com.example.zf_pad.fragment.bs:
     com.example.zf_pad.fragment.Mine_chgpaw this$0 -> a
     void onSuccess(java.lang.Object) -> onSuccess
     com.google.gson.reflect.TypeToken getTypeToken() -> getTypeToken
@@ -15664,21 +15693,21 @@ com.example.zf_pad.fragment.Mine_score -> com.example.zf_pad.fragment.Mine_score
     void access$13(com.example.zf_pad.fragment.Mine_score,int) -> c
     android.widget.TextView access$14(com.example.zf_pad.fragment.Mine_score) -> l
     int access$15(com.example.zf_pad.fragment.Mine_score) -> m
-com.example.zf_pad.fragment.Mine_score$1 -> com.example.zf_pad.fragment.bn:
+com.example.zf_pad.fragment.Mine_score$1 -> com.example.zf_pad.fragment.bt:
     com.example.zf_pad.fragment.Mine_score this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.example.zf_pad.fragment.Mine_score$2 -> com.example.zf_pad.fragment.bo:
+com.example.zf_pad.fragment.Mine_score$2 -> com.example.zf_pad.fragment.bu:
     com.example.zf_pad.fragment.Mine_score this$0 -> a
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_score$3 -> com.example.zf_pad.fragment.bp:
+com.example.zf_pad.fragment.Mine_score$3 -> com.example.zf_pad.fragment.bv:
     android.app.Dialog loadingDialog -> b
     com.example.zf_pad.fragment.Mine_score this$0 -> a
     void onStart() -> onStart
     void onFinish() -> onFinish
     void onSuccess(int,org.apache.http.Header[],byte[]) -> onSuccess
     void onFailure(int,org.apache.http.Header[],byte[],java.lang.Throwable) -> onFailure
-com.example.zf_pad.fragment.Mine_score$4 -> com.example.zf_pad.fragment.bq:
+com.example.zf_pad.fragment.Mine_score$4 -> com.example.zf_pad.fragment.bw:
     com.example.zf_pad.fragment.Mine_score this$0 -> a
     void onClick(android.view.View) -> onClick
 com.example.zf_pad.popwindow.FactoryPopWindow -> com.example.zf_pad.c.a:
@@ -16027,15 +16056,17 @@ com.example.zf_pad.trade.AfterSalePayActivity -> com.example.zf_pad.trade.AfterS
     android.widget.TextView tv_pay -> b
     android.widget.LinearLayout titleback_linear_back -> c
     android.widget.LinearLayout ll_request -> d
-    java.lang.String orderId -> e
-    java.lang.String outTradeNo -> f
-    java.lang.String subject -> g
-    java.lang.String body -> h
-    java.lang.String price -> i
-    java.lang.String type -> j
-    int mRecordType -> k
+    android.widget.LinearLayout ll_sh -> e
+    java.lang.String orderId -> f
+    java.lang.String outTradeNo -> g
+    java.lang.String subject -> h
+    java.lang.String body -> i
+    java.lang.String price -> j
+    java.lang.String type -> k
+    java.lang.String unionprice -> l
+    int mRecordType -> m
     boolean isPay -> isPay
-    android.os.Handler handler -> l
+    android.os.Handler handler -> n
     void onCreate(android.os.Bundle) -> onCreate
     void onClick(android.view.View) -> onClick
     void dialogIntent() -> a
@@ -16052,7 +16083,8 @@ com.example.zf_pad.trade.AfterSalePayActivity -> com.example.zf_pad.trade.AfterS
     void access$6(com.example.zf_pad.trade.AfterSalePayActivity,java.lang.String) -> b
     void access$7(com.example.zf_pad.trade.AfterSalePayActivity,java.lang.String) -> c
     void access$8(com.example.zf_pad.trade.AfterSalePayActivity,java.lang.String) -> d
-    android.os.Handler access$9(com.example.zf_pad.trade.AfterSalePayActivity) -> f
+    void access$9(com.example.zf_pad.trade.AfterSalePayActivity,java.lang.String) -> e
+    android.os.Handler access$10(com.example.zf_pad.trade.AfterSalePayActivity) -> f
 com.example.zf_pad.trade.AfterSalePayActivity$1 -> com.example.zf_pad.trade.ab:
     com.example.zf_pad.trade.AfterSalePayActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
@@ -16854,6 +16886,20 @@ com.example.zf_pad.trade.common.CommonUtil$OnDateSetListener -> com.example.zf_p
 com.example.zf_pad.trade.common.CommonUtil$OnUploadListener -> com.example.zf_pad.trade.common.CommonUtil$OnUploadListener:
     void onSuccess(java.lang.String) -> onSuccess
     void onFailed(java.lang.String) -> onFailed
+com.example.zf_pad.trade.common.CustomDialog -> com.example.zf_pad.trade.common.CustomDialog:
+    android.widget.TextView contentTv -> contentTv
+    android.widget.Button leftButton -> leftButton
+    android.widget.Button rightButton -> rightButton
+    android.content.Context context -> context
+    void setContent(java.lang.String) -> setContent
+    void setContent(int) -> setContent
+    void setLeftListener(android.view.View$OnClickListener) -> setLeftListener
+    void setRightListener(android.view.View$OnClickListener) -> setRightListener
+    void setSoftKeyValue(java.lang.String,java.lang.String) -> setSoftKeyValue
+    void setSoftKeyValue(int,int) -> setSoftKeyValue
+com.example.zf_pad.trade.common.CustomDialog$1 -> com.example.zf_pad.trade.common.CustomDialog$1:
+    com.example.zf_pad.trade.common.CustomDialog this$0 -> this$0
+    void onClick(android.view.View) -> onClick
 com.example.zf_pad.trade.common.DialogUtil -> com.example.zf_pad.trade.common.DialogUtil:
     android.app.Dialog getLoadingDialg(android.app.Activity) -> getLoadingDialg
     int getScreenWidth(android.app.Activity) -> getScreenWidth
@@ -23330,6 +23376,7 @@ com.unionpay.uppayplugin.demo.BaseActivity -> com.unionpay.uppayplugin.demo.Base
     int orderId -> orderId
     java.lang.String str -> str
     java.lang.String pay_result -> pay_result
+    java.lang.String type -> type
     void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String) -> doStartUnionPayPlugin
     void onCreate(android.os.Bundle) -> onCreate
     boolean handleMessage(android.os.Message) -> handleMessage
@@ -23348,6 +23395,49 @@ com.unionpay.uppayplugin.demo.BaseActivity$2 -> com.unionpay.uppayplugin.demo.Ba
 com.unionpay.uppayplugin.demo.BaseActivity$3 -> com.unionpay.uppayplugin.demo.BaseActivity$3:
     com.unionpay.uppayplugin.demo.BaseActivity this$0 -> this$0
     void run() -> run
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity:
+    java.lang.String LOG_TAG -> LOG_TAG
+    android.content.Context mContext -> mContext
+    android.os.Handler mHandler -> mHandler
+    android.app.ProgressDialog mLoadingDialog -> mLoadingDialog
+    int PLUGIN_VALID -> PLUGIN_VALID
+    int PLUGIN_NOT_INSTALLED -> PLUGIN_NOT_INSTALLED
+    int PLUGIN_NEED_UPGRADE -> PLUGIN_NEED_UPGRADE
+    java.lang.String outTradeNo -> outTradeNo
+    java.lang.String price -> price
+    int record_id -> record_id
+    int record_type -> record_type
+    java.lang.String str -> str
+    java.lang.String pay_result -> pay_result
+    java.lang.String apkTn -> apkTn
+    java.lang.String apkMode -> apkMode
+    boolean IS_PLUGIN_NOT_INSTALLED -> IS_PLUGIN_NOT_INSTALLED
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void run() -> run
+    int startpay(android.app.Activity,java.lang.String,int) -> startpay
+    java.lang.String postRequest(java.lang.String,java.util.Map) -> postRequest
+    void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String) -> doStartUnionPayPlugin
+    void onResume() -> onResume
+    int access$0(com.unionpay.uppayplugin.demo.RepairPayUnionActivity) -> access$0
+    java.lang.String access$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity,java.lang.String,java.util.Map) -> access$1
+    android.os.Handler access$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity) -> access$2
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void run() -> run
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5 -> com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5:
+    com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0 -> this$0
+    void onClick(android.content.DialogInterface,int) -> onClick
 u.aly.a -> b.a.a:
     int a -> a
     int b -> b

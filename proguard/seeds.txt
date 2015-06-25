@@ -12127,7 +12127,7 @@ com.example.zf_pad.entity.GoodinfoEntity
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String lease_agreement
 com.example.zf_pad.entity.GoodinfoEntity: int purchase_price
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String encrypt_card_way
-com.example.zf_pad.entity.GoodinfoEntity: int total_score
+com.example.zf_pad.entity.GoodinfoEntity: java.lang.String total_score
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String sign_order_way
 com.example.zf_pad.entity.GoodinfoEntity: int retail_price
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String battery_info
@@ -12156,8 +12156,8 @@ com.example.zf_pad.entity.GoodinfoEntity: java.lang.String getLease_agreement()
 com.example.zf_pad.entity.GoodinfoEntity: void setLease_agreement(java.lang.String)
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String getEncrypt_card_way()
 com.example.zf_pad.entity.GoodinfoEntity: void setEncrypt_card_way(java.lang.String)
-com.example.zf_pad.entity.GoodinfoEntity: int getTotal_score()
-com.example.zf_pad.entity.GoodinfoEntity: void setTotal_score(int)
+com.example.zf_pad.entity.GoodinfoEntity: java.lang.String getTotal_score()
+com.example.zf_pad.entity.GoodinfoEntity: void setTotal_score(java.lang.String)
 com.example.zf_pad.entity.GoodinfoEntity: java.lang.String getSign_order_way()
 com.example.zf_pad.entity.GoodinfoEntity: void setSign_order_way(java.lang.String)
 com.example.zf_pad.entity.GoodinfoEntity: int getRetail_price()
@@ -12469,7 +12469,7 @@ com.example.zf_pad.entity.PosEntity: java.lang.Boolean has_lease
 com.example.zf_pad.entity.PosEntity: int volume_number
 com.example.zf_pad.entity.PosEntity: int id
 com.example.zf_pad.entity.PosEntity: java.lang.String good_brand
-com.example.zf_pad.entity.PosEntity: int total_score
+com.example.zf_pad.entity.PosEntity: java.lang.String total_score
 com.example.zf_pad.entity.PosEntity: int retail_price
 com.example.zf_pad.entity.PosEntity: java.lang.String pay_channe
 com.example.zf_pad.entity.PosEntity: java.lang.String Title
@@ -12486,8 +12486,8 @@ com.example.zf_pad.entity.PosEntity: int getId()
 com.example.zf_pad.entity.PosEntity: void setId(int)
 com.example.zf_pad.entity.PosEntity: java.lang.String getGood_brand()
 com.example.zf_pad.entity.PosEntity: void setGood_brand(java.lang.String)
-com.example.zf_pad.entity.PosEntity: int getTotal_score()
-com.example.zf_pad.entity.PosEntity: void setTotal_score(int)
+com.example.zf_pad.entity.PosEntity: java.lang.String getTotal_score()
+com.example.zf_pad.entity.PosEntity: void setTotal_score(java.lang.String)
 com.example.zf_pad.entity.PosEntity: int getRetail_price()
 com.example.zf_pad.entity.PosEntity: void setRetail_price(int)
 com.example.zf_pad.entity.PosEntity: java.lang.String getPay_channe()
@@ -13334,6 +13334,22 @@ com.example.zf_pad.trade.common.CommonUtil$OnDateSetListener: void onDateSet(jav
 com.example.zf_pad.trade.common.CommonUtil$OnUploadListener
 com.example.zf_pad.trade.common.CommonUtil$OnUploadListener: void onSuccess(java.lang.String)
 com.example.zf_pad.trade.common.CommonUtil$OnUploadListener: void onFailed(java.lang.String)
+com.example.zf_pad.trade.common.CustomDialog
+com.example.zf_pad.trade.common.CustomDialog: android.widget.TextView contentTv
+com.example.zf_pad.trade.common.CustomDialog: android.widget.Button leftButton
+com.example.zf_pad.trade.common.CustomDialog: android.widget.Button rightButton
+com.example.zf_pad.trade.common.CustomDialog: android.content.Context context
+com.example.zf_pad.trade.common.CustomDialog: CustomDialog(android.app.Activity)
+com.example.zf_pad.trade.common.CustomDialog: void setContent(java.lang.String)
+com.example.zf_pad.trade.common.CustomDialog: void setContent(int)
+com.example.zf_pad.trade.common.CustomDialog: void setLeftListener(android.view.View$OnClickListener)
+com.example.zf_pad.trade.common.CustomDialog: void setRightListener(android.view.View$OnClickListener)
+com.example.zf_pad.trade.common.CustomDialog: void setSoftKeyValue(java.lang.String,java.lang.String)
+com.example.zf_pad.trade.common.CustomDialog: void setSoftKeyValue(int,int)
+com.example.zf_pad.trade.common.CustomDialog$1
+com.example.zf_pad.trade.common.CustomDialog$1: com.example.zf_pad.trade.common.CustomDialog this$0
+com.example.zf_pad.trade.common.CustomDialog$1: CustomDialog$1(com.example.zf_pad.trade.common.CustomDialog)
+com.example.zf_pad.trade.common.CustomDialog$1: void onClick(android.view.View)
 com.example.zf_pad.trade.common.DialogUtil
 com.example.zf_pad.trade.common.DialogUtil: DialogUtil()
 com.example.zf_pad.trade.common.DialogUtil: android.app.Dialog getLoadingDialg(android.app.Activity)
@@ -20066,6 +20082,7 @@ com.unionpay.uppayplugin.demo.BaseActivity: java.lang.String price
 com.unionpay.uppayplugin.demo.BaseActivity: int orderId
 com.unionpay.uppayplugin.demo.BaseActivity: java.lang.String str
 com.unionpay.uppayplugin.demo.BaseActivity: java.lang.String pay_result
+com.unionpay.uppayplugin.demo.BaseActivity: java.lang.String type
 com.unionpay.uppayplugin.demo.BaseActivity: BaseActivity()
 com.unionpay.uppayplugin.demo.BaseActivity: void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String)
 com.unionpay.uppayplugin.demo.BaseActivity: void onCreate(android.os.Bundle)
@@ -20088,6 +20105,55 @@ com.unionpay.uppayplugin.demo.BaseActivity$3
 com.unionpay.uppayplugin.demo.BaseActivity$3: com.unionpay.uppayplugin.demo.BaseActivity this$0
 com.unionpay.uppayplugin.demo.BaseActivity$3: BaseActivity$3(com.unionpay.uppayplugin.demo.BaseActivity)
 com.unionpay.uppayplugin.demo.BaseActivity$3: void run()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String LOG_TAG
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.content.Context mContext
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.os.Handler mHandler
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.app.ProgressDialog mLoadingDialog
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_VALID
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_NOT_INSTALLED
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int PLUGIN_NEED_UPGRADE
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String outTradeNo
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String price
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int record_id
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int record_type
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String str
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String pay_result
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String apkTn
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String apkMode
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: boolean IS_PLUGIN_NOT_INSTALLED
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: RepairPayUnionActivity()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onCreate(android.os.Bundle)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: boolean handleMessage(android.os.Message)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onActivityResult(int,int,android.content.Intent)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void run()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int startpay(android.app.Activity,java.lang.String,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String postRequest(java.lang.String,java.util.Map)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: void onResume()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: int access$0(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: java.lang.String access$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity,java.lang.String,java.util.Map)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity: android.os.Handler access$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: RepairPayUnionActivity$1(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$1: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: RepairPayUnionActivity$2(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$2: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: RepairPayUnionActivity$3(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$3: void run()
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: RepairPayUnionActivity$4(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$4: void onClick(android.content.DialogInterface,int)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: com.unionpay.uppayplugin.demo.RepairPayUnionActivity this$0
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: RepairPayUnionActivity$5(com.unionpay.uppayplugin.demo.RepairPayUnionActivity)
+com.unionpay.uppayplugin.demo.RepairPayUnionActivity$5: void onClick(android.content.DialogInterface,int)
 u.aly.al: u.aly.al[] values()
 u.aly.al: u.aly.al valueOf(java.lang.String)
 u.aly.am$e: u.aly.am$e[] values()

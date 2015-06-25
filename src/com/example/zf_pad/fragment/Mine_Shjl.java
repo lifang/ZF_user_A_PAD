@@ -532,8 +532,9 @@ public class Mine_Shjl extends Fragment implements OnTabOnclik,IXListViewListene
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (AfterSalePayActivity.isPay == true) {
+		if (AfterSalePayActivity.isPay == true || MyApplication.getInstance().isHasOrderPaid()) {
 			AfterSalePayActivity.isPay = false;
+			MyApplication.getInstance().setHasOrderPaid(false);
 			page = 0;
 			mEntities.clear();
 			loadData();

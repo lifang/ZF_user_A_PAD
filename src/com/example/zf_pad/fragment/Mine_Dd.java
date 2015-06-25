@@ -378,7 +378,10 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 
 	@Override
 	public void onResume() {
-
+		if(MyApplication.getInstance().isHasOrderPaid()){
+			onRefresh();
+			MyApplication.getInstance().setHasOrderPaid(false);
+		}
 		super.onResume();
 
 	}
