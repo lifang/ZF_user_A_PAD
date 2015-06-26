@@ -130,7 +130,7 @@ import com.loopj.android.http.RequestParams;
 				initIndicator();
 				adapter.notifyDataSetChanged();
 				if(gfe.getTitle()!=null)
-				tv_title.setText(gfe.getTitle());
+					tv_title.setText(gfe.getTitle());
 				content1.setText(gfe.getSecond_title());
 				tv_pp.setText(gfe.getGood_brand()+gfe.getModel_number());
 				// tv_xh.setText(gfe.getModel_number());
@@ -160,7 +160,7 @@ import com.loopj.android.http.RequestParams;
 				String string=" ￥" + df.format((double)(gfe.getPrice()) / 100)+" ";
 				SpannableString sp = new SpannableString(string);
 				sp.setSpan(new StrikethroughSpan(), 0, string.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-				
+
 				jjyj.setText(sp);
 				jjxj.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
 				ktfy.setText("￥ "+StringUtil.getMoneyString(opening_cost));
@@ -306,42 +306,50 @@ import com.loopj.android.http.RequestParams;
 			all_price = gfe.getRetail_price()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()+opening_cost));
 			islea = false;			
-				setting_btn_clear1.setClickable(true);
+			setting_btn_clear1.setClickable(true);
+			if (gfe.getQuantity()<=0) {
+				setting_btn_clear.setText("缺货");
+			}else {
 				setting_btn_clear.setText("立即购买");
-				setting_btn_clear1.setBackgroundDrawable(getResources()
-						.getDrawable(R.drawable.bg_shape));
-				setting_btn_clear1.setTextColor(getResources().getColor(
-						R.color.bgtitle));
-				tv_bug.setTextColor(getResources().getColor(R.color.white));
-				tv_lea.setTextColor(getResources().getColor(R.color.text292929));
-				tv_lea.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.send_out_goods_shape));
-				//tv_bug.setBackgroundDrawable(getResources().getDrawable(
-				//		R.drawable.bg_shape));	
-				tv_bug.setBackgroundColor(getResources().getColor(R.color.bgtitle));
-				jjxj.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
-				tv_jj.setText("机具现价");
+			}
+			setting_btn_clear1.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.bg_shape));
+			setting_btn_clear1.setTextColor(getResources().getColor(
+					R.color.bgtitle));
+			tv_bug.setTextColor(getResources().getColor(R.color.white));
+			tv_lea.setTextColor(getResources().getColor(R.color.text292929));
+			tv_lea.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.send_out_goods_shape));
+			//tv_bug.setBackgroundDrawable(getResources().getDrawable(
+			//		R.drawable.bg_shape));	
+			tv_bug.setBackgroundColor(getResources().getColor(R.color.bgtitle));
+			jjxj.setText("￥ "+StringUtil.getMoneyString(gfe.getRetail_price()));
+			tv_jj.setText("机具现价");
 			break;
 		case R.id.tv_lea:
 			all_price = gfe.getLease_deposit()+opening_cost;
 			tv_price.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()+opening_cost));
-			
-				islea = true;
-				setting_btn_clear1.setClickable(false);
+
+			islea = true;
+			setting_btn_clear1.setClickable(false);
+			if (gfe.getQuantity()<=0) {
+				setting_btn_clear.setText("缺货");
+			}else {
 				setting_btn_clear.setText("立即租赁");
-				setting_btn_clear1.setTextColor(getResources().getColor(
-						R.color.bg0etitle));
-				setting_btn_clear1.setBackgroundDrawable(getResources()
-						.getDrawable(R.drawable.bg0e_shape));
-				tv_bug.setTextColor(getResources().getColor(R.color.text292929));
-				tv_lea.setTextColor(getResources().getColor(R.color.white));
-				//tv_lea.setBackgroundDrawable(getResources().getDrawable(
-				//		R.drawable.bg_shape));
-				tv_lea.setBackgroundColor(getResources().getColor(R.color.bgtitle));
-				tv_bug.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.send_out_goods_shape));
-				jjxj.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()));
-				tv_jj.setText("租赁押金");
+			}
+			setting_btn_clear1.setTextColor(getResources().getColor(
+					R.color.bg0etitle));
+			setting_btn_clear1.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.bg0e_shape));
+			tv_bug.setTextColor(getResources().getColor(R.color.text292929));
+			tv_lea.setTextColor(getResources().getColor(R.color.white));
+			//tv_lea.setBackgroundDrawable(getResources().getDrawable(
+			//		R.drawable.bg_shape));
+			tv_lea.setBackgroundColor(getResources().getColor(R.color.bgtitle));
+			tv_bug.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.send_out_goods_shape));
+			jjxj.setText("￥ "+StringUtil.getMoneyString(gfe.getLease_deposit()));
+			tv_jj.setText("租赁押金");
 			break;
 		case R.id.setting_btn_clear1:
 			if (Config.CheckIsLogin(GoodDeatail.this)) {
@@ -372,7 +380,7 @@ import com.loopj.android.http.RequestParams;
 			i = new Intent(GoodDeatail.this, GoodDeatilMore.class);
 			i.putExtra("type", 2);
 			i.putExtra("comments", commentsCount);
-			
+
 			startActivity(i);
 			break;
 		case R.id.tv_jy:
@@ -623,19 +631,19 @@ import com.loopj.android.http.RequestParams;
 						// ButtonGridviewAdapter(GoodDeatail.this,
 						// User_button,0);
 						// gview1.setAdapter(buttonAdapter);
-						
-							arelist = gson.fromJson(
-									jsonobject
-									.getString("supportArea"),
-									new TypeToken<List<String>>() {
-									}.getType());
-							String a = "";
-							for (int i = 0; i < arelist.size(); i++) {
-								a = a + arelist.get(i);
-							}
 
-							Config.suportare = a;
-						
+						arelist = gson.fromJson(
+								jsonobject
+								.getString("supportArea"),
+								new TypeToken<List<String>>() {
+								}.getType());
+						String a = "";
+						for (int i = 0; i < arelist.size(); i++) {
+							a = a + arelist.get(i);
+						}
+
+						Config.suportare = a;
+
 						if (jsonobject
 								.getBoolean("support_cancel_flag")) {
 							Config.suportcl = "支持";
@@ -647,7 +655,7 @@ import com.loopj.android.http.RequestParams;
 						opening_cost = jsonobject.getInt("opening_cost");
 						Config.support_type=jsonobject.getBoolean("support_type");
 						tdname = jsonobject.getString("name");
-						
+
 						celist2 = gson.fromJson(
 								jsonobject.getString("tDates"),
 								new TypeToken<List<ChanelEntitiy>>() {
@@ -700,7 +708,7 @@ import com.loopj.android.http.RequestParams;
 		}
 		MyApplication.getInstance().getClient()
 		.post(getApplicationContext(),Config.goodadd, null,entity,"application/json", new AsyncHttpResponseHandler(){
-		//.post(Config.goodadd, params, new AsyncHttpResponseHandler() {
+			//.post(Config.goodadd, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -877,8 +885,8 @@ import com.loopj.android.http.RequestParams;
 		.getInstance()
 		.getClient()
 		.post(getApplicationContext(),Config.paychannel_info, null,entity,"application/json", new AsyncHttpResponseHandler(){
-//		.post(Config.paychannel_info, params,
-//				new AsyncHttpResponseHandler() {
+			//		.post(Config.paychannel_info, params,
+			//				new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode,
@@ -958,19 +966,19 @@ import com.loopj.android.http.RequestParams;
 						// ButtonGridviewAdapter(GoodDeatail.this,
 						// User_button,0);
 						// gview1.setAdapter(buttonAdapter);
-						
-							arelist = gson.fromJson(
-									jsonobject
-									.getString("supportArea"),
-									new TypeToken<List<String>>() {
-									}.getType());
-							String a = "";
-							for (int i = 0; i < arelist.size(); i++) {
-								a = a + arelist.get(i);
-							}
 
-							Config.suportare = a;
-						
+						arelist = gson.fromJson(
+								jsonobject
+								.getString("supportArea"),
+								new TypeToken<List<String>>() {
+								}.getType());
+						String a = "";
+						for (int i = 0; i < arelist.size(); i++) {
+							a = a + arelist.get(i);
+						}
+
+						Config.suportare = a;
+
 						if (jsonobject
 								.getBoolean("support_cancel_flag")) {
 							Config.suportcl = "支持";
