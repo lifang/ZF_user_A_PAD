@@ -178,6 +178,8 @@ public class AdressEdit extends BaseActivity{
 				isDefault=2;
 			}
 			Cityid = Integer.valueOf(Mine_MyInfo_nofrag.dataadress.get(pp).getCityId());
+		}else {
+			search.setVisibility(View.GONE);
 		}
 		adresslist=(Button) findViewById(R.id.adresslist);
 		adresslist.setOnClickListener(new OnClickListener() {
