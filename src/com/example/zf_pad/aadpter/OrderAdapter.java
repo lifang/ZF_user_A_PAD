@@ -296,4 +296,8 @@ public class OrderAdapter extends BaseAdapter{
 			return 0;// 如果抛出异常，返回False
 		}
 	}
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
+	}
 }

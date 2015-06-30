@@ -17,7 +17,6 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-        
             android:text="我的订单"
             android:textColor="#292929"
             android:textSize="23sp" />
@@ -26,8 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-           android:layout_marginTop="6dp"
-            >
+            android:layout_marginTop="6dp" >
 
             <TextView
                 android:id="@+id/tv_gm"
@@ -58,6 +56,18 @@
         android:layout_width="fill_parent"
         android:layout_height="1.5dp"
         android:background="#959494" />
+
+    <LinearLayout
+        android:id="@+id/eva_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@color/ffffff"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <include layout="@layout/include_norecord" />
+    </LinearLayout>
 
     <com.example.zf_pad.util.XListView
         android:id="@+id/x_listview"

@@ -48,7 +48,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class Mine_Dd extends Fragment implements IXListViewListener,
-		OnClickListener {
+OnClickListener {
 	private View view;
 	private XListView Xlistview;
 	private int page = 1;
@@ -66,14 +66,24 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 			switch (msg.what) {
 			case 0:
 				onLoad();
+				myAdapter.notifyDataSetChanged();
 				if (myList.size() == 0) {
 					// norecord_text_to.setText("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ?);
 					Xlistview.setVisibility(View.GONE);
-					// eva_nodata.setVisibility(View.VISIBLE);
+//					Xlistview.setEnabled(false);
+//					Xlistview.setClickable(false);
+//					Xlistview.setSelector(android.R.color.transparent);
+					eva_nodata.setVisibility(View.VISIBLE);
+//					eva_nodata.setFocusable(true);
+//					eva_nodata.setFocusableInTouchMode(true);
+//					eva_nodata.requestFocus();
+				}else {
+					Xlistview.setVisibility(View.VISIBLE);
+				//	Xlistview.setEnabled(true);
+					eva_nodata.setVisibility(View.GONE);
 				}
 				onRefresh_number = true;
-
-				myAdapter.notifyDataSetChanged();
+	
 				break;
 			case 1:
 				Toast.makeText(getActivity(), (String) msg.obj,
@@ -172,6 +182,13 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 		tv_zl.setOnClickListener(this);
 		myAdapter = new OrderAdapter(getActivity(), myList, this);
 		eva_nodata = (LinearLayout) view.findViewById(R.id.eva_nodata);
+		eva_nodata.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
 		Xlistview = (XListView) view.findViewById(R.id.x_listview);
 
 		// refund_listview.getmFooterView().getmHintView().setText("ï¿½Ñ¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?);
@@ -272,76 +289,76 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 		MyApplication.getInstance().getClient()
 		.post(getActivity(),Config.ORDERLIST, null,entity,"application/json", new AsyncHttpResponseHandler(){
 			//	.post(Config.ORDERLIST, params, new AsyncHttpResponseHandler() {
-					private Dialog loadingDialog;
+			private Dialog loadingDialog;
 
-					@Override
-					public void onStart() {
-						super.onStart();
-						loadingDialog = DialogUtil.getLoadingDialg(mactivity);
-						loadingDialog.show();
-					}
+			@Override
+			public void onStart() {
+				super.onStart();
+				loadingDialog = DialogUtil.getLoadingDialg(mactivity);
+				loadingDialog.show();
+			}
 
-					@Override
-					public void onFinish() {
-						super.onFinish();
-						loadingDialog.dismiss();
-					}
+			@Override
+			public void onFinish() {
+				super.onFinish();
+				loadingDialog.dismiss();
+			}
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							byte[] responseBody) {
-						String responseMsg = new String(responseBody)
-								.toString();
-						Log.e("print", responseMsg);
-						Gson gson = new Gson();
-						JSONObject jsonobject = null;
-						String code = null;
-						try {
-							jsonobject = new JSONObject(responseMsg);
-							code = jsonobject.getString("code");
-							int a = jsonobject.getInt("code");
-							if (a == Config.CODE) {
-								String res = jsonobject.getString("result");
-								jsonobject = new JSONObject(res);
-								moreList.clear();
-								System.out.println("-jsonobject String()--"
-										+ jsonobject.getString("content")
-												.toString());
-								moreList = gson.fromJson(
-										jsonobject.getString("content")
-												.toString(),
-										new TypeToken<List<OrderEntity>>() {
-										}.getType());
-								System.out
-										.println("-sendEmptyMessage String()--");
-								//myAdapter.notifyDataSetChanged();
-								if (myList.size() != 0 && moreList.size() == 0) {
-									Toast.makeText(getActivity(), "Ã»ÓÐ¸ü¶àÊý¾Ý!",
-											1000).show();
-									Xlistview.getmFooterView().setState2(2);
-									Xlistview.setPullLoadEnable(false);
-								}
-
-								myList.addAll(moreList);
-								handler.sendEmptyMessage(0);
-							} else {
-								code = jsonobject.getString("message");
-								Toast.makeText(getActivity(), code, 1000)
-										.show();
-							}
-						} catch (JSONException e) {
-							e.printStackTrace();
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					byte[] responseBody) {
+				String responseMsg = new String(responseBody)
+				.toString();
+				Log.e("print", responseMsg);
+				Gson gson = new Gson();
+				JSONObject jsonobject = null;
+				String code = null;
+				try {
+					jsonobject = new JSONObject(responseMsg);
+					code = jsonobject.getString("code");
+					int a = jsonobject.getInt("code");
+					if (a == Config.CODE) {
+						String res = jsonobject.getString("result");
+						jsonobject = new JSONObject(res);
+						moreList.clear();
+						System.out.println("-jsonobject String()--"
+								+ jsonobject.getString("content")
+								.toString());
+						moreList = gson.fromJson(
+								jsonobject.getString("content")
+								.toString(),
+								new TypeToken<List<OrderEntity>>() {
+								}.getType());
+						System.out
+						.println("-sendEmptyMessage String()--");
+						//myAdapter.notifyDataSetChanged();
+						if (myList.size() != 0 && moreList.size() == 0) {
+							Toast.makeText(getActivity(), "Ã»ÓÐ¸ü¶àÊý¾Ý!",
+									1000).show();
+							Xlistview.getmFooterView().setState2(2);
+							Xlistview.setPullLoadEnable(false);
 						}
-					}
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							byte[] responseBody, Throwable error) {
+						myList.addAll(moreList);
 						handler.sendEmptyMessage(0);
-						System.out.println("-onFailure---");
-						Log.e("print", "-onFailure---" + error);
+					} else {
+						code = jsonobject.getString("message");
+						Toast.makeText(getActivity(), code, 1000)
+						.show();
 					}
-				});
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] responseBody, Throwable error) {
+				handler.sendEmptyMessage(0);
+				System.out.println("-onFailure---");
+				Log.e("print", "-onFailure---" + error);
+			}
+		});
 
 	}
 
@@ -349,7 +366,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_gm:
-			Config.iszl = false;
+			//			Config.iszl = false;
 
 			Xlistview.setPullLoadEnable(true);
 			type = "1";
@@ -363,7 +380,7 @@ public class Mine_Dd extends Fragment implements IXListViewListener,
 			Xlistview.setAdapter(myAdapter);
 			break;
 		case R.id.tv_zl:
-			Config.iszl = true;
+			//			Config.iszl = true;
 			type = "2";
 
 			Xlistview.setPullLoadEnable(true);
