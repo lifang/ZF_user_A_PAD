@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,22 @@ public class Good_detail_pic extends Fragment implements OnClickListener{
 	private ListView list;
 	private MyAdapter adapter;
 	private int GoodId;
+	
+	public static int screenWidth;
+	public static int screenHeight;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		GoodId=Config.gid;
+		
+		DisplayMetrics dm = new DisplayMetrics();  
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm); 
+
+		// 得到屏幕的长和宽  
+		screenWidth = dm.widthPixels;                //水平分辨率  
+		screenHeight = dm.heightPixels;              //垂直分辨率 
+		
+		piclist.clear();
 		getdata();
 	}
 	private void getdata() {
@@ -95,6 +108,14 @@ public class Good_detail_pic extends Fragment implements OnClickListener{
 			inflater = LayoutInflater.from(getActivity());
 			view = inflater.inflate(R.layout.good_detail_pic_item, null);
 			im = (ImageView)view.findViewById(R.id.pic);
+			
+			ViewGroup.LayoutParams lp = im.getLayoutParams();
+			lp.width = screenWidth;
+			lp.height = screenWidth;
+			im.setLayoutParams(lp);
+			im.setMaxWidth(screenWidth);
+			im.setMaxHeight(screenWidth);
+			
 			ImageCacheUtil.IMAGE_CACHE.get(piclist.get(position).getUrlPath(), im);
 			return view;
 		}

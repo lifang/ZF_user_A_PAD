@@ -117,6 +117,9 @@ public class ContactUs extends BaseActivity {
 					public void onSuccess(Object data) {
 						// TODO Auto-generated method stub
 						Toast.makeText(ContactUs.this, "提交成功", 1000).show();
+						login_edit_name.setText("");
+						login_edit_name1.setText("");
+						et_contetn.setText("");
 						//ContactUs.this.finish();
 					}
 

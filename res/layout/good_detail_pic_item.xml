@@ -6,9 +6,11 @@
 
     <ImageView
         android:id="@+id/pic"
-        android:layout_width="450dp"
-        android:layout_height="450dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-       />
+        android:adjustViewBounds="false"
+        android:background="@drawable/moren"
+        android:scaleType="centerCrop" />
 
 </LinearLayout>
